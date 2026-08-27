@@ -1,149 +1,201 @@
-export const aniimo = [
-  {
-    id: "sprigpaw",
-    name: "Sprigpaw",
-    element: "Nature",
-    region: "Verdant Coast",
-    habitat: "Grassland edges and shaded groves",
-    acquisition: "Wild encounter",
-    condition: "Daytime, clear weather",
-    evolution: "Evolves after bonding milestones are confirmed",
-    forms: ["Sprigpaw", "Bloomclaw"],
-    ability: "Vine Link",
-    use: "Early exploration, gap crossing, light puzzle routes",
-    status: "Estimated",
-  },
-  {
-    id: "emberlynx",
-    name: "Emberlynx",
-    element: "Fire",
-    region: "Cinder Ridge",
-    habitat: "Warm cliffs and ember fields",
-    acquisition: "Wild encounter or event reward",
-    condition: "Dusk or volcanic weather",
-    evolution: "Branch form details pending launch data",
-    forms: ["Emberlynx", "Ashmane"],
-    ability: "Heat Link",
-    use: "Burning obstacles and aggressive combat openings",
-    status: "Unconfirmed",
-  },
-  {
-    id: "tidelume",
-    name: "Tidelume",
-    element: "Water",
-    region: "Moonlit Shoals",
-    habitat: "Shallow reefs and tide pools",
-    acquisition: "Wild encounter",
-    condition: "Night, high tide",
-    evolution: "Requires water-region progression, pending verification",
-    forms: ["Tidelume", "Pearlfin"],
-    ability: "Current Link",
-    use: "Water traversal, hidden route access",
-    status: "Estimated",
-  },
-  {
-    id: "voltickit",
-    name: "Voltickit",
-    element: "Electric",
-    region: "Stormplain",
-    habitat: "Open plains during storms",
-    acquisition: "Rare wild encounter",
-    condition: "Thunderstorm",
-    evolution: "Unknown",
-    forms: ["Voltickit"],
-    ability: "Spark Link",
-    use: "Power nodes, timed mechanisms",
-    status: "Unconfirmed",
-  },
+export const officialLinks = {
+  website: "https://www.aniimo.com/",
+  main: "https://www.aniimo.com/main",
+  officialWiki: "https://wiki.aniimo.com/",
+  googlePlay: "https://play.google.com/store/apps/details?hl=en&id=com.x.aniimos",
+  privacy: "https://pawprintstudio.com/privacy-policy",
+};
+
+export const gameInfo = {
+  title: "Aniimo",
+  developer: "Pawprint Studio",
+  publisher: "Pawprint Interactive Entertainment Pte. Ltd.",
+  genre: "Free-to-play creature-catching open-world RPG",
+  world: "Idyll",
+  playerName: "Pathfinder",
+  summary:
+    "Aniimo is a free-to-play creature-catching open-world RPG set on the continent of Idyll. Players catch creatures with Aniipods, Twine with collected Aniimo to use their abilities, explore weather and time-based encounters, join real-time challenges, and build a Homeland around a personal RV.",
+  source: officialLinks.googlePlay,
+};
+
+export const releaseInfo = {
+  pcConsole: "2026-09-16",
+  mobile: "2026-09-23",
+  closedBeta: "2025-07-04",
+  betaSignupDeadline: "2025-06-30",
+  launchStatus: "Confirmed",
+  note:
+    "Official site news lists PC and console launch on September 16, 2026, with mobile launch on September 23, 2026.",
+  source: officialLinks.main,
+};
+
+const names = [
+  ["001", "emberpup", "Emberpup", "Fire", "DPS", "Lumin Stage"],
+  ["002", "flameruff", "Flameruff", "Fire", "DPS", "Gamma Stage"],
+  ["003", "scorchhowl", "Scorchhowl", "Fire", "DPS", "Nova Stage"],
+  ["004", "inferlupa", "Inferlupa", "Fire", "DPS", "Nova Stage"],
+  ["005", "celestis", "Celestis", "Holy", "Support", "Lumin Stage"],
+  ["006", "stellarys", "Stellarys", "Holy", "Support", "Gamma Stage"],
+  ["007", "chirpi", "Chirpi", "Wind", "Support", "Lumin Stage"],
+  ["008", "tromber", "Tromber", "Wind", "BREAK", "Gamma Stage"],
+  ["009", "cornet", "Cornet", "Wind", "Support", "Gamma Stage"],
+  ["010", "tubster", "Tubster", "Water", "Support", "Lumin Stage"],
+  ["011", "iris", "Iris", "Grass", "Heal", "Lumin Stage"],
+  ["012", "irisal", "Irisal", "Grass", "Heal", "Gamma Stage"],
+  ["014", "skippy", "Skippy", "Rock", "Support", "Lumin Stage"],
+  ["015", "pranky", "Pranky", "Dark", "Support", "Lumin Stage"],
+  ["016", "glacy", "Glacy", "Ice", "DPS", "Lumin Stage"],
+  ["017", "leafy", "Leafy", "Grass", "Support", "Lumin Stage"],
+  ["018", "nimbi", "Nimbi", "Water", "Support", "Lumin Stage"],
+  ["019", "turbo", "Turbo", "Electric", "DPS", "Lumin Stage"],
+  ["020", "dreaple", "Dreaple", "Dark", "DPS", "Lumin Stage"],
+  ["021", "hummin", "Hummin", "Wind", "Support", "Lumin Stage"],
+  ["022", "witchin", "Witchin", "Dark", "Support", "Gamma Stage"],
+  ["023", "tuckin", "Tuckin", "Holy", "Heal", "Lumin Stage"],
+  ["024", "budclaw", "Budclaw", "Grass", "DPS", "Lumin Stage"],
+  ["025", "shrubclaw", "Shrubclaw", "Grass", "DPS", "Gamma Stage"],
+  ["026", "geoclaw", "Geoclaw", "Rock", "BREAK", "Nova Stage"],
+  ["027", "sparki", "Sparki", "Electric", "DPS", "Lumin Stage"],
+  ["028", "flamerion", "Flamerion", "Fire", "DPS", "Gamma Stage"],
+  ["029", "flutternym", "Flutternym", "Wind", "Heal", "Lumin Stage"],
+  ["030", "gracewing", "Gracewing", "Wind", "Heal", "Gamma Stage"],
+  ["031", "somniwing", "Somniwing", "Dark", "Support", "Nova Stage"],
+  ["032", "eko", "Eko", "Electric", "Support", "Lumin Stage"],
+  ["033", "eklue", "Eklue", "Electric", "Support", "Gamma Stage"],
+  ["050", "susuta", "Susuta", "Water", "Support", "Lumin Stage"],
+  ["051", "popota", "Popota", "Grass", "Support", "Lumin Stage"],
+  ["052", "piopiota", "Piopiota", "Grass", "Support", "Gamma Stage"],
+  ["053", "panpanta", "Panpanta", "Grass", "Support", "Nova Stage"],
+  ["054", "shelly", "Shelly", "Water", "BREAK", "Lumin Stage"],
+  ["055", "sheldon", "Sheldon", "Water", "BREAK", "Gamma Stage"],
+  ["056", "sherro", "Sherro", "Rock", "BREAK", "Nova Stage"],
+  ["057", "baleetle", "Baleetle", "Rock", "DPS", "Lumin Stage"],
+  ["058", "waleetle", "Waleetle", "Rock", "DPS", "Gamma Stage"],
+  ["059", "bouldus", "Bouldus", "Rock", "DPS", "Nova Stage"],
+  ["069", "cubbo", "Cubbo", "Rock", "DPS", "Lumin Stage"],
+  ["070", "grizbo", "Grizbo", "Rock", "DPS", "Gamma Stage"],
+  ["071", "pebbling", "Pebbling", "Rock", "Support", "Lumin Stage"],
+  ["072", "lavazar", "Lavazar", "Fire", "DPS", "Gamma Stage"],
+  ["073", "magmarex", "Magmarex", "Fire", "DPS", "Nova Stage"],
+  ["084", "reefish", "Reefish", "Water", "Support", "Lumin Stage"],
+  ["085", "coraliz", "Coraliz", "Water", "Support", "Gamma Stage"],
+  ["086", "cheekie", "Cheekie", "Electric", "Support", "Lumin Stage"],
+  ["087", "wavwal", "Wavwal", "Water", "DPS", "Lumin Stage"],
+  ["088", "bubbeep", "Bubbeep", "Water", "Heal", "Lumin Stage"],
+  ["089", "glameep", "Glameep", "Water", "Heal", "Gamma Stage"],
 ];
 
+export const aniimo = names.map(([no, id, name, element, role, stage]) => ({
+  no,
+  id,
+  name,
+  element,
+  role,
+  stage,
+  region: "Official Wiki",
+  habitat: "Location data should be expanded from official region and map updates as launch data stabilizes.",
+  acquisition:
+    id === "susuta"
+      ? "Official pre-registration reward includes a mysterious Susuta egg."
+      : "Catch with Aniipods or obtain through official launch systems when available.",
+  condition: "Unique Aniimo may appear according to environment, weather, phenomena and time of day.",
+  evolution:
+    stage === "Lumin Stage"
+      ? "Lumin Stage entry. Evolution path should be verified against the official index."
+      : `${stage} form listed in the official Aniimo Wiki index.`,
+  forms: [name],
+  ability: "Twine ability details pending per-Aniimo verification.",
+  use: `${role} role listed by official Aniimo Wiki filters. Twine skills can support puzzles, battles and exploration.`,
+  status: "Confirmed",
+  source: officialLinks.officialWiki,
+}));
+
 export const regions = [
-  {
-    id: "verdant-coast",
-    name: "Verdant Coast",
-    theme: "Starter grasslands, coast paths, grove puzzles",
-    aniimo: ["Sprigpaw"],
-    status: "Estimated",
-  },
-  {
-    id: "cinder-ridge",
-    name: "Cinder Ridge",
-    theme: "Cliffs, heat gates, volcanic weather routes",
-    aniimo: ["Emberlynx"],
-    status: "Unconfirmed",
-  },
-  {
-    id: "moonlit-shoals",
-    name: "Moonlit Shoals",
-    theme: "Reefs, tide pools, night-only encounters",
-    aniimo: ["Tidelume"],
-    status: "Estimated",
-  },
-];
+  ["mistwoods", "Mistwoods", "Official world area shown on Aniimo main site and wiki preview.", ["Emberpup", "Iris", "Leafy"], ["Exploration", "Weather encounters", "Time-of-day discovery"]],
+  ["echoback-landing", "Echoback Landing", "Official world area listed by Aniimo as part of the early wiki map.", ["Chirpi", "Tromber", "Cornet"], ["Traversal", "Route discovery", "Twine puzzle paths"]],
+  ["sea-of-flowers", "Sea of Flowers", "Official region name suited to grass, wind and support Aniimo discovery pages.", ["Irisal", "Flutternym", "Gracewing"], ["Collection routes", "Environmental encounters", "Aniilog progression"]],
+  ["blitzwood", "Blitzwood", "Official region name with strong fit for electric and weather-based encounter guides.", ["Turbo", "Sparki", "Eko", "Eklue"], ["Phenomena encounters", "Electric Aniimo routes", "Weather timing"]],
+  ["nimbus-fields", "Nimbus Fields", "Official region name for route, glide, field and sky-adjacent guide content.", ["Nimbi", "Hummin", "Somniwing"], ["Gliding", "Open-world travel", "Field exploration"]],
+  ["forest-of-falling-stars", "Forest of Falling Stars", "Official region name for rare encounter and world guide content.", ["Celestis", "Stellarys", "Susuta"], ["Rare Aniimo discovery", "Story quests", "Special encounters"]],
+].map(([id, name, theme, aniimoNames, mechanics]) => ({
+  id,
+  name,
+  theme,
+  aniimo: aniimoNames,
+  mechanics,
+  status: "Confirmed",
+  source: officialLinks.main,
+}));
+
+export const launchRewards = [
+  ["Rare Prismana Aniimo choice", "Become a Junior Wayfarer to select a Prismana Form Aniimo."],
+  ["Mysterious Susuta egg", "Pre-register on the official website to claim a mysterious Susuta egg."],
+  ["10M milestone", "Glimmer x200"],
+  ["15M milestone", "Aniipod Ultra x2"],
+  ["20M milestone", "Companion Promise limited avatar frame"],
+  ["30M milestone", "Sunlit Meadow limited outfit"],
+  ["Launch event items", "Sparkling Cube, Aniipod Ultra and Tumbler are listed as free catching items through global launch events."],
+].map(([title, reward]) => ({
+  title,
+  reward,
+  status: "Confirmed",
+  source: officialLinks.website,
+}));
 
 export const codes = [
   {
-    code: "ANIIMO2026",
-    reward: "Launch reward placeholder",
+    code: "No official redeem code published",
+    reward: "Track this page for launch codes and global campaign rewards.",
     status: "Watchlist",
-    updated: "2026-08-27",
-  },
-  {
-    code: "PREREG",
-    reward: "Pre-registration reward placeholder",
-    status: "Unconfirmed",
     updated: "2026-08-27",
   },
 ];
 
 export const platforms = [
-  {
-    name: "iOS",
-    status: "Watchlist",
-    note: "Track App Store availability, pre-order status, regional launch timing, and official download links.",
-  },
-  {
-    name: "Android",
-    status: "Watchlist",
-    note: "Track Google Play, TapTap or regional Android store pages, beta signups, and APK policy notes.",
-  },
-  {
-    name: "PC",
-    status: "Unconfirmed",
-    note: "Keep PC client, launcher, and cross-save details separated until official platform support is verified.",
-  },
-];
+  ["Official website", "Official pre-registration and launch reward hub.", officialLinks.website],
+  ["Google Play", "Android store page by Pawprint Studio with wishlist and pre-registration support.", officialLinks.googlePlay],
+  ["PC and consoles", "Official site news lists PC and console launch on September 16, 2026.", officialLinks.main],
+  ["Mobile", "Official site news lists mobile launch on September 23, 2026.", officialLinks.main],
+].map(([name, note, url]) => ({ name, note, url, status: "Confirmed" }));
+
+export const mechanics = [
+  ["Creature catching", "Players catch Aniimo with Aniipods, set traps, and time catches around encounter behavior."],
+  ["Twine", "Players can Twine with collected Aniimo, essentially becoming them to use skills for puzzles, battles and traversal."],
+  ["Environment-based encounters", "Unique Aniimo can appear according to environment, weather, phenomena and time of day."],
+  ["Egg Heist", "Egg Heist is described as a PVEVP mode where three-player teams search and battle in the Lost Isles."],
+  ["Homeland and RV", "Pathfinders have a personal RV and Homeland where they can plant crops, build decorations and interact with Aniimo."],
+].map(([title, text]) => ({ title, text, source: officialLinks.googlePlay }));
 
 export const faqs = {
   home: [
-    ["What is Aniimo Wiki?", "Aniimo Wiki is a fan-made database for Aniimo locations, forms, evolution notes, map routes, codes, and launch information."],
-    ["Is every Aniimo page confirmed?", "No. Early launch pages use status labels so readers can separate confirmed facts from estimates and watchlist items."],
-    ["What should be updated first after launch?", "Codes, download links, release date information, starter Aniimo, region names, and verified encounter locations should be updated first."],
+    ["What is Aniimo?", "Aniimo is a free-to-play creature-catching open-world RPG set on Idyll, developed by Pawprint Studio."],
+    ["When does Aniimo launch?", "Official site news lists PC and console launch for September 16, 2026, with mobile launch on September 23, 2026."],
+    ["What is Twine in Aniimo?", "Twine lets players become collected Aniimo and use their skills for puzzles, battles, traversal and exploration."],
   ],
   database: [
-    ["How is the Aniimo list organized?", "The database is organized by name, element, region, acquisition method, forms, link ability, and source status."],
-    ["Can I filter by region or element?", "Yes. The current MVP supports search plus element and region filters, with room for ability and acquisition filters later."],
+    ["How many Aniimo names are listed?", "The official Aniimo Wiki currently exposes a numbered Aniimo index, and this site tracks a launch-ready subset first."],
+    ["Are elements and roles official?", "The element, role and stage categories come from the official Aniimo Wiki index."],
   ],
   codes: [
-    ["Are the Aniimo codes active?", "Codes marked Watchlist or Unconfirmed should be verified before users treat them as active rewards."],
-    ["How often should this page be updated?", "During launch week, the codes page should be checked daily because redeem codes and reward campaigns change quickly."],
+    ["Are there official Aniimo codes?", "No public redeem code is confirmed here yet. This page separates redeem codes from official milestone rewards."],
+    ["What are the official pre-registration rewards?", "Official rewards include Glimmer, Aniipod Ultra, Companion Promise avatar frame, Sunlit Meadow outfit, a Prismana Aniimo choice and a Susuta egg."],
   ],
   download: [
-    ["Where can I download Aniimo?", "This page should link only to official store pages or official publisher pages once they are available."],
-    ["Will Aniimo support PC and mobile?", "Platform support should stay marked as watchlist or unconfirmed until official channels publish final availability."],
+    ["Where can I pre-register for Aniimo?", "Use the official Aniimo website and official store pages such as Google Play when available in your region."],
+    ["What platforms is Aniimo launching on?", "Official news lists PC and consoles on September 16, 2026, and mobile on September 23, 2026."],
   ],
 };
 
 export const updates = [
   {
     date: "2026-08-27",
-    title: "Aniimo Wiki MVP launched",
-    text: "Created the initial database, map, evolution, codes, download, beginner guide, and data-status pages.",
+    title: "Official launch information added",
+    text: "Added official launch dates, platform notes, Google Play details, official Wiki names, regions, mechanics and launch rewards.",
   },
   {
     date: "2026-08-27",
-    title: "Custom domain prepared",
-    text: "Configured sitemap and robots metadata for aniimo.games and connected Cloudflare Pages deployment.",
+    title: "Aniimo Wiki MVP launched",
+    text: "Created the initial database, map, evolution, codes, download, beginner guide, and data-status pages.",
   },
 ];
 

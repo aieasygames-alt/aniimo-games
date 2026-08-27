@@ -225,6 +225,7 @@ h1 {
 .aniimo-card,
 .region-card,
 .code-card,
+.reward-card,
 .platform-card,
 .faq-list article,
 .status-grid article,
@@ -259,6 +260,7 @@ h1 {
 .aniimo-card p,
 .region-card p,
 .code-card p,
+.reward-card p,
 .platform-card p,
 .faq-list p,
 .update-item p,
@@ -538,8 +540,26 @@ th {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.code-card {
+.code-card,
+.reward-card {
   padding: 20px;
+}
+
+.reward-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.reward-card {
+  border: 1px solid rgba(23, 32, 29, 0.1);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.date-grid {
+  margin: 22px 0;
 }
 
 .checklist,
@@ -681,6 +701,7 @@ th {
   .aniimo-grid,
   .region-grid,
   .code-grid,
+  .reward-grid,
   .guide-columns,
   .status-grid,
   .detail-panels,
