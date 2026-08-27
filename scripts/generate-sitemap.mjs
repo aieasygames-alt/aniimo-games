@@ -2,7 +2,7 @@ import { writeFileSync } from "node:fs";
 import { aniimo, regions } from "../data/content.js";
 
 const siteUrl = "https://aniimo.games";
-const lastmod = "2026-08-27";
+const lastmod = "2026-08-28";
 const staticRoutes = [
   "/",
   "/aniimo",

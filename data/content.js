@@ -3,6 +3,11 @@ export const officialLinks = {
   main: "https://www.aniimo.com/main",
   officialWiki: "https://wiki.aniimo.com/",
   googlePlay: "https://play.google.com/store/apps/details?hl=en&id=com.x.aniimos",
+  appStore: "https://apps.apple.com/app/aniimo/id6759098797",
+  steam: "https://store.steampowered.com/app/4126040/Aniimo/",
+  epic: "https://store.epicgames.com/p/aniimo-759396",
+  xbox: "https://www.xbox.com/games/store/aniimo/9pk8phlcqdf6",
+  playstation: "https://store.playstation.com/concept/10018491",
   privacy: "https://pawprintstudio.com/privacy-policy",
 };
 
@@ -26,9 +31,17 @@ export const releaseInfo = {
   closedBeta: "2025-07-04",
   betaSignupDeadline: "2025-06-30",
   launchStatus: "Confirmed",
+  timezoneNote: "Official dates are listed by calendar date. Store availability can vary by platform, region and local storefront update timing.",
   note:
     "Official site news lists PC and console launch on September 16, 2026, with mobile launch on September 23, 2026.",
   source: officialLinks.main,
+  timeline: [
+    ["2025-06-30", "Global closed beta signup deadline"],
+    ["2025-07-04", "Global closed beta start"],
+    ["2026-08-26", "Official global launch dates announced"],
+    ["2026-09-16", "PC and console launch window"],
+    ["2026-09-23", "Mobile launch window"],
+  ],
 };
 
 const names = [
@@ -143,6 +156,151 @@ const aniimoImages = {
   grizbo: "/images/aniimo/aniimo-grizbo.png",
 };
 
+const officialDescriptions = {
+  emberpup: "The lively creatures like to follow Flameruffs around. Once the smoldering fur starts to burn, they thrive.",
+  flameruff: "Pack creatures that prize loyalty and unity, these hunters maintain focused, calm eyes that mask their fiery hearts.",
+  scorchhowl: "They enjoy the thrill of the fight since flame and burning mark their growth.",
+  inferlupa: "A Flameruff who challenged the strong and lost, absorbing the souls of companions who fell with equal bitterness. It is driven by the desire for revenge.",
+  celestis: "They love food! When they search the forest for food, the glowing stars on their heads are often mistaken for comets. They like hoarding food, adorning their nest with it.",
+  stellarys: "They prefer solitude and often move through the night. With their starry, cloak-like forms, they resemble mysterious mages and can teleport using psychic energy.",
+  chirpi: "They often hover at low altitudes, paying attention to every movement on the beach so they won't miss any opportunity.",
+  tromber: "They like having fun and producing rhythmic music, so don't be surprised to see a grand symphony.",
+  cornet: "They can produce loud, piercing noises that resonate throughout the entire beach just to draw attention.",
+  tubster: "Creates deep, tuba-like sounds that match its steady, friendly character.",
+  iris: "Iris possesses an extremely lightweight body, often lifted by the wind. It then either slowly spirals downward using the resistance from its petal skirt, or simply allows itself to be carried away by the wind.",
+  irisal: "Devoted to the art of dance, they constantly hone their craft, hoping to share the pure joy and energy of movement.",
+  skippy: "They like to hide underwater and observe their surroundings using a lotus leaf as a strikingly ineffective disguise.",
+  pranky: "They like to stay cool and moist. That's what the layer of film over their bodies is for.",
+  glacy: "They are elegant and kind aniimo that always take care of weaker ones, and freeze anyone who crosses them in ice.",
+  leafy: "They live among lotus flowers and use their lotus leaf tails to conceal their face and show off their elegant nature.",
+  nimbi: "Don't be surprised to see them floating in the clouds in small groups above the grasslands.",
+  turbo: "They like to sleep hidden in the clouds, because with the presence of wind pressure and static electricity, the fluffy wool easily attracts things that drift by on the wind.",
+  dreaple: "Their fur that has absorbed dream energy presents a mesmerizing illusion of colors. When they use this fur as a pillow to sleep, they sink into sweet dreams.",
+  hummin: "They live on the grassland in groups, they like burrowing for nutrients, and they love singing off-key together!",
+  witchin: "They make bizarre noises to drive intruders to madness, lower their defenses and even cause them to pass out.",
+  tuckin: "They need to absorb nutrients from the soil through their roots to maintain vitality and hate leaving the ground.",
+  budclaw: "The first form in the Budclaw line. Track its official entry for updated habitat, encounter and skill details.",
+  shrubclaw: "The lush plants that cover their shells convert sunlight into nutrients, so they don't even need to eat on sunny days.",
+  geoclaw: "They live in caves, feed on minerals, and use their beautifully crystallized shells to lure prey.",
+  sparki: "Though they look like fire, those flames are only flowing energy. They give off no heat at all. In fact, they absorb heat from their surroundings.",
+  flamerion: "They only come out at night and their bodies are made of gaseous energy and can split as they want!",
+  flutternym: "They are timid and hide whenever they sense danger, but the fluorescent scales they shake off always give them away.",
+  gracewing: "Lone wanderers. They create illusions by shedding scales from their wings when threats approach.",
+  somniwing: "Their magnificent wings spread scales to help flowers grow and spread vitality wherever they fly.",
+  eko: "With their big ears perked up, they are extremely sensitive to sound. They won't miss any movement that catches their attention, near or far.",
+  eklue: "Curious and keen on searching for traces and tracking targets. The ring on their tail amplifies ultrasound, allowing them to easily see through cloaked creatures.",
+  susuta: "They dig around to search for gifts to give to their crushes, but their wooing always fails because they are so shy.",
+  popota: "They select shells and make them into shovels. It's said that they produce pink bubbles when they see someone they love.",
+  piopiota: "Narcissistic little creatures who spend a large amount of time grooming their fur and striking the perfect pose.",
+  panpanta: "They are strong and powerful, but they'd rather stay in their nests and decorate than show off their muscles.",
+  shelly: "Conceals itself among beach shells using its soft appendages to hold shells in place. Remains sealed during daylight.",
+  sheldon: "Lying on their shells, they face the night sky, drowning in a dream woven by the stars.",
+  sherro: "They turn the shells that once covered them into swords and shields to protect fragile Shellies along the coastline.",
+  baleetle: "They never go anywhere without their stone balls, and the constant rolling makes the balls rounder and stranger.",
+  waleetle: "They move backwards like their kin, but in a much fancier way.",
+  bouldus: "A round stone that had stayed with Baleetle day and night woke up from all that bumping. Tired of being controlled, it swallowed an insect and could finally move by its own will.",
+  cubbo: "They spend the day sleepwalking. If woken up, they instantly become violent and lose control. Once they exhaust their energy, they fall back asleep like a baby.",
+  grizbo: "They hide constant endurance and restraint beneath a gentle exterior. However, if provoked or hungry, they lose control and fall into a frenzy.",
+  pebbling: "They are natural geologists who like eating all kinds of minerals. And what they eat determines how they grow.",
+  lavazar: "They use hard claws to crush crystals and eat them to store heat, causing fiery red patterns to appear on their body. Though small, they can continuously spew high-heat flame streams from their mouth.",
+  magmarex: "Scorching crystals grow on their body like solidified lava. If the stored heat erupts, it can melt everything in their path.",
+  reefish: "They burrow underground to camouflage as coral and bite any prey that comes near. However, they sometimes get impatient and peek around.",
+  coraliz: "They love to bury themselves in sand, mimicking coral clumps. They use the glow of the coral on their head and back to lure creatures for a surprise attack.",
+  cheekie: "People often mistake the circles on their cheeks for eyes. They love to gather in groups on the shore, feeling safe only when they huddle closely with their companions.",
+  wavwal: "They move clumsily on land using their four limbs, but they are experts at sliding on their bellies. The males are highly territorial against other males, once angered, they unleash their wrath like a tsunami.",
+  bubbeep: "It stretches its leafy feathers with lazy ease, always chewing away as it turns algae and slime into floating bubbles. One light hop, and off it drifts, riding the bubbles like a little boat in the breeze.",
+  glameep: "Draped in fresh green leaf-feathers, Glameep moves lightly along the lake shore. It adores clear water most of all, especially when that water reflects its own graceful, unhurried beauty.",
+};
+
+const regionByAniimo = {
+  emberpup: "Mistwoods",
+  flameruff: "Mistwoods",
+  scorchhowl: "Mistwoods",
+  inferlupa: "Mistwoods",
+  celestis: "Forest of Falling Stars",
+  stellarys: "Forest of Falling Stars",
+  chirpi: "Echoback Landing",
+  tromber: "Echoback Landing",
+  cornet: "Echoback Landing",
+  tubster: "Echoback Landing",
+  iris: "Sea of Flowers",
+  irisal: "Sea of Flowers",
+  skippy: "Sea of Flowers",
+  pranky: "Sea of Flowers",
+  glacy: "Nimbus Fields",
+  leafy: "Sea of Flowers",
+  nimbi: "Nimbus Fields",
+  turbo: "Blitzwood",
+  dreaple: "Nimbus Fields",
+  hummin: "Mistwoods",
+  witchin: "Mistwoods",
+  tuckin: "Mistwoods",
+  budclaw: "Sea of Flowers",
+  shrubclaw: "Sea of Flowers",
+  geoclaw: "Mistwoods",
+  sparki: "Blitzwood",
+  flamerion: "Blitzwood",
+  flutternym: "Sea of Flowers",
+  gracewing: "Sea of Flowers",
+  somniwing: "Forest of Falling Stars",
+  eko: "Blitzwood",
+  eklue: "Blitzwood",
+  susuta: "Forest of Falling Stars",
+  popota: "Forest of Falling Stars",
+  piopiota: "Forest of Falling Stars",
+  panpanta: "Forest of Falling Stars",
+  shelly: "Echoback Landing",
+  sheldon: "Echoback Landing",
+  sherro: "Echoback Landing",
+  baleetle: "Blitzwood",
+  waleetle: "Blitzwood",
+  bouldus: "Blitzwood",
+  cubbo: "Nimbus Fields",
+  grizbo: "Nimbus Fields",
+  pebbling: "Mistwoods",
+  lavazar: "Blitzwood",
+  magmarex: "Blitzwood",
+  reefish: "Echoback Landing",
+  coraliz: "Echoback Landing",
+  cheekie: "Echoback Landing",
+  wavwal: "Echoback Landing",
+  bubbeep: "Sea of Flowers",
+  glameep: "Sea of Flowers",
+};
+
+const evolutionFamilies = [
+  ["emberpup", "flameruff", "scorchhowl", "inferlupa"],
+  ["celestis", "stellarys"],
+  ["chirpi", "tromber", "cornet", "tubster"],
+  ["iris", "irisal"],
+  ["skippy", "pranky", "glacy", "leafy"],
+  ["nimbi", "turbo", "dreaple"],
+  ["hummin", "witchin", "tuckin"],
+  ["budclaw", "shrubclaw", "geoclaw"],
+  ["sparki", "flamerion"],
+  ["flutternym", "gracewing", "somniwing"],
+  ["eko", "eklue"],
+  ["susuta", "popota", "piopiota", "panpanta"],
+  ["shelly", "sheldon", "sherro"],
+  ["baleetle", "waleetle", "bouldus"],
+  ["cubbo", "grizbo"],
+  ["pebbling", "lavazar", "magmarex"],
+  ["reefish", "coraliz"],
+  ["cheekie", "wavwal"],
+  ["bubbeep", "glameep"],
+];
+
+const evolutionLineById = Object.fromEntries(
+  evolutionFamilies.flatMap((family) => family.map((id) => [id, family])),
+);
+
+const roleUse = {
+  BREAK: "Break-focused Aniimo are good candidates for shield pressure, object interaction and combat openings.",
+  DPS: "DPS Aniimo are built around damage pressure, active combat windows and fast encounter clears.",
+  Heal: "Heal Aniimo are useful for recovery, sustain and safer exploration routes.",
+  Support: "Support Aniimo help with utility, control, traversal and puzzle support.",
+};
+
 export const aniimo = names.map(([no, id, name, element, role, stage]) => ({
   no,
   id,
@@ -150,20 +308,21 @@ export const aniimo = names.map(([no, id, name, element, role, stage]) => ({
   element,
   role,
   stage,
-  region: "Official Wiki",
-  habitat: "Location data should be expanded from official region and map updates as launch data stabilizes.",
+  region: regionByAniimo[id] || "Official Wiki",
+  habitat: `${regionByAniimo[id] || "Official Wiki"} watchlist. Use this page to connect official region data, map routes and verified spawn notes as launch data expands.`,
   acquisition:
     id === "susuta"
       ? "Official pre-registration reward includes a mysterious Susuta egg."
-      : "Catch with Aniipods or obtain through official launch systems when available.",
+      : "Catch with Aniipods or obtain through official launch systems once exact encounter routes are verified.",
   condition: "Unique Aniimo may appear according to environment, weather, phenomena and time of day.",
   evolution:
-    stage === "Lumin Stage"
-      ? "Lumin Stage entry. Evolution path should be verified against the official index."
+    (evolutionLineById[id] || [id]).length > 1
+      ? `${name} is part of the ${evolutionLineById[id].map((familyId) => names.find((entry) => entry[1] === familyId)?.[2]).filter(Boolean).join(" -> ")} line.`
       : `${stage} form listed in the official Aniimo Wiki index.`,
-  forms: [name],
-  ability: "Twine ability details pending per-Aniimo verification.",
-  use: `${role} role listed by official Aniimo Wiki filters. Twine skills can support puzzles, battles and exploration.`,
+  forms: (evolutionLineById[id] || [id]).map((familyId) => names.find((entry) => entry[1] === familyId)?.[2]).filter(Boolean),
+  ability: officialDescriptions[id],
+  description: officialDescriptions[id],
+  use: `${roleUse[role]} Twine can turn ${name}'s traits into exploration, combat or route-solving utility.`,
   status: "Confirmed",
   source: officialLinks.officialWiki,
   image: aniimoImages[id] || "/images/aniimo/aniimo-group.webp",
@@ -219,15 +378,19 @@ export const codes = [
     reward: "Track this page for launch codes and global campaign rewards.",
     status: "Watchlist",
     updated: "2026-08-27",
+    checklist: ["Official website news", "Official Discord/social posts", "Platform storefront campaigns", "Launch livestream or event posts"],
   },
 ];
 
 export const platforms = [
-  ["Official website", "Official pre-registration and launch reward hub.", officialLinks.website],
-  ["Google Play", "Android store page by Pawprint Studio with wishlist and pre-registration support.", officialLinks.googlePlay],
-  ["PC and consoles", "Official site news lists PC and console launch on September 16, 2026.", officialLinks.main],
-  ["Mobile", "Official site news lists mobile launch on September 23, 2026.", officialLinks.main],
-].map(([name, note, url]) => ({ name, note, url, status: "Confirmed" }));
+  ["Official website", "Pre-registration", "Official pre-registration and launch reward hub.", officialLinks.website],
+  ["App Store", "Pre-order", "Official iOS listing for mobile launch tracking.", officialLinks.appStore],
+  ["Google Play", "Pre-register", "Android store page by Pawprint Studio with wishlist and pre-registration support.", officialLinks.googlePlay],
+  ["Steam", "Wishlist", "Official PC storefront listing for the September 16 PC launch window.", officialLinks.steam],
+  ["Epic Games Store", "Wishlist", "Official Epic listing for the September 16 PC launch window.", officialLinks.epic],
+  ["Xbox", "Wishlist", "Official Xbox listing for the September 16 console launch window.", officialLinks.xbox],
+  ["PlayStation 5", "Wishlist", "Official PlayStation concept page for the September 16 console launch window.", officialLinks.playstation],
+].map(([name, action, note, url]) => ({ name, action, note, url, status: "Confirmed" }));
 
 export const mechanics = [
   ["Creature catching", "Players catch Aniimo with Aniipods, set traps, and time catches around encounter behavior."],
@@ -236,6 +399,13 @@ export const mechanics = [
   ["Egg Heist", "Egg Heist is described as a PVEVP mode where three-player teams search and battle in the Lost Isles."],
   ["Homeland and RV", "Pathfinders have a personal RV and Homeland where they can plant crops, build decorations and interact with Aniimo."],
 ].map(([title, text]) => ({ title, text, source: officialLinks.googlePlay }));
+
+export const mapGuide = [
+  ["Region coverage", "All six public world regions now have official artwork and launch-ready guide pages."],
+  ["Encounter routing", "Each region links to representative Aniimo and keeps route details separate from claims that still need launch verification."],
+  ["Verification pass", "After launch, update each area with coordinates, weather windows, time-of-day notes and traversal requirements."],
+  ["Internal linking", "Region pages link back into Aniimo details so search visitors can move between map, evolution and database pages."],
+];
 
 export const faqs = {
   home: [
@@ -259,13 +429,18 @@ export const faqs = {
 
 export const updates = [
   {
+    date: "2026-08-28",
+    title: "Official detail and map content expanded",
+    text: "Expanded Aniimo detail pages with official descriptions, evolution lines, region mapping, platform links, release timeline notes and complete region artwork.",
+  },
+  {
     date: "2026-08-27",
     title: "Official launch information added",
     text: "Added official launch dates, platform notes, Google Play details, official Wiki names, regions, mechanics and launch rewards.",
   },
   {
     date: "2026-08-27",
-    title: "Aniimo Wiki MVP launched",
+    title: "Aniimo Wiki foundation launched",
     text: "Created the initial database, map, evolution, codes, download, beginner guide, and data-status pages.",
   },
 ];
@@ -273,6 +448,6 @@ export const updates = [
 export const statuses = {
   Confirmed: "Official or in-game verified data.",
   Unconfirmed: "Seen in previews, community reports, or incomplete sources.",
-  Estimated: "Planning placeholder based on currently public information.",
+  Estimated: "Planning note based on currently public information.",
   Watchlist: "Tracked for launch; verify before publishing as active.",
 };

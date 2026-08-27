@@ -19,6 +19,7 @@ import {
   faqs,
   gameInfo,
   launchRewards,
+  mapGuide,
   mechanics,
   officialLinks,
   platforms,
@@ -60,7 +61,7 @@ function App() {
 
   const filteredAniimo = useMemo(() => {
     return aniimo.filter((item) => {
-      const text = `${item.name} ${item.element} ${item.region} ${item.ability}`.toLowerCase();
+      const text = `${item.name} ${item.element} ${item.region} ${item.ability} ${item.description}`.toLowerCase();
       return (
         text.includes(query.toLowerCase()) &&
         (element === "All" || item.element === element) &&
@@ -113,7 +114,9 @@ function App() {
       description.setAttribute(
         "content",
         detail
-          ? `Find ${detail.name} location, element, region, forms, evolution notes, ability, and source status in the Aniimo Wiki.`
+          ? `Find ${detail.name} location, element, region, forms, evolution notes, ability, official description, and source status in the Aniimo Wiki.`
+          : regionDetail
+            ? `${regionDetail.name} route guide with official region art, representative Aniimo, mechanics and verification notes.`
           : `${gameInfo.summary} Track locations, evolution, codes, rewards, downloads and beginner tips.`,
       );
     }
@@ -131,13 +134,15 @@ function App() {
       "meta[property='og:description']",
       "content",
       detail
-        ? `${detail.name} location, forms, evolution notes and abilities in the Aniimo Wiki.`
+        ? `${detail.name} location, forms, evolution notes, official description and abilities in the Aniimo Wiki.`
+        : regionDetail
+          ? `${regionDetail.name} route guide, official artwork and known Aniimo connections.`
         : "Search Aniimo locations, forms, abilities, evolution notes, map routes, codes, download info, and beginner guides.",
     );
 
     const pageFaqs =
       detail ? [
-        [`Where can I find ${detail.name}?`, `${detail.name} is currently listed for ${detail.region}. Spawn and route details are marked ${detail.status.toLowerCase()} until verified.`],
+        [`Where can I find ${detail.name}?`, `${detail.name} is tracked under ${detail.region}. Spawn and route details stay separated from official index facts until verified.`],
         [`How does ${detail.name} evolve?`, detail.evolution],
       ] :
       path === "/aniimo" ? faqs.database :
@@ -297,7 +302,7 @@ function DatabasePage({ query, setQuery, element, setElement, region, setRegion,
           <SectionTitle icon={<Search />} kicker="P0" title="Aniimo Database" />
           <p className="section-copy">
             Official Aniimo names, elements, roles and stages are tracked from the public
-            Aniimo Wiki. Location details stay source-labeled while launch data stabilizes.
+            Aniimo Wiki. Location details stay source-labeled and ready for launch verification.
           </p>
           <div className="filters">
             <label className="search-field">
@@ -319,8 +324,10 @@ function DatabasePage({ query, setQuery, element, setElement, region, setRegion,
                     <h3>{item.name}</h3>
                     <StatusBadge status={item.status} />
                   </div>
-                  <p>{item.habitat}</p>
+                  <p>{item.description}</p>
                   <dl>
+                    <dt>Region</dt>
+                    <dd>{item.region}</dd>
                     <dt>Element</dt>
                     <dd>{item.element}</dd>
                     <dt>Role</dt>
@@ -330,9 +337,6 @@ function DatabasePage({ query, setQuery, element, setElement, region, setRegion,
                     <dt>No.</dt>
                     <dd>{item.no}</dd>
                   </dl>
-                  <a className="text-link" href={`#aniimo-${item.id}`}>
-                    View detail template <ChevronRight size={16} />
-                  </a>
                   <a className="text-link" href={`/aniimo/${item.id}`} onClick={(event) => navigate(event, `/aniimo/${item.id}`)}>
                     Open SEO page <ChevronRight size={16} />
                   </a>
@@ -412,31 +416,6 @@ function CollectionPage({ type, value, navigate }) {
   );
 }
 
-function DetailTemplates() {
-  return (
-        <section className="section detail-band">
-          <SectionTitle icon={<CheckCircle2 />} kicker="Template" title="Aniimo Detail Pages" />
-          <div className="detail-list">
-            {aniimo.slice(0, 3).map((item) => (
-              <article id={`aniimo-${item.id}`} className="detail-row" key={item.id}>
-                <div>
-                  <h3>{item.name} Location, Evolution, Forms & Abilities</h3>
-                  <p>{item.use}</p>
-                </div>
-                <ul>
-                  <li>Location: {item.region}</li>
-                  <li>Acquisition: {item.acquisition}</li>
-                  <li>Evolution: {item.evolution}</li>
-                  <li>Forms: {item.forms.join(", ")}</li>
-                </ul>
-                <StatusBadge status={item.status} />
-              </article>
-            ))}
-          </div>
-        </section>
-  );
-}
-
 function MapPage({ compact, navigate }) {
   return (
         <section id="map" className="section">
@@ -456,6 +435,13 @@ function MapPage({ compact, navigate }) {
               </article>
             ))}
           </div>
+          {!compact && (
+            <div className="guide-columns map-notes">
+              {mapGuide.map(([title, text]) => (
+                <GuideItem key={title} title={title} text={text} />
+              ))}
+            </div>
+          )}
         </section>
   );
 }
@@ -467,7 +453,7 @@ function EvolutionPage() {
             <SectionTitle icon={<Sparkles />} kicker="P1" title="Evolution & Forms" />
             <p className="section-copy">
               The official index groups Aniimo by Lumin, Gamma and Nova stages. This table
-              turns those stage labels into page templates for evolution and form searches.
+              turns those stage labels into evolution and form search paths.
             </p>
           </div>
           <div className="table-shell">
@@ -482,10 +468,10 @@ function EvolutionPage() {
               </thead>
               <tbody>
                 {aniimo.map((item) => (
-                  <tr key={item.id}>
+                <tr key={item.id}>
                     <td>{item.name}</td>
                     <td>{item.element}</td>
-                    <td>{item.role} / {item.stage}</td>
+                    <td>{item.forms.join(" -> ")}</td>
                     <td>{item.status}</td>
                   </tr>
                 ))}
@@ -510,6 +496,11 @@ function CodesPage() {
                 <div>
                   <h3>{item.code}</h3>
                   <p>{item.reward}</p>
+                  {item.checklist && (
+                    <ul className="inline-list">
+                      {item.checklist.map((task) => <li key={task}>{task}</li>)}
+                    </ul>
+                  )}
                 </div>
                 <div>
                   <StatusBadge status={item.status} />
@@ -545,8 +536,8 @@ function DownloadPage() {
           <div>
             <SectionTitle icon={<Download />} kicker="P0" title="Download & Release Info" />
             <p className="section-copy">
-              {releaseInfo.note} Keep store links and regional availability separated from
-              unverified download mirrors.
+              {releaseInfo.note} Store links and regional availability stay tied to official
+              sources rather than download mirrors.
             </p>
             <div className="date-grid">
               <InfoPanel title="Release Dates" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline]]} />
@@ -558,6 +549,7 @@ function DownloadPage() {
               <article key={item.name} className="platform-card">
                 <div>
                   <h3>{item.name}</h3>
+                  <p className="platform-action">{item.action}</p>
                   <p>{item.note}</p>
                   <a className="text-link" href={item.url} target="_blank" rel="noreferrer">
                     Official source <ChevronRight size={16} />
@@ -577,16 +569,16 @@ function ReleaseDatePage() {
       <div>
         <SectionTitle icon={<CalendarDays />} kicker="P0" title="Aniimo Release Date" />
         <p className="section-copy">{releaseInfo.note}</p>
-        <InfoPanel title="Official Timeline" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline], ["Source", releaseInfo.source]]} />
+        <InfoPanel title="Official Timeline" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline], ["Timezone note", releaseInfo.timezoneNote], ["Source", releaseInfo.source]]} />
       </div>
-      <div className="platform-list">
-        {platforms.map((item) => (
-          <article key={item.name} className="platform-card">
+      <div className="timeline-list">
+        {releaseInfo.timeline.map(([date, label]) => (
+          <article className="update-item" key={date}>
+            <time>{date}</time>
             <div>
-              <h3>{item.name}</h3>
-              <p>{item.note}</p>
+              <h3>{label}</h3>
+              <p>{date >= "2026-09-16" ? "Future launch milestone tracked from official news." : "Past official milestone."}</p>
             </div>
-            <StatusBadge status={item.status} />
           </article>
         ))}
       </div>
@@ -699,7 +691,7 @@ function AniimoDetail({ item, navigate }) {
         <div>
           <p className="eyebrow">Aniimo detail page</p>
           <h1>{item.name} Location, Evolution, Forms & Abilities</h1>
-          <p>{item.use}</p>
+          <p>{item.description}</p>
           <StatusBadge status={item.status} />
         </div>
       </div>
@@ -707,14 +699,15 @@ function AniimoDetail({ item, navigate }) {
         <InfoPanel title="Location" rows={[["Region", item.region], ["Habitat", item.habitat], ["Spawn condition", item.condition], ["Acquisition", item.acquisition]]} />
         <InfoPanel title="Index Data" rows={[["No.", item.no], ["Element", item.element], ["Role", item.role], ["Stage", item.stage]]} />
         <InfoPanel title="Evolution" rows={[["Listed form", item.forms.join(" -> ")], ["Evolution note", item.evolution]]} />
-        <InfoPanel title="Abilities" rows={[["Twine note", item.ability], ["Recommended use", item.use]]} />
+        <InfoPanel title="Abilities" rows={[["Official description", item.ability], ["Recommended use", item.use]]} />
         <SourcePanel source={item.source} status={item.status} />
       </div>
+      <RelatedAniimo title="Evolution Line" items={aniimo.filter((candidate) => item.forms.includes(candidate.name))} navigate={navigate} />
       <RelatedAniimo title={`More ${item.element} Aniimo`} items={sameElement} navigate={navigate} />
       <RelatedAniimo title={`More ${item.role} Aniimo`} items={sameRole} navigate={navigate} />
       <RelatedAniimo title={`More ${item.stage} Aniimo`} items={sameStage} navigate={navigate} />
       <FaqBlock items={[
-        [`Where can I find ${item.name}?`, `${item.name} is listed in the official Aniimo Wiki. Exact launch location should be expanded as official map data stabilizes.`],
+        [`Where can I find ${item.name}?`, `${item.name} is listed in the official Aniimo Wiki and tracked under ${item.region}. Exact spawn points can be added after launch verification.`],
         [`What forms does ${item.name} have?`, `${item.name} currently lists these forms: ${item.forms.join(", ")}.`],
         [`What role is ${item.name}?`, `${item.name} is currently tagged as ${item.role} and ${item.stage}.`],
       ]} />
@@ -731,7 +724,7 @@ function SourcePanel({ source, status }) {
         <dt>Status</dt>
         <dd>{status}</dd>
         <dt>Last updated</dt>
-        <dd>2026-08-27</dd>
+        <dd>2026-08-28</dd>
       </dl>
       <a className="text-link" href={source} target="_blank" rel="noreferrer">
         Open official source <ChevronRight size={16} />
@@ -760,6 +753,8 @@ function RelatedAniimo({ title, items, navigate }) {
 }
 
 function RegionDetail({ region, navigate }) {
+  const regionAniimo = aniimo.filter((item) => item.region === region.name);
+
   return (
     <section className="section page-detail">
       <a className="text-link" href="/map" onClick={(event) => navigate(event, "/map")}>Back to map</a>
@@ -774,8 +769,9 @@ function RegionDetail({ region, navigate }) {
       </div>
       <div className="detail-panels">
         <InfoPanel title="Known Aniimo" rows={region.aniimo.map((name) => ["Encounter", name])} />
-        <InfoPanel title="Route Notes" rows={[["Exploration", region.theme], ["Data status", statuses[region.status]], ["Last updated", "2026-08-27"]]} />
+        <InfoPanel title="Route Notes" rows={[["Exploration", region.theme], ["Mechanics", region.mechanics.join(", ")], ["Data status", statuses[region.status]], ["Last updated", "2026-08-28"]]} />
       </div>
+      <RelatedAniimo title={`${region.name} Aniimo`} items={regionAniimo} navigate={navigate} />
       <FaqBlock items={[
         [`Which Aniimo appear in ${region.name}?`, `Current listed encounters include ${region.aniimo.join(", ")}.`],
         [`Is the ${region.name} route confirmed?`, `This region is marked ${region.status}. Update it after official launch or in-game verification.`],

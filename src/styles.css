@@ -628,7 +628,8 @@ th {
 .checklist,
 .platform-list,
 .faq-list,
-.update-list {
+.update-list,
+.timeline-list {
   display: grid;
   gap: 12px;
 }
@@ -678,12 +679,36 @@ th {
   margin-bottom: 6px;
 }
 
+.platform-action {
+  display: inline-flex;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #e9f0fb;
+  color: #274f8d;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.inline-list {
+  display: grid;
+  gap: 5px;
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: #52615b;
+  font-size: 13px;
+}
+
 .guide-band {
   background: #eef4e7;
 }
 
 .guide-columns {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.map-notes {
+  margin-top: 18px;
 }
 
 .guide-columns article,
