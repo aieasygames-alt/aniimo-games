@@ -50,9 +50,13 @@ function App() {
   const [query, setQuery] = useState("");
   const [element, setElement] = useState("All");
   const [region, setRegion] = useState("All");
+  const [role, setRole] = useState("All");
+  const [stage, setStage] = useState("All");
 
   const elements = ["All", ...new Set(aniimo.map((item) => item.element))];
   const regionNames = ["All", ...new Set(aniimo.map((item) => item.region))];
+  const roles = ["All", ...new Set(aniimo.map((item) => item.role))];
+  const stages = ["All", ...new Set(aniimo.map((item) => item.stage))];
 
   const filteredAniimo = useMemo(() => {
     return aniimo.filter((item) => {
@@ -60,10 +64,12 @@ function App() {
       return (
         text.includes(query.toLowerCase()) &&
         (element === "All" || item.element === element) &&
-        (region === "All" || item.region === region)
+        (region === "All" || item.region === region) &&
+        (role === "All" || item.role === role) &&
+        (stage === "All" || item.stage === stage)
       );
     });
-  }, [query, element, region]);
+  }, [query, element, region, role, stage]);
 
   function navigate(event, href) {
     if (!href.startsWith("/")) return;
@@ -143,8 +149,12 @@ function App() {
 
   const aniimoMatch = path.match(/^\/aniimo\/([^/]+)/);
   const regionMatch = path.match(/^\/regions\/([^/]+)/);
+  const elementMatch = path.match(/^\/elements\/([^/]+)/);
+  const roleMatch = path.match(/^\/roles\/([^/]+)/);
   const detail = aniimoMatch ? aniimo.find((item) => item.id === aniimoMatch[1]) : null;
   const regionDetail = regionMatch ? regions.find((item) => item.id === regionMatch[1]) : null;
+  const elementPage = elementMatch ? elementMatch[1] : null;
+  const rolePage = roleMatch ? roleMatch[1] : null;
 
   return (
     <>
@@ -167,6 +177,10 @@ function App() {
           <AniimoDetail item={detail} navigate={navigate} />
         ) : regionDetail ? (
           <RegionDetail region={regionDetail} navigate={navigate} />
+        ) : elementPage ? (
+          <CollectionPage type="element" value={elementPage} navigate={navigate} />
+        ) : rolePage ? (
+          <CollectionPage type="role" value={rolePage} navigate={navigate} />
         ) : path === "/aniimo" ? (
           <DatabasePage
             query={query}
@@ -175,8 +189,14 @@ function App() {
             setElement={setElement}
             region={region}
             setRegion={setRegion}
+            role={role}
+            setRole={setRole}
+            stage={stage}
+            setStage={setStage}
             elements={elements}
             regionNames={regionNames}
+            roles={roles}
+            stages={stages}
             filteredAniimo={filteredAniimo}
             navigate={navigate}
           />
@@ -207,8 +227,14 @@ function App() {
               setElement={setElement}
               region={region}
               setRegion={setRegion}
+              role={role}
+              setRole={setRole}
+              stage={stage}
+              setStage={setStage}
               elements={elements}
               regionNames={regionNames}
+              roles={roles}
+              stages={stages}
               filteredAniimo={filteredAniimo}
               navigate={navigate}
             />
@@ -271,7 +297,7 @@ function HomePage(props) {
   );
 }
 
-function DatabasePage({ query, setQuery, element, setElement, region, setRegion, elements, regionNames, filteredAniimo, navigate, compact }) {
+function DatabasePage({ query, setQuery, element, setElement, region, setRegion, role, setRole, stage, setStage, elements, regionNames, roles, stages, filteredAniimo, navigate, compact }) {
   return (
         <section id="database" className="section">
           <SectionTitle icon={<Search />} kicker="P0" title="Aniimo Database" />
@@ -286,7 +312,10 @@ function DatabasePage({ query, setQuery, element, setElement, region, setRegion,
             </label>
             <Select label="Element" value={element} onChange={setElement} options={elements} />
             <Select label="Region" value={region} onChange={setRegion} options={regionNames} />
+            <Select label="Role" value={role} onChange={setRole} options={roles} />
+            <Select label="Stage" value={stage} onChange={setStage} options={stages} />
           </div>
+          <TaxonomyLinks navigate={navigate} />
           <div className="aniimo-grid">
             {filteredAniimo.map((item) => (
               <article className="aniimo-card" key={item.id}>
@@ -324,6 +353,68 @@ function DatabasePage({ query, setQuery, element, setElement, region, setRegion,
           )}
           {!compact && <FaqBlock items={faqs.database} />}
         </section>
+  );
+}
+
+function TaxonomyLinks({ navigate }) {
+  const elementNames = [...new Set(aniimo.map((item) => item.element))];
+  const roleNames = [...new Set(aniimo.map((item) => item.role))];
+
+  return (
+    <div className="taxonomy-links">
+      {elementNames.map((item) => (
+        <a key={item} href={`/elements/${item.toLowerCase()}`} onClick={(event) => navigate(event, `/elements/${item.toLowerCase()}`)}>
+          {item} Aniimo
+        </a>
+      ))}
+      {roleNames.map((item) => (
+        <a key={item} href={`/roles/${item.toLowerCase()}`} onClick={(event) => navigate(event, `/roles/${item.toLowerCase()}`)}>
+          {item} Aniimo
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function CollectionPage({ type, value, navigate }) {
+  const label = value.toUpperCase() === "DPS" ? "DPS" : value.charAt(0).toUpperCase() + value.slice(1);
+  const items = aniimo.filter((item) => item[type] && item[type].toLowerCase() === value);
+  const title = `${label} Aniimo ${type === "element" ? "Element" : "Role"} Guide`;
+
+  return (
+    <section className="section">
+      <SectionTitle icon={<BookOpen />} kicker="Index" title={title} />
+      <p className="section-copy">
+        Browse official Wiki entries tagged as {label}. Use this index as a landing page
+        for element and role searches before detailed location data is verified.
+      </p>
+      <div className="aniimo-grid">
+        {items.map((item) => (
+          <article className="aniimo-card" key={item.id}>
+            <div className="creature-mark">{item.name.slice(0, 1)}</div>
+            <div>
+              <div className="card-heading">
+                <h3>{item.name}</h3>
+                <StatusBadge status={item.status} />
+              </div>
+              <dl>
+                <dt>No.</dt>
+                <dd>{item.no}</dd>
+                <dt>Element</dt>
+                <dd>{item.element}</dd>
+                <dt>Role</dt>
+                <dd>{item.role}</dd>
+                <dt>Stage</dt>
+                <dd>{item.stage}</dd>
+              </dl>
+              <a className="text-link" href={`/aniimo/${item.id}`} onClick={(event) => navigate(event, `/aniimo/${item.id}`)}>
+                Open detail page <ChevronRight size={16} />
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
 

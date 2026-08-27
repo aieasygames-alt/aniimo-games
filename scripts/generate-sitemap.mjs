@@ -19,6 +19,8 @@ const staticRoutes = [
 
 const routes = [
   ...staticRoutes,
+  ...[...new Set(aniimo.map((item) => item.element.toLowerCase()))].map((item) => `/elements/${item}`),
+  ...[...new Set(aniimo.map((item) => item.role.toLowerCase()))].map((item) => `/roles/${item}`),
   ...aniimo.map((item) => `/aniimo/${item.id}`),
   ...regions.map((item) => `/regions/${item.id}`),
 ];
