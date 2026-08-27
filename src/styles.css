@@ -385,8 +385,10 @@ select {
   width: 74px;
   height: 74px;
   border-radius: 8px;
-  object-fit: cover;
-  background: #edf1ec;
+  object-fit: contain;
+  background:
+    radial-gradient(circle at 50% 38%, #ffffff 0 34%, transparent 35%),
+    linear-gradient(135deg, #e8f6ee, #f7e7aa);
 }
 
 .creature-image.large {

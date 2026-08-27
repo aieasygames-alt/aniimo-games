@@ -87,6 +87,20 @@ const names = [
   ["089", "glameep", "Glameep", "Water", "Heal", "Gamma Stage"],
 ];
 
+const aniimoImages = {
+  baleetle: "/images/aniimo/aniimo-baleetle.png",
+  bouldus: "/images/aniimo/aniimo-bouldus.png",
+  emberpup: "/images/aniimo/aniimo-emberpup.png",
+  eko: "/images/aniimo/aniimo-eko.png",
+  glacy: "/images/aniimo/aniimo-glacy.png",
+  gracewing: "/images/aniimo/aniimo-gracewing.png",
+  leafy: "/images/aniimo/aniimo-leafy.png",
+  sparki: "/images/aniimo/aniimo-sparki.webp",
+  susuta: "/images/aniimo/aniimo-susuta.png",
+  tubster: "/images/aniimo/aniimo-tubster.png",
+  grizbo: "/images/aniimo/aniimo-grizbo.png",
+};
+
 export const aniimo = names.map(([no, id, name, element, role, stage]) => ({
   no,
   id,
@@ -110,14 +124,7 @@ export const aniimo = names.map(([no, id, name, element, role, stage]) => ({
   use: `${role} role listed by official Aniimo Wiki filters. Twine skills can support puzzles, battles and exploration.`,
   status: "Confirmed",
   source: officialLinks.officialWiki,
-  image:
-    id === "susuta"
-      ? "/images/aniimo/aniimo-susuta.webp"
-      : id === "leafy"
-        ? "/images/aniimo/aniimo-leafy.webp"
-        : id === "sparki"
-          ? "/images/aniimo/aniimo-sparki.webp"
-          : "/images/aniimo/aniimo-group.webp",
+  image: aniimoImages[id] || "/images/aniimo/aniimo-group.webp",
 }));
 
 export const regions = [
