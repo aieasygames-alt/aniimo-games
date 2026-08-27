@@ -225,6 +225,8 @@ h1 {
 .aniimo-card,
 .region-card,
 .code-card,
+.platform-card,
+.faq-list article,
 .status-grid article,
 .guide-columns article {
   border: 1px solid rgba(23, 32, 29, 0.1);
@@ -257,6 +259,9 @@ h1 {
 .aniimo-card p,
 .region-card p,
 .code-card p,
+.platform-card p,
+.faq-list p,
+.update-item p,
 .guide-columns p,
 .status-grid p {
   color: #52615b;
@@ -439,6 +444,7 @@ dd {
 
 .detail-band,
 .download-band,
+.updates-band,
 .status-guide {
   background: #fbfbf6;
 }
@@ -536,7 +542,10 @@ th {
   padding: 20px;
 }
 
-.checklist {
+.checklist,
+.platform-list,
+.faq-list,
+.update-list {
   display: grid;
   gap: 12px;
 }
@@ -549,6 +558,19 @@ th {
   border-radius: 8px;
   background: #fff;
   font-weight: 800;
+}
+
+.platform-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px;
+}
+
+.platform-card h3,
+.faq-list h3,
+.update-item h3 {
+  margin-bottom: 6px;
 }
 
 .guide-band {
@@ -566,6 +588,36 @@ th {
 
 .status-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.faq-block {
+  margin-top: 34px;
+}
+
+.faq-block h2 {
+  margin-bottom: 14px;
+  font-size: 26px;
+}
+
+.faq-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.faq-list article {
+  padding: 18px;
+}
+
+.update-item {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(23, 32, 29, 0.12);
+}
+
+.update-item time {
+  color: #607069;
+  font-weight: 850;
 }
 
 .page-detail {
@@ -632,6 +684,8 @@ th {
   .guide-columns,
   .status-grid,
   .detail-panels,
+  .faq-list,
+  .update-item,
   .filters {
     grid-template-columns: 1fr;
   }

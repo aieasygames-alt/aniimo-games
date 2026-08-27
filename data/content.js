@@ -96,6 +96,57 @@ export const codes = [
   },
 ];
 
+export const platforms = [
+  {
+    name: "iOS",
+    status: "Watchlist",
+    note: "Track App Store availability, pre-order status, regional launch timing, and official download links.",
+  },
+  {
+    name: "Android",
+    status: "Watchlist",
+    note: "Track Google Play, TapTap or regional Android store pages, beta signups, and APK policy notes.",
+  },
+  {
+    name: "PC",
+    status: "Unconfirmed",
+    note: "Keep PC client, launcher, and cross-save details separated until official platform support is verified.",
+  },
+];
+
+export const faqs = {
+  home: [
+    ["What is Aniimo Wiki?", "Aniimo Wiki is a fan-made database for Aniimo locations, forms, evolution notes, map routes, codes, and launch information."],
+    ["Is every Aniimo page confirmed?", "No. Early launch pages use status labels so readers can separate confirmed facts from estimates and watchlist items."],
+    ["What should be updated first after launch?", "Codes, download links, release date information, starter Aniimo, region names, and verified encounter locations should be updated first."],
+  ],
+  database: [
+    ["How is the Aniimo list organized?", "The database is organized by name, element, region, acquisition method, forms, link ability, and source status."],
+    ["Can I filter by region or element?", "Yes. The current MVP supports search plus element and region filters, with room for ability and acquisition filters later."],
+  ],
+  codes: [
+    ["Are the Aniimo codes active?", "Codes marked Watchlist or Unconfirmed should be verified before users treat them as active rewards."],
+    ["How often should this page be updated?", "During launch week, the codes page should be checked daily because redeem codes and reward campaigns change quickly."],
+  ],
+  download: [
+    ["Where can I download Aniimo?", "This page should link only to official store pages or official publisher pages once they are available."],
+    ["Will Aniimo support PC and mobile?", "Platform support should stay marked as watchlist or unconfirmed until official channels publish final availability."],
+  ],
+};
+
+export const updates = [
+  {
+    date: "2026-08-27",
+    title: "Aniimo Wiki MVP launched",
+    text: "Created the initial database, map, evolution, codes, download, beginner guide, and data-status pages.",
+  },
+  {
+    date: "2026-08-27",
+    title: "Custom domain prepared",
+    text: "Configured sitemap and robots metadata for aniimo.games and connected Cloudflare Pages deployment.",
+  },
+];
+
 export const statuses = {
   Confirmed: "Official or in-game verified data.",
   Unconfirmed: "Seen in previews, community reports, or incomplete sources.",

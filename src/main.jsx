@@ -13,7 +13,7 @@ import {
   Sparkles,
   Sprout,
 } from "lucide-react";
-import { aniimo, codes, regions, statuses } from "../data/content.js";
+import { aniimo, codes, faqs, platforms, regions, statuses, updates } from "../data/content.js";
 import "./styles.css";
 
 const nav = [
@@ -91,6 +91,17 @@ function App() {
           : "Aniimo Wiki with database pages, locations, evolution guides, codes, rewards, download info, and beginner tips.",
       );
     }
+
+    const pageFaqs =
+      detail ? [
+        [`Where can I find ${detail.name}?`, `${detail.name} is currently listed for ${detail.region}. Spawn and route details are marked ${detail.status.toLowerCase()} until verified.`],
+        [`How does ${detail.name} evolve?`, detail.evolution],
+      ] :
+      path === "/aniimo" ? faqs.database :
+      path === "/codes" ? faqs.codes :
+      path === "/download" ? faqs.download :
+      faqs.home;
+    upsertJsonLd(pageFaqs);
   }, [path]);
 
   const aniimoMatch = path.match(/^\/aniimo\/([^/]+)/);
@@ -207,6 +218,7 @@ function HomePage(props) {
         <CodesPage compact />
         <DownloadPage compact />
         <BeginnerPage compact navigate={props.navigate} />
+        <UpdatesPage compact />
         <StatusGuide />
     </>
   );
@@ -259,6 +271,7 @@ function DatabasePage({ query, setQuery, element, setElement, region, setRegion,
               Open full database <ChevronRight size={17} />
             </a>
           )}
+          {!compact && <FaqBlock items={faqs.database} />}
         </section>
   );
 }
@@ -350,6 +363,10 @@ function CodesPage() {
   return (
         <section id="codes" className="section">
           <SectionTitle icon={<Gift />} kicker="P0" title="Codes & Rewards" />
+          <p className="section-copy">
+            Track launch codes, pre-registration rewards and expiry status. Items marked as
+            watchlist or unconfirmed need source verification before publishing as active.
+          </p>
           <div className="code-grid">
             {codes.map((item) => (
               <article className="code-card" key={item.code}>
@@ -364,6 +381,7 @@ function CodesPage() {
               </article>
             ))}
           </div>
+          <FaqBlock items={faqs.codes} />
         </section>
   );
 }
@@ -377,11 +395,18 @@ function DownloadPage() {
               Centralize official links, platform availability, beta access, pre-registration
               rewards and release date changes.
             </p>
+            <FaqBlock items={faqs.download} />
           </div>
-          <div className="checklist">
-            <span><CalendarDays size={18} /> Release date watch</span>
-            <span><Download size={18} /> iOS, Android and PC links</span>
-            <span><Gift size={18} /> Pre-registration rewards</span>
+          <div className="platform-list">
+            {platforms.map((item) => (
+              <article key={item.name} className="platform-card">
+                <div>
+                  <h3>{item.name}</h3>
+                  <p>{item.note}</p>
+                </div>
+                <StatusBadge status={item.status} />
+              </article>
+            ))}
           </div>
         </section>
   );
@@ -416,6 +441,25 @@ function StatusGuide() {
   );
 }
 
+function UpdatesPage() {
+  return (
+    <section className="section updates-band">
+      <SectionTitle icon={<CalendarDays />} kicker="Freshness" title="Update Log" />
+      <div className="update-list">
+        {updates.map((item) => (
+          <article key={`${item.date}-${item.title}`} className="update-item">
+            <time>{item.date}</time>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function AniimoDetail({ item, navigate }) {
   return (
     <section className="section page-detail">
@@ -435,6 +479,11 @@ function AniimoDetail({ item, navigate }) {
         <InfoPanel title="Abilities" rows={[["Element", item.element], ["Link ability", item.ability], ["Recommended use", item.use]]} />
         <InfoPanel title="Source Status" rows={[["Status", item.status], ["Meaning", statuses[item.status]], ["Last updated", "2026-08-27"]]} />
       </div>
+      <FaqBlock items={[
+        [`Where can I find ${item.name}?`, `${item.name} is currently associated with ${item.region}. Check the source status before treating the location as final.`],
+        [`What forms does ${item.name} have?`, `${item.name} currently lists these forms: ${item.forms.join(", ")}.`],
+        [`What is ${item.name} used for?`, item.use],
+      ]} />
     </section>
   );
 }
@@ -456,6 +505,10 @@ function RegionDetail({ region, navigate }) {
         <InfoPanel title="Known Aniimo" rows={region.aniimo.map((name) => ["Encounter", name])} />
         <InfoPanel title="Route Notes" rows={[["Exploration", region.theme], ["Data status", statuses[region.status]], ["Last updated", "2026-08-27"]]} />
       </div>
+      <FaqBlock items={[
+        [`Which Aniimo appear in ${region.name}?`, `Current listed encounters include ${region.aniimo.join(", ")}.`],
+        [`Is the ${region.name} route confirmed?`, `This region is marked ${region.status}. Update it after official launch or in-game verification.`],
+      ]} />
     </section>
   );
 }
@@ -515,6 +568,43 @@ function GuideItem({ title, text }) {
       <p>{text}</p>
     </article>
   );
+}
+
+function FaqBlock({ items }) {
+  return (
+    <section className="faq-block">
+      <h2>FAQ</h2>
+      <div className="faq-list">
+        {items.map(([question, answer]) => (
+          <article key={question}>
+            <h3>{question}</h3>
+            <p>{answer}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function upsertJsonLd(items) {
+  const id = "faq-json-ld";
+  const previous = document.getElementById(id);
+  const script = previous || document.createElement("script");
+  script.id = id;
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map(([question, answer]) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
+  });
+  if (!previous) document.head.appendChild(script);
 }
 
 createRoot(document.getElementById("root")).render(<App />);
