@@ -267,13 +267,7 @@ function HomePage(props) {
             </div>
           </div>
           <div className="hero-scene" aria-hidden="true">
-            <div className="terrain">
-              <div className="sun" />
-              <div className="path" />
-              <div className="marker marker-one" />
-              <div className="marker marker-two" />
-              <div className="marker marker-three" />
-            </div>
+            <img className="hero-image" src={gameInfo.heroImage} alt="" />
           </div>
         </section>
 
@@ -319,7 +313,7 @@ function DatabasePage({ query, setQuery, element, setElement, region, setRegion,
           <div className="aniimo-grid">
             {filteredAniimo.map((item) => (
               <article className="aniimo-card" key={item.id}>
-                <div className="creature-mark">{item.name.slice(0, 1)}</div>
+                <CreatureImage item={item} />
                 <div>
                   <div className="card-heading">
                     <h3>{item.name}</h3>
@@ -391,7 +385,7 @@ function CollectionPage({ type, value, navigate }) {
       <div className="aniimo-grid">
         {items.map((item) => (
           <article className="aniimo-card" key={item.id}>
-            <div className="creature-mark">{item.name.slice(0, 1)}</div>
+            <CreatureImage item={item} />
             <div>
               <div className="card-heading">
                 <h3>{item.name}</h3>
@@ -450,9 +444,7 @@ function MapPage({ compact, navigate }) {
           <div className="region-grid">
             {regions.map((item) => (
               <article className="region-card" key={item.id}>
-                <div className="region-map">
-                  <span>{item.name}</span>
-                </div>
+                <RegionImage region={item} />
                 <h3>{item.name}</h3>
                 <p>{item.theme}</p>
                 <p className="small">Known Aniimo: {item.aniimo.join(", ")}</p>
@@ -702,7 +694,7 @@ function AniimoDetail({ item, navigate }) {
     <section className="section page-detail">
       <a className="text-link" href="/aniimo" onClick={(event) => navigate(event, "/aniimo")}>Back to database</a>
       <div className="detail-hero">
-        <div className="creature-mark large">{item.name.slice(0, 1)}</div>
+        <CreatureImage item={item} large />
         <div>
           <p className="eyebrow">Aniimo detail page</p>
           <h1>{item.name} Location, Evolution, Forms & Abilities</h1>
@@ -771,7 +763,7 @@ function RegionDetail({ region, navigate }) {
     <section className="section page-detail">
       <a className="text-link" href="/map" onClick={(event) => navigate(event, "/map")}>Back to map</a>
       <div className="detail-hero">
-        <div className="region-map compact-map"><span>{region.name}</span></div>
+        <RegionImage region={region} compact />
         <div>
           <p className="eyebrow">Region guide</p>
           <h1>{region.name} Aniimo Locations & Route Guide</h1>
@@ -804,6 +796,22 @@ function InfoPanel({ title, rows }) {
         ))}
       </dl>
     </article>
+  );
+}
+
+function CreatureImage({ item, large = false }) {
+  return item.image ? (
+    <img className={`creature-image ${large ? "large" : ""}`} src={item.image} alt={`${item.name} Aniimo`} loading="lazy" />
+  ) : (
+    <div className={`creature-mark ${large ? "large" : ""}`}>{item.name.slice(0, 1)}</div>
+  );
+}
+
+function RegionImage({ region, compact = false }) {
+  return region.image ? (
+    <img className={`region-image ${compact ? "compact-map" : ""}`} src={region.image} alt={`${region.name} region`} loading="lazy" />
+  ) : (
+    <div className={`region-map ${compact ? "compact-map" : ""}`}><span>{region.name}</span></div>
   );
 }
 

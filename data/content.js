@@ -16,6 +16,8 @@ export const gameInfo = {
   summary:
     "Aniimo is a free-to-play creature-catching open-world RPG set on the continent of Idyll. Players catch creatures with Aniipods, Twine with collected Aniimo to use their abilities, explore weather and time-based encounters, join real-time challenges, and build a Homeland around a personal RV.",
   source: officialLinks.googlePlay,
+  heroImage: "/images/hero-aniimo.webp",
+  ogImage: "/images/og-default.webp",
 };
 
 export const releaseInfo = {
@@ -108,6 +110,7 @@ export const aniimo = names.map(([no, id, name, element, role, stage]) => ({
   use: `${role} role listed by official Aniimo Wiki filters. Twine skills can support puzzles, battles and exploration.`,
   status: "Confirmed",
   source: officialLinks.officialWiki,
+  image: id === "susuta" ? "/images/aniimo/aniimo-susuta.webp" : "/images/aniimo/aniimo-group.webp",
 }));
 
 export const regions = [
@@ -125,6 +128,14 @@ export const regions = [
   mechanics,
   status: "Confirmed",
   source: officialLinks.main,
+  image:
+    id === "mistwoods"
+      ? "/images/regions/region-mistwoods.webp"
+      : id === "sea-of-flowers"
+        ? "/images/regions/region-sea-of-flowers.webp"
+        : id === "nimbus-fields"
+          ? "/images/regions/region-nimbus-fields.webp"
+          : null,
 }));
 
 export const launchRewards = [
