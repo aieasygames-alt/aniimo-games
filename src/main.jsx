@@ -20,6 +20,7 @@ import {
   gameInfo,
   launchRewards,
   mechanics,
+  officialLinks,
   platforms,
   regions,
   releaseInfo,
@@ -33,9 +34,11 @@ const nav = [
   ["Map", "/map"],
   ["Evolution", "/evolution"],
   ["Codes", "/codes"],
+  ["Rewards", "/rewards"],
   ["Download", "/download"],
   ["Guides", "/beginner-guide"],
   ["Updates", "/updates"],
+  ["Sources", "/sources"],
 ];
 
 function StatusBadge({ status }) {
@@ -83,9 +86,12 @@ function App() {
       "/map": "Aniimo Map & Region Guide | Spawn Locations",
       "/evolution": "Aniimo Evolution & Forms Guide",
       "/codes": "Aniimo Codes & Rewards",
+      "/rewards": "Aniimo Pre-Registration Rewards",
       "/download": "Aniimo Download, Release Date & Platforms",
+      "/release-date": "Aniimo Release Date",
       "/beginner-guide": "Aniimo Beginner Guide",
       "/updates": "Aniimo Updates & Source Log",
+      "/sources": "Aniimo Official Sources",
     };
     const aniimoMatch = path.match(/^\/aniimo\/([^/]+)/);
     const regionMatch = path.match(/^\/regions\/([^/]+)/);
@@ -180,12 +186,18 @@ function App() {
           <EvolutionPage />
         ) : path === "/codes" ? (
           <CodesPage />
+        ) : path === "/rewards" ? (
+          <RewardsPage />
         ) : path === "/download" ? (
           <DownloadPage />
+        ) : path === "/release-date" ? (
+          <ReleaseDatePage />
         ) : path === "/beginner-guide" ? (
           <BeginnerPage navigate={navigate} />
         ) : path === "/updates" ? (
           <UpdatesPage />
+        ) : path === "/sources" ? (
+          <SourcesPage />
         ) : (
           path === "/" ? (
             <HomePage
@@ -243,7 +255,7 @@ function HomePage(props) {
           <QuickCard icon={<BookOpen />} title="Database" text="Index every Aniimo with location, forms, abilities and source status." href="/aniimo" navigate={props.navigate} />
           <QuickCard icon={<Map />} title="Map" text="Build region pages first, then upgrade into point filters and route tools." href="/map" navigate={props.navigate} />
           <QuickCard icon={<Sparkles />} title="Evolution" text="Track base forms, branch forms, special conditions and launch updates." href="/evolution" navigate={props.navigate} />
-          <QuickCard icon={<Gift />} title="Rewards" text="Track confirmed pre-registration rewards, milestone rewards and launch code status." href="/codes" navigate={props.navigate} />
+          <QuickCard icon={<Gift />} title="Rewards" text="Track confirmed pre-registration rewards, milestone rewards and launch code status." href="/rewards" navigate={props.navigate} />
         </section>
 
         <DatabasePage compact {...props} />
@@ -253,6 +265,7 @@ function HomePage(props) {
         <DownloadPage compact />
         <BeginnerPage compact navigate={props.navigate} />
         <UpdatesPage compact />
+        <SourcesPage compact />
         <StatusGuide />
     </>
   );
@@ -422,19 +435,23 @@ function CodesPage() {
               </article>
             ))}
           </div>
-          <div className="reward-grid">
-            {launchRewards.map((item) => (
-              <article className="reward-card" key={item.title}>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.reward}</p>
-                </div>
-                <StatusBadge status={item.status} />
-              </article>
-            ))}
-          </div>
+          <RewardGrid />
           <FaqBlock items={faqs.codes} />
         </section>
+  );
+}
+
+function RewardsPage() {
+  return (
+    <section id="rewards" className="section">
+      <SectionTitle icon={<Gift />} kicker="P0" title="Aniimo Pre-Registration Rewards" />
+      <p className="section-copy">
+        Confirmed official rewards include milestone items, a Prismana Aniimo choice for
+        Junior Wayfarers, and a mysterious Susuta egg for official pre-registration.
+      </p>
+      <RewardGrid />
+      <FaqBlock items={faqs.codes} />
+    </section>
   );
 }
 
@@ -470,6 +487,29 @@ function DownloadPage() {
   );
 }
 
+function ReleaseDatePage() {
+  return (
+    <section id="release-date" className="section split-section download-band">
+      <div>
+        <SectionTitle icon={<CalendarDays />} kicker="P0" title="Aniimo Release Date" />
+        <p className="section-copy">{releaseInfo.note}</p>
+        <InfoPanel title="Official Timeline" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline], ["Source", releaseInfo.source]]} />
+      </div>
+      <div className="platform-list">
+        {platforms.map((item) => (
+          <article key={item.name} className="platform-card">
+            <div>
+              <h3>{item.name}</h3>
+              <p>{item.note}</p>
+            </div>
+            <StatusBadge status={item.status} />
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function BeginnerPage({ navigate }) {
   return (
         <section id="guides" className="section guide-band">
@@ -499,6 +539,22 @@ function StatusGuide() {
   );
 }
 
+function RewardGrid() {
+  return (
+    <div className="reward-grid">
+      {launchRewards.map((item) => (
+        <article className="reward-card" key={item.title}>
+          <div>
+            <h3>{item.title}</h3>
+            <p>{item.reward}</p>
+          </div>
+          <StatusBadge status={item.status} />
+        </article>
+      ))}
+    </div>
+  );
+}
+
 function UpdatesPage() {
   return (
     <section className="section updates-band">
@@ -512,6 +568,34 @@ function UpdatesPage() {
               <p>{item.text}</p>
             </div>
           </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function SourcesPage() {
+  const links = [
+    ["Official website", officialLinks.website],
+    ["Official main site", officialLinks.main],
+    ["Official Wiki", officialLinks.officialWiki],
+    ["Google Play", officialLinks.googlePlay],
+    ["Privacy policy", officialLinks.privacy],
+  ];
+
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<CheckCircle2 />} kicker="Trust" title="Official Sources" />
+      <p className="section-copy">
+        Aniimo.games prioritizes official sources for launch dates, platform links, public
+        Aniimo names, regions, rewards and gameplay mechanics.
+      </p>
+      <div className="source-list">
+        {links.map(([label, href]) => (
+          <a className="source-row" key={label} href={href} target="_blank" rel="noreferrer">
+            <span>{label}</span>
+            <span>{href}</span>
+          </a>
         ))}
       </div>
     </section>

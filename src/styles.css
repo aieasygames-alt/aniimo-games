@@ -447,6 +447,7 @@ dd {
 .detail-band,
 .download-band,
 .updates-band,
+.sources-band,
 .status-guide {
   background: #fbfbf6;
 }
@@ -568,6 +569,28 @@ th {
 .update-list {
   display: grid;
   gap: 12px;
+}
+
+.source-list {
+  display: grid;
+  gap: 10px;
+}
+
+.source-row {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(23, 32, 29, 0.12);
+}
+
+.source-row span:first-child {
+  font-weight: 850;
+}
+
+.source-row span:last-child {
+  color: #1f6d55;
+  overflow-wrap: anywhere;
 }
 
 .checklist span {
@@ -707,6 +730,7 @@ th {
   .detail-panels,
   .faq-list,
   .update-item,
+  .source-row,
   .filters {
     grid-template-columns: 1fr;
   }

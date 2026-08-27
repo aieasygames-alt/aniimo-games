@@ -9,9 +9,12 @@ const staticRoutes = [
   "/map",
   "/evolution",
   "/codes",
+  "/rewards",
   "/download",
+  "/release-date",
   "/beginner-guide",
   "/updates",
+  "/sources",
 ];
 
 const routes = [
