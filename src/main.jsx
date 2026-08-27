@@ -23,6 +23,7 @@ const nav = [
   ["Codes", "/codes"],
   ["Download", "/download"],
   ["Guides", "/beginner-guide"],
+  ["Updates", "/updates"],
 ];
 
 function StatusBadge({ status }) {
@@ -91,6 +92,23 @@ function App() {
           : "Aniimo Wiki with database pages, locations, evolution guides, codes, rewards, download info, and beginner tips.",
       );
     }
+    const canonicalPath = detail
+      ? `/aniimo/${detail.id}`
+      : regionDetail
+        ? `/regions/${regionDetail.id}`
+        : titles[path]
+          ? path
+          : "/";
+    setMeta("link[rel='canonical']", "href", `https://aniimo.games${canonicalPath}`);
+    setMeta("meta[property='og:title']", "content", document.title);
+    setMeta("meta[property='og:url']", "content", `https://aniimo.games${canonicalPath}`);
+    setMeta(
+      "meta[property='og:description']",
+      "content",
+      detail
+        ? `${detail.name} location, forms, evolution notes and abilities in the Aniimo Wiki.`
+        : "Search Aniimo locations, forms, abilities, evolution notes, map routes, codes, download info, and beginner guides.",
+    );
 
     const pageFaqs =
       detail ? [
@@ -153,19 +171,25 @@ function App() {
           <DownloadPage />
         ) : path === "/beginner-guide" ? (
           <BeginnerPage navigate={navigate} />
+        ) : path === "/updates" ? (
+          <UpdatesPage />
         ) : (
-          <HomePage
-            query={query}
-            setQuery={setQuery}
-            element={element}
-            setElement={setElement}
-            region={region}
-            setRegion={setRegion}
-            elements={elements}
-            regionNames={regionNames}
-            filteredAniimo={filteredAniimo}
-            navigate={navigate}
-          />
+          path === "/" ? (
+            <HomePage
+              query={query}
+              setQuery={setQuery}
+              element={element}
+              setElement={setElement}
+              region={region}
+              setRegion={setRegion}
+              elements={elements}
+              regionNames={regionNames}
+              filteredAniimo={filteredAniimo}
+              navigate={navigate}
+            />
+          ) : (
+            <NotFoundPage navigate={navigate} />
+          )
         )}
       </main>
     </>
@@ -605,6 +629,34 @@ function upsertJsonLd(items) {
     })),
   });
   if (!previous) document.head.appendChild(script);
+}
+
+function setMeta(selector, attribute, value) {
+  const node = document.querySelector(selector);
+  if (node) node.setAttribute(attribute, value);
+}
+
+function NotFoundPage({ navigate }) {
+  return (
+    <section className="section page-detail not-found">
+      <p className="eyebrow">404</p>
+      <h1>Page Not Found</h1>
+      <p>
+        This Aniimo page is not in the database yet. Search the database or return to the
+        launch guide while the index grows.
+      </p>
+      <div className="hero-actions">
+        <a className="primary-action" href="/aniimo" onClick={(event) => navigate(event, "/aniimo")}>
+          <Search size={18} />
+          Open Database
+        </a>
+        <a className="secondary-action" href="/" onClick={(event) => navigate(event, "/")}>
+          <BookOpen size={18} />
+          Back Home
+        </a>
+      </div>
+    </section>
+  );
 }
 
 createRoot(document.getElementById("root")).render(<App />);
