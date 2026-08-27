@@ -528,6 +528,7 @@ function RewardsPage() {
   return (
     <section id="rewards" className="section">
       <SectionTitle icon={<Gift />} kicker="P0" title="Aniimo Pre-Registration Rewards" />
+      <img className="page-banner" src="/images/banners/banner-susuta-hunt.webp" alt="Aniimo Susuta Hunt event" />
       <p className="section-copy">
         Confirmed official rewards include milestone items, a Prismana Aniimo choice for
         Junior Wayfarers, and a mysterious Susuta egg for official pre-registration.

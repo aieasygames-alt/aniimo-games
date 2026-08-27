@@ -110,7 +110,14 @@ export const aniimo = names.map(([no, id, name, element, role, stage]) => ({
   use: `${role} role listed by official Aniimo Wiki filters. Twine skills can support puzzles, battles and exploration.`,
   status: "Confirmed",
   source: officialLinks.officialWiki,
-  image: id === "susuta" ? "/images/aniimo/aniimo-susuta.webp" : "/images/aniimo/aniimo-group.webp",
+  image:
+    id === "susuta"
+      ? "/images/aniimo/aniimo-susuta.webp"
+      : id === "leafy"
+        ? "/images/aniimo/aniimo-leafy.webp"
+        : id === "sparki"
+          ? "/images/aniimo/aniimo-sparki.webp"
+          : "/images/aniimo/aniimo-group.webp",
 }));
 
 export const regions = [
