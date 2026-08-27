@@ -718,6 +718,45 @@ th {
   font-size: 24px;
 }
 
+.source-panel p {
+  color: #52615b;
+}
+
+.related-section {
+  margin-top: 34px;
+}
+
+.related-section h2 {
+  margin-bottom: 14px;
+  font-size: 26px;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.related-card {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border: 1px solid rgba(23, 32, 29, 0.1);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.related-card span:last-child {
+  color: #52615b;
+  font-size: 13px;
+}
+
+.related-mark {
+  color: #1f6d55;
+  font-size: 12px;
+  font-weight: 850;
+}
+
 @media (max-width: 920px) {
   .topbar {
     align-items: flex-start;
@@ -745,6 +784,7 @@ th {
   .guide-columns,
   .status-grid,
   .detail-panels,
+  .related-grid,
   .faq-list,
   .update-item,
   .source-row,

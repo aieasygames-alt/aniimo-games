@@ -694,6 +694,10 @@ function SourcesPage() {
 }
 
 function AniimoDetail({ item, navigate }) {
+  const sameElement = aniimo.filter((candidate) => candidate.id !== item.id && candidate.element === item.element).slice(0, 6);
+  const sameRole = aniimo.filter((candidate) => candidate.id !== item.id && candidate.role === item.role).slice(0, 6);
+  const sameStage = aniimo.filter((candidate) => candidate.id !== item.id && candidate.stage === item.stage).slice(0, 6);
+
   return (
     <section className="section page-detail">
       <a className="text-link" href="/aniimo" onClick={(event) => navigate(event, "/aniimo")}>Back to database</a>
@@ -710,14 +714,54 @@ function AniimoDetail({ item, navigate }) {
         <InfoPanel title="Location" rows={[["Region", item.region], ["Habitat", item.habitat], ["Spawn condition", item.condition], ["Acquisition", item.acquisition]]} />
         <InfoPanel title="Index Data" rows={[["No.", item.no], ["Element", item.element], ["Role", item.role], ["Stage", item.stage]]} />
         <InfoPanel title="Evolution" rows={[["Listed form", item.forms.join(" -> ")], ["Evolution note", item.evolution]]} />
-        <InfoPanel title="Abilities" rows={[["Twine note", item.ability], ["Recommended use", item.use], ["Source", item.source]]} />
-        <InfoPanel title="Source Status" rows={[["Status", item.status], ["Meaning", statuses[item.status]], ["Last updated", "2026-08-27"]]} />
+        <InfoPanel title="Abilities" rows={[["Twine note", item.ability], ["Recommended use", item.use]]} />
+        <SourcePanel source={item.source} status={item.status} />
       </div>
+      <RelatedAniimo title={`More ${item.element} Aniimo`} items={sameElement} navigate={navigate} />
+      <RelatedAniimo title={`More ${item.role} Aniimo`} items={sameRole} navigate={navigate} />
+      <RelatedAniimo title={`More ${item.stage} Aniimo`} items={sameStage} navigate={navigate} />
       <FaqBlock items={[
         [`Where can I find ${item.name}?`, `${item.name} is listed in the official Aniimo Wiki. Exact launch location should be expanded as official map data stabilizes.`],
         [`What forms does ${item.name} have?`, `${item.name} currently lists these forms: ${item.forms.join(", ")}.`],
         [`What role is ${item.name}?`, `${item.name} is currently tagged as ${item.role} and ${item.stage}.`],
       ]} />
+    </section>
+  );
+}
+
+function SourcePanel({ source, status }) {
+  return (
+    <article className="info-panel source-panel">
+      <h2>Source Status</h2>
+      <p>{statuses[status]}</p>
+      <dl>
+        <dt>Status</dt>
+        <dd>{status}</dd>
+        <dt>Last updated</dt>
+        <dd>2026-08-27</dd>
+      </dl>
+      <a className="text-link" href={source} target="_blank" rel="noreferrer">
+        Open official source <ChevronRight size={16} />
+      </a>
+    </article>
+  );
+}
+
+function RelatedAniimo({ title, items, navigate }) {
+  if (!items.length) return null;
+
+  return (
+    <section className="related-section">
+      <h2>{title}</h2>
+      <div className="related-grid">
+        {items.map((item) => (
+          <a className="related-card" key={item.id} href={`/aniimo/${item.id}`} onClick={(event) => navigate(event, `/aniimo/${item.id}`)}>
+            <span className="related-mark">{item.no}</span>
+            <strong>{item.name}</strong>
+            <span>{item.element} / {item.role}</span>
+          </a>
+        ))}
+      </div>
     </section>
   );
 }
