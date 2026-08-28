@@ -57,6 +57,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added directory hub pages for guides, comparisons, mechanics, launch and growth planning to improve crawl paths beyond the single site index.
 - Added stage and data-status collection pages so Lumin, Gamma, Nova, Official Index and Confirmed entries have crawlable index pages.
 - Expanded collection pages with summary panels, represented elements/roles/stages/regions, taxonomy links and collection-specific FAQ blocks.
+- Added `npm run check:content` to validate topic depth, FAQ coverage, unique slugs, media entries, source archive entries and Aniimo field completeness.
 
 ## Active Growth Priorities
 
@@ -420,6 +421,7 @@ Implementation notes:
 - `npm run build` passes.
 - `npm run check:seo` passes.
 - `npm run check:framework` passes.
+- `npm run check:content` passes.
 - Sitemap uses only `https://aniimo.games/.../` canonical URLs.
 - New indexable pages are included in `sitemap.xml`.
 - New pages have unique title and meta description.

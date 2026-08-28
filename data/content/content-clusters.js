@@ -11,7 +11,10 @@ export const beginnerTopics = [
       ["Watch encounter behavior", "Unique Aniimo may react to environment, weather, phenomena and time of day, so route notes should capture more than a single coordinate."],
       ["Record the source", "When a catch route is added, include the region, condition, screenshot or official source, and verification date."],
     ],
-    faq: [["Can I catch every Aniimo before launch?", "No. Exact live catch routes should wait for launch or official route information."]],
+    faq: [
+      ["Can I catch every Aniimo before launch?", "No. Exact live catch routes should wait for launch or official route information."],
+      ["What should a catch guide include after launch?", "A useful catch guide should include region, route, condition, required item, screenshot evidence and last verified date."],
+    ],
   },
   {
     slug: "what-is-twine",
@@ -23,7 +26,10 @@ export const beginnerTopics = [
       ["Combat utility", "Role and element tags help identify which Aniimo might support damage, healing, control or break pressure."],
       ["Verification rule", "Exact skill values, cooldowns and route requirements should be added only after official or in-game confirmation."],
     ],
-    faq: [["Is Twine confirmed?", "Yes. Official store text describes Twine as a core system for using collected Aniimo abilities."]],
+    faq: [
+      ["Is Twine confirmed?", "Yes. Official store text describes Twine as a core system for using collected Aniimo abilities."],
+      ["Should Twine pages list exact ability values now?", "No. Exact ability values should wait for official details or live-game verification."],
+    ],
   },
   {
     slug: "aniipod-guide",
@@ -35,7 +41,10 @@ export const beginnerTopics = [
       ["Reward connection", "Aniipod Ultra appears in official milestone rewards and launch event item mentions."],
       ["After launch", "Add item tiers, acquisition paths, catch-rate behavior and usage restrictions after verification."],
     ],
-    faq: [["Are Aniipod Ultra rewards confirmed?", "Yes. Aniipod Ultra appears in confirmed official reward tracking on this site."]],
+    faq: [
+      ["Are Aniipod Ultra rewards confirmed?", "Yes. Aniipod Ultra appears in confirmed official reward tracking on this site."],
+      ["Are Aniipod catch rates known?", "Not fully on Aniimo.games. Catch rates and item tiers should remain watchlist data until launch verification."],
+    ],
   },
   {
     slug: "aniimo-beginner-tips",
@@ -47,19 +56,25 @@ export const beginnerTopics = [
       ["Track rewards separately", "Pre-registration rewards and redeem codes are different. Do not treat rewards as active codes."],
       ["Use the database", "Start with the Aniimo database, then follow region, role and element links for comparison."],
     ],
-    faq: [["What should beginners check first?", "Start with download status, launch date, rewards, beginner systems and the Aniimo database."]],
+    faq: [
+      ["What should beginners check first?", "Start with download status, launch date, rewards, beginner systems and the Aniimo database."],
+      ["Should beginners use unofficial downloads?", "No. Beginners should use official storefronts or the official Aniimo website for download and pre-registration actions."],
+    ],
   },
   {
     slug: "aniimo-elements",
     title: "Aniimo Elements Guide",
     description: "Browse Aniimo elements and learn how element pages connect to roles, regions, abilities and launch verification.",
-    intro: "Element pages help players compare Aniimo by type before exact launch balance is known.",
+    intro: "Element pages help players compare Aniimo by type before exact launch balance is known. They are useful for browsing the database, finding related detail pages and planning which entries to watch after launch.",
     points: [
       ["Confirmed and unknown fields", "Known entries use confirmed element labels while index-only entries stay marked Unknown."],
       ["Search path", "Element pages connect to detail pages, roles, regions and evolution notes."],
       ["After launch", "Add combat interactions, route requirements and team notes once verified."],
     ],
-    faq: [["Are all Aniimo elements known?", "No. Some official index entries still need element verification."]],
+    faq: [
+      ["Are all Aniimo elements known?", "No. Some official index entries still need element verification."],
+      ["Will element pages include combat matchups?", "Only after official or live-game data confirms combat interactions and balance behavior."],
+    ],
   },
   {
     slug: "aniimo-roles",
@@ -71,7 +86,10 @@ export const beginnerTopics = [
       ["Watchlist entries", "Role data stays marked Watchlist when official detail fields are incomplete."],
       ["After launch", "Update role pages with tested team utility, Twine usage and combat notes."],
     ],
-    faq: [["Is there a final Aniimo meta yet?", "No. Role pages are pre-launch planning guides until live balance can be tested."]],
+    faq: [
+      ["Is there a final Aniimo meta yet?", "No. Role pages are pre-launch planning guides until live balance can be tested."],
+      ["What roles are tracked?", "Aniimo.games tracks roles such as DPS, Support, Heal, BREAK and watchlist labels where public data is incomplete."],
+    ],
   },
 ];
 
@@ -300,7 +318,7 @@ export const searchSuggestionTopics = [
     slug: "aniimo-beta",
     title: "Aniimo Beta and Test Timeline",
     description: "Track Aniimo closed beta history, test timing and what should be separated from global launch information.",
-    intro: "Beta searches need careful handling because old test dates can be confused with launch dates.",
+    intro: "Beta searches need careful handling because old test dates can be confused with launch dates. This page separates past closed beta milestones from current global launch planning and future test announcements.",
     points: [
       ["Past test milestone", `Closed beta is tracked as a past milestone from ${releaseInfo.closedBeta}.`],
       ["Signup deadline", `The beta signup deadline is tracked as ${releaseInfo.betaSignupDeadline}.`],
@@ -550,6 +568,7 @@ export const glossaryTopics = [
   description: `Learn what ${term} means in Aniimo and where the term fits in official guides, wiki pages and launch tracking.`,
   term,
   definition,
+  intro: `${term} is a recurring Aniimo term used across guide, wiki, launch or rewards pages. This glossary entry gives players a plain-English definition, links the term to related site sections and keeps exact launch-only values separate until official or in-game verification exists.`,
   points: [
     ["Plain meaning", definition],
     ["Where it appears", `${term} should be linked from related guide pages so players can move between mechanics, rewards, regions and database entries.`],
@@ -626,7 +645,7 @@ export const troubleshootingTopics = [
 
 export const mediaGalleryItems = [
   ["Hero art", "/images/hero-aniimo.webp", "Official-style hero image used for the Aniimo.games home page and social preview planning."],
-  ["Default social image", "/images/og-default.webp", "Open Graph fallback image for shared guide pages."],
+  ["Default social image", "/images/og-default.webp", "Open Graph fallback image used when guide pages are shared on social platforms, chat apps and search result previews."],
   ["Download banner", "/images/banners/banner-download.webp", "Download guide banner for platform and safe-install pages."],
   ["Rewards banner", "/images/banners/banner-rewards.webp", "Rewards guide banner for pre-registration and milestone pages."],
   ["Susuta Hunt banner", "/images/banners/banner-susuta-hunt.webp", "Event-style banner used for Susuta reward and campaign context."],
@@ -645,7 +664,7 @@ export const sourceArchiveItems = [
   ["Steam", officialLinks.steam, "PC storefront wording, wishlist state, tags, media and release availability."],
   ["Epic Games Store", officialLinks.epic, "Epic storefront wording, wishlist state and PC release availability."],
   ["PlayStation", officialLinks.playstation, "PS5 listing state, console availability and regional storefront wording."],
-  ["Xbox", officialLinks.xbox, "Xbox listing state, console availability and regional storefront wording."],
+  ["Xbox Store", officialLinks.xbox, "Xbox listing state, console availability and regional storefront wording."],
   ["App Store", officialLinks.appStore, "iOS pre-order, mobile release visibility and regional storefront wording."],
   ["Google Play", officialLinks.googlePlay, "Android pre-registration, mobile release visibility and store-description changes."],
 ].map(([title, url, scope]) => ({ title, url, scope, lastChecked: "2026-08-28" }));
