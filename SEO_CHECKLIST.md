@@ -8,7 +8,7 @@ Last checked: 2026-08-28
 - Bing Webmaster sitemap submitted.
 - `robots.txt` allows search crawlers and points to `https://aniimo.games/sitemap.xml`.
 - `sitemap.xml` contains canonical `https://aniimo.games/...` URLs.
-- Sitemap coverage includes core pages, element pages, role pages, 53 Aniimo detail pages and 6 region pages.
+- Sitemap coverage includes core pages, element pages, role pages, 89 Aniimo detail pages and 6 region pages.
 - Build-time SEO audit passes with `npm run check:seo`.
 - Static HTML is generated for sitemap routes during `npm run build`.
 - Legacy slugs for `nimbi`, `turbo` and `dreaple` redirect to official-name pages.
@@ -23,7 +23,6 @@ Last checked: 2026-08-28
 
 ## Remaining Growth Work
 
-- Expand the local database from 53 tracked Aniimo to the 89 entries currently discoverable from the official Wiki probe page.
 - Add launch-verified spawn points, weather windows and route notes after release.
 - Review Search Console coverage after Google reads the sitemap and starts reporting indexed pages.
 - Refresh `Aniimo codes` immediately if official redeem codes appear.
