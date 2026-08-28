@@ -34,6 +34,8 @@ npm run build
 npm run preview
 npm run check:seo
 npm run check:framework
+npm run check:assets
+npm run check:live
 npm run check:official
 npm run sync:aniimo
 ```
@@ -43,6 +45,7 @@ Before committing production changes, run:
 ```bash
 npm run build
 npm run check:framework
+npm run check:assets
 npm run check:seo
 git status --short
 ```
@@ -249,6 +252,23 @@ Add future slug redirects above the final SPA fallback line.
 
 `npm run check:official` compares local official-style Aniimo data against the official update probe workflow and writes `official-update-report.md`.
 
+`npm run check:assets` validates production image references and size budgets:
+
+- referenced image paths must exist
+- Aniimo portraits should stay below 260KB
+- region artwork should stay below 360KB
+- banners should stay below 420KB
+- hero and OG assets have separate production budgets
+- large unreferenced files in `public/images` are flagged
+
+`npm run check:live` validates the deployed production site:
+
+- important production pages return a non-error status
+- `robots.txt` allows crawling and references the production sitemap
+- production sitemap URLs use `https://aniimo.games/...`
+- production sitemap includes all locally expected sitemap routes
+- important pages expose canonical links and script tags
+
 ## Update Workflow
 
 For content-only updates:
@@ -257,6 +277,7 @@ For content-only updates:
 npm run sync:aniimo
 npm run build
 npm run check:framework
+npm run check:assets
 npm run check:seo
 git status --short
 git add data public PROJECT_REQUIREMENTS.md PROJECT_FRAMEWORK.md
@@ -269,6 +290,7 @@ For code or framework updates:
 ```bash
 npm run build
 npm run check:framework
+npm run check:assets
 npm run check:seo
 git diff --stat
 git add .
@@ -284,6 +306,12 @@ After deployment, open the production site and check at least:
 - `/sitemap.xml`
 - `/robots.txt`
 
+Then run:
+
+```bash
+npm run check:live
+```
+
 ## Common Failure Modes
 
 - Blank production page: check browser console for undefined helpers or stale bundle references.
@@ -292,6 +320,8 @@ After deployment, open the production site and check at least:
 - Missing page in sitemap: update `src/lib/routes.js` or data arrays, then rebuild.
 - Broken image: confirm the path in data starts with `/images/...` and the file exists in `public/images`.
 - Duplicate meta titles: update `resolveRoute(path)` or static route metadata.
+- Platform page blank: check `PlatformPage` configuration and avoid shadowing the active platform config with storefront loop variables.
+- Live audit fails after a push: wait for Cloudflare Pages to finish deployment, then rerun `npm run check:live`.
 
 ## Current Baseline
 
@@ -305,4 +335,3 @@ As of 2026-08-28:
 - `npm run build` passes
 - `npm run check:framework` passes
 - `npm run check:seo` passes
-

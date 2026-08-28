@@ -13,7 +13,7 @@ const sourceFiles = [
   "src/lib/routes.js",
   "src/seo/runtime.js",
 ];
-const retiredHelpers = ["aniimoHref(", "regionHref("];
+const retiredHelpers = ["aniimoHref(", "regionHref(", "const platform = platformMap[type]", "platform.names.includes(platform.name)"];
 
 findDuplicates(sitemap).forEach((path) => issues.push(`Duplicate sitemap route: ${path}`));
 findDuplicates(prerender).forEach((path) => issues.push(`Duplicate prerender route: ${path}`));
@@ -27,8 +27,16 @@ for (const path of sitemap) {
 for (const file of sourceFiles) {
   const source = readFileSync(file, "utf8");
   retiredHelpers.forEach((helper) => {
-    if (source.includes(helper)) issues.push(`Retired route helper still referenced in ${file}: ${helper}`);
+    if (source.includes(helper)) issues.push(`Retired or unsafe helper pattern still referenced in ${file}: ${helper}`);
   });
+}
+
+const pagesSource = readFileSync("src/pages/pages.jsx", "utf8");
+for (const platformRoute of ["/platforms/ps5/", "/platforms/xbox/", "/platforms/epic-games/", "/platforms/ios/", "/platforms/android/"]) {
+  if (!sitemap.includes(platformRoute)) issues.push(`Platform route missing from sitemap routes: ${platformRoute}`);
+  if (!pagesSource.includes(platformRoute.replace("/platforms/", "").replace("/", ""))) {
+    issues.push(`Platform route missing from page switch or platform config: ${platformRoute}`);
+  }
 }
 
 const referencedAssets = new Set([

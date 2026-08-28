@@ -36,6 +36,9 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added snippet-ready FAQ coverage for launch status, Steam, codes, confirmed count, free-to-play status and mobile availability.
 - Added a visible `/site-index/` hub to improve internal discovery across guides, platform pages, regions, elements, roles and featured Aniimo pages.
 - Added `/launch-tracker/` to centralize launch dates, platform readiness, reward status, code watchlist status and post-launch verification tasks.
+- Fixed platform detail pages for PS5, Xbox, Epic Games Store, iOS and Android after a runtime variable-shadowing regression.
+- Added `check:live` for production robots, sitemap, canonical and important page health checks.
+- Added `check:assets` for production image reference and size-budget checks.
 
 ## Active Growth Priorities
 
@@ -125,12 +128,13 @@ Completed first public monitoring layer:
 
 - `/launch-tracker/` gives users and crawlers a source-aware launch readiness hub.
 - The page separates confirmed official facts from watchlist items such as exact unlock hours, redeem codes and spawn routes.
+- `npm run check:live` verifies deployed robots, sitemap, canonical tags and key page availability.
 
 ### Priority 6: Performance
 
 Status: In progress
 
-Completed first-round WebP conversion for the largest unreferenced production PNG files. Continue with remaining 150-250KB PNG files after confirming visual quality.
+Completed first-round WebP conversion for the largest unreferenced production PNG files. Added `npm run check:assets` for image budgets and compressed the Blitzwood region artwork under the current region-image threshold.
 
 ### Priority 7: Core Search Page Expansion
 

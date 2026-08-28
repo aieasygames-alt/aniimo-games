@@ -651,17 +651,17 @@ export function PlatformPage({ type }) {
       ],
     },
   };
-  const platform = platformMap[type] || platformMap.steam;
-  const pagePlatforms = platforms.filter((platform) =>
-    platform.names.includes(platform.name),
+  const platformConfig = platformMap[type] || platformMap.steam;
+  const pagePlatforms = platforms.filter((storefront) =>
+    platformConfig.names.includes(storefront.name),
   );
 
   return (
     <section className="section split-section download-band">
       <div>
-        <SectionTitle icon={<Download />} kicker="Platforms" title={platform.title} />
-        <p className="section-copy">{platform.intro}</p>
-        <SeoGuideBlock compact items={platform.notes} />
+        <SectionTitle icon={<Download />} kicker="Platforms" title={platformConfig.title} />
+        <p className="section-copy">{platformConfig.intro}</p>
+        <SeoGuideBlock compact items={platformConfig.notes} />
       </div>
       <div className="platform-list">
         {pagePlatforms.map((item) => (
