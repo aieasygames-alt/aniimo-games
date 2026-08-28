@@ -1,6 +1,6 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, codes, editorialGuides, faqs, gameInfo, launchRewards, launchTracker, mapGuide, mechanics, officialLinks, platforms, regions, releaseInfo, seoGuides, statuses, updates } from "../../data/content.js";
+import { aniimo, codeVerificationTemplate, codes, editorialGuides, faqs, gameInfo, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanics, officialLinks, platformUnlockQueue, platforms, regions, releaseInfo, seoGuides, spawnVerificationQueue, statuses, updates, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, elementPath, regionPath, rolePath, staticRoutes } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
@@ -432,9 +432,79 @@ export function LaunchTrackerPage() {
         { title: "What is still watchlist", body: "Redeem codes, exact unlock hours, final spawn routes, weather windows and combat values should wait for official posts or live-game verification." },
         { title: "How this page changes", body: "When official sources change, update this tracker first, then refresh detail pages, sitemap metadata and the update log so readers can see what changed." },
       ]} />
+      <div className="hero-actions section-actions">
+        <a className="primary-action" href="/launch-verification/">
+          <CheckCircle2 size={18} />
+          Open Verification Checklist
+        </a>
+      </div>
       <FaqBlock items={[
         ["What does the Aniimo launch tracker monitor?", "It tracks official launch dates, platform links, reward status, code status, source checks and post-launch verification tasks."],
         ["When should launch data be updated?", "Update it when official news, storefront listings, the official Wiki or live-game verification confirms a change."],
+      ]} />
+    </section>
+  );
+}
+
+export function LaunchVerificationPage() {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<CheckCircle2 />} kicker="Workflow" title="Aniimo Launch Verification Checklist" />
+      <p className="section-copy">
+        This page prepares the fields that should be filled after official launch or
+        official source updates. It keeps unverified route, code, unlock and Search
+        Console data out of live guide claims until evidence exists.
+      </p>
+      <div className="detail-panels">
+        <InfoPanel title="Spawn Template" rows={[
+          ["Required", verificationTemplates.spawnPoint.requiredFields.join(", ")],
+          ["Optional", verificationTemplates.spawnPoint.optionalFields.join(", ")],
+        ]} />
+        <InfoPanel title="Code Template" rows={[
+          ["Current status", codeVerificationTemplate.currentStatus],
+          ["Fields", codeVerificationTemplate.fieldsToCapture.join(", ")],
+        ]} />
+        <InfoPanel title="Platform Unlock Template" rows={[
+          ["Required", verificationTemplates.platformUnlock.requiredFields.join(", ")],
+          ["Optional", verificationTemplates.platformUnlock.optionalFields.join(", ")],
+        ]} />
+        <InfoPanel title="GSC Template" rows={[
+          ["First review", gscObservationTemplate.firstReviewWindow],
+          ["Fields", gscObservationTemplate.fieldsToCapture.join(", ")],
+        ]} />
+      </div>
+      <section className="related-section">
+        <h2>Spawn Verification Queue</h2>
+        <div className="verification-grid">
+          {spawnVerificationQueue.map((item) => (
+            <article className="verification-card" key={item.region}>
+              <StatusBadge status={item.status} />
+              <h3>{item.region}</h3>
+              <p>{item.aniimo}</p>
+              <p>{item.task}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="related-section">
+        <h2>Platform Unlock Queue</h2>
+        <div className="verification-grid">
+          {platformUnlockQueue.map((item) => (
+            <article className="verification-card" key={item.platform}>
+              <StatusBadge status={item.status} />
+              <h3>{item.platform}</h3>
+              <p>Release date: {item.releaseDate}</p>
+              <p>Unlock time: {item.unlockTime}</p>
+              <a className="text-link" href={item.source} target="_blank" rel="noreferrer">
+                Official source <ChevronRight size={16} />
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+      <FaqBlock items={[
+        ["When should spawn data be marked verified?", "Only after official sources or direct in-game checks confirm the route, condition and timing."],
+        ["When should a redeem code be published?", "Only after an official channel or in-game redemption flow confirms the code string, reward and restrictions."],
       ]} />
     </section>
   );
@@ -470,7 +540,7 @@ export function SourcesPage() {
 
 export function SiteIndexPage({ navigate }) {
   const corePages = staticRoutes.filter((route) =>
-    ["/aniimo/", "/map/", "/evolution/", "/codes/", "/rewards/", "/download/", "/release-date/", "/beginner-guide/", "/best-aniimo/", "/sources/"].includes(route.path),
+    ["/aniimo/", "/map/", "/evolution/", "/codes/", "/rewards/", "/download/", "/release-date/", "/beginner-guide/", "/launch-tracker/", "/launch-verification/", "/best-aniimo/", "/sources/"].includes(route.path),
   );
   const platformPages = staticRoutes.filter((route) => route.path.startsWith("/platforms/"));
   const trustPages = staticRoutes.filter((route) => ["/about/", "/editorial-policy/", "/contact/"].includes(route.path));

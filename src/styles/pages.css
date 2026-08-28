@@ -350,6 +350,23 @@ th {
   gap: 12px;
 }
 
+.verification-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.verification-card {
+  padding: 18px;
+  border: 1px solid rgba(23, 32, 29, 0.1);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.verification-card h3 {
+  margin: 12px 0 6px;
+}
+
 .related-card {
   display: grid;
   gap: 4px;

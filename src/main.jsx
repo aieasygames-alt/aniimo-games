@@ -25,6 +25,7 @@ import {
   GuideSummary,
   HomePage,
   LaunchTrackerPage,
+  LaunchVerificationPage,
   MapPage,
   NotFoundPage,
   PlatformPage,
@@ -154,6 +155,8 @@ function App() {
           <UpdatesPage />
         ) : routeInfo.path === "/launch-tracker/" ? (
           <LaunchTrackerPage />
+        ) : routeInfo.path === "/launch-verification/" ? (
+          <LaunchVerificationPage />
         ) : routeInfo.path === "/sources/" ? (
           <SourcesPage />
         ) : routeInfo.path === "/site-index/" ? (

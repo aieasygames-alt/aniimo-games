@@ -35,6 +35,7 @@ npm run preview
 npm run check:seo
 npm run check:framework
 npm run check:assets
+npm run check:verification
 npm run check:live
 npm run check:official
 npm run sync:aniimo
@@ -46,6 +47,7 @@ Before committing production changes, run:
 npm run build
 npm run check:framework
 npm run check:assets
+npm run check:verification
 npm run check:seo
 git status --short
 ```
@@ -65,6 +67,7 @@ data/content/aniimo.js    Aniimo database entries
 data/content/regions.js   Region data
 data/content/guides.js    Guides, rewards, mechanics, release info and page copy
 data/content/sources.js   Official source links and source metadata
+data/content/verification.js Post-launch verification templates and queues
 scripts/*.mjs             Build-time generation, sync and audit scripts
 public/images/*           Production image assets
 public/_redirects         Cloudflare Pages redirects and SPA fallback
@@ -263,6 +266,14 @@ Add future slug redirects above the final SPA fallback line.
 - hero and OG assets have separate production budgets
 - large unreferenced files in `public/images` are flagged
 
+`npm run check:verification` validates launch verification templates:
+
+- spawn-point required and optional fields
+- redeem-code required and optional fields
+- platform-unlock required and optional fields
+- GSC observation required and optional fields
+- launch verification queues for regions and platforms
+
 `npm run check:live` validates the deployed production site:
 
 - important production pages return a non-error status
@@ -281,6 +292,7 @@ npm run sync:aniimo
 npm run build
 npm run check:framework
 npm run check:assets
+npm run check:verification
 npm run check:seo
 git status --short
 git add data public PROJECT_REQUIREMENTS.md PROJECT_FRAMEWORK.md
@@ -294,6 +306,7 @@ For code or framework updates:
 npm run build
 npm run check:framework
 npm run check:assets
+npm run check:verification
 npm run check:seo
 git diff --stat
 git add .

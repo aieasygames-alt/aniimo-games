@@ -42,6 +42,8 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Expanded `check:live` to sample sitemap URLs in addition to key production pages.
 - Enhanced `check:official` with watchlist field verification counts and recommended next actions.
 - Converted remaining production Aniimo PNG portraits to WebP and moved the old PNG files into `assets/source/aniimo-png-backup`.
+- Added `/launch-verification/` with structured post-launch templates for spawn points, redeem codes, platform unlocks and Search Console observations.
+- Added `check:verification` to validate post-launch verification templates and queues.
 
 ## Active Growth Priorities
 
@@ -164,7 +166,7 @@ Implementation notes:
 
 ### Priority 8: Post-Launch Verification
 
-Status: Not started
+Status: In progress
 
 Add live-game verified information after launch:
 
@@ -175,6 +177,17 @@ Add live-game verified information after launch:
 - first redeem codes
 - tested combat or Twine use cases
 - GSC indexing and query performance notes
+
+Completed preparation layer:
+
+- `/launch-verification/` defines the fields needed for spawn, code, platform unlock and GSC observations.
+- `data/content/verification.js` stores reusable queues and templates.
+- `npm run check:verification` validates template completeness before release.
+
+Remaining after launch:
+
+- Fill the prepared templates with official or in-game verified data.
+- Update related Aniimo detail pages, region pages, codes page and launch tracker from the verified records.
 
 ### Priority 9: Internal Linking Hub
 
