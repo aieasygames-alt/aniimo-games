@@ -312,3 +312,118 @@ export const searchSuggestionTopics = [
     ],
   },
 ];
+
+export const glossaryTopics = [
+  ["pathfinder", "Pathfinder", "The player identity used in Aniimo public material. Use this term for guides about exploration, progression and player-side launch planning."],
+  ["idyll", "Idyll", "The continent where Aniimo takes place. Use this term for world, region and map pages."],
+  ["twine", "Twine", "The official system that lets players become collected Aniimo and use their abilities for combat, traversal, exploration and puzzles."],
+  ["aniipod", "Aniipod", "The catching item associated with finding and collecting Aniimo. Exact item tiers and catch rates need launch verification."],
+  ["homeland", "Homeland", "The personal home-base system tied to RV, crops, decoration and Aniimo interactions."],
+  ["rv", "RV", "The personal vehicle and home-base anchor mentioned in official Homeland descriptions."],
+  ["prismana", "Prismana", "A special form/reward term connected to the Junior Wayfarer reward choice. Exact form behavior should stay tied to official source updates."],
+  ["egg-heist", "Egg Heist", "An official PVEVP mode where three-player teams search and battle in the Lost Isles."],
+].map(([slug, term, definition]) => ({
+  slug,
+  title: `${term} Meaning in Aniimo`,
+  description: `Learn what ${term} means in Aniimo and where the term fits in official guides, wiki pages and launch tracking.`,
+  term,
+  definition,
+  points: [
+    ["Plain meaning", definition],
+    ["Where it appears", `${term} should be linked from related guide pages so players can move between mechanics, rewards, regions and database entries.`],
+    ["Verification note", "If a later official source changes the wording or adds exact values, update this glossary page before refreshing related guides."],
+  ],
+  faq: [
+    [`What does ${term} mean in Aniimo?`, definition],
+    [`Is ${term} final launch data?`, "This glossary tracks public terminology. Exact values, unlock rules and route requirements should still be verified after launch when needed."],
+  ],
+}));
+
+export const troubleshootingTopics = [
+  {
+    slug: "aniimo-download-not-available",
+    title: "Aniimo Download Not Available",
+    description: "Troubleshoot why Aniimo download, wishlist, pre-order or pre-registration may not appear on your platform yet.",
+    intro: "Before launch, a missing download button is usually a storefront timing, region or pre-launch availability issue rather than a reason to use mirrors.",
+    points: [
+      ["Check the date", `PC and console launch is tracked for ${releaseInfo.pcConsole}; mobile launch is tracked for ${releaseInfo.mobile}.`],
+      ["Check the right storefront", "Use Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play or the official Aniimo website."],
+      ["Avoid mirrors", "Do not use APK mirrors, reposted installers or unofficial download buttons when official store access is not live."],
+    ],
+    faq: [
+      ["Why can't I download Aniimo yet?", "The game may not be live on your platform, region or storefront account yet."],
+      ["Should I use an APK mirror?", "No. Use official storefronts and avoid mirrors, especially before launch."],
+    ],
+  },
+  {
+    slug: "aniimo-store-page-not-visible",
+    title: "Aniimo Store Page Not Visible",
+    description: "Check why an Aniimo Steam, Epic, PlayStation, Xbox, App Store or Google Play listing may not be visible in your region.",
+    intro: "Storefront visibility can vary by country, account region, device support and rollout timing. This page gives users a safe checklist.",
+    points: [
+      ["Use official links", "Start from the platform hub or official website rather than searching through reposted links."],
+      ["Check account region", "Mobile and console store pages can vary by country or storefront account settings."],
+      ["Try another official source", "If one platform page is not visible, use the official website or another confirmed storefront to track updates."],
+    ],
+    faq: [
+      ["Does a missing store page mean Aniimo is canceled?", "No. Store visibility can change by region and rollout timing."],
+      ["Where should I check first?", "Start from the official Aniimo website or the platform page linked from Aniimo.games."],
+    ],
+  },
+  {
+    slug: "aniimo-pre-registration-not-working",
+    title: "Aniimo Pre-Registration Not Working",
+    description: "Troubleshoot Aniimo pre-registration, wishlist and pre-order issues while staying on official sources.",
+    intro: "Pre-registration problems often come from region, account, device or store rollout differences. Keep reward and code claims separate while checking.",
+    points: [
+      ["Confirm the official page", "Use the official Aniimo website or official mobile storefront pages."],
+      ["Check account status", "Use the account you plan to play with at launch so reward notices and store alerts stay aligned."],
+      ["Separate rewards from codes", "Pre-registration rewards are not the same as active redeem codes unless an official code string is published."],
+    ],
+    faq: [
+      ["Will pre-registration rewards require a code?", "Not necessarily. Rewards and redeem codes should be tracked separately until official claim steps are known."],
+      ["What if pre-registration is unavailable in my region?", "Check again later through official storefronts because regional availability can change before launch."],
+    ],
+  },
+  {
+    slug: "aniimo-region-availability",
+    title: "Aniimo Region Availability",
+    description: "Track Aniimo regional availability questions for mobile stores, console stores and launch timing.",
+    intro: "Region availability is a high-intent launch question, but the site should avoid country-by-country claims until storefronts or official news confirm them.",
+    points: [
+      ["Known platform path", "Aniimo.games tracks official PC, console and mobile storefronts."],
+      ["Country-level watchlist", "Exact country availability should be verified from each store or official announcement."],
+      ["GSC follow-up", "After impressions arrive, prioritize country pages only when query data proves demand."],
+    ],
+    faq: [
+      ["Is Aniimo available in every country?", "Aniimo.games does not claim full country availability without storefront or official confirmation."],
+      ["Should the site build country pages now?", "Not yet. Country pages should wait for Search Console demand and official availability data."],
+    ],
+  },
+];
+
+export const mediaGalleryItems = [
+  ["Hero art", "/images/hero-aniimo.webp", "Official-style hero image used for the Aniimo.games home page and social preview planning."],
+  ["Default social image", "/images/og-default.webp", "Open Graph fallback image for shared guide pages."],
+  ["Download banner", "/images/banners/banner-download.webp", "Download guide banner for platform and safe-install pages."],
+  ["Rewards banner", "/images/banners/banner-rewards.webp", "Rewards guide banner for pre-registration and milestone pages."],
+  ["Susuta Hunt banner", "/images/banners/banner-susuta-hunt.webp", "Event-style banner used for Susuta reward and campaign context."],
+  ["Mistwoods region", "/images/regions/region-mistwoods.webp", "Region artwork used by Mistwoods map and location pages."],
+  ["Echoback Landing region", "/images/regions/region-echoback-landing.webp", "Region artwork used by Echoback Landing map and location pages."],
+  ["Sea of Flowers region", "/images/regions/region-sea-of-flowers.webp", "Region artwork used by Sea of Flowers map and location pages."],
+  ["Blitzwood region", "/images/regions/region-blitzwood.webp", "Region artwork used by Blitzwood map and location pages."],
+  ["Nimbus Fields region", "/images/regions/region-nimbus-fields.webp", "Region artwork used by Nimbus Fields map and location pages."],
+  ["Forest of Falling Stars region", "/images/regions/region-forest-of-falling-stars.webp", "Region artwork used by Forest of Falling Stars map and location pages."],
+].map(([title, image, description]) => ({ title, image, description }));
+
+export const sourceArchiveItems = [
+  ["Official website", officialLinks.website, "Launch rewards, registration flow, platform links and campaign messaging."],
+  ["Official main site", officialLinks.main, "Launch announcements, beta timeline and news updates."],
+  ["Official Wiki", officialLinks.officialWiki, "Public Aniimo names, numbers, descriptions and visible index changes."],
+  ["Steam", officialLinks.steam, "PC storefront wording, wishlist state, tags, media and release availability."],
+  ["Epic Games Store", officialLinks.epic, "Epic storefront wording, wishlist state and PC release availability."],
+  ["PlayStation", officialLinks.playstation, "PS5 listing state, console availability and regional storefront wording."],
+  ["Xbox", officialLinks.xbox, "Xbox listing state, console availability and regional storefront wording."],
+  ["App Store", officialLinks.appStore, "iOS pre-order, mobile release visibility and regional storefront wording."],
+  ["Google Play", officialLinks.googlePlay, "Android pre-registration, mobile release visibility and store-description changes."],
+].map(([title, url, scope]) => ({ title, url, scope, lastChecked: "2026-08-28" }));

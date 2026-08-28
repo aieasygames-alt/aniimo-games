@@ -302,3 +302,37 @@ dd {
   color: #52615b;
   font-size: 14px;
 }
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.media-card {
+  overflow: hidden;
+  border: 1px solid rgba(23, 32, 29, 0.1);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.media-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.media-card div {
+  padding: 16px;
+}
+
+.media-card h2 {
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+.media-card p {
+  color: #52615b;
+  font-size: 14px;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, downloadTopics, editorialGuides, faqs, gameInfo, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanics, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialIntentTopics, spawnVerificationQueue, statuses, updates, verificationTemplates } from "../../data/content.js";
-import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, downloadTopicPath, elementPath, locationTopicPath, newsTopicPath, officialPitchTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, staticRoutes } from "../lib/routes.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, downloadTopics, editorialGuides, faqs, gameInfo, glossaryTopics, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, verificationTemplates } from "../../data/content.js";
+import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, downloadTopicPath, elementPath, glossaryTopicPath, locationTopicPath, newsTopicPath, officialPitchTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, staticRoutes, troubleshootingTopicPath } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
 export function HomePage(props) {
@@ -552,6 +552,8 @@ export function SiteIndexPage({ navigate }) {
   const officialPitchPages = officialPitchTopics.map((item) => [item.title, officialPitchTopicPath(item), item.description]);
   const socialIntentPages = socialIntentTopics.map((item) => [item.title, socialIntentTopicPath(item), item.description]);
   const searchSuggestionPages = searchSuggestionTopics.map((item) => [item.title, searchSuggestionTopicPath(item), item.description]);
+  const glossaryPages = glossaryTopics.map((item) => [item.term, glossaryTopicPath(item), item.definition]);
+  const troubleshootingPages = troubleshootingTopics.map((item) => [item.title, troubleshootingTopicPath(item), item.description]);
   const trustPages = staticRoutes.filter((route) => ["/about/", "/editorial-policy/", "/contact/"].includes(route.path));
   const elementNames = [...new Set(aniimo.map((item) => item.element))];
   const roleNames = [...new Set(aniimo.map((item) => item.role))];
@@ -574,6 +576,8 @@ export function SiteIndexPage({ navigate }) {
         <LinkGroup title="Official Feature Guides" items={officialPitchPages} navigate={navigate} />
         <LinkGroup title="Community Question Guides" items={socialIntentPages} navigate={navigate} />
         <LinkGroup title="Search Topic Guides" items={searchSuggestionPages} navigate={navigate} />
+        <LinkGroup title="Glossary" items={glossaryPages} navigate={navigate} />
+        <LinkGroup title="Troubleshooting" items={troubleshootingPages} navigate={navigate} />
         <LinkGroup title="Region Guides" items={regions.map((item) => [item.name, regionPath(item), item.theme])} navigate={navigate} />
         <LinkGroup title="Location Guides" items={regions.map((item) => [`${item.name} Locations`, locationTopicPath(item), `Track ${item.name} route and spawn verification tasks.`])} navigate={navigate} />
         <LinkGroup title="Element Guides" items={elementNames.map((item) => [`${item} Aniimo`, elementPath(item), `Browse ${item} entries by number, role, stage and source status.`])} navigate={navigate} />
@@ -597,6 +601,99 @@ export function SiteIndexPage({ navigate }) {
         ["What is the Aniimo.games site index for?", "It helps readers and crawlers discover guide hubs, platform pages, region pages, element pages, role pages and source pages from one internal-link hub."],
         ["Does every Aniimo detail page appear here?", "The XML sitemap includes every indexable Aniimo page. This visible index highlights important hubs and featured entries while the database page links to all tracked Aniimo."],
       ]} />
+    </section>
+  );
+}
+
+export function GlossaryPage({ navigate }) {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<BookOpen />} kicker="Terms" title="Aniimo Glossary" />
+      <p className="section-copy">
+        Learn the official Aniimo terms that appear across database, map, rewards,
+        launch and beginner guide pages.
+      </p>
+      <div className="site-index-grid">
+        {glossaryTopics.map((item) => (
+          <article className="link-group" key={item.slug}>
+            <h2>{item.term}</h2>
+            <p>{item.definition}</p>
+            <a className="text-link" href={glossaryTopicPath(item)} onClick={(event) => navigate(event, glossaryTopicPath(item))}>
+              Open term guide <ChevronRight size={16} />
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function MediaPage() {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<Map />} kicker="Media" title="Aniimo Images, Screenshots & Media Gallery" />
+      <p className="section-copy">
+        Browse the compressed visual assets used by Aniimo.games. Images are selected for
+        guide context, region discovery, social previews and source-safe SEO pages.
+      </p>
+      <div className="media-grid">
+        {mediaGalleryItems.map((item) => (
+          <article className="media-card" key={item.image}>
+            <img src={item.image} alt={item.title} width="420" height="236" loading="lazy" />
+            <div>
+              <h2>{item.title}</h2>
+              <p>{item.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <FaqBlock items={[
+        ["Why does Aniimo.games compress media?", "Compressed WebP assets improve page speed while preserving useful screenshots, banners and region context."],
+        ["Can media pages include unofficial images?", "Only when rights, source and page purpose are clear. Official or site-prepared assets are preferred."],
+      ]} />
+    </section>
+  );
+}
+
+export function TroubleshootingPage({ navigate }) {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<Download />} kicker="Help" title="Aniimo Download & Pre-Registration Troubleshooting" />
+      <p className="section-copy">
+        Use these pages when a download, wishlist, pre-order, store page or
+        pre-registration flow is unavailable on a specific platform or country.
+      </p>
+      <div className="site-index-grid">
+        {troubleshootingTopics.map((item) => (
+          <article className="link-group" key={item.slug}>
+            <h2>{item.title}</h2>
+            <p>{item.description}</p>
+            <a className="text-link" href={troubleshootingTopicPath(item)} onClick={(event) => navigate(event, troubleshootingTopicPath(item))}>
+              Open troubleshooting guide <ChevronRight size={16} />
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function SourceArchivePage() {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<CheckCircle2 />} kicker="Sources" title="Aniimo Source Archive" />
+      <p className="section-copy">
+        This archive records the official sources used by Aniimo.games and which content
+        areas each source supports. It helps future updates stay source-aware.
+      </p>
+      <div className="source-list">
+        {sourceArchiveItems.map((item) => (
+          <a className="source-row" key={item.title} href={item.url} target="_blank" rel="noreferrer">
+            <span>{item.title}</span>
+            <span>{item.scope} Last checked: {item.lastChecked}.</span>
+          </a>
+        ))}
+      </div>
     </section>
   );
 }

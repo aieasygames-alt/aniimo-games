@@ -1,4 +1,4 @@
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, downloadTopics, faqs, gameInfo, newsTopics, officialPitchTopics, platforms, regions, releaseInfo, searchSuggestionTopics, socialIntentTopics } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, downloadTopics, faqs, gameInfo, glossaryTopics, newsTopics, officialPitchTopics, platforms, regions, releaseInfo, searchSuggestionTopics, socialIntentTopics, troubleshootingTopics } from "../../data/content.js";
 
 export const siteUrl = "https://aniimo.games";
 
@@ -23,6 +23,10 @@ export const staticRoutes = [
   { path: "/launch-verification/", label: "Launch Verification", title: "Aniimo Launch Verification Checklist", description: "Prepare Aniimo post-launch verification templates for spawn routes, redeem codes, platform unlock times and Search Console observations." },
   { path: "/sources/", label: "Sources", title: "Aniimo Official Sources", description: "Review official Aniimo sources used for launch dates, platform links, Wiki names, regions, rewards and mechanics." },
   { path: "/site-index/", label: "Site Index", title: "Aniimo.games Site Index", description: "Browse every major Aniimo.games guide hub including database pages, platform pages, region guides, elements, roles and official source pages." },
+  { path: "/glossary/", label: "Glossary", title: "Aniimo Glossary", description: "Learn Aniimo terms such as Pathfinder, Idyll, Twine, Aniipod, Homeland, Prismana and Egg Heist." },
+  { path: "/media/", label: "Media", title: "Aniimo Images, Screenshots & Media Gallery", description: "Browse Aniimo.games media assets, official-style banners, region art and image source notes." },
+  { path: "/troubleshooting/", label: "Troubleshooting", title: "Aniimo Download & Pre-Registration Troubleshooting", description: "Fix common Aniimo download, store visibility, pre-registration and region availability questions." },
+  { path: "/source-archive/", label: "Source Archive", title: "Aniimo Source Archive", description: "Track official Aniimo sources, storefront links, checked dates and which pages each source supports." },
   { path: "/best-aniimo/", label: "Best Aniimo", title: "Best Aniimo to Track Before Launch | Aniimo Wiki", description: "Review useful Aniimo picks to track before launch by role, element, region coverage and official source status." },
   { path: "/platforms/steam/", label: "Steam", title: "Aniimo Steam Download & Wishlist Guide", description: "Find the official Aniimo Steam page, PC launch date, wishlist notes and safe download guidance." },
   { path: "/platforms/mobile/", label: "Mobile", title: "Aniimo Mobile Download, App Store & Google Play Guide", description: "Track Aniimo mobile release timing, App Store and Google Play links, pre-registration notes and device guidance." },
@@ -95,6 +99,14 @@ export function socialIntentTopicPath(topic) {
 
 export function searchSuggestionTopicPath(topic) {
   return normalizePath(`/topics/${topic.slug}`);
+}
+
+export function glossaryTopicPath(topic) {
+  return normalizePath(`/glossary/${topic.slug}`);
+}
+
+export function troubleshootingTopicPath(topic) {
+  return normalizePath(`/troubleshooting/${topic.slug}`);
 }
 
 export function canonicalUrl(path) {
@@ -201,6 +213,12 @@ export function resolveRoute(path) {
   const searchSuggestionTopic = searchSuggestionTopics.find((item) => searchSuggestionTopicPath(item) === normalized);
   if (searchSuggestionTopic) return { type: "search-suggestion-topic", path: searchSuggestionTopicPath(searchSuggestionTopic), title: searchSuggestionTopic.title, description: searchSuggestionTopic.description, searchSuggestionTopic };
 
+  const glossaryTopic = glossaryTopics.find((item) => glossaryTopicPath(item) === normalized);
+  if (glossaryTopic) return { type: "glossary-topic", path: glossaryTopicPath(glossaryTopic), title: glossaryTopic.title, description: glossaryTopic.description, glossaryTopic };
+
+  const troubleshootingTopic = troubleshootingTopics.find((item) => troubleshootingTopicPath(item) === normalized);
+  if (troubleshootingTopic) return { type: "troubleshooting-topic", path: troubleshootingTopicPath(troubleshootingTopic), title: troubleshootingTopic.title, description: troubleshootingTopic.description, troubleshootingTopic };
+
   const staticRoute = staticRoutes.find((item) => item.path === normalized);
   if (staticRoute) return { type: "static", ...staticRoute };
 
@@ -226,6 +244,8 @@ export function sitemapRoutes() {
     ...officialPitchTopics.map(officialPitchTopicPath),
     ...socialIntentTopics.map(socialIntentTopicPath),
     ...searchSuggestionTopics.map(searchSuggestionTopicPath),
+    ...glossaryTopics.map(glossaryTopicPath),
+    ...troubleshootingTopics.map(troubleshootingTopicPath),
     ...aniimo.map(aniimoPath),
     ...regions.map(regionPath),
   ]);

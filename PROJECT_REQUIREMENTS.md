@@ -13,8 +13,8 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Search setup: Google Search Console and Bing Webmaster sitemap submitted
 - Framework: Vite + React static site with build-time sitemap generation and static route prerendering
 - Canonical URL policy: trailing-slash canonical URLs
-- Content coverage: 89 local Aniimo entries, 6 public regions, official platform links, release dates, rewards, mechanics, official feature guides, social-intent comparison pages and search-topic pages
-- Current content-development focus: official feature extraction, social discussion search intent, search-suggestion pages and post-launch verification readiness
+- Content coverage: 89 local Aniimo entries, 6 public regions, official platform links, release dates, rewards, mechanics, official feature guides, social-intent comparison pages, search-topic pages, glossary terms, troubleshooting pages, media gallery and source archive
+- Current content-development focus: official feature extraction, social discussion search intent, search-suggestion pages, support content, source freshness and post-launch verification readiness
 
 ## Completed
 
@@ -48,6 +48,9 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added official feature pages for Aniimo's marketing pillars: official features, Twine, Egg Heist and Homeland.
 - Added social-intent pages for Pokemon-style comparisons, Palworld-style comparisons, Switch availability and pay-to-win questions.
 - Added search-topic pages for characters, platforms, beta/test history and news tracking.
+- Added glossary pages for Pathfinder, Idyll, Twine, Aniipod, Homeland, RV, Prismana and Egg Heist.
+- Added troubleshooting pages for download unavailable, store page visibility, pre-registration issues and region availability.
+- Added `/media/` and `/source-archive/` hubs for image discovery, source trust and future update workflow.
 
 ## Active Growth Priorities
 
@@ -348,12 +351,31 @@ Completed first execution layer:
 - `/topics/aniimo-platforms/`
 - `/topics/aniimo-beta/`
 - `/topics/aniimo-news/`
+- `/glossary/`
+- `/glossary/pathfinder/`
+- `/glossary/idyll/`
+- `/glossary/twine/`
+- `/glossary/aniipod/`
+- `/glossary/homeland/`
+- `/glossary/rv/`
+- `/glossary/prismana/`
+- `/glossary/egg-heist/`
+- `/media/`
+- `/troubleshooting/`
+- `/troubleshooting/aniimo-download-not-available/`
+- `/troubleshooting/aniimo-store-page-not-visible/`
+- `/troubleshooting/aniimo-pre-registration-not-working/`
+- `/troubleshooting/aniimo-region-availability/`
+- `/source-archive/`
 
 Implementation notes:
 
 - Official feature pages only use storefront or official-site supported claims.
 - Social-intent pages answer community comparison/search questions without presenting competitor comparisons as official facts.
 - Search-topic pages target autocomplete-style queries and connect users back to database, platform, news and launch-tracker hubs.
+- Glossary pages give internal-link targets for recurring terms without overloading guide pages.
+- Troubleshooting pages answer launch friction questions without sending users to unofficial download mirrors.
+- Media and source archive hubs improve trust, image discovery and update workflow transparency.
 - New topic groups are included in route resolution, prerender routes, sitemap generation and the visible site index.
 
 ## Acceptance Criteria

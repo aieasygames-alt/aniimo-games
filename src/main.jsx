@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { BookOpen, Search, Sprout } from "lucide-react";
+import { BookOpen, Download, Search, Sprout } from "lucide-react";
 import { aniimo } from "../data/content.js";
 import {
   findAniimoBySlug,
@@ -27,9 +27,11 @@ import {
   EditorialPolicyPage,
   EvolutionPage,
   GuideSummary,
+  GlossaryPage,
   HomePage,
   LaunchTrackerPage,
   LaunchVerificationPage,
+  MediaPage,
   LocationTopicPage,
   MapPage,
   NewsTopicPage,
@@ -42,7 +44,9 @@ import {
   SiteIndexPage,
   SourcesPage,
   StatusGuide,
+  SourceArchivePage,
   TopicGuidePage,
+  TroubleshootingPage,
   UpdatesPage,
 } from "./pages/pages.jsx";
 import "./styles.css";
@@ -160,6 +164,10 @@ function App() {
           <TopicGuidePage topic={routeInfo.socialIntentTopic} kicker="Comparison" icon={<Search />} />
         ) : routeInfo.type === "search-suggestion-topic" ? (
           <TopicGuidePage topic={routeInfo.searchSuggestionTopic} kicker="Search Topic" icon={<Search />} />
+        ) : routeInfo.type === "glossary-topic" ? (
+          <TopicGuidePage topic={routeInfo.glossaryTopic} kicker="Glossary" icon={<BookOpen />} />
+        ) : routeInfo.type === "troubleshooting-topic" ? (
+          <TopicGuidePage topic={routeInfo.troubleshootingTopic} kicker="Troubleshooting" icon={<Download />} />
         ) : routeInfo.path === "/aniimo/" ? (
           <DatabasePage {...sharedProps} />
         ) : routeInfo.path === "/map/" ? (
@@ -186,6 +194,14 @@ function App() {
           <SourcesPage />
         ) : routeInfo.path === "/site-index/" ? (
           <SiteIndexPage navigate={navigate} />
+        ) : routeInfo.path === "/glossary/" ? (
+          <GlossaryPage navigate={navigate} />
+        ) : routeInfo.path === "/media/" ? (
+          <MediaPage />
+        ) : routeInfo.path === "/troubleshooting/" ? (
+          <TroubleshootingPage navigate={navigate} />
+        ) : routeInfo.path === "/source-archive/" ? (
+          <SourceArchivePage />
         ) : routeInfo.path === "/best-aniimo/" ? (
           <BestAniimoPage navigate={navigate} />
         ) : routeInfo.path === "/platforms/steam/" ? (
