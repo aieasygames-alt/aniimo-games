@@ -33,6 +33,7 @@ npm run dev
 npm run build
 npm run preview
 npm run check:release
+npm run submit:indexnow
 npm run check:content
 npm run check:seo
 npm run check:framework
@@ -216,6 +217,25 @@ The explicit `rm -rf dist` is important. It prevents old prerendered HTML from k
 - `npm run check:verification`
 
 Use `npm run check:live` after deployment to verify production robots, sitemap, canonical tags and sampled sitemap URLs.
+
+## IndexNow
+
+The site supports IndexNow URL submission for Bing-compatible search engines.
+
+- Key file: `public/1d4f7299d7d34b68ac75b38ffb9498f8.txt`
+- Production key URL: `https://aniimo.games/1d4f7299d7d34b68ac75b38ffb9498f8.txt`
+- Submit command: `npm run submit:indexnow`
+
+Run order:
+
+```bash
+npm run check:release
+git push origin main
+npm run check:live
+npm run submit:indexnow
+```
+
+The key file must be deployed before `npm run submit:indexnow` succeeds.
 
 ## Cloudflare Pages
 

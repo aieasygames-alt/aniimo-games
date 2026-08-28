@@ -59,6 +59,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Expanded collection pages with summary panels, represented elements/roles/stages/regions, taxonomy links and collection-specific FAQ blocks.
 - Added `npm run check:content` to validate topic depth, FAQ coverage, unique slugs, media entries, source archive entries and Aniimo field completeness.
 - Added `npm run check:release` as the standard pre-commit gate for build, content, SEO, framework, asset and verification checks.
+- Added IndexNow support with a public key file and `npm run submit:indexnow` for sitemap URL submission after deployment.
 
 ## Active Growth Priorities
 
@@ -424,6 +425,7 @@ Implementation notes:
 - `npm run check:seo` passes.
 - `npm run check:framework` passes.
 - `npm run check:content` passes.
+- IndexNow key file is deployed before `npm run submit:indexnow` is run.
 - Sitemap uses only `https://aniimo.games/.../` canonical URLs.
 - New indexable pages are included in `sitemap.xml`.
 - New pages have unique title and meta description.

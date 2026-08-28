@@ -9,6 +9,7 @@
     "build": "rm -rf dist && vite build && node scripts/prerender.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "sync:aniimo": "node scripts/sync-official-aniimo.mjs",
+    "submit:indexnow": "node scripts/submit-indexnow.mjs",
     "check:release": "node scripts/release-check.mjs",
     "check:official": "node scripts/check-official-updates.mjs",
     "check:framework": "node scripts/framework-audit.mjs",
