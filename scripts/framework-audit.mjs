@@ -42,6 +42,7 @@ for (const platformRoute of ["/platforms/ps5/", "/platforms/xbox/", "/platforms/
 const referencedAssets = new Set([
   gameInfo.heroImage,
   gameInfo.ogImage,
+  "/images/brand/aniimo-logo.webp",
   "/images/banners/banner-susuta-hunt.webp",
   ...aniimo.map((item) => item.image).filter(Boolean),
   ...regions.map((item) => item.image).filter(Boolean),

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { BookOpen, Download, Search, Sprout } from "lucide-react";
+import { BookOpen, Download, Search } from "lucide-react";
 import { aniimo } from "../data/content.js";
 import {
   findAniimoBySlug,
@@ -130,8 +130,7 @@ function App() {
     <>
       <header className="topbar">
         <a className="brand" href="/" onClick={(event) => navigate(event, "/")}>
-          <Sprout size={24} />
-          <span>Aniimo Wiki</span>
+          <img src="/images/brand/aniimo-logo.webp" alt="Aniimo Wiki" width="180" height="78" />
         </a>
         <nav>
           {navRoutes.map(({ label, path }) => (
