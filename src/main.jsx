@@ -26,21 +26,22 @@ import {
   platforms,
   regions,
   releaseInfo,
+  seoGuides,
   statuses,
   updates,
 } from "../data/content.js";
 import "./styles.css";
 
 const nav = [
-  ["Database", "/aniimo"],
-  ["Map", "/map"],
-  ["Evolution", "/evolution"],
-  ["Codes", "/codes"],
-  ["Rewards", "/rewards"],
-  ["Download", "/download"],
-  ["Guides", "/beginner-guide"],
-  ["Updates", "/updates"],
-  ["Sources", "/sources"],
+  ["Database", "/aniimo/"],
+  ["Map", "/map/"],
+  ["Evolution", "/evolution/"],
+  ["Codes", "/codes/"],
+  ["Rewards", "/rewards/"],
+  ["Download", "/download/"],
+  ["Guides", "/beginner-guide/"],
+  ["Updates", "/updates/"],
+  ["Sources", "/sources/"],
 ];
 
 function StatusBadge({ status }) {
@@ -49,6 +50,19 @@ function StatusBadge({ status }) {
 
 function findAniimoBySlug(slug) {
   return aniimo.find((item) => item.id === slug || item.aliases?.includes(slug));
+}
+
+function route(path) {
+  if (path === "/") return "/";
+  return path.endsWith("/") ? path : `${path}/`;
+}
+
+function aniimoHref(item) {
+  return route(`/aniimo/${item.id}`);
+}
+
+function regionHref(region) {
+  return route(`/regions/${region.id}`);
 }
 
 function App() {
@@ -80,8 +94,9 @@ function App() {
   function navigate(event, href) {
     if (!href.startsWith("/")) return;
     event.preventDefault();
-    window.history.pushState({}, "", href);
-    setPath(href);
+    const nextPath = route(href);
+    window.history.pushState({}, "", nextPath);
+    setPath(nextPath);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -94,16 +109,16 @@ function App() {
   React.useEffect(() => {
     const titles = {
       "/": "Aniimo Wiki, Database & Map Guide",
-      "/aniimo": "All Aniimo List, Locations & Abilities | Aniimo Wiki",
-      "/map": "Aniimo Map & Region Guide | Spawn Locations",
-      "/evolution": "Aniimo Evolution & Forms Guide",
-      "/codes": "Aniimo Codes & Rewards",
-      "/rewards": "Aniimo Pre-Registration Rewards",
-      "/download": "Aniimo Download, Release Date & Platforms",
-      "/release-date": "Aniimo Release Date",
-      "/beginner-guide": "Aniimo Beginner Guide",
-      "/updates": "Aniimo Updates & Source Log",
-      "/sources": "Aniimo Official Sources",
+      "/aniimo/": "All Aniimo List, Locations & Abilities | Aniimo Wiki",
+      "/map/": "Aniimo Map & Region Guide | Spawn Locations",
+      "/evolution/": "Aniimo Evolution & Forms Guide",
+      "/codes/": "Aniimo Codes & Rewards",
+      "/rewards/": "Aniimo Pre-Registration Rewards",
+      "/download/": "Aniimo Download, Release Date & Platforms",
+      "/release-date/": "Aniimo Release Date",
+      "/beginner-guide/": "Aniimo Beginner Guide",
+      "/updates/": "Aniimo Updates & Source Log",
+      "/sources/": "Aniimo Official Sources",
     };
     const aniimoMatch = path.match(/^\/aniimo\/([^/]+)/);
     const regionMatch = path.match(/^\/regions\/([^/]+)/);
@@ -126,9 +141,9 @@ function App() {
       );
     }
     const canonicalPath = detail
-      ? `/aniimo/${detail.id}`
+      ? aniimoHref(detail)
       : regionDetail
-        ? `/regions/${regionDetail.id}`
+        ? regionHref(regionDetail)
         : titles[path]
           ? path
           : "/";
@@ -150,9 +165,9 @@ function App() {
         [`Where can I find ${detail.name}?`, `${detail.name} is tracked under ${detail.region}. Spawn and route details stay separated from official index facts until verified.`],
         [`How does ${detail.name} evolve?`, detail.evolution],
       ] :
-      path === "/aniimo" ? faqs.database :
-      path === "/codes" ? faqs.codes :
-      path === "/download" ? faqs.download :
+      path === "/aniimo/" ? faqs.database :
+      path === "/codes/" ? faqs.codes :
+      path === "/download/" ? faqs.download :
       faqs.home;
     upsertJsonLd(buildStructuredData({ path, detail, regionDetail, pageFaqs }));
   }, [path]);
@@ -191,7 +206,7 @@ function App() {
           <CollectionPage type="element" value={elementPage} navigate={navigate} />
         ) : rolePage ? (
           <CollectionPage type="role" value={rolePage} navigate={navigate} />
-        ) : path === "/aniimo" ? (
+        ) : path === "/aniimo/" ? (
           <DatabasePage
             query={query}
             setQuery={setQuery}
@@ -210,23 +225,23 @@ function App() {
             filteredAniimo={filteredAniimo}
             navigate={navigate}
           />
-        ) : path === "/map" ? (
+        ) : path === "/map/" ? (
           <MapPage navigate={navigate} />
-        ) : path === "/evolution" ? (
+        ) : path === "/evolution/" ? (
           <EvolutionPage />
-        ) : path === "/codes" ? (
+        ) : path === "/codes/" ? (
           <CodesPage />
-        ) : path === "/rewards" ? (
+        ) : path === "/rewards/" ? (
           <RewardsPage />
-        ) : path === "/download" ? (
+        ) : path === "/download/" ? (
           <DownloadPage />
-        ) : path === "/release-date" ? (
+        ) : path === "/release-date/" ? (
           <ReleaseDatePage />
-        ) : path === "/beginner-guide" ? (
+        ) : path === "/beginner-guide/" ? (
           <BeginnerPage navigate={navigate} />
-        ) : path === "/updates" ? (
+        ) : path === "/updates/" ? (
           <UpdatesPage />
-        ) : path === "/sources" ? (
+        ) : path === "/sources/" ? (
           <SourcesPage />
         ) : (
           path === "/" ? (
@@ -266,26 +281,26 @@ function HomePage(props) {
             <h1>Aniimo Wiki, Database & Map Guide</h1>
             <p>{gameInfo.summary}</p>
             <div className="hero-actions">
-              <a className="primary-action" href="/aniimo" onClick={(event) => props.navigate(event, "/aniimo")}>
+              <a className="primary-action" href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>
                 <Search size={18} />
                 Search Database
               </a>
-              <a className="secondary-action" href="/codes" onClick={(event) => props.navigate(event, "/codes")}>
+              <a className="secondary-action" href="/codes/" onClick={(event) => props.navigate(event, "/codes/")}>
                 <Gift size={18} />
                 Check Codes
               </a>
             </div>
           </div>
           <div className="hero-scene" aria-hidden="true">
-            <img className="hero-image" src={gameInfo.heroImage} alt="" />
+            <img className="hero-image" src={gameInfo.heroImage} alt="" width="960" height="640" fetchPriority="high" />
           </div>
         </section>
 
         <section className="quick-grid" aria-label="Core sections">
-          <QuickCard icon={<BookOpen />} title="Database" text="Index every Aniimo with location, forms, abilities and source status." href="/aniimo" navigate={props.navigate} />
-          <QuickCard icon={<Map />} title="Map" text="Explore regions, representative Aniimo, route notes and official scenery." href="/map" navigate={props.navigate} />
-          <QuickCard icon={<Sparkles />} title="Evolution" text="Track base forms, branch forms, special conditions and launch updates." href="/evolution" navigate={props.navigate} />
-          <QuickCard icon={<Gift />} title="Rewards" text="Track confirmed pre-registration rewards, milestone rewards and launch code status." href="/rewards" navigate={props.navigate} />
+          <QuickCard icon={<BookOpen />} title="Database" text="Index every Aniimo with location, forms, abilities and source status." href="/aniimo/" navigate={props.navigate} />
+          <QuickCard icon={<Map />} title="Map" text="Explore regions, representative Aniimo, route notes and official scenery." href="/map/" navigate={props.navigate} />
+          <QuickCard icon={<Sparkles />} title="Evolution" text="Track base forms, branch forms, special conditions and launch updates." href="/evolution/" navigate={props.navigate} />
+          <QuickCard icon={<Gift />} title="Rewards" text="Track confirmed pre-registration rewards, milestone rewards and launch code status." href="/rewards/" navigate={props.navigate} />
         </section>
 
         <DatabasePage compact {...props} />
@@ -343,7 +358,7 @@ function DatabasePage({ query, setQuery, element, setElement, region, setRegion,
                     <dt>No.</dt>
                     <dd>{item.no}</dd>
                   </dl>
-                  <a className="text-link" href={`/aniimo/${item.id}`} onClick={(event) => navigate(event, `/aniimo/${item.id}`)}>
+                  <a className="text-link" href={aniimoHref(item)} onClick={(event) => navigate(event, aniimoHref(item))}>
                     View Aniimo guide <ChevronRight size={16} />
                   </a>
                 </div>
@@ -351,7 +366,7 @@ function DatabasePage({ query, setQuery, element, setElement, region, setRegion,
             ))}
           </div>
           {compact && (
-            <a className="section-more" href="/aniimo" onClick={(event) => navigate(event, "/aniimo")}>
+            <a className="section-more" href="/aniimo/" onClick={(event) => navigate(event, "/aniimo/")}>
               Browse all Aniimo <ChevronRight size={17} />
             </a>
           )}
@@ -367,12 +382,12 @@ function TaxonomyLinks({ navigate }) {
   return (
     <div className="taxonomy-links">
       {elementNames.map((item) => (
-        <a key={item} href={`/elements/${item.toLowerCase()}`} onClick={(event) => navigate(event, `/elements/${item.toLowerCase()}`)}>
+        <a key={item} href={route(`/elements/${item.toLowerCase()}`)} onClick={(event) => navigate(event, route(`/elements/${item.toLowerCase()}`))}>
           {item} Aniimo
         </a>
       ))}
       {roleNames.map((item) => (
-        <a key={item} href={`/roles/${item.toLowerCase()}`} onClick={(event) => navigate(event, `/roles/${item.toLowerCase()}`)}>
+        <a key={item} href={route(`/roles/${item.toLowerCase()}`)} onClick={(event) => navigate(event, route(`/roles/${item.toLowerCase()}`))}>
           {item} Aniimo
         </a>
       ))}
@@ -411,7 +426,7 @@ function CollectionPage({ type, value, navigate }) {
                 <dt>Stage</dt>
                 <dd>{item.stage}</dd>
               </dl>
-              <a className="text-link" href={`/aniimo/${item.id}`} onClick={(event) => navigate(event, `/aniimo/${item.id}`)}>
+              <a className="text-link" href={aniimoHref(item)} onClick={(event) => navigate(event, aniimoHref(item))}>
                 View Aniimo guide <ChevronRight size={16} />
               </a>
             </div>
@@ -426,6 +441,7 @@ function MapPage({ compact, navigate }) {
   return (
         <section id="map" className="section">
           <SectionTitle icon={<Compass />} kicker="World" title="Map & Region Guides" />
+          {!compact && <SeoGuideBlock items={seoGuides.map} />}
           <div className="region-grid">
             {regions.map((item) => (
               <article className="region-card" key={item.id}>
@@ -435,7 +451,7 @@ function MapPage({ compact, navigate }) {
                 <p className="small">Known Aniimo: {item.aniimo.join(", ")}</p>
                 <p className="small">Mechanics: {item.mechanics.join(", ")}</p>
                 <StatusBadge status={item.status} />
-                <a className="text-link" href={`/regions/${item.id}`} onClick={(event) => navigate(event, `/regions/${item.id}`)}>
+                <a className="text-link" href={regionHref(item)} onClick={(event) => navigate(event, regionHref(item))}>
                   View region guide <ChevronRight size={16} />
                 </a>
               </article>
@@ -497,6 +513,7 @@ function CodesPage() {
             No public redeem code is confirmed yet. This page separates actual codes from
             official pre-registration rewards and launch milestone rewards.
           </p>
+          <SeoGuideBlock items={seoGuides.codes} />
           <div className="code-grid">
             {codes.map((item) => (
               <article className="code-card" key={item.code}>
@@ -547,6 +564,7 @@ function DownloadPage() {
               {releaseInfo.note} Store links and regional availability stay tied to official
               sources rather than download mirrors.
             </p>
+            <SeoGuideBlock items={seoGuides.download} compact />
             <div className="date-grid">
               <InfoPanel title="Release Dates" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline]]} />
             </div>
@@ -578,6 +596,7 @@ function ReleaseDatePage() {
       <div>
         <SectionTitle icon={<CalendarDays />} kicker="Launch" title="Aniimo Release Date" />
         <p className="section-copy">{releaseInfo.note}</p>
+        <SeoGuideBlock items={seoGuides.release} compact />
         <InfoPanel title="Official Timeline" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline], ["Timezone note", releaseInfo.timezoneNote], ["Source", releaseInfo.source]]} />
         <EditorialBlock title="Release Notes" items={editorialGuides.release} />
       </div>
@@ -704,12 +723,13 @@ function SourcesPage() {
 
 function AniimoDetail({ item, navigate }) {
   const sameElement = aniimo.filter((candidate) => candidate.id !== item.id && candidate.element === item.element).slice(0, 6);
+  const sameRegion = aniimo.filter((candidate) => candidate.id !== item.id && candidate.region === item.region).slice(0, 6);
   const sameRole = aniimo.filter((candidate) => candidate.id !== item.id && candidate.role === item.role).slice(0, 6);
   const sameStage = aniimo.filter((candidate) => candidate.id !== item.id && candidate.stage === item.stage).slice(0, 6);
 
   return (
     <section className="section page-detail">
-      <a className="text-link" href="/aniimo" onClick={(event) => navigate(event, "/aniimo")}>Back to database</a>
+      <a className="text-link" href="/aniimo/" onClick={(event) => navigate(event, "/aniimo/")}>Back to database</a>
       <div className="detail-hero">
         <CreatureImage item={item} large />
         <div>
@@ -729,6 +749,7 @@ function AniimoDetail({ item, navigate }) {
         <SourcePanel source={item.source} status={item.status} />
       </div>
       <RelatedAniimo title="Evolution Line" items={aniimo.filter((candidate) => item.forms.includes(candidate.name))} navigate={navigate} />
+      <RelatedAniimo title={`More ${item.region} Aniimo`} items={sameRegion} navigate={navigate} />
       <RelatedAniimo title={`More ${item.element} Aniimo`} items={sameElement} navigate={navigate} />
       <RelatedAniimo title={`More ${item.role} Aniimo`} items={sameRole} navigate={navigate} />
       <RelatedAniimo title={`More ${item.stage} Aniimo`} items={sameStage} navigate={navigate} />
@@ -752,6 +773,19 @@ function EditorialBlock({ title, items }) {
         ))}
       </div>
     </section>
+  );
+}
+
+function SeoGuideBlock({ items, compact = false }) {
+  return (
+    <div className={`seo-guide ${compact ? "seo-guide-compact" : ""}`}>
+      {items.map((item) => (
+        <article key={item.title}>
+          <h2>{item.title}</h2>
+          <p>{item.body}</p>
+        </article>
+      ))}
+    </div>
   );
 }
 
@@ -781,7 +815,7 @@ function RelatedAniimo({ title, items, navigate }) {
       <h2>{title}</h2>
       <div className="related-grid">
         {items.map((item) => (
-          <a className="related-card" key={item.id} href={`/aniimo/${item.id}`} onClick={(event) => navigate(event, `/aniimo/${item.id}`)}>
+          <a className="related-card" key={item.id} href={aniimoHref(item)} onClick={(event) => navigate(event, aniimoHref(item))}>
             <span className="related-mark">{item.no}</span>
             <strong>{item.name}</strong>
             <span>{item.element} / {item.role}</span>
@@ -805,7 +839,7 @@ function RelatedRegions({ currentRegion, navigate }) {
             <RegionImage region={region} />
             <h3>{region.name}</h3>
             <p>{region.theme}</p>
-            <a className="text-link" href={`/regions/${region.id}`} onClick={(event) => navigate(event, `/regions/${region.id}`)}>
+            <a className="text-link" href={regionHref(region)} onClick={(event) => navigate(event, regionHref(region))}>
               View region guide <ChevronRight size={16} />
             </a>
           </article>
@@ -820,7 +854,7 @@ function RegionDetail({ region, navigate }) {
 
   return (
     <section className="section page-detail">
-      <a className="text-link" href="/map" onClick={(event) => navigate(event, "/map")}>Back to map</a>
+      <a className="text-link" href="/map/" onClick={(event) => navigate(event, "/map/")}>Back to map</a>
       <div className="detail-hero">
         <RegionImage region={region} compact />
         <div>
@@ -861,7 +895,7 @@ function InfoPanel({ title, rows }) {
 
 function CreatureImage({ item, large = false }) {
   return item.image ? (
-    <img className={`creature-image ${large ? "large" : ""}`} src={item.image} alt={`${item.name} Aniimo`} loading="lazy" />
+    <img className={`creature-image ${large ? "large" : ""}`} src={item.image} alt={`${item.name} Aniimo`} width={large ? 148 : 86} height={large ? 148 : 86} loading={large ? "eager" : "lazy"} />
   ) : (
     <div className={`creature-mark ${large ? "large" : ""}`}>{item.name.slice(0, 1)}</div>
   );
@@ -869,7 +903,7 @@ function CreatureImage({ item, large = false }) {
 
 function RegionImage({ region, compact = false }) {
   return region.image ? (
-    <img className={`region-image ${compact ? "compact-map" : ""}`} src={region.image} alt={`${region.name} region`} loading="lazy" />
+    <img className={`region-image ${compact ? "compact-map" : ""}`} src={region.image} alt={`${region.name} region`} width={compact ? 260 : 640} height={compact ? 168 : 360} loading="lazy" />
   ) : (
     <div className={`region-map ${compact ? "compact-map" : ""}`}><span>{region.name}</span></div>
   );
@@ -933,7 +967,7 @@ function FaqBlock({ items }) {
 }
 
 function buildStructuredData({ path, detail, regionDetail, pageFaqs }) {
-  const canonicalPath = detail ? `/aniimo/${detail.id}` : regionDetail ? `/regions/${regionDetail.id}` : path;
+  const canonicalPath = detail ? aniimoHref(detail) : regionDetail ? regionHref(regionDetail) : route(path);
   const url = `https://aniimo.games${canonicalPath === "/" ? "/" : canonicalPath}`;
   const breadcrumbs = [
     { name: "Home", item: "https://aniimo.games/" },
@@ -988,7 +1022,7 @@ function buildStructuredData({ path, detail, regionDetail, pageFaqs }) {
       itemListElement: aniimo.map((item, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: `https://aniimo.games/aniimo/${item.id}`,
+        url: `https://aniimo.games${aniimoHref(item)}`,
         name: item.name,
       })),
     });
@@ -1002,7 +1036,7 @@ function buildStructuredData({ path, detail, regionDetail, pageFaqs }) {
       itemListElement: regions.map((region, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: `https://aniimo.games/regions/${region.id}`,
+        url: `https://aniimo.games${regionHref(region)}`,
         name: region.name,
       })),
     });
@@ -1056,7 +1090,7 @@ function NotFoundPage({ navigate }) {
         launch guide while the index grows.
       </p>
       <div className="hero-actions">
-        <a className="primary-action" href="/aniimo" onClick={(event) => navigate(event, "/aniimo")}>
+        <a className="primary-action" href="/aniimo/" onClick={(event) => navigate(event, "/aniimo/")}>
           <Search size={18} />
           Open Database
         </a>

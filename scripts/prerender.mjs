@@ -6,27 +6,28 @@ const siteUrl = "https://aniimo.games";
 const indexHtml = "dist/index.html";
 
 const staticRoutes = [
-  "/aniimo",
-  "/map",
-  "/evolution",
-  "/codes",
-  "/rewards",
-  "/download",
-  "/release-date",
-  "/beginner-guide",
-  "/updates",
-  "/sources",
+  "/aniimo/",
+  "/map/",
+  "/evolution/",
+  "/codes/",
+  "/rewards/",
+  "/download/",
+  "/release-date/",
+  "/beginner-guide/",
+  "/updates/",
+  "/sources/",
 ];
 
 const routes = [
   ...staticRoutes,
-  ...[...new Set(aniimo.map((item) => item.element.toLowerCase()))].map((item) => `/elements/${item}`),
-  ...[...new Set(aniimo.map((item) => item.role.toLowerCase()))].map((item) => `/roles/${item}`),
-  ...aniimo.flatMap((item) => [`/aniimo/${item.id}`, ...(item.aliases || []).map((alias) => `/aniimo/${alias}`)]),
-  ...regions.map((item) => `/regions/${item.id}`),
+  ...[...new Set(aniimo.map((item) => item.element.toLowerCase()))].map((item) => `/elements/${item}/`),
+  ...[...new Set(aniimo.map((item) => item.role.toLowerCase()))].map((item) => `/roles/${item}/`),
+  ...aniimo.flatMap((item) => [`/aniimo/${item.id}/`, ...(item.aliases || []).map((alias) => `/aniimo/${alias}/`)]),
+  ...regions.map((item) => `/regions/${item.id}/`),
 ];
 
 function pageTitle(route) {
+  const normalizedRoute = normalizeRoute(route);
   const aniimoMatch = route.match(/^\/aniimo\/([^/]+)/);
   if (aniimoMatch) {
     const item = aniimo.find((entry) => entry.id === aniimoMatch[1] || entry.aliases?.includes(aniimoMatch[1]));
@@ -49,7 +50,7 @@ function pageTitle(route) {
     "/updates": "Aniimo Updates & Source Log",
     "/sources": "Aniimo Official Sources",
   };
-  return titles[route] || "Aniimo Wiki, Database & Map Guide";
+  return titles[normalizedRoute] || "Aniimo Wiki, Database & Map Guide";
 }
 
 function description(route) {
@@ -70,7 +71,7 @@ function canonical(route) {
   const aniimoMatch = route.match(/^\/aniimo\/([^/]+)/);
   if (aniimoMatch) {
     const item = aniimo.find((entry) => entry.aliases?.includes(aniimoMatch[1]));
-    if (item) return `${siteUrl}/aniimo/${item.id}`;
+    if (item) return `${siteUrl}/aniimo/${item.id}/`;
   }
   return `${siteUrl}${route}`;
 }
@@ -87,6 +88,10 @@ function injectMeta(html, route) {
     .replace(/<meta property="og:title" content="[^"]+" \/>/, `<meta property="og:title" content="${escapeHtml(title)}" />`)
     .replace(/<meta property="og:url" content="[^"]+" \/>/, `<meta property="og:url" content="${url}" />`)
     .replace(/<meta property="og:description" content="[^"]+" \/>/, `<meta property="og:description" content="${escapeHtml(desc)}" />`);
+}
+
+function normalizeRoute(route) {
+  return route === "/" ? "/" : route.replace(/\/$/, "");
 }
 
 function escapeHtml(value) {

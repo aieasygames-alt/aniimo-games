@@ -717,6 +717,34 @@ th {
   padding: 20px;
 }
 
+.seo-guide {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 22px 0 24px;
+}
+
+.seo-guide-compact {
+  grid-template-columns: 1fr;
+}
+
+.seo-guide article {
+  padding: 20px;
+  border: 1px solid rgba(23, 32, 29, 0.1);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.seo-guide h2 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.seo-guide p {
+  margin-bottom: 0;
+  color: #52615b;
+}
+
 .status-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -854,6 +882,7 @@ th {
   .code-grid,
   .reward-grid,
   .guide-columns,
+  .seo-guide,
   .status-grid,
   .detail-panels,
   .related-grid,

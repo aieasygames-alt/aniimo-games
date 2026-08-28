@@ -25,12 +25,12 @@ for (const route of routes) {
 
 const expectedRoutes = [
   `${siteUrl}/`,
-  `${siteUrl}/aniimo`,
-  `${siteUrl}/map`,
-  `${siteUrl}/download`,
-  `${siteUrl}/release-date`,
-  ...aniimo.map((item) => `${siteUrl}/aniimo/${item.id}`),
-  ...regions.map((region) => `${siteUrl}/regions/${region.id}`),
+  `${siteUrl}/aniimo/`,
+  `${siteUrl}/map/`,
+  `${siteUrl}/download/`,
+  `${siteUrl}/release-date/`,
+  ...aniimo.map((item) => `${siteUrl}/aniimo/${item.id}/`),
+  ...regions.map((region) => `${siteUrl}/regions/${region.id}/`),
 ];
 
 for (const route of expectedRoutes) {
@@ -40,7 +40,7 @@ for (const route of expectedRoutes) {
 }
 
 for (const route of expectedRoutes.filter((route) => route !== `${siteUrl}/`)) {
-  const pathname = route.replace(siteUrl, "");
+  const pathname = route.replace(siteUrl, "").replace(/\/$/, "");
   if (!existsSync(`dist${pathname}/index.html`)) {
     issues.push(`Missing prerendered HTML: ${pathname}/index.html`);
   }

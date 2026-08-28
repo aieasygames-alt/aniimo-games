@@ -103,40 +103,40 @@ const names = [
 const aniimoImages = {
   baleetle: "/images/aniimo/aniimo-baleetle.png",
   bouldus: "/images/aniimo/aniimo-bouldus.png",
-  bubbeep: "/images/aniimo/aniimo-bubbeep.png",
+  bubbeep: "/images/aniimo/aniimo-bubbeep.webp",
   budclaw: "/images/aniimo/aniimo-budclaw.png",
   celestis: "/images/aniimo/aniimo-celestis.png",
-  cheekie: "/images/aniimo/aniimo-cheekie.png",
-  coraliz: "/images/aniimo/aniimo-coraliz.png",
+  cheekie: "/images/aniimo/aniimo-cheekie.webp",
+  coraliz: "/images/aniimo/aniimo-coraliz.webp",
   chirpi: "/images/aniimo/aniimo-chirpi.png",
   cornet: "/images/aniimo/aniimo-cornet.png",
-  cubbo: "/images/aniimo/aniimo-cubbo.png",
+  cubbo: "/images/aniimo/aniimo-cubbo.webp",
   emberpup: "/images/aniimo/aniimo-emberpup.png",
   eko: "/images/aniimo/aniimo-eko.png",
   eklue: "/images/aniimo/aniimo-eklue.png",
-  flamerion: "/images/aniimo/aniimo-flamerion.png",
+  flamerion: "/images/aniimo/aniimo-flamerion.webp",
   flameruff: "/images/aniimo/aniimo-flameruff.png",
   flutternym: "/images/aniimo/aniimo-flutternym.png",
   glacy: "/images/aniimo/aniimo-glacy.png",
   geoclaw: "/images/aniimo/aniimo-geoclaw.png",
-  glameep: "/images/aniimo/aniimo-glameep.png",
+  glameep: "/images/aniimo/aniimo-glameep.webp",
   gracewing: "/images/aniimo/aniimo-gracewing.png",
   leafy: "/images/aniimo/aniimo-leafy.png",
-  lavazar: "/images/aniimo/aniimo-lavazar.png",
-  hummin: "/images/aniimo/aniimo-hummin.png",
+  lavazar: "/images/aniimo/aniimo-lavazar.webp",
+  hummin: "/images/aniimo/aniimo-hummin.webp",
   inferlupa: "/images/aniimo/aniimo-inferlupa.png",
   iris: "/images/aniimo/aniimo-iris.png",
   irisal: "/images/aniimo/aniimo-irisal.png",
-  bolty: "/images/aniimo/aniimo-nimbi.png",
-  panpanta: "/images/aniimo/aniimo-panpanta.png",
-  pebbling: "/images/aniimo/aniimo-pebbling.png",
-  piopiota: "/images/aniimo/aniimo-piopiota.png",
-  magmarex: "/images/aniimo/aniimo-magmarex.png",
+  bolty: "/images/aniimo/aniimo-nimbi.webp",
+  panpanta: "/images/aniimo/aniimo-panpanta.webp",
+  pebbling: "/images/aniimo/aniimo-pebbling.webp",
+  piopiota: "/images/aniimo/aniimo-piopiota.webp",
+  magmarex: "/images/aniimo/aniimo-magmarex.webp",
   popota: "/images/aniimo/aniimo-popota.png",
   pranky: "/images/aniimo/aniimo-pranky.png",
-  reefish: "/images/aniimo/aniimo-reefish.png",
+  reefish: "/images/aniimo/aniimo-reefish.webp",
   scorchhowl: "/images/aniimo/aniimo-scorchhowl.png",
-  sheldon: "/images/aniimo/aniimo-sheldon.png",
+  sheldon: "/images/aniimo/aniimo-sheldon.webp",
   shelly: "/images/aniimo/aniimo-shelly.png",
   sparki: "/images/aniimo/aniimo-sparki.webp",
   shrubclaw: "/images/aniimo/aniimo-shrubclaw.png",
@@ -145,15 +145,15 @@ const aniimoImages = {
   susuta: "/images/aniimo/aniimo-susuta.png",
   sherro: "/images/aniimo/aniimo-sherro.png",
   stellarys: "/images/aniimo/aniimo-stellarys.png",
-  tuckin: "/images/aniimo/aniimo-tuckin.png",
+  tuckin: "/images/aniimo/aniimo-tuckin.webp",
   tubster: "/images/aniimo/aniimo-tubster.png",
   tromber: "/images/aniimo/aniimo-tromber.png",
-  blazen: "/images/aniimo/aniimo-turbo.png",
-  wavwal: "/images/aniimo/aniimo-wavwal.png",
+  blazen: "/images/aniimo/aniimo-turbo.webp",
+  wavwal: "/images/aniimo/aniimo-wavwal.webp",
   witchin: "/images/aniimo/aniimo-witchin.png",
   waleetle: "/images/aniimo/aniimo-waleetle.png",
   grizbo: "/images/aniimo/aniimo-grizbo.png",
-  fentuft: "/images/aniimo/aniimo-dreaple.png",
+  fentuft: "/images/aniimo/aniimo-dreaple.webp",
 };
 
 const officialDescriptions = {
@@ -408,6 +408,77 @@ export const mapGuide = [
   ["Verification pass", "After launch, update each area with coordinates, weather windows, time-of-day notes and traversal requirements."],
   ["Internal linking", "Region pages link back into Aniimo details so search visitors can move between map, evolution and database pages."],
 ];
+
+export const seoGuides = {
+  download: [
+    {
+      title: "How to download Aniimo safely",
+      body:
+        "The safest way to download Aniimo is to start from an official storefront or the official Aniimo website. Aniimo is listed as a free-to-play creature-catching open-world RPG, and each platform page can use a slightly different call to action before launch. Steam and Epic Games Store use wishlist flows for PC discovery, console pages use platform store wishlists, and mobile pages can show pre-order or pre-registration depending on region. Avoid APK mirrors, reposted installers, and unofficial download buttons, especially before the global launch windows are active.",
+    },
+    {
+      title: "Which Aniimo platform should you choose?",
+      body:
+        "PC and console players should track the September 16, 2026 launch window through Steam, Epic Games Store, Xbox, PlayStation and the official website. Mobile players should track the September 23, 2026 launch window through Google Play and the App Store. If a store page is not visible in your country yet, use the official website as the source of truth and check again closer to launch because regional storefront visibility can change without a separate news post.",
+    },
+    {
+      title: "Before installing",
+      body:
+        "Use the same account ecosystem you plan to play on at launch, confirm that the publisher and developer match the official listing, and keep launch rewards separate from redeem codes. Pre-registration and wishlist rewards are usually delivered through official systems, while redeem codes require a separate code field or redemption page. This site tracks both, but it does not link to unofficial installers.",
+    },
+  ],
+  release: [
+    {
+      title: "Aniimo global release date summary",
+      body:
+        "The official launch announcement lists Aniimo for PC and consoles on September 16, 2026, followed by mobile on September 23, 2026. That gives the game two visible launch moments: one for Steam, Epic Games Store, Xbox and PlayStation discovery, and one for iOS and Android store availability. The dates should be treated as official calendar dates, while exact hourly unlock timing can still vary by platform, country and storefront update schedule.",
+    },
+    {
+      title: "What is confirmed before launch?",
+      body:
+        "Confirmed public information includes the developer and publisher, platform availability, the free-to-play open-world RPG positioning, core systems such as catching with Aniipods, Twine, Homeland, real-time challenges and region-based exploration. Exact launch-day server opening time, complete spawn tables, balance values and final event cadence should remain marked as watchlist data until official sources or in-game verification confirm them.",
+    },
+    {
+      title: "How this release tracker is maintained",
+      body:
+        "Release pages are updated from official public sources first. Storefront text, official news posts and the official Aniimo Wiki are preferred over reposted summaries. If an older beta date or closed test detail appears beside launch information, it is labeled as a past milestone so readers do not confuse it with the global release window.",
+    },
+  ],
+  codes: [
+    {
+      title: "Are there Aniimo codes right now?",
+      body:
+        "No public Aniimo redeem code is confirmed on this site yet. That distinction matters for search users because pre-registration rewards, milestone rewards and launch event gifts are real rewards, but they are not necessarily typed into a code redemption box. Until an official channel publishes a redeemable string or the game client exposes a redemption flow, code claims should stay in watchlist status.",
+    },
+    {
+      title: "How to verify an Aniimo code",
+      body:
+        "A code should be checked against official news, verified social posts, platform campaigns, launch livestreams or the in-game redemption screen. If a code is shared only through reposted screenshots or unsourced lists, it should not be marked active. Once launch begins, the best code page experience will include the code, reward, region, platform restrictions, expiration date, redemption steps and a last-tested timestamp.",
+    },
+    {
+      title: "Rewards that are confirmed",
+      body:
+        "Confirmed rewards currently include pre-registration and milestone items such as Glimmer, Aniipod Ultra, the Companion Promise avatar frame, the Sunlit Meadow outfit, a Prismana Aniimo choice and a mysterious Susuta egg. These belong on the rewards tracker even when there is no active redeem code.",
+    },
+  ],
+  map: [
+    {
+      title: "How the Aniimo map guide works",
+      body:
+        "The Aniimo map guide organizes known public regions into search-friendly route pages. Each region page connects official scenery, representative Aniimo, mechanics and verification notes. This is useful before launch because searchers often look for a creature, then need a region, route condition or related evolution line. The map page acts as the hub that connects those intents.",
+    },
+    {
+      title: "What can change after launch?",
+      body:
+        "Exact spawn points, time windows, weather requirements and traversal locks should be verified after players can test the live game. The current map avoids pretending that preview footage is a final coordinate table. Instead, it separates confirmed region names and public mechanics from launch-day route details that still need in-game confirmation.",
+    },
+    {
+      title: "Best next map upgrades",
+      body:
+        "After launch, the strongest map upgrades will be coordinates, route screenshots, weather filters, time-of-day filters, required Twine abilities and internal links from every region to related Aniimo pages. That structure helps both players and search crawlers understand the relationship between locations, elements, roles and evolution lines.",
+    },
+  ],
+};
 
 export const editorialGuides = {
   download: [
