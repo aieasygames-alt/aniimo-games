@@ -24,6 +24,7 @@ import {
   EvolutionPage,
   GuideSummary,
   HomePage,
+  LaunchTrackerPage,
   MapPage,
   NotFoundPage,
   PlatformPage,
@@ -151,6 +152,8 @@ function App() {
           <BeginnerPage navigate={navigate} />
         ) : routeInfo.path === "/updates/" ? (
           <UpdatesPage />
+        ) : routeInfo.path === "/launch-tracker/" ? (
+          <LaunchTrackerPage />
         ) : routeInfo.path === "/sources/" ? (
           <SourcesPage />
         ) : routeInfo.path === "/site-index/" ? (

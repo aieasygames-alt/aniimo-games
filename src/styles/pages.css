@@ -127,6 +127,10 @@ th {
   margin: 22px 0;
 }
 
+.section-actions {
+  margin: 0 0 24px;
+}
+
 .page-banner {
   display: block;
   width: 100%;

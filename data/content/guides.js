@@ -1,4 +1,4 @@
-import { officialLinks } from "./sources.js";
+import { officialLinks, releaseInfo } from "./sources.js";
 
 export const launchRewards = [
   ["Rare Prismana Aniimo choice", "Become a Junior Wayfarer to select a Prismana Form Aniimo."],
@@ -175,6 +175,11 @@ export const faqs = {
 export const updates = [
   {
     date: "2026-08-28",
+    title: "Launch tracker added",
+    text: "Added a launch readiness page covering platform windows, reward status, code status, source freshness and post-launch verification tasks.",
+  },
+  {
+    date: "2026-08-28",
     title: "Official detail and map content expanded",
     text: "Expanded Aniimo detail pages with official descriptions, evolution lines, region mapping, platform links, release timeline notes and complete region artwork.",
   },
@@ -189,6 +194,27 @@ export const updates = [
     text: "Created the initial database, map, evolution, codes, download, beginner guide, and data-status pages.",
   },
 ];
+
+export const launchTracker = {
+  updated: "2026-08-28",
+  summary: "Aniimo.games is tracking the public launch path from official sources, with PC and console availability first and mobile availability one week later.",
+  readiness: [
+    ["PC and console date", releaseInfo.pcConsole, "Confirmed"],
+    ["Mobile date", releaseInfo.mobile, "Confirmed"],
+    ["Official platform links", "Website, Steam, Epic, Xbox, PlayStation, App Store and Google Play", "Confirmed"],
+    ["Pre-registration rewards", "Milestones, Prismana Aniimo choice and mysterious Susuta egg", "Confirmed"],
+    ["Redeem codes", "No public redeem code confirmed yet", "Watchlist"],
+    ["Exact unlock hour", "Storefront-specific timing still pending", "Watchlist"],
+    ["Spawn routes", "Coordinates and route screenshots need live verification", "Watchlist"],
+  ],
+  nextChecks: [
+    "Check official website and main news for launch posts.",
+    "Check Steam, Epic, Xbox, PlayStation, App Store and Google Play for storefront copy changes.",
+    "Check official Wiki for new Aniimo entries, renamed entries or changed stage labels.",
+    "Update codes only after a redeemable string appears on an official channel or in-game redemption screen.",
+    "After launch, add verified route screenshots, weather windows, time windows and platform unlock notes.",
+  ],
+};
 
 export const statuses = {
   Confirmed: "Official or in-game verified data.",

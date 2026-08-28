@@ -1,6 +1,6 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, codes, editorialGuides, faqs, gameInfo, launchRewards, mapGuide, mechanics, officialLinks, platforms, regions, releaseInfo, seoGuides, statuses, updates } from "../../data/content.js";
+import { aniimo, codes, editorialGuides, faqs, gameInfo, launchRewards, launchTracker, mapGuide, mechanics, officialLinks, platforms, regions, releaseInfo, seoGuides, statuses, updates } from "../../data/content.js";
 import { aniimoPath, elementPath, regionPath, rolePath, staticRoutes } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
@@ -33,7 +33,7 @@ export function HomePage(props) {
           <QuickCard icon={<Map />} title="Map" text="Explore regions, representative Aniimo, route notes and official scenery." href="/map/" navigate={props.navigate} />
           <QuickCard icon={<Sparkles />} title="Evolution" text="Track base forms, branch forms, special conditions and launch updates." href="/evolution/" navigate={props.navigate} />
           <QuickCard icon={<Gift />} title="Rewards" text="Track confirmed pre-registration rewards, milestone rewards and launch code status." href="/rewards/" navigate={props.navigate} />
-          <QuickCard icon={<Compass />} title="Site Index" text="Jump between guide hubs, platform pages, region pages, elements and roles." href="/site-index/" navigate={props.navigate} />
+          <QuickCard icon={<CalendarDays />} title="Launch Tracker" text="Follow platform dates, reward status, code status and source checks." href="/launch-tracker/" navigate={props.navigate} />
         </section>
 
         <DatabasePage compact {...props} />
@@ -392,6 +392,16 @@ export function UpdatesPage() {
   return (
     <section className="section updates-band">
       <SectionTitle icon={<CalendarDays />} kicker="Freshness" title="Update Log" />
+      <div className="hero-actions section-actions">
+        <a className="primary-action" href="/launch-tracker/">
+          <CalendarDays size={18} />
+          Open Launch Tracker
+        </a>
+        <a className="secondary-action" href="/site-index/">
+          <Compass size={18} />
+          Open Site Index
+        </a>
+      </div>
       <div className="update-list">
         {updates.map((item) => (
           <article key={`${item.date}-${item.title}`} className="update-item">
@@ -403,6 +413,29 @@ export function UpdatesPage() {
           </article>
         ))}
       </div>
+    </section>
+  );
+}
+
+export function LaunchTrackerPage() {
+  return (
+    <section className="section updates-band">
+      <SectionTitle icon={<CalendarDays />} kicker="Launch" title="Aniimo Launch Tracker" />
+      <p className="section-copy">{launchTracker.summary}</p>
+      <div className="detail-panels">
+        <InfoPanel title="Launch Readiness" rows={launchTracker.readiness.map(([label, value, status]) => [label, `${value} (${status})`])} />
+        <InfoPanel title="Official Timeline" rows={releaseInfo.timeline.map(([date, label]) => [date, label])} />
+        <InfoPanel title="Next Checks" rows={launchTracker.nextChecks.map((item, index) => [`Check ${index + 1}`, item])} />
+      </div>
+      <SeoGuideBlock items={[
+        { title: "What is ready", body: "Platform pages, launch dates, official links, rewards and public Aniimo entries are already connected to sitemap routes and source notes." },
+        { title: "What is still watchlist", body: "Redeem codes, exact unlock hours, final spawn routes, weather windows and combat values should wait for official posts or live-game verification." },
+        { title: "How this page changes", body: "When official sources change, update this tracker first, then refresh detail pages, sitemap metadata and the update log so readers can see what changed." },
+      ]} />
+      <FaqBlock items={[
+        ["What does the Aniimo launch tracker monitor?", "It tracks official launch dates, platform links, reward status, code status, source checks and post-launch verification tasks."],
+        ["When should launch data be updated?", "Update it when official news, storefront listings, the official Wiki or live-game verification confirms a change."],
+      ]} />
     </section>
   );
 }

@@ -35,6 +35,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Expanded region guide pages with launch checklists, verification priorities and source notes.
 - Added snippet-ready FAQ coverage for launch status, Steam, codes, confirmed count, free-to-play status and mobile availability.
 - Added a visible `/site-index/` hub to improve internal discovery across guides, platform pages, regions, elements, roles and featured Aniimo pages.
+- Added `/launch-tracker/` to centralize launch dates, platform readiness, reward status, code watchlist status and post-launch verification tasks.
 
 ## Active Growth Priorities
 
@@ -110,7 +111,7 @@ Each page should have unique title, meta description, JSON-LD coverage, sitemap 
 
 ### Priority 5: Monitoring
 
-Status: Not started
+Status: In progress
 
 Add automated checks for:
 
@@ -119,6 +120,11 @@ Add automated checks for:
 - robots.txt and sitemap availability
 - Sitemap URL status
 - Missing images and broken internal links
+
+Completed first public monitoring layer:
+
+- `/launch-tracker/` gives users and crawlers a source-aware launch readiness hub.
+- The page separates confirmed official facts from watchlist items such as exact unlock hours, redeem codes and spawn routes.
 
 ### Priority 6: Performance
 
