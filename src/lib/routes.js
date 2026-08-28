@@ -1,4 +1,4 @@
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, downloadTopics, faqs, gameInfo, newsTopics, platforms, regions, releaseInfo } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, downloadTopics, faqs, gameInfo, newsTopics, officialPitchTopics, platforms, regions, releaseInfo, searchSuggestionTopics, socialIntentTopics } from "../../data/content.js";
 
 export const siteUrl = "https://aniimo.games";
 
@@ -83,6 +83,18 @@ export function locationTopicPath(region) {
 
 export function choiceTopicPath(topic) {
   return normalizePath(`/${topic.slug}`);
+}
+
+export function officialPitchTopicPath(topic) {
+  return normalizePath(`/guides/${topic.slug}`);
+}
+
+export function socialIntentTopicPath(topic) {
+  return normalizePath(`/compare/${topic.slug}`);
+}
+
+export function searchSuggestionTopicPath(topic) {
+  return normalizePath(`/topics/${topic.slug}`);
 }
 
 export function canonicalUrl(path) {
@@ -180,6 +192,15 @@ export function resolveRoute(path) {
   const choiceTopic = choiceTopics.find((item) => choiceTopicPath(item) === normalized);
   if (choiceTopic) return { type: "choice-topic", path: choiceTopicPath(choiceTopic), title: choiceTopic.title, description: choiceTopic.description, choiceTopic };
 
+  const officialPitchTopic = officialPitchTopics.find((item) => officialPitchTopicPath(item) === normalized);
+  if (officialPitchTopic) return { type: "official-pitch-topic", path: officialPitchTopicPath(officialPitchTopic), title: officialPitchTopic.title, description: officialPitchTopic.description, officialPitchTopic };
+
+  const socialIntentTopic = socialIntentTopics.find((item) => socialIntentTopicPath(item) === normalized);
+  if (socialIntentTopic) return { type: "social-intent-topic", path: socialIntentTopicPath(socialIntentTopic), title: socialIntentTopic.title, description: socialIntentTopic.description, socialIntentTopic };
+
+  const searchSuggestionTopic = searchSuggestionTopics.find((item) => searchSuggestionTopicPath(item) === normalized);
+  if (searchSuggestionTopic) return { type: "search-suggestion-topic", path: searchSuggestionTopicPath(searchSuggestionTopic), title: searchSuggestionTopic.title, description: searchSuggestionTopic.description, searchSuggestionTopic };
+
   const staticRoute = staticRoutes.find((item) => item.path === normalized);
   if (staticRoute) return { type: "static", ...staticRoute };
 
@@ -202,6 +223,9 @@ export function sitemapRoutes() {
     ...newsTopics.map(newsTopicPath),
     ...regions.map(locationTopicPath),
     ...choiceTopics.map(choiceTopicPath),
+    ...officialPitchTopics.map(officialPitchTopicPath),
+    ...socialIntentTopics.map(socialIntentTopicPath),
+    ...searchSuggestionTopics.map(searchSuggestionTopicPath),
     ...aniimo.map(aniimoPath),
     ...regions.map(regionPath),
   ]);

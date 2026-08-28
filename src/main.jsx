@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { Sprout } from "lucide-react";
+import { BookOpen, Search, Sprout } from "lucide-react";
 import { aniimo } from "../data/content.js";
 import {
   findAniimoBySlug,
@@ -42,6 +42,7 @@ import {
   SiteIndexPage,
   SourcesPage,
   StatusGuide,
+  TopicGuidePage,
   UpdatesPage,
 } from "./pages/pages.jsx";
 import "./styles.css";
@@ -153,6 +154,12 @@ function App() {
           <LocationTopicPage region={routeInfo.locationRegion} navigate={navigate} />
         ) : routeInfo.type === "choice-topic" ? (
           <ChoiceTopicPage topic={routeInfo.choiceTopic} navigate={navigate} />
+        ) : routeInfo.type === "official-pitch-topic" ? (
+          <TopicGuidePage topic={routeInfo.officialPitchTopic} kicker="Official Guide" icon={<BookOpen />} />
+        ) : routeInfo.type === "social-intent-topic" ? (
+          <TopicGuidePage topic={routeInfo.socialIntentTopic} kicker="Comparison" icon={<Search />} />
+        ) : routeInfo.type === "search-suggestion-topic" ? (
+          <TopicGuidePage topic={routeInfo.searchSuggestionTopic} kicker="Search Topic" icon={<Search />} />
         ) : routeInfo.path === "/aniimo/" ? (
           <DatabasePage {...sharedProps} />
         ) : routeInfo.path === "/map/" ? (

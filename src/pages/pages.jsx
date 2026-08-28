@@ -1,7 +1,7 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, downloadTopics, editorialGuides, faqs, gameInfo, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanics, newsTopics, officialLinks, platformUnlockQueue, platforms, regions, releaseInfo, seoGuides, spawnVerificationQueue, statuses, updates, verificationTemplates } from "../../data/content.js";
-import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, downloadTopicPath, elementPath, locationTopicPath, newsTopicPath, regionPath, rolePath, staticRoutes } from "../lib/routes.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, downloadTopics, editorialGuides, faqs, gameInfo, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanics, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialIntentTopics, spawnVerificationQueue, statuses, updates, verificationTemplates } from "../../data/content.js";
+import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, downloadTopicPath, elementPath, locationTopicPath, newsTopicPath, officialPitchTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, staticRoutes } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
 export function HomePage(props) {
@@ -34,6 +34,7 @@ export function HomePage(props) {
           <QuickCard icon={<Sparkles />} title="Evolution" text="Track base forms, branch forms, special conditions and launch updates." href="/evolution/" navigate={props.navigate} />
           <QuickCard icon={<Gift />} title="Rewards" text="Track confirmed pre-registration rewards, milestone rewards and launch code status." href="/rewards/" navigate={props.navigate} />
           <QuickCard icon={<CalendarDays />} title="Launch Tracker" text="Follow platform dates, reward status, code status and source checks." href="/launch-tracker/" navigate={props.navigate} />
+          <QuickCard icon={<Compass />} title="Search Topics" text="Open guides built around official features, community questions and search demand." href="/site-index/" navigate={props.navigate} />
         </section>
 
         <DatabasePage compact {...props} />
@@ -548,6 +549,9 @@ export function SiteIndexPage({ navigate }) {
   const codeRewardPages = codeRewardTopics.map((item) => [item.title, codeRewardTopicPath(item), item.description]);
   const newsPages = newsTopics.map((item) => [item.title, newsTopicPath(item), item.summary]);
   const choicePages = choiceTopics.map((item) => [item.title, choiceTopicPath(item), item.description]);
+  const officialPitchPages = officialPitchTopics.map((item) => [item.title, officialPitchTopicPath(item), item.description]);
+  const socialIntentPages = socialIntentTopics.map((item) => [item.title, socialIntentTopicPath(item), item.description]);
+  const searchSuggestionPages = searchSuggestionTopics.map((item) => [item.title, searchSuggestionTopicPath(item), item.description]);
   const trustPages = staticRoutes.filter((route) => ["/about/", "/editorial-policy/", "/contact/"].includes(route.path));
   const elementNames = [...new Set(aniimo.map((item) => item.element))];
   const roleNames = [...new Set(aniimo.map((item) => item.role))];
@@ -567,6 +571,9 @@ export function SiteIndexPage({ navigate }) {
         <LinkGroup title="Beginner Questions" items={beginnerPages} navigate={navigate} />
         <LinkGroup title="Codes & Rewards" items={codeRewardPages} navigate={navigate} />
         <LinkGroup title="News & Updates" items={newsPages} navigate={navigate} />
+        <LinkGroup title="Official Feature Guides" items={officialPitchPages} navigate={navigate} />
+        <LinkGroup title="Community Question Guides" items={socialIntentPages} navigate={navigate} />
+        <LinkGroup title="Search Topic Guides" items={searchSuggestionPages} navigate={navigate} />
         <LinkGroup title="Region Guides" items={regions.map((item) => [item.name, regionPath(item), item.theme])} navigate={navigate} />
         <LinkGroup title="Location Guides" items={regions.map((item) => [`${item.name} Locations`, locationTopicPath(item), `Track ${item.name} route and spawn verification tasks.`])} navigate={navigate} />
         <LinkGroup title="Element Guides" items={elementNames.map((item) => [`${item} Aniimo`, elementPath(item), `Browse ${item} entries by number, role, stage and source status.`])} navigate={navigate} />
@@ -590,6 +597,18 @@ export function SiteIndexPage({ navigate }) {
         ["What is the Aniimo.games site index for?", "It helps readers and crawlers discover guide hubs, platform pages, region pages, element pages, role pages and source pages from one internal-link hub."],
         ["Does every Aniimo detail page appear here?", "The XML sitemap includes every indexable Aniimo page. This visible index highlights important hubs and featured entries while the database page links to all tracked Aniimo."],
       ]} />
+    </section>
+  );
+}
+
+export function TopicGuidePage({ topic, kicker, icon, children }) {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={icon} kicker={kicker} title={topic.title} />
+      <p className="section-copy">{topic.intro}</p>
+      <EditorialBlock title="Key Points" items={topic.points} />
+      {children}
+      <FaqBlock items={topic.faq} />
     </section>
   );
 }

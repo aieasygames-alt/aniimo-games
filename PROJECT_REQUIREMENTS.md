@@ -13,8 +13,8 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Search setup: Google Search Console and Bing Webmaster sitemap submitted
 - Framework: Vite + React static site with build-time sitemap generation and static route prerendering
 - Canonical URL policy: trailing-slash canonical URLs
-- Content coverage: 89 local Aniimo entries, 6 public regions, official platform links, release dates, rewards, mechanics, and SEO guide pages
-- Current content-development focus: user-intent SEO clusters for beginner education, safe downloads, rewards, news freshness, location discovery and pre-launch choices
+- Content coverage: 89 local Aniimo entries, 6 public regions, official platform links, release dates, rewards, mechanics, official feature guides, social-intent comparison pages and search-topic pages
+- Current content-development focus: official feature extraction, social discussion search intent, search-suggestion pages and post-launch verification readiness
 
 ## Completed
 
@@ -45,6 +45,9 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added `/launch-verification/` with structured post-launch templates for spawn points, redeem codes, platform unlocks and Search Console observations.
 - Added `check:verification` to validate post-launch verification templates and queues.
 - Added user-intent SEO content clusters for beginner questions, download decisions, codes and rewards, news updates, location guides and pre-launch choice watchlists.
+- Added official feature pages for Aniimo's marketing pillars: official features, Twine, Egg Heist and Homeland.
+- Added social-intent pages for Pokemon-style comparisons, Palworld-style comparisons, Switch availability and pay-to-win questions.
+- Added search-topic pages for characters, platforms, beta/test history and news tracking.
 
 ## Active Growth Priorities
 
@@ -272,6 +275,86 @@ Implementation notes:
 - Route generation, sitemap inclusion and metadata are centralized in `src/lib/routes.js`.
 - Rendering uses reusable page components in `src/pages/pages.jsx`.
 - Choice pages are written as pre-launch watchlists, not final rankings.
+
+### Priority 11: International SEO Planning
+
+Status: Planned, not started
+
+Use public market signals, genre fit and future GSC country data to decide multilingual rollout. Do not build this yet; keep it as a planning basis until English pages have enough Search Console impressions.
+
+Recommended first language batch:
+
+- Japanese: high fit for creature collection, wiki pages, character guides and release-date searches.
+- Korean: strong fit for RPG, mobile, PC and guide-search behavior.
+- Traditional Chinese: good fit for Taiwan and Hong Kong users, with lower long-tail competition than English.
+
+Recommended second language batch after GSC data:
+
+- Spanish: strong free-to-play, mobile, codes and launch-search demand across Latin America and Spain.
+- Portuguese Brazil: strong free-to-play and mobile search opportunity.
+- Simplified Chinese: useful for overseas Chinese users, Singapore and Malaysia; mainland Google traffic should not be overestimated.
+- Thai or Indonesian: possible Southeast Asia expansion after country-level impressions justify it.
+
+Initial localized page set, when development starts:
+
+- Home
+- Aniimo download
+- Aniimo release date
+- Aniimo codes
+- Aniimo wiki / database
+- Aniimo map
+- Best Aniimo
+- Aniimo tier list watchlist
+- How to catch Aniimo
+- What is Twine
+- Aniipod guide
+- Pre-registration rewards
+- Steam download
+- Mobile download
+- Launch tracker
+
+Implementation requirements when started:
+
+- Add localized route prefixes such as `/ja/`, `/ko/`, `/zh-hant/`.
+- Add hreflang and x-default tags.
+- Keep translated pages source-aware and avoid machine-translated duplicates with no localization value.
+- Start with 10-15 high-value pages before translating all Aniimo detail pages.
+- Use GSC country and query data to decide whether to expand to the full database.
+
+### Priority 12: Future Content Opportunities
+
+Status: In progress
+
+Potential content additions after the current user-intent clusters mature:
+
+- Glossary pages for terms such as Pathfinder, Idyll, Twine, Aniipod, Homeland, RV, Prismana and Egg Heist.
+- Comparison pages such as Aniimo vs Palworld, Aniimo vs Pokemon-style creature collecting, and Aniimo vs Genshin-style open-world expectations, written carefully as editorial comparisons rather than claims of equivalence.
+- Official source archive pages that preserve source links, dates checked and what changed.
+- Media gallery pages for official trailers, screenshots, character art and region art with compressed assets and descriptive alt text.
+- Troubleshooting pages for download unavailable, store page not visible, pre-registration not showing, and region availability.
+- GSC-driven refresh pages once impressions show which queries are close to ranking.
+
+Completed first execution layer:
+
+- `/guides/aniimo-official-features/`
+- `/guides/aniimo-twine-guide/`
+- `/guides/aniimo-egg-heist-guide/`
+- `/guides/aniimo-homeland-guide/`
+- `/compare/aniimo-vs-pokemon/`
+- `/compare/aniimo-vs-palworld/`
+- `/compare/is-aniimo-on-switch/`
+- `/compare/is-aniimo-pay-to-win/`
+- `/topics/aniimo-characters/`
+- `/topics/aniimo-platforms/`
+- `/topics/aniimo-beta/`
+- `/topics/aniimo-news/`
+
+Implementation notes:
+
+- Official feature pages only use storefront or official-site supported claims.
+- Social-intent pages answer community comparison/search questions without presenting competitor comparisons as official facts.
+- Search-topic pages target autocomplete-style queries and connect users back to database, platform, news and launch-tracker hubs.
+- New topic groups are included in route resolution, prerender routes, sitemap generation and the visible site index.
 
 ## Acceptance Criteria
 
