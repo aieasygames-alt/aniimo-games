@@ -46,7 +46,11 @@ export const staticRoutes = [
   { path: "/contact/", label: "Contact", title: "Contact Aniimo.games", description: "Contact Aniimo.games about corrections, missing Aniimo data, source updates, image issues and site feedback." },
 ];
 
-export const navRoutes = staticRoutes.filter((item) => item.nav !== false && !["/release-date/", "/best-aniimo/", "/platforms/steam/", "/platforms/mobile/", "/rewards/pre-registration/", "/about/", "/editorial-policy/", "/contact/"].includes(item.path));
+const primaryNavPaths = ["/aniimo/", "/map/", "/guides/", "/mechanics/", "/launch/", "/codes/", "/site-index/"];
+
+export const navRoutes = primaryNavPaths
+  .map((path) => staticRoutes.find((item) => item.path === path))
+  .filter(Boolean);
 
 export function normalizePath(path) {
   if (!path || path === "/") return "/";

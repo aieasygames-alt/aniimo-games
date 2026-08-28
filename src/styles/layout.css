@@ -35,10 +35,20 @@
 
 .topbar nav {
   display: flex;
-  gap: 18px;
+  gap: 8px;
   color: #44514c;
   font-size: 14px;
   font-weight: 650;
+}
+
+.topbar nav a {
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+.topbar nav a:hover {
+  background: rgba(31, 109, 85, 0.08);
+  color: #1f6d55;
 }
 
 main {
