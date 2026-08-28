@@ -51,6 +51,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added glossary pages for Pathfinder, Idyll, Twine, Aniipod, Homeland, RV, Prismana and Egg Heist.
 - Added troubleshooting pages for download unavailable, store page visibility, pre-registration issues and region availability.
 - Added `/media/` and `/source-archive/` hubs for image discovery, source trust and future update workflow.
+- Added Genshin-style open-world comparison, Twine ability planning, Egg Heist rules/rewards, Lost Isles and media detail pages.
 
 ## Active Growth Priorities
 
@@ -345,6 +346,7 @@ Completed first execution layer:
 - `/guides/aniimo-homeland-guide/`
 - `/compare/aniimo-vs-pokemon/`
 - `/compare/aniimo-vs-palworld/`
+- `/compare/aniimo-vs-genshin/`
 - `/compare/is-aniimo-on-switch/`
 - `/compare/is-aniimo-pay-to-win/`
 - `/topics/aniimo-characters/`
@@ -367,6 +369,13 @@ Completed first execution layer:
 - `/troubleshooting/aniimo-pre-registration-not-working/`
 - `/troubleshooting/aniimo-region-availability/`
 - `/source-archive/`
+- `/mechanics/twine-abilities/`
+- `/mechanics/egg-heist-rules/`
+- `/mechanics/egg-heist-rewards/`
+- `/mechanics/lost-isles-guide/`
+- `/media/aniimo-trailers/`
+- `/media/aniimo-screenshots/`
+- `/media/aniimo-region-art/`
 
 Implementation notes:
 
@@ -376,6 +385,8 @@ Implementation notes:
 - Glossary pages give internal-link targets for recurring terms without overloading guide pages.
 - Troubleshooting pages answer launch friction questions without sending users to unofficial download mirrors.
 - Media and source archive hubs improve trust, image discovery and update workflow transparency.
+- Mechanic deep dives prepare launch verification fields for Twine ability use, Egg Heist rules, Egg Heist rewards and Lost Isles routing.
+- Media detail pages separate official trailer, screenshot and region-art discovery from unverified gameplay claims.
 - New topic groups are included in route resolution, prerender routes, sitemap generation and the visible site index.
 
 ## Acceptance Criteria

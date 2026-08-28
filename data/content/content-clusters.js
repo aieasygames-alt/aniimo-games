@@ -219,6 +219,21 @@ export const socialIntentTopics = [
     ],
   },
   {
+    slug: "aniimo-vs-genshin",
+    title: "Aniimo vs Genshin-Style Open-World Expectations",
+    description: "Compare Aniimo with Genshin-style open-world search expectations while keeping Aniimo's confirmed creature-catching systems clear.",
+    intro: "Some players use Genshin-style language to ask about exploration, regions, characters, combat and live-service structure. This page answers that intent without claiming Aniimo copies another game's systems.",
+    points: [
+      ["Shared search intent", "Users are usually asking whether Aniimo has open-world exploration, regions, collection goals, combat and long-term updates."],
+      ["Aniimo's confirmed identity", "Aniimo is better framed around creature catching, Aniipods, Twine, Homeland, Egg Heist and the continent of Idyll."],
+      ["Careful wording", "Do not imply gacha, elemental reaction systems, artifact systems or party rules unless official Aniimo sources confirm them."],
+    ],
+    faq: [
+      ["Is Aniimo like Genshin Impact?", "Aniimo shares broad open-world search expectations, but its confirmed identity centers on creature catching and Twine."],
+      ["Does Aniimo have gacha?", "Aniimo.games does not claim a gacha system without official or in-game confirmation."],
+    ],
+  },
+  {
     slug: "is-aniimo-on-switch",
     title: "Is Aniimo on Nintendo Switch?",
     description: "Track whether Aniimo has an official Nintendo Switch or Switch 2 listing and explain the currently confirmed platforms.",
@@ -309,6 +324,117 @@ export const searchSuggestionTopics = [
     faq: [
       ["How often should Aniimo news be checked?", "Before launch, weekly checks are useful; around launch, daily checks are more appropriate."],
       ["Can rumors go in the news tracker?", "Rumors should stay out unless they are clearly labeled as unverified leads and not indexed as facts."],
+    ],
+  },
+];
+
+export const mechanicDeepDiveTopics = [
+  {
+    slug: "twine-abilities",
+    title: "Aniimo Twine Abilities",
+    description: "Track how Aniimo Twine abilities should be documented for combat, traversal, puzzles and route verification.",
+    intro: "Twine ability searches will grow after launch because players will want to know which Aniimo helps with routes, combat roles and puzzle checks.",
+    points: [
+      ["Ability categories", "Use combat, traversal, puzzle, exploration and support as the first practical categories until official values are complete."],
+      ["Detail-page workflow", "Each Aniimo detail page should receive a tested Twine use case only after official source text or live-game checks confirm it."],
+      ["Avoid premature rankings", "Do not turn Twine ability pages into final tier lists until cooldowns, route access, combat values and team synergy can be tested."],
+    ],
+    faq: [
+      ["Which Aniimo has the best Twine ability?", "Aniimo.games should not publish final Twine rankings before launch testing."],
+      ["What should a Twine ability entry include?", "Useful entries should include source, ability purpose, route use, combat use, restrictions and last verified date."],
+    ],
+  },
+  {
+    slug: "egg-heist-rules",
+    title: "Aniimo Egg Heist Rules",
+    description: "Prepare a source-safe Egg Heist rules guide for team size, PVEVP structure, Lost Isles routing and post-launch verification.",
+    intro: "Egg Heist rule searches need a clear page before launch, but exact scoring, rewards and matchmaking details should remain watchlist fields.",
+    points: [
+      ["Confirmed mode shape", "Egg Heist is described as a PVEVP mode with three-player teams."],
+      ["Rules to verify", "Scoring, extraction conditions, rewards, penalties, matchmaking and event cadence need official or live-game confirmation."],
+      ["Internal links", "Egg Heist pages should connect to Twine, roles, best Aniimo watchlists, codes and launch verification."],
+    ],
+    faq: [
+      ["How many players are in Egg Heist?", "Official public material describes three-player teams."],
+      ["Are Egg Heist rewards confirmed?", "Not fully on Aniimo.games yet. Reward details should stay watchlist until verified."],
+    ],
+  },
+  {
+    slug: "egg-heist-rewards",
+    title: "Aniimo Egg Heist Rewards",
+    description: "Track Aniimo Egg Heist reward questions without inventing unconfirmed event drops or code rewards.",
+    intro: "Reward searches can attract users, but they are also easy to mislead. This page keeps Egg Heist reward status separate from pre-registration rewards and redeem codes.",
+    points: [
+      ["Known boundary", "Egg Heist is an official mode, but full reward tables are not treated as confirmed on Aniimo.games."],
+      ["What to capture later", "After launch, capture item name, quantity, mode requirement, weekly limits, platform restrictions and last tested date."],
+      ["Related rewards", "Keep Egg Heist rewards separate from pre-registration milestones, launch event gifts and active redeem codes."],
+    ],
+    faq: [
+      ["Does Egg Heist give rewards?", "Aniimo.games should wait for official or in-game confirmation before publishing exact reward tables."],
+      ["Where will Egg Heist rewards be updated?", "Update this page, the codes page, rewards page and launch verification page once verified."],
+    ],
+  },
+  {
+    slug: "lost-isles-guide",
+    title: "Aniimo Lost Isles Guide",
+    description: "Track Lost Isles as the Egg Heist setting and prepare route, reward and rules verification after launch.",
+    intro: "Lost Isles is useful as a standalone page because it may not map cleanly to the six public region pages already used by the map hub.",
+    points: [
+      ["Mode context", "Lost Isles should be tied to Egg Heist until official sources clarify broader map access."],
+      ["Verification fields", "Track route screenshots, team objectives, enemy pressure, extraction rules and reward sources after launch."],
+      ["Map boundary", "Do not merge Lost Isles with public region pages unless official map data confirms that relationship."],
+    ],
+    faq: [
+      ["Is Lost Isles a region?", "Aniimo.games treats Lost Isles as an Egg Heist setting until official map information confirms more."],
+      ["Will Lost Isles appear on the map page?", "It can be linked from the map page as a watchlist area, but exact routes need launch verification."],
+    ],
+  },
+];
+
+export const mediaDetailTopics = [
+  {
+    slug: "aniimo-trailers",
+    title: "Aniimo Trailers",
+    description: "Track official Aniimo trailers, announcement videos, platform clips and what each video confirms.",
+    intro: "Trailer pages should summarize what official videos show, then link users to safer guide pages for confirmed systems and launch information.",
+    points: [
+      ["What to catalog", "Track video title, official channel, publish date, featured systems, featured Aniimo, platform mentions and source URL."],
+      ["What to avoid", "Do not convert trailer visuals into exact spawn, route or combat values without official or live-game confirmation."],
+      ["Best internal links", "Trailer pages should link to download, release date, Twine, Egg Heist, media gallery and source archive pages."],
+    ],
+    faq: [
+      ["Can trailer footage confirm gameplay mechanics?", "It can support broad public features, but exact values and routes still need stronger verification."],
+      ["Where should new Aniimo trailers be added?", "Add them to this page, the media gallery, source archive and update log."],
+    ],
+  },
+  {
+    slug: "aniimo-screenshots",
+    title: "Aniimo Screenshots",
+    description: "Browse Aniimo screenshot coverage for regions, creatures, platform pages and guide visuals.",
+    intro: "Screenshot pages support image search and help users inspect regions and creatures without burying media inside long guide pages.",
+    points: [
+      ["Image SEO", "Each screenshot should have descriptive alt text, compressed WebP format, stable dimensions and a page it supports."],
+      ["Source clarity", "Official images, site-prepared composites and community captures should be labeled differently."],
+      ["After launch", "Add route screenshots only when they are tied to a verified location, time, condition and source."],
+    ],
+    faq: [
+      ["Why make screenshot pages?", "They help image discovery, internal linking and user inspection of official regions and character art."],
+      ["Can community screenshots be used?", "Only when rights and source status are clear, and they should not replace official verification."],
+    ],
+  },
+  {
+    slug: "aniimo-region-art",
+    title: "Aniimo Region Art",
+    description: "Browse Aniimo region art for Mistwoods, Echoback Landing, Sea of Flowers, Blitzwood, Nimbus Fields and Forest of Falling Stars.",
+    intro: "Region art helps map pages feel useful before exact coordinates are available. It also gives each region a stronger image-search target.",
+    points: [
+      ["Covered regions", "The current gallery covers six public region pages with compressed WebP artwork."],
+      ["Alt text plan", "Each region image should describe the region name and purpose, not generic fantasy scenery."],
+      ["Future updates", "After launch, add verified route screenshots beside each region artwork when available."],
+    ],
+    faq: [
+      ["Which Aniimo regions have art?", "Mistwoods, Echoback Landing, Sea of Flowers, Blitzwood, Nimbus Fields and Forest of Falling Stars currently have region artwork."],
+      ["Should region art claim exact spawn data?", "No. Region art supports context, while spawn data needs live verification."],
     ],
   },
 ];

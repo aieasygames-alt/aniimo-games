@@ -168,6 +168,10 @@ function App() {
           <TopicGuidePage topic={routeInfo.glossaryTopic} kicker="Glossary" icon={<BookOpen />} />
         ) : routeInfo.type === "troubleshooting-topic" ? (
           <TopicGuidePage topic={routeInfo.troubleshootingTopic} kicker="Troubleshooting" icon={<Download />} />
+        ) : routeInfo.type === "mechanic-deep-dive-topic" ? (
+          <TopicGuidePage topic={routeInfo.mechanicDeepDiveTopic} kicker="Mechanics" icon={<BookOpen />} />
+        ) : routeInfo.type === "media-detail-topic" ? (
+          <TopicGuidePage topic={routeInfo.mediaDetailTopic} kicker="Media" icon={<Search />} />
         ) : routeInfo.path === "/aniimo/" ? (
           <DatabasePage {...sharedProps} />
         ) : routeInfo.path === "/map/" ? (

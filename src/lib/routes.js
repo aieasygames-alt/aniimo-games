@@ -1,4 +1,4 @@
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, downloadTopics, faqs, gameInfo, glossaryTopics, newsTopics, officialPitchTopics, platforms, regions, releaseInfo, searchSuggestionTopics, socialIntentTopics, troubleshootingTopics } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, downloadTopics, faqs, gameInfo, glossaryTopics, mechanicDeepDiveTopics, mediaDetailTopics, newsTopics, officialPitchTopics, platforms, regions, releaseInfo, searchSuggestionTopics, socialIntentTopics, troubleshootingTopics } from "../../data/content.js";
 
 export const siteUrl = "https://aniimo.games";
 
@@ -107,6 +107,14 @@ export function glossaryTopicPath(topic) {
 
 export function troubleshootingTopicPath(topic) {
   return normalizePath(`/troubleshooting/${topic.slug}`);
+}
+
+export function mechanicDeepDiveTopicPath(topic) {
+  return normalizePath(`/mechanics/${topic.slug}`);
+}
+
+export function mediaDetailTopicPath(topic) {
+  return normalizePath(`/media/${topic.slug}`);
 }
 
 export function canonicalUrl(path) {
@@ -219,6 +227,12 @@ export function resolveRoute(path) {
   const troubleshootingTopic = troubleshootingTopics.find((item) => troubleshootingTopicPath(item) === normalized);
   if (troubleshootingTopic) return { type: "troubleshooting-topic", path: troubleshootingTopicPath(troubleshootingTopic), title: troubleshootingTopic.title, description: troubleshootingTopic.description, troubleshootingTopic };
 
+  const mechanicDeepDiveTopic = mechanicDeepDiveTopics.find((item) => mechanicDeepDiveTopicPath(item) === normalized);
+  if (mechanicDeepDiveTopic) return { type: "mechanic-deep-dive-topic", path: mechanicDeepDiveTopicPath(mechanicDeepDiveTopic), title: mechanicDeepDiveTopic.title, description: mechanicDeepDiveTopic.description, mechanicDeepDiveTopic };
+
+  const mediaDetailTopic = mediaDetailTopics.find((item) => mediaDetailTopicPath(item) === normalized);
+  if (mediaDetailTopic) return { type: "media-detail-topic", path: mediaDetailTopicPath(mediaDetailTopic), title: mediaDetailTopic.title, description: mediaDetailTopic.description, mediaDetailTopic };
+
   const staticRoute = staticRoutes.find((item) => item.path === normalized);
   if (staticRoute) return { type: "static", ...staticRoute };
 
@@ -246,6 +260,8 @@ export function sitemapRoutes() {
     ...searchSuggestionTopics.map(searchSuggestionTopicPath),
     ...glossaryTopics.map(glossaryTopicPath),
     ...troubleshootingTopics.map(troubleshootingTopicPath),
+    ...mechanicDeepDiveTopics.map(mechanicDeepDiveTopicPath),
+    ...mediaDetailTopics.map(mediaDetailTopicPath),
     ...aniimo.map(aniimoPath),
     ...regions.map(regionPath),
   ]);

@@ -1,7 +1,7 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, downloadTopics, editorialGuides, faqs, gameInfo, glossaryTopics, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, verificationTemplates } from "../../data/content.js";
-import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, downloadTopicPath, elementPath, glossaryTopicPath, locationTopicPath, newsTopicPath, officialPitchTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, staticRoutes, troubleshootingTopicPath } from "../lib/routes.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, downloadTopics, editorialGuides, faqs, gameInfo, glossaryTopics, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, verificationTemplates } from "../../data/content.js";
+import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, downloadTopicPath, elementPath, glossaryTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, staticRoutes, troubleshootingTopicPath } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
 export function HomePage(props) {
@@ -554,6 +554,8 @@ export function SiteIndexPage({ navigate }) {
   const searchSuggestionPages = searchSuggestionTopics.map((item) => [item.title, searchSuggestionTopicPath(item), item.description]);
   const glossaryPages = glossaryTopics.map((item) => [item.term, glossaryTopicPath(item), item.definition]);
   const troubleshootingPages = troubleshootingTopics.map((item) => [item.title, troubleshootingTopicPath(item), item.description]);
+  const mechanicPages = mechanicDeepDiveTopics.map((item) => [item.title, mechanicDeepDiveTopicPath(item), item.description]);
+  const mediaPages = mediaDetailTopics.map((item) => [item.title, mediaDetailTopicPath(item), item.description]);
   const trustPages = staticRoutes.filter((route) => ["/about/", "/editorial-policy/", "/contact/"].includes(route.path));
   const elementNames = [...new Set(aniimo.map((item) => item.element))];
   const roleNames = [...new Set(aniimo.map((item) => item.role))];
@@ -578,6 +580,8 @@ export function SiteIndexPage({ navigate }) {
         <LinkGroup title="Search Topic Guides" items={searchSuggestionPages} navigate={navigate} />
         <LinkGroup title="Glossary" items={glossaryPages} navigate={navigate} />
         <LinkGroup title="Troubleshooting" items={troubleshootingPages} navigate={navigate} />
+        <LinkGroup title="Mechanic Deep Dives" items={mechanicPages} navigate={navigate} />
+        <LinkGroup title="Media Details" items={mediaPages} navigate={navigate} />
         <LinkGroup title="Region Guides" items={regions.map((item) => [item.name, regionPath(item), item.theme])} navigate={navigate} />
         <LinkGroup title="Location Guides" items={regions.map((item) => [`${item.name} Locations`, locationTopicPath(item), `Track ${item.name} route and spawn verification tasks.`])} navigate={navigate} />
         <LinkGroup title="Element Guides" items={elementNames.map((item) => [`${item} Aniimo`, elementPath(item), `Browse ${item} entries by number, role, stage and source status.`])} navigate={navigate} />
@@ -647,6 +651,20 @@ export function MediaPage() {
           </article>
         ))}
       </div>
+      <section className="related-section">
+        <h2>Media Detail Guides</h2>
+        <div className="site-index-grid">
+          {mediaDetailTopics.map((item) => (
+            <article className="link-group" key={item.slug}>
+              <h2>{item.title}</h2>
+              <p>{item.description}</p>
+              <a className="text-link" href={mediaDetailTopicPath(item)}>
+                Open media guide <ChevronRight size={16} />
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
       <FaqBlock items={[
         ["Why does Aniimo.games compress media?", "Compressed WebP assets improve page speed while preserving useful screenshots, banners and region context."],
         ["Can media pages include unofficial images?", "Only when rights, source and page purpose are clear. Official or site-prepared assets are preferred."],
