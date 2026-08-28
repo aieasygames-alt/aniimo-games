@@ -5,7 +5,7 @@
 
 .quick-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 14px;
   padding-top: 24px;
   padding-bottom: 42px;
@@ -266,4 +266,39 @@ dd {
   color: #1f6d55;
   font-size: 13px;
   font-weight: 800;
+}
+
+.site-index-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.link-group {
+  padding: 20px;
+  border: 1px solid rgba(23, 32, 29, 0.1);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.link-group h2 {
+  margin-bottom: 14px;
+  font-size: 22px;
+}
+
+.link-list {
+  display: grid;
+  gap: 10px;
+}
+
+.link-list a {
+  display: grid;
+  gap: 3px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(23, 32, 29, 0.1);
+}
+
+.link-list span {
+  color: #52615b;
+  font-size: 14px;
 }

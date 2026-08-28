@@ -31,6 +31,7 @@ import {
   RegionDetail,
   ReleaseDatePage,
   RewardsPage,
+  SiteIndexPage,
   SourcesPage,
   StatusGuide,
   UpdatesPage,
@@ -152,6 +153,8 @@ function App() {
           <UpdatesPage />
         ) : routeInfo.path === "/sources/" ? (
           <SourcesPage />
+        ) : routeInfo.path === "/site-index/" ? (
+          <SiteIndexPage navigate={navigate} />
         ) : routeInfo.path === "/best-aniimo/" ? (
           <BestAniimoPage navigate={navigate} />
         ) : routeInfo.path === "/platforms/steam/" ? (

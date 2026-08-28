@@ -34,6 +34,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added dedicated platform landing pages for PS5, Xbox, Epic Games Store, iOS and Android.
 - Expanded region guide pages with launch checklists, verification priorities and source notes.
 - Added snippet-ready FAQ coverage for launch status, Steam, codes, confirmed count, free-to-play status and mobile availability.
+- Added a visible `/site-index/` hub to improve internal discovery across guides, platform pages, regions, elements, roles and featured Aniimo pages.
 
 ## Active Growth Priorities
 
@@ -159,6 +160,22 @@ Add live-game verified information after launch:
 - first redeem codes
 - tested combat or Twine use cases
 - GSC indexing and query performance notes
+
+### Priority 9: Internal Linking Hub
+
+Status: Completed
+
+Add a crawler- and reader-friendly internal index that distributes links across important pages.
+
+Pages covered:
+
+- `/site-index/`
+
+Implementation notes:
+
+- Links core guide hubs, platform pages, region guides, element guides, role guides, trust pages and featured Aniimo detail pages.
+- Added a homepage quick-card entry for the site index.
+- Included the page in route metadata, sitemap generation and static prerendering.
 
 ## Acceptance Criteria
 

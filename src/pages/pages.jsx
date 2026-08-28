@@ -1,7 +1,7 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
 import { aniimo, codes, editorialGuides, faqs, gameInfo, launchRewards, mapGuide, mechanics, officialLinks, platforms, regions, releaseInfo, seoGuides, statuses, updates } from "../../data/content.js";
-import { aniimoPath, regionPath } from "../lib/routes.js";
+import { aniimoPath, elementPath, regionPath, rolePath, staticRoutes } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
 export function HomePage(props) {
@@ -33,6 +33,7 @@ export function HomePage(props) {
           <QuickCard icon={<Map />} title="Map" text="Explore regions, representative Aniimo, route notes and official scenery." href="/map/" navigate={props.navigate} />
           <QuickCard icon={<Sparkles />} title="Evolution" text="Track base forms, branch forms, special conditions and launch updates." href="/evolution/" navigate={props.navigate} />
           <QuickCard icon={<Gift />} title="Rewards" text="Track confirmed pre-registration rewards, milestone rewards and launch code status." href="/rewards/" navigate={props.navigate} />
+          <QuickCard icon={<Compass />} title="Site Index" text="Jump between guide hubs, platform pages, region pages, elements and roles." href="/site-index/" navigate={props.navigate} />
         </section>
 
         <DatabasePage compact {...props} />
@@ -431,6 +432,67 @@ export function SourcesPage() {
         ))}
       </div>
     </section>
+  );
+}
+
+export function SiteIndexPage({ navigate }) {
+  const corePages = staticRoutes.filter((route) =>
+    ["/aniimo/", "/map/", "/evolution/", "/codes/", "/rewards/", "/download/", "/release-date/", "/beginner-guide/", "/best-aniimo/", "/sources/"].includes(route.path),
+  );
+  const platformPages = staticRoutes.filter((route) => route.path.startsWith("/platforms/"));
+  const trustPages = staticRoutes.filter((route) => ["/about/", "/editorial-policy/", "/contact/"].includes(route.path));
+  const elementNames = [...new Set(aniimo.map((item) => item.element))];
+  const roleNames = [...new Set(aniimo.map((item) => item.role))];
+  const featuredAniimo = aniimo.filter((item) => item.status === "Confirmed" && item.element !== "Unknown").slice(0, 18);
+
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<Compass />} kicker="Index" title="Aniimo.games Site Index" />
+      <p className="section-copy">
+        Use this index to move between Aniimo guide hubs, platform download pages,
+        region guides, element pages, role pages and official source pages.
+      </p>
+      <div className="site-index-grid">
+        <LinkGroup title="Core Guides" items={corePages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
+        <LinkGroup title="Platform Pages" items={platformPages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
+        <LinkGroup title="Region Guides" items={regions.map((item) => [item.name, regionPath(item), item.theme])} navigate={navigate} />
+        <LinkGroup title="Element Guides" items={elementNames.map((item) => [`${item} Aniimo`, elementPath(item), `Browse ${item} entries by number, role, stage and source status.`])} navigate={navigate} />
+        <LinkGroup title="Role Guides" items={roleNames.map((item) => [`${item} Aniimo`, rolePath(item), `Browse ${item} entries by number, element, stage and source status.`])} navigate={navigate} />
+        <LinkGroup title="Trust & Maintenance" items={trustPages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
+      </div>
+      <section className="related-section">
+        <h2>Featured Aniimo Pages</h2>
+        <div className="related-grid">
+          {featuredAniimo.map((item) => (
+            <a className="related-card" key={item.id} href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
+              <span className="related-mark">{item.no}</span>
+              <strong>{item.name}</strong>
+              <span>{item.element} / {item.role}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+      <FaqBlock items={[
+        ["What is the Aniimo.games site index for?", "It helps readers and crawlers discover guide hubs, platform pages, region pages, element pages, role pages and source pages from one internal-link hub."],
+        ["Does every Aniimo detail page appear here?", "The XML sitemap includes every indexable Aniimo page. This visible index highlights important hubs and featured entries while the database page links to all tracked Aniimo."],
+      ]} />
+    </section>
+  );
+}
+
+function LinkGroup({ title, items, navigate }) {
+  return (
+    <article className="link-group">
+      <h2>{title}</h2>
+      <div className="link-list">
+        {items.map(([label, href, text]) => (
+          <a key={href} href={href} onClick={(event) => navigate(event, href)}>
+            <strong>{label}</strong>
+            <span>{text}</span>
+          </a>
+        ))}
+      </div>
+    </article>
   );
 }
 
