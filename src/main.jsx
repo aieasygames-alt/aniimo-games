@@ -151,6 +151,10 @@ function App() {
           <CollectionPage type="element" value={routeInfo.element} navigate={navigate} />
         ) : routeInfo.type === "role" ? (
           <CollectionPage type="role" value={routeInfo.role} navigate={navigate} />
+        ) : routeInfo.type === "stage" ? (
+          <CollectionPage type="stage" value={routeInfo.stage} navigate={navigate} />
+        ) : routeInfo.type === "status" ? (
+          <CollectionPage type="status" value={routeInfo.status} navigate={navigate} />
         ) : routeInfo.type === "beginner-topic" ? (
           <BeginnerTopicPage topic={routeInfo.beginnerTopic} navigate={navigate} />
         ) : routeInfo.type === "download-topic" ? (

@@ -69,6 +69,14 @@ export function rolePath(role) {
   return normalizePath(`/roles/${role.toLowerCase()}`);
 }
 
+export function stagePath(stage) {
+  return normalizePath(`/stages/${slugify(stage)}`);
+}
+
+export function statusPath(status) {
+  return normalizePath(`/status/${slugify(status)}`);
+}
+
 export function beginnerTopicPath(topic) {
   return normalizePath(`/${topic.slug}`);
 }
@@ -196,6 +204,34 @@ export function resolveRoute(path) {
     };
   }
 
+  const stageMatch = normalized.match(/^\/stages\/([^/]+)\//);
+  if (stageMatch) {
+    const stage = findBySlug([...new Set(aniimo.map((item) => item.stage))], stageMatch[1]);
+    if (stage) {
+      return {
+        type: "stage",
+        path: stagePath(stage),
+        title: `${stage} Aniimo Guide | Aniimo Wiki`,
+        description: `Browse ${stage} Aniimo by official Wiki number, element, role, region and related detail pages.`,
+        stage,
+      };
+    }
+  }
+
+  const statusMatch = normalized.match(/^\/status\/([^/]+)\//);
+  if (statusMatch) {
+    const status = findBySlug([...new Set(aniimo.map((item) => item.status))], statusMatch[1]);
+    if (status) {
+      return {
+        type: "status",
+        path: statusPath(status),
+        title: `${status} Aniimo Data Guide | Aniimo Wiki`,
+        description: `Browse ${status} Aniimo entries by official Wiki number, element, role, stage, region and source notes.`,
+        status,
+      };
+    }
+  }
+
   const beginnerTopic = beginnerTopics.find((item) => beginnerTopicPath(item) === normalized);
   if (beginnerTopic) return { type: "beginner-topic", path: beginnerTopicPath(beginnerTopic), title: beginnerTopic.title, description: beginnerTopic.description, beginnerTopic };
 
@@ -268,6 +304,8 @@ export function sitemapRoutes() {
     ...staticRoutes.map((item) => item.path),
     ...[...new Set(aniimo.map((item) => item.element))].map(elementPath),
     ...[...new Set(aniimo.map((item) => item.role))].map(rolePath),
+    ...[...new Set(aniimo.map((item) => item.stage))].map(stagePath),
+    ...[...new Set(aniimo.map((item) => item.status))].map(statusPath),
     ...beginnerTopics.map(beginnerTopicPath),
     ...downloadTopics.map(downloadTopicPath),
     ...codeRewardTopics.map(codeRewardTopicPath),
@@ -420,6 +458,14 @@ function canonicalAssetUrl(path) {
 
 function titleCase(value) {
   return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function slugify(value) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+function findBySlug(values, slug) {
+  return values.find((value) => slugify(value) === slug);
 }
 
 function uniqueRoutes(routes) {

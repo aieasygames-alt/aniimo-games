@@ -1,7 +1,7 @@
 import React from "react";
 import { ChevronRight } from "lucide-react";
 import { aniimo, regions, statuses } from "../../data/content.js";
-import { aniimoPath, elementPath, regionPath, rolePath } from "../lib/routes.js";
+import { aniimoPath, elementPath, regionPath, rolePath, stagePath, statusPath } from "../lib/routes.js";
 
 export function StatusBadge({ status }) {
   return <span className={`status status-${status.toLowerCase()}`}>{status}</span>;
@@ -10,6 +10,8 @@ export function StatusBadge({ status }) {
 export function TaxonomyLinks({ navigate }) {
   const elementNames = [...new Set(aniimo.map((item) => item.element))];
   const roleNames = [...new Set(aniimo.map((item) => item.role))];
+  const stageNames = [...new Set(aniimo.map((item) => item.stage))];
+  const statusNames = [...new Set(aniimo.map((item) => item.status))];
 
   return (
     <div className="taxonomy-links">
@@ -21,6 +23,16 @@ export function TaxonomyLinks({ navigate }) {
       {roleNames.map((item) => (
         <a key={item} href={rolePath(item)} onClick={(event) => navigate(event, rolePath(item))}>
           {item} Aniimo
+        </a>
+      ))}
+      {stageNames.map((item) => (
+        <a key={item} href={stagePath(item)} onClick={(event) => navigate(event, stagePath(item))}>
+          {item}
+        </a>
+      ))}
+      {statusNames.map((item) => (
+        <a key={item} href={statusPath(item)} onClick={(event) => navigate(event, statusPath(item))}>
+          {item} Data
         </a>
       ))}
     </div>

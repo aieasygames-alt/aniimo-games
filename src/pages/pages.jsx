@@ -1,7 +1,7 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
 import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, gameInfo, glossaryTopics, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, verificationTemplates } from "../../data/content.js";
-import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, glossaryTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, staticRoutes, troubleshootingTopicPath } from "../lib/routes.js";
+import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, glossaryTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
 export function HomePage(props) {
@@ -111,15 +111,21 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
 
 export function CollectionPage({ type, value, navigate }) {
   const label = value.toUpperCase() === "DPS" ? "DPS" : value.charAt(0).toUpperCase() + value.slice(1);
-  const items = aniimo.filter((item) => item[type] && item[type].toLowerCase() === value);
-  const title = `${label} Aniimo ${type === "element" ? "Element" : "Role"} Guide`;
+  const items = aniimo.filter((item) => item[type] && item[type].toLowerCase() === value.toLowerCase());
+  const typeLabel = {
+    element: "Element",
+    role: "Role",
+    stage: "Stage",
+    status: "Data Status",
+  }[type];
+  const title = `${label} Aniimo ${typeLabel} Guide`;
 
   return (
     <section className="section">
       <SectionTitle icon={<BookOpen />} kicker="Index" title={title} />
       <p className="section-copy">
         Browse official Wiki entries tagged as {label}. Use this index as a landing page
-        for element and role searches before detailed location data is verified.
+        for {typeLabel.toLowerCase()} searches before detailed launch data is verified.
       </p>
       <div className="aniimo-grid">
         {items.map((item) => (
@@ -561,6 +567,8 @@ export function SiteIndexPage({ navigate }) {
   const trustPages = staticRoutes.filter((route) => ["/about/", "/editorial-policy/", "/contact/"].includes(route.path));
   const elementNames = [...new Set(aniimo.map((item) => item.element))];
   const roleNames = [...new Set(aniimo.map((item) => item.role))];
+  const stageNames = [...new Set(aniimo.map((item) => item.stage))];
+  const statusNames = [...new Set(aniimo.map((item) => item.status))];
   const featuredAniimo = aniimo.filter((item) => item.status === "Confirmed" && item.element !== "Unknown").slice(0, 18);
 
   return (
@@ -590,6 +598,8 @@ export function SiteIndexPage({ navigate }) {
         <LinkGroup title="Location Guides" items={regions.map((item) => [`${item.name} Locations`, locationTopicPath(item), `Track ${item.name} route and spawn verification tasks.`])} navigate={navigate} />
         <LinkGroup title="Element Guides" items={elementNames.map((item) => [`${item} Aniimo`, elementPath(item), `Browse ${item} entries by number, role, stage and source status.`])} navigate={navigate} />
         <LinkGroup title="Role Guides" items={roleNames.map((item) => [`${item} Aniimo`, rolePath(item), `Browse ${item} entries by number, element, stage and source status.`])} navigate={navigate} />
+        <LinkGroup title="Stage Guides" items={stageNames.map((item) => [`${item} Aniimo`, stagePath(item), `Browse ${item} entries by number, element, role and region.`])} navigate={navigate} />
+        <LinkGroup title="Data Status Guides" items={statusNames.map((item) => [`${item} Aniimo Data`, statusPath(item), `Browse ${item} entries by number, element, role, stage and source status.`])} navigate={navigate} />
         <LinkGroup title="Choice Guides" items={choicePages} navigate={navigate} />
         <LinkGroup title="Trust & Maintenance" items={trustPages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
       </div>

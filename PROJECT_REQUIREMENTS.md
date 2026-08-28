@@ -55,6 +55,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added launch conversion pages for countdown, wishlist, pre-registration and safe-download intent.
 - Added GSC-driven refresh planning pages for query watchlists and post-indexing page improvement.
 - Added directory hub pages for guides, comparisons, mechanics, launch and growth planning to improve crawl paths beyond the single site index.
+- Added stage and data-status collection pages so Lumin, Gamma, Nova, Official Index and Confirmed entries have crawlable index pages.
 
 ## Active Growth Priorities
 
@@ -384,6 +385,11 @@ Completed first execution layer:
 - `/mechanics/`
 - `/launch/`
 - `/growth/`
+- `/stages/lumin-stage/`
+- `/stages/gamma-stage/`
+- `/stages/nova-stage/`
+- `/stages/official-index/`
+- `/status/confirmed/`
 - `/launch/aniimo-launch-countdown/`
 - `/launch/aniimo-wishlist-guide/`
 - `/launch/aniimo-pre-register-guide/`
@@ -404,6 +410,7 @@ Implementation notes:
 - Launch conversion pages connect countdown, wishlist, pre-registration and safe-download searches back to official storefronts.
 - Growth refresh pages define how future Search Console queries should become page updates, FAQ additions or new content.
 - Directory hubs group related long-tail pages into crawlable, user-facing clusters so important pages are not only discoverable from `/site-index/`.
+- Stage and status collection pages reuse the database card pattern and are linked from taxonomy chips plus the site index.
 - New topic groups are included in route resolution, prerender routes, sitemap generation and the visible site index.
 
 ## Acceptance Criteria
