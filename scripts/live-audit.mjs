@@ -24,15 +24,32 @@ for (const route of expected) {
 }
 
 for (const url of importantPages) {
+  await checkUrl(url);
+}
+
+const sitemapSample = sampleUrls(expected.filter((url) => !importantPages.includes(url)), 24);
+for (const url of sitemapSample) {
+  await checkUrl(url, { sampled: true });
+}
+
+if (issues.length) {
+  console.error(`Live audit failed with ${issues.length} issue(s):`);
+  issues.forEach((issue) => console.error(`- ${issue}`));
+  process.exit(1);
+}
+
+console.log(`Live audit passed: ${importantPages.length} important URLs, ${sitemapSample.length} sampled sitemap URLs, ${expected.length} sitemap routes expected.`);
+
+async function checkUrl(url, { sampled = false } = {}) {
   const response = await fetch(url, { redirect: "manual" }).catch((error) => {
     issues.push(`Failed to fetch ${url}: ${error.message}`);
     return null;
   });
-  if (!response) continue;
+  if (!response) return;
 
   if (response.status < 200 || response.status >= 400) {
     issues.push(`Bad status for ${url}: ${response.status}`);
-    continue;
+    return;
   }
 
   const text = await response.text();
@@ -52,13 +69,16 @@ for (const url of importantPages) {
     const canonical = text.match(/<link\s+rel="canonical"\s+href="([^"]+)"/)?.[1];
     if (canonical !== url) issues.push(`Canonical mismatch for ${url}: ${canonical || "missing"}`);
     if (!text.includes("<script")) issues.push(`No script tag found for ${url}`);
+    if (!sampled && !text.includes("Aniimo")) issues.push(`Important page does not contain Aniimo text: ${url}`);
   }
 }
 
-if (issues.length) {
-  console.error(`Live audit failed with ${issues.length} issue(s):`);
-  issues.forEach((issue) => console.error(`- ${issue}`));
-  process.exit(1);
+function sampleUrls(urls, limit) {
+  if (urls.length <= limit) return urls;
+  const step = Math.max(1, Math.floor(urls.length / limit));
+  const sampled = [];
+  for (let index = 0; index < urls.length && sampled.length < limit; index += step) {
+    sampled.push(urls[index]);
+  }
+  return sampled;
 }
-
-console.log(`Live audit passed: ${importantPages.length} production URLs checked, ${expected.length} sitemap routes expected.`);

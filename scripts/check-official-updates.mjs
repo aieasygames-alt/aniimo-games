@@ -64,6 +64,7 @@ const localNames = aniimo.map((item) => item.name);
 const missingLocally = wikiFetch.ok ? officialNames.filter((name) => !localNames.includes(name)) : [];
 const localOnly = wikiFetch.ok ? localNames.filter((name) => !officialNames.includes(name)) : [];
 const missingDescriptions = aniimo.filter((item) => !item.description || item.description.length < 20).map((item) => item.name);
+const watchlistEntries = aniimo.filter((item) => item.element === "Unknown" || item.role === "Watchlist" || item.region === "Official Wiki").map((item) => `${item.no} ${item.name}`);
 const regionNames = extractKnownRegionNames(mainHtml);
 const missingRegions = mainFetch.ok ? regions.map((region) => region.name).filter((name) => !regionNames.includes(name)) : [];
 const newsTitles = extractNewsTitles(mainHtml);
@@ -80,6 +81,7 @@ Generated: ${new Date().toISOString()}
 - Official regions seen on main page: ${regionNames.length}
 - PC/console launch date: ${releaseInfo.pcConsole}
 - Mobile launch date: ${releaseInfo.mobile}
+- Watchlist entries needing field verification: ${watchlistEntries.length}
 
 ## Fetch Status
 
@@ -98,6 +100,10 @@ ${wikiFetch.ok ? markdownList(localOnly, "None") : "- Skipped because the offici
 
 ${markdownList(missingDescriptions, "None")}
 
+## Watchlist Entries Needing Field Verification
+
+${markdownList(watchlistEntries, "None")}
+
 ## Region Names Not Seen On Main Page
 
 ${mainFetch.ok ? markdownList(missingRegions, "None") : "- Skipped because the official main site request failed."}
@@ -105,6 +111,13 @@ ${mainFetch.ok ? markdownList(missingRegions, "None") : "- Skipped because the o
 ## Recent Official News Titles
 
 ${markdownList(newsTitles, "No news titles extracted")}
+
+## Recommended Next Actions
+
+- If "New Official Aniimo Missing Locally" is not empty, run \`npm run sync:aniimo\` and review the generated data before publishing.
+- If watchlist entries shrink after official Wiki updates, replace Unknown and Watchlist fields with sourced values.
+- If official news titles change, review release date, rewards, codes, download and launch tracker pages.
+- After publishing, run \`npm run build\`, \`npm run check:seo\`, \`npm run check:framework\`, \`npm run check:assets\` and \`npm run check:live\`.
 `;
 
 writeFileSync(reportPath, report);

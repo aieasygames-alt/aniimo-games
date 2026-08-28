@@ -180,6 +180,8 @@ Recommended conventions:
 
 Keep source or working images outside `public` unless they are intentionally shipped. Current source images are stored under `assets/source`.
 
+Legacy PNG portraits that were replaced by WebP are stored under `assets/source/aniimo-png-backup` so they do not ship from production.
+
 Asset checks are covered by `npm run check:framework`:
 
 - referenced image paths must exist under `public`
@@ -268,6 +270,7 @@ Add future slug redirects above the final SPA fallback line.
 - production sitemap URLs use `https://aniimo.games/...`
 - production sitemap includes all locally expected sitemap routes
 - important pages expose canonical links and script tags
+- a deterministic sample of sitemap URLs also returns healthy HTML with matching canonicals
 
 ## Update Workflow
 

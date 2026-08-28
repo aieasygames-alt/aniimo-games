@@ -39,6 +39,9 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Fixed platform detail pages for PS5, Xbox, Epic Games Store, iOS and Android after a runtime variable-shadowing regression.
 - Added `check:live` for production robots, sitemap, canonical and important page health checks.
 - Added `check:assets` for production image reference and size-budget checks.
+- Expanded `check:live` to sample sitemap URLs in addition to key production pages.
+- Enhanced `check:official` with watchlist field verification counts and recommended next actions.
+- Converted remaining production Aniimo PNG portraits to WebP and moved the old PNG files into `assets/source/aniimo-png-backup`.
 
 ## Active Growth Priorities
 
@@ -129,12 +132,14 @@ Completed first public monitoring layer:
 - `/launch-tracker/` gives users and crawlers a source-aware launch readiness hub.
 - The page separates confirmed official facts from watchlist items such as exact unlock hours, redeem codes and spawn routes.
 - `npm run check:live` verifies deployed robots, sitemap, canonical tags and key page availability.
+- `npm run check:live` now also samples sitemap URLs to catch production route regressions beyond the most important pages.
+- `npm run check:official` outputs watchlist field counts and next actions for source-driven updates.
 
 ### Priority 6: Performance
 
 Status: In progress
 
-Completed first-round WebP conversion for the largest unreferenced production PNG files. Added `npm run check:assets` for image budgets and compressed the Blitzwood region artwork under the current region-image threshold.
+Completed first-round WebP conversion for the largest unreferenced production PNG files. Added `npm run check:assets` for image budgets, compressed the Blitzwood region artwork under the current region-image threshold, and converted remaining production Aniimo PNG portraits to WebP.
 
 ### Priority 7: Core Search Page Expansion
 
