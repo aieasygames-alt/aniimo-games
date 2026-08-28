@@ -56,6 +56,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added GSC-driven refresh planning pages for query watchlists and post-indexing page improvement.
 - Added directory hub pages for guides, comparisons, mechanics, launch and growth planning to improve crawl paths beyond the single site index.
 - Added stage and data-status collection pages so Lumin, Gamma, Nova, Official Index and Confirmed entries have crawlable index pages.
+- Expanded collection pages with summary panels, represented elements/roles/stages/regions, taxonomy links and collection-specific FAQ blocks.
 
 ## Active Growth Priorities
 
@@ -411,6 +412,7 @@ Implementation notes:
 - Growth refresh pages define how future Search Console queries should become page updates, FAQ additions or new content.
 - Directory hubs group related long-tail pages into crawlable, user-facing clusters so important pages are not only discoverable from `/site-index/`.
 - Stage and status collection pages reuse the database card pattern and are linked from taxonomy chips plus the site index.
+- Element, role, stage and status collection pages now include unique summary context beyond repeated database cards.
 - New topic groups are included in route resolution, prerender routes, sitemap generation and the visible site index.
 
 ## Acceptance Criteria

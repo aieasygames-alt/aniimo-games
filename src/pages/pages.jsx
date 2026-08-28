@@ -112,6 +112,10 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
 export function CollectionPage({ type, value, navigate }) {
   const label = value.toUpperCase() === "DPS" ? "DPS" : value.charAt(0).toUpperCase() + value.slice(1);
   const items = aniimo.filter((item) => item[type] && item[type].toLowerCase() === value.toLowerCase());
+  const elements = [...new Set(items.map((item) => item.element))].filter(Boolean);
+  const roles = [...new Set(items.map((item) => item.role))].filter(Boolean);
+  const stages = [...new Set(items.map((item) => item.stage))].filter(Boolean);
+  const regionsInSet = [...new Set(items.map((item) => item.region))].filter(Boolean);
   const typeLabel = {
     element: "Element",
     role: "Role",
@@ -119,6 +123,10 @@ export function CollectionPage({ type, value, navigate }) {
     status: "Data Status",
   }[type];
   const title = `${label} Aniimo ${typeLabel} Guide`;
+  const collectionFaq = [
+    [`How many ${label} Aniimo are tracked?`, `Aniimo.games currently tracks ${items.length} ${label} entries in this ${typeLabel.toLowerCase()} collection.`],
+    [`Is this ${label} Aniimo list final?`, "No. This collection uses current public data and should be refreshed when official Wiki or live-game verification changes entries."],
+  ];
 
   return (
     <section className="section">
@@ -127,6 +135,20 @@ export function CollectionPage({ type, value, navigate }) {
         Browse official Wiki entries tagged as {label}. Use this index as a landing page
         for {typeLabel.toLowerCase()} searches before detailed launch data is verified.
       </p>
+      <div className="detail-panels">
+        <InfoPanel title="Collection Summary" rows={[
+          ["Tracked entries", `${items.length}`],
+          ["Elements represented", elements.join(", ")],
+          ["Roles represented", roles.join(", ")],
+          ["Stages represented", stages.join(", ")],
+        ]} />
+        <InfoPanel title="Coverage Notes" rows={[
+          ["Regions represented", regionsInSet.join(", ")],
+          ["Data policy", "Exact spawn, route and balance details stay pending until official or live-game verification."],
+          ["Best next link", type === "element" ? "Compare roles and stages inside this element." : "Compare elements, stages and regions inside this collection."],
+        ]} />
+      </div>
+      <TaxonomyLinks navigate={navigate} />
       <div className="aniimo-grid">
         {items.map((item) => (
           <article className="aniimo-card" key={item.id}>
@@ -153,6 +175,7 @@ export function CollectionPage({ type, value, navigate }) {
           </article>
         ))}
       </div>
+      <FaqBlock items={collectionFaq} />
     </section>
   );
 }
