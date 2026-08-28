@@ -1,6 +1,6 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { aniimo, gameInfo, regions } from "../data/content.js";
+import { aniimo, beginnerTopics, gameInfo, mediaGalleryItems, mechanicDeepDiveTopics, officialPitchTopics, regions } from "../data/content.js";
 import { canonicalUrl, prerenderRoutes, sitemapRoutes } from "../src/lib/routes.js";
 
 const issues = [];
@@ -46,13 +46,17 @@ const referencedAssets = new Set([
   "/images/banners/banner-susuta-hunt.webp",
   ...aniimo.map((item) => item.image).filter(Boolean),
   ...regions.map((item) => item.image).filter(Boolean),
+  ...beginnerTopics.map((item) => item.image).filter(Boolean),
+  ...officialPitchTopics.map((item) => item.image).filter(Boolean),
+  ...mechanicDeepDiveTopics.map((item) => item.image).filter(Boolean),
+  ...mediaGalleryItems.map((item) => item.image).filter(Boolean),
 ]);
 
 for (const asset of referencedAssets) {
   if (!existsSync(`public${asset}`)) issues.push(`Missing referenced asset: ${asset}`);
 }
 
-for (const file of listFiles("public/images/aniimo")) {
+for (const file of listFiles("public/images")) {
   const publicPath = `/${file.replace(/^public\//, "")}`;
   const sizeKb = Math.round(statSync(file).size / 1024);
   if (!referencedAssets.has(publicPath) && sizeKb > 300) {

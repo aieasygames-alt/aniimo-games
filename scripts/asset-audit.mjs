@@ -1,6 +1,6 @@
 import { existsSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { aniimo, gameInfo, regions } from "../data/content.js";
+import { aniimo, beginnerTopics, gameInfo, mediaGalleryItems, mechanicDeepDiveTopics, officialPitchTopics, regions } from "../data/content.js";
 
 const issues = [];
 const referencedAssets = new Set([
@@ -11,6 +11,10 @@ const referencedAssets = new Set([
   "/images/banners/banner-rewards.webp",
   ...aniimo.map((item) => item.image).filter(Boolean),
   ...regions.map((item) => item.image).filter(Boolean),
+  ...beginnerTopics.map((item) => item.image).filter(Boolean),
+  ...officialPitchTopics.map((item) => item.image).filter(Boolean),
+  ...mechanicDeepDiveTopics.map((item) => item.image).filter(Boolean),
+  ...mediaGalleryItems.map((item) => item.image).filter(Boolean),
 ]);
 
 for (const asset of referencedAssets) {
@@ -24,6 +28,7 @@ for (const asset of referencedAssets) {
   if (asset.includes("/aniimo/") && sizeKb > 260) issues.push(`Aniimo portrait is too large: ${asset} (${sizeKb}KB)`);
   if (asset.includes("/regions/") && sizeKb > 360) issues.push(`Region artwork is too large: ${asset} (${sizeKb}KB)`);
   if (asset.includes("/banners/") && sizeKb > 420) issues.push(`Banner image is too large: ${asset} (${sizeKb}KB)`);
+  if (asset.includes("/mechanics/") && sizeKb > 320) issues.push(`Mechanic image is too large: ${asset} (${sizeKb}KB)`);
   if (asset === gameInfo.heroImage && sizeKb > 520) issues.push(`Hero image is too large: ${asset} (${sizeKb}KB)`);
   if (asset === gameInfo.ogImage && sizeKb > 420) issues.push(`OG image is too large: ${asset} (${sizeKb}KB)`);
 }

@@ -874,6 +874,7 @@ export function TopicGuidePage({ topic, kicker, icon, children }) {
   return (
     <section className="section sources-band">
       <SectionTitle icon={icon} kicker={kicker} title={topic.title} />
+      {topic.image && <img className="page-banner" src={topic.image} alt={topic.title} width="1600" height="900" loading="lazy" />}
       <p className="section-copy">{topic.intro}</p>
       <EditorialBlock title="Key Points" items={topic.points} />
       {children}

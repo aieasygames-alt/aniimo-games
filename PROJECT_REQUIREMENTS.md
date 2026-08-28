@@ -60,6 +60,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added `npm run check:content` to validate topic depth, FAQ coverage, unique slugs, media entries, source archive entries and Aniimo field completeness.
 - Added `npm run check:release` as the standard pre-commit gate for build, content, SEO, framework, asset and verification checks.
 - Added IndexNow support with a public key file and `npm run submit:indexnow` for sitemap URL submission after deployment.
+- Added four compressed mechanic images for Twine, Egg Heist, Homeland and Aniipod pages, and extended asset audits to cover topic and gallery images.
 
 ## Active Growth Priorities
 
@@ -410,6 +411,7 @@ Implementation notes:
 - Troubleshooting pages answer launch friction questions without sending users to unofficial download mirrors.
 - Media and source archive hubs improve trust, image discovery and update workflow transparency.
 - Mechanic deep dives prepare launch verification fields for Twine ability use, Egg Heist rules, Egg Heist rewards and Lost Isles routing.
+- Mechanic pages can now render topic-level banners from `public/images/mechanics`.
 - Media detail pages separate official trailer, screenshot and region-art discovery from unverified gameplay claims.
 - Launch conversion pages connect countdown, wishlist, pre-registration and safe-download searches back to official storefronts.
 - Growth refresh pages define how future Search Console queries should become page updates, FAQ additions or new content.

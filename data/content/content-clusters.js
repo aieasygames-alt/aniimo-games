@@ -35,6 +35,7 @@ export const beginnerTopics = [
     slug: "aniipod-guide",
     title: "Aniipod Guide",
     description: "Track what Aniipods are, how they relate to catching, and what item details need launch verification.",
+    image: "/images/mechanics/mechanic-aniipod.webp",
     intro: "Aniipods are tied to catching and launch rewards. This guide keeps confirmed reward mentions separate from unknown catch-rate or item-tier details.",
     points: [
       ["Catching item", "Aniipods are described as catching tools for Aniimo encounters."],
@@ -162,6 +163,7 @@ export const officialPitchTopics = [
     slug: "aniimo-twine-guide",
     title: "Aniimo Twine Guide",
     description: "Learn how Aniimo Twine is officially described and what combat, traversal and puzzle details still need launch verification.",
+    image: "/images/mechanics/mechanic-twine.webp",
     intro: "Twine is the most distinctive Aniimo mechanic for SEO because users will search what it means, how it works and whether it changes exploration or combat.",
     points: [
       ["What Twine means", "Twine is the system that lets a player become a collected Aniimo and use that Aniimo's abilities."],
@@ -177,6 +179,7 @@ export const officialPitchTopics = [
     slug: "aniimo-egg-heist-guide",
     title: "Aniimo Egg Heist Guide",
     description: "Track Aniimo Egg Heist as an official PVEVP mode and prepare launch verification for team size, rewards, routes and combat rules.",
+    image: "/images/mechanics/mechanic-egg-heist.webp",
     intro: "Egg Heist deserves a standalone guide because it answers a different intent from database, download and map searches: players want to know how the mode works.",
     points: [
       ["Mode identity", "Egg Heist is described as a PVEVP mode, so pages should explain that it combines exploration, enemy pressure and player-versus-player risk."],
@@ -192,6 +195,7 @@ export const officialPitchTopics = [
     slug: "aniimo-homeland-guide",
     title: "Aniimo Homeland Guide",
     description: "Track Aniimo Homeland, RV, crops, decoration and Aniimo interaction systems from official public information.",
+    image: "/images/mechanics/mechanic-homeland.webp",
     intro: "Homeland content gives the site a non-combat guide path for players searching building, farming, housing and companion interaction questions.",
     points: [
       ["Personal RV", "Official text presents the RV as part of the player's personal home base."],
@@ -351,6 +355,7 @@ export const mechanicDeepDiveTopics = [
     slug: "twine-abilities",
     title: "Aniimo Twine Abilities",
     description: "Track how Aniimo Twine abilities should be documented for combat, traversal, puzzles and route verification.",
+    image: "/images/mechanics/mechanic-twine.webp",
     intro: "Twine ability searches will grow after launch because players will want to know which Aniimo helps with routes, combat roles and puzzle checks.",
     points: [
       ["Ability categories", "Use combat, traversal, puzzle, exploration and support as the first practical categories until official values are complete."],
@@ -366,6 +371,7 @@ export const mechanicDeepDiveTopics = [
     slug: "egg-heist-rules",
     title: "Aniimo Egg Heist Rules",
     description: "Prepare a source-safe Egg Heist rules guide for team size, PVEVP structure, Lost Isles routing and post-launch verification.",
+    image: "/images/mechanics/mechanic-egg-heist.webp",
     intro: "Egg Heist rule searches need a clear page before launch, but exact scoring, rewards and matchmaking details should remain watchlist fields.",
     points: [
       ["Confirmed mode shape", "Egg Heist is described as a PVEVP mode with three-player teams."],
@@ -381,6 +387,7 @@ export const mechanicDeepDiveTopics = [
     slug: "egg-heist-rewards",
     title: "Aniimo Egg Heist Rewards",
     description: "Track Aniimo Egg Heist reward questions without inventing unconfirmed event drops or code rewards.",
+    image: "/images/mechanics/mechanic-egg-heist.webp",
     intro: "Reward searches can attract users, but they are also easy to mislead. This page keeps Egg Heist reward status separate from pre-registration rewards and redeem codes.",
     points: [
       ["Known boundary", "Egg Heist is an official mode, but full reward tables are not treated as confirmed on Aniimo.games."],
@@ -396,6 +403,7 @@ export const mechanicDeepDiveTopics = [
     slug: "lost-isles-guide",
     title: "Aniimo Lost Isles Guide",
     description: "Track Lost Isles as the Egg Heist setting and prepare route, reward and rules verification after launch.",
+    image: "/images/mechanics/mechanic-egg-heist.webp",
     intro: "Lost Isles is useful as a standalone page because it may not map cleanly to the six public region pages already used by the map hub.",
     points: [
       ["Mode context", "Lost Isles should be tied to Egg Heist until official sources clarify broader map access."],
@@ -649,6 +657,10 @@ export const mediaGalleryItems = [
   ["Download banner", "/images/banners/banner-download.webp", "Download guide banner for platform and safe-install pages."],
   ["Rewards banner", "/images/banners/banner-rewards.webp", "Rewards guide banner for pre-registration and milestone pages."],
   ["Susuta Hunt banner", "/images/banners/banner-susuta-hunt.webp", "Event-style banner used for Susuta reward and campaign context."],
+  ["Twine mechanic", "/images/mechanics/mechanic-twine.webp", "Mechanic image used by Twine and Twine ability pages."],
+  ["Egg Heist mechanic", "/images/mechanics/mechanic-egg-heist.webp", "Mechanic image used by Egg Heist rules, rewards and Lost Isles pages."],
+  ["Homeland mechanic", "/images/mechanics/mechanic-homeland.webp", "Mechanic image used by Homeland and home-base guide pages."],
+  ["Aniipod mechanic", "/images/mechanics/mechanic-aniipod.webp", "Mechanic image used by catching, Aniipod and safe-download education pages."],
   ["Mistwoods region", "/images/regions/region-mistwoods.webp", "Region artwork used by Mistwoods map and location pages."],
   ["Echoback Landing region", "/images/regions/region-echoback-landing.webp", "Region artwork used by Echoback Landing map and location pages."],
   ["Sea of Flowers region", "/images/regions/region-sea-of-flowers.webp", "Region artwork used by Sea of Flowers map and location pages."],
