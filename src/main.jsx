@@ -12,16 +12,22 @@ import {
 import { applySeo } from "./seo/runtime.js";
 import {
   AniimoDetail,
+  AboutPage,
   BeginnerPage,
+  BestAniimoPage,
   CodesPage,
   CollectionPage,
+  ContactPage,
   DatabasePage,
   DownloadPage,
+  EditorialPolicyPage,
   EvolutionPage,
   GuideSummary,
   HomePage,
   MapPage,
   NotFoundPage,
+  PlatformPage,
+  PreRegistrationRewardsPage,
   RegionDetail,
   ReleaseDatePage,
   RewardsPage,
@@ -146,6 +152,20 @@ function App() {
           <UpdatesPage />
         ) : routeInfo.path === "/sources/" ? (
           <SourcesPage />
+        ) : routeInfo.path === "/best-aniimo/" ? (
+          <BestAniimoPage navigate={navigate} />
+        ) : routeInfo.path === "/platforms/steam/" ? (
+          <PlatformPage type="steam" />
+        ) : routeInfo.path === "/platforms/mobile/" ? (
+          <PlatformPage type="mobile" />
+        ) : routeInfo.path === "/rewards/pre-registration/" ? (
+          <PreRegistrationRewardsPage />
+        ) : routeInfo.path === "/about/" ? (
+          <AboutPage />
+        ) : routeInfo.path === "/editorial-policy/" ? (
+          <EditorialPolicyPage />
+        ) : routeInfo.path === "/contact/" ? (
+          <ContactPage />
         ) : routeInfo.path === "/" && path === "/" ? (
           <>
             <HomePage {...sharedProps} />

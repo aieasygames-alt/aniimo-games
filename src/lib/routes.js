@@ -20,9 +20,16 @@ export const staticRoutes = [
   { path: "/beginner-guide/", label: "Guides", title: "Aniimo Beginner Guide", description: "Learn Aniimo basics including catching, Twine, environment encounters, Homeland, RV systems and beginner progression." },
   { path: "/updates/", label: "Updates", title: "Aniimo Updates & Source Log", description: "Follow Aniimo.games update history, official source checks, content freshness notes and launch tracking changes." },
   { path: "/sources/", label: "Sources", title: "Aniimo Official Sources", description: "Review official Aniimo sources used for launch dates, platform links, Wiki names, regions, rewards and mechanics." },
+  { path: "/best-aniimo/", label: "Best Aniimo", title: "Best Aniimo to Track Before Launch | Aniimo Wiki", description: "Review useful Aniimo picks to track before launch by role, element, region coverage and official source status." },
+  { path: "/platforms/steam/", label: "Steam", title: "Aniimo Steam Download & Wishlist Guide", description: "Find the official Aniimo Steam page, PC launch date, wishlist notes and safe download guidance." },
+  { path: "/platforms/mobile/", label: "Mobile", title: "Aniimo Mobile Download, App Store & Google Play Guide", description: "Track Aniimo mobile release timing, App Store and Google Play links, pre-registration notes and device guidance." },
+  { path: "/rewards/pre-registration/", label: "Pre-Registration", title: "Aniimo Pre-Registration Rewards Guide", description: "Track official Aniimo pre-registration rewards, milestone items, Susuta egg notes and claim status." },
+  { path: "/about/", label: "About", title: "About Aniimo.games", description: "Learn what Aniimo.games covers, how the independent guide site uses official public Aniimo sources and how content is maintained." },
+  { path: "/editorial-policy/", label: "Editorial Policy", title: "Aniimo.games Editorial Policy", description: "Review Aniimo.games source policy, verification labels, update workflow and correction standards." },
+  { path: "/contact/", label: "Contact", title: "Contact Aniimo.games", description: "Contact Aniimo.games about corrections, missing Aniimo data, source updates, image issues and site feedback." },
 ];
 
-export const navRoutes = staticRoutes.filter((item) => item.nav !== false && item.path !== "/release-date/");
+export const navRoutes = staticRoutes.filter((item) => item.nav !== false && !["/release-date/", "/best-aniimo/", "/platforms/steam/", "/platforms/mobile/", "/rewards/pre-registration/", "/about/", "/editorial-policy/", "/contact/"].includes(item.path));
 
 export function normalizePath(path) {
   if (!path || path === "/") return "/";

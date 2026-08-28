@@ -138,7 +138,7 @@ export const editorialGuides = {
     ["Verification rule", "A code should only be marked active after it appears on an official channel or can be redeemed in-game."],
   ],
   wiki: [
-    ["Aniimo index", "The database currently focuses on 53 public Aniimo entries with official names, elements, roles, stages and descriptions."],
+    ["Aniimo index", "The database currently tracks all 89 public Aniimo entries discoverable from the official Wiki probe page. Entries with incomplete element, role or stage data remain labeled as watchlist fields."],
     ["Map index", "Six public world regions are connected to guide pages with official artwork and representative Aniimo."],
     ["Maintenance", "New official Wiki and site updates should flow into the changelog before pages are refreshed."],
   ],
@@ -151,8 +151,8 @@ export const faqs = {
     ["What is Twine in Aniimo?", "Twine lets players become collected Aniimo and use their skills for puzzles, battles, traversal and exploration."],
   ],
   database: [
-    ["How many Aniimo names are listed?", "The official Aniimo Wiki currently exposes a numbered Aniimo index, and this site tracks a launch-ready subset first."],
-    ["Are elements and roles official?", "The element, role and stage categories come from the official Aniimo Wiki index."],
+    ["How many Aniimo names are listed?", "This site currently tracks 89 public Aniimo names discoverable from the official Aniimo Wiki probe page."],
+    ["Are elements and roles official?", "Confirmed entries use official Wiki element, role and stage labels. Newly synced index-only entries keep unknown fields labeled until verified."],
   ],
   codes: [
     ["Are there official Aniimo codes?", "No public redeem code is confirmed here yet. This page separates redeem codes from official milestone rewards."],
@@ -187,4 +187,5 @@ export const statuses = {
   Unconfirmed: "Seen in previews, community reports, or incomplete sources.",
   Estimated: "Planning note based on currently public information.",
   Watchlist: "Tracked for launch; verify before publishing as active.",
+  Unknown: "Official index entry exists, but this specific field still needs verification.",
 };

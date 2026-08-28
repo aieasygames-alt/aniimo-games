@@ -433,6 +433,170 @@ export function SourcesPage() {
   );
 }
 
+export function BestAniimoPage({ navigate }) {
+  const picks = [
+    ...aniimo.filter((item) => item.status === "Confirmed" && item.role === "DPS").slice(0, 4),
+    ...aniimo.filter((item) => item.status === "Confirmed" && item.role === "Support").slice(0, 4),
+  ].slice(0, 8);
+
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<Sparkles />} kicker="Guide" title="Best Aniimo to Track Before Launch" />
+      <p className="section-copy">
+        This pre-launch list focuses on confirmed public entries with useful search intent:
+        damage roles, support utility, region coverage and clear official descriptions.
+        It is not a final tier list because launch balance, exact abilities and team data
+        still need in-game verification.
+      </p>
+      <div className="aniimo-grid">
+        {picks.map((item) => (
+          <article className="aniimo-card" key={item.id}>
+            <CreatureImage item={item} />
+            <div>
+              <div className="card-heading">
+                <h3>{item.name}</h3>
+                <StatusBadge status={item.status} />
+              </div>
+              <p>{item.use}</p>
+              <dl>
+                <dt>Region</dt>
+                <dd>{item.region}</dd>
+                <dt>Element</dt>
+                <dd>{item.element}</dd>
+                <dt>Role</dt>
+                <dd>{item.role}</dd>
+              </dl>
+              <a className="text-link" href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
+                View Aniimo guide <ChevronRight size={16} />
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+      <SeoGuideBlock items={[
+        { title: "How this list is chosen", body: "The list prioritizes official entries that already have confirmed roles, elements, descriptions and useful internal links. It should be treated as a watchlist for launch planning, not a final competitive ranking." },
+        { title: "What changes after launch", body: "After launch, this page should be updated with tested combat performance, Twine utility, route access, team synergy and early-game availability." },
+        { title: "Best next step", body: "Use this page to jump into detail pages, then compare same-role and same-region Aniimo before deciding what to track for launch." },
+      ]} />
+    </section>
+  );
+}
+
+export function PlatformPage({ type }) {
+  const isMobile = type === "mobile";
+  const pagePlatforms = platforms.filter((platform) =>
+    isMobile ? ["App Store", "Google Play"].includes(platform.name) : platform.name === "Steam",
+  );
+
+  return (
+    <section className="section split-section download-band">
+      <div>
+        <SectionTitle icon={<Download />} kicker="Platforms" title={isMobile ? "Aniimo Mobile Download Guide" : "Aniimo Steam Download Guide"} />
+        <p className="section-copy">
+          {isMobile
+            ? "Aniimo mobile availability is tracked for September 23, 2026 through official iOS and Android storefronts."
+            : "Aniimo PC availability is tracked for September 16, 2026, with Steam acting as one of the official storefronts."}
+        </p>
+        <SeoGuideBlock compact items={[
+          { title: isMobile ? "Use official mobile listings" : "Use the official Steam listing", body: isMobile ? "Mobile players should use App Store or Google Play pages when they are visible in their region. Avoid unofficial APK mirrors before launch." : "PC players should wishlist Aniimo through Steam or use the official website to confirm launch availability. Avoid reposted installers." },
+          { title: "Release timing", body: isMobile ? `Mobile launch is currently tracked for ${releaseInfo.mobile}. Store visibility can vary by country and local storefront timing.` : `Steam launch is tied to the PC and console window on ${releaseInfo.pcConsole}. Exact hourly unlock timing still needs storefront confirmation.` },
+          { title: "Account planning", body: "Use the platform account you expect to play on at launch so wishlist, pre-registration or reward notices stay connected to the right storefront." },
+        ]} />
+      </div>
+      <div className="platform-list">
+        {pagePlatforms.map((item) => (
+          <article key={item.name} className="platform-card">
+            <div>
+              <h3>{item.name}</h3>
+              <p className="platform-action">{item.action}</p>
+              <p>{item.note}</p>
+              <a className="text-link" href={item.url} target="_blank" rel="noreferrer">
+                Official source <ChevronRight size={16} />
+              </a>
+            </div>
+            <StatusBadge status={item.status} />
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function PreRegistrationRewardsPage() {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<Gift />} kicker="Rewards" title="Aniimo Pre-Registration Rewards Guide" />
+      <p className="section-copy">
+        This page separates confirmed pre-registration rewards from future redeem codes.
+        Use it to track official campaign items, milestone rewards and claim notes before
+        the global launch windows arrive.
+      </p>
+      <RewardGrid />
+      <SeoGuideBlock items={[
+        { title: "Confirmed reward types", body: "Official reward tracking includes Glimmer, Aniipod Ultra, Companion Promise avatar frame, Sunlit Meadow outfit, a Prismana Aniimo choice and a mysterious Susuta egg." },
+        { title: "How to claim", body: "Start from the official website or official storefront pages. Reward delivery can depend on account, region and platform systems after launch." },
+        { title: "Code versus reward", body: "A pre-registration reward is not automatically a redeem code. This site keeps rewards and codes separate so search users can avoid misleading code lists." },
+      ]} />
+    </section>
+  );
+}
+
+export function AboutPage() {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<CheckCircle2 />} kicker="Trust" title="About Aniimo.games" />
+      <p className="section-copy">
+        Aniimo.games is an independent guide site built to organize public Aniimo
+        information for players. It is not the official Aniimo website. The site focuses
+        on searchable guides for Aniimo names, locations, regions, release dates,
+        download links, rewards, codes and beginner systems.
+      </p>
+      <SeoGuideBlock items={[
+        { title: "What we cover", body: "We cover public Aniimo Wiki entries, official storefront links, public launch information, rewards, regions, gameplay mechanics and route notes that can be verified after launch." },
+        { title: "How we label data", body: "Confirmed data is tied to official or in-game sources. Watchlist and unknown fields are used when an entry exists but exact element, role, region, stage or spawn information still needs verification." },
+        { title: "Why this exists", body: "Search users often need one clean place to compare Aniimo entries, official sources and practical guide pages without mixing confirmed facts with unsourced claims." },
+      ]} />
+    </section>
+  );
+}
+
+export function EditorialPolicyPage() {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<BookOpen />} kicker="Trust" title="Editorial Policy" />
+      <p className="section-copy">
+        Aniimo.games prioritizes official public sources, clear verification labels and
+        conservative wording. Preview information is useful, but it should not be written
+        as final route, spawn or balance data until launch verification is available.
+      </p>
+      <SeoGuideBlock items={[
+        { title: "Source hierarchy", body: "Official Aniimo pages, official Wiki entries, platform storefronts and in-game verification are preferred. Reposted summaries and community screenshots are treated as leads, not final sources." },
+        { title: "Update workflow", body: "New official entries are checked with scripts, added to the database, linked into sitemap routes and reviewed for missing images, duplicate meta tags and broken internal links." },
+        { title: "Correction standard", body: "When a correction is needed, the page should preserve source status, update the changelog and avoid overstating unverified mechanics." },
+      ]} />
+    </section>
+  );
+}
+
+export function ContactPage() {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<CheckCircle2 />} kicker="Trust" title="Contact Aniimo.games" />
+      <p className="section-copy">
+        For corrections, missing official entries, broken links, image issues or source
+        updates, contact the site maintainer through the GitHub repository connected to
+        Aniimo.games. Include the page URL, the proposed correction and the official
+        source that supports the change.
+      </p>
+      <SeoGuideBlock items={[
+        { title: "Correction requests", body: "Send the affected Aniimo, region or guide URL with the exact field that should change." },
+        { title: "Source requests", body: "Official links are preferred. Storefront pages, official Wiki entries and official news posts are the easiest sources to verify." },
+        { title: "Launch updates", body: "After launch, route notes, spawn windows and code status should include timestamps and verification context." },
+      ]} />
+    </section>
+  );
+}
+
 export function AniimoDetail({ item, navigate }) {
   const sameElement = aniimo.filter((candidate) => candidate.id !== item.id && candidate.element === item.element).slice(0, 6);
   const sameRegion = aniimo.filter((candidate) => candidate.id !== item.id && candidate.region === item.region).slice(0, 6);
