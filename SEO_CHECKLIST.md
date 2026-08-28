@@ -10,6 +10,8 @@ Last checked: 2026-08-28
 - `sitemap.xml` contains canonical `https://aniimo.games/...` URLs.
 - Sitemap coverage includes core pages, element pages, role pages, 53 Aniimo detail pages and 6 region pages.
 - Build-time SEO audit passes with `npm run check:seo`.
+- Static HTML is generated for sitemap routes during `npm run build`.
+- Legacy slugs for `nimbi`, `turbo` and `dreaple` redirect to official-name pages.
 
 ## Structured Data
 

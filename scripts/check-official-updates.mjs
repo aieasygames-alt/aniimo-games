@@ -61,11 +61,11 @@ const wikiHtml = wikiFetch.text;
 const officialAniimo = extractWikiAniimo(wikiHtml);
 const officialNames = officialAniimo.map((item) => item.name);
 const localNames = aniimo.map((item) => item.name);
-const missingLocally = officialNames.filter((name) => !localNames.includes(name));
-const localOnly = localNames.filter((name) => !officialNames.includes(name));
+const missingLocally = wikiFetch.ok ? officialNames.filter((name) => !localNames.includes(name)) : [];
+const localOnly = wikiFetch.ok ? localNames.filter((name) => !officialNames.includes(name)) : [];
 const missingDescriptions = aniimo.filter((item) => !item.description || item.description.length < 20).map((item) => item.name);
 const regionNames = extractKnownRegionNames(mainHtml);
-const missingRegions = regions.map((region) => region.name).filter((name) => !regionNames.includes(name));
+const missingRegions = mainFetch.ok ? regions.map((region) => region.name).filter((name) => !regionNames.includes(name)) : [];
 const newsTitles = extractNewsTitles(mainHtml);
 
 const report = `# Aniimo Official Update Report
@@ -88,11 +88,11 @@ Generated: ${new Date().toISOString()}
 
 ## New Official Aniimo Missing Locally
 
-${markdownList(missingLocally, "None")}
+${wikiFetch.ok ? markdownList(missingLocally, "None") : "- Skipped because the official Wiki request failed."}
 
 ## Local Aniimo Not Seen In Probe
 
-${markdownList(localOnly, "None")}
+${wikiFetch.ok ? markdownList(localOnly, "None") : "- Skipped because the official Wiki request failed."}
 
 ## Local Entries Needing Description Review
 
@@ -100,7 +100,7 @@ ${markdownList(missingDescriptions, "None")}
 
 ## Region Names Not Seen On Main Page
 
-${markdownList(missingRegions, "None")}
+${mainFetch.ok ? markdownList(missingRegions, "None") : "- Skipped because the official main site request failed."}
 
 ## Recent Official News Titles
 

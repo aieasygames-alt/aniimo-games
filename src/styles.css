@@ -52,6 +52,7 @@ a {
 }
 
 .topbar nav {
+  display: flex;
   gap: 18px;
   color: #44514c;
   font-size: 14px;
@@ -66,7 +67,7 @@ main {
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
   gap: clamp(28px, 5vw, 68px);
-  min-height: 620px;
+  min-height: min(720px, calc(100vh - 68px));
   align-items: center;
   padding: clamp(44px, 7vw, 96px) clamp(18px, 5vw, 72px) 36px;
   background:
@@ -357,7 +358,7 @@ select {
 
 .aniimo-card {
   display: grid;
-  grid-template-columns: 74px minmax(0, 1fr);
+  grid-template-columns: 86px minmax(0, 1fr);
   gap: 18px;
   padding: 18px;
 }
@@ -382,8 +383,8 @@ select {
 
 .creature-image {
   display: block;
-  width: 74px;
-  height: 74px;
+  width: 86px;
+  height: 86px;
   border-radius: 8px;
   object-fit: contain;
   background:
@@ -756,7 +757,7 @@ th {
 
 .detail-hero {
   display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
+  grid-template-columns: 220px minmax(0, 1fr);
   gap: clamp(22px, 5vw, 56px);
   align-items: center;
   margin-top: 28px;
@@ -837,6 +838,7 @@ th {
     width: 100%;
     overflow-x: auto;
     padding-bottom: 4px;
+    white-space: nowrap;
   }
 
   .hero,
@@ -865,19 +867,50 @@ th {
   .hero {
     min-height: auto;
   }
+
+  .hero-image,
+  .hero-scene {
+    min-height: 280px;
+  }
+
+  .detail-hero {
+    gap: 18px;
+  }
 }
 
 @media (max-width: 560px) {
   h1 {
-    font-size: 44px;
+    font-size: 40px;
+    line-height: 1;
   }
 
   .aniimo-card {
     grid-template-columns: 1fr;
   }
 
+  .creature-image,
   .creature-mark {
-    width: 64px;
-    height: 64px;
+    width: 96px;
+    height: 96px;
+  }
+
+  .creature-image.large,
+  .creature-mark.large {
+    width: 132px;
+    height: 132px;
+  }
+
+  .section {
+    padding-top: 54px;
+    padding-bottom: 54px;
+  }
+
+  .card-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  dl {
+    grid-template-columns: 1fr;
   }
 }

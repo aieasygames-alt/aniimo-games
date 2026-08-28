@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { aniimo, regions } from "../data/content.js";
 
 const siteUrl = "https://aniimo.games";
@@ -36,6 +36,13 @@ const expectedRoutes = [
 for (const route of expectedRoutes) {
   if (!routes.includes(route)) {
     issues.push(`Missing sitemap route: ${route}`);
+  }
+}
+
+for (const route of expectedRoutes.filter((route) => route !== `${siteUrl}/`)) {
+  const pathname = route.replace(siteUrl, "");
+  if (!existsSync(`dist${pathname}/index.html`)) {
+    issues.push(`Missing prerendered HTML: ${pathname}/index.html`);
   }
 }
 

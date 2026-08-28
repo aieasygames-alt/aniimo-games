@@ -47,6 +47,10 @@ function StatusBadge({ status }) {
   return <span className={`status status-${status.toLowerCase()}`}>{status}</span>;
 }
 
+function findAniimoBySlug(slug) {
+  return aniimo.find((item) => item.id === slug || item.aliases?.includes(slug));
+}
+
 function App() {
   const [path, setPath] = useState(window.location.pathname);
   const [query, setQuery] = useState("");
@@ -103,7 +107,7 @@ function App() {
     };
     const aniimoMatch = path.match(/^\/aniimo\/([^/]+)/);
     const regionMatch = path.match(/^\/regions\/([^/]+)/);
-    const detail = aniimoMatch ? aniimo.find((item) => item.id === aniimoMatch[1]) : null;
+    const detail = aniimoMatch ? findAniimoBySlug(aniimoMatch[1]) : null;
     const regionDetail = regionMatch ? regions.find((item) => item.id === regionMatch[1]) : null;
     document.title = detail
       ? `${detail.name} Location, Evolution, Forms & Abilities | Aniimo Wiki`
@@ -157,7 +161,7 @@ function App() {
   const regionMatch = path.match(/^\/regions\/([^/]+)/);
   const elementMatch = path.match(/^\/elements\/([^/]+)/);
   const roleMatch = path.match(/^\/roles\/([^/]+)/);
-  const detail = aniimoMatch ? aniimo.find((item) => item.id === aniimoMatch[1]) : null;
+  const detail = aniimoMatch ? findAniimoBySlug(aniimoMatch[1]) : null;
   const regionDetail = regionMatch ? regions.find((item) => item.id === regionMatch[1]) : null;
   const elementPage = elementMatch ? elementMatch[1] : null;
   const rolePage = roleMatch ? roleMatch[1] : null;
@@ -279,7 +283,7 @@ function HomePage(props) {
 
         <section className="quick-grid" aria-label="Core sections">
           <QuickCard icon={<BookOpen />} title="Database" text="Index every Aniimo with location, forms, abilities and source status." href="/aniimo" navigate={props.navigate} />
-          <QuickCard icon={<Map />} title="Map" text="Build region pages first, then upgrade into point filters and route tools." href="/map" navigate={props.navigate} />
+          <QuickCard icon={<Map />} title="Map" text="Explore regions, representative Aniimo, route notes and official scenery." href="/map" navigate={props.navigate} />
           <QuickCard icon={<Sparkles />} title="Evolution" text="Track base forms, branch forms, special conditions and launch updates." href="/evolution" navigate={props.navigate} />
           <QuickCard icon={<Gift />} title="Rewards" text="Track confirmed pre-registration rewards, milestone rewards and launch code status." href="/rewards" navigate={props.navigate} />
         </section>
@@ -301,7 +305,7 @@ function HomePage(props) {
 function DatabasePage({ query, setQuery, element, setElement, region, setRegion, role, setRole, stage, setStage, elements, regionNames, roles, stages, filteredAniimo, navigate, compact }) {
   return (
         <section id="database" className="section">
-          <SectionTitle icon={<Search />} kicker="P0" title="Aniimo Database" />
+          <SectionTitle icon={<Search />} kicker="Index" title="Aniimo Database" />
           <p className="section-copy">
             Official Aniimo names, elements, roles and stages are tracked from the public
             Aniimo Wiki. Location details stay source-labeled and ready for launch verification.
@@ -340,7 +344,7 @@ function DatabasePage({ query, setQuery, element, setElement, region, setRegion,
                     <dd>{item.no}</dd>
                   </dl>
                   <a className="text-link" href={`/aniimo/${item.id}`} onClick={(event) => navigate(event, `/aniimo/${item.id}`)}>
-                    Open SEO page <ChevronRight size={16} />
+                    View Aniimo guide <ChevronRight size={16} />
                   </a>
                 </div>
               </article>
@@ -348,7 +352,7 @@ function DatabasePage({ query, setQuery, element, setElement, region, setRegion,
           </div>
           {compact && (
             <a className="section-more" href="/aniimo" onClick={(event) => navigate(event, "/aniimo")}>
-              Open full database <ChevronRight size={17} />
+              Browse all Aniimo <ChevronRight size={17} />
             </a>
           )}
           {!compact && <FaqBlock items={faqs.database} />}
@@ -408,7 +412,7 @@ function CollectionPage({ type, value, navigate }) {
                 <dd>{item.stage}</dd>
               </dl>
               <a className="text-link" href={`/aniimo/${item.id}`} onClick={(event) => navigate(event, `/aniimo/${item.id}`)}>
-                Open detail page <ChevronRight size={16} />
+                View Aniimo guide <ChevronRight size={16} />
               </a>
             </div>
           </article>
@@ -421,7 +425,7 @@ function CollectionPage({ type, value, navigate }) {
 function MapPage({ compact, navigate }) {
   return (
         <section id="map" className="section">
-          <SectionTitle icon={<Compass />} kicker="P1" title="Map & Region Guides" />
+          <SectionTitle icon={<Compass />} kicker="World" title="Map & Region Guides" />
           <div className="region-grid">
             {regions.map((item) => (
               <article className="region-card" key={item.id}>
@@ -432,7 +436,7 @@ function MapPage({ compact, navigate }) {
                 <p className="small">Mechanics: {item.mechanics.join(", ")}</p>
                 <StatusBadge status={item.status} />
                 <a className="text-link" href={`/regions/${item.id}`} onClick={(event) => navigate(event, `/regions/${item.id}`)}>
-                  Open region page <ChevronRight size={16} />
+                  View region guide <ChevronRight size={16} />
                 </a>
               </article>
             ))}
@@ -453,7 +457,7 @@ function EvolutionPage() {
   return (
         <section id="evolution" className="section split-section">
           <div>
-            <SectionTitle icon={<Sparkles />} kicker="P1" title="Evolution & Forms" />
+            <SectionTitle icon={<Sparkles />} kicker="Forms" title="Evolution & Forms" />
             <p className="section-copy">
               The official index groups Aniimo by Lumin, Gamma and Nova stages. This table
               turns those stage labels into evolution and form search paths.
@@ -488,7 +492,7 @@ function EvolutionPage() {
 function CodesPage() {
   return (
         <section id="codes" className="section">
-          <SectionTitle icon={<Gift />} kicker="P0" title="Codes & Rewards" />
+          <SectionTitle icon={<Gift />} kicker="Rewards" title="Codes & Rewards" />
           <p className="section-copy">
             No public redeem code is confirmed yet. This page separates actual codes from
             official pre-registration rewards and launch milestone rewards.
@@ -522,7 +526,7 @@ function CodesPage() {
 function RewardsPage() {
   return (
     <section id="rewards" className="section">
-      <SectionTitle icon={<Gift />} kicker="P0" title="Aniimo Pre-Registration Rewards" />
+      <SectionTitle icon={<Gift />} kicker="Rewards" title="Aniimo Pre-Registration Rewards" />
       <img className="page-banner" src="/images/banners/banner-susuta-hunt.webp" alt="Aniimo Susuta Hunt event" />
       <p className="section-copy">
         Confirmed official rewards include milestone items, a Prismana Aniimo choice for
@@ -538,7 +542,7 @@ function DownloadPage() {
   return (
         <section id="download" className="section split-section download-band">
           <div>
-            <SectionTitle icon={<Download />} kicker="P0" title="Download & Release Info" />
+            <SectionTitle icon={<Download />} kicker="Platforms" title="Download & Release Info" />
             <p className="section-copy">
               {releaseInfo.note} Store links and regional availability stay tied to official
               sources rather than download mirrors.
@@ -572,7 +576,7 @@ function ReleaseDatePage() {
   return (
     <section id="release-date" className="section split-section download-band">
       <div>
-        <SectionTitle icon={<CalendarDays />} kicker="P0" title="Aniimo Release Date" />
+        <SectionTitle icon={<CalendarDays />} kicker="Launch" title="Aniimo Release Date" />
         <p className="section-copy">{releaseInfo.note}</p>
         <InfoPanel title="Official Timeline" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline], ["Timezone note", releaseInfo.timezoneNote], ["Source", releaseInfo.source]]} />
         <EditorialBlock title="Release Notes" items={editorialGuides.release} />
@@ -595,7 +599,7 @@ function ReleaseDatePage() {
 function BeginnerPage({ navigate }) {
   return (
         <section id="guides" className="section guide-band">
-          <SectionTitle icon={<BookOpen />} kicker="P0" title="Beginner Guide" />
+          <SectionTitle icon={<BookOpen />} kicker="Guide" title="Beginner Guide" />
       <div className="guide-columns">
             {mechanics.map((item) => (
               <GuideItem key={item.title} title={item.title} text={item.text} />
@@ -622,7 +626,7 @@ function GuideSummary() {
 function StatusGuide() {
   return (
         <section className="section status-guide">
-          <SectionTitle icon={<CheckCircle2 />} kicker="Trust" title="Data Status System" />
+          <SectionTitle icon={<CheckCircle2 />} kicker="Trust" title="Official Data Notes" />
           <div className="status-grid">
             {Object.entries(statuses).map(([label, text]) => (
               <article key={label}>
@@ -754,7 +758,7 @@ function EditorialBlock({ title, items }) {
 function SourcePanel({ source, status }) {
   return (
     <article className="info-panel source-panel">
-      <h2>Source Status</h2>
+      <h2>Official Source</h2>
       <p>{statuses[status]}</p>
       <dl>
         <dt>Status</dt>
@@ -763,7 +767,7 @@ function SourcePanel({ source, status }) {
         <dd>2026-08-28</dd>
       </dl>
       <a className="text-link" href={source} target="_blank" rel="noreferrer">
-        Open official source <ChevronRight size={16} />
+        Visit source <ChevronRight size={16} />
       </a>
     </article>
   );
@@ -802,7 +806,7 @@ function RelatedRegions({ currentRegion, navigate }) {
             <h3>{region.name}</h3>
             <p>{region.theme}</p>
             <a className="text-link" href={`/regions/${region.id}`} onClick={(event) => navigate(event, `/regions/${region.id}`)}>
-              Open region page <ChevronRight size={16} />
+              View region guide <ChevronRight size={16} />
             </a>
           </article>
         ))}
