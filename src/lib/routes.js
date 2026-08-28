@@ -1,4 +1,4 @@
-import { aniimo, faqs, gameInfo, platforms, regions, releaseInfo } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, downloadTopics, faqs, gameInfo, newsTopics, platforms, regions, releaseInfo } from "../../data/content.js";
 
 export const siteUrl = "https://aniimo.games";
 
@@ -58,6 +58,31 @@ export function elementPath(element) {
 
 export function rolePath(role) {
   return normalizePath(`/roles/${role.toLowerCase()}`);
+}
+
+export function beginnerTopicPath(topic) {
+  return normalizePath(`/${topic.slug}`);
+}
+
+export function downloadTopicPath(topic) {
+  return normalizePath(`/download/${topic.slug}`);
+}
+
+export function codeRewardTopicPath(topic) {
+  const rewardSlugs = ["junior-wayfarer", "susuta-egg", "milestones"];
+  return normalizePath(`/${rewardSlugs.includes(topic.slug) ? "rewards" : "codes"}/${topic.slug}`);
+}
+
+export function newsTopicPath(topic) {
+  return normalizePath(`/news/${topic.slug}`);
+}
+
+export function locationTopicPath(region) {
+  return normalizePath(`/locations/${region.id}`);
+}
+
+export function choiceTopicPath(topic) {
+  return normalizePath(`/${topic.slug}`);
 }
 
 export function canonicalUrl(path) {
@@ -126,6 +151,35 @@ export function resolveRoute(path) {
     };
   }
 
+  const beginnerTopic = beginnerTopics.find((item) => beginnerTopicPath(item) === normalized);
+  if (beginnerTopic) return { type: "beginner-topic", path: beginnerTopicPath(beginnerTopic), title: beginnerTopic.title, description: beginnerTopic.description, beginnerTopic };
+
+  const downloadTopic = downloadTopics.find((item) => downloadTopicPath(item) === normalized);
+  if (downloadTopic) return { type: "download-topic", path: downloadTopicPath(downloadTopic), title: downloadTopic.title, description: downloadTopic.description, downloadTopic };
+
+  const codeRewardTopic = codeRewardTopics.find((item) => codeRewardTopicPath(item) === normalized);
+  if (codeRewardTopic) return { type: "code-reward-topic", path: codeRewardTopicPath(codeRewardTopic), title: codeRewardTopic.title, description: codeRewardTopic.description, codeRewardTopic };
+
+  const newsTopic = newsTopics.find((item) => newsTopicPath(item) === normalized);
+  if (newsTopic) return { type: "news-topic", path: newsTopicPath(newsTopic), title: newsTopic.title, description: newsTopic.summary, newsTopic };
+
+  const locationMatch = normalized.match(/^\/locations\/([^/]+)\//);
+  if (locationMatch) {
+    const locationRegion = findRegionBySlug(locationMatch[1]);
+    if (locationRegion) {
+      return {
+        type: "location-topic",
+        path: locationTopicPath(locationRegion),
+        title: `${locationRegion.name} Aniimo Location Guide`,
+        description: `Track ${locationRegion.name} Aniimo locations, route checks, public region notes and post-launch spawn verification tasks.`,
+        locationRegion,
+      };
+    }
+  }
+
+  const choiceTopic = choiceTopics.find((item) => choiceTopicPath(item) === normalized);
+  if (choiceTopic) return { type: "choice-topic", path: choiceTopicPath(choiceTopic), title: choiceTopic.title, description: choiceTopic.description, choiceTopic };
+
   const staticRoute = staticRoutes.find((item) => item.path === normalized);
   if (staticRoute) return { type: "static", ...staticRoute };
 
@@ -138,20 +192,26 @@ export function resolveRoute(path) {
 }
 
 export function sitemapRoutes() {
-  return [
+  return uniqueRoutes([
     ...staticRoutes.map((item) => item.path),
     ...[...new Set(aniimo.map((item) => item.element))].map(elementPath),
     ...[...new Set(aniimo.map((item) => item.role))].map(rolePath),
+    ...beginnerTopics.map(beginnerTopicPath),
+    ...downloadTopics.map(downloadTopicPath),
+    ...codeRewardTopics.map(codeRewardTopicPath),
+    ...newsTopics.map(newsTopicPath),
+    ...regions.map(locationTopicPath),
+    ...choiceTopics.map(choiceTopicPath),
     ...aniimo.map(aniimoPath),
     ...regions.map(regionPath),
-  ];
+  ]);
 }
 
 export function prerenderRoutes() {
-  return [
+  return uniqueRoutes([
     ...sitemapRoutes().filter((path) => path !== "/"),
     ...aniimo.flatMap((item) => (item.aliases || []).map((alias) => normalizePath(`/aniimo/${alias}`))),
-  ];
+  ]);
 }
 
 export function pageFaqsForRoute(routeInfo) {
@@ -279,4 +339,8 @@ function canonicalAssetUrl(path) {
 
 function titleCase(value) {
   return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function uniqueRoutes(routes) {
+  return [...new Set(routes.map(normalizePath))];
 }

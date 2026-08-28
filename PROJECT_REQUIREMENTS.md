@@ -14,7 +14,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Framework: Vite + React static site with build-time sitemap generation and static route prerendering
 - Canonical URL policy: trailing-slash canonical URLs
 - Content coverage: 89 local Aniimo entries, 6 public regions, official platform links, release dates, rewards, mechanics, and SEO guide pages
-- Current content-development focus: detail-page differentiation, platform search pages, region guide depth and snippet-ready FAQ coverage
+- Current content-development focus: user-intent SEO clusters for beginner education, safe downloads, rewards, news freshness, location discovery and pre-launch choices
 
 ## Completed
 
@@ -44,6 +44,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Converted remaining production Aniimo PNG portraits to WebP and moved the old PNG files into `assets/source/aniimo-png-backup`.
 - Added `/launch-verification/` with structured post-launch templates for spawn points, redeem codes, platform unlocks and Search Console observations.
 - Added `check:verification` to validate post-launch verification templates and queues.
+- Added user-intent SEO content clusters for beginner questions, download decisions, codes and rewards, news updates, location guides and pre-launch choice watchlists.
 
 ## Active Growth Priorities
 
@@ -204,6 +205,73 @@ Implementation notes:
 - Links core guide hubs, platform pages, region guides, element guides, role guides, trust pages and featured Aniimo detail pages.
 - Added a homepage quick-card entry for the site index.
 - Included the page in route metadata, sitemap generation and static prerendering.
+
+### Priority 10: User-Intent SEO Content Clusters
+
+Status: Completed
+
+Add search pages that answer what players are likely to ask before launch while avoiding unverified gameplay claims.
+
+Beginner question pages:
+
+- `/how-to-catch-aniimo/`
+- `/what-is-twine/`
+- `/aniipod-guide/`
+- `/aniimo-beginner-tips/`
+- `/aniimo-elements/`
+- `/aniimo-roles/`
+
+Download decision pages:
+
+- `/download/pc/`
+- `/download/mobile/`
+- `/download/ios/`
+- `/download/android/`
+- `/download/ps5/`
+- `/download/xbox/`
+- `/download/epic-games/`
+- `/download/steam/`
+
+Codes and rewards pages:
+
+- `/codes/how-to-redeem/`
+- `/codes/active/`
+- `/codes/expired/`
+- `/rewards/junior-wayfarer/`
+- `/rewards/susuta-egg/`
+- `/rewards/milestones/`
+
+News and freshness pages:
+
+- `/news/launch-date-announcement/`
+- `/news/closed-beta/`
+- `/news/platform-announcement/`
+- `/news/pre-registration-rewards/`
+
+Location guide pages:
+
+- `/locations/mistwoods/`
+- `/locations/echoback-landing/`
+- `/locations/sea-of-flowers/`
+- `/locations/blitzwood/`
+- `/locations/nimbus-fields/`
+- `/locations/forest-of-falling-stars/`
+
+Choice and comparison pages:
+
+- `/best-starter-aniimo/`
+- `/best-fire-aniimo/`
+- `/best-support-aniimo/`
+- `/best-dps-aniimo/`
+- `/best-healer-aniimo/`
+- `/aniimo-tier-list/`
+
+Implementation notes:
+
+- Page definitions live in `data/content/content-clusters.js`.
+- Route generation, sitemap inclusion and metadata are centralized in `src/lib/routes.js`.
+- Rendering uses reusable page components in `src/pages/pages.jsx`.
+- Choice pages are written as pre-launch watchlists, not final rankings.
 
 ## Acceptance Criteria
 

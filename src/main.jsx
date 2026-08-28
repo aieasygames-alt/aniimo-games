@@ -14,19 +14,25 @@ import {
   AniimoDetail,
   AboutPage,
   BeginnerPage,
+  BeginnerTopicPage,
   BestAniimoPage,
+  ChoiceTopicPage,
+  CodeRewardTopicPage,
   CodesPage,
   CollectionPage,
   ContactPage,
   DatabasePage,
   DownloadPage,
+  DownloadTopicPage,
   EditorialPolicyPage,
   EvolutionPage,
   GuideSummary,
   HomePage,
   LaunchTrackerPage,
   LaunchVerificationPage,
+  LocationTopicPage,
   MapPage,
+  NewsTopicPage,
   NotFoundPage,
   PlatformPage,
   PreRegistrationRewardsPage,
@@ -135,6 +141,18 @@ function App() {
           <CollectionPage type="element" value={routeInfo.element} navigate={navigate} />
         ) : routeInfo.type === "role" ? (
           <CollectionPage type="role" value={routeInfo.role} navigate={navigate} />
+        ) : routeInfo.type === "beginner-topic" ? (
+          <BeginnerTopicPage topic={routeInfo.beginnerTopic} navigate={navigate} />
+        ) : routeInfo.type === "download-topic" ? (
+          <DownloadTopicPage topic={routeInfo.downloadTopic} />
+        ) : routeInfo.type === "code-reward-topic" ? (
+          <CodeRewardTopicPage topic={routeInfo.codeRewardTopic} />
+        ) : routeInfo.type === "news-topic" ? (
+          <NewsTopicPage topic={routeInfo.newsTopic} />
+        ) : routeInfo.type === "location-topic" ? (
+          <LocationTopicPage region={routeInfo.locationRegion} navigate={navigate} />
+        ) : routeInfo.type === "choice-topic" ? (
+          <ChoiceTopicPage topic={routeInfo.choiceTopic} navigate={navigate} />
         ) : routeInfo.path === "/aniimo/" ? (
           <DatabasePage {...sharedProps} />
         ) : routeInfo.path === "/map/" ? (

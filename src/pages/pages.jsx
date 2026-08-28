@@ -1,7 +1,7 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, codeVerificationTemplate, codes, editorialGuides, faqs, gameInfo, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanics, officialLinks, platformUnlockQueue, platforms, regions, releaseInfo, seoGuides, spawnVerificationQueue, statuses, updates, verificationTemplates } from "../../data/content.js";
-import { aniimoPath, elementPath, regionPath, rolePath, staticRoutes } from "../lib/routes.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, downloadTopics, editorialGuides, faqs, gameInfo, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanics, newsTopics, officialLinks, platformUnlockQueue, platforms, regions, releaseInfo, seoGuides, spawnVerificationQueue, statuses, updates, verificationTemplates } from "../../data/content.js";
+import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, downloadTopicPath, elementPath, locationTopicPath, newsTopicPath, regionPath, rolePath, staticRoutes } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
 export function HomePage(props) {
@@ -543,6 +543,11 @@ export function SiteIndexPage({ navigate }) {
     ["/aniimo/", "/map/", "/evolution/", "/codes/", "/rewards/", "/download/", "/release-date/", "/beginner-guide/", "/launch-tracker/", "/launch-verification/", "/best-aniimo/", "/sources/"].includes(route.path),
   );
   const platformPages = staticRoutes.filter((route) => route.path.startsWith("/platforms/"));
+  const downloadPages = downloadTopics.map((item) => [item.title, downloadTopicPath(item), item.description]);
+  const beginnerPages = beginnerTopics.map((item) => [item.title, beginnerTopicPath(item), item.description]);
+  const codeRewardPages = codeRewardTopics.map((item) => [item.title, codeRewardTopicPath(item), item.description]);
+  const newsPages = newsTopics.map((item) => [item.title, newsTopicPath(item), item.summary]);
+  const choicePages = choiceTopics.map((item) => [item.title, choiceTopicPath(item), item.description]);
   const trustPages = staticRoutes.filter((route) => ["/about/", "/editorial-policy/", "/contact/"].includes(route.path));
   const elementNames = [...new Set(aniimo.map((item) => item.element))];
   const roleNames = [...new Set(aniimo.map((item) => item.role))];
@@ -558,9 +563,15 @@ export function SiteIndexPage({ navigate }) {
       <div className="site-index-grid">
         <LinkGroup title="Core Guides" items={corePages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
         <LinkGroup title="Platform Pages" items={platformPages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
+        <LinkGroup title="Download Decisions" items={downloadPages} navigate={navigate} />
+        <LinkGroup title="Beginner Questions" items={beginnerPages} navigate={navigate} />
+        <LinkGroup title="Codes & Rewards" items={codeRewardPages} navigate={navigate} />
+        <LinkGroup title="News & Updates" items={newsPages} navigate={navigate} />
         <LinkGroup title="Region Guides" items={regions.map((item) => [item.name, regionPath(item), item.theme])} navigate={navigate} />
+        <LinkGroup title="Location Guides" items={regions.map((item) => [`${item.name} Locations`, locationTopicPath(item), `Track ${item.name} route and spawn verification tasks.`])} navigate={navigate} />
         <LinkGroup title="Element Guides" items={elementNames.map((item) => [`${item} Aniimo`, elementPath(item), `Browse ${item} entries by number, role, stage and source status.`])} navigate={navigate} />
         <LinkGroup title="Role Guides" items={roleNames.map((item) => [`${item} Aniimo`, rolePath(item), `Browse ${item} entries by number, element, stage and source status.`])} navigate={navigate} />
+        <LinkGroup title="Choice Guides" items={choicePages} navigate={navigate} />
         <LinkGroup title="Trust & Maintenance" items={trustPages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
       </div>
       <section className="related-section">
@@ -578,6 +589,131 @@ export function SiteIndexPage({ navigate }) {
       <FaqBlock items={[
         ["What is the Aniimo.games site index for?", "It helps readers and crawlers discover guide hubs, platform pages, region pages, element pages, role pages and source pages from one internal-link hub."],
         ["Does every Aniimo detail page appear here?", "The XML sitemap includes every indexable Aniimo page. This visible index highlights important hubs and featured entries while the database page links to all tracked Aniimo."],
+      ]} />
+    </section>
+  );
+}
+
+export function BeginnerTopicPage({ topic, navigate }) {
+  return (
+    <section className="section guide-band">
+      <SectionTitle icon={<BookOpen />} kicker="Beginner" title={topic.title} />
+      <p className="section-copy">{topic.intro}</p>
+      <EditorialBlock title="Guide Notes" items={topic.points} />
+      <RelatedAniimo title="Useful Aniimo To Compare" items={aniimo.filter((item) => item.element !== "Unknown").slice(0, 6)} navigate={navigate} />
+      <FaqBlock items={topic.faq} />
+    </section>
+  );
+}
+
+export function DownloadTopicPage({ topic }) {
+  return (
+    <section className="section split-section download-band">
+      <div>
+        <SectionTitle icon={<Download />} kicker="Download" title={topic.title} />
+        <p className="section-copy">{topic.intro}</p>
+        <EditorialBlock title="Download Checklist" items={topic.points} />
+      </div>
+      <div className="platform-list">
+        {platforms.map((item) => (
+          <article key={item.name} className="platform-card">
+            <div>
+              <h3>{item.name}</h3>
+              <p className="platform-action">{item.action}</p>
+              <p>{item.note}</p>
+              <a className="text-link" href={item.url} target="_blank" rel="noreferrer">
+                Official source <ChevronRight size={16} />
+              </a>
+            </div>
+            <StatusBadge status={item.status} />
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function CodeRewardTopicPage({ topic }) {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<Gift />} kicker="Codes & Rewards" title={topic.title} />
+      <p className="section-copy">{topic.intro}</p>
+      <RewardGrid />
+      <SeoGuideBlock items={seoGuides.codes} />
+      <FaqBlock items={faqs.codes} />
+    </section>
+  );
+}
+
+export function NewsTopicPage({ topic }) {
+  return (
+    <section className="section updates-band">
+      <SectionTitle icon={<CalendarDays />} kicker="News" title={topic.title} />
+      <p className="section-copy">{topic.summary}</p>
+      <div className="detail-panels">
+        <InfoPanel title="Source" rows={[["Published", topic.date], ["Official source", topic.source], ["Status", "Tracked from public source material"]]} />
+        <InfoPanel title="Next Review" rows={[["Release pages", "Refresh if date, platform or unlock wording changes."], ["Rewards", "Refresh if milestone or claim text changes."], ["Codes", "Refresh only when an official redeemable string appears."]]} />
+      </div>
+      <a className="text-link" href={topic.source} target="_blank" rel="noreferrer">
+        Official source <ChevronRight size={16} />
+      </a>
+    </section>
+  );
+}
+
+export function LocationTopicPage({ region, navigate }) {
+  const regionAniimo = aniimo.filter((item) => item.region === region.name);
+
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<Map />} kicker="Locations" title={`${region.name} Aniimo Location Guide`} />
+      <p className="section-copy">
+        Track {region.name} encounters, route notes and spawn verification tasks without
+        publishing exact coordinates before live-game checks are available.
+      </p>
+      <RegionImage region={region} />
+      <div className="detail-panels">
+        <InfoPanel title="Region Focus" rows={[["Theme", region.theme], ["Mechanics", region.mechanics.join(", ")], ["Status", region.status]]} />
+        <InfoPanel title="Verification Queue" rows={region.checklist.map((item, index) => [`Check ${index + 1}`, item])} />
+      </div>
+      <RelatedAniimo title={`${region.name} Aniimo`} items={regionAniimo} navigate={navigate} />
+    </section>
+  );
+}
+
+export function ChoiceTopicPage({ topic, navigate }) {
+  const filterMap = {
+    "best-fire-aniimo": (item) => item.element === "Fire",
+    "best-support-aniimo": (item) => item.role === "Support",
+    "best-dps-aniimo": (item) => item.role === "DPS",
+    "best-healer-aniimo": (item) => item.role === "Heal",
+  };
+  const picks = aniimo.filter(filterMap[topic.slug] || ((item) => item.element !== "Unknown" && item.role !== "Watchlist")).slice(0, 9);
+
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<Sparkles />} kicker="Watchlist" title={topic.title} />
+      <p className="section-copy">{topic.description} Final rankings should wait for live balance, route access and team testing.</p>
+      <div className="aniimo-grid">
+        {picks.map((item) => (
+          <article className="aniimo-card" key={item.id}>
+            <CreatureImage item={item} />
+            <div>
+              <div className="card-heading">
+                <h3>{item.name}</h3>
+                <StatusBadge status={item.status} />
+              </div>
+              <p>{item.use}</p>
+              <a className="text-link" href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
+                View Aniimo guide <ChevronRight size={16} />
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+      <FaqBlock items={[
+        ["Is this a final Aniimo tier list?", "No. This is a pre-launch watchlist until live testing confirms balance, availability and team value."],
+        ["How are picks chosen?", "Picks use confirmed public entries, role labels, element labels, evolution lines and source status."],
       ]} />
     </section>
   );
