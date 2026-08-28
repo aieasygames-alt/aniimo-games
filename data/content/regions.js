@@ -13,6 +13,12 @@ export const regions = [
   theme,
   aniimo: aniimoNames,
   mechanics,
+  checklist: [
+    `Confirm exact ${name} route boundaries after launch.`,
+    `Add spawn screenshots and route notes for ${aniimoNames.join(", ")}.`,
+    `Check whether ${mechanics[0].toLowerCase()} changes encounters by weather or time of day.`,
+  ],
+  guideNote: `${name} should act as a hub page for map searches, creature searches and launch verification. Keep preview-based scenery separate from exact coordinates until in-game checks are available.`,
   status: "Confirmed",
   source: officialLinks.main,
   image:

@@ -162,6 +162,14 @@ export const faqs = {
     ["Where can I pre-register for Aniimo?", "Use the official Aniimo website and official store pages such as Google Play when available in your region."],
     ["What platforms is Aniimo launching on?", "Official news lists PC and consoles on September 16, 2026, and mobile on September 23, 2026."],
   ],
+  snippets: [
+    ["Is Aniimo out yet?", "Aniimo is not treated as live here until official launch availability is confirmed. The current official dates are September 16, 2026 for PC and consoles and September 23, 2026 for mobile."],
+    ["Is Aniimo on Steam?", "Yes. Aniimo has an official Steam listing for PC wishlist and launch tracking."],
+    ["Are there Aniimo codes?", "No public redeem code is confirmed on Aniimo.games yet. Confirmed pre-registration and milestone rewards are tracked separately from redeem codes."],
+    ["How many Aniimo are confirmed?", "Aniimo.games currently tracks 89 public Aniimo names from the official Wiki probe workflow."],
+    ["Is Aniimo free to play?", "Official storefront language describes Aniimo as a free-to-play creature-catching open-world RPG."],
+    ["Is Aniimo on mobile?", "Yes. Mobile availability is tracked through iOS and Android storefronts for the September 23, 2026 launch window."],
+  ],
 };
 
 export const updates = [

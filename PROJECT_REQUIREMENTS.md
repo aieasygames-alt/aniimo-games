@@ -14,6 +14,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Framework: Vite + React static site with build-time sitemap generation and static route prerendering
 - Canonical URL policy: trailing-slash canonical URLs
 - Content coverage: 89 local Aniimo entries, 6 public regions, official platform links, release dates, rewards, mechanics, and SEO guide pages
+- Current content-development focus: detail-page differentiation, platform search pages, region guide depth and snippet-ready FAQ coverage
 
 ## Completed
 
@@ -27,6 +28,12 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added official region artwork and compressed large character images to WebP.
 - Split framework modules into route, page, component, SEO runtime, data and style layers.
 - Added build-time `check:seo` and `check:framework` validation.
+- Documented the project framework, update workflow, SEO generation and deployment baseline in `PROJECT_FRAMEWORK.md`.
+- Recovered from a production blank-page regression by replacing retired route helpers and adding framework audit coverage.
+- Added Aniimo detail differentiation fields for location notes, evolution details, ability use cases, related route logic and source notes.
+- Added dedicated platform landing pages for PS5, Xbox, Epic Games Store, iOS and Android.
+- Expanded region guide pages with launch checklists, verification priorities and source notes.
+- Added snippet-ready FAQ coverage for launch status, Steam, codes, confirmed count, free-to-play status and mobile availability.
 
 ## Active Growth Priorities
 
@@ -52,7 +59,7 @@ Needed fields for each new Aniimo:
 
 ### Priority 2: Detail Page Differentiation
 
-Status: Not started
+Status: Completed
 
 Reduce thin-content risk by giving each Aniimo detail page more unique content.
 
@@ -63,6 +70,12 @@ Fields to add:
 - `abilityUseCase`
 - `relatedRegionReason`
 - `sourceNote`
+
+Implementation notes:
+
+- Detail content is generated from structured role, element, region and evolution data in `data/content/aniimo.js`.
+- `src/pages/pages.jsx` renders the new fields in detail panels and editorial guide blocks.
+- Unknown or watchlist entries continue to avoid exact route claims until official or in-game verification exists.
 
 ### Priority 3: Trust Pages
 
@@ -86,6 +99,11 @@ Add high-intent SEO landing pages:
 - `/platforms/steam/`
 - `/platforms/mobile/`
 - `/rewards/pre-registration/`
+- `/platforms/ps5/`
+- `/platforms/xbox/`
+- `/platforms/epic-games/`
+- `/platforms/ios/`
+- `/platforms/android/`
 
 Each page should have unique title, meta description, JSON-LD coverage, sitemap inclusion and internal links.
 
@@ -106,6 +124,41 @@ Add automated checks for:
 Status: In progress
 
 Completed first-round WebP conversion for the largest unreferenced production PNG files. Continue with remaining 150-250KB PNG files after confirming visual quality.
+
+### Priority 7: Core Search Page Expansion
+
+Status: Completed
+
+Expanded high-intent search pages without inventing launch-only facts.
+
+Pages covered:
+
+- `Aniimo download`
+- `Aniimo release date`
+- `Aniimo codes`
+- `Aniimo wiki`
+- `Aniimo map`
+- `Best Aniimo`
+
+Implementation notes:
+
+- Core pages use source-aware SEO guide blocks and FAQ coverage.
+- Codes page separates confirmed rewards from unconfirmed redeem codes.
+- Map and region pages keep route coordinates, weather windows and spawn tables marked for post-launch verification.
+
+### Priority 8: Post-Launch Verification
+
+Status: Not started
+
+Add live-game verified information after launch:
+
+- exact spawn coordinates
+- route screenshots
+- weather and time-of-day windows
+- platform-specific unlock timing
+- first redeem codes
+- tested combat or Twine use cases
+- GSC indexing and query performance notes
 
 ## Acceptance Criteria
 

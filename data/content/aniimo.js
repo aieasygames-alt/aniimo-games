@@ -402,30 +402,84 @@ const roleUse = {
   Support: "Support Aniimo help with utility, control, traversal and puzzle support.",
 };
 
-export const aniimo = names.map(([no, id, name, element, role, stage, aliases = []]) => ({
-  no,
-  id,
-  aliases,
-  name,
-  element,
-  role,
-  stage,
-  region: regionByAniimo[id] || "Official Wiki",
-  habitat: `${regionByAniimo[id] || "Official Wiki"} watchlist. Use this page to connect official region data, map routes and verified spawn notes as launch data expands.`,
-  acquisition:
-    id === "susuta"
-      ? "Official pre-registration reward includes a mysterious Susuta egg."
-      : "Catch with Aniipods or obtain through official launch systems once exact encounter routes are verified.",
-  condition: "Unique Aniimo may appear according to environment, weather, phenomena and time of day.",
-  evolution:
-    (evolutionLineById[id] || [id]).length > 1
-      ? `${name} is part of the ${evolutionLineById[id].map((familyId) => names.find((entry) => entry[1] === familyId)?.[2]).filter(Boolean).join(" -> ")} line.`
-      : `${stage} form listed in the official Aniimo Wiki index.`,
-  forms: (evolutionLineById[id] || [id]).map((familyId) => names.find((entry) => entry[1] === familyId)?.[2]).filter(Boolean),
-  ability: officialDescriptions[id],
-  description: officialDescriptions[id],
-  use: `${roleUse[role]} Twine can turn ${name}'s traits into exploration, combat or route-solving utility.`,
-  status: "Confirmed",
-  source: officialLinks.officialWiki,
-  image: aniimoImages[id] || "/images/aniimo/aniimo-group.webp",
-}));
+const elementUseCase = {
+  Fire: "combat pressure and heat-themed encounter clues",
+  Holy: "support utility, recovery paths and story-adjacent discoveries",
+  Wind: "movement, sound cues and open-route traversal",
+  Water: "shoreline routing, beach clues and water-side encounters",
+  Grass: "collection routes, growth mechanics and peaceful exploration",
+  Rock: "durability checks, cave routes and mineral clues",
+  Dark: "night routes, misdirection and control utility",
+  Ice: "cold-route traversal and defensive utility",
+  Electric: "phenomena timing, charged weather and fast utility",
+  Unknown: "official Wiki tracking until element data is confirmed",
+};
+
+const roleUseCase = {
+  BREAK: "shield pressure, object interaction and opening tough encounters",
+  DPS: "damage windows and faster encounter clears",
+  Heal: "recovery, sustain and longer field routes",
+  Support: "route utility, control and safer exploration",
+  Watchlist: "official index monitoring until role data is confirmed",
+};
+
+function familyNames(id) {
+  return (evolutionLineById[id] || [id]).map((familyId) => names.find((entry) => entry[1] === familyId)?.[2]).filter(Boolean);
+}
+
+function detailNotes({ id, name, element, role, stage, region, forms }) {
+  const needsVerification = element === "Unknown" || role === "Watchlist" || region === "Official Wiki";
+  const locationNote = needsVerification
+    ? `${name} is an official Wiki entry, but its final route, region and spawn conditions still need source verification. Keep this page on the launch checklist before writing exact coordinates.`
+    : `${name} is tracked under ${region}. Use this page as the route hub for ${region} notes, then add exact coordinates, weather windows and time-of-day checks after live verification.`;
+  const evolutionDetail = forms.length > 1
+    ? `${name} belongs to the ${forms.join(" -> ")} line. This page should track branch conditions, form requirements and any launch changes separately from the official name index.`
+    : `${name} is currently listed as ${stage}. If the official Wiki adds branch forms or special conditions, update this detail page before changing the sitemap URL.`;
+
+  return {
+    locationNote,
+    evolutionDetail,
+    abilityUseCase: `${role === "Watchlist" ? "As a watchlist entry, " : ""}${name}'s ${element} profile makes it a candidate for ${elementUseCase[element] || "route utility"}, while the ${role} tag points toward ${roleUseCase[role] || "team utility"}.`,
+    relatedRegionReason: needsVerification
+      ? `Related links prioritize official Wiki peers and confirmed region pages until ${name}'s route is known.`
+      : `${region} links help players compare ${name} with nearby Aniimo before moving to element, role and evolution pages.`,
+    sourceNote: needsVerification
+      ? "Official name and number are tracked from public Wiki data. Element, role, stage, route and spawn notes should stay labeled until confirmed by official sources or in-game checks."
+      : "Official name, number and description are tracked from public Wiki data. Spawn routes and balance notes should be refreshed after official launch or direct in-game confirmation.",
+  };
+}
+
+export const aniimo = names.map(([no, id, name, element, role, stage, aliases = []]) => {
+  const region = regionByAniimo[id] || "Official Wiki";
+  const forms = familyNames(id);
+  const notes = detailNotes({ id, name, element, role, stage, region, forms });
+
+  return {
+    no,
+    id,
+    aliases,
+    name,
+    element,
+    role,
+    stage,
+    region,
+    habitat: `${region} watchlist. Use this page to connect official region data, map routes and verified spawn notes as launch data expands.`,
+    acquisition:
+      id === "susuta"
+        ? "Official pre-registration reward includes a mysterious Susuta egg."
+        : "Catch with Aniipods or obtain through official launch systems once exact encounter routes are verified.",
+    condition: "Unique Aniimo may appear according to environment, weather, phenomena and time of day.",
+    evolution:
+      forms.length > 1
+        ? `${name} is part of the ${forms.join(" -> ")} line.`
+        : `${stage} form listed in the official Aniimo Wiki index.`,
+    forms,
+    ability: officialDescriptions[id],
+    description: officialDescriptions[id],
+    use: `${roleUse[role]} Twine can turn ${name}'s traits into exploration, combat or route-solving utility.`,
+    ...notes,
+    status: "Confirmed",
+    source: officialLinks.officialWiki,
+    image: aniimoImages[id] || "/images/aniimo/aniimo-group.webp",
+  };
+});

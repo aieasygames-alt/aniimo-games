@@ -158,6 +158,16 @@ function App() {
           <PlatformPage type="steam" />
         ) : routeInfo.path === "/platforms/mobile/" ? (
           <PlatformPage type="mobile" />
+        ) : routeInfo.path === "/platforms/ps5/" ? (
+          <PlatformPage type="ps5" />
+        ) : routeInfo.path === "/platforms/xbox/" ? (
+          <PlatformPage type="xbox" />
+        ) : routeInfo.path === "/platforms/epic-games/" ? (
+          <PlatformPage type="epic-games" />
+        ) : routeInfo.path === "/platforms/ios/" ? (
+          <PlatformPage type="ios" />
+        ) : routeInfo.path === "/platforms/android/" ? (
+          <PlatformPage type="android" />
         ) : routeInfo.path === "/rewards/pre-registration/" ? (
           <PreRegistrationRewardsPage />
         ) : routeInfo.path === "/about/" ? (
