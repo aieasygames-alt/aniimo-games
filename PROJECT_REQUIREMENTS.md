@@ -52,6 +52,8 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added troubleshooting pages for download unavailable, store page visibility, pre-registration issues and region availability.
 - Added `/media/` and `/source-archive/` hubs for image discovery, source trust and future update workflow.
 - Added Genshin-style open-world comparison, Twine ability planning, Egg Heist rules/rewards, Lost Isles and media detail pages.
+- Added launch conversion pages for countdown, wishlist, pre-registration and safe-download intent.
+- Added GSC-driven refresh planning pages for query watchlists and post-indexing page improvement.
 
 ## Active Growth Priorities
 
@@ -376,6 +378,12 @@ Completed first execution layer:
 - `/media/aniimo-trailers/`
 - `/media/aniimo-screenshots/`
 - `/media/aniimo-region-art/`
+- `/launch/aniimo-launch-countdown/`
+- `/launch/aniimo-wishlist-guide/`
+- `/launch/aniimo-pre-register-guide/`
+- `/launch/aniimo-safe-download-checklist/`
+- `/growth/gsc-refresh-plan/`
+- `/growth/query-refresh-watchlist/`
 
 Implementation notes:
 
@@ -387,6 +395,8 @@ Implementation notes:
 - Media and source archive hubs improve trust, image discovery and update workflow transparency.
 - Mechanic deep dives prepare launch verification fields for Twine ability use, Egg Heist rules, Egg Heist rewards and Lost Isles routing.
 - Media detail pages separate official trailer, screenshot and region-art discovery from unverified gameplay claims.
+- Launch conversion pages connect countdown, wishlist, pre-registration and safe-download searches back to official storefronts.
+- Growth refresh pages define how future Search Console queries should become page updates, FAQ additions or new content.
 - New topic groups are included in route resolution, prerender routes, sitemap generation and the visible site index.
 
 ## Acceptance Criteria

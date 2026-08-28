@@ -172,6 +172,10 @@ function App() {
           <TopicGuidePage topic={routeInfo.mechanicDeepDiveTopic} kicker="Mechanics" icon={<BookOpen />} />
         ) : routeInfo.type === "media-detail-topic" ? (
           <TopicGuidePage topic={routeInfo.mediaDetailTopic} kicker="Media" icon={<Search />} />
+        ) : routeInfo.type === "conversion-topic" ? (
+          <TopicGuidePage topic={routeInfo.conversionTopic} kicker="Launch" icon={<Download />} />
+        ) : routeInfo.type === "refresh-planning-topic" ? (
+          <TopicGuidePage topic={routeInfo.refreshPlanningTopic} kicker="Growth" icon={<Search />} />
         ) : routeInfo.path === "/aniimo/" ? (
           <DatabasePage {...sharedProps} />
         ) : routeInfo.path === "/map/" ? (

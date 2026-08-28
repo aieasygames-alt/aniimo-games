@@ -439,6 +439,102 @@ export const mediaDetailTopics = [
   },
 ];
 
+export const conversionTopics = [
+  {
+    slug: "aniimo-launch-countdown",
+    title: "Aniimo Launch Countdown",
+    description: "Track Aniimo launch countdown planning for PC, console, iOS and Android without claiming exact unlock hours before storefront confirmation.",
+    intro: "Countdown searches become stronger as launch approaches. This page gives players a source-safe place to check dates, platform windows and what still needs confirmation.",
+    points: [
+      ["PC and console window", `Aniimo.games tracks PC and console launch for ${releaseInfo.pcConsole}.`],
+      ["Mobile window", `Aniimo.games tracks mobile launch for ${releaseInfo.mobile}.`],
+      ["Unlock-hour watchlist", "Exact hourly unlock timing can vary by platform, region and storefront, so it should remain watchlist until official confirmation."],
+    ],
+    faq: [
+      ["When is the Aniimo launch countdown?", `Use ${releaseInfo.pcConsole} for PC and console planning, and ${releaseInfo.mobile} for mobile planning.`],
+      ["Does Aniimo.games know the exact unlock time?", "Not yet. Exact unlock hours should come from official posts or storefront updates."],
+    ],
+  },
+  {
+    slug: "aniimo-wishlist-guide",
+    title: "Aniimo Wishlist Guide",
+    description: "Find where to wishlist Aniimo on Steam, Epic Games Store, PlayStation and Xbox before launch.",
+    intro: "Wishlist intent is close to conversion. This guide sends users toward official platform pages and away from unsafe installers.",
+    points: [
+      ["PC wishlist", "Use Steam or Epic Games Store for PC wishlist tracking."],
+      ["Console wishlist", "Use PlayStation and Xbox listings for console wishlist tracking."],
+      ["Account planning", "Wishlist with the account you expect to use at launch so notifications and store access stay aligned."],
+    ],
+    faq: [
+      ["Where can I wishlist Aniimo?", "Use official Steam, Epic Games Store, PlayStation, Xbox or Aniimo website links."],
+      ["Is wishlisting the same as downloading?", "No. Wishlist and pre-registration flows track launch availability; downloads appear when the storefront makes them available."],
+    ],
+  },
+  {
+    slug: "aniimo-pre-register-guide",
+    title: "Aniimo Pre-Register Guide",
+    description: "Learn where to pre-register for Aniimo and how to separate pre-registration rewards from redeem codes.",
+    intro: "Pre-registration pages should answer reward and platform questions clearly, because users often confuse milestone rewards with active codes.",
+    points: [
+      ["Use official sources", "Start with the official Aniimo website, App Store and Google Play listings when available in your region."],
+      ["Reward tracking", "Confirmed rewards include milestone items, Prismana choice and the mysterious Susuta egg."],
+      ["Codes boundary", "Pre-registration rewards are not active redeem codes unless an official code string is published."],
+    ],
+    faq: [
+      ["Where do I pre-register for Aniimo?", "Use the official Aniimo website and official mobile store pages when available."],
+      ["Are pre-registration rewards Aniimo codes?", "Not automatically. Aniimo.games tracks rewards and redeem codes separately."],
+    ],
+  },
+  {
+    slug: "aniimo-safe-download-checklist",
+    title: "Aniimo Safe Download Checklist",
+    description: "Use this Aniimo safe download checklist before installing the game on PC, console, iOS or Android.",
+    intro: "Safe-download searches are protective and commercial-intent adjacent. This checklist helps users choose official links before launch.",
+    points: [
+      ["Confirm publisher and store", "Check that the listing matches official Aniimo, Pawprint Studio or the official storefront path."],
+      ["Avoid unofficial files", "Avoid APK mirrors, reposted installers, fake beta clients and compressed game files before official availability."],
+      ["Use platform pages", "Follow Aniimo.games platform pages to move from overview to the exact official storefront."],
+    ],
+    faq: [
+      ["Is Aniimo APK available?", "Aniimo.games does not recommend APK mirrors. Use Google Play or official sources."],
+      ["What is the safest way to download Aniimo?", "Use the official website or the official platform store for your device."],
+    ],
+  },
+];
+
+export const refreshPlanningTopics = [
+  {
+    slug: "gsc-refresh-plan",
+    title: "Aniimo GSC Refresh Plan",
+    description: "Plan how Aniimo.games should use Google Search Console impressions, queries and countries to refresh pages after indexing begins.",
+    intro: "GSC-driven refresh pages should not guess demand. They should wait for impressions, then improve pages that are close to ranking or getting unexpected queries.",
+    points: [
+      ["First review window", "Review Search Console after sitemap discovery and again when important pages have enough impressions to show query patterns."],
+      ["What to prioritize", "Prioritize pages with impressions, low CTR, average positions near page one, or unexpected country/language demand."],
+      ["What to update", "Refresh title tags, FAQ blocks, internal links, content depth and source freshness before creating duplicate pages."],
+    ],
+    faq: [
+      ["When should Aniimo.games use GSC data?", "Use it after Google has discovered and sampled enough pages to show query and country patterns."],
+      ["Should every query become a new page?", "No. Improve existing pages first unless a query has distinct intent."],
+    ],
+  },
+  {
+    slug: "query-refresh-watchlist",
+    title: "Aniimo Query Refresh Watchlist",
+    description: "Track Aniimo queries that should trigger page updates, new FAQs or future content expansion.",
+    intro: "This watchlist turns future GSC queries into an editorial workflow so the site can grow from real demand rather than guesses.",
+    points: [
+      ["Download queries", "If users search platform plus download terms, improve the matching platform and download pages first."],
+      ["Codes queries", "If code impressions grow before official codes exist, strengthen the no-code explanation and rewards/codes distinction."],
+      ["Creature queries", "If individual Aniimo names get impressions, expand detail pages with stronger internal links and source notes."],
+    ],
+    faq: [
+      ["What queries should be watched first?", "Download, release date, codes, platforms, creature names, Twine, Egg Heist and region searches."],
+      ["How should refreshes be logged?", "Update the page, source archive, update log and requirements status when a meaningful refresh ships."],
+    ],
+  },
+];
+
 export const glossaryTopics = [
   ["pathfinder", "Pathfinder", "The player identity used in Aniimo public material. Use this term for guides about exploration, progression and player-side launch planning."],
   ["idyll", "Idyll", "The continent where Aniimo takes place. Use this term for world, region and map pages."],
