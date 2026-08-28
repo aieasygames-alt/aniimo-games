@@ -58,6 +58,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added stage and data-status collection pages so Lumin, Gamma, Nova, Official Index and Confirmed entries have crawlable index pages.
 - Expanded collection pages with summary panels, represented elements/roles/stages/regions, taxonomy links and collection-specific FAQ blocks.
 - Added `npm run check:content` to validate topic depth, FAQ coverage, unique slugs, media entries, source archive entries and Aniimo field completeness.
+- Added `npm run check:release` as the standard pre-commit gate for build, content, SEO, framework, asset and verification checks.
 
 ## Active Growth Priorities
 
@@ -419,6 +420,7 @@ Implementation notes:
 ## Acceptance Criteria
 
 - `npm run build` passes.
+- `npm run check:release` passes.
 - `npm run check:seo` passes.
 - `npm run check:framework` passes.
 - `npm run check:content` passes.

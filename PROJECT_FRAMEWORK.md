@@ -32,6 +32,8 @@ The site behaves like a client-side React app in the browser, while `scripts/pre
 npm run dev
 npm run build
 npm run preview
+npm run check:release
+npm run check:content
 npm run check:seo
 npm run check:framework
 npm run check:assets
@@ -44,11 +46,7 @@ npm run sync:aniimo
 Before committing production changes, run:
 
 ```bash
-npm run build
-npm run check:framework
-npm run check:assets
-npm run check:verification
-npm run check:seo
+npm run check:release
 git status --short
 ```
 
@@ -205,6 +203,19 @@ node scripts/prerender.mjs
 The explicit `rm -rf dist` is important. It prevents old prerendered HTML from keeping stale JS bundle references after a new Vite build.
 
 `scripts/prerender.mjs` writes static `index.html` files for each prerender route. Cloudflare then serves these files directly while `public/_redirects` keeps client-side routing working.
+
+## Release Checks
+
+`npm run check:release` is the preferred pre-commit gate for production changes. It runs:
+
+- `npm run build`
+- `npm run check:content`
+- `npm run check:seo`
+- `npm run check:framework`
+- `npm run check:assets`
+- `npm run check:verification`
+
+Use `npm run check:live` after deployment to verify production robots, sitemap, canonical tags and sampled sitemap URLs.
 
 ## Cloudflare Pages
 
