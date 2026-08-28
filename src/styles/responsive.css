@@ -1,0 +1,87 @@
+@media (max-width: 920px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .topbar nav {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    white-space: nowrap;
+  }
+
+  .hero,
+  .split-section,
+  .detail-row,
+  .detail-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-grid,
+  .aniimo-grid,
+  .region-grid,
+  .code-grid,
+  .reward-grid,
+  .guide-columns,
+  .seo-guide,
+  .status-grid,
+  .detail-panels,
+  .related-grid,
+  .faq-list,
+  .update-item,
+  .source-row,
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-image,
+  .hero-scene {
+    min-height: 280px;
+  }
+
+  .detail-hero {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  h1 {
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .aniimo-card {
+    grid-template-columns: 1fr;
+  }
+
+  .creature-image,
+  .creature-mark {
+    width: 96px;
+    height: 96px;
+  }
+
+  .creature-image.large,
+  .creature-mark.large {
+    width: 132px;
+    height: 132px;
+  }
+
+  .section {
+    padding-top: 54px;
+    padding-bottom: 54px;
+  }
+
+  .card-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  dl {
+    grid-template-columns: 1fr;
+  }
+}

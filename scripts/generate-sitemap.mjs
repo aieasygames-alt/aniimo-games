@@ -1,29 +1,8 @@
 import { writeFileSync } from "node:fs";
-import { aniimo, regions } from "../data/content.js";
+import { sitemapRoutes, siteUrl } from "../src/lib/routes.js";
 
-const siteUrl = "https://aniimo.games";
 const lastmod = "2026-08-28";
-const staticRoutes = [
-  "/",
-  "/aniimo/",
-  "/map/",
-  "/evolution/",
-  "/codes/",
-  "/rewards/",
-  "/download/",
-  "/release-date/",
-  "/beginner-guide/",
-  "/updates/",
-  "/sources/",
-];
-
-const routes = [
-  ...staticRoutes,
-  ...[...new Set(aniimo.map((item) => item.element.toLowerCase()))].map((item) => `/elements/${item}/`),
-  ...[...new Set(aniimo.map((item) => item.role.toLowerCase()))].map((item) => `/roles/${item}/`),
-  ...aniimo.map((item) => `/aniimo/${item.id}/`),
-  ...regions.map((item) => `/regions/${item.id}/`),
-];
+const routes = sitemapRoutes();
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

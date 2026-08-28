@@ -1,7 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { aniimo, regions } from "../data/content.js";
-
-const siteUrl = "https://aniimo.games";
+import { canonicalUrl, sitemapRoutes, siteUrl } from "../src/lib/routes.js";
 const sitemap = readFileSync("public/sitemap.xml", "utf8");
 const robots = readFileSync("public/robots.txt", "utf8");
 const index = readFileSync("dist/index.html", "utf8");
@@ -23,15 +22,7 @@ for (const route of routes) {
   }
 }
 
-const expectedRoutes = [
-  `${siteUrl}/`,
-  `${siteUrl}/aniimo/`,
-  `${siteUrl}/map/`,
-  `${siteUrl}/download/`,
-  `${siteUrl}/release-date/`,
-  ...aniimo.map((item) => `${siteUrl}/aniimo/${item.id}/`),
-  ...regions.map((region) => `${siteUrl}/regions/${region.id}/`),
-];
+const expectedRoutes = sitemapRoutes().map(canonicalUrl);
 
 for (const route of expectedRoutes) {
   if (!routes.includes(route)) {
@@ -44,6 +35,49 @@ for (const route of expectedRoutes.filter((route) => route !== `${siteUrl}/`)) {
   if (!existsSync(`dist${pathname}/index.html`)) {
     issues.push(`Missing prerendered HTML: ${pathname}/index.html`);
   }
+}
+
+const sitemapSet = new Set(routes);
+const titleCounts = new Map();
+const descriptionCounts = new Map();
+
+for (const route of expectedRoutes) {
+  const htmlPath = route === `${siteUrl}/` ? "dist/index.html" : `dist${route.replace(siteUrl, "").replace(/\/$/, "")}/index.html`;
+  if (!existsSync(htmlPath)) continue;
+
+  const html = readFileSync(htmlPath, "utf8");
+  const title = html.match(/<title>(.*?)<\/title>/)?.[1];
+  const description = html.match(/<meta\s+name="description"\s+content="([^"]+)"/)?.[1];
+  const canonical = html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/)?.[1];
+
+  if (!title) issues.push(`Missing title in ${htmlPath}`);
+  if (!description) issues.push(`Missing meta description in ${htmlPath}`);
+  if (!canonical) issues.push(`Missing canonical in ${htmlPath}`);
+  if (canonical && canonical !== route) issues.push(`Canonical mismatch in ${htmlPath}: ${canonical} should be ${route}`);
+  if (canonical && !sitemapSet.has(canonical)) issues.push(`Canonical is not in sitemap: ${canonical}`);
+  if (description && description.length < 80) issues.push(`Meta description is too short in ${htmlPath}`);
+
+  if (title) titleCounts.set(title, [...(titleCounts.get(title) || []), htmlPath]);
+  if (description) descriptionCounts.set(description, [...(descriptionCounts.get(description) || []), htmlPath]);
+
+  for (const href of [...html.matchAll(/\shref="([^"]+)"/g)].map((match) => match[1])) {
+    if (href.startsWith("/") && !href.startsWith("//") && !href.includes("#")) {
+      const target = href === "/" ? "dist/index.html" : `dist${href.replace(/\/$/, "")}/index.html`;
+      if (!existsSync(target) && !href.includes(".")) issues.push(`Broken internal link in ${htmlPath}: ${href}`);
+    }
+  }
+
+  for (const src of [...html.matchAll(/\ssrc="([^"]+)"/g)].map((match) => match[1])) {
+    if (src.startsWith("/") && !existsSync(`dist${src}`)) issues.push(`Missing image/script asset in ${htmlPath}: ${src}`);
+  }
+}
+
+for (const [title, files] of titleCounts) {
+  if (files.length > 1) issues.push(`Duplicate title "${title}" in ${files.join(", ")}`);
+}
+
+for (const [description, files] of descriptionCounts) {
+  if (files.length > 1) issues.push(`Duplicate meta description "${description}" in ${files.join(", ")}`);
 }
 
 const indexChecks = [
