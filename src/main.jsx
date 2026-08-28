@@ -20,6 +20,7 @@ import {
   CodeRewardTopicPage,
   CodesPage,
   CollectionPage,
+  CompareHubPage,
   ContactPage,
   DatabasePage,
   DownloadPage,
@@ -28,12 +29,16 @@ import {
   EvolutionPage,
   GuideSummary,
   GlossaryPage,
+  GrowthHubPage,
+  GuideHubPage,
   HomePage,
   LaunchTrackerPage,
   LaunchVerificationPage,
+  LaunchHubPage,
   MediaPage,
   LocationTopicPage,
   MapPage,
+  MechanicsHubPage,
   NewsTopicPage,
   NotFoundPage,
   PlatformPage,
@@ -202,6 +207,16 @@ function App() {
           <SourcesPage />
         ) : routeInfo.path === "/site-index/" ? (
           <SiteIndexPage navigate={navigate} />
+        ) : routeInfo.path === "/guides/" ? (
+          <GuideHubPage navigate={navigate} />
+        ) : routeInfo.path === "/compare/" ? (
+          <CompareHubPage navigate={navigate} />
+        ) : routeInfo.path === "/mechanics/" ? (
+          <MechanicsHubPage navigate={navigate} />
+        ) : routeInfo.path === "/launch/" ? (
+          <LaunchHubPage navigate={navigate} />
+        ) : routeInfo.path === "/growth/" ? (
+          <GrowthHubPage navigate={navigate} />
         ) : routeInfo.path === "/glossary/" ? (
           <GlossaryPage navigate={navigate} />
         ) : routeInfo.path === "/media/" ? (

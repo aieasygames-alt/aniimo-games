@@ -613,6 +613,123 @@ export function SiteIndexPage({ navigate }) {
   );
 }
 
+export function GuideHubPage({ navigate }) {
+  const beginnerPages = beginnerTopics.map((item) => [item.title, beginnerTopicPath(item), item.description]);
+  const officialPages = officialPitchTopics.map((item) => [item.title, officialPitchTopicPath(item), item.description]);
+  const mechanicPages = mechanicDeepDiveTopics.map((item) => [item.title, mechanicDeepDiveTopicPath(item), item.description]);
+  const glossaryPages = glossaryTopics.map((item) => [item.term, glossaryTopicPath(item), item.definition]);
+
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<BookOpen />} kicker="Guides" title="Aniimo Guides Hub" />
+      <p className="section-copy">
+        Start here for Aniimo beginner systems, official feature explanations,
+        mechanic deep dives and recurring glossary terms.
+      </p>
+      <div className="site-index-grid">
+        <LinkGroup title="Beginner Guides" items={beginnerPages} navigate={navigate} />
+        <LinkGroup title="Official Feature Guides" items={officialPages} navigate={navigate} />
+        <LinkGroup title="Mechanic Deep Dives" items={mechanicPages} navigate={navigate} />
+        <LinkGroup title="Glossary Terms" items={glossaryPages} navigate={navigate} />
+      </div>
+    </section>
+  );
+}
+
+export function CompareHubPage({ navigate }) {
+  const comparisonPages = socialIntentTopics.map((item) => [item.title, socialIntentTopicPath(item), item.description]);
+
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<Search />} kicker="Compare" title="Aniimo Comparisons" />
+      <p className="section-copy">
+        These pages answer comparison-style searches while clearly separating Aniimo's
+        official systems from broad genre expectations.
+      </p>
+      <LinkGroup title="Comparison Guides" items={comparisonPages} navigate={navigate} />
+    </section>
+  );
+}
+
+export function MechanicsHubPage({ navigate }) {
+  const officialMechanicPages = officialPitchTopics
+    .filter((item) => item.slug.includes("twine") || item.slug.includes("egg-heist") || item.slug.includes("homeland"))
+    .map((item) => [item.title, officialPitchTopicPath(item), item.description]);
+  const mechanicPages = mechanicDeepDiveTopics.map((item) => [item.title, mechanicDeepDiveTopicPath(item), item.description]);
+  const relatedGlossary = glossaryTopics
+    .filter((item) => ["twine", "aniipod", "homeland", "egg-heist", "rv"].includes(item.slug))
+    .map((item) => [item.term, glossaryTopicPath(item), item.definition]);
+
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<Sparkles />} kicker="Mechanics" title="Aniimo Mechanics Guides" />
+      <p className="section-copy">
+        Learn the systems that make Aniimo searchable before launch: catching,
+        Twine, Homeland, Egg Heist, Lost Isles and verification rules.
+      </p>
+      <div className="site-index-grid">
+        <LinkGroup title="Official Mechanics" items={officialMechanicPages} navigate={navigate} />
+        <LinkGroup title="Deep Dives" items={mechanicPages} navigate={navigate} />
+        <LinkGroup title="Related Terms" items={relatedGlossary} navigate={navigate} />
+        <LinkGroup title="Core Pages" items={[
+          ["Beginner Guide", "/beginner-guide/", "Learn catching, Twine, environment encounters, Homeland and beginner progression."],
+          ["Map Guide", "/map/", "Connect mechanics to regions, route notes and post-launch verification."],
+          ["Launch Verification", "/launch-verification/", "Track the fields needed after launch for mechanics and routes."],
+        ]} navigate={navigate} />
+      </div>
+    </section>
+  );
+}
+
+export function LaunchHubPage({ navigate }) {
+  const conversionPages = conversionTopics.map((item) => [item.title, conversionTopicPath(item), item.description]);
+  const platformPages = staticRoutes.filter((route) => route.path.startsWith("/platforms/")).map((item) => [item.label, item.path, item.description]);
+  const rewardPages = codeRewardTopics.map((item) => [item.title, codeRewardTopicPath(item), item.description]);
+
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<CalendarDays />} kicker="Launch" title="Aniimo Launch Hub" />
+      <p className="section-copy">
+        Track launch dates, platform pages, wishlist and pre-registration actions,
+        safe downloads, rewards and code status from one hub.
+      </p>
+      <div className="site-index-grid">
+        <LinkGroup title="Launch Actions" items={conversionPages} navigate={navigate} />
+        <LinkGroup title="Platform Pages" items={platformPages} navigate={navigate} />
+        <LinkGroup title="Rewards & Codes" items={rewardPages} navigate={navigate} />
+        <LinkGroup title="Launch Operations" items={[
+          ["Release Date", "/release-date/", "Track PC, console and mobile launch windows."],
+          ["Launch Tracker", "/launch-tracker/", "Monitor source status, rewards, platforms and verification tasks."],
+          ["Troubleshooting", "/troubleshooting/", "Fix download, store visibility, pre-registration and region availability issues."],
+        ]} navigate={navigate} />
+      </div>
+    </section>
+  );
+}
+
+export function GrowthHubPage({ navigate }) {
+  const refreshPages = refreshPlanningTopics.map((item) => [item.title, refreshPlanningTopicPath(item), item.description]);
+
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<Compass />} kicker="Growth" title="Aniimo.games Growth Plan" />
+      <p className="section-copy">
+        This hub keeps future SEO work tied to Search Console evidence, source updates
+        and page-refresh discipline instead of creating duplicate thin pages.
+      </p>
+      <div className="site-index-grid">
+        <LinkGroup title="Refresh Planning" items={refreshPages} navigate={navigate} />
+        <LinkGroup title="Maintenance Pages" items={[
+          ["Source Archive", "/source-archive/", "Review official source links and checked dates."],
+          ["Launch Verification", "/launch-verification/", "Prepare post-launch evidence fields."],
+          ["Update Log", "/updates/", "Track shipped content and source changes."],
+          ["Site Index", "/site-index/", "Review all major content hubs and internal links."],
+        ]} navigate={navigate} />
+      </div>
+    </section>
+  );
+}
+
 export function GlossaryPage({ navigate }) {
   return (
     <section className="section sources-band">
