@@ -90,7 +90,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
                     <dt>No.</dt>
                     <dd>{item.no}</dd>
                   </dl>
-                  <a className="text-link" href={aniimoHref(item)} onClick={(event) => navigate(event, aniimoHref(item))}>
+                  <a className="text-link" href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
                     View Aniimo guide <ChevronRight size={16} />
                   </a>
                 </div>
@@ -138,7 +138,7 @@ export function CollectionPage({ type, value, navigate }) {
                 <dt>Stage</dt>
                 <dd>{item.stage}</dd>
               </dl>
-              <a className="text-link" href={aniimoHref(item)} onClick={(event) => navigate(event, aniimoHref(item))}>
+              <a className="text-link" href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
                 View Aniimo guide <ChevronRight size={16} />
               </a>
             </div>
@@ -163,7 +163,7 @@ export function MapPage({ compact, navigate }) {
                 <p className="small">Known Aniimo: {item.aniimo.join(", ")}</p>
                 <p className="small">Mechanics: {item.mechanics.join(", ")}</p>
                 <StatusBadge status={item.status} />
-                <a className="text-link" href={regionHref(item)} onClick={(event) => navigate(event, regionHref(item))}>
+                <a className="text-link" href={regionPath(item)} onClick={(event) => navigate(event, regionPath(item))}>
                   View region guide <ChevronRight size={16} />
                 </a>
               </article>

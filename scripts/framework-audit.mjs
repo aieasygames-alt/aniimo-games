@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { aniimo, gameInfo, regions } from "../data/content.js";
 import { canonicalUrl, prerenderRoutes, sitemapRoutes } from "../src/lib/routes.js";
@@ -6,6 +6,14 @@ import { canonicalUrl, prerenderRoutes, sitemapRoutes } from "../src/lib/routes.
 const issues = [];
 const sitemap = sitemapRoutes();
 const prerender = prerenderRoutes();
+const sourceFiles = [
+  "src/main.jsx",
+  "src/pages/pages.jsx",
+  "src/components/ui.jsx",
+  "src/lib/routes.js",
+  "src/seo/runtime.js",
+];
+const retiredHelpers = ["aniimoHref(", "regionHref("];
 
 findDuplicates(sitemap).forEach((path) => issues.push(`Duplicate sitemap route: ${path}`));
 findDuplicates(prerender).forEach((path) => issues.push(`Duplicate prerender route: ${path}`));
@@ -14,6 +22,13 @@ for (const path of sitemap) {
   if (!path.startsWith("/")) issues.push(`Route must start with slash: ${path}`);
   if (path !== "/" && !path.endsWith("/")) issues.push(`Route must end with slash: ${path}`);
   if (!canonicalUrl(path).startsWith("https://aniimo.games/")) issues.push(`Bad canonical URL: ${canonicalUrl(path)}`);
+}
+
+for (const file of sourceFiles) {
+  const source = readFileSync(file, "utf8");
+  retiredHelpers.forEach((helper) => {
+    if (source.includes(helper)) issues.push(`Retired route helper still referenced in ${file}: ${helper}`);
+  });
 }
 
 const referencedAssets = new Set([
