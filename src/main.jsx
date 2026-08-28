@@ -16,6 +16,7 @@ import {
 import {
   aniimo,
   codes,
+  editorialGuides,
   faqs,
   gameInfo,
   launchRewards,
@@ -149,7 +150,7 @@ function App() {
       path === "/codes" ? faqs.codes :
       path === "/download" ? faqs.download :
       faqs.home;
-    upsertJsonLd(pageFaqs);
+    upsertJsonLd(buildStructuredData({ path, detail, regionDetail, pageFaqs }));
   }, [path]);
 
   const aniimoMatch = path.match(/^\/aniimo\/([^/]+)/);
@@ -291,6 +292,7 @@ function HomePage(props) {
         <BeginnerPage compact navigate={props.navigate} />
         <UpdatesPage compact />
         <SourcesPage compact />
+        <GuideSummary />
         <StatusGuide />
     </>
   );
@@ -442,6 +444,7 @@ function MapPage({ compact, navigate }) {
               ))}
             </div>
           )}
+          {!compact && <EditorialBlock title="Map Maintenance Notes" items={editorialGuides.wiki} />}
         </section>
   );
 }
@@ -510,6 +513,7 @@ function CodesPage() {
             ))}
           </div>
           <RewardGrid />
+          <EditorialBlock title="Code Verification Rules" items={editorialGuides.codes} />
           <FaqBlock items={faqs.codes} />
         </section>
   );
@@ -542,6 +546,7 @@ function DownloadPage() {
             <div className="date-grid">
               <InfoPanel title="Release Dates" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline]]} />
             </div>
+            <EditorialBlock title="Download Checklist" items={editorialGuides.download} />
             <FaqBlock items={faqs.download} />
           </div>
           <div className="platform-list">
@@ -570,6 +575,7 @@ function ReleaseDatePage() {
         <SectionTitle icon={<CalendarDays />} kicker="P0" title="Aniimo Release Date" />
         <p className="section-copy">{releaseInfo.note}</p>
         <InfoPanel title="Official Timeline" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline], ["Timezone note", releaseInfo.timezoneNote], ["Source", releaseInfo.source]]} />
+        <EditorialBlock title="Release Notes" items={editorialGuides.release} />
       </div>
       <div className="timeline-list">
         {releaseInfo.timeline.map(([date, label]) => (
@@ -590,12 +596,26 @@ function BeginnerPage({ navigate }) {
   return (
         <section id="guides" className="section guide-band">
           <SectionTitle icon={<BookOpen />} kicker="P0" title="Beginner Guide" />
-          <div className="guide-columns">
+      <div className="guide-columns">
             {mechanics.map((item) => (
               <GuideItem key={item.title} title={item.title} text={item.text} />
             ))}
-          </div>
+      </div>
+      <EditorialBlock title="Wiki Workflow" items={editorialGuides.wiki} />
         </section>
+  );
+}
+
+function GuideSummary() {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<BookOpen />} kicker="Wiki" title="Aniimo Guide Coverage" />
+      <div className="guide-columns">
+        {editorialGuides.wiki.map(([title, text]) => (
+          <GuideItem key={title} title={title} text={text} />
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -700,17 +720,33 @@ function AniimoDetail({ item, navigate }) {
         <InfoPanel title="Index Data" rows={[["No.", item.no], ["Element", item.element], ["Role", item.role], ["Stage", item.stage]]} />
         <InfoPanel title="Evolution" rows={[["Listed form", item.forms.join(" -> ")], ["Evolution note", item.evolution]]} />
         <InfoPanel title="Abilities" rows={[["Official description", item.ability], ["Recommended use", item.use]]} />
+        <InfoPanel title="How to Get" rows={[["Method", item.acquisition], ["Route", item.region], ["Verification", "Exact spawn points should be added after official launch or in-game confirmation."]]} />
+        <InfoPanel title="Best Uses" rows={[["Role plan", item.use], ["Team note", `Pair ${item.name} with complementary ${item.element} or ${item.role} Aniimo while team data is verified.`]]} />
         <SourcePanel source={item.source} status={item.status} />
       </div>
       <RelatedAniimo title="Evolution Line" items={aniimo.filter((candidate) => item.forms.includes(candidate.name))} navigate={navigate} />
       <RelatedAniimo title={`More ${item.element} Aniimo`} items={sameElement} navigate={navigate} />
       <RelatedAniimo title={`More ${item.role} Aniimo`} items={sameRole} navigate={navigate} />
       <RelatedAniimo title={`More ${item.stage} Aniimo`} items={sameStage} navigate={navigate} />
+      <RelatedRegions currentRegion={item.region} navigate={navigate} />
       <FaqBlock items={[
         [`Where can I find ${item.name}?`, `${item.name} is listed in the official Aniimo Wiki and tracked under ${item.region}. Exact spawn points can be added after launch verification.`],
         [`What forms does ${item.name} have?`, `${item.name} currently lists these forms: ${item.forms.join(", ")}.`],
         [`What role is ${item.name}?`, `${item.name} is currently tagged as ${item.role} and ${item.stage}.`],
       ]} />
+    </section>
+  );
+}
+
+function EditorialBlock({ title, items }) {
+  return (
+    <section className="editorial-block">
+      <h2>{title}</h2>
+      <div className="guide-columns">
+        {items.map(([heading, text]) => (
+          <GuideItem key={heading} title={heading} text={text} />
+        ))}
+      </div>
     </section>
   );
 }
@@ -746,6 +782,29 @@ function RelatedAniimo({ title, items, navigate }) {
             <strong>{item.name}</strong>
             <span>{item.element} / {item.role}</span>
           </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function RelatedRegions({ currentRegion, navigate }) {
+  const items = regions.filter((region) => region.name === currentRegion);
+  if (!items.length) return null;
+
+  return (
+    <section className="related-section">
+      <h2>Related Region</h2>
+      <div className="region-grid">
+        {items.map((region) => (
+          <article className="region-card" key={region.id}>
+            <RegionImage region={region} />
+            <h3>{region.name}</h3>
+            <p>{region.theme}</p>
+            <a className="text-link" href={`/regions/${region.id}`} onClick={(event) => navigate(event, `/regions/${region.id}`)}>
+              Open region page <ChevronRight size={16} />
+            </a>
+          </article>
         ))}
       </div>
     </section>
@@ -869,24 +928,112 @@ function FaqBlock({ items }) {
   );
 }
 
+function buildStructuredData({ path, detail, regionDetail, pageFaqs }) {
+  const canonicalPath = detail ? `/aniimo/${detail.id}` : regionDetail ? `/regions/${regionDetail.id}` : path;
+  const url = `https://aniimo.games${canonicalPath === "/" ? "/" : canonicalPath}`;
+  const breadcrumbs = [
+    { name: "Home", item: "https://aniimo.games/" },
+    ...(canonicalPath !== "/" ? [{ name: detail?.name || regionDetail?.name || document.title.replace(" | Aniimo Wiki", ""), item: url }] : []),
+  ];
+
+  const base = [
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: pageFaqs.map(([question, answer]) => ({
+        "@type": "Question",
+        name: question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: answer,
+        },
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: breadcrumbs.map((crumb, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: crumb.name,
+        item: crumb.item,
+      })),
+    },
+  ];
+
+  if (path === "/" || path === "/download" || path === "/release-date") {
+    base.push({
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      name: gameInfo.title,
+      description: gameInfo.summary,
+      genre: gameInfo.genre,
+      gamePlatform: platforms.map((platform) => platform.name),
+      publisher: gameInfo.publisher,
+      url: "https://aniimo.games/",
+      image: `https://aniimo.games${gameInfo.ogImage}`,
+      datePublished: releaseInfo.pcConsole,
+    });
+  }
+
+  if (path === "/aniimo") {
+    base.push({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Aniimo database",
+      itemListElement: aniimo.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `https://aniimo.games/aniimo/${item.id}`,
+        name: item.name,
+      })),
+    });
+  }
+
+  if (path === "/map") {
+    base.push({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Aniimo region guide",
+      itemListElement: regions.map((region, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `https://aniimo.games/regions/${region.id}`,
+        name: region.name,
+      })),
+    });
+  }
+
+  if (detail || regionDetail) {
+    base.push({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: document.title,
+      description: detail ? detail.description : regionDetail.theme,
+      image: `https://aniimo.games${detail ? detail.image : regionDetail.image}`,
+      dateModified: "2026-08-28",
+      author: {
+        "@type": "Organization",
+        name: "Aniimo.games",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Aniimo.games",
+      },
+      mainEntityOfPage: url,
+    });
+  }
+
+  return base;
+}
+
 function upsertJsonLd(items) {
-  const id = "faq-json-ld";
+  const id = "structured-data-json-ld";
   const previous = document.getElementById(id);
   const script = previous || document.createElement("script");
   script.id = id;
   script.type = "application/ld+json";
-  script.textContent = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: items.map(([question, answer]) => ({
-      "@type": "Question",
-      name: question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: answer,
-      },
-    })),
-  });
+  script.textContent = JSON.stringify(items);
   if (!previous) document.head.appendChild(script);
 }
 

@@ -407,6 +407,29 @@ export const mapGuide = [
   ["Internal linking", "Region pages link back into Aniimo details so search visitors can move between map, evolution and database pages."],
 ];
 
+export const editorialGuides = {
+  download: [
+    ["Use official storefronts", "Start from the official website or platform store page for your device. Avoid APK mirrors or unofficial installers until Pawprint Studio publishes direct files."],
+    ["Check platform dates", "PC and console availability is tracked for September 16, 2026, while mobile availability is tracked for September 23, 2026."],
+    ["Wishlist or pre-register", "Store pages can use different labels, but wishlist, pre-order and pre-register actions all help you follow launch availability."],
+  ],
+  release: [
+    ["PC and console first", "The official launch announcement lists PC and console launch before mobile."],
+    ["Mobile follows one week later", "The mobile launch window is September 23, 2026, giving store pages time to roll out by region."],
+    ["Exact unlock times", "Exact hourly unlock timing is not listed here yet; use store pages and official news for the final countdown."],
+  ],
+  codes: [
+    ["Redeem codes", "No public redeem code is confirmed here yet. Keep code claims separate from official pre-registration rewards."],
+    ["Reward milestones", "Milestone rewards are confirmed through official launch and pre-registration pages, even when they are not typed as redeem codes."],
+    ["Verification rule", "A code should only be marked active after it appears on an official channel or can be redeemed in-game."],
+  ],
+  wiki: [
+    ["Aniimo index", "The database currently focuses on 53 public Aniimo entries with official names, elements, roles, stages and descriptions."],
+    ["Map index", "Six public world regions are connected to guide pages with official artwork and representative Aniimo."],
+    ["Maintenance", "New official Wiki and site updates should flow into the changelog before pages are refreshed."],
+  ],
+};
+
 export const faqs = {
   home: [
     ["What is Aniimo?", "Aniimo is a free-to-play creature-catching open-world RPG set on Idyll, developed by Pawprint Studio."],
