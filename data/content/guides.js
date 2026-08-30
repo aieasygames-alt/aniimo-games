@@ -175,6 +175,11 @@ export const faqs = {
 export const updates = [
   {
     date: "2026-08-30",
+    title: "Social discussion research added",
+    text: "Added a social-intent research pool covering comparison searches, platform access, mobile timing, codes, Twine, map routes, beta readiness and monetization concerns for future content planning.",
+  },
+  {
+    date: "2026-08-30",
     title: "Freshness workflow expanded",
     text: "Added official news, platform change and changelog trackers with an update matrix for launch dates, storefront status, Aniimo entries, redeem codes, route proof and Search Console changes.",
   },

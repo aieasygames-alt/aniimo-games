@@ -14,6 +14,7 @@ import {
   officialPitchTopics,
   refreshPlanningTopics,
   searchSuggestionTopics,
+  socialDiscussionResearch,
   socialIntentTopics,
   sourceArchiveItems,
   troubleshootingTopics,
@@ -85,6 +86,13 @@ for (const item of sourceArchiveItems) {
   requireText("sourceArchiveItems", item, "url", 12);
   requireText("sourceArchiveItems", item, "scope", 30);
   requireText("sourceArchiveItems", item, "lastChecked", 10);
+}
+
+for (const item of socialDiscussionResearch) {
+  requireText("socialDiscussionResearch", item, "topic", 8);
+  requireText("socialDiscussionResearch", item, "signals", 60);
+  requireText("socialDiscussionResearch", item, "contentOpportunity", 60);
+  requireText("socialDiscussionResearch", item, "sourcePolicy", 40);
 }
 
 if (issues.length) {

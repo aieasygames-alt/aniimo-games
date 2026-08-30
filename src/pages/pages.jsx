@@ -1,6 +1,6 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
@@ -484,6 +484,26 @@ export function UpdatesPage() {
           </tbody>
         </table>
       </div>
+      <div className="table-shell freshness-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Social Topic</th>
+              <th>Observed Signal</th>
+              <th>Next Content</th>
+            </tr>
+          </thead>
+          <tbody>
+            {socialDiscussionResearch.map((item) => (
+              <tr key={item.topic}>
+                <td>{item.topic}</td>
+                <td>{item.signals}</td>
+                <td>{item.contentOpportunity}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="update-list">
         {updates.map((item) => (
           <article key={`${item.date}-${item.title}`} className="update-item">
@@ -513,6 +533,10 @@ export function FreshnessPage({ topic }) {
           <GuideItem key={title} title={title} text={text} />
         ))}
       </div>
+      <SeoGuideBlock items={socialDiscussionResearch.slice(0, 4).map((item) => ({
+        title: item.topic,
+        body: `${item.signals} Next content action: ${item.contentOpportunity} Source policy: ${item.sourcePolicy}`,
+      }))} />
       <FaqBlock items={topic.faq} />
       <div className="hero-actions section-actions">
         <a className="primary-action" href="/updates/">

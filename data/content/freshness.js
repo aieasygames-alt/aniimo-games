@@ -70,3 +70,54 @@ export const updateWorkflowMatrix = [
   ["New region or route proof", "Map, region, location page and related Aniimo detail pages", "Official map source or in-game screenshot evidence"],
   ["Search query movement", "Target page, FAQ block, title, meta description and internal links", "Google Search Console query data"],
 ];
+
+export const socialDiscussionResearch = [
+  {
+    topic: "Pokemon and Palworld comparisons",
+    signals: "Creature-catching comparisons appear naturally in community comments, Reddit-style discussion and video reactions.",
+    contentOpportunity: "Strengthen comparison pages with careful framing around collecting, open-world exploration, Twine and official differences.",
+    sourcePolicy: "Use as search-intent evidence only; do not claim Aniimo is equivalent to another game.",
+  },
+  {
+    topic: "Platform availability and download timing",
+    signals: "Players repeatedly ask whether Aniimo is on Steam, Xbox, PlayStation, iOS, Android, Epic Games Store and Switch.",
+    contentOpportunity: "Keep platform pages fresh, add store visibility notes and expand troubleshooting for unavailable pages by region.",
+    sourcePolicy: "Confirm final availability through official storefronts or official Aniimo posts.",
+  },
+  {
+    topic: "Mobile release delay and regional access",
+    signals: "Mobile players focus on why iOS and Android timing differs from PC and console, and whether store pages appear in their country.",
+    contentOpportunity: "Add FAQ coverage around mobile timing, region visibility and safe download behavior.",
+    sourcePolicy: "Use official date and storefront visibility checks before updating download guidance.",
+  },
+  {
+    topic: "Codes, rewards and free gifts",
+    signals: "Code and reward searches cluster around pre-registration bonuses, Susuta egg, milestone rewards and future redeemable strings.",
+    contentOpportunity: "Keep code pages split between active, expired, rewards and claim guidance so speculative code posts do not pollute confirmed rewards.",
+    sourcePolicy: "Only mark a code active after an official channel or in-game redemption screen confirms it.",
+  },
+  {
+    topic: "Twine and transformation mechanics",
+    signals: "Players discuss what Twine means, whether it affects traversal, combat, puzzles and creature utility.",
+    contentOpportunity: "Expand Twine guides with launch-safe examples, then add tested use cases after the game is playable.",
+    sourcePolicy: "Keep cooldowns, damage values and route requirements as watchlist data until verified.",
+  },
+  {
+    topic: "Map, regions and spawn routes",
+    signals: "Community interest clusters around where specific Aniimo appear, which regions are public and whether weather or time matters.",
+    contentOpportunity: "Prepare region pages for post-launch screenshots, route notes and weather/time filters.",
+    sourcePolicy: "Treat preview footage as context, not exact coordinate proof.",
+  },
+  {
+    topic: "Beta access and launch readiness",
+    signals: "Players ask about closed beta history, future test access, server opening time and launch countdown details.",
+    contentOpportunity: "Maintain beta, launch countdown and launch tracker pages with clear past-versus-upcoming date labels.",
+    sourcePolicy: "Separate past beta milestones from current global launch dates.",
+  },
+  {
+    topic: "Monetization and pay-to-win concerns",
+    signals: "Free-to-play games often trigger questions about paid currency, battle passes, gacha-like systems and competitive fairness.",
+    contentOpportunity: "Keep the pay-to-win page source-aware and update it only when official economy details or live tests exist.",
+    sourcePolicy: "Avoid economy claims until official systems are published or tested in-game.",
+  },
+];

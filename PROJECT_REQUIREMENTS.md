@@ -63,6 +63,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added four compressed mechanic images for Twine, Egg Heist, Homeland and Aniipod pages, and extended asset audits to cover topic and gallery images.
 - Added freshness tracker pages for official news, platform changes and the Aniimo.games changelog.
 - Added a freshness update matrix so launch-date, platform, Aniimo, code, route and GSC changes map to the pages that need refreshes.
+- Added social discussion research for future content planning, covering comparison searches, platform access, mobile timing, codes, Twine, map routes, beta readiness and monetization concerns.
 
 ## Active Growth Priorities
 
@@ -366,6 +367,7 @@ Remaining future content work:
 - Add freshness pages for major official news, platform announcements and notable store changes.
 - Expand the launch tracker with a compact change log so updates are easy to review after release.
 - Add more image-focused subpages only when they support a real search intent, not just visual variety.
+- Use social discussion topics as an editorial input for future versions, while keeping official sources and live verification as the factual basis.
 
 Completed first execution layer:
 
@@ -424,6 +426,7 @@ Completed first execution layer:
 - `/updates/official-news/`
 - `/updates/platform-changes/`
 - `/updates/site-changelog/`
+- Social discussion research pool for comparison, platform, mobile, code, Twine, map, beta and monetization topics
 
 Implementation notes:
 
@@ -444,6 +447,7 @@ Implementation notes:
 - New topic groups are included in route resolution, prerender routes, sitemap generation and the visible site index.
 - Freshness tracker pages separate official news, storefront changes and site changelog updates so recurring updates have dedicated crawlable pages.
 - The update workflow matrix defines which evidence and dependent pages are required for each recurring freshness update.
+- Social discussion research is treated as search-intent evidence only; player discussion can guide new pages and FAQs, but official or in-game sources remain required for factual claims.
 
 ## Acceptance Criteria
 
