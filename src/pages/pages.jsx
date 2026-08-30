@@ -600,6 +600,12 @@ export function LaunchDayPage({ navigate }) {
           ["Region Availability", "/troubleshooting/aniimo-region-availability/", "Track country, account and platform-region availability issues."],
           ["Server & Code Verification", "/launch-verification/", "Record launch evidence before publishing it as confirmed."],
         ]} navigate={navigate} />
+        <LinkGroup title="First Session Guides" items={[
+          ["First Hour Guide", "/aniimo-first-hour-guide/", "Plan account setup, rewards, catching, Twine and route verification."],
+          ["Reroll Guide", "/aniimo-reroll-guide/", "Track whether rerolling exists before publishing account-reset advice."],
+          ["Best Settings", "/aniimo-best-settings/", "Prepare graphics, controls, performance and platform setting checks."],
+          ["Beginner Mistakes", "/aniimo-beginner-mistakes/", "Avoid unsafe downloads, unverified codes and premature route claims."],
+        ]} navigate={navigate} />
       </div>
       <section className="related-section">
         <h2>First 24 Hours Update Plan</h2>

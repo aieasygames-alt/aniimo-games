@@ -63,6 +63,66 @@ export const beginnerTopics = [
     ],
   },
   {
+    slug: "aniimo-first-hour-guide",
+    title: "Aniimo First Hour Guide",
+    description: "Plan what to check during your first hour in Aniimo, from official downloads and rewards to catching, Twine and route verification.",
+    intro: "First-hour searches start as soon as players can log in. This guide gives beginners a practical launch path while keeping exact route, reward and balance claims ready for live verification.",
+    points: [
+      ["Start from account and platform", "Confirm you installed from an official storefront, then use the same account ecosystem you used for wishlist or pre-registration."],
+      ["Check rewards and codes separately", "Claim confirmed launch rewards through official systems, but only enter redeem codes that appear on official channels or in-game redemption screens."],
+      ["Record early discoveries", "If you find routes, spawn conditions or Twine uses, capture screenshots, region, time, platform and last checked date before treating them as guide facts."],
+    ],
+    faq: [
+      ["What should I do first in Aniimo?", "Start with official account setup, reward checks, beginner catching, Twine basics and source-safe route notes."],
+      ["Should the first hour guide include exact best routes?", "Only after live verification confirms routes, conditions and screenshots."],
+    ],
+  },
+  {
+    slug: "aniimo-reroll-guide",
+    title: "Aniimo Reroll Guide",
+    description: "Track whether Aniimo rerolling exists, what account details to verify, and why final reroll advice should wait for launch testing.",
+    intro: "Reroll intent is high around free-to-play launches, but Aniimo.games should not claim a reroll route before the live account, reward and acquisition systems are verified.",
+    points: [
+      ["Current status", "No final reroll route is confirmed on Aniimo.games before launch."],
+      ["What to verify", "Check guest account support, account binding, first rewards, first Aniimo acquisition, deletion rules and platform restrictions after launch."],
+      ["Safer alternative", "Use best starter and role watchlist pages for planning until live testing proves whether rerolling is useful or possible."],
+    ],
+    faq: [
+      ["Can you reroll in Aniimo?", "Aniimo.games does not confirm rerolling until the live game shows account, reward and first-acquisition rules."],
+      ["What should a reroll guide include after launch?", "A useful reroll guide should include steps, time required, platforms tested, reward sources, account risks and last verified date."],
+    ],
+  },
+  {
+    slug: "aniimo-best-settings",
+    title: "Aniimo Best Settings",
+    description: "Prepare Aniimo best settings checks for graphics, controls, account safety, performance and platform-specific launch options.",
+    intro: "Best-settings searches usually come from players already trying the game. Before launch, this page prepares what to test without inventing graphics or control menus.",
+    points: [
+      ["Graphics and performance", "After launch, test presets, frame-rate options, resolution scaling, battery settings and device-specific behavior."],
+      ["Controls and camera", "Check controller support, touch controls, camera sensitivity, aim assist, vibration and accessibility options by platform."],
+      ["Account and downloads", "Keep official installer, account binding, notification and store-region settings visible because launch access issues often look like settings problems."],
+    ],
+    faq: [
+      ["What are the best Aniimo settings?", "Final best settings should wait for live testing on PC, console, iOS and Android."],
+      ["Will this page cover controller settings?", "Yes, controller and touch settings should be added after platform-specific launch testing."],
+    ],
+  },
+  {
+    slug: "aniimo-beginner-mistakes",
+    title: "Aniimo Beginner Mistakes",
+    description: "Avoid common Aniimo beginner mistakes around unofficial downloads, unverified codes, early route claims, rewards and account setup.",
+    intro: "Beginner-mistake pages can protect launch users from bad links and bad assumptions. This page focuses on mistakes that are already clear from source policy and launch planning.",
+    points: [
+      ["Using unofficial downloads", "Avoid APK mirrors, reposted installers and fake beta clients when official store links are available."],
+      ["Confusing rewards with codes", "Pre-registration rewards, milestone rewards and typed redeem codes should stay separate until official claim steps are known."],
+      ["Trusting unverified routes", "Do not treat screenshots, short clips or community guesses as final spawn tables without region, condition and timestamp evidence."],
+    ],
+    faq: [
+      ["What is the biggest Aniimo beginner mistake?", "The biggest pre-launch mistake is using unofficial downloads or code claims instead of verified official sources."],
+      ["Can this page change after launch?", "Yes. After launch it should add tested mistakes around routing, Twine, rewards, settings and early-game progression."],
+    ],
+  },
+  {
     slug: "aniimo-elements",
     title: "Aniimo Elements Guide",
     description: "Browse Aniimo elements and learn how element pages connect to roles, regions, abilities and launch verification.",
