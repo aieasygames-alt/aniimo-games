@@ -34,6 +34,7 @@ import {
   GuideHubPage,
   HomePage,
   LaunchTrackerPage,
+  LaunchDayPage,
   LaunchVerificationPage,
   LaunchHubPage,
   MediaPage,
@@ -205,6 +206,8 @@ function App() {
           <BeginnerPage navigate={navigate} />
         ) : routeInfo.path === "/updates/" ? (
           <UpdatesPage />
+        ) : routeInfo.path === "/launch-day/" ? (
+          <LaunchDayPage navigate={navigate} />
         ) : routeInfo.path === "/launch-tracker/" ? (
           <LaunchTrackerPage />
         ) : routeInfo.path === "/launch-verification/" ? (

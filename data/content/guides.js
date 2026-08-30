@@ -226,6 +226,46 @@ export const launchTracker = {
   ],
 };
 
+export const launchDayCommandCenter = {
+  updated: "2026-08-30",
+  summary: "A launch-day operating page for players who need the fastest path to official downloads, platform unlock status, redeem code checks, server status and common launch fixes.",
+  statusRows: [
+    ["PC and console launch", releaseInfo.pcConsole, "Confirmed"],
+    ["Mobile launch", releaseInfo.mobile, "Confirmed"],
+    ["Exact unlock hour", "Pending official storefront confirmation", "Watchlist"],
+    ["Server status", "No live server incident tracked before launch", "Watchlist"],
+    ["Active redeem codes", "No public redeem code confirmed yet", "Watchlist"],
+    ["Known launch errors", "No live-game error confirmed before launch", "Watchlist"],
+  ],
+  quickActions: [
+    ["Download safely", "/download/", "Use official website, Steam, Epic Games Store, Xbox, PlayStation, App Store or Google Play links."],
+    ["Check active codes", "/codes/", "Separate confirmed rewards from redeemable code strings and verify each code before marking it active."],
+    ["Track release timing", "/release-date/", "Use confirmed calendar dates while exact unlock hours remain platform-specific watchlist data."],
+    ["Fix launch issues", "/troubleshooting/", "Start with store visibility, region availability, pre-registration and download-unavailable checks."],
+    ["Verify live data", "/launch-verification/", "Capture spawn, unlock, code and Search Console observations with timestamps and sources."],
+  ],
+  firstDayChecks: [
+    ["Hour 0", "Confirm official launch posts, storefront availability and exact unlock-hour language."],
+    ["Hour 1", "Update download, release-date and platform pages with any store-specific availability changes."],
+    ["Hour 2", "Check official social channels, Discord/news posts and in-game notices for redeem codes or compensation."],
+    ["Hour 4", "Record common launch errors only after repeated reports or official support acknowledgement."],
+    ["Hour 8", "Refresh homepage, launch hub, codes, troubleshooting and update log with verified changes."],
+    ["Hour 24", "Review Search Console discovery, update sitemap if needed and prepare IndexNow submission after deployment."],
+  ],
+  searchIntents: [
+    ["Aniimo server status", "Answer whether the game is live, under maintenance or waiting for official launch."],
+    ["Aniimo not working", "Route users to download, region and storefront checks before suggesting unsupported fixes."],
+    ["Aniimo redeem codes", "Show the active-code policy and link to confirmed rewards when no code string exists."],
+    ["Aniimo unlock time", "Explain the difference between confirmed dates and platform-specific hourly rollout."],
+    ["Aniimo download button missing", "Send users to official platform pages and avoid mirrors or APK reposts."],
+  ],
+  faq: [
+    ["Is Aniimo live right now?", "Aniimo.games treats Aniimo as live only after official launch availability or storefront access is confirmed. Current confirmed dates are September 16, 2026 for PC and consoles and September 23, 2026 for mobile."],
+    ["Where should I check first on launch day?", "Start with the Launch Day page, then open download, release-date, codes, troubleshooting and platform pages for the specific issue."],
+    ["Will launch errors be listed here?", "Yes, but only after official support posts, storefront behavior or repeated verified reports make the issue clear enough to publish responsibly."],
+  ],
+};
+
 export const statuses = {
   Confirmed: "Official or in-game verified data.",
   Unconfirmed: "Seen in previews, community reports, or incomplete sources.",

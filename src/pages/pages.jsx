@@ -1,6 +1,6 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscObservationTemplate, launchDayCommandCenter, launchRewards, launchTracker, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
@@ -33,7 +33,7 @@ export function HomePage(props) {
           <QuickCard icon={<Map />} title="Map" text="Explore regions, representative Aniimo, route notes and official scenery." href="/map/" navigate={props.navigate} />
           <QuickCard icon={<Sparkles />} title="Evolution" text="Track base forms, branch forms, special conditions and launch updates." href="/evolution/" navigate={props.navigate} />
           <QuickCard icon={<Gift />} title="Rewards" text="Track confirmed pre-registration rewards, milestone rewards and launch code status." href="/rewards/" navigate={props.navigate} />
-          <QuickCard icon={<CalendarDays />} title="Launch Tracker" text="Follow platform dates, reward status, code status and source checks." href="/launch-tracker/" navigate={props.navigate} />
+          <QuickCard icon={<CalendarDays />} title="Launch Day" text="Check server status, active codes, unlock timing and launch fixes." href="/launch-day/" navigate={props.navigate} />
           <QuickCard icon={<Compass />} title="Search Topics" text="Open guides built around official features, community questions and search demand." href="/site-index/" navigate={props.navigate} />
         </section>
 
@@ -581,6 +581,65 @@ export function LaunchTrackerPage() {
   );
 }
 
+export function LaunchDayPage({ navigate }) {
+  return (
+    <section className="section updates-band">
+      <SectionTitle icon={<CalendarDays />} kicker="Launch Day" title="Aniimo Launch Day Command Center" />
+      <p className="section-copy">{launchDayCommandCenter.summary}</p>
+      <div className="detail-panels">
+        <InfoPanel title="Current Launch Status" rows={launchDayCommandCenter.statusRows.map(([label, value, status]) => [label, `${value} (${status})`])} />
+        <InfoPanel title="Fast Checks" rows={launchDayCommandCenter.searchIntents.map(([intent, answer]) => [intent, answer])} />
+      </div>
+      <div className="site-index-grid">
+        <LinkGroup title="Launch Day Actions" items={launchDayCommandCenter.quickActions} navigate={navigate} />
+        <LinkGroup title="High-Intent Search Paths" items={[
+          ["Active Aniimo Codes", "/codes/active/", "Check active code status and verification notes."],
+          ["Download Unavailable", "/troubleshooting/download-unavailable/", "Fix missing download buttons and pre-launch store timing issues."],
+          ["Region Availability", "/troubleshooting/region-availability/", "Track country, account and platform-region availability issues."],
+          ["Server & Code Verification", "/launch-verification/", "Record launch evidence before publishing it as confirmed."],
+        ]} navigate={navigate} />
+      </div>
+      <section className="related-section">
+        <h2>First 24 Hours Update Plan</h2>
+        <div className="table-shell freshness-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Window</th>
+                <th>What to Check</th>
+              </tr>
+            </thead>
+            <tbody>
+              {launchDayCommandCenter.firstDayChecks.map(([window, task]) => (
+                <tr key={window}>
+                  <td>{window}</td>
+                  <td>{task}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <SeoGuideBlock items={[
+        { title: "Why this page exists", body: "Launch day searches are fragmented across status, codes, unlock timing, download issues and platform pages. This command center gives users one fast route to the freshest source-aware answers." },
+        { title: "What stays unconfirmed", body: "Server incidents, exact unlock hours, active redeem codes and live error fixes stay in watchlist status until official sources, storefront behavior or verified in-game evidence confirms them." },
+        { title: "Where updates should flow", body: "When launch data changes, update this page first, then refresh download, release date, codes, troubleshooting, platform pages, update log and IndexNow submission after deployment." },
+      ]} />
+      <div className="hero-actions section-actions">
+        <a className="primary-action" href="/download/" onClick={(event) => navigate(event, "/download/")}>
+          <Download size={18} />
+          Open Download Links
+        </a>
+        <a className="secondary-action" href="/codes/" onClick={(event) => navigate(event, "/codes/")}>
+          <Gift size={18} />
+          Check Codes
+        </a>
+      </div>
+      <FaqBlock items={launchDayCommandCenter.faq} />
+    </section>
+  );
+}
+
 export function LaunchVerificationPage() {
   return (
     <section className="section sources-band">
@@ -675,7 +734,7 @@ export function SourcesPage() {
 
 export function SiteIndexPage({ navigate }) {
   const corePages = staticRoutes.filter((route) =>
-    ["/aniimo/", "/map/", "/evolution/", "/codes/", "/rewards/", "/download/", "/release-date/", "/beginner-guide/", "/launch-tracker/", "/launch-verification/", "/best-aniimo/", "/sources/"].includes(route.path),
+    ["/aniimo/", "/map/", "/evolution/", "/codes/", "/rewards/", "/download/", "/release-date/", "/beginner-guide/", "/launch-day/", "/launch-tracker/", "/launch-verification/", "/best-aniimo/", "/sources/"].includes(route.path),
   );
   const platformPages = staticRoutes.filter((route) => route.path.startsWith("/platforms/"));
   const downloadPages = downloadTopics.map((item) => [item.title, downloadTopicPath(item), item.description]);
@@ -838,6 +897,7 @@ export function LaunchHubPage({ navigate }) {
         <LinkGroup title="Platform Pages" items={platformPages} navigate={navigate} />
         <LinkGroup title="Rewards & Codes" items={rewardPages} navigate={navigate} />
         <LinkGroup title="Launch Operations" items={[
+          ["Launch Day", "/launch-day/", "Check server status, active codes, unlock timing and launch fixes."],
           ["Release Date", "/release-date/", "Track PC, console and mobile launch windows."],
           ["Launch Tracker", "/launch-tracker/", "Monitor source status, rewards, platforms and verification tasks."],
           ["Troubleshooting", "/troubleshooting/", "Fix download, store visibility, pre-registration and region availability issues."],

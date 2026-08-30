@@ -64,6 +64,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added freshness tracker pages for official news, platform changes and the Aniimo.games changelog.
 - Added a freshness update matrix so launch-date, platform, Aniimo, code, route and GSC changes map to the pages that need refreshes.
 - Added social discussion research for future content planning, covering comparison searches, platform access, mobile timing, codes, Twine, map routes, beta readiness and monetization concerns.
+- Added `/launch-day/` as a launch-day command center for server status, active codes, unlock timing, download issues, troubleshooting and first-24-hours update workflow.
 
 ## Active Growth Priorities
 
@@ -152,6 +153,7 @@ Add automated checks for:
 Completed first public monitoring layer:
 
 - `/launch-tracker/` gives users and crawlers a source-aware launch readiness hub.
+- `/launch-day/` gives users and crawlers a single high-intent page for launch-day status, code checks, unlock timing, official download links and common fixes.
 - The page separates confirmed official facts from watchlist items such as exact unlock hours, redeem codes and spawn routes.
 - `npm run check:live` verifies deployed robots, sitemap, canonical tags and key page availability.
 - `npm run check:live` now also samples sitemap URLs to catch production route regressions beyond the most important pages.
