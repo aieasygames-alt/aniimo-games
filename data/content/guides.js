@@ -174,6 +174,11 @@ export const faqs = {
 
 export const updates = [
   {
+    date: "2026-08-30",
+    title: "Freshness workflow expanded",
+    text: "Added official news, platform change and changelog trackers with an update matrix for launch dates, storefront status, Aniimo entries, redeem codes, route proof and Search Console changes.",
+  },
+  {
     date: "2026-08-28",
     title: "Launch tracker added",
     text: "Added a launch readiness page covering platform windows, reward status, code status, source freshness and post-launch verification tasks.",

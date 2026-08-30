@@ -62,6 +62,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added IndexNow support with a public key file and `npm run submit:indexnow` for sitemap URL submission after deployment.
 - Added four compressed mechanic images for Twine, Egg Heist, Homeland and Aniipod pages, and extended asset audits to cover topic and gallery images.
 - Added freshness tracker pages for official news, platform changes and the Aniimo.games changelog.
+- Added a freshness update matrix so launch-date, platform, Aniimo, code, route and GSC changes map to the pages that need refreshes.
 
 ## Active Growth Priorities
 
@@ -442,6 +443,7 @@ Implementation notes:
 - Element, role, stage and status collection pages now include unique summary context beyond repeated database cards.
 - New topic groups are included in route resolution, prerender routes, sitemap generation and the visible site index.
 - Freshness tracker pages separate official news, storefront changes and site changelog updates so recurring updates have dedicated crawlable pages.
+- The update workflow matrix defines which evidence and dependent pages are required for each recurring freshness update.
 
 ## Acceptance Criteria
 

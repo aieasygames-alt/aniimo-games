@@ -61,3 +61,12 @@ export const freshnessWatchlist = [
   ["Map verification", "Check live route screenshots, weather windows and time-of-day conditions after launch.", "Update map, region, location and Aniimo detail pages."],
   ["Search Console data", "Review GSC queries after pages receive impressions.", "Refresh titles, FAQs and internal links where queries show clear intent."],
 ];
+
+export const updateWorkflowMatrix = [
+  ["Launch date change", "Release date, download, launch tracker, platform pages", "Official news or storefront date field"],
+  ["New platform state", "Platform page, download hub, safe-download guide, launch tracker", "Storefront listing and action label"],
+  ["New Aniimo entry", "Database, detail page, element, role, stage, region and site index", "Official Wiki entry plus image or source status"],
+  ["New redeem code", "Codes, active codes, rewards, launch tracker and changelog", "Official channel or in-game redemption screen"],
+  ["New region or route proof", "Map, region, location page and related Aniimo detail pages", "Official map source or in-game screenshot evidence"],
+  ["Search query movement", "Target page, FAQ block, title, meta description and internal links", "Google Search Console query data"],
+];

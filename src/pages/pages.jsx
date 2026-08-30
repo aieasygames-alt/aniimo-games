@@ -1,6 +1,6 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, verificationTemplates } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
@@ -464,6 +464,26 @@ export function UpdatesPage() {
           </tbody>
         </table>
       </div>
+      <div className="table-shell freshness-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Update Type</th>
+              <th>Pages to Refresh</th>
+              <th>Evidence Needed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {updateWorkflowMatrix.map(([type, pages, evidence]) => (
+              <tr key={type}>
+                <td>{type}</td>
+                <td>{pages}</td>
+                <td>{evidence}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="update-list">
         {updates.map((item) => (
           <article key={`${item.date}-${item.title}`} className="update-item">
@@ -805,6 +825,7 @@ export function LaunchHubPage({ navigate }) {
 
 export function GrowthHubPage({ navigate }) {
   const refreshPages = refreshPlanningTopics.map((item) => [item.title, refreshPlanningTopicPath(item), item.description]);
+  const freshnessItems = freshnessPages.map((item) => [item.title, freshnessPagePath(item), item.description]);
 
   return (
     <section className="section sources-band">
@@ -815,6 +836,7 @@ export function GrowthHubPage({ navigate }) {
       </p>
       <div className="site-index-grid">
         <LinkGroup title="Refresh Planning" items={refreshPages} navigate={navigate} />
+        <LinkGroup title="Freshness Trackers" items={freshnessItems} navigate={navigate} />
         <LinkGroup title="Maintenance Pages" items={[
           ["Source Archive", "/source-archive/", "Review official source links and checked dates."],
           ["Launch Verification", "/launch-verification/", "Prepare post-launch evidence fields."],
