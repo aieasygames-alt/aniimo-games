@@ -1,4 +1,4 @@
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, conversionTopics, downloadTopics, faqs, gameInfo, glossaryTopics, mechanicDeepDiveTopics, mediaDetailTopics, newsTopics, officialPitchTopics, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, socialIntentTopics, troubleshootingTopics } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, conversionTopics, downloadTopics, faqs, freshnessPages, gameInfo, glossaryTopics, mechanicDeepDiveTopics, mediaDetailTopics, newsTopics, officialPitchTopics, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, socialIntentTopics, troubleshootingTopics } from "../../data/content.js";
 
 export const siteUrl = "https://aniimo.games";
 
@@ -140,6 +140,10 @@ export function conversionTopicPath(topic) {
 
 export function refreshPlanningTopicPath(topic) {
   return normalizePath(`/growth/${topic.slug}`);
+}
+
+export function freshnessPagePath(topic) {
+  return normalizePath(`/updates/${topic.slug}`);
 }
 
 export function canonicalUrl(path) {
@@ -292,6 +296,9 @@ export function resolveRoute(path) {
   const refreshPlanningTopic = refreshPlanningTopics.find((item) => refreshPlanningTopicPath(item) === normalized);
   if (refreshPlanningTopic) return { type: "refresh-planning-topic", path: refreshPlanningTopicPath(refreshPlanningTopic), title: refreshPlanningTopic.title, description: refreshPlanningTopic.description, refreshPlanningTopic };
 
+  const freshnessPage = freshnessPages.find((item) => freshnessPagePath(item) === normalized);
+  if (freshnessPage) return { type: "freshness-page", path: freshnessPagePath(freshnessPage), title: freshnessPage.title, description: freshnessPage.description, freshnessPage };
+
   const staticRoute = staticRoutes.find((item) => item.path === normalized);
   if (staticRoute) return { type: "static", ...staticRoute };
 
@@ -325,6 +332,7 @@ export function sitemapRoutes() {
     ...mediaDetailTopics.map(mediaDetailTopicPath),
     ...conversionTopics.map(conversionTopicPath),
     ...refreshPlanningTopics.map(refreshPlanningTopicPath),
+    ...freshnessPages.map(freshnessPagePath),
     ...aniimo.map(aniimoPath),
     ...regions.map(regionPath),
   ]);

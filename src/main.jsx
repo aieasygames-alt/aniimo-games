@@ -27,6 +27,7 @@ import {
   DownloadTopicPage,
   EditorialPolicyPage,
   EvolutionPage,
+  FreshnessPage,
   GuideSummary,
   GlossaryPage,
   GrowthHubPage,
@@ -184,6 +185,8 @@ function App() {
           <TopicGuidePage topic={routeInfo.conversionTopic} kicker="Launch" icon={<Download />} />
         ) : routeInfo.type === "refresh-planning-topic" ? (
           <TopicGuidePage topic={routeInfo.refreshPlanningTopic} kicker="Growth" icon={<Search />} />
+        ) : routeInfo.type === "freshness-page" ? (
+          <FreshnessPage topic={routeInfo.freshnessPage} />
         ) : routeInfo.path === "/aniimo/" ? (
           <DatabasePage {...sharedProps} />
         ) : routeInfo.path === "/map/" ? (

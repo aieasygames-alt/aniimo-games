@@ -1,7 +1,7 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, gameInfo, glossaryTopics, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, verificationTemplates } from "../../data/content.js";
-import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, glossaryTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscObservationTemplate, launchRewards, launchTracker, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, verificationTemplates } from "../../data/content.js";
+import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
 export function HomePage(props) {
@@ -432,6 +432,38 @@ export function UpdatesPage() {
           Open Site Index
         </a>
       </div>
+      <div className="freshness-grid">
+        {freshnessPages.map((item) => (
+          <article className="freshness-card" key={item.slug}>
+            <p>{item.sourceType}</p>
+            <h3>{item.title}</h3>
+            <span>{item.description}</span>
+            <a className="text-link" href={freshnessPagePath(item)}>
+              Open tracker <ChevronRight size={16} />
+            </a>
+          </article>
+        ))}
+      </div>
+      <div className="table-shell freshness-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Watchlist</th>
+              <th>Check</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {freshnessWatchlist.map(([label, check, action]) => (
+              <tr key={label}>
+                <td>{label}</td>
+                <td>{check}</td>
+                <td>{action}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="update-list">
         {updates.map((item) => (
           <article key={`${item.date}-${item.title}`} className="update-item">
@@ -442,6 +474,35 @@ export function UpdatesPage() {
             </div>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+export function FreshnessPage({ topic }) {
+  return (
+    <section className="section updates-band">
+      <SectionTitle icon={<CalendarDays />} kicker="Freshness" title={topic.title} />
+      <p className="section-copy">{topic.intro}</p>
+      <div className="detail-panels">
+        <InfoPanel title="Tracking Scope" rows={[["Source type", topic.sourceType], ["Primary source", topic.source], ["Status", "Maintained as a source-aware update page"]]} />
+        <InfoPanel title="Related Actions" rows={freshnessWatchlist.slice(0, 3).map(([label, check]) => [label, check])} />
+      </div>
+      <div className="guide-list">
+        {topic.points.map(([title, text]) => (
+          <GuideItem key={title} title={title} text={text} />
+        ))}
+      </div>
+      <FaqBlock items={topic.faq} />
+      <div className="hero-actions section-actions">
+        <a className="primary-action" href="/updates/">
+          <CalendarDays size={18} />
+          Back to Update Log
+        </a>
+        <a className="secondary-action" href={topic.source} target="_blank" rel="noreferrer">
+          <Search size={18} />
+          Check Source
+        </a>
       </div>
     </section>
   );
@@ -577,6 +638,7 @@ export function SiteIndexPage({ navigate }) {
   const beginnerPages = beginnerTopics.map((item) => [item.title, beginnerTopicPath(item), item.description]);
   const codeRewardPages = codeRewardTopics.map((item) => [item.title, codeRewardTopicPath(item), item.description]);
   const newsPages = newsTopics.map((item) => [item.title, newsTopicPath(item), item.summary]);
+  const freshnessItems = freshnessPages.map((item) => [item.title, freshnessPagePath(item), item.description]);
   const choicePages = choiceTopics.map((item) => [item.title, choiceTopicPath(item), item.description]);
   const officialPitchPages = officialPitchTopics.map((item) => [item.title, officialPitchTopicPath(item), item.description]);
   const socialIntentPages = socialIntentTopics.map((item) => [item.title, socialIntentTopicPath(item), item.description]);
@@ -608,6 +670,7 @@ export function SiteIndexPage({ navigate }) {
         <LinkGroup title="Beginner Questions" items={beginnerPages} navigate={navigate} />
         <LinkGroup title="Codes & Rewards" items={codeRewardPages} navigate={navigate} />
         <LinkGroup title="News & Updates" items={newsPages} navigate={navigate} />
+        <LinkGroup title="Freshness Trackers" items={freshnessItems} navigate={navigate} />
         <LinkGroup title="Official Feature Guides" items={officialPitchPages} navigate={navigate} />
         <LinkGroup title="Community Question Guides" items={socialIntentPages} navigate={navigate} />
         <LinkGroup title="Search Topic Guides" items={searchSuggestionPages} navigate={navigate} />

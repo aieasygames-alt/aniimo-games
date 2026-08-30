@@ -4,3 +4,4 @@ export * from "./content/regions.js";
 export * from "./content/guides.js";
 export * from "./content/verification.js";
 export * from "./content/content-clusters.js";
+export * from "./content/freshness.js";

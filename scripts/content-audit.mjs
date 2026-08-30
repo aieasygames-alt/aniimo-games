@@ -5,6 +5,7 @@ import {
   codeRewardTopics,
   conversionTopics,
   downloadTopics,
+  freshnessPages,
   glossaryTopics,
   mechanicDeepDiveTopics,
   mediaDetailTopics,
@@ -31,6 +32,7 @@ const richTopicGroups = [
   ["mediaDetailTopics", mediaDetailTopics],
   ["conversionTopics", conversionTopics],
   ["refreshPlanningTopics", refreshPlanningTopics],
+  ["freshnessPages", freshnessPages],
 ];
 
 const simpleTopicGroups = [

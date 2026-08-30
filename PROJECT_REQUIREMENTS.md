@@ -61,6 +61,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added `npm run check:release` as the standard pre-commit gate for build, content, SEO, framework, asset and verification checks.
 - Added IndexNow support with a public key file and `npm run submit:indexnow` for sitemap URL submission after deployment.
 - Added four compressed mechanic images for Twine, Egg Heist, Homeland and Aniipod pages, and extended asset audits to cover topic and gallery images.
+- Added freshness tracker pages for official news, platform changes and the Aniimo.games changelog.
 
 ## Active Growth Priorities
 
@@ -154,11 +155,23 @@ Completed first public monitoring layer:
 - `npm run check:live` now also samples sitemap URLs to catch production route regressions beyond the most important pages.
 - `npm run check:official` outputs watchlist field counts and next actions for source-driven updates.
 
+Remaining monitoring work:
+
+- Add scheduled execution for `check:live`, `check:official`, `check:assets` and `submit:indexnow` so new changes are checked after each deployment.
+- Record which checks are blocking, warning or informational so the release gate stays readable.
+- Alert when sitemap size, canonical consistency, missing assets or live page failures change unexpectedly.
+
 ### Priority 6: Performance
 
 Status: In progress
 
 Completed first-round WebP conversion for the largest unreferenced production PNG files. Added `npm run check:assets` for image budgets, compressed the Blitzwood region artwork under the current region-image threshold, and converted remaining production Aniimo PNG portraits to WebP.
+
+Remaining performance work:
+
+- Audit hero, region and mechanic images for responsive delivery and tighter file budgets.
+- Review bundle size and route chunking for pages that still carry multiple feature groups.
+- Continue shrinking any new media before shipping it into `public`.
 
 ### Priority 7: Core Search Page Expansion
 
@@ -347,6 +360,12 @@ Potential content additions after the current user-intent clusters mature:
 - Troubleshooting pages for download unavailable, store page not visible, pre-registration not showing, and region availability.
 - GSC-driven refresh pages once impressions show which queries are close to ranking.
 
+Remaining future content work:
+
+- Add freshness pages for major official news, platform announcements and notable store changes.
+- Expand the launch tracker with a compact change log so updates are easy to review after release.
+- Add more image-focused subpages only when they support a real search intent, not just visual variety.
+
 Completed first execution layer:
 
 - `/guides/aniimo-official-features/`
@@ -401,6 +420,9 @@ Completed first execution layer:
 - `/launch/aniimo-safe-download-checklist/`
 - `/growth/gsc-refresh-plan/`
 - `/growth/query-refresh-watchlist/`
+- `/updates/official-news/`
+- `/updates/platform-changes/`
+- `/updates/site-changelog/`
 
 Implementation notes:
 
@@ -419,6 +441,7 @@ Implementation notes:
 - Stage and status collection pages reuse the database card pattern and are linked from taxonomy chips plus the site index.
 - Element, role, stage and status collection pages now include unique summary context beyond repeated database cards.
 - New topic groups are included in route resolution, prerender routes, sitemap generation and the visible site index.
+- Freshness tracker pages separate official news, storefront changes and site changelog updates so recurring updates have dedicated crawlable pages.
 
 ## Acceptance Criteria
 
