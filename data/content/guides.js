@@ -241,7 +241,7 @@ export const launchDayCommandCenter = {
     ["Download safely", "/download/", "Use official website, Steam, Epic Games Store, Xbox, PlayStation, App Store or Google Play links."],
     ["Check active codes", "/codes/", "Separate confirmed rewards from redeemable code strings and verify each code before marking it active."],
     ["Track release timing", "/release-date/", "Use confirmed calendar dates while exact unlock hours remain platform-specific watchlist data."],
-    ["Fix launch issues", "/troubleshooting/", "Start with store visibility, region availability, pre-registration and download-unavailable checks."],
+    ["Fix launch issues", "/troubleshooting/", "Start with store visibility, region availability, pre-registration, server-status and download-unavailable checks."],
     ["Verify live data", "/launch-verification/", "Capture spawn, unlock, code and Search Console observations with timestamps and sources."],
   ],
   firstDayChecks: [

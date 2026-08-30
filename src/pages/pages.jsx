@@ -594,8 +594,10 @@ export function LaunchDayPage({ navigate }) {
         <LinkGroup title="Launch Day Actions" items={launchDayCommandCenter.quickActions} navigate={navigate} />
         <LinkGroup title="High-Intent Search Paths" items={[
           ["Active Aniimo Codes", "/codes/active/", "Check active code status and verification notes."],
-          ["Download Unavailable", "/troubleshooting/download-unavailable/", "Fix missing download buttons and pre-launch store timing issues."],
-          ["Region Availability", "/troubleshooting/region-availability/", "Track country, account and platform-region availability issues."],
+          ["Server Status", "/troubleshooting/aniimo-server-status/", "Track maintenance, outage and launch availability checks."],
+          ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Track login, black screen, stuck loading and platform-specific launch errors."],
+          ["Download Unavailable", "/troubleshooting/aniimo-download-not-available/", "Fix missing download buttons and pre-launch store timing issues."],
+          ["Region Availability", "/troubleshooting/aniimo-region-availability/", "Track country, account and platform-region availability issues."],
           ["Server & Code Verification", "/launch-verification/", "Record launch evidence before publishing it as confirmed."],
         ]} navigate={navigate} />
       </div>
@@ -901,6 +903,8 @@ export function LaunchHubPage({ navigate }) {
           ["Release Date", "/release-date/", "Track PC, console and mobile launch windows."],
           ["Launch Tracker", "/launch-tracker/", "Monitor source status, rewards, platforms and verification tasks."],
           ["Troubleshooting", "/troubleshooting/", "Fix download, store visibility, pre-registration and region availability issues."],
+          ["Server Status", "/troubleshooting/aniimo-server-status/", "Prepare a source-safe status page for launch-day outage searches."],
+          ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Prepare a verified issue log for login, black screen and stuck-loading searches."],
         ]} navigate={navigate} />
       </div>
     </section>

@@ -590,6 +590,36 @@ export const glossaryTopics = [
 
 export const troubleshootingTopics = [
   {
+    slug: "aniimo-server-status",
+    title: "Aniimo Server Status",
+    description: "Track Aniimo server status, maintenance watchlist notes, launch availability and where to verify official outage updates.",
+    intro: "Server-status searches spike the moment a game opens. Before launch, this page keeps the status tied to official availability and avoids inventing outage reports.",
+    points: [
+      ["Current status policy", "Aniimo.games only marks a server issue active after official support, storefront behavior or repeated verified live-game evidence confirms it."],
+      ["What to check first", "Check the launch day command center, platform storefronts, official website news and official social channels."],
+      ["What changes after launch", "Add maintenance windows, affected platforms, start time, resolved time, compensation notes and last checked timestamp when verified."],
+    ],
+    faq: [
+      ["Are Aniimo servers down?", "Aniimo.games does not mark servers down before official launch availability or verified reports confirm a live issue."],
+      ["Where should I check Aniimo server status?", "Start with official Aniimo news, storefront notices and the Aniimo.games launch day command center."],
+    ],
+  },
+  {
+    slug: "aniimo-known-issues",
+    title: "Aniimo Known Issues",
+    description: "Track Aniimo known issues for launch errors, login problems, black screen reports, stuck loading and platform-specific fixes.",
+    intro: "Known-issue pages are useful only when they separate verified problems from rumor. This page prepares the structure for launch errors without publishing unverified fixes.",
+    points: [
+      ["Issue threshold", "List an issue only after official acknowledgement, repeatable storefront behavior or multiple consistent verified reports."],
+      ["Fields to capture", "Record affected platform, error text, first seen time, workaround, fix status, source and last checked timestamp."],
+      ["Related pages", "Route download problems to the download-not-available guide, region problems to region availability, and code problems to the codes page."],
+    ],
+    faq: [
+      ["Does Aniimo have known launch issues?", "No live-game issue is marked confirmed on Aniimo.games before launch. This page will update when verified evidence exists."],
+      ["Should I trust random Aniimo fix downloads?", "No. Avoid unofficial fix files, APK mirrors or modified installers. Use official sources and storefront updates."],
+    ],
+  },
+  {
     slug: "aniimo-download-not-available",
     title: "Aniimo Download Not Available",
     description: "Troubleshoot why Aniimo download, wishlist, pre-order or pre-registration may not appear on your platform yet.",

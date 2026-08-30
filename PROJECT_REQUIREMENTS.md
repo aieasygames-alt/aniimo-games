@@ -65,6 +65,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added a freshness update matrix so launch-date, platform, Aniimo, code, route and GSC changes map to the pages that need refreshes.
 - Added social discussion research for future content planning, covering comparison searches, platform access, mobile timing, codes, Twine, map routes, beta readiness and monetization concerns.
 - Added `/launch-day/` as a launch-day command center for server status, active codes, unlock timing, download issues, troubleshooting and first-24-hours update workflow.
+- Added server-status and known-issues troubleshooting pages for launch-day outage, login, black screen, stuck-loading and platform-error searches.
 
 ## Active Growth Priorities
 
