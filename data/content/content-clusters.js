@@ -790,6 +790,81 @@ export const searchSuggestionTopics = [
       ["Is Aniimo online multiplayer?", "Multiplayer-adjacent systems are tracked, but final online rules need official or live-game verification."],
     ],
   },
+  {
+    slug: "aniimo-shiny",
+    title: "Does Aniimo Have Shiny Forms?",
+    description: "Track Aniimo shiny, rare form, color variant and special creature searches without inventing unconfirmed variant systems.",
+    intro: "Shiny searches are common in creature-collecting games. Aniimo.games should answer this intent carefully by separating confirmed forms, official names and any future rare-variant system.",
+    points: [
+      ["Current status", "Aniimo.games does not confirm shiny forms unless official sources or live-game evidence verify a rare color or variant system."],
+      ["What is already tracked", "The database tracks public names, stages, elements, roles, evolution lines and source status."],
+      ["After launch", "If rare forms exist, capture name, appearance, route, odds or trigger, screenshot evidence, platform and last verified date."],
+    ],
+    faq: [
+      ["Are there shiny Aniimo?", "Aniimo.games does not confirm shiny forms until official or live-game verification exists."],
+      ["Where would shiny Aniimo be tracked?", "If verified, rare variants should update the database, detail pages, map pages and launch verification notes."],
+    ],
+  },
+  {
+    slug: "aniimo-aniilog",
+    title: "Aniimo Aniilog Guide",
+    description: "Track Aniimo Aniilog searches, database meaning and what official or live data should confirm after launch.",
+    intro: "Aniilog appears as a small SEMrush query. This page treats it as a terminology and system watchlist until official wording confirms the exact in-game meaning.",
+    points: [
+      ["Watchlist term", "Aniilog should stay as a watchlist term unless official pages, game UI or support text define it directly."],
+      ["Likely content path", "If confirmed, connect Aniilog to database progress, creature records, collection tracking or guide history based on official wording."],
+      ["Verification fields", "Capture screenshot, source URL, menu location, related reward or progression use and last checked date."],
+    ],
+    faq: [
+      ["What is Aniilog in Aniimo?", "Aniimo.games keeps Aniilog as a watchlist term until official or in-game evidence defines it clearly."],
+      ["Should Aniilog be in the glossary?", "Yes, once its official meaning is verified, it should become a glossary and guide-linked term."],
+    ],
+  },
+  {
+    slug: "aniimo-carried-items",
+    title: "Aniimo Carried Items",
+    description: "Prepare Aniimo carried item, held item, drop and item interaction coverage for launch verification.",
+    intro: "Carried item searches suggest users expect item interactions with creatures. This page prepares the verification framework without claiming a held-item system before launch data exists.",
+    points: [
+      ["Current status", "Aniimo.games does not confirm carried or held item mechanics until official or live-game evidence supports them."],
+      ["What to capture", "Record item name, source, affected Aniimo, route, reward table, restrictions, screenshot and last verified date."],
+      ["Related systems", "If confirmed, connect carried items to catching, rewards, Egg Heist, Twine, database detail pages and beginner guides."],
+    ],
+    faq: [
+      ["Do Aniimo have carried items?", "Aniimo.games does not confirm carried items until official or live-game verification exists."],
+      ["Where will item drops be tracked?", "Verified items should update rewards, mode guides, Aniimo detail pages and launch verification notes."],
+    ],
+  },
+  {
+    slug: "aniimo-pax-east",
+    title: "Aniimo PAX East Watchlist",
+    description: "Track Aniimo PAX East searches, event footage, announcements and source-safe follow-up pages.",
+    intro: "Event searches can point to trailers, demos, interviews or preview coverage. This page keeps PAX East references as source leads until official material confirms what was shown.",
+    points: [
+      ["Event-source rule", "Use official event pages, official Aniimo posts, verified video uploads or storefront updates before treating PAX East details as confirmed."],
+      ["What to catalog", "Track date, venue, video URL, featured gameplay, featured Aniimo, platform mentions and follow-up guide pages."],
+      ["Internal links", "Connect verified event material to trailers, news, gameplay, demo status, media and source archive pages."],
+    ],
+    faq: [
+      ["Was Aniimo at PAX East?", "Aniimo.games should only confirm PAX East details when official or verifiable event sources support them."],
+      ["Where should PAX East footage go?", "Verified footage should update trailers, news, media gallery and source archive pages."],
+    ],
+  },
+  {
+    slug: "aniimo-tgs",
+    title: "Aniimo TGS Watchlist",
+    description: "Track Aniimo TGS searches, Tokyo Game Show watchlist notes, trailers, demos and official source updates.",
+    intro: "TGS searches are event-intent searches. This page gives Aniimo.games a place to route users while keeping unverified show-floor claims out of core guides.",
+    points: [
+      ["Event-source rule", "Confirm TGS details through official Aniimo posts, Tokyo Game Show sources, platform channels or verified video uploads."],
+      ["What to catalog", "Track presentation date, video source, featured systems, playable demo status, platform mentions and update impact."],
+      ["Where updates flow", "Verified TGS news should update trailers, news tracker, release date, platform pages and source archive."],
+    ],
+    faq: [
+      ["Is Aniimo at TGS?", "Aniimo.games should only confirm TGS participation when official or verifiable sources support it."],
+      ["Can TGS footage confirm gameplay?", "It can support broad public features, but exact route, reward and balance claims still need stronger verification."],
+    ],
+  },
 ];
 
 export const mechanicDeepDiveTopics = [

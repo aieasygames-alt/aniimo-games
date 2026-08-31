@@ -341,7 +341,18 @@ export function ReleaseDatePage() {
         <p className="section-copy">{releaseInfo.note}</p>
         <SeoGuideBlock items={seoGuides.release} compact />
         <InfoPanel title="Official Timeline" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline], ["Timezone note", releaseInfo.timezoneNote], ["Source", releaseInfo.source]]} />
+        <InfoPanel title="SEMrush Release Queries" rows={[
+          ["when does Aniimo come out", "Answered by the official PC, console and mobile date split."],
+          ["Aniimo date de sortie", "French searchers can use the localized release page."],
+          ["wann kommt Aniimo raus", "German searchers can use the localized release page."],
+          ["Aniimo PS5 release date", "Console date is tracked with platform-specific storefront timing still pending."],
+          ["Aniimo Xbox release date", "Xbox date uses the console launch window until storefront timing is verified."],
+        ]} />
         <EditorialBlock title="Release Notes" items={editorialGuides.release} />
+        <div className="hero-actions section-actions">
+          <button onClick={() => navigate("/fr/aniimo-date-de-sortie/")}><Search size={18} /> Date de sortie</button>
+          <button onClick={() => navigate("/de/wann-kommt-aniimo/")}><Search size={18} /> Wann kommt Aniimo</button>
+        </div>
       </div>
       <div className="timeline-list">
         {releaseInfo.timeline.map(([date, label]) => (
@@ -630,6 +641,11 @@ export function LaunchDayPage({ navigate }) {
           ["Review Watchlist", "/topics/aniimo-review/", "Prepare review criteria without publishing a premature score."],
           ["Demo Status", "/topics/aniimo-demo/", "Separate demo, playtest and closed beta search intent."],
           ["MMO Question", "/topics/aniimo-mmo/", "Clarify open-world RPG positioning versus MMO assumptions."],
+          ["Shiny Forms", "/topics/aniimo-shiny/", "Track rare form and color variant questions as watchlist data."],
+          ["Aniilog", "/topics/aniimo-aniilog/", "Hold Aniilog as a terminology watchlist until verified."],
+          ["Carried Items", "/topics/aniimo-carried-items/", "Prepare held-item and drop verification fields."],
+          ["PAX East", "/topics/aniimo-pax-east/", "Route event searches to verified media and news updates."],
+          ["TGS", "/topics/aniimo-tgs/", "Track Tokyo Game Show search intent without unverified show-floor claims."],
         ]} navigate={navigate} />
         <LinkGroup title="French & German Search Entrypoints" items={localizedTopics.map((item) => [
           item.title,
