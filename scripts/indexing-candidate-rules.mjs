@@ -2,6 +2,10 @@ import { canonicalUrl, resolveRoute, sitemapRoutes } from "../src/lib/routes.js"
 
 export const indexingPriorityRules = [
   {
+    title: "GSC First Refresh",
+    match: (route) => ["/", "/aniimo/", "/guides/", "/map/", "/codes/", "/aniimo/glacy/", "/pt/aniimo-data-de-lancamento/", "/es/aniimo-fecha-de-lanzamiento/"].includes(route.path),
+  },
+  {
     title: "Launch Core",
     match: (route) => ["/", "/launch-day/", "/launch/", "/release-date/", "/download/", "/codes/", "/rewards/", "/launch-tracker/", "/launch-verification/"].includes(route.path),
   },
@@ -23,7 +27,7 @@ export const indexingPriorityRules = [
   },
   {
     title: "Localized Entrypoints",
-    match: (route) => route.path.startsWith("/fr/") || route.path.startsWith("/de/"),
+    match: (route) => /^\/(fr|de|pt|es)\//.test(route.path),
   },
   {
     title: "Troubleshooting",

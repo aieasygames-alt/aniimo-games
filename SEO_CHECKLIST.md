@@ -1,6 +1,6 @@
 # Aniimo.games SEO Checklist
 
-Last checked: 2026-08-28
+Last checked: 2026-08-31
 
 ## Current Status
 
@@ -12,6 +12,9 @@ Last checked: 2026-08-28
 - Build-time SEO audit passes with `npm run check:seo`.
 - Static HTML is generated for sitemap routes during `npm run build`.
 - Legacy slugs for `nimbi`, `turbo` and `dreaple` redirect to official-name pages.
+- `www.aniimo.games` is redirected to the non-www canonical host in `public/_redirects`.
+- The 2026-08-31 GSC export showed 235 impressions, 9 clicks, 3.83% CTR and 9.22 average position across the last 24 hours.
+- Current GSC refresh targets are homepage CTR, `/aniimo/`, `/map/`, `/codes/`, `/guides/`, `/aniimo/glacy/`, Portuguese release-date and Spanish release-date pages.
 
 ## Structured Data
 
@@ -24,5 +27,6 @@ Last checked: 2026-08-28
 ## Remaining Growth Work
 
 - Add launch-verified spawn points, weather windows and route notes after release.
-- Review Search Console coverage after Google reads the sitemap and starts reporting indexed pages.
+- Review Search Console coverage after Google reads the GSC first-refresh pages and starts reporting stable query patterns.
 - Refresh `Aniimo codes` immediately if official redeem codes appear.
+- Re-export GSC after deployment and compare www/non-www impressions to confirm canonical consolidation is taking effect.

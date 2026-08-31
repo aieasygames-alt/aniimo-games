@@ -1,13 +1,22 @@
 # Aniimo Indexing Candidates
 
-Generated: 2026-08-31T05:31:43.924Z
+Generated: 2026-08-31T08:46:32.915Z
 
 Use this list after a GitHub push and Cloudflare deployment. Submit the first sections first when manual indexing quota is limited.
 
+## GSC First Refresh
+
+- https://aniimo.games/ - Aniimo Wiki: Release Date, Codes, Map & Database
+- https://aniimo.games/aniimo/ - All Aniimo List, Characters, Locations & Abilities
+- https://aniimo.games/map/ - Aniimo Map & Region Guide | Spawn Locations
+- https://aniimo.games/codes/ - Aniimo Codes & Rewards
+- https://aniimo.games/guides/ - Aniimo Guides Hub
+- https://aniimo.games/pt/aniimo-data-de-lancamento/ - Aniimo Data de Lancamento
+- https://aniimo.games/es/aniimo-fecha-de-lanzamiento/ - Aniimo Fecha de Lanzamiento
+- https://aniimo.games/aniimo/glacy/ - Glacy Location, Evolution, Forms & Abilities | Aniimo Wiki
+
 ## Launch Core
 
-- https://aniimo.games/ - Aniimo Wiki, Database & Map Guide
-- https://aniimo.games/codes/ - Aniimo Codes & Rewards
 - https://aniimo.games/rewards/ - Aniimo Pre-Registration Rewards
 - https://aniimo.games/download/ - Aniimo Download, Release Date & Platforms
 - https://aniimo.games/release-date/ - Aniimo Release Date
@@ -84,7 +93,13 @@ Use this list after a GitHub push and Cloudflare deployment. Submit the first se
 ## Plain URL List
 
 - https://aniimo.games/
+- https://aniimo.games/aniimo/
+- https://aniimo.games/map/
 - https://aniimo.games/codes/
+- https://aniimo.games/guides/
+- https://aniimo.games/pt/aniimo-data-de-lancamento/
+- https://aniimo.games/es/aniimo-fecha-de-lanzamiento/
+- https://aniimo.games/aniimo/glacy/
 - https://aniimo.games/rewards/
 - https://aniimo.games/download/
 - https://aniimo.games/release-date/
