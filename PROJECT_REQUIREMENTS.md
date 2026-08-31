@@ -77,6 +77,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added code, download, launch and media hub intent modules for safety searches, platform questions, localized launch queries and event reveal searches.
 - Added topic-specific FAQ and Article structured-data coverage, with release audit checks for topic schema generation.
 - Added `npm run indexing:candidates` to generate a prioritized manual indexing list for launch, SEMrush, localized and troubleshooting URLs after deployment.
+- Expanded live production audit coverage so prioritized indexing candidates are required URL checks before manual submission.
 
 ## Active Growth Priorities
 

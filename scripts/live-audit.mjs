@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { sitemapRoutes, siteUrl } from "../src/lib/routes.js";
+import { indexingCandidateSections } from "./indexing-candidate-rules.mjs";
 
 const issues = [];
 const expected = sitemapRoutes().map((route) => `${siteUrl}${route}`);
@@ -15,6 +16,8 @@ const importantPages = [
   `${siteUrl}/robots.txt`,
   `${siteUrl}/sitemap.xml`,
 ];
+const indexingCandidateUrls = indexingCandidateSections().urls;
+const requiredPages = [...new Set([...importantPages, ...indexingCandidateUrls])];
 
 const localSitemap = readFileSync("public/sitemap.xml", "utf8");
 const localRoutes = [...localSitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
@@ -23,11 +26,11 @@ for (const route of expected) {
   if (!localRoutes.includes(route)) issues.push(`Local sitemap is missing expected route: ${route}`);
 }
 
-for (const url of importantPages) {
+for (const url of requiredPages) {
   await checkUrl(url);
 }
 
-const sitemapSample = sampleUrls(expected.filter((url) => !importantPages.includes(url)), 24);
+const sitemapSample = sampleUrls(expected.filter((url) => !requiredPages.includes(url)), 24);
 for (const url of sitemapSample) {
   await checkUrl(url, { sampled: true });
 }
@@ -38,7 +41,7 @@ if (issues.length) {
   process.exit(1);
 }
 
-console.log(`Live audit passed: ${importantPages.length} important URLs, ${sitemapSample.length} sampled sitemap URLs, ${expected.length} sitemap routes expected.`);
+console.log(`Live audit passed: ${requiredPages.length} required URLs, ${sitemapSample.length} sampled sitemap URLs, ${expected.length} sitemap routes expected.`);
 
 async function checkUrl(url, { sampled = false } = {}) {
   const response = await fetch(url, { redirect: "manual" }).catch((error) => {
