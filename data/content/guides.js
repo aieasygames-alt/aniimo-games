@@ -45,6 +45,7 @@ export const mechanics = [
 
 export const mapGuide = [
   ["Region coverage", "All six public world regions now have official artwork and launch-ready guide pages."],
+  ["Map size searches", "Aniimo.games tracks map-size intent through the six public regions, visible region art and launch verification queues. Exact world scale, border size and travel-time measurements should be added only after official or in-game confirmation."],
   ["Encounter routing", "Each region links to representative Aniimo and keeps route details separate from claims that still need launch verification."],
   ["Verification pass", "After launch, update each area with coordinates, weather windows, time-of-day notes and traversal requirements."],
   ["Internal linking", "Region pages link back into Aniimo details so search visitors can move between map, evolution and database pages."],
@@ -112,6 +113,11 @@ export const seoGuides = {
       title: "What can change after launch?",
       body:
         "Exact spawn points, time windows, weather requirements and traversal locks should be verified after players can test the live game. The current map avoids pretending that preview footage is a final coordinate table. Instead, it separates confirmed region names and public mechanics from launch-day route details that still need in-game confirmation.",
+    },
+    {
+      title: "How big is the Aniimo map?",
+      body:
+        "Aniimo.games does not list a final square-kilometer map size yet because official sources have not published a complete measured world scale. The map guide currently tracks six public regions, their representative Aniimo, official scenery and route-verification tasks. After launch, this page should add travel-time checks, border screenshots, route screenshots and region-to-region path notes before making exact map-size claims.",
     },
     {
       title: "Best next map upgrades",

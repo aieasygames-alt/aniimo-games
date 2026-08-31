@@ -65,6 +65,38 @@ export const localizedTopics = [
       ["Ist Aniimo kostenlos?", "Aniimo wird durch offizielle Storefront-Sprache als free-to-play verfolgt; optionale Economy-Details muessen nach Launch verifiziert werden."],
     ],
   },
+  {
+    locale: "pt",
+    slug: "aniimo-data-de-lancamento",
+    title: "Aniimo Data de Lancamento",
+    description: "Acompanhe em portugues a data de lancamento de Aniimo, PC, consoles, mobile, Steam, PS5, Xbox, iOS, Android e fontes oficiais.",
+    intro: "Esta pagina responde buscas em portugues sobre a data de lancamento de Aniimo. Ela separa datas oficiais de horarios exatos, que ainda podem variar por plataforma, loja e regiao.",
+    points: [
+      ["PC e consoles", `Aniimo.games acompanha o lancamento de PC e consoles para ${releaseInfo.pcConsole}.`],
+      ["Mobile", `O lancamento mobile para iOS e Android e acompanhado para ${releaseInfo.mobile}.`],
+      ["Fontes oficiais", "Use o site oficial, Steam, Epic Games Store, PlayStation, Xbox, App Store e Google Play para confirmar disponibilidade."],
+    ],
+    faq: [
+      ["Qual e a data de lancamento de Aniimo?", `Aniimo.games acompanha ${releaseInfo.pcConsole} para PC e consoles e ${releaseInfo.mobile} para mobile.`],
+      ["Aniimo tera download no Brasil?", "A disponibilidade regional deve ser confirmada nas lojas oficiais e no site oficial perto do lancamento."],
+    ],
+  },
+  {
+    locale: "es",
+    slug: "aniimo-fecha-de-lanzamiento",
+    title: "Aniimo Fecha de Lanzamiento",
+    description: "Consulta en espanol la fecha de lanzamiento de Aniimo, plataformas, descarga oficial, Steam, PS5, Xbox, iOS y Android.",
+    intro: "Esta pagina sirve como entrada en espanol para las busquedas sobre Aniimo, su fecha de lanzamiento, plataformas y descarga segura. Mantiene las fechas oficiales separadas de los horarios exactos pendientes.",
+    points: [
+      ["PC y consolas", `Aniimo.games sigue el lanzamiento de PC y consolas para ${releaseInfo.pcConsole}.`],
+      ["Mobile", `El lanzamiento mobile para iOS y Android se sigue para ${releaseInfo.mobile}.`],
+      ["Descarga segura", "Usa el sitio oficial y las tiendas oficiales; evita APKs, torrents e instaladores no oficiales."],
+    ],
+    faq: [
+      ["Cuando sale Aniimo?", `Aniimo.games sigue ${releaseInfo.pcConsole} para PC y consolas y ${releaseInfo.mobile} para mobile.`],
+      ["Donde descargar Aniimo?", "Usa Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play o el sitio oficial de Aniimo."],
+    ],
+  },
 ];
 
 export const beginnerTopics = [

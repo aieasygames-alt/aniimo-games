@@ -6,11 +6,11 @@ export const staticRoutes = [
   {
     path: "/",
     label: "Home",
-    title: "Aniimo Wiki, Database & Map Guide",
-    description: "Aniimo Wiki with database pages, locations, evolution guides, codes, rewards, download info, and beginner tips.",
+    title: "Aniimo Wiki: Release Date, Codes, Map & Database",
+    description: "Aniimo Wiki for release dates, codes, rewards, download links, map regions, database entries, evolution and beginner guides.",
     nav: false,
   },
-  { path: "/aniimo/", label: "Database", title: "All Aniimo List, Locations & Abilities | Aniimo Wiki", description: "Search every public Aniimo entry by name, element, role, region, stage, abilities and source status." },
+  { path: "/aniimo/", label: "Database", title: "All Aniimo List, Characters, Locations & Abilities", description: "Search every public Aniimo character by name, Wiki number, element, role, region, stage, ability and source status." },
   { path: "/map/", label: "Map", title: "Aniimo Map & Region Guide | Spawn Locations", description: "Explore Aniimo regions, representative Aniimo, official scenery, route notes and launch verification status." },
   { path: "/evolution/", label: "Evolution", title: "Aniimo Evolution & Forms Guide", description: "Track Aniimo Lumin, Gamma and Nova stages, evolution lines, form paths and launch update notes." },
   { path: "/codes/", label: "Codes", title: "Aniimo Codes & Rewards", description: "Check active Aniimo codes, launch reward status, pre-registration bonuses and redeem code verification rules." },
@@ -313,7 +313,7 @@ export function resolveRoute(path) {
   return {
     type: "not-found",
     path: "/",
-    title: "Aniimo Wiki, Database & Map Guide",
+    title: "Aniimo Wiki: Release Date, Codes, Map & Database",
     description: gameInfo.summary,
   };
 }

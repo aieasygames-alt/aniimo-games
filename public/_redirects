@@ -1,3 +1,5 @@
+/ https://aniimo.games/ 301! Country=:any Host=www.aniimo.games
+/* https://aniimo.games/:splat 301! Country=:any Host=www.aniimo.games
 /aniimo/nimbi /aniimo/bolty/ 301
 /aniimo/nimbi/ /aniimo/bolty/ 301
 /aniimo/turbo /aniimo/blazen/ 301

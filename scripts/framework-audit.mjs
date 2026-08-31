@@ -32,6 +32,12 @@ for (const file of sourceFiles) {
 }
 
 const pagesSource = readFileSync("src/pages/pages.jsx", "utf8");
+const redirectsSource = readFileSync("public/_redirects", "utf8");
+
+if (!redirectsSource.includes("Host=www.aniimo.games") || !redirectsSource.includes("https://aniimo.games/:splat")) {
+  issues.push("Missing www to non-www redirect rule in public/_redirects.");
+}
+
 for (const platformRoute of ["/platforms/ps5/", "/platforms/xbox/", "/platforms/epic-games/", "/platforms/ios/", "/platforms/android/"]) {
   if (!sitemap.includes(platformRoute)) issues.push(`Platform route missing from sitemap routes: ${platformRoute}`);
   if (!pagesSource.includes(platformRoute.replace("/platforms/", "").replace("/", ""))) {

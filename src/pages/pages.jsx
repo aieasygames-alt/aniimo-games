@@ -10,7 +10,7 @@ export function HomePage(props) {
         <section className="hero">
           <div className="hero-copy">
             <p className="eyebrow">Database, map routes, evolution and launch rewards</p>
-            <h1>Aniimo Wiki, Database & Map Guide</h1>
+            <h1>Aniimo Wiki: Release Date, Codes, Map & Database</h1>
             <p>{gameInfo.summary}</p>
             <div className="hero-actions">
               <a className="primary-action" href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>
@@ -208,6 +208,13 @@ export function MapPage({ compact, navigate }) {
         <section id="map" className="section">
           <SectionTitle icon={<Compass />} kicker="World" title="Map & Region Guides" />
           {!compact && <SeoGuideBlock items={seoGuides.map} />}
+          {!compact && (
+            <InfoPanel title="Map Size Status" rows={[
+              ["Current map-size answer", "No final measured world size is confirmed on Aniimo.games yet."],
+              ["Public region count", `${regions.length} regions with official artwork are tracked.`],
+              ["Next verification", "Add travel-time, border and route screenshots after launch before publishing exact size claims."],
+            ]} />
+          )}
           <div className="region-grid">
             {regions.map((item) => (
               <article className="region-card" key={item.id}>
@@ -403,8 +410,10 @@ export function ReleaseDatePage() {
         ]} />
         <EditorialBlock title="Release Notes" items={editorialGuides.release} />
         <div className="hero-actions section-actions">
-          <button onClick={() => navigate("/fr/aniimo-date-de-sortie/")}><Search size={18} /> Date de sortie</button>
-          <button onClick={() => navigate("/de/wann-kommt-aniimo/")}><Search size={18} /> Wann kommt Aniimo</button>
+          <a className="secondary-action" href="/fr/aniimo-date-de-sortie/" onClick={(event) => navigate(event, "/fr/aniimo-date-de-sortie/")}><Search size={18} /> Date de sortie</a>
+          <a className="secondary-action" href="/de/wann-kommt-aniimo/" onClick={(event) => navigate(event, "/de/wann-kommt-aniimo/")}><Search size={18} /> Wann kommt Aniimo</a>
+          <a className="secondary-action" href="/pt/aniimo-data-de-lancamento/" onClick={(event) => navigate(event, "/pt/aniimo-data-de-lancamento/")}><Search size={18} /> Data de lancamento</a>
+          <a className="secondary-action" href="/es/aniimo-fecha-de-lanzamiento/" onClick={(event) => navigate(event, "/es/aniimo-fecha-de-lanzamiento/")}><Search size={18} /> Fecha de lanzamiento</a>
         </div>
       </div>
       <div className="timeline-list">
