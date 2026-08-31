@@ -1,6 +1,6 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchRewards, launchTracker, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchRewards, launchTracker, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
@@ -39,6 +39,11 @@ export function HomePage(props) {
 
         <section className="section sources-band">
           <SectionTitle icon={<Compass />} kicker="Launch Search" title="High-Intent Aniimo Searches" />
+          <InfoPanel title="Search Console Signal" rows={[
+            ["Review window", `${gscLatestObservations.date}, ${gscLatestObservations.range}`],
+            ["Early performance", `${gscLatestObservations.metrics[1][1]} impressions, ${gscLatestObservations.metrics[0][1]} clicks, ${gscLatestObservations.metrics[3][1]} average position.`],
+            ["Current action", "Strengthen release date, codes, map, guide and character-name entry points."],
+          ]} />
           <div className="site-index-grid">
             <LinkGroup title="Launch Answers" items={[
               ["Release Date", "/release-date/", "Check PC, console and mobile launch dates."],
@@ -93,6 +98,13 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             <Select label="Stage" value={stage} onChange={setStage} options={stages} />
           </div>
           <TaxonomyLinks navigate={navigate} />
+          {!compact && (
+            <InfoPanel title="Character Search Shortcuts" rows={[
+              ["Best matching queries", "Search by Aniimo name, Wiki number, element, role, region or ability."],
+              ["Useful snippets", "Each detail page exposes location, evolution, forms, abilities and source status."],
+              ["Verification rule", "Exact spawn points stay pending until official or in-game evidence confirms them."],
+            ]} />
+          )}
           <div className="aniimo-grid">
             {filteredAniimo.map((item) => (
               <article className="aniimo-card" key={item.id}>
@@ -894,6 +906,11 @@ export function SiteIndexPage({ navigate }) {
       </p>
       <div className="site-index-grid">
         <LinkGroup title="Core Guides" items={corePages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
+        <LinkGroup title="GSC Query Watchlist" items={gscLatestObservations.queryWatchlist.map(([query, action]) => [
+          query,
+          query.includes("map") ? "/map/" : query.includes("codes") ? "/codes/" : query.includes("glacy") ? "/aniimo/glacy/" : "/guides/",
+          action,
+        ])} navigate={navigate} />
         <LinkGroup title="Launch Search Shortcuts" items={launchSearchPages} navigate={navigate} />
         <LinkGroup title="Platform Pages" items={platformPages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
         <LinkGroup title="Download Decisions" items={downloadPages} navigate={navigate} />
@@ -1062,6 +1079,11 @@ export function GrowthHubPage({ navigate }) {
       <div className="site-index-grid">
         <LinkGroup title="Refresh Planning" items={refreshPages} navigate={navigate} />
         <LinkGroup title="Freshness Trackers" items={freshnessItems} navigate={navigate} />
+        <LinkGroup title="Latest GSC Actions" items={gscLatestObservations.actions.map(([label, action]) => [
+          label,
+          label.includes("Map") ? "/map/" : label.includes("Localized") ? "/launch/" : label.includes("Character") ? "/aniimo/" : "/",
+          action,
+        ])} navigate={navigate} />
         <LinkGroup title="Maintenance Pages" items={[
           ["Source Archive", "/source-archive/", "Review official source links and checked dates."],
           ["Launch Verification", "/launch-verification/", "Prepare post-launch evidence fields."],
@@ -1688,6 +1710,11 @@ export function AniimoDetail({ item, navigate }) {
       <div className="detail-panels">
         <InfoPanel title="Location" rows={[["Region", item.region], ["Habitat", item.habitat], ["Spawn condition", item.condition], ["Acquisition", item.acquisition]]} />
         <InfoPanel title="Index Data" rows={[["No.", item.no], ["Element", item.element], ["Role", item.role], ["Stage", item.stage]]} />
+        <InfoPanel title="Search Match" rows={[
+          ["Query pattern", `${item.name.toLowerCase()} aniimo, ${item.name} location, ${item.name} evolution`],
+          ["Snippet focus", `${item.name} no. ${item.no}, ${item.element} element, ${item.role} role, ${item.stage}.`],
+          ["Source status", item.status],
+        ]} />
         <InfoPanel title="Evolution" rows={[["Listed form", item.forms.join(" -> ")], ["Evolution note", item.evolution], ["Detail plan", item.evolutionDetail]]} />
         <InfoPanel title="Abilities" rows={[["Official description", item.ability], ["Recommended use", item.use], ["Use case", item.abilityUseCase]]} />
         <InfoPanel title="How to Get" rows={[["Method", item.acquisition], ["Route", item.region], ["Verification", "Exact spawn points should be added after official launch or in-game confirmation."]]} />

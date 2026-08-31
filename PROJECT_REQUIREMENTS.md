@@ -79,6 +79,8 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added `npm run indexing:candidates` to generate a prioritized manual indexing list for launch, SEMrush, localized and troubleshooting URLs after deployment.
 - Expanded live production audit coverage so prioritized indexing candidates are required URL checks before manual submission.
 - Added launch evidence queues and freshness signals for codes, downloads, gameplay, event reveals, variants and item verification pages.
+- Added GSC-driven SEO improvements from the 2026-08-31 export: www-to-non-www redirect coverage, CTR-focused homepage metadata, map-size intent copy, Portuguese and Spanish release-date entry pages, and a visible Search Console action/watchlist module.
+- Fixed prerender metadata injection so static route HTML receives route-specific descriptions after homepage metadata changes.
 
 ## Active Growth Priorities
 

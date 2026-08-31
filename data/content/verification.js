@@ -69,6 +69,31 @@ export const gscObservationTemplate = {
   fieldsToCapture: verificationTemplates.gscObservation.requiredFields.concat(verificationTemplates.gscObservation.optionalFields),
 };
 
+export const gscLatestObservations = {
+  date: "2026-08-31",
+  range: "Last 24 hours",
+  summary: "Google Search Console shows early ranking traction around Aniimo brand, guide, map, codes and character-name searches, with homepage and database pages receiving most impressions.",
+  metrics: [
+    ["Clicks", "9"],
+    ["Impressions", "235"],
+    ["CTR", "3.83%"],
+    ["Average position", "9.22"],
+  ],
+  actions: [
+    ["Canonical consolidation", "Keep www traffic redirected to the non-www canonical domain so Search Console signals are not split."],
+    ["Homepage CTR", "Use release date, codes, map and database language in the homepage title and first screen."],
+    ["Map-size intent", "Answer map-size searches without inventing exact world measurements before launch verification."],
+    ["Localized demand", "Support Brazil and Spanish-language discovery with lightweight launch-date entry pages."],
+    ["Character searches", "Make Aniimo detail pages easy to scan by number, element, role, stage, location and verification status."],
+  ],
+  queryWatchlist: [
+    ["aniimo guide", "Improve guide hub links and homepage wording."],
+    ["aniimo map size", "Add map-size status, region count and verification policy to the map page."],
+    ["aniimo codes", "Keep codes pages fresh and separate rewards from redeemable strings."],
+    ["glacy aniimo", "Make character detail snippets direct and source-labeled."],
+  ],
+};
+
 export const launchEvidenceQueues = {
   codes: {
     title: "Redeem Code Evidence Queue",
