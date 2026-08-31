@@ -67,6 +67,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added `/launch-day/` as a launch-day command center for server status, active codes, unlock timing, download issues, troubleshooting and first-24-hours update workflow.
 - Added server-status and known-issues troubleshooting pages for launch-day outage, login, black screen, stuck-loading and platform-error searches.
 - Added first-session beginner pages for first hour, reroll status, best settings and beginner mistakes to catch post-login launch searches.
+- Added SEMrush-driven trust and gameplay pages for AI questions, developer/publisher, price/free-to-play and multiplayer intent.
 
 ## Active Growth Priorities
 

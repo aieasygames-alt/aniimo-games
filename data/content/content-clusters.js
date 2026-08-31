@@ -1,4 +1,4 @@
-import { officialLinks, releaseInfo } from "./sources.js";
+import { gameInfo, officialLinks, releaseInfo } from "./sources.js";
 
 export const beginnerTopics = [
   {
@@ -343,6 +343,66 @@ export const socialIntentTopics = [
     faq: [
       ["Is Aniimo free to play?", "Yes. Official storefront language describes Aniimo as free-to-play."],
       ["Is Aniimo pay to win?", "Aniimo.games does not label the game pay-to-win without verified launch economy and balance data."],
+    ],
+  },
+  {
+    slug: "aniimo-ai",
+    title: "Does Aniimo Use AI?",
+    description: "Track Aniimo AI questions, official-source boundaries, developer information and how Aniimo.games handles AI-related claims.",
+    intro: "SEMrush queries show users asking whether Aniimo is AI-made or uses generative AI. This page answers that trust intent carefully: it records what official sources say and avoids claims that are not directly supported.",
+    points: [
+      ["Current source position", "Aniimo.games does not claim Aniimo is AI-made unless Pawprint Studio or an official platform listing states that directly."],
+      ["What is confirmed", "Official public sources identify Aniimo as a free-to-play creature-catching open-world RPG from Pawprint Studio, with Pawprint Interactive Entertainment Pte. Ltd. listed as publisher."],
+      ["How to update this page", "If official art, development, trailer or store pages add AI-related disclosures, update this page, the source archive and trust pages with the exact source and date checked."],
+    ],
+    faq: [
+      ["Is Aniimo made with AI?", "Aniimo.games does not confirm that Aniimo is made with AI without an official statement or platform disclosure."],
+      ["Why does this page exist?", "Players are searching AI-related trust questions, so this page gives a source-aware answer instead of letting rumors define the topic."],
+    ],
+  },
+  {
+    slug: "aniimo-developer",
+    title: "Aniimo Developer and Publisher",
+    description: "Find Aniimo developer, publisher, official website, storefront links and source notes for trust-focused searches.",
+    intro: "Developer and publisher searches are trust checks. This page gives users the official entity names and links them to the source archive, platform pages and update workflow.",
+    points: [
+      ["Developer", `${gameInfo.developer} is tracked as the Aniimo developer in the local source model.`],
+      ["Publisher", `${gameInfo.publisher} is tracked as the Aniimo publisher in the local source model.`],
+      ["Official links", "Use the official website, official Wiki and verified storefronts before trusting reposted download, beta key or account-sale pages."],
+    ],
+    faq: [
+      ["Who developed Aniimo?", `${gameInfo.developer} is tracked as Aniimo's developer on Aniimo.games.`],
+      ["Who published Aniimo?", `${gameInfo.publisher} is tracked as Aniimo's publisher on Aniimo.games.`],
+    ],
+  },
+  {
+    slug: "aniimo-price",
+    title: "Aniimo Price and Free-to-Play Status",
+    description: "Check whether Aniimo is free to play, what price information is confirmed and which economy details still need launch verification.",
+    intro: "Price searches sit close to download intent. Aniimo.games should answer the free-to-play question clearly while keeping paid currency, battle pass and shop details in watchlist status until verified.",
+    points: [
+      ["Free-to-play status", "Official storefront language describes Aniimo as a free-to-play creature-catching open-world RPG."],
+      ["Unknown economy details", "Paid currency, battle pass, shop pricing and competitive impact should wait for official or live-game verification."],
+      ["Reward boundary", "Pre-registration rewards and launch gifts are tracked separately from paid purchases and redeem codes."],
+    ],
+    faq: [
+      ["Is Aniimo free?", "Yes. Official storefront language describes Aniimo as free-to-play."],
+      ["How much does Aniimo cost?", "Aniimo is tracked as free-to-play, while optional purchases and economy details need official or live-game verification."],
+    ],
+  },
+  {
+    slug: "aniimo-multiplayer",
+    title: "Is Aniimo Multiplayer?",
+    description: "Track Aniimo multiplayer, co-op, PVP, Egg Heist and real-time challenge questions with source-safe wording.",
+    intro: "Multiplayer searches are already visible in SEMrush. This page should explain confirmed multiplayer-adjacent systems without overstating matchmaking, co-op campaign or final PVP rules before launch testing.",
+    points: [
+      ["Confirmed multiplayer-adjacent systems", "Official public material describes real-time challenges and Egg Heist, a PVEVP mode with three-player teams."],
+      ["What still needs verification", "Matchmaking rules, friend invites, crossplay, platform pools, co-op exploration and final PVP rewards need official or live-game confirmation."],
+      ["Related guides", "Use Egg Heist, platforms, launch verification and beginner pages to keep multiplayer claims tied to the right source context."],
+    ],
+    faq: [
+      ["Is Aniimo multiplayer?", "Aniimo.games tracks real-time challenges and Egg Heist as confirmed public systems, while final multiplayer rules need launch verification."],
+      ["Does Aniimo have co-op?", "Co-op details should wait for official wording or live-game testing before being treated as confirmed."],
     ],
   },
 ];

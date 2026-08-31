@@ -606,6 +606,12 @@ export function LaunchDayPage({ navigate }) {
           ["Best Settings", "/aniimo-best-settings/", "Prepare graphics, controls, performance and platform setting checks."],
           ["Beginner Mistakes", "/aniimo-beginner-mistakes/", "Avoid unsafe downloads, unverified codes and premature route claims."],
         ]} navigate={navigate} />
+        <LinkGroup title="Trust & Purchase Questions" items={[
+          ["Does Aniimo Use AI?", "/compare/aniimo-ai/", "Answer AI-made and generative AI questions with official-source boundaries."],
+          ["Developer and Publisher", "/compare/aniimo-developer/", "Show entity names, official links and source archive paths."],
+          ["Price and Free-to-Play", "/compare/aniimo-price/", "Separate free-to-play status from unverified economy details."],
+          ["Is Aniimo Multiplayer?", "/compare/aniimo-multiplayer/", "Track real-time challenges, Egg Heist, co-op and PVP questions."],
+        ]} navigate={navigate} />
       </div>
       <section className="related-section">
         <h2>First 24 Hours Update Plan</h2>
@@ -850,8 +856,8 @@ export function CompareHubPage({ navigate }) {
     <section className="section sources-band">
       <SectionTitle icon={<Search />} kicker="Compare" title="Aniimo Comparisons" />
       <p className="section-copy">
-        These pages answer comparison-style searches while clearly separating Aniimo's
-        official systems from broad genre expectations.
+        These pages answer comparison, platform, price, AI and multiplayer searches
+        while clearly separating Aniimo's official systems from broad expectations.
       </p>
       <LinkGroup title="Comparison Guides" items={comparisonPages} navigate={navigate} />
     </section>
