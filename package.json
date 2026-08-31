@@ -17,7 +17,8 @@
     "check:content": "node scripts/content-audit.mjs",
     "check:assets": "node scripts/asset-audit.mjs",
     "check:verification": "node scripts/verification-audit.mjs",
-    "check:live": "node scripts/live-audit.mjs"
+    "check:live": "node scripts/live-audit.mjs",
+    "indexing:candidates": "node scripts/indexing-candidates.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.0",
