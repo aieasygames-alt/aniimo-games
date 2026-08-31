@@ -624,6 +624,12 @@ export function LaunchDayPage({ navigate }) {
           ["Discord", "/topics/aniimo-discord/", "Keep community invite and code claims tied to official verification."],
           ["Reddit", "/topics/aniimo-reddit/", "Use discussion signals without treating rumors as guide facts."],
           ["Wiki and Dex", "/topics/aniimo-wiki-dex/", "Route creature-index searches to database, detail pages and watchlist rules."],
+          ["APK Safety", "/topics/aniimo-apk/", "Route APK searches to official Android and Google Play guidance."],
+          ["Torrent Safety", "/topics/aniimo-torrent/", "Explain why unofficial downloads are the wrong launch path."],
+          ["Gameplay", "/topics/aniimo-gameplay/", "Summarize confirmed gameplay systems and verification boundaries."],
+          ["Review Watchlist", "/topics/aniimo-review/", "Prepare review criteria without publishing a premature score."],
+          ["Demo Status", "/topics/aniimo-demo/", "Separate demo, playtest and closed beta search intent."],
+          ["MMO Question", "/topics/aniimo-mmo/", "Clarify open-world RPG positioning versus MMO assumptions."],
         ]} navigate={navigate} />
       </div>
       <section className="related-section">

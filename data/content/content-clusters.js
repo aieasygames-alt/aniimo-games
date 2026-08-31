@@ -633,6 +633,96 @@ export const searchSuggestionTopics = [
       ["Should I download Aniimo from third-party sites?", "No. Use official website or platform storefront links, especially before launch."],
     ],
   },
+  {
+    slug: "aniimo-apk",
+    title: "Aniimo APK Download Safety",
+    description: "Track Aniimo APK searches with official Android download guidance, Google Play status and mirror-safety warnings.",
+    intro: "APK searches show download intent, but they are also risky before launch. This page sends users toward official Android sources and avoids hosting or recommending unofficial files.",
+    points: [
+      ["Official Android path", "Use Google Play and the official Aniimo website for Android availability and pre-registration status."],
+      ["Avoid mirrors", "Do not use APK mirrors, modified clients, reposted installers or fake beta APKs before official availability is verified."],
+      ["What to update after launch", "Add official Android install status, region notes, file-size details and device requirements only when storefronts or official sources confirm them."],
+    ],
+    faq: [
+      ["Is Aniimo APK available?", "Aniimo.games does not recommend APK mirrors. Use Google Play or official Aniimo sources for Android access."],
+      ["Is it safe to download Aniimo APK from third-party sites?", "No. Use official storefronts and avoid unofficial APK files, especially before launch."],
+    ],
+  },
+  {
+    slug: "aniimo-torrent",
+    title: "Aniimo Torrent Safety",
+    description: "Explain why Aniimo torrent searches should use official free-to-play storefronts instead of unofficial downloads.",
+    intro: "Torrent searches can appear even for free-to-play games. This page protects users by explaining official platform paths and the risk of unofficial installers.",
+    points: [
+      ["Official platform path", "Aniimo is tracked through official website, Steam, Epic Games Store, Xbox, PlayStation, App Store and Google Play links."],
+      ["Torrent risk", "Torrent files can contain outdated clients, modified files, malware or fake beta builds, and should not be used as a launch source."],
+      ["Free-to-play context", "Because Aniimo is tracked as free-to-play, users should not need torrent downloads to access the game when official platform availability goes live."],
+    ],
+    faq: [
+      ["Can I download Aniimo by torrent?", "Aniimo.games does not recommend torrent downloads. Use official storefronts and the official website."],
+      ["Why avoid Aniimo torrents?", "Torrents can be unsafe, outdated or unofficial, especially around launch when fake clients often circulate."],
+    ],
+  },
+  {
+    slug: "aniimo-gameplay",
+    title: "Aniimo Gameplay",
+    description: "Summarize confirmed Aniimo gameplay systems including creature catching, Twine, Homeland, Egg Heist and exploration.",
+    intro: "Gameplay searches help users decide whether Aniimo is worth following. This page summarizes confirmed public systems while keeping exact balance, route and progression details for launch verification.",
+    points: [
+      ["Core loop", "Official public material positions Aniimo around creature catching, collecting, open-world exploration and the world of Idyll."],
+      ["Distinctive systems", "Twine, Aniipods, Homeland, RV interactions, real-time challenges and Egg Heist are the safest confirmed gameplay anchors."],
+      ["What still changes", "Exact combat values, route requirements, progression pacing, rewards and endgame loops need official or live-game confirmation."],
+    ],
+    faq: [
+      ["What is Aniimo gameplay like?", "Aniimo is tracked as a creature-catching open-world RPG with catching, Twine, exploration, Homeland and Egg Heist systems."],
+      ["Does Aniimo.games have gameplay guides?", "Yes. Start with beginner guides, mechanics pages, map pages and launch verification notes."],
+    ],
+  },
+  {
+    slug: "aniimo-review",
+    title: "Aniimo Review Watchlist",
+    description: "Prepare Aniimo review coverage with source-safe criteria for gameplay, performance, monetization, multiplayer and launch stability.",
+    intro: "Review searches appear before and after launch, but final review claims should wait until the live game can be tested. This page explains what Aniimo.games will evaluate.",
+    points: [
+      ["Pre-launch boundary", "Before launch, this page should not publish a score or final verdict."],
+      ["Review criteria", "After launch, evaluate download stability, performance, combat feel, catching, Twine utility, multiplayer, rewards and monetization."],
+      ["Evidence needed", "Use platform, device, playtime, screenshots, issue logs and last-tested date before turning observations into review claims."],
+    ],
+    faq: [
+      ["Is Aniimo reviewed yet?", "Aniimo.games should wait for live testing before publishing a final review."],
+      ["What will an Aniimo review cover?", "A useful review should cover gameplay, platform performance, multiplayer, rewards, monetization and launch stability."],
+    ],
+  },
+  {
+    slug: "aniimo-demo",
+    title: "Aniimo Demo and Playtest Status",
+    description: "Track Aniimo demo, playtest and trial searches with official beta history and future test watchlist notes.",
+    intro: "Demo searches overlap with beta and playtest searches. This page keeps past test information separate from future demo or trial claims.",
+    points: [
+      ["Current demo status", "Aniimo.games does not mark a public demo as active unless official sources or storefronts list one."],
+      ["Past testing", `The tracked closed beta started on ${releaseInfo.closedBeta}, with signup deadline ${releaseInfo.betaSignupDeadline}.`],
+      ["Future updates", "If a demo, trial or new playtest appears, update this page, beta key safety, download, launch tracker and source archive."],
+    ],
+    faq: [
+      ["Is there an Aniimo demo?", "Aniimo.games does not confirm a public demo unless official sources or storefronts list one."],
+      ["Is Aniimo playtest still open?", "The tracked closed beta is treated as a past milestone unless official sources announce another test."],
+    ],
+  },
+  {
+    slug: "aniimo-mmo",
+    title: "Is Aniimo an MMO?",
+    description: "Track whether Aniimo is an MMO, multiplayer, co-op or open-world RPG while keeping final online-system claims verified.",
+    intro: "MMO searches show genre confusion. This page clarifies Aniimo's confirmed open-world RPG positioning and separates it from unverified MMO-scale claims.",
+    points: [
+      ["Confirmed genre", "Official storefront language describes Aniimo as a free-to-play creature-catching open-world RPG."],
+      ["Online systems", "Real-time challenges and Egg Heist are tracked, while server scale, shared-world rules and MMO-style features need verification."],
+      ["Related pages", "Use multiplayer, co-op, PVP and crossplay pages for specific online-system questions."],
+    ],
+    faq: [
+      ["Is Aniimo an MMO?", "Aniimo.games tracks Aniimo as a free-to-play creature-catching open-world RPG, not as a confirmed MMO unless official sources say so."],
+      ["Is Aniimo online multiplayer?", "Multiplayer-adjacent systems are tracked, but final online rules need official or live-game verification."],
+    ],
+  },
 ];
 
 export const mechanicDeepDiveTopics = [
