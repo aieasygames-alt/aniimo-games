@@ -75,6 +75,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added SEMrush watchlist pages for shiny forms, Aniilog, carried items, PAX East and TGS, plus release-query internal-link optimization.
 - Added high-intent launch search shortcuts on the home page and site index, plus next-check internal links on topic pages.
 - Added code, download, launch and media hub intent modules for safety searches, platform questions, localized launch queries and event reveal searches.
+- Added topic-specific FAQ and Article structured-data coverage, with release audit checks for topic schema generation.
 
 ## Active Growth Priorities
 

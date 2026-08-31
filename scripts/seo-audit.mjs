@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { aniimo, regions } from "../data/content.js";
-import { canonicalUrl, sitemapRoutes, siteUrl } from "../src/lib/routes.js";
+import { canonicalUrl, pageFaqsForRoute, resolveRoute, sitemapRoutes, siteUrl, structuredDataForRoute } from "../src/lib/routes.js";
 const sitemap = readFileSync("public/sitemap.xml", "utf8");
 const robots = readFileSync("public/robots.txt", "utf8");
 const index = readFileSync("dist/index.html", "utf8");
@@ -57,6 +57,13 @@ for (const route of expectedRoutes) {
   if (canonical && !sitemapSet.has(canonical)) issues.push(`Canonical is not in sitemap: ${canonical}`);
   if (description && description.length < 80) issues.push(`Meta description is too short in ${htmlPath}`);
 
+  const routeInfo = resolveRoute(route.replace(siteUrl, ""));
+  const graph = structuredDataForRoute(routeInfo, pageFaqsForRoute(routeInfo));
+  const faqPage = graph.find((item) => item["@type"] === "FAQPage");
+  const article = graph.find((item) => item["@type"] === "Article");
+  if (!faqPage?.mainEntity?.length) issues.push(`Missing FAQPage entities for ${route}`);
+  if (isTopicRoute(routeInfo) && !article) issues.push(`Missing Article schema for topic route: ${route}`);
+
   if (title) titleCounts.set(title, [...(titleCounts.get(title) || []), htmlPath]);
   if (description) descriptionCounts.set(description, [...(descriptionCounts.get(description) || []), htmlPath]);
 
@@ -99,3 +106,24 @@ if (issues.length) {
 }
 
 console.log(`SEO audit passed: ${routes.length} sitemap URLs, ${aniimo.length} Aniimo pages, ${regions.length} region pages.`);
+
+function isTopicRoute(routeInfo) {
+  return [
+    "beginner-topic",
+    "download-topic",
+    "code-reward-topic",
+    "news-topic",
+    "choice-topic",
+    "official-pitch-topic",
+    "social-intent-topic",
+    "search-suggestion-topic",
+    "glossary-topic",
+    "troubleshooting-topic",
+    "mechanic-deep-dive-topic",
+    "media-detail-topic",
+    "conversion-topic",
+    "refresh-planning-topic",
+    "freshness-page",
+    "localized-topic",
+  ].includes(routeInfo.type);
+}

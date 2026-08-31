@@ -355,6 +355,9 @@ export function prerenderRoutes() {
 }
 
 export function pageFaqsForRoute(routeInfo) {
+  const topic = topicForRoute(routeInfo);
+  if (topic?.faq) return topic.faq;
+
   if (routeInfo.detail) {
     const detail = routeInfo.detail;
     return [
@@ -456,7 +459,46 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
     });
   }
 
+  const topic = topicForRoute(routeInfo);
+  if (topic) {
+    base.push({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: routeInfo.title,
+      description: routeInfo.description,
+      dateModified: "2026-08-28",
+      author: {
+        "@type": "Organization",
+        name: "Aniimo.games",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Aniimo.games",
+      },
+      mainEntityOfPage: url,
+    });
+  }
+
   return base;
+}
+
+function topicForRoute(routeInfo) {
+  return routeInfo.beginnerTopic
+    || routeInfo.downloadTopic
+    || routeInfo.codeRewardTopic
+    || routeInfo.newsTopic
+    || routeInfo.choiceTopic
+    || routeInfo.officialPitchTopic
+    || routeInfo.socialIntentTopic
+    || routeInfo.searchSuggestionTopic
+    || routeInfo.glossaryTopic
+    || routeInfo.troubleshootingTopic
+    || routeInfo.mechanicDeepDiveTopic
+    || routeInfo.mediaDetailTopic
+    || routeInfo.conversionTopic
+    || routeInfo.refreshPlanningTopic
+    || routeInfo.freshnessPage
+    || routeInfo.localizedTopic;
 }
 
 function itemList(name, entries) {
