@@ -197,11 +197,11 @@ function App() {
         ) : routeInfo.path === "/evolution/" ? (
           <EvolutionPage />
         ) : routeInfo.path === "/codes/" ? (
-          <CodesPage />
+          <CodesPage navigate={navigate} />
         ) : routeInfo.path === "/rewards/" ? (
           <RewardsPage />
         ) : routeInfo.path === "/download/" ? (
-          <DownloadPage />
+          <DownloadPage navigate={navigate} />
         ) : routeInfo.path === "/release-date/" ? (
           <ReleaseDatePage />
         ) : routeInfo.path === "/beginner-guide/" ? (

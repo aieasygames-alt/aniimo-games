@@ -74,6 +74,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added lightweight French and German landing pages for SEMrush date-de-sortie, jeu, wann-kommt and spiel searches.
 - Added SEMrush watchlist pages for shiny forms, Aniilog, carried items, PAX East and TGS, plus release-query internal-link optimization.
 - Added high-intent launch search shortcuts on the home page and site index, plus next-check internal links on topic pages.
+- Added code, download, launch and media hub intent modules for safety searches, platform questions, localized launch queries and event reveal searches.
 
 ## Active Growth Priorities
 

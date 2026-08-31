@@ -63,8 +63,8 @@ export function HomePage(props) {
         <DatabasePage compact {...props} />
         <MapPage compact navigate={props.navigate} />
         <EvolutionPage compact />
-        <CodesPage compact />
-        <DownloadPage compact />
+        <CodesPage compact navigate={props.navigate} />
+        <DownloadPage compact navigate={props.navigate} />
         <BeginnerPage compact navigate={props.navigate} />
         <UpdatesPage compact />
         <SourcesPage compact />
@@ -271,7 +271,7 @@ export function EvolutionPage() {
   );
 }
 
-export function CodesPage() {
+export function CodesPage({ navigate }) {
   return (
         <section id="codes" className="section">
           <SectionTitle icon={<Gift />} kicker="Rewards" title="Codes & Rewards" />
@@ -300,6 +300,12 @@ export function CodesPage() {
             ))}
           </div>
           <RewardGrid />
+          <LinkGroup title="Code Search Safety" items={[
+            ["Beta Key Safety", "/topics/aniimo-beta-key/", "Avoid key buying, fake access pages and unofficial invite claims."],
+            ["Launch Day Codes", "/launch-day/", "Check the launch-day command center before treating a code as active."],
+            ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Separate redeem-code issues from login or platform outages."],
+            ["Pre-Registration Rewards", "/rewards/pre-registration/", "Compare code searches with confirmed official reward milestones."],
+          ]} navigate={navigate} />
           <EditorialBlock title="Code Verification Rules" items={editorialGuides.codes} />
           <FaqBlock items={faqs.codes} />
         </section>
@@ -321,7 +327,7 @@ export function RewardsPage() {
   );
 }
 
-export function DownloadPage() {
+export function DownloadPage({ navigate }) {
   return (
         <section id="download" className="section split-section download-band">
           <div>
@@ -334,6 +340,18 @@ export function DownloadPage() {
             <div className="date-grid">
               <InfoPanel title="Release Dates" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline]]} />
             </div>
+            <LinkGroup title="Download Search Safety" items={[
+              ["APK Safety", "/topics/aniimo-apk/", "Use official Android paths instead of APK mirrors."],
+              ["Torrent Safety", "/topics/aniimo-torrent/", "Avoid unofficial installers and reposted clients."],
+              ["Official Website", "/topics/aniimo-official-website/", "Find verified site, Wiki and storefront links."],
+              ["Region Availability", "/troubleshooting/aniimo-region-availability/", "Check account, country and storefront availability."],
+            ]} navigate={navigate} />
+            <LinkGroup title="Platform Intent" items={[
+              ["Steam Deck", "/topics/aniimo-steam-deck/", "Track compatibility questions after PC launch."],
+              ["Game Pass", "/topics/aniimo-game-pass/", "Separate Xbox availability from Game Pass catalog claims."],
+              ["PS4", "/topics/aniimo-ps4/", "Answer PS4 searches while PlayStation tracking stays PS5-focused."],
+              ["Crossplay", "/compare/aniimo-crossplay/", "Track crossplay, cross-save and account-linking questions."],
+            ]} navigate={navigate} />
             <EditorialBlock title="Download Checklist" items={editorialGuides.download} />
             <FaqBlock items={faqs.download} />
           </div>
@@ -993,6 +1011,17 @@ export function LaunchHubPage({ navigate }) {
           ["Server Status", "/troubleshooting/aniimo-server-status/", "Prepare a source-safe status page for launch-day outage searches."],
           ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Prepare a verified issue log for login, black screen and stuck-loading searches."],
         ]} navigate={navigate} />
+        <LinkGroup title="Launch Search Risk Control" items={[
+          ["APK Safety", "/topics/aniimo-apk/", "Route Android APK searches toward official storefronts."],
+          ["Torrent Safety", "/topics/aniimo-torrent/", "Explain why unofficial downloads are the wrong launch path."],
+          ["Beta Key Safety", "/topics/aniimo-beta-key/", "Keep access claims tied to official beta sources."],
+          ["Official Website", "/topics/aniimo-official-website/", "Send users to verified site, Wiki and storefront links."],
+        ]} navigate={navigate} />
+        <LinkGroup title="Localized Launch Searches" items={localizedTopics.map((item) => [
+          item.title,
+          localizedTopicPath(item),
+          item.description,
+        ])} navigate={navigate} />
       </div>
     </section>
   );
@@ -1084,6 +1113,12 @@ export function MediaPage({ navigate }) {
         ["Aniimo Trailers", "/media/aniimo-trailers/", "Track official trailers, gameplay footage and platform clips."],
         ["Aniimo Official Website", "/topics/aniimo-official-website/", "Find official site, Wiki and storefront paths."],
         ["Aniimo Reddit", "/topics/aniimo-reddit/", "Use community discussion as research signal, not final proof."],
+      ]} navigate={navigate} />
+      <LinkGroup title="Event & Reveal Searches" items={[
+        ["PAX East Watchlist", "/topics/aniimo-pax-east/", "Track event footage and announcements only when sources verify them."],
+        ["TGS Watchlist", "/topics/aniimo-tgs/", "Route Tokyo Game Show intent into source-safe media checks."],
+        ["Gameplay", "/topics/aniimo-gameplay/", "Connect footage searches to confirmed gameplay systems."],
+        ["Demo Status", "/topics/aniimo-demo/", "Separate demo, playtest and closed beta searches."],
       ]} navigate={navigate} />
       <FaqBlock items={[
         ["Why does Aniimo.games compress media?", "Compressed WebP assets improve page speed while preserving useful screenshots, banners and region context."],
