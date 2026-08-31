@@ -37,6 +37,29 @@ export function HomePage(props) {
           <QuickCard icon={<Compass />} title="Search Topics" text="Open guides built around official features, community questions and search demand." href="/site-index/" navigate={props.navigate} />
         </section>
 
+        <section className="section sources-band">
+          <SectionTitle icon={<Compass />} kicker="Launch Search" title="High-Intent Aniimo Searches" />
+          <div className="site-index-grid">
+            <LinkGroup title="Launch Answers" items={[
+              ["Release Date", "/release-date/", "Check PC, console and mobile launch dates."],
+              ["Download", "/download/", "Use official Steam, Epic, console and mobile paths."],
+              ["Launch Day", "/launch-day/", "Track status, codes, unlock timing and common fixes."],
+              ["Codes", "/codes/", "Check active-code verification and reward status."],
+            ]} navigate={props.navigate} />
+            <LinkGroup title="Risky Search Safety" items={[
+              ["APK Safety", "/topics/aniimo-apk/", "Route Android APK searches toward official sources."],
+              ["Torrent Safety", "/topics/aniimo-torrent/", "Explain why unofficial installers are unsafe."],
+              ["Beta Key Safety", "/topics/aniimo-beta-key/", "Avoid key buying and fake test access."],
+              ["Official Website", "/topics/aniimo-official-website/", "Find verified site, Wiki and storefront links."],
+            ]} navigate={props.navigate} />
+            <LinkGroup title="International Entrypoints" items={localizedTopics.map((item) => [
+              item.title,
+              localizedTopicPath(item),
+              item.description,
+            ])} navigate={props.navigate} />
+          </div>
+        </section>
+
         <DatabasePage compact {...props} />
         <MapPage compact navigate={props.navigate} />
         <EvolutionPage compact />
@@ -807,6 +830,15 @@ export function SiteIndexPage({ navigate }) {
   const conversionPages = conversionTopics.map((item) => [item.title, conversionTopicPath(item), item.description]);
   const refreshPages = refreshPlanningTopics.map((item) => [item.title, refreshPlanningTopicPath(item), item.description]);
   const localizedPages = localizedTopics.map((item) => [item.title, localizedTopicPath(item), item.description]);
+  const launchSearchPages = [
+    ["Launch Day", "/launch-day/", "Track server status, codes, unlock timing and launch fixes."],
+    ["APK Safety", "/topics/aniimo-apk/", "Route Android APK searches toward official sources."],
+    ["Torrent Safety", "/topics/aniimo-torrent/", "Explain why unofficial installers are unsafe."],
+    ["Beta Key Safety", "/topics/aniimo-beta-key/", "Avoid key buying and fake test access."],
+    ["Official Website", "/topics/aniimo-official-website/", "Find verified site, Wiki and storefront links."],
+    ["French Release", "/fr/aniimo-date-de-sortie/", "Answer French release-date searches."],
+    ["German Release", "/de/wann-kommt-aniimo/", "Answer German release-date searches."],
+  ];
   const trustPages = staticRoutes.filter((route) => ["/about/", "/editorial-policy/", "/contact/"].includes(route.path));
   const elementNames = [...new Set(aniimo.map((item) => item.element))];
   const roleNames = [...new Set(aniimo.map((item) => item.role))];
@@ -823,6 +855,7 @@ export function SiteIndexPage({ navigate }) {
       </p>
       <div className="site-index-grid">
         <LinkGroup title="Core Guides" items={corePages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
+        <LinkGroup title="Launch Search Shortcuts" items={launchSearchPages} navigate={navigate} />
         <LinkGroup title="Platform Pages" items={platformPages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
         <LinkGroup title="Download Decisions" items={downloadPages} navigate={navigate} />
         <LinkGroup title="Beginner Questions" items={beginnerPages} navigate={navigate} />
@@ -1104,6 +1137,8 @@ export function SourceArchivePage() {
 }
 
 export function TopicGuidePage({ topic, kicker, icon, children }) {
+  const relatedLinks = topicRelatedLinks(topic);
+
   return (
     <section className="section sources-band">
       <SectionTitle icon={icon} kicker={kicker} title={topic.title} />
@@ -1111,9 +1146,55 @@ export function TopicGuidePage({ topic, kicker, icon, children }) {
       <p className="section-copy">{topic.intro}</p>
       <EditorialBlock title="Key Points" items={topic.points} />
       {children}
+      <EditorialBlock title="Next Checks" items={relatedLinks.map(([label, href, text]) => [
+        label,
+        <a className="text-link" href={href}>{text} <ChevronRight size={16} /></a>,
+      ])} />
       <FaqBlock items={topic.faq} />
     </section>
   );
+}
+
+function topicRelatedLinks(topic) {
+  const slug = topic.slug || "";
+  const links = [
+    ["Launch Day", "/launch-day/", "Open the launch-day command center"],
+    ["Official Sources", "/source-archive/", "Check the source archive"],
+  ];
+
+  if (slug.includes("apk") || slug.includes("torrent") || slug.includes("beta-key")) {
+    links.push(
+      ["Safe Download", "/download/", "Use official download paths"],
+      ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Check launch issue notes"],
+    );
+  } else if (slug.includes("steam") || slug.includes("game-pass") || slug.includes("ps4")) {
+    links.push(
+      ["Platform Hub", "/download/", "Compare official platform links"],
+      ["Release Date", "/release-date/", "Check platform timing"],
+    );
+  } else if (slug.includes("discord") || slug.includes("reddit") || slug.includes("official-website")) {
+    links.push(
+      ["Source Archive", "/source-archive/", "Verify official and community links"],
+      ["Updates", "/updates/", "Review freshness updates"],
+    );
+  } else if (slug.includes("trailer") || slug.includes("logo") || slug.includes("pax") || slug.includes("tgs")) {
+    links.push(
+      ["Media Gallery", "/media/", "Browse media and asset notes"],
+      ["News Tracker", "/updates/official-news-tracker/", "Check official news freshness"],
+    );
+  } else if (slug.includes("gameplay") || slug.includes("review") || slug.includes("demo") || slug.includes("mmo") || slug.includes("shiny") || slug.includes("aniilog") || slug.includes("carried-items")) {
+    links.push(
+      ["Beginner Guide", "/beginner-guide/", "Start with source-safe beginner notes"],
+      ["Mechanics Hub", "/mechanics/", "Review mechanics and verification pages"],
+    );
+  } else {
+    links.push(
+      ["Download", "/download/", "Find official platform links"],
+      ["Release Date", "/release-date/", "Check launch timing"],
+    );
+  }
+
+  return links;
 }
 
 export function BeginnerTopicPage({ topic, navigate }) {
