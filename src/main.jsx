@@ -188,6 +188,8 @@ function App() {
           <TopicGuidePage topic={routeInfo.refreshPlanningTopic} kicker="Growth" icon={<Search />} />
         ) : routeInfo.type === "freshness-page" ? (
           <FreshnessPage topic={routeInfo.freshnessPage} />
+        ) : routeInfo.type === "localized-topic" ? (
+          <TopicGuidePage topic={routeInfo.localizedTopic} kicker={routeInfo.localizedTopic.locale.toUpperCase()} icon={<Search />} />
         ) : routeInfo.path === "/aniimo/" ? (
           <DatabasePage {...sharedProps} />
         ) : routeInfo.path === "/map/" ? (

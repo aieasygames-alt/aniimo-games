@@ -71,6 +71,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added SEMrush long-tail pages for crossplay, co-op, PVP, beta key safety, Steam Deck, Game Pass and PS4 availability questions.
 - Added SEMrush media, community and index pages for official website, Discord, Reddit, Wiki/Dex, trailer and logo searches.
 - Added SEMrush safety and evaluation pages for APK, torrent, gameplay, review, demo/playtest and MMO search intent.
+- Added lightweight French and German landing pages for SEMrush date-de-sortie, jeu, wann-kommt and spiel searches.
 
 ## Active Growth Priorities
 

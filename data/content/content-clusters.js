@@ -1,5 +1,72 @@
 import { gameInfo, officialLinks, releaseInfo } from "./sources.js";
 
+export const localizedTopics = [
+  {
+    locale: "fr",
+    slug: "aniimo-date-de-sortie",
+    title: "Aniimo Date de Sortie",
+    description: "Suivez la date de sortie d'Aniimo, les plateformes confirmees, Steam, PS5, Xbox, iOS, Android et les liens officiels.",
+    intro: "Cette page repond aux recherches francaises autour de la date de sortie d'Aniimo. Elle garde les dates officielles separees des heures de lancement, qui peuvent varier selon les plateformes et les regions.",
+    points: [
+      ["Date PC et consoles", `Aniimo.games suit le lancement PC et consoles pour le ${releaseInfo.pcConsole}.`],
+      ["Date mobile", `Le lancement mobile iOS et Android est suivi pour le ${releaseInfo.mobile}.`],
+      ["Sources officielles", "Utilisez le site officiel, Steam, Epic Games Store, PlayStation, Xbox, App Store et Google Play pour verifier la disponibilite."],
+    ],
+    faq: [
+      ["Quelle est la date de sortie d'Aniimo ?", `La date suivie est ${releaseInfo.pcConsole} pour PC et consoles, puis ${releaseInfo.mobile} pour mobile.`],
+      ["Aniimo sort-il sur PS5 et Xbox ?", "Aniimo.games suit les pages officielles PlayStation 5 et Xbox, mais les horaires exacts doivent etre verifies sur les boutiques."],
+    ],
+  },
+  {
+    locale: "fr",
+    slug: "aniimo-jeu",
+    title: "Aniimo Jeu, Plateformes et Gameplay",
+    description: "Decouvrez Aniimo en francais: jeu open-world free-to-play, creatures, Twine, plateformes, date de sortie et guides officiels.",
+    intro: "Les recherches francaises comme Aniimo jeu, Aniimo jeux ou Aniimo jeu video demandent une vue simple du jeu. Cette page resume les informations confirmees sans transformer les rumeurs en faits.",
+    points: [
+      ["Genre confirme", "Aniimo est suivi comme un RPG open-world free-to-play centre sur la capture de creatures."],
+      ["Systemes principaux", "Les systemes confirmes incluent les Aniipods, Twine, Homeland, RV, defis en temps reel et Egg Heist."],
+      ["Ou commencer", "Commencez par la date de sortie, les plateformes, le guide de telechargement et la base de donnees Aniimo."],
+    ],
+    faq: [
+      ["Quel type de jeu est Aniimo ?", "Aniimo est presente comme un RPG open-world free-to-play avec capture et collection de creatures."],
+      ["Aniimo a-t-il une page en francais ?", "Cette page sert de point d'entree francais vers les guides Aniimo.games et les sources officielles."],
+    ],
+  },
+  {
+    locale: "de",
+    slug: "wann-kommt-aniimo",
+    title: "Wann Kommt Aniimo Raus?",
+    description: "Pruefe den Aniimo Release, PC, Konsole, Steam, PS5, Xbox, Mobile und offizielle Download-Quellen.",
+    intro: "Diese Seite beantwortet deutsche Suchanfragen wie wann kommt Aniimo raus, Aniimo Release und Aniimo Spiel. Sie trennt bestaetigte Daten von noch nicht bestaetigten Uhrzeiten.",
+    points: [
+      ["PC und Konsole", `Aniimo.games verfolgt den PC- und Konsolenstart fuer ${releaseInfo.pcConsole}.`],
+      ["Mobile", `Der Mobile-Start fuer iOS und Android wird fuer ${releaseInfo.mobile} verfolgt.`],
+      ["Offizielle Quellen", "Nutze die offizielle Website, Steam, Epic Games Store, PlayStation, Xbox, App Store und Google Play fuer die finalen Angaben."],
+    ],
+    faq: [
+      ["Wann kommt Aniimo raus?", `Aniimo.games verfolgt ${releaseInfo.pcConsole} fuer PC und Konsole und ${releaseInfo.mobile} fuer Mobile.`],
+      ["Ist Aniimo auf Steam?", "Ja. Aniimo.games verlinkt die offizielle Steam-Seite fuer PC-Wishlist und Launch-Tracking."],
+    ],
+  },
+  {
+    locale: "de",
+    slug: "aniimo-spiel",
+    title: "Aniimo Spiel, Download und Plattformen",
+    description: "Deutschsprachiger Einstieg zu Aniimo Spiel, Download, Plattformen, Gameplay, Beta, Codes und offiziellen Quellen.",
+    intro: "Deutsche Suchanfragen wie Aniimo Spiel, Aniimo spielen und wo kann man Aniimo spielen brauchen einen klaren Einstieg. Diese Seite fuehrt zu offiziellen Plattformen und source-safe Guides.",
+    points: [
+      ["Spielprofil", "Aniimo wird als free-to-play creature-catching open-world RPG verfolgt."],
+      ["Plattformen", "Aniimo.games verfolgt PC, PlayStation 5, Xbox, iOS und Android als offizielle Plattformpfade."],
+      ["Sicherer Download", "Vermeide APK-Mirrors, Torrents, Key-Verkaeufe und inoffizielle Installer vor dem offiziellen Launch."],
+    ],
+    faq: [
+      ["Wo kann man Aniimo spielen?", "Nutze offizielle Plattformseiten wie Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play oder die offizielle Aniimo-Website."],
+      ["Ist Aniimo kostenlos?", "Aniimo wird durch offizielle Storefront-Sprache als free-to-play verfolgt; optionale Economy-Details muessen nach Launch verifiziert werden."],
+    ],
+  },
+];
+
 export const beginnerTopics = [
   {
     slug: "how-to-catch-aniimo",
