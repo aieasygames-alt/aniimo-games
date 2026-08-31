@@ -1,6 +1,6 @@
 # Aniimo Indexing Candidates
 
-Generated: 2026-08-31T05:21:16.814Z
+Generated: 2026-08-31T05:22:28.614Z
 
 Use this list after a GitHub push and Cloudflare deployment. Submit the first sections first when manual indexing quota is limited.
 
