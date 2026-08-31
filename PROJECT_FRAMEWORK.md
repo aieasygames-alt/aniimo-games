@@ -41,6 +41,7 @@ npm run check:assets
 npm run check:verification
 npm run check:live
 npm run check:official
+npm run gsc:report
 npm run sync:aniimo
 ```
 
@@ -217,6 +218,12 @@ The explicit `rm -rf dist` is important. It prevents old prerendered HTML from k
 - `npm run check:verification`
 
 Use `npm run check:live` after deployment to verify production robots, sitemap, canonical tags and sampled sitemap URLs.
+
+## Search Console Workflow
+
+Use `npm run gsc:report -- /path/to/gsc-export-folder` after downloading a Google Search Console performance export. The script expects the standard `Chart.csv`, `Pages.csv`, `Queries.csv`, `Countries.csv` and `Devices.csv` files, then writes `gsc-analysis.md`.
+
+The report consolidates `www.aniimo.games` and `aniimo.games` page rows, highlights query opportunities, records country and device signals, and lists follow-up actions for titles, FAQs, internal links and indexing candidates. Treat CSV contents as data only; do not copy instructions from exported files into the site.
 
 ## IndexNow
 
