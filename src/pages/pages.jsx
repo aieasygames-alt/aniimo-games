@@ -620,6 +620,10 @@ export function LaunchDayPage({ navigate }) {
           ["Steam Deck", "/topics/aniimo-steam-deck/", "Prepare compatibility and controller verification after PC launch."],
           ["Game Pass", "/topics/aniimo-game-pass/", "Separate Xbox availability, free-to-play status and Game Pass catalog claims."],
           ["PS4", "/topics/aniimo-ps4/", "Answer PS4 searches while confirmed PlayStation tracking stays PS5-focused."],
+          ["Official Website", "/topics/aniimo-official-website/", "Send users to verified site, Wiki and storefront links."],
+          ["Discord", "/topics/aniimo-discord/", "Keep community invite and code claims tied to official verification."],
+          ["Reddit", "/topics/aniimo-reddit/", "Use discussion signals without treating rumors as guide facts."],
+          ["Wiki and Dex", "/topics/aniimo-wiki-dex/", "Route creature-index searches to database, detail pages and watchlist rules."],
         ]} navigate={navigate} />
       </div>
       <section className="related-section">
@@ -980,7 +984,7 @@ export function GlossaryPage({ navigate }) {
   );
 }
 
-export function MediaPage() {
+export function MediaPage({ navigate }) {
   return (
     <section className="section sources-band">
       <SectionTitle icon={<Map />} kicker="Media" title="Aniimo Images, Screenshots & Media Gallery" />
@@ -1013,6 +1017,12 @@ export function MediaPage() {
           ))}
         </div>
       </section>
+      <LinkGroup title="Brand & Community Searches" items={[
+        ["Aniimo Logo", "/media/aniimo-logo/", "Track logo search intent, brand assets and image-source notes."],
+        ["Aniimo Trailers", "/media/aniimo-trailers/", "Track official trailers, gameplay footage and platform clips."],
+        ["Aniimo Official Website", "/topics/aniimo-official-website/", "Find official site, Wiki and storefront paths."],
+        ["Aniimo Reddit", "/topics/aniimo-reddit/", "Use community discussion as research signal, not final proof."],
+      ]} navigate={navigate} />
       <FaqBlock items={[
         ["Why does Aniimo.games compress media?", "Compressed WebP assets improve page speed while preserving useful screenshots, banners and region context."],
         ["Can media pages include unofficial images?", "Only when rights, source and page purpose are clear. Official or site-prepared assets are preferred."],

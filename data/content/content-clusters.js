@@ -514,6 +514,21 @@ export const searchSuggestionTopics = [
     ],
   },
   {
+    slug: "aniimo-wiki-dex",
+    title: "Aniimo Wiki and Dex",
+    description: "Browse Aniimo wiki, dex, index and database search intent with links to official names, creature pages, roles and elements.",
+    intro: "Wiki and dex searches usually mean users want a complete creature index. This page connects that intent to the Aniimo.games database while keeping official Wiki facts and launch-only route claims separate.",
+    points: [
+      ["Database path", "Use the Aniimo database for tracked names, official numbers, elements, roles, stages, images and source status."],
+      ["Dex meaning", "Dex-style searches map to creature-list, element, role, stage and individual Aniimo detail pages."],
+      ["Watchlist names", "Names such as Helion, Lunara or Otti should only become detail pages when official data or the local database confirms them."],
+    ],
+    faq: [
+      ["Does Aniimo.games have an Aniimo dex?", "The database acts as a dex-style index for currently tracked public Aniimo entries."],
+      ["Are all Aniimo names confirmed?", "Aniimo.games tracks public official Wiki entries and keeps incomplete fields labeled until verified."],
+    ],
+  },
+  {
     slug: "aniimo-beta-key",
     title: "Aniimo Beta Key and Access Safety",
     description: "Track Aniimo beta key, beta code, account-buying and test-access searches with official-source safety guidance.",
@@ -571,6 +586,51 @@ export const searchSuggestionTopics = [
     faq: [
       ["Is Aniimo on PS4?", "Aniimo.games does not treat PS4 as confirmed unless an official PlayStation or Aniimo source lists it."],
       ["Is Aniimo on PS5?", "Yes. Aniimo.games tracks PlayStation 5 through the official PlayStation listing."],
+    ],
+  },
+  {
+    slug: "aniimo-discord",
+    title: "Aniimo Discord Server",
+    description: "Find source-safe guidance for Aniimo Discord searches, official community checks, codes, beta access and launch updates.",
+    intro: "Discord searches often come from players looking for codes, beta access or real-time launch updates. This page keeps users oriented toward official channels and away from reposted invite traps.",
+    points: [
+      ["Official-first rule", "Use official Aniimo website, storefront and verified social links before trusting a Discord invite shared on a third-party page."],
+      ["What to look for", "Discord can be useful for maintenance notices, code announcements, beta access updates and community reports when the source is verified."],
+      ["What not to publish", "Do not list private invites, scraped community messages or unverified code screenshots as confirmed facts."],
+    ],
+    faq: [
+      ["Does Aniimo have an official Discord?", "Aniimo.games only treats a Discord server as official when it is linked or verified by official Aniimo channels."],
+      ["Can Discord confirm Aniimo codes?", "Only verified official Discord announcements should be used to confirm redeem codes."],
+    ],
+  },
+  {
+    slug: "aniimo-reddit",
+    title: "Aniimo Reddit Discussions",
+    description: "Track Aniimo Reddit discussion intent for launch questions, comparisons, issues and community reports without treating rumors as facts.",
+    intro: "Reddit searches can reveal what players are worried about, but they are not the same as official confirmation. This page explains how Aniimo.games uses discussion signals safely.",
+    points: [
+      ["Useful signal", "Reddit can surface repeated questions about platforms, launch timing, codes, bugs, AI concerns and multiplayer expectations."],
+      ["Verification boundary", "Community posts should become research leads, not confirmed guide claims, until official or in-game evidence supports them."],
+      ["Refresh workflow", "If a Reddit topic gets repeated traction, update the matching guide page, then add source-safe notes and internal links."],
+    ],
+    faq: [
+      ["Is Reddit an official Aniimo source?", "No. Reddit discussion can provide search-intent signals, but official sources or live verification should confirm facts."],
+      ["Should Aniimo.games cover Reddit rumors?", "Only as clearly labeled research leads, not as final guide information."],
+    ],
+  },
+  {
+    slug: "aniimo-official-website",
+    title: "Aniimo Official Website and Links",
+    description: "Find Aniimo official website, official Wiki, storefront links and safe navigation notes for download, codes and launch updates.",
+    intro: "Official-link searches are protective: players want the real site, real store pages and real update sources. This page collects the navigation logic without replacing official destinations.",
+    points: [
+      ["Official website", "Use the Aniimo official website for campaign, launch and registration context."],
+      ["Official Wiki", "Use the official Wiki as the preferred source for public Aniimo names, numbers and descriptions."],
+      ["Official storefronts", "Use Steam, Epic Games Store, PlayStation, Xbox, App Store and Google Play links for platform-specific availability."],
+    ],
+    faq: [
+      ["What is the official Aniimo website?", "Aniimo.games links users to the official Aniimo website and verified storefront pages from its source archive and platform guides."],
+      ["Should I download Aniimo from third-party sites?", "No. Use official website or platform storefront links, especially before launch."],
     ],
   },
 ];
@@ -646,8 +706,8 @@ export const mediaDetailTopics = [
   {
     slug: "aniimo-trailers",
     title: "Aniimo Trailers",
-    description: "Track official Aniimo trailers, announcement videos, platform clips and what each video confirms.",
-    intro: "Trailer pages should summarize what official videos show, then link users to safer guide pages for confirmed systems and launch information.",
+    description: "Track official Aniimo trailers, announcement videos, platform clips, gameplay footage and what each video confirms.",
+    intro: "Trailer searches have measurable demand in the SEMrush export. This page should summarize what official videos show, then link users to safer guide pages for confirmed systems and launch information.",
     points: [
       ["What to catalog", "Track video title, official channel, publish date, featured systems, featured Aniimo, platform mentions and source URL."],
       ["What to avoid", "Do not convert trailer visuals into exact spawn, route or combat values without official or live-game confirmation."],
@@ -656,6 +716,21 @@ export const mediaDetailTopics = [
     faq: [
       ["Can trailer footage confirm gameplay mechanics?", "It can support broad public features, but exact values and routes still need stronger verification."],
       ["Where should new Aniimo trailers be added?", "Add them to this page, the media gallery, source archive and update log."],
+    ],
+  },
+  {
+    slug: "aniimo-logo",
+    title: "Aniimo Logo and Brand Assets",
+    description: "Track Aniimo logo search intent, brand asset usage, source notes and where logo images appear on Aniimo.games.",
+    intro: "Logo searches can bring image traffic and brand-verification users. This page keeps logo usage tied to site navigation, media assets and official-source context.",
+    points: [
+      ["Current site logo", "Aniimo.games uses a compressed brand image for site navigation and keeps production media under asset checks."],
+      ["Source boundary", "Official logos and brand marks should be used only when rights, source and page purpose are clear."],
+      ["Image SEO", "Logo pages should use descriptive alt text, stable dimensions, compressed assets and links to media and source archive pages."],
+    ],
+    faq: [
+      ["Where is the Aniimo logo used?", "Aniimo.games uses a brand image in the site header and tracks media assets through the media gallery and asset audit."],
+      ["Can I use the Aniimo logo?", "Check official Aniimo or publisher brand guidance before reusing logos outside this guide context."],
     ],
   },
   {

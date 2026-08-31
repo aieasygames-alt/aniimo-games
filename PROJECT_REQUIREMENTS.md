@@ -69,6 +69,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Added first-session beginner pages for first hour, reroll status, best settings and beginner mistakes to catch post-login launch searches.
 - Added SEMrush-driven trust and gameplay pages for AI questions, developer/publisher, price/free-to-play and multiplayer intent.
 - Added SEMrush long-tail pages for crossplay, co-op, PVP, beta key safety, Steam Deck, Game Pass and PS4 availability questions.
+- Added SEMrush media, community and index pages for official website, Discord, Reddit, Wiki/Dex, trailer and logo searches.
 
 ## Active Growth Priorities
 

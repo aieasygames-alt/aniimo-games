@@ -229,7 +229,7 @@ function App() {
         ) : routeInfo.path === "/glossary/" ? (
           <GlossaryPage navigate={navigate} />
         ) : routeInfo.path === "/media/" ? (
-          <MediaPage />
+          <MediaPage navigate={navigate} />
         ) : routeInfo.path === "/troubleshooting/" ? (
           <TroubleshootingPage navigate={navigate} />
         ) : routeInfo.path === "/source-archive/" ? (
