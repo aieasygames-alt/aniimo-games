@@ -68,3 +68,51 @@ export const gscObservationTemplate = {
   status: "Watchlist",
   fieldsToCapture: verificationTemplates.gscObservation.requiredFields.concat(verificationTemplates.gscObservation.optionalFields),
 };
+
+export const launchEvidenceQueues = {
+  codes: {
+    title: "Redeem Code Evidence Queue",
+    rows: [
+      ["Code string", "Exact uppercase/lowercase string as shown in official source or in-game UI.", "Watchlist"],
+      ["Reward and quantity", "Item name, currency amount, Aniipod tier, outfit, frame or creature reward.", "Watchlist"],
+      ["Expiration and region", "End date, timezone, platform or country restrictions when visible.", "Watchlist"],
+      ["Last tested", "Timestamp, platform and result from a direct redemption attempt after launch.", "Watchlist"],
+    ],
+  },
+  download: {
+    title: "Download Evidence Queue",
+    rows: [
+      ["Store availability", "Visible install, wishlist, pre-order or pre-register state on each official storefront.", "Watchlist"],
+      ["Publisher identity", "Developer and publisher text visible on the store page before linking users onward.", "Watchlist"],
+      ["File and device notes", "Client size, device requirements, region limits and account requirements after launch.", "Watchlist"],
+      ["Mirror risk", "Any unsafe APK, torrent or fake client claim should route to safety pages, not downloads.", "Watchlist"],
+    ],
+  },
+  gameplay: {
+    title: "Gameplay Evidence Queue",
+    rows: [
+      ["Core loop", "Screenshots or footage for catching, Aniipods, Twine, exploration and Homeland.", "Watchlist"],
+      ["Mode rules", "Egg Heist team size, scoring, rewards, matchmaking and Lost Isles access.", "Watchlist"],
+      ["Performance notes", "Platform, device, graphics setting, frame pacing and connection quality.", "Watchlist"],
+      ["Review boundary", "Do not publish verdicts until live playtime, platform and test date are recorded.", "Watchlist"],
+    ],
+  },
+  events: {
+    title: "Event And Reveal Evidence Queue",
+    rows: [
+      ["Event source", "Official Aniimo post, platform channel, event page or verified video upload.", "Watchlist"],
+      ["Material shown", "Trailer, playable demo, interview, booth footage, platform news or release update.", "Watchlist"],
+      ["Pages to refresh", "Trailers, gameplay, demo status, media gallery, news tracker and source archive.", "Watchlist"],
+      ["Claim boundary", "Show-floor comments should remain research leads until official material supports them.", "Watchlist"],
+    ],
+  },
+  variants: {
+    title: "Variant And Item Evidence Queue",
+    rows: [
+      ["Rare forms", "Name, appearance, screenshot, odds or trigger before confirming shiny-style variants.", "Watchlist"],
+      ["Carried items", "Item name, source, affected Aniimo, restrictions, reward table and screenshot.", "Watchlist"],
+      ["Aniilog term", "Menu location, official wording, progression use and related reward or collection impact.", "Watchlist"],
+      ["Database updates", "Verified details should update database pages, glossary, map notes and launch verification.", "Watchlist"],
+    ],
+  },
+};

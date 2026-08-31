@@ -1,6 +1,6 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscObservationTemplate, launchDayCommandCenter, launchRewards, launchTracker, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchRewards, launchTracker, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
@@ -279,6 +279,11 @@ export function CodesPage({ navigate }) {
             No public redeem code is confirmed yet. This page separates actual codes from
             official pre-registration rewards and launch milestone rewards.
           </p>
+          <InfoPanel title="Freshness Signal" rows={[
+            ["Last reviewed", "2026-08-31"],
+            ["Current status", codeVerificationTemplate.currentStatus],
+            ["Source policy", "Official channel or direct in-game verification required."],
+          ]} />
           <SeoGuideBlock items={seoGuides.codes} />
           <div className="code-grid">
             {codes.map((item) => (
@@ -300,6 +305,7 @@ export function CodesPage({ navigate }) {
             ))}
           </div>
           <RewardGrid />
+          <EvidenceQueue queue={launchEvidenceQueues.codes} />
           <LinkGroup title="Code Search Safety" items={[
             ["Beta Key Safety", "/topics/aniimo-beta-key/", "Avoid key buying, fake access pages and unofficial invite claims."],
             ["Launch Day Codes", "/launch-day/", "Check the launch-day command center before treating a code as active."],
@@ -336,10 +342,16 @@ export function DownloadPage({ navigate }) {
               {releaseInfo.note} Store links and regional availability stay tied to official
               sources rather than download mirrors.
             </p>
+            <InfoPanel title="Freshness Signal" rows={[
+              ["Last reviewed", "2026-08-31"],
+              ["Platform status", "Official storefront links tracked before install availability."],
+              ["Source policy", "Official website and platform stores only."],
+            ]} />
             <SeoGuideBlock items={seoGuides.download} compact />
             <div className="date-grid">
               <InfoPanel title="Release Dates" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline]]} />
             </div>
+            <EvidenceQueue queue={launchEvidenceQueues.download} />
             <LinkGroup title="Download Search Safety" items={[
               ["APK Safety", "/topics/aniimo-apk/", "Use official Android paths instead of APK mirrors."],
               ["Torrent Safety", "/topics/aniimo-torrent/", "Avoid unofficial installers and reposted clients."],
@@ -1173,13 +1185,20 @@ export function SourceArchivePage() {
 
 export function TopicGuidePage({ topic, kicker, icon, children }) {
   const relatedLinks = topicRelatedLinks(topic);
+  const evidenceQueue = topicEvidenceQueue(topic);
 
   return (
     <section className="section sources-band">
       <SectionTitle icon={icon} kicker={kicker} title={topic.title} />
       {topic.image && <img className="page-banner" src={topic.image} alt={topic.title} width="1600" height="900" loading="lazy" />}
       <p className="section-copy">{topic.intro}</p>
+      <InfoPanel title="Freshness Signal" rows={[
+        ["Last reviewed", "2026-08-31"],
+        ["Source status", "Watchlist until official or live-game evidence confirms details."],
+        ["Update path", "Refresh this page, source archive and related hub after verification."],
+      ]} />
       <EditorialBlock title="Key Points" items={topic.points} />
+      {evidenceQueue && <EvidenceQueue queue={evidenceQueue} />}
       {children}
       <EditorialBlock title="Next Checks" items={relatedLinks.map(([label, href, text]) => [
         label,
@@ -1230,6 +1249,44 @@ function topicRelatedLinks(topic) {
   }
 
   return links;
+}
+
+function topicEvidenceQueue(topic) {
+  const slug = topic.slug || "";
+  if (slug.includes("code") || slug.includes("beta-key")) return launchEvidenceQueues.codes;
+  if (slug.includes("apk") || slug.includes("torrent") || slug.includes("download") || slug.includes("steam") || slug.includes("game-pass") || slug.includes("ps4")) return launchEvidenceQueues.download;
+  if (slug.includes("pax") || slug.includes("tgs") || slug.includes("trailer") || slug.includes("logo")) return launchEvidenceQueues.events;
+  if (slug.includes("shiny") || slug.includes("aniilog") || slug.includes("carried-items")) return launchEvidenceQueues.variants;
+  if (slug.includes("gameplay") || slug.includes("review") || slug.includes("demo") || slug.includes("mmo") || slug.includes("twine") || slug.includes("egg-heist") || slug.includes("lost-isles")) return launchEvidenceQueues.gameplay;
+  return null;
+}
+
+function EvidenceQueue({ queue }) {
+  return (
+    <section className="related-section">
+      <h2>{queue.title}</h2>
+      <div className="table-shell freshness-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Evidence Needed</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {queue.rows.map(([field, evidence, status]) => (
+              <tr key={field}>
+                <td>{field}</td>
+                <td>{evidence}</td>
+                <td>{status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
 }
 
 export function BeginnerTopicPage({ topic, navigate }) {

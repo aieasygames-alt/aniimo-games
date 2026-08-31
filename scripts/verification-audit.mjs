@@ -1,4 +1,4 @@
-import { codeVerificationTemplate, gscObservationTemplate, platformUnlockQueue, spawnVerificationQueue, verificationTemplates } from "../data/content.js";
+import { codeVerificationTemplate, gscObservationTemplate, launchEvidenceQueues, platformUnlockQueue, spawnVerificationQueue, verificationTemplates } from "../data/content.js";
 
 const issues = [];
 
@@ -21,6 +21,13 @@ for (const item of platformUnlockQueue) {
 
 if (!codeVerificationTemplate.fieldsToCapture.includes("code")) issues.push("Code verification template must capture code.");
 if (!gscObservationTemplate.fieldsToCapture.includes("page")) issues.push("GSC observation template must capture page.");
+
+for (const [name, queue] of Object.entries(launchEvidenceQueues)) {
+  if (!queue.title || !queue.rows?.length) issues.push(`${name} evidence queue is incomplete.`);
+  for (const row of queue.rows || []) {
+    if (row.length !== 3 || row.some((value) => !value)) issues.push(`${name} evidence queue has an incomplete row: ${JSON.stringify(row)}`);
+  }
+}
 
 if (issues.length) {
   console.error(`Verification audit failed with ${issues.length} issue(s):`);
