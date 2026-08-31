@@ -612,6 +612,15 @@ export function LaunchDayPage({ navigate }) {
           ["Price and Free-to-Play", "/compare/aniimo-price/", "Separate free-to-play status from unverified economy details."],
           ["Is Aniimo Multiplayer?", "/compare/aniimo-multiplayer/", "Track real-time challenges, Egg Heist, co-op and PVP questions."],
         ]} navigate={navigate} />
+        <LinkGroup title="SEMrush Long-Tail Follow Ups" items={[
+          ["Crossplay", "/compare/aniimo-crossplay/", "Track crossplay, cross-save and account-linking questions."],
+          ["Co-Op", "/compare/aniimo-coop/", "Separate team-mode language from unverified open-world co-op claims."],
+          ["PVP", "/compare/aniimo-pvp/", "Explain Egg Heist PVEVP while final competitive rules remain watchlist."],
+          ["Beta Key Safety", "/topics/aniimo-beta-key/", "Warn against key buying and keep beta access tied to official sources."],
+          ["Steam Deck", "/topics/aniimo-steam-deck/", "Prepare compatibility and controller verification after PC launch."],
+          ["Game Pass", "/topics/aniimo-game-pass/", "Separate Xbox availability, free-to-play status and Game Pass catalog claims."],
+          ["PS4", "/topics/aniimo-ps4/", "Answer PS4 searches while confirmed PlayStation tracking stays PS5-focused."],
+        ]} navigate={navigate} />
       </div>
       <section className="related-section">
         <h2>First 24 Hours Update Plan</h2>

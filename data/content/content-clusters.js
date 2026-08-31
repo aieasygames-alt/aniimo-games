@@ -405,6 +405,51 @@ export const socialIntentTopics = [
       ["Does Aniimo have co-op?", "Co-op details should wait for official wording or live-game testing before being treated as confirmed."],
     ],
   },
+  {
+    slug: "aniimo-crossplay",
+    title: "Does Aniimo Have Crossplay?",
+    description: "Track Aniimo crossplay, cross-platform account and platform-pool questions with source-safe launch verification notes.",
+    intro: "Crossplay searches usually appear when a multi-platform game nears launch. Aniimo.games should answer confirmed platforms clearly while keeping account linking and cross-platform matchmaking in watchlist status.",
+    points: [
+      ["Confirmed platforms", "Aniimo.games tracks PC, PlayStation 5, Xbox, iOS and Android as official platform paths."],
+      ["Crossplay status", "Crossplay, cross-save, platform pools and account-linking rules should not be marked confirmed until official wording or live testing verifies them."],
+      ["Where to verify", "Check platform storefronts, official news, in-game account settings and launch verification notes before updating crossplay claims."],
+    ],
+    faq: [
+      ["Does Aniimo support crossplay?", "Aniimo.games does not confirm crossplay until official sources or live-game testing verify it."],
+      ["Will Aniimo have cross-save?", "Cross-save and account-linking rules should stay watchlist data until official or in-game confirmation exists."],
+    ],
+  },
+  {
+    slug: "aniimo-coop",
+    title: "Does Aniimo Have Co-Op?",
+    description: "Track Aniimo co-op questions, team play, real-time challenges and launch verification for friend and matchmaking systems.",
+    intro: "Co-op intent is close to multiplayer intent, but users want a direct answer about playing with friends. This page separates confirmed team-mode language from unverified co-op exploration claims.",
+    points: [
+      ["What is confirmed", "Official public material describes real-time challenges and Egg Heist with three-player teams."],
+      ["What needs testing", "Friend invites, open-world co-op, party limits, matchmaking, platform pools and voice or chat tools need launch verification."],
+      ["Best internal path", "Use the multiplayer, Egg Heist, launch verification and platform pages together when co-op details change."],
+    ],
+    faq: [
+      ["Can you play Aniimo with friends?", "Aniimo.games tracks team-based Egg Heist language, but friend-invite and open-world co-op details need official or live verification."],
+      ["Is Aniimo co-op confirmed?", "Co-op should only be described as confirmed when official wording or live testing verifies the exact mode."],
+    ],
+  },
+  {
+    slug: "aniimo-pvp",
+    title: "Does Aniimo Have PVP?",
+    description: "Track Aniimo PVP, PVEVP, Egg Heist and competitive reward questions without overstating final launch rules.",
+    intro: "PVP searches need careful wording because Egg Heist is described as PVEVP, while final matchmaking, combat rules and rewards still need verification.",
+    points: [
+      ["PVEVP context", "Egg Heist is the safest confirmed competitive reference because official material describes it as a PVEVP mode."],
+      ["Unknown final rules", "Ranked play, arena modes, matchmaking brackets, reward tables and balance impact should wait for official or live-game evidence."],
+      ["Update workflow", "When PVP rules are verified, update this page, Egg Heist, best Aniimo watchlists, codes and launch verification notes together."],
+    ],
+    faq: [
+      ["Does Aniimo have PVP?", "Aniimo.games tracks Egg Heist as PVEVP, while final PVP mode rules need official or live-game verification."],
+      ["Does PVP affect Aniimo rankings?", "Final rankings should wait until combat rules, reward systems and balance values are tested after launch."],
+    ],
+  },
 ];
 
 export const searchSuggestionTopics = [
@@ -466,6 +511,66 @@ export const searchSuggestionTopics = [
     faq: [
       ["How often should Aniimo news be checked?", "Before launch, weekly checks are useful; around launch, daily checks are more appropriate."],
       ["Can rumors go in the news tracker?", "Rumors should stay out unless they are clearly labeled as unverified leads and not indexed as facts."],
+    ],
+  },
+  {
+    slug: "aniimo-beta-key",
+    title: "Aniimo Beta Key and Access Safety",
+    description: "Track Aniimo beta key, beta code, account-buying and test-access searches with official-source safety guidance.",
+    intro: "SEMrush shows beta key and beta code searches. This page protects users from gray-market account and key pages while explaining what beta access information is actually confirmed.",
+    points: [
+      ["Past beta context", `The currently tracked closed beta started on ${releaseInfo.closedBeta}, with signup deadline ${releaseInfo.betaSignupDeadline}.`],
+      ["Do not buy keys", "Avoid beta key buying, account buying, reposted key lists and unofficial download pages unless official Aniimo channels confirm a legitimate access path."],
+      ["Where to update", "If a new beta or playtest is announced, update this page, beta timeline, launch tracker, download pages and source archive."],
+    ],
+    faq: [
+      ["Can I buy an Aniimo beta key?", "Aniimo.games does not recommend buying beta keys or accounts. Use official Aniimo channels for access information."],
+      ["Is Aniimo beta still available?", "Aniimo.games treats the tracked closed beta as a past milestone unless official sources announce another test."],
+    ],
+  },
+  {
+    slug: "aniimo-steam-deck",
+    title: "Aniimo Steam Deck Status",
+    description: "Track Aniimo Steam Deck compatibility, PC launch timing, controller checks and performance verification after launch.",
+    intro: "Steam Deck searches often follow Steam wishlist searches. This page keeps compatibility claims in watchlist status until Steam or live testing confirms them.",
+    points: [
+      ["Steam launch path", `Aniimo's PC launch is tracked for ${releaseInfo.pcConsole}, with Steam as an official storefront path.`],
+      ["Compatibility status", "Steam Deck verification, controller layout, text readability, frame-rate behavior and battery settings need launch testing."],
+      ["Safe download path", "Use the official Steam listing or Aniimo website instead of modified installers or unofficial compatibility files."],
+    ],
+    faq: [
+      ["Is Aniimo Steam Deck verified?", "Aniimo.games does not mark Steam Deck verification confirmed until Steam or live testing supports it."],
+      ["Can I play Aniimo on Steam Deck?", "Steam Deck playability should be checked after PC launch through Steam compatibility and live testing."],
+    ],
+  },
+  {
+    slug: "aniimo-game-pass",
+    title: "Is Aniimo on Game Pass?",
+    description: "Track whether Aniimo is on Xbox Game Pass, how it relates to free-to-play status and where to verify official Xbox availability.",
+    intro: "Game Pass searches appear around Xbox launches, but Aniimo's free-to-play status should not be confused with Game Pass availability.",
+    points: [
+      ["Xbox path", "Aniimo.games tracks Xbox as an official platform path through the Microsoft Store listing."],
+      ["Game Pass status", "Do not list Aniimo as a Game Pass title unless Microsoft, Xbox or official Aniimo channels state it directly."],
+      ["Free-to-play boundary", "Aniimo is tracked as free-to-play from storefront language, which is separate from Game Pass catalog inclusion."],
+    ],
+    faq: [
+      ["Is Aniimo on Game Pass?", "Aniimo.games does not confirm Game Pass availability unless an official Xbox, Microsoft or Aniimo source states it."],
+      ["Do I need Game Pass to play Aniimo?", "Aniimo is tracked as free-to-play, but platform-specific access rules should be verified from the official Xbox listing at launch."],
+    ],
+  },
+  {
+    slug: "aniimo-ps4",
+    title: "Is Aniimo on PS4?",
+    description: "Track Aniimo PS4 availability questions, confirmed PS5 listing status and safe PlayStation download guidance.",
+    intro: "PS4 searches are natural because Aniimo has PlayStation demand, but the site should separate confirmed PS5 tracking from unconfirmed older-console availability.",
+    points: [
+      ["Confirmed PlayStation path", "Aniimo.games tracks PlayStation 5 through the official PlayStation listing."],
+      ["PS4 status", "Do not list PS4 as confirmed unless an official PlayStation or Aniimo source adds a PS4 listing."],
+      ["User action", "Use the PlayStation page, official website and launch tracker for final console availability updates."],
+    ],
+    faq: [
+      ["Is Aniimo on PS4?", "Aniimo.games does not treat PS4 as confirmed unless an official PlayStation or Aniimo source lists it."],
+      ["Is Aniimo on PS5?", "Yes. Aniimo.games tracks PlayStation 5 through the official PlayStation listing."],
     ],
   },
 ];
