@@ -38,6 +38,7 @@ npm run check:content
 npm run check:seo
 npm run check:framework
 npm run check:assets
+npm run check:size
 npm run check:verification
 npm run check:live
 npm run check:official
@@ -215,9 +216,12 @@ The explicit `rm -rf dist` is important. It prevents old prerendered HTML from k
 - `npm run check:seo`
 - `npm run check:framework`
 - `npm run check:assets`
+- `npm run check:size`
 - `npm run check:verification`
 
 Use `npm run check:live` after deployment to verify production robots, sitemap, canonical tags and sampled sitemap URLs.
+
+`npm run check:size` watches growth risks before adding more games: main JavaScript size, CSS size, prerendered HTML file count, public file count and image budgets. If the main JS budget starts failing, move large content collections out of the app bundle and into generated JSON or per-game chunks before expanding coverage.
 
 ## Search Console Workflow
 
