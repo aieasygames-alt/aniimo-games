@@ -266,6 +266,15 @@ Continue improving existing pages before creating more URLs:
 - Cross-link About, Editorial Policy and Contact with source archive, AI-use, Reddit, Discord, beta-key safety and launch verification pages.
 - Keep the next broad expansion paused until GSC confirms which of these improved internal paths lift CTR or indexing.
 
+## V11 - Prerender Fallback Priority
+
+Improve the static HTML fallback that crawlers see before React hydration:
+
+- Prioritize Celestis, Inferlupa, Glacy, Susuta, Emberpup, Eklue, Skippy and Helgon in the `/aniimo/` prerender fallback instead of relying on the first database rows.
+- Increase fallback database coverage from 30 to 36 entries after the priority set is merged.
+- Add fallback navigation links for Launch Hub, Discord, Portuguese pre-registration and Wiki/Dex pages.
+- Defer bundle code-splitting until it can be done as a dedicated architecture pass; the current size audit still passes even though Vite warns near the 500KB threshold.
+
 ## Implementation Rules
 
 - Prefer adding topic objects to the existing content arrays before introducing new page components.

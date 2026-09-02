@@ -5,6 +5,7 @@ import { canonicalUrl, prerenderRoutes, resolveRoute } from "../src/lib/routes.j
 
 const indexHtml = "dist/index.html";
 const routes = prerenderRoutes();
+const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup", "eklue", "skippy", "helgon"];
 
 function injectMeta(html, route) {
   const routeInfo = resolveRoute(route);
@@ -41,7 +42,8 @@ function fallbackHtml(routeInfo) {
 
 function fallbackBody(routeInfo) {
   if (routeInfo.path === "/aniimo/") {
-    return `<section><h2>Aniimo Database Entries</h2>${aniimo.slice(0, 30).map((item) => `<article><h3><a href="/aniimo/${item.id}/">${escapeHtml(item.name)}</a></h3><p>${escapeHtml(item.description)}</p><p>${escapeHtml([item.no, item.element, item.role, item.stage, item.region].join(" | "))}</p></article>`).join("")}</section>`;
+    const entries = priorityAniimo();
+    return `<section><h2>Popular Aniimo To Check First</h2>${entries.map((item) => `<article><h3><a href="/aniimo/${item.id}/">${escapeHtml(item.name)}</a></h3><p>${escapeHtml(item.description)}</p><p>${escapeHtml([item.no, item.element, item.role, item.stage, item.region].join(" | "))}</p></article>`).join("")}</section>`;
   }
 
   if (routeInfo.detail) {
@@ -56,6 +58,13 @@ function fallbackBody(routeInfo) {
   return "";
 }
 
+function priorityAniimo() {
+  return [
+    ...priorityAniimoIds.map((id) => aniimo.find((item) => item.id === id)).filter(Boolean),
+    ...aniimo,
+  ].filter((item, index, list) => list.findIndex((candidate) => candidate.id === item.id) === index).slice(0, 36);
+}
+
 function fallbackLinks(routeInfo) {
   const base = [
     ["/", "Aniimo Wiki"],
@@ -65,6 +74,10 @@ function fallbackLinks(routeInfo) {
     ["/codes/", "Aniimo Codes"],
     ["/download/", "Aniimo Download"],
     ["/release-date/", "Aniimo Release Date"],
+    ["/launch/", "Aniimo Launch Hub"],
+    ["/topics/aniimo-discord/", "Aniimo Discord"],
+    ["/pt/aniimo-pre-registro/", "Aniimo Pre Registro"],
+    ["/topics/aniimo-wiki-dex/", "Aniimo Wiki Dex"],
   ];
 
   if (routeInfo.detail) return [["/aniimo/", "All Aniimo"], ...base.slice(2)];
