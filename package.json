@@ -22,7 +22,9 @@
     "check:verification": "node scripts/verification-audit.mjs",
     "check:live": "node scripts/live-audit.mjs",
     "indexing:candidates": "node scripts/indexing-candidates.mjs",
-    "gsc:report": "node scripts/gsc-report.mjs"
+    "gsc:report": "node scripts/gsc-report.mjs",
+    "gsc:auth": "node scripts/gsc-api.mjs auth",
+    "gsc:api": "node scripts/gsc-api.mjs report"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.0",
