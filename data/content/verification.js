@@ -72,19 +72,20 @@ export const gscObservationTemplate = {
 
 export const gscLatestObservations = {
   date: gscObservationDate,
-  range: "Last 24 hours",
-  summary: "Google Search Console shows early ranking traction around Aniimo brand, guide, map, codes and character-name searches, with homepage and database pages receiving most impressions.",
+  range: "3 months, visible data through 2026-08-30",
+  summary: "Google Search Console shows early ranking traction around Aniimo brand, guide, rewards, map, element chart, server-status and character-name searches, with homepage and database pages receiving most impressions.",
   metrics: [
-    ["Clicks", "9"],
-    ["Impressions", "235"],
-    ["CTR", "3.83%"],
-    ["Average position", "9.22"],
+    ["Clicks", "10"],
+    ["Impressions", "553"],
+    ["CTR", "1.8%"],
+    ["Average position", "11.2"],
   ],
   actions: [
     ["Canonical consolidation", "Keep www traffic redirected to the non-www canonical domain so Search Console signals are not split."],
     ["Homepage CTR", "Use release date, codes, map and database language in the homepage title and first screen."],
     ["Map-size intent", "Answer map-size searches without inventing exact world measurements before launch verification."],
-    ["Localized demand", "Support Brazil and Spanish-language discovery with lightweight launch-date entry pages."],
+    ["Localized demand", "Support Brazil, Germany, Spain and France with lightweight launch, download, code and official-link entry pages."],
+    ["Element intent", "Add stronger element chart and typing copy without inventing matchup values before launch verification."],
     ["Character searches", "Make Aniimo detail pages easy to scan by number, element, role, stage, location and verification status."],
   ],
   queryWatchlist: [
@@ -92,6 +93,9 @@ export const gscLatestObservations = {
     ["aniimo map size", "Add map-size status, region count and verification policy to the map page."],
     ["aniimo codes", "Keep codes pages fresh and separate rewards from redeemable strings."],
     ["glacy aniimo", "Make character detail snippets direct and source-labeled."],
+    ["aniimo element chart", "Strengthen element and typing pages with source-safe matchup language."],
+    ["aniimo rare forms", "Keep rare, shiny, sparkling and skin pages clearly marked as watchlist until verified."],
+    ["can i play aniimo with steam account", "Prepare account-linking and Steam account guidance without confirming cross-save."],
   ],
 };
 

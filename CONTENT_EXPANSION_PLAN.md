@@ -216,6 +216,26 @@ Success criteria:
 | French download | Localized | Download | Official links | V6 |
 | German download | Localized | Download | Official links | V6 |
 
+## GSC Browser Audit Notes
+
+Latest browser review: 2026-09-02 for `sc-domain:aniimo.games`.
+
+Current signals:
+
+- 10 clicks, 553 impressions, 1.8% CTR and 11.2 average position over the visible 3-month performance window.
+- 7 indexed pages and 85 not indexed pages; 82 are Discovered - currently not indexed.
+- `https://aniimo.games/sitemap.xml` was last read successfully on 2026-09-02 with 125 discovered pages.
+- Breadcrumbs show 66 valid and 0 invalid items.
+- HTTPS shows 15 HTTPS URLs and 0 non-HTTPS URLs.
+
+Priority updates from GSC:
+
+- Strengthen reward pages because Junior Wayfarer, milestones and Susuta already produce clicks.
+- Improve homepage/database CTR while the `www` and non-`www` split settles.
+- Add stronger source-safe element chart, typing, rare form, sparkling form, skin and energy-system coverage.
+- Keep Brazil, Germany, Spain and France localized entrypoints linked because those countries already show impressions.
+- Wait for more indexing data before creating large batches beyond the current sitemap expansion.
+
 ## Implementation Rules
 
 - Prefer adding topic objects to the existing content arrays before introducing new page components.
