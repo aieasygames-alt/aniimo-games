@@ -246,6 +246,16 @@ The first 24-hour Performance export showed 20 clicks, 744 query impressions, 2.
 - Refresh mobile and Android download snippets with App Store, Google Play, pre-registration and APK-safety language.
 - Rewrite database intro copy to match `all Aniimo`, `Aniimo wiki`, character-name and list-style searches.
 
+## V9 - Index Weight And Query Fit
+
+The next optimization should improve crawler paths and CTR for pages already showing early demand rather than adding another broad page batch:
+
+- Add a homepage link group for priority Aniimo pages with GSC or launch-reward value: Celestis, Inferlupa, Glacy, Susuta, Emberpup, Eklue, Skippy and Helgon.
+- Make the visible site index feature those same priority Aniimo before the default confirmed-list order.
+- Route GSC watchlist links to the most specific matching page instead of sending unmatched queries to a generic guide hub.
+- Tighten existing AI, MMO, shiny/forms and wiki-dex pages around exact query wording.
+- Keep trust pages live and linked from the site index; use them to support source-safe claims, corrections and AI/rumor-sensitive searches.
+
 ## Implementation Rules
 
 - Prefer adding topic objects to the existing content arrays before introducing new page components.

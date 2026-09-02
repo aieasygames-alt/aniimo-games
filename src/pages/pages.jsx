@@ -4,6 +4,36 @@ import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificatio
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
+const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup", "eklue", "skippy", "helgon"];
+
+function priorityAniimoPages() {
+  return priorityAniimoIds
+    .map((id) => aniimo.find((item) => item.id === id))
+    .filter(Boolean);
+}
+
+function gscWatchlistPath(query) {
+  const value = query.toLowerCase();
+  if (value.includes("discord")) return "/topics/aniimo-discord/";
+  if (value.includes("reddit")) return "/topics/aniimo-reddit/";
+  if (value.includes("celestis")) return "/aniimo/celestis/";
+  if (value.includes("inferlupa")) return "/aniimo/inferlupa/";
+  if (value.includes("glacy")) return "/aniimo/glacy/";
+  if (value.includes("junior")) return "/rewards/junior-wayfarer/";
+  if (value.includes("server")) return "/troubleshooting/aniimo-server-status/";
+  if (value.includes("google play") || value.includes("android")) return "/platforms/android/";
+  if (value.includes("mobile")) return "/platforms/mobile/";
+  if (value.includes("pre registro")) return "/pt/aniimo-pre-registro/";
+  if (value.includes("pre register")) return "/launch/aniimo-pre-register-guide/";
+  if (value.includes("shiny") || value.includes("forms") || value.includes("rare")) return "/topics/aniimo-shiny/";
+  if (value.includes("mmo")) return "/topics/aniimo-mmo/";
+  if (value.includes("ai")) return "/compare/aniimo-ai/";
+  if (value.includes("wiki") || value.includes("list")) return "/topics/aniimo-wiki-dex/";
+  if (value.includes("map")) return "/map/";
+  if (value.includes("codes")) return "/codes/";
+  return "/site-index/";
+}
+
 export function HomePage(props) {
   return (
     <>
@@ -61,6 +91,11 @@ export function HomePage(props) {
               item.title,
               localizedTopicPath(item),
               item.description,
+            ])} navigate={props.navigate} />
+            <LinkGroup title="Popular Aniimo Now" items={priorityAniimoPages().map((item) => [
+              item.name,
+              aniimoPath(item),
+              `${item.element} ${item.role} page with location, evolution and source notes.`,
             ])} navigate={props.navigate} />
           </div>
         </section>
@@ -896,7 +931,10 @@ export function SiteIndexPage({ navigate }) {
   const roleNames = [...new Set(aniimo.map((item) => item.role))];
   const stageNames = [...new Set(aniimo.map((item) => item.stage))];
   const statusNames = [...new Set(aniimo.map((item) => item.status))];
-  const featuredAniimo = aniimo.filter((item) => item.status === "Confirmed" && item.element !== "Unknown").slice(0, 18);
+  const featuredAniimo = [
+    ...priorityAniimoPages(),
+    ...aniimo.filter((item) => item.status === "Confirmed" && item.element !== "Unknown"),
+  ].filter((item, index, list) => list.findIndex((candidate) => candidate.id === item.id) === index).slice(0, 18);
 
   return (
     <section className="section sources-band">
@@ -909,7 +947,7 @@ export function SiteIndexPage({ navigate }) {
         <LinkGroup title="Core Guides" items={corePages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
         <LinkGroup title="GSC Query Watchlist" items={gscLatestObservations.queryWatchlist.map(([query, action]) => [
           query,
-          query.includes("map") ? "/map/" : query.includes("codes") ? "/codes/" : query.includes("glacy") ? "/aniimo/glacy/" : "/guides/",
+          gscWatchlistPath(query),
           action,
         ])} navigate={navigate} />
         <LinkGroup title="Launch Search Shortcuts" items={launchSearchPages} navigate={navigate} />
