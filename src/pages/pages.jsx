@@ -1265,7 +1265,7 @@ function topicRelatedLinks(topic) {
   } else if (slug.includes("trailer") || slug.includes("logo") || slug.includes("pax") || slug.includes("tgs")) {
     links.push(
       ["Media Gallery", "/media/", "Browse media and asset notes"],
-      ["News Tracker", "/updates/official-news-tracker/", "Check official news freshness"],
+      ["News Tracker", "/topics/aniimo-news/", "Check official news freshness"],
     );
   } else if (slug.includes("gameplay") || slug.includes("combat") || slug.includes("solo") || slug.includes("review") || slug.includes("demo") || slug.includes("mmo") || slug.includes("evolution-list") || slug.includes("locations") || slug.includes("shiny") || slug.includes("aniilog") || slug.includes("carried-items")) {
     links.push(

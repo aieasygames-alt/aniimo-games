@@ -6,6 +6,7 @@ const steps = [
   ["Content expansion audit", ["npm", ["run", "check:expansion"]]],
   ["SEO audit", ["npm", ["run", "check:seo"]]],
   ["Framework audit", ["npm", ["run", "check:framework"]]],
+  ["Internal link audit", ["npm", ["run", "check:links"]]],
   ["Asset audit", ["npm", ["run", "check:assets"]]],
   ["Size audit", ["npm", ["run", "check:size"]]],
   ["Verification audit", ["npm", ["run", "check:verification"]]],
