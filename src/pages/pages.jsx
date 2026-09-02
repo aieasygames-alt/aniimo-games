@@ -1246,6 +1246,12 @@ function topicRelatedLinks(topic) {
     ["Launch Day", "/launch-day/", "Open the launch-day command center"],
     ["Official Sources", "/source-archive/", "Check the source archive"],
   ];
+  const exactLinks = topicExactRelatedLinks(slug);
+
+  if (exactLinks) {
+    links.push(...exactLinks);
+    return links;
+  }
 
   if (slug.includes("apk") || slug.includes("torrent") || slug.includes("beta-key")) {
     links.push(
@@ -1280,6 +1286,63 @@ function topicRelatedLinks(topic) {
   }
 
   return links;
+}
+
+function topicExactRelatedLinks(slug) {
+  const map = {
+    "aniimo-cross-save": [
+      ["Crossplay", "/compare/aniimo-crossplay/", "Compare platform matchmaking status"],
+      ["Platform Pages", "/download/", "Check official platform availability"],
+      ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Track account and platform problems"],
+    ],
+    "aniimo-controller-support": [
+      ["Best Settings", "/aniimo-best-settings/", "Prepare input and camera checks"],
+      ["Steam Deck", "/topics/aniimo-steam-deck/", "Check handheld compatibility"],
+      ["Platform Pages", "/download/", "Compare platform-specific controls"],
+    ],
+    "aniimo-system-requirements": [
+      ["Download", "/download/", "Find official storefront paths"],
+      ["Best Settings", "/aniimo-best-settings/", "Track performance settings after launch"],
+      ["Black Screen", "/troubleshooting/aniimo-known-issues/", "Watch launch stability reports"],
+    ],
+    "aniimo-combat": [
+      ["Roles Guide", "/aniimo-roles/", "Compare DPS, Support, Heal and BREAK tags"],
+      ["Elements Guide", "/aniimo-elements/", "Browse element collections"],
+      ["Twine Abilities", "/mechanics/twine-abilities/", "Track combat and traversal uses"],
+    ],
+    "aniimo-solo": [
+      ["Beginner Guide", "/beginner-guide/", "Start with solo-friendly launch planning"],
+      ["Egg Heist", "/guides/aniimo-egg-heist-guide/", "Check team-mode boundaries"],
+      ["Multiplayer", "/compare/aniimo-multiplayer/", "Compare online-system status"],
+    ],
+    "aniimo-evolution-list": [
+      ["Evolution Hub", "/evolution/", "Browse form and evolution coverage"],
+      ["Stages", "/stages/lumin-stage/", "Start with stage collection pages"],
+      ["Database", "/aniimo/", "Search Aniimo by family and stage"],
+    ],
+    "aniimo-locations": [
+      ["Map", "/map/", "Open region and route guides"],
+      ["Launch Verification", "/launch-verification/", "Use spawn verification templates"],
+      ["Region Availability", "/troubleshooting/aniimo-region-availability/", "Check regional access notes"],
+    ],
+    "aniimo-vs-temtem": [
+      ["Multiplayer", "/compare/aniimo-multiplayer/", "Check online-system claims"],
+      ["Co-Op", "/compare/aniimo-coop/", "Separate team play from open-world co-op"],
+      ["Gameplay", "/topics/aniimo-gameplay/", "Review confirmed Aniimo systems"],
+    ],
+    "games-like-aniimo": [
+      ["Pokemon-Style Comparison", "/compare/aniimo-vs-pokemon/", "Compare creature-collecting intent"],
+      ["Palworld-Style Comparison", "/compare/aniimo-vs-palworld/", "Compare open-world expectations"],
+      ["Gameplay", "/topics/aniimo-gameplay/", "Return to confirmed Aniimo features"],
+    ],
+    "aniimo-codes-not-working": [
+      ["Active Codes", "/codes/active/", "Check whether a code is confirmed active"],
+      ["How to Redeem", "/codes/how-to-redeem/", "Prepare redeem-flow checks"],
+      ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Track launch error reports"],
+    ],
+  };
+
+  return map[slug];
 }
 
 function topicEvidenceQueue(topic) {

@@ -75,6 +75,27 @@ for (const route of primaryRoutes) {
   }
 }
 
+for (const route of [
+  "/topics/aniimo-combat/",
+  "/topics/aniimo-solo/",
+  "/topics/aniimo-evolution-list/",
+  "/topics/aniimo-locations/",
+  "/topics/aniimo-cross-save/",
+  "/topics/aniimo-controller-support/",
+  "/topics/aniimo-system-requirements/",
+  "/topics/aniimo-vs-temtem/",
+  "/topics/games-like-aniimo/",
+  "/codes/aniimo-codes-not-working/",
+]) {
+  if (!contentLinks.has(route)) {
+    issues.push(`Expanded intent route needs a source-link signal: ${route}`);
+  }
+
+  if (!primaryRoutes.includes(route)) {
+    issues.push(`Expanded intent route should stay in the primary sitemap: ${route}`);
+  }
+}
+
 for (const [target, files] of contentLinks) {
   if (target.startsWith("/") && !discoverableRoutes.includes(target) && !target.includes(".") && target !== "/platforms/") {
     issues.push(`Internal link target is not discoverable: ${[...files].join(", ")} -> ${target}`);
