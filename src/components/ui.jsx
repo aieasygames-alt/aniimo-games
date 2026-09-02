@@ -1,6 +1,6 @@
 import React from "react";
 import { ChevronRight } from "lucide-react";
-import { aniimo, regions, statuses } from "../../data/content.js";
+import { aniimo, regions, siteLastUpdated, statuses } from "../../data/content.js";
 import { aniimoPath, elementPath, regionPath, rolePath, stagePath, statusPath } from "../lib/routes.js";
 
 export function StatusBadge({ status }) {
@@ -163,7 +163,7 @@ export function SourcePanel({ source, status }) {
         <dt>Status</dt>
         <dd>{status}</dd>
         <dt>Last updated</dt>
-        <dd>2026-08-28</dd>
+        <dd>{siteLastUpdated}</dd>
       </dl>
       <a className="text-link" href={source} target="_blank" rel="noreferrer">
         Visit source <ChevronRight size={16} />

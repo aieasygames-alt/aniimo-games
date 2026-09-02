@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
-import { aniimo, regions } from "../data/content.js";
+import { aniimo, regions, siteLastUpdated } from "../data/content.js";
 import { canonicalUrl, fullSitemapRoutes, pageFaqsForRoute, resolveRoute, sitemapRoutes, siteUrl, structuredDataForRoute } from "../src/lib/routes.js";
 const sitemap = readFileSync("public/sitemap.xml", "utf8");
 const supplementalSitemap = readFileSync("public/sitemap-supplemental.xml", "utf8");
@@ -8,6 +8,8 @@ const index = readFileSync("dist/index.html", "utf8");
 
 const routes = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
 const supplementalRoutes = [...supplementalSitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
+const sitemapLastmods = [...sitemap.matchAll(/<lastmod>(.*?)<\/lastmod>/g)].map((match) => match[1]);
+const supplementalLastmods = [...supplementalSitemap.matchAll(/<lastmod>(.*?)<\/lastmod>/g)].map((match) => match[1]);
 const discoverableRoutes = [...routes, ...supplementalRoutes];
 const issues = [];
 
@@ -26,6 +28,12 @@ if (!robots.includes("Allow: /")) {
 for (const route of discoverableRoutes) {
   if (!route.startsWith(`${siteUrl}/`)) {
     issues.push(`Sitemap URL uses the wrong domain: ${route}`);
+  }
+}
+
+for (const lastmod of [...sitemapLastmods, ...supplementalLastmods]) {
+  if (lastmod !== siteLastUpdated) {
+    issues.push(`Sitemap lastmod ${lastmod} does not match siteLastUpdated ${siteLastUpdated}.`);
   }
 }
 
@@ -77,6 +85,9 @@ for (const route of expectedDiscoverableRoutes) {
   const article = graph.find((item) => item["@type"] === "Article");
   if (!faqPage?.mainEntity?.length) issues.push(`Missing FAQPage entities for ${route}`);
   if (isTopicRoute(routeInfo) && !article) issues.push(`Missing Article schema for topic route: ${route}`);
+  if (article?.dateModified && article.dateModified !== siteLastUpdated) {
+    issues.push(`Article schema dateModified mismatch for ${route}: ${article.dateModified}`);
+  }
 
   if (title) titleCounts.set(title, [...(titleCounts.get(title) || []), htmlPath]);
   if (description) descriptionCounts.set(description, [...(descriptionCounts.get(description) || []), htmlPath]);

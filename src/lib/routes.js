@@ -1,4 +1,4 @@
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, conversionTopics, downloadTopics, faqs, freshnessPages, gameInfo, glossaryTopics, localizedTopics, mechanicDeepDiveTopics, mediaDetailTopics, newsTopics, officialPitchTopics, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, socialIntentTopics, troubleshootingTopics } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, conversionTopics, downloadTopics, faqs, freshnessPages, gameInfo, glossaryTopics, localizedTopics, mechanicDeepDiveTopics, mediaDetailTopics, newsTopics, officialPitchTopics, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, siteLastUpdated, socialIntentTopics, troubleshootingTopics } from "../../data/content.js";
 
 export const siteUrl = "https://aniimo.games";
 
@@ -510,7 +510,7 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
       headline: routeInfo.title,
       description: routeInfo.detail ? routeInfo.detail.description : routeInfo.regionDetail.theme,
       image: canonicalAssetUrl(entity.image),
-      dateModified: "2026-08-28",
+      dateModified: siteLastUpdated,
       author: {
         "@type": "Organization",
         name: "Aniimo.games",
@@ -530,7 +530,7 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
       "@type": "Article",
       headline: routeInfo.title,
       description: routeInfo.description,
-      dateModified: "2026-08-28",
+      dateModified: siteLastUpdated,
       author: {
         "@type": "Organization",
         name: "Aniimo.games",

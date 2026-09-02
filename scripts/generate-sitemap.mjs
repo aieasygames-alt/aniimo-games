@@ -1,7 +1,8 @@
 import { writeFileSync } from "node:fs";
+import { siteLastUpdated } from "../data/content.js";
 import { fullSitemapRoutes, sitemapRoutes, siteUrl } from "../src/lib/routes.js";
 
-const lastmod = "2026-08-28";
+const lastmod = siteLastUpdated;
 const routes = sitemapRoutes();
 const supplementalRoutes = fullSitemapRoutes().filter((route) => !routes.includes(route));
 
