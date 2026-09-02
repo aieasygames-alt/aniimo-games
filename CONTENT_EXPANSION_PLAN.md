@@ -256,6 +256,16 @@ The next optimization should improve crawler paths and CTR for pages already sho
 - Tighten existing AI, MMO, shiny/forms and wiki-dex pages around exact query wording.
 - Keep trust pages live and linked from the site index; use them to support source-safe claims, corrections and AI/rumor-sensitive searches.
 
+## V10 - Crawl Paths And Trust Links
+
+Continue improving existing pages before creating more URLs:
+
+- Add a popular-Aniimo block directly inside the database page so users and crawlers see the highest-signal character entries before the full card grid.
+- Strengthen download paths to Android, Google Play, mobile app stores and Portuguese pre-registration from the main download page.
+- Add Discord to launch operations because launch-status and community-code queries are already visible in Search Console.
+- Cross-link About, Editorial Policy and Contact with source archive, AI-use, Reddit, Discord, beta-key safety and launch verification pages.
+- Keep the next broad expansion paused until GSC confirms which of these improved internal paths lift CTR or indexing.
+
 ## Implementation Rules
 
 - Prefer adding topic objects to the existing content arrays before introducing new page components.

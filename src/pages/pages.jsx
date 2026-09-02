@@ -141,6 +141,20 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
               ["Verification rule", "Exact spawn points stay pending until official or in-game evidence confirms them."],
             ]} />
           )}
+          {!compact && (
+            <section className="related-section">
+              <h2>Popular Aniimo To Check First</h2>
+              <div className="related-grid">
+                {priorityAniimoPages().map((item) => (
+                  <a className="related-card" key={item.id} href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
+                    <span className="related-mark">{item.no}</span>
+                    <strong>{item.name}</strong>
+                    <span>{item.element} / {item.role} / {item.region}</span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
           <div className="aniimo-grid">
             {filteredAniimo.map((item) => (
               <article className="aniimo-card" key={item.id}>
@@ -408,6 +422,9 @@ export function DownloadPage({ navigate }) {
             </div>
             <EvidenceQueue queue={launchEvidenceQueues.download} />
             <LinkGroup title="Download Search Safety" items={[
+              ["Android Google Play", "/platforms/android/", "Track Google Play pre-registration, Android launch timing and safe APK guidance."],
+              ["Mobile App Stores", "/platforms/mobile/", "Check App Store, Google Play and mobile launch-window notes."],
+              ["Portuguese Pre-Register", "/pt/aniimo-pre-registro/", "Answer Brazil pre-registro reward and storefront searches."],
               ["APK Safety", "/topics/aniimo-apk/", "Use official Android paths instead of APK mirrors."],
               ["Torrent Safety", "/topics/aniimo-torrent/", "Avoid unofficial installers and reposted clients."],
               ["Official Website", "/topics/aniimo-official-website/", "Find verified site, Wiki and storefront links."],
@@ -1084,6 +1101,7 @@ export function LaunchHubPage({ navigate }) {
           ["Launch Day", "/launch-day/", "Check server status, active codes, unlock timing and launch fixes."],
           ["Release Date", "/release-date/", "Track PC, console and mobile launch windows."],
           ["Launch Tracker", "/launch-tracker/", "Monitor source status, rewards, platforms and verification tasks."],
+          ["Discord", "/topics/aniimo-discord/", "Check official community paths for launch notices and code announcements."],
           ["Troubleshooting", "/troubleshooting/", "Fix download, store visibility, pre-registration and region availability issues."],
           ["Server Status", "/troubleshooting/aniimo-server-status/", "Prepare a source-safe status page for launch-day outage searches."],
           ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Prepare a verified issue log for login, black screen and stuck-loading searches."],
@@ -1750,6 +1768,12 @@ export function AboutPage() {
         { title: "How we label data", body: "Confirmed data is tied to official or in-game sources. Watchlist and unknown fields are used when an entry exists but exact element, role, region, stage or spawn information still needs verification." },
         { title: "Why this exists", body: "Search users often need one clean place to compare Aniimo entries, official sources and practical guide pages without mixing confirmed facts with unsourced claims." },
       ]} />
+      <LinkGroup title="Trust Pages" items={[
+        ["Editorial Policy", "/editorial-policy/", "Review how Aniimo.games handles sources, rumors and corrections."],
+        ["Source Archive", "/source-archive/", "Check official Aniimo sources, storefronts and last-reviewed notes."],
+        ["Contact", "/contact/", "Send corrections with the affected URL and official source."],
+        ["Does Aniimo Use AI?", "/compare/aniimo-ai/", "Review AI-related claims through official-source boundaries."],
+      ]} />
     </section>
   );
 }
@@ -1767,6 +1791,12 @@ export function EditorialPolicyPage() {
         { title: "Source hierarchy", body: "Official Aniimo pages, official Wiki entries, platform storefronts and in-game verification are preferred. Reposted summaries and community screenshots are treated as leads, not final sources." },
         { title: "Update workflow", body: "New official entries are checked with scripts, added to the database, linked into sitemap routes and reviewed for missing images, duplicate meta tags and broken internal links." },
         { title: "Correction standard", body: "When a correction is needed, the page should preserve source status, update the changelog and avoid overstating unverified mechanics." },
+      ]} />
+      <LinkGroup title="Policy In Action" items={[
+        ["Reddit Discussions", "/topics/aniimo-reddit/", "Treat community posts as research leads, not confirmed facts."],
+        ["Discord Server", "/topics/aniimo-discord/", "Verify invite and code claims through official channels."],
+        ["Beta Key Safety", "/topics/aniimo-beta-key/", "Avoid gray-market access and fake beta-code pages."],
+        ["Launch Verification", "/launch-verification/", "Record route, code, platform and GSC evidence after launch."],
       ]} />
     </section>
   );
@@ -1786,6 +1816,12 @@ export function ContactPage() {
         { title: "Correction requests", body: "Send the affected Aniimo, region or guide URL with the exact field that should change." },
         { title: "Source requests", body: "Official links are preferred. Storefront pages, official Wiki entries and official news posts are the easiest sources to verify." },
         { title: "Launch updates", body: "After launch, route notes, spawn windows and code status should include timestamps and verification context." },
+      ]} />
+      <LinkGroup title="Before Sending A Correction" items={[
+        ["Editorial Policy", "/editorial-policy/", "Check source hierarchy and correction standards."],
+        ["Source Archive", "/source-archive/", "Find the official source type that supports the change."],
+        ["Update Log", "/updates/", "Review recent source and content changes."],
+        ["Launch Tracker", "/launch-tracker/", "Check whether the item is already in the verification queue."],
       ]} />
     </section>
   );
