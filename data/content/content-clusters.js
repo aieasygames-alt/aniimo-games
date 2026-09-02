@@ -97,6 +97,198 @@ export const localizedTopics = [
       ["Donde descargar Aniimo?", "Usa Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play o el sitio oficial de Aniimo."],
     ],
   },
+  {
+    locale: "es",
+    slug: "aniimo-descargar",
+    title: "Aniimo Descargar y Fuentes Oficiales",
+    description: "Guia en espanol para descargar Aniimo de forma segura usando Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play y fuentes oficiales.",
+    intro: "Esta pagina responde busquedas en espanol como descargar Aniimo, Aniimo download y Aniimo APK. El objetivo es enviar a los jugadores hacia tiendas oficiales y separar la disponibilidad real de enlaces no verificados.",
+    points: [
+      ["Fuentes oficiales", "Usa Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play o el sitio oficial de Aniimo cuando el acceso este disponible."],
+      ["Fechas por plataforma", `PC y consolas se siguen para ${releaseInfo.pcConsole}; mobile iOS y Android se sigue para ${releaseInfo.mobile}.`],
+      ["Evita instaladores falsos", "No uses APKs, torrents, clientes beta republicados ni enlaces de descarga de terceros antes de verificar la fuente oficial."],
+    ],
+    faq: [
+      ["Donde puedo descargar Aniimo?", "Usa el sitio oficial de Aniimo o las tiendas oficiales vinculadas desde Aniimo.games."],
+      ["Es seguro descargar Aniimo APK?", "Aniimo.games no recomienda APKs de terceros. Usa Google Play o fuentes oficiales."],
+    ],
+  },
+  {
+    locale: "es",
+    slug: "aniimo-codigos",
+    title: "Aniimo Codigos y Recompensas",
+    description: "Consulta en espanol el estado de codigos de Aniimo, recompensas de pre-registro, regalos de lanzamiento y reglas de verificacion.",
+    intro: "Las busquedas de codigos necesitan una respuesta clara: recompensas confirmadas no son lo mismo que codigos activos. Esta pagina mantiene separados los codigos canjeables, recompensas y pruebas posteriores al lanzamiento.",
+    points: [
+      ["Estado actual", "Aniimo.games no marca un codigo como activo hasta que aparece en una fuente oficial o dentro del juego."],
+      ["Recompensas confirmadas", "Las recompensas de pre-registro y hitos se siguen por separado de los codigos escritos."],
+      ["Despues del lanzamiento", "Cada codigo debe tener recompensa, fecha, fuente, plataforma probada y ultima verificacion."],
+    ],
+    faq: [
+      ["Hay codigos activos de Aniimo?", "Aniimo.games solo lista codigos activos cuando una fuente oficial o el juego los confirma."],
+      ["Las recompensas de pre-registro son codigos?", "No necesariamente. Las recompensas y los codigos canjeables se siguen por separado."],
+    ],
+  },
+  {
+    locale: "es",
+    slug: "aniimo-sitio-oficial",
+    title: "Aniimo Sitio Oficial y Enlaces",
+    description: "Encuentra en espanol el sitio oficial de Aniimo, Wiki oficial, tiendas verificadas y enlaces seguros para lanzamiento, descarga y codigos.",
+    intro: "Las busquedas del sitio oficial son busquedas de confianza. Esta pagina ayuda a encontrar rutas verificadas sin reemplazar las fuentes oficiales ni promover enlaces republicados.",
+    points: [
+      ["Sitio oficial", "Usa el sitio oficial de Aniimo para noticias, campanas, registro y enlaces de plataforma."],
+      ["Wiki oficial", "La Wiki oficial es la fuente preferida para nombres, numeros y descripciones publicas de Aniimo."],
+      ["Tiendas verificadas", "Steam, Epic Games Store, PlayStation, Xbox, App Store y Google Play deben usarse para disponibilidad por plataforma."],
+    ],
+    faq: [
+      ["Cual es el sitio oficial de Aniimo?", "Aniimo.games dirige a los usuarios hacia el sitio oficial, la Wiki oficial y las tiendas verificadas desde su archivo de fuentes."],
+      ["Debo confiar en enlaces de terceros?", "No para descargas, codigos o beta keys. Usa fuentes oficiales siempre que sea posible."],
+    ],
+  },
+  {
+    locale: "pt",
+    slug: "aniimo-download",
+    title: "Aniimo Download e Fontes Oficiais",
+    description: "Guia em portugues para baixar Aniimo com seguranca usando Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play e fontes oficiais.",
+    intro: "Esta pagina responde buscas em portugues como Aniimo download, baixar Aniimo e Aniimo APK. Ela direciona jogadores para lojas oficiais e mantem links nao verificados fora do caminho principal.",
+    points: [
+      ["Fontes oficiais", "Use Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play ou o site oficial de Aniimo quando o acesso estiver disponivel."],
+      ["Datas por plataforma", `PC e consoles sao acompanhados para ${releaseInfo.pcConsole}; mobile iOS e Android e acompanhado para ${releaseInfo.mobile}.`],
+      ["Evite arquivos nao oficiais", "Nao use APKs de terceiros, torrents, clientes beta republicados ou instaladores modificados."],
+    ],
+    faq: [
+      ["Onde baixar Aniimo?", "Use o site oficial de Aniimo ou as lojas oficiais vinculadas no Aniimo.games."],
+      ["Aniimo APK e seguro?", "Aniimo.games nao recomenda APKs de terceiros. Use Google Play ou fontes oficiais."],
+    ],
+  },
+  {
+    locale: "pt",
+    slug: "aniimo-codigos",
+    title: "Aniimo Codigos e Recompensas",
+    description: "Acompanhe em portugues codigos de Aniimo, recompensas de pre-registro, presentes de lancamento e regras de verificacao.",
+    intro: "Buscas por codigos crescem perto do lancamento, mas recompensas confirmadas nao devem virar codigos ativos sem prova oficial. Esta pagina separa codigos, recompensas e verificacao.",
+    points: [
+      ["Estado atual", "Aniimo.games so marca um codigo como ativo quando uma fonte oficial ou o jogo confirma o codigo."],
+      ["Recompensas separadas", "Recompensas de pre-registro, marcos e presentes de campanha ficam separadas de codigos digitaveis."],
+      ["Depois do lancamento", "Cada codigo deve registrar recompensa, data, fonte, plataforma testada e ultima verificacao."],
+    ],
+    faq: [
+      ["Existem codigos ativos de Aniimo?", "Aniimo.games lista codigos ativos apenas quando fontes oficiais ou o jogo confirmam."],
+      ["Recompensas de pre-registro sao codigos?", "Nao necessariamente. Recompensas e codigos resgataveis sao rastreados separadamente."],
+    ],
+  },
+  {
+    locale: "pt",
+    slug: "aniimo-site-oficial",
+    title: "Aniimo Site Oficial e Links",
+    description: "Encontre em portugues o site oficial de Aniimo, Wiki oficial, lojas verificadas e links seguros para lancamento, download e codigos.",
+    intro: "Buscas pelo site oficial sao buscas de confianca. Esta pagina ajuda leitores em portugues a encontrar fontes verificadas sem tratar repostagens como oficiais.",
+    points: [
+      ["Site oficial", "Use o site oficial de Aniimo para noticias, campanhas, registro e links de plataforma."],
+      ["Wiki oficial", "A Wiki oficial e a melhor fonte para nomes, numeros e descricoes publicas de Aniimo."],
+      ["Lojas verificadas", "Steam, Epic Games Store, PlayStation, Xbox, App Store e Google Play devem confirmar disponibilidade por plataforma."],
+    ],
+    faq: [
+      ["Qual e o site oficial de Aniimo?", "Aniimo.games direciona usuarios para o site oficial, Wiki oficial e lojas verificadas a partir do arquivo de fontes."],
+      ["Posso confiar em links de terceiros?", "Nao para downloads, codigos ou beta keys. Use fontes oficiais sempre que possivel."],
+    ],
+  },
+  {
+    locale: "fr",
+    slug: "aniimo-telecharger",
+    title: "Aniimo Telecharger et Sources Officielles",
+    description: "Guide francais pour telecharger Aniimo en securite avec Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play et sources officielles.",
+    intro: "Cette page repond aux recherches francaises comme telecharger Aniimo, Aniimo download et Aniimo APK. Elle dirige les joueurs vers les boutiques officielles et evite les liens non verifies.",
+    points: [
+      ["Sources officielles", "Utilisez Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play ou le site officiel Aniimo quand l'acces est disponible."],
+      ["Dates par plateforme", `PC et consoles sont suivis pour le ${releaseInfo.pcConsole}; mobile iOS et Android est suivi pour le ${releaseInfo.mobile}.`],
+      ["Eviter les fichiers tiers", "N'utilisez pas d'APK tiers, torrents, faux clients beta ou installateurs modifies."],
+    ],
+    faq: [
+      ["Ou telecharger Aniimo ?", "Utilisez le site officiel Aniimo ou les boutiques officielles liees depuis Aniimo.games."],
+      ["Un APK Aniimo tiers est-il sur ?", "Aniimo.games ne recommande pas les APK tiers. Utilisez Google Play ou les sources officielles."],
+    ],
+  },
+  {
+    locale: "fr",
+    slug: "aniimo-codes",
+    title: "Aniimo Codes et Recompenses",
+    description: "Suivez en francais les codes Aniimo, recompenses de preinscription, cadeaux de lancement et regles de verification.",
+    intro: "Les recherches de codes demandent une reponse prudente. Cette page separe les codes a saisir, les recompenses confirmees et les verifications apres lancement.",
+    points: [
+      ["Statut actuel", "Aniimo.games ne marque un code actif que lorsqu'une source officielle ou le jeu le confirme."],
+      ["Recompenses separees", "Les recompenses de preinscription et de campagne ne sont pas des codes actifs sans chaine officielle."],
+      ["Apres lancement", "Chaque code doit avoir recompense, date, source, plateforme testee et derniere verification."],
+    ],
+    faq: [
+      ["Y a-t-il des codes Aniimo actifs ?", "Aniimo.games liste seulement les codes confirmes par une source officielle ou le jeu."],
+      ["Les recompenses de preinscription sont-elles des codes ?", "Pas automatiquement. Les recompenses et les codes a saisir sont suivis separement."],
+    ],
+  },
+  {
+    locale: "fr",
+    slug: "aniimo-site-officiel",
+    title: "Aniimo Site Officiel et Liens",
+    description: "Trouvez en francais le site officiel Aniimo, le Wiki officiel, les boutiques verifiees et les liens surs pour lancement, telechargement et codes.",
+    intro: "Les recherches du site officiel sont des recherches de confiance. Cette page aide les lecteurs francais a trouver les sources verifiees sans remplacer les destinations officielles.",
+    points: [
+      ["Site officiel", "Utilisez le site officiel Aniimo pour les actualites, campagnes, inscription et liens de plateforme."],
+      ["Wiki officiel", "Le Wiki officiel reste la source preferee pour les noms, numeros et descriptions publiques des Aniimo."],
+      ["Boutiques verifiees", "Steam, Epic Games Store, PlayStation, Xbox, App Store et Google Play doivent confirmer la disponibilite par plateforme."],
+    ],
+    faq: [
+      ["Quel est le site officiel d'Aniimo ?", "Aniimo.games dirige les utilisateurs vers le site officiel, le Wiki officiel et les boutiques verifiees depuis son archive de sources."],
+      ["Faut-il utiliser des liens tiers ?", "Non pour les telechargements, codes ou beta keys. Utilisez les sources officielles quand c'est possible."],
+    ],
+  },
+  {
+    locale: "de",
+    slug: "aniimo-herunterladen",
+    title: "Aniimo Herunterladen und Offizielle Quellen",
+    description: "Deutscher Guide zum sicheren Aniimo Download ueber Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play und offizielle Quellen.",
+    intro: "Diese Seite beantwortet deutsche Suchen wie Aniimo herunterladen, Aniimo Download und Aniimo APK. Sie fuehrt zu offiziellen Storefronts und haelt ungepruefte Dateien aus dem Hauptpfad heraus.",
+    points: [
+      ["Offizielle Quellen", "Nutze Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play oder die offizielle Aniimo-Website, sobald Zugriff verfuegbar ist."],
+      ["Daten nach Plattform", `PC und Konsole werden fuer ${releaseInfo.pcConsole} verfolgt; Mobile iOS und Android fuer ${releaseInfo.mobile}.`],
+      ["Keine Drittanbieter-Dateien", "Vermeide APK-Mirrors, Torrents, falsche Beta-Clients und modifizierte Installer."],
+    ],
+    faq: [
+      ["Wo kann ich Aniimo herunterladen?", "Nutze die offizielle Aniimo-Website oder offizielle Stores, die auf Aniimo.games verlinkt sind."],
+      ["Ist eine Aniimo APK sicher?", "Aniimo.games empfiehlt keine Drittanbieter-APKs. Nutze Google Play oder offizielle Quellen."],
+    ],
+  },
+  {
+    locale: "de",
+    slug: "aniimo-codes",
+    title: "Aniimo Codes und Belohnungen",
+    description: "Pruefe auf Deutsch Aniimo Codes, Vorregistrierungsbelohnungen, Launch-Geschenke und Verifizierungsregeln.",
+    intro: "Code-Suchen brauchen eine klare Trennung zwischen bestaetigten Belohnungen und aktiven Einloesecodes. Diese Seite haelt Codes, Rewards und Launch-Tests getrennt.",
+    points: [
+      ["Aktueller Status", "Aniimo.games markiert einen Code nur als aktiv, wenn eine offizielle Quelle oder das Spiel ihn bestaetigt."],
+      ["Belohnungen getrennt", "Vorregistrierungs- und Kampagnenbelohnungen sind keine aktiven Codes ohne offiziellen Code-String."],
+      ["Nach Launch", "Jeder Code sollte Belohnung, Datum, Quelle, getestete Plattform und letzte Verifizierung erfassen."],
+    ],
+    faq: [
+      ["Gibt es aktive Aniimo Codes?", "Aniimo.games listet aktive Codes nur, wenn offizielle Quellen oder das Spiel sie bestaetigen."],
+      ["Sind Vorregistrierungsbelohnungen Codes?", "Nicht automatisch. Belohnungen und Einloesecodes werden separat verfolgt."],
+    ],
+  },
+  {
+    locale: "de",
+    slug: "aniimo-offizielle-website",
+    title: "Aniimo Offizielle Website und Links",
+    description: "Finde auf Deutsch die offizielle Aniimo Website, das offizielle Wiki, verifizierte Stores und sichere Links fuer Launch, Download und Codes.",
+    intro: "Suchen nach der offiziellen Website sind Vertrauenssuchen. Diese Seite hilft deutschen Lesern, verifizierte Quellen zu finden, ohne Reposts als offiziell zu behandeln.",
+    points: [
+      ["Offizielle Website", "Nutze die offizielle Aniimo-Website fuer News, Kampagnen, Registrierung und Plattformlinks."],
+      ["Offizielles Wiki", "Das offizielle Wiki ist die bevorzugte Quelle fuer oeffentliche Aniimo-Namen, Nummern und Beschreibungen."],
+      ["Verifizierte Stores", "Steam, Epic Games Store, PlayStation, Xbox, App Store und Google Play sollten Plattformverfuegbarkeit bestaetigen."],
+    ],
+    faq: [
+      ["Was ist die offizielle Aniimo Website?", "Aniimo.games fuehrt Nutzer ueber das Quellenarchiv zur offiziellen Website, zum offiziellen Wiki und zu verifizierten Stores."],
+      ["Sollte ich Drittanbieter-Links nutzen?", "Nicht fuer Downloads, Codes oder Beta Keys. Nutze offizielle Quellen, wann immer moeglich."],
+    ],
+  },
 ];
 
 export const beginnerTopics = [

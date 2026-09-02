@@ -126,12 +126,19 @@ Success criteria:
 
 Focus only on high-intent localized entry pages before attempting broad translation.
 
-Ship and maintain:
+Shipped first:
 
 - Spanish release date, download, codes, mobile and official website pages
 - Portuguese release date, download, codes, mobile and official website pages
 - French release date, download, codes, mobile and official website pages
 - German release date, download, codes, mobile and official website pages
+
+Current implemented entrypoints:
+
+- Spanish: release date, download, codes and official website
+- Portuguese: release date, download, codes and official website
+- French: release date, game overview, download, codes and official website
+- German: release date, game overview, download, codes and official website
 
 Success criteria:
 
