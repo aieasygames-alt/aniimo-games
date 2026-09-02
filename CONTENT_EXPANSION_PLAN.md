@@ -57,7 +57,12 @@ Success criteria:
 
 Focus on converting the Aniimo database from index coverage into distinct, useful detail content.
 
-Ship and maintain:
+Shipped first:
+
+- Hand-authored detail-note overrides for 10 featured Aniimo already prioritized in the primary sitemap: Emberpup, Inferlupa, Glacy, Eklue, Skippy, Susuta, Fragrancier, Wisptis, Helgon and Cozite.
+- Each featured override strengthens location notes, evolution detail, ability use case, related route logic and source notes without publishing unverified routes or balance claims.
+
+Continue to maintain:
 
 - Featured detail expansion for the 10-20 highest-interest Aniimo entries
 - Aniimo character list

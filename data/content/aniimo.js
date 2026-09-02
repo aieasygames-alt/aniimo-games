@@ -449,10 +449,83 @@ function detailNotes({ id, name, element, role, stage, region, forms }) {
   };
 }
 
+const featuredDetailNotes = {
+  emberpup: {
+    locationNote: "Emberpup is the first public Aniimo entry and belongs to the Mistwoods route cluster. Treat it as the anchor page for early Fire-type discovery, then add exact path, weather and encounter screenshots after launch.",
+    evolutionDetail: "Emberpup starts the Emberpup -> Flameruff -> Scorchhowl -> Inferlupa line. Keep each form on its own page so launch changes to branch requirements or alternate forms do not flatten the whole family into one generic note.",
+    abilityUseCase: "Emberpup's Fire DPS profile makes it a strong candidate for early combat-pressure testing, especially any heat-themed encounter, object or Twine use that appears in Mistwoods.",
+    relatedRegionReason: "Mistwoods links should help players compare Emberpup with Hummin and the later Fire line before moving into broader Fire and DPS collections.",
+    sourceNote: "Emberpup's name, number and description come from the public Wiki workflow. Exact starter availability, spawn route and early-game role should stay pending until launch verification.",
+  },
+  inferlupa: {
+    locationNote: "Inferlupa is tracked under Mistwoods as a late-form Fire DPS page. Use it for route and evolution intent, but do not imply a final encounter method until official or in-game evidence confirms it.",
+    evolutionDetail: "Inferlupa closes the Emberpup family in the current local model. Its detail page should separate ordinary form progression from any future special branch, quest or combat requirement.",
+    abilityUseCase: "Inferlupa is the best featured page for testing high-pressure Fire DPS language after launch, including burst windows, boss utility and whether Twine changes traversal or combat routes.",
+    relatedRegionReason: "Mistwoods internal links keep Inferlupa close to Emberpup, Flameruff, Scorchhowl and other early-region entries while users compare Fire and DPS options.",
+    sourceNote: "The official description supports Inferlupa's public identity, but route, evolution trigger and final combat ranking need direct launch evidence before becoming firm guide claims.",
+  },
+  glacy: {
+    locationNote: "Glacy is tracked under Nimbus Fields and is a priority Ice DPS page because users may search its name directly. Add exact cold-route, encounter and condition notes only after live verification.",
+    evolutionDetail: "Glacy sits inside the Skippy -> Pranky -> Glacy -> Leafy family in the local data model. Keep the page ready for branch clarification because the family includes multiple elements and roles.",
+    abilityUseCase: "Glacy's Ice DPS profile should be tested for defensive control, cold-route traversal and combat pressure before any best-Aniimo ranking uses it as evidence.",
+    relatedRegionReason: "Nimbus Fields links help connect Glacy with other cold-region watchlist entries while element and role links expose it to Ice and DPS searches.",
+    sourceNote: "Glacy has official Wiki-backed name, number and description data. Keep exact spawn, acquisition and balance statements source-labeled until launch checks are complete.",
+  },
+  eklue: {
+    locationNote: "Eklue is tracked under Blitzwood and should anchor searches about tracking, sound and Electric support utility. Exact routes, cloaked-creature interactions and encounter timing need launch evidence.",
+    evolutionDetail: "Eklue is currently linked with Eko as a two-form line. If the official Wiki adds another form, update Eko, Eklue, the evolution hub and Electric collection together.",
+    abilityUseCase: "Eklue's Electric Support profile makes it a strong candidate for scouting, detection, puzzle and route-utility testing once Twine details are available.",
+    relatedRegionReason: "Blitzwood links connect Eklue to Bolty and Blazen so users can compare Electric support and DPS options within the same region cluster.",
+    sourceNote: "The official description supports Eklue's detection theme, but exact gameplay detection rules, stealth counters and route requirements should wait for official or in-game confirmation.",
+  },
+  skippy: {
+    locationNote: "Skippy is tracked under Sea of Flowers with water-side behavior in its official description. Keep route notes focused on confirmed region context until exact shoreline or pond encounters are verified.",
+    evolutionDetail: "Skippy appears in the Skippy -> Pranky -> Glacy -> Leafy family. Because the line crosses different element themes, future evolution requirements should be documented with evidence per form.",
+    abilityUseCase: "Skippy's Rock Support profile should be tested for disguise, water-edge scouting, terrain utility and whether its form line creates unusual role transitions.",
+    relatedRegionReason: "Sea of Flowers links should connect Skippy with Leafy, Iris, Irisal and Pranky for users comparing peaceful route, support and early collection pages.",
+    sourceNote: "Skippy's public Wiki description gives useful behavior flavor. Exact acquisition, form requirements and route conditions remain launch-verification fields.",
+  },
+  susuta: {
+    locationNote: "Susuta is tracked under Forest of Falling Stars and has reward-search value because of the mysterious Susuta egg. Keep reward acquisition separate from wild spawn or route claims.",
+    evolutionDetail: "Susuta starts the Susuta -> Popota -> Piopiota -> Panpanta family. The page should clearly separate pre-registration egg context from any live evolution requirement.",
+    abilityUseCase: "Susuta's Water Support profile makes it useful for reward, beginner and collection-intent pages before final combat or route utility is known.",
+    relatedRegionReason: "Forest of Falling Stars links connect Susuta with Celestis and Stellarys, while reward links should point users toward pre-registration and code-status pages.",
+    sourceNote: "Susuta combines official Wiki data with reward-campaign interest. Confirm claim method, hatch behavior, route access and any code relationship after launch before using stronger wording.",
+  },
+  fragrancier: {
+    locationNote: "Fragrancier is an official Wiki entry with strong name-search potential, but its element, role and region are still watchlist fields. Do not assign a perfume, flower or nectar route until verified.",
+    evolutionDetail: "Fragrancier is currently a standalone official-index entry in the local model. If related forms are confirmed later, update this page before changing collection or sitemap assumptions.",
+    abilityUseCase: "Fragrancier's description suggests nectar and perfume themes, but gameplay use should stay framed as watchlist until official mechanics or live testing define its role.",
+    relatedRegionReason: "Related links should prioritize official-index peers, source archive and database collections until Fragrancier receives confirmed route or taxonomy data.",
+    sourceNote: "Fragrancier has official name, number and description tracking, while element, role, stage, spawn and gameplay utility remain verification-pending fields.",
+  },
+  wisptis: {
+    locationNote: "Wisptis is an official Wiki entry with evolution-search potential, but no final route or region should be claimed until sourced. Keep it in the official-index watchlist cluster.",
+    evolutionDetail: "Wisptis has a description that mentions evolution pressure, making it a priority page for future requirement verification. Capture exact opponent, item, level or quest evidence before writing steps.",
+    abilityUseCase: "Wisptis should be treated as a watchlist combat/evolution page until its element, role and mechanics are confirmed by official or live-game evidence.",
+    relatedRegionReason: "Related links should connect Wisptis to official-index peers, evolution pages and source archive before any route-specific internal linking is added.",
+    sourceNote: "The official description is useful but not enough to publish exact evolution rules. Add screenshots, source URLs and last checked dates before turning flavor text into instructions.",
+  },
+  helgon: {
+    locationNote: "Helgon is an official-index entry with armor and guard imagery, but its region and encounter method are not confirmed in the local data. Keep location copy cautious.",
+    evolutionDetail: "Helgon is currently standalone in the local model. If Helmwhelp, Infergon or another armored line is officially connected later, update all related pages together.",
+    abilityUseCase: "Helgon's armor theme makes it a candidate for durability, guarding or defensive utility research, but final role and element should stay unassigned until verified.",
+    relatedRegionReason: "Related links should favor official-index and source pages until Helgon's taxonomy, route and family connections are confirmed.",
+    sourceNote: "Helgon's name, number and description are tracked from public Wiki data. Treat combat role, evolution links and route placement as launch watchlist items.",
+  },
+  cozite: {
+    locationNote: "Cozite is an official-index entry with shell, mud and smoke behavior in its description. Do not assign cave, marsh or mineral routes until official or in-game evidence confirms them.",
+    evolutionDetail: "Cozite is currently standalone in the local model. If shell-building or mineral-related forms appear later, update this page and the evolution list together.",
+    abilityUseCase: "Cozite's description points toward concealment and disruption themes, but gameplay use should remain watchlist until element, role and Twine behavior are confirmed.",
+    relatedRegionReason: "Related links should keep Cozite close to source archive, official-index pages and future location-list checks rather than forcing an unverified region.",
+    sourceNote: "Cozite has public Wiki-backed identity data, while route, element, role and utility details still require official or live-game verification.",
+  },
+};
+
 export const aniimo = names.map(([no, id, name, element, role, stage, aliases = []]) => {
   const region = regionByAniimo[id] || "Official Wiki";
   const forms = familyNames(id);
-  const notes = detailNotes({ id, name, element, role, stage, region, forms });
+  const notes = { ...detailNotes({ id, name, element, role, stage, region, forms }), ...(featuredDetailNotes[id] || {}) };
 
   return {
     no,
