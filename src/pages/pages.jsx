@@ -1252,7 +1252,7 @@ function topicRelatedLinks(topic) {
       ["Safe Download", "/download/", "Use official download paths"],
       ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Check launch issue notes"],
     );
-  } else if (slug.includes("steam") || slug.includes("game-pass") || slug.includes("ps4")) {
+  } else if (slug.includes("steam") || slug.includes("game-pass") || slug.includes("ps4") || slug.includes("cross-save") || slug.includes("controller") || slug.includes("system-requirements")) {
     links.push(
       ["Platform Hub", "/download/", "Compare official platform links"],
       ["Release Date", "/release-date/", "Check platform timing"],
@@ -1267,7 +1267,7 @@ function topicRelatedLinks(topic) {
       ["Media Gallery", "/media/", "Browse media and asset notes"],
       ["News Tracker", "/updates/official-news-tracker/", "Check official news freshness"],
     );
-  } else if (slug.includes("gameplay") || slug.includes("review") || slug.includes("demo") || slug.includes("mmo") || slug.includes("shiny") || slug.includes("aniilog") || slug.includes("carried-items")) {
+  } else if (slug.includes("gameplay") || slug.includes("combat") || slug.includes("solo") || slug.includes("review") || slug.includes("demo") || slug.includes("mmo") || slug.includes("evolution-list") || slug.includes("locations") || slug.includes("shiny") || slug.includes("aniilog") || slug.includes("carried-items")) {
     links.push(
       ["Beginner Guide", "/beginner-guide/", "Start with source-safe beginner notes"],
       ["Mechanics Hub", "/mechanics/", "Review mechanics and verification pages"],
@@ -1285,10 +1285,10 @@ function topicRelatedLinks(topic) {
 function topicEvidenceQueue(topic) {
   const slug = topic.slug || "";
   if (slug.includes("code") || slug.includes("beta-key")) return launchEvidenceQueues.codes;
-  if (slug.includes("apk") || slug.includes("torrent") || slug.includes("download") || slug.includes("steam") || slug.includes("game-pass") || slug.includes("ps4")) return launchEvidenceQueues.download;
+  if (slug.includes("apk") || slug.includes("torrent") || slug.includes("download") || slug.includes("steam") || slug.includes("game-pass") || slug.includes("ps4") || slug.includes("cross-save") || slug.includes("controller") || slug.includes("system-requirements")) return launchEvidenceQueues.download;
   if (slug.includes("pax") || slug.includes("tgs") || slug.includes("trailer") || slug.includes("logo")) return launchEvidenceQueues.events;
   if (slug.includes("shiny") || slug.includes("aniilog") || slug.includes("carried-items")) return launchEvidenceQueues.variants;
-  if (slug.includes("gameplay") || slug.includes("review") || slug.includes("demo") || slug.includes("mmo") || slug.includes("twine") || slug.includes("egg-heist") || slug.includes("lost-isles")) return launchEvidenceQueues.gameplay;
+  if (slug.includes("gameplay") || slug.includes("combat") || slug.includes("solo") || slug.includes("review") || slug.includes("demo") || slug.includes("mmo") || slug.includes("twine") || slug.includes("egg-heist") || slug.includes("lost-isles") || slug.includes("evolution-list") || slug.includes("locations")) return launchEvidenceQueues.gameplay;
   return null;
 }
 

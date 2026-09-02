@@ -673,6 +673,51 @@ export const searchSuggestionTopics = [
     ],
   },
   {
+    slug: "aniimo-cross-save",
+    title: "Does Aniimo Have Cross-Save?",
+    description: "Track Aniimo cross-save, account linking, platform progression and launch verification questions with careful source-safe wording.",
+    intro: "Cross-save searches appear when players plan to start on one platform and continue on another. Aniimo.games should answer the account and progression question directly while keeping unverified platform-linking rules in watchlist status.",
+    points: [
+      ["Current status", "Aniimo.games does not confirm cross-save until official sources or live-game testing verify account linking and shared progression."],
+      ["What to verify", "Check account creation, login providers, PC-console-mobile linking, platform restrictions, purchase handling and save migration after launch."],
+      ["Related pages", "Cross-save updates should refresh crossplay, platform guides, download pages and launch verification notes together."],
+    ],
+    faq: [
+      ["Does Aniimo have cross-save?", "Aniimo.games does not confirm cross-save until official wording or live-game testing verifies shared progression."],
+      ["What should cross-save testing include?", "Useful testing should include account linking, platform pairs, purchases, rewards, save migration and last verified date."],
+    ],
+  },
+  {
+    slug: "aniimo-controller-support",
+    title: "Aniimo Controller Support",
+    description: "Track Aniimo controller support for PC, console, Steam Deck and mobile with post-launch verification notes.",
+    intro: "Controller-support searches are practical setup questions. This page prepares a source-safe place to document gamepad, touch, keyboard and Steam Deck behavior after launch.",
+    points: [
+      ["Current status", "Controller support should stay watchlist on Aniimo.games until official platform text or live testing confirms input options."],
+      ["What to test", "Check Xbox, PlayStation and generic controllers on PC, native console controls, mobile touch controls, remapping, vibration and accessibility options."],
+      ["Where updates flow", "Controller findings should update best settings, Steam Deck, platform pages and known issues if input problems appear."],
+    ],
+    faq: [
+      ["Can I play Aniimo with a controller?", "Aniimo.games should verify controller support through official wording or live platform testing before marking it confirmed."],
+      ["Will mobile controller support be tracked?", "Yes. Mobile controller support should be tested separately from touch controls after iOS and Android availability is live."],
+    ],
+  },
+  {
+    slug: "aniimo-system-requirements",
+    title: "Aniimo System Requirements",
+    description: "Track Aniimo PC and mobile system requirements, download size, device support and performance verification after launch.",
+    intro: "System-requirement searches help players decide whether they can install Aniimo safely. This page should not invent specs before official storefronts or support pages publish them.",
+    points: [
+      ["Current status", "Aniimo.games treats minimum and recommended specs as watchlist fields until official storefronts or support pages confirm them."],
+      ["What to capture", "Record OS, CPU, GPU, memory, storage, controller support, mobile device limits, download size and last checked source."],
+      ["Performance follow-up", "After launch, connect tested settings, black-screen fixes, stuck-loading reports and platform-specific performance notes."],
+    ],
+    faq: [
+      ["What are the Aniimo system requirements?", "Aniimo.games should wait for official storefront or support-page specs before publishing final requirements."],
+      ["Will download size be listed?", "Download size should be added only after official storefronts or live installation checks verify it."],
+    ],
+  },
+  {
     slug: "aniimo-ps4",
     title: "Is Aniimo on PS4?",
     description: "Track Aniimo PS4 availability questions, confirmed PS5 listing status and safe PlayStation download guidance.",
@@ -685,6 +730,36 @@ export const searchSuggestionTopics = [
     faq: [
       ["Is Aniimo on PS4?", "Aniimo.games does not treat PS4 as confirmed unless an official PlayStation or Aniimo source lists it."],
       ["Is Aniimo on PS5?", "Yes. Aniimo.games tracks PlayStation 5 through the official PlayStation listing."],
+    ],
+  },
+  {
+    slug: "aniimo-vs-temtem",
+    title: "Aniimo vs Temtem-Style Creature RPG Expectations",
+    description: "Compare Aniimo with Temtem-style online creature RPG expectations while keeping confirmed Aniimo features and unverified systems separate.",
+    intro: "Temtem-style searches usually ask whether Aniimo has online creature collecting, teams, battles, trading-style systems or MMO-like progression. This page uses the comparison to clarify intent without claiming feature parity.",
+    points: [
+      ["Shared user intent", "Searchers want to understand creature collection, online play, co-op expectations, battles and long-term progression."],
+      ["Aniimo confirmed anchors", "Aniimo.games can safely anchor the page in creature catching, Twine, Idyll exploration, Homeland, real-time challenges and Egg Heist."],
+      ["Watchlist boundary", "Trading, ranked ladders, breeding, economy details and MMO-scale systems should not be claimed unless official or live evidence confirms them."],
+    ],
+    faq: [
+      ["Is Aniimo like Temtem?", "Aniimo shares broad online creature-RPG search intent, but Aniimo.games only treats official Aniimo systems as confirmed."],
+      ["Does Aniimo have trading or breeding?", "Trading, breeding and similar progression systems should remain watchlist topics until official or in-game verification exists."],
+    ],
+  },
+  {
+    slug: "games-like-aniimo",
+    title: "Games Like Aniimo",
+    description: "Understand games-like-Aniimo search intent through creature collecting, open-world exploration, multiplayer questions and source-safe comparisons.",
+    intro: "Discovery searches come from users who know the genre before they know the game. This page explains what makes Aniimo relevant to creature-collecting and open-world audiences while routing readers back to verified Aniimo pages.",
+    points: [
+      ["What users want", "Users looking for games like Aniimo usually want creature collecting, exploration, battles, co-op or multiplayer context, and a clear release path."],
+      ["Aniimo's public identity", "Aniimo is tracked as a free-to-play creature-catching open-world RPG with Twine, Homeland and Egg Heist as distinctive public systems."],
+      ["Comparison safety", "The page should not publish a ranked alternatives list unless each comparison is separately reviewed and kept factual."],
+    ],
+    faq: [
+      ["What kind of game is Aniimo similar to?", "Aniimo fits creature-collecting and open-world RPG search intent, while its confirmed systems center on Aniipods, Twine, Homeland and Egg Heist."],
+      ["Should this page rank other games?", "Not by default. It should first explain search intent and link users to confirmed Aniimo mechanics and comparison pages."],
     ],
   },
   {
@@ -778,6 +853,36 @@ export const searchSuggestionTopics = [
     ],
   },
   {
+    slug: "aniimo-combat",
+    title: "Aniimo Combat Guide",
+    description: "Track Aniimo combat questions around roles, elements, Twine, real-time challenges and launch verification without final balance claims.",
+    intro: "Combat searches ask whether Aniimo has battles, roles, team planning and skill expression. This page can explain confirmed public combat-adjacent systems while keeping exact stats and meta rankings for live testing.",
+    points: [
+      ["Confirmed anchors", "Aniimo.games can connect combat intent to roles, elements, Twine, real-time challenges and Egg Heist without inventing exact values."],
+      ["What to verify", "Damage values, cooldowns, enemy types, party rules, PVP impact, difficulty and best-team rankings need official or live-game evidence."],
+      ["Internal links", "Combat updates should refresh role pages, best Aniimo watchlists, Twine abilities, Egg Heist and beginner guides."],
+    ],
+    faq: [
+      ["Does Aniimo have combat?", "Aniimo.games tracks combat-related public systems such as roles, Twine, real-time challenges and Egg Heist, while exact rules need verification."],
+      ["Is there an Aniimo combat meta?", "No final combat meta should be published before live balance, skill values and team rules are verified."],
+    ],
+  },
+  {
+    slug: "aniimo-solo",
+    title: "Can You Play Aniimo Solo?",
+    description: "Track Aniimo solo play questions around open-world exploration, catching, Homeland, Egg Heist and multiplayer systems.",
+    intro: "Solo-play searches are decision-stage questions from users who like creature collecting but may not want mandatory co-op. This page separates single-player-friendly public systems from mode-specific multiplayer requirements that still need testing.",
+    points: [
+      ["Solo-friendly public systems", "Creature catching, exploration, database progression and Homeland are the safest systems to discuss for solo-intent users."],
+      ["Team-mode boundary", "Egg Heist is described with three-player teams, so solo access, matchmaking and party-fill rules should wait for launch verification."],
+      ["What to test", "After launch, check whether story, exploration, catching, daily tasks, events and rewards can be completed alone."],
+    ],
+    faq: [
+      ["Can Aniimo be played solo?", "Aniimo.games should verify final solo progression after launch, while public systems suggest several non-team activities to track."],
+      ["Is Egg Heist solo?", "Egg Heist is described with three-player teams, so solo queue or matchmaking details need official or live-game confirmation."],
+    ],
+  },
+  {
     slug: "aniimo-review",
     title: "Aniimo Review Watchlist",
     description: "Prepare Aniimo review coverage with source-safe criteria for gameplay, performance, monetization, multiplayer and launch stability.",
@@ -820,6 +925,36 @@ export const searchSuggestionTopics = [
     faq: [
       ["Is Aniimo an MMO?", "Aniimo.games tracks Aniimo as a free-to-play creature-catching open-world RPG, not as a confirmed MMO unless official sources say so."],
       ["Is Aniimo online multiplayer?", "Multiplayer-adjacent systems are tracked, but final online rules need official or live-game verification."],
+    ],
+  },
+  {
+    slug: "aniimo-evolution-list",
+    title: "Aniimo Evolution List",
+    description: "Browse Aniimo evolution-list search intent with source-safe notes for forms, stages, families and post-launch verification.",
+    intro: "Evolution-list searches come from players trying to understand forms and progression. Aniimo.games can support this intent through current stages and evolution notes while avoiding unverified requirements.",
+    points: [
+      ["Current database path", "Use the Aniimo database and evolution guide for tracked stages, families, official descriptions and detail pages."],
+      ["What remains unverified", "Exact evolution items, levels, quest requirements, route triggers and alternate forms need official or live-game confirmation."],
+      ["Page workflow", "When an evolution requirement is verified, update the individual Aniimo detail page, evolution hub, related stage pages and source archive."],
+    ],
+    faq: [
+      ["Does Aniimo.games have an evolution list?", "Yes. The evolution hub and database detail pages track current evolution and form notes from available public data."],
+      ["Are evolution requirements final?", "No. Exact evolution requirements should wait for official or live-game verification."],
+    ],
+  },
+  {
+    slug: "aniimo-locations",
+    title: "Aniimo Locations List",
+    description: "Browse Aniimo location-list search intent with region links, route-watchlist notes and spawn verification requirements.",
+    intro: "Location-list searches will become stronger after launch, but exact coordinates should not be invented. This page routes users to regions, location guides and verification queues.",
+    points: [
+      ["Current location model", "Aniimo.games tracks region assignments and location notes where available, while exact spawn points stay pending."],
+      ["What to verify", "Capture region, route, weather, time of day, phenomenon, screenshot evidence, platform and last checked date before publishing exact locations."],
+      ["Internal links", "Location pages should connect to map, region details, Aniimo detail pages and launch verification templates."],
+    ],
+    faq: [
+      ["Where can I find Aniimo locations?", "Use the map, region pages and Aniimo detail pages for current source-labeled location notes."],
+      ["Are exact spawn points confirmed?", "Exact spawn points should stay pending until official or live-game evidence verifies them."],
     ],
   },
   {

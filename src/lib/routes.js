@@ -397,10 +397,10 @@ export function primarySitemapRoutes() {
     ...beginnerTopics.map(beginnerTopicPath),
     ...officialPitchTopics.map(officialPitchTopicPath),
     ...socialIntentTopics
-      .filter((topic) => ["aniimo-crossplay", "aniimo-coop", "aniimo-pvp", "aniimo-price", "aniimo-developer"].includes(topic.slug))
+      .filter((topic) => ["aniimo-crossplay", "aniimo-cross-save", "aniimo-controller-support", "aniimo-system-requirements", "aniimo-coop", "aniimo-pvp", "aniimo-price", "aniimo-developer", "aniimo-vs-temtem", "games-like-aniimo"].includes(topic.slug))
       .map(socialIntentTopicPath),
     ...searchSuggestionTopics
-      .filter((topic) => ["aniimo-apk", "aniimo-torrent", "aniimo-beta-key", "aniimo-official-website", "aniimo-wiki-dex"].includes(topic.slug))
+      .filter((topic) => ["aniimo-apk", "aniimo-torrent", "aniimo-beta-key", "aniimo-official-website", "aniimo-wiki-dex", "aniimo-combat", "aniimo-solo", "aniimo-evolution-list", "aniimo-locations"].includes(topic.slug))
       .map(searchSuggestionTopicPath),
     ...troubleshootingTopics.map(troubleshootingTopicPath),
     ...mechanicDeepDiveTopics.map(mechanicDeepDiveTopicPath),
