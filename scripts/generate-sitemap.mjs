@@ -1,18 +1,23 @@
 import { writeFileSync } from "node:fs";
-import { sitemapRoutes, siteUrl } from "../src/lib/routes.js";
+import { fullSitemapRoutes, sitemapRoutes, siteUrl } from "../src/lib/routes.js";
 
 const lastmod = "2026-08-28";
 const routes = sitemapRoutes();
+const supplementalRoutes = fullSitemapRoutes().filter((route) => !routes.includes(route));
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+function sitemapXml(routeList) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routes.map((route) => `  <url><loc>${siteUrl}${route}</loc><lastmod>${lastmod}</lastmod></url>`).join("\n")}
+${routeList.map((route) => `  <url><loc>${siteUrl}${route}</loc><lastmod>${lastmod}</lastmod></url>`).join("\n")}
 </urlset>
 `;
+}
 
-writeFileSync("public/sitemap.xml", sitemap);
+writeFileSync("public/sitemap.xml", sitemapXml(routes));
+writeFileSync("public/sitemap-supplemental.xml", sitemapXml(supplementalRoutes));
 writeFileSync("public/robots.txt", `User-agent: *
 Allow: /
 
 Sitemap: ${siteUrl}/sitemap.xml
+Sitemap: ${siteUrl}/sitemap-supplemental.xml
 `);

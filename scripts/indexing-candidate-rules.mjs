@@ -1,4 +1,4 @@
-import { canonicalUrl, resolveRoute, sitemapRoutes } from "../src/lib/routes.js";
+import { canonicalUrl, fullSitemapRoutes, resolveRoute } from "../src/lib/routes.js";
 
 export const indexingPriorityRules = [
   {
@@ -36,7 +36,7 @@ export const indexingPriorityRules = [
 ];
 
 export function indexingCandidateSections() {
-  const allRoutes = sitemapRoutes().map((path) => {
+  const allRoutes = fullSitemapRoutes().map((path) => {
     const routeInfo = resolveRoute(path);
     return {
       path,

@@ -1,10 +1,11 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { aniimo, beginnerTopics, gameInfo, mediaGalleryItems, mechanicDeepDiveTopics, officialPitchTopics, regions } from "../data/content.js";
-import { canonicalUrl, prerenderRoutes, sitemapRoutes } from "../src/lib/routes.js";
+import { canonicalUrl, fullSitemapRoutes, prerenderRoutes, sitemapRoutes } from "../src/lib/routes.js";
 
 const issues = [];
 const sitemap = sitemapRoutes();
+const fullSitemap = fullSitemapRoutes();
 const prerender = prerenderRoutes();
 const sourceFiles = [
   "src/main.jsx",
@@ -16,12 +17,17 @@ const sourceFiles = [
 const retiredHelpers = ["aniimoHref(", "regionHref(", "const platform = platformMap[type]", "platform.names.includes(platform.name)"];
 
 findDuplicates(sitemap).forEach((path) => issues.push(`Duplicate sitemap route: ${path}`));
+findDuplicates(fullSitemap).forEach((path) => issues.push(`Duplicate full sitemap route: ${path}`));
 findDuplicates(prerender).forEach((path) => issues.push(`Duplicate prerender route: ${path}`));
 
-for (const path of sitemap) {
+for (const path of fullSitemap) {
   if (!path.startsWith("/")) issues.push(`Route must start with slash: ${path}`);
   if (path !== "/" && !path.endsWith("/")) issues.push(`Route must end with slash: ${path}`);
   if (!canonicalUrl(path).startsWith("https://aniimo.games/")) issues.push(`Bad canonical URL: ${canonicalUrl(path)}`);
+}
+
+for (const path of sitemap) {
+  if (!fullSitemap.includes(path)) issues.push(`Primary sitemap route is not in full sitemap routes: ${path}`);
 }
 
 for (const file of sourceFiles) {

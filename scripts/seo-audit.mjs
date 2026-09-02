@@ -1,28 +1,36 @@
 import { existsSync, readFileSync } from "node:fs";
 import { aniimo, regions } from "../data/content.js";
-import { canonicalUrl, pageFaqsForRoute, resolveRoute, sitemapRoutes, siteUrl, structuredDataForRoute } from "../src/lib/routes.js";
+import { canonicalUrl, fullSitemapRoutes, pageFaqsForRoute, resolveRoute, sitemapRoutes, siteUrl, structuredDataForRoute } from "../src/lib/routes.js";
 const sitemap = readFileSync("public/sitemap.xml", "utf8");
+const supplementalSitemap = readFileSync("public/sitemap-supplemental.xml", "utf8");
 const robots = readFileSync("public/robots.txt", "utf8");
 const index = readFileSync("dist/index.html", "utf8");
 
 const routes = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
+const supplementalRoutes = [...supplementalSitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
+const discoverableRoutes = [...routes, ...supplementalRoutes];
 const issues = [];
 
 if (!robots.includes(`Sitemap: ${siteUrl}/sitemap.xml`)) {
   issues.push("robots.txt does not point to the production sitemap.");
 }
 
+if (!robots.includes(`Sitemap: ${siteUrl}/sitemap-supplemental.xml`)) {
+  issues.push("robots.txt does not point to the supplemental sitemap.");
+}
+
 if (!robots.includes("Allow: /")) {
   issues.push("robots.txt does not allow crawling.");
 }
 
-for (const route of routes) {
+for (const route of discoverableRoutes) {
   if (!route.startsWith(`${siteUrl}/`)) {
     issues.push(`Sitemap URL uses the wrong domain: ${route}`);
   }
 }
 
 const expectedRoutes = sitemapRoutes().map(canonicalUrl);
+const expectedDiscoverableRoutes = fullSitemapRoutes().map(canonicalUrl);
 
 for (const route of expectedRoutes) {
   if (!routes.includes(route)) {
@@ -30,18 +38,24 @@ for (const route of expectedRoutes) {
   }
 }
 
-for (const route of expectedRoutes.filter((route) => route !== `${siteUrl}/`)) {
+for (const route of expectedDiscoverableRoutes) {
+  if (!discoverableRoutes.includes(route)) {
+    issues.push(`Missing discoverable sitemap route: ${route}`);
+  }
+}
+
+for (const route of expectedDiscoverableRoutes.filter((route) => route !== `${siteUrl}/`)) {
   const pathname = route.replace(siteUrl, "").replace(/\/$/, "");
   if (!existsSync(`dist${pathname}/index.html`)) {
     issues.push(`Missing prerendered HTML: ${pathname}/index.html`);
   }
 }
 
-const sitemapSet = new Set(routes);
+const sitemapSet = new Set(discoverableRoutes);
 const titleCounts = new Map();
 const descriptionCounts = new Map();
 
-for (const route of expectedRoutes) {
+for (const route of expectedDiscoverableRoutes) {
   const htmlPath = route === `${siteUrl}/` ? "dist/index.html" : `dist${route.replace(siteUrl, "").replace(/\/$/, "")}/index.html`;
   if (!existsSync(htmlPath)) continue;
 

@@ -319,6 +319,10 @@ export function resolveRoute(path) {
 }
 
 export function sitemapRoutes() {
+  return primarySitemapRoutes();
+}
+
+export function fullSitemapRoutes() {
   return uniqueRoutes([
     ...staticRoutes.map((item) => item.path),
     ...[...new Set(aniimo.map((item) => item.element))].map(elementPath),
@@ -347,9 +351,69 @@ export function sitemapRoutes() {
   ]);
 }
 
+export function primarySitemapRoutes() {
+  const featuredAniimo = [
+    "glacy",
+    "inferlupa",
+    "fragrancier",
+    "wisptis",
+    "eklue",
+    "skippy",
+    "cozite",
+    "helgon",
+    "emberpup",
+    "susuta",
+  ];
+
+  return uniqueRoutes([
+    "/",
+    "/aniimo/",
+    "/map/",
+    "/guides/",
+    "/codes/",
+    "/rewards/",
+    "/download/",
+    "/release-date/",
+    "/launch/",
+    "/launch-day/",
+    "/launch-tracker/",
+    "/launch-verification/",
+    "/site-index/",
+    "/mechanics/",
+    "/evolution/",
+    "/best-aniimo/",
+    "/media/",
+    "/troubleshooting/",
+    ...localizedTopics.map(localizedTopicPath),
+    "/platforms/steam/",
+    "/platforms/mobile/",
+    "/platforms/ps5/",
+    "/platforms/xbox/",
+    "/platforms/epic-games/",
+    "/platforms/ios/",
+    "/platforms/android/",
+    ...downloadTopics.map(downloadTopicPath),
+    ...codeRewardTopics.map(codeRewardTopicPath),
+    ...beginnerTopics.map(beginnerTopicPath),
+    ...officialPitchTopics.map(officialPitchTopicPath),
+    ...socialIntentTopics
+      .filter((topic) => ["aniimo-crossplay", "aniimo-coop", "aniimo-pvp", "aniimo-price", "aniimo-developer"].includes(topic.slug))
+      .map(socialIntentTopicPath),
+    ...searchSuggestionTopics
+      .filter((topic) => ["aniimo-apk", "aniimo-torrent", "aniimo-beta-key", "aniimo-official-website", "aniimo-wiki-dex"].includes(topic.slug))
+      .map(searchSuggestionTopicPath),
+    ...troubleshootingTopics.map(troubleshootingTopicPath),
+    ...mechanicDeepDiveTopics.map(mechanicDeepDiveTopicPath),
+    ...mediaDetailTopics.filter((topic) => ["aniimo-trailers", "aniimo-logo"].includes(topic.slug)).map(mediaDetailTopicPath),
+    ...regions.map(regionPath),
+    ...regions.map(locationTopicPath),
+    ...featuredAniimo.map((slug) => aniimo.find((item) => item.id === slug)).filter(Boolean).map(aniimoPath),
+  ]).filter((path) => fullSitemapRoutes().includes(path));
+}
+
 export function prerenderRoutes() {
   return uniqueRoutes([
-    ...sitemapRoutes().filter((path) => path !== "/"),
+    ...fullSitemapRoutes().filter((path) => path !== "/"),
     ...aniimo.flatMap((item) => (item.aliases || []).map((alias) => normalizePath(`/aniimo/${alias}`))),
   ]);
 }

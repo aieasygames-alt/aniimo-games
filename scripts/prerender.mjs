@@ -1,5 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { aniimo, regions } from "../data/content.js";
 import { canonicalUrl, prerenderRoutes, resolveRoute } from "../src/lib/routes.js";
 
 const indexHtml = "dist/index.html";
@@ -10,17 +11,64 @@ function injectMeta(html, route) {
   const title = routeInfo.title;
   const desc = routeInfo.description;
   const url = canonicalUrl(routeInfo.path);
+  const fallback = fallbackHtml(routeInfo);
   return html
     .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
     .replace(/<meta\s+name="description"\s+content="[^"]+"\s*\/>/, `<meta name="description" content="${escapeHtml(desc)}" />`)
     .replace(/<link\s+rel="canonical"\s+href="[^"]+"\s*\/>/, `<link rel="canonical" href="${url}" />`)
     .replace(/<meta\s+property="og:title"\s+content="[^"]+"\s*\/>/, `<meta property="og:title" content="${escapeHtml(title)}" />`)
     .replace(/<meta\s+property="og:url"\s+content="[^"]+"\s*\/>/, `<meta property="og:url" content="${url}" />`)
-    .replace(/<meta\s+property="og:description"\s+content="[^"]+"\s*\/>/, `<meta property="og:description" content="${escapeHtml(desc)}" />`);
+    .replace(/<meta\s+property="og:description"\s+content="[^"]+"\s*\/>/, `<meta property="og:description" content="${escapeHtml(desc)}" />`)
+    .replace('<div id="root"></div>', `<div id="root">${fallback}</div>`);
 }
 
 function escapeHtml(value) {
-  return value.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+  return String(value || "").replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+}
+
+function fallbackHtml(routeInfo) {
+  const links = fallbackLinks(routeInfo)
+    .map(([href, label]) => `<li><a href="${href}">${escapeHtml(label)}</a></li>`)
+    .join("");
+
+  return `<main class="prerender-fallback">
+    <h1>${escapeHtml(routeInfo.title)}</h1>
+    <p>${escapeHtml(routeInfo.description)}</p>
+    <nav aria-label="Important Aniimo pages"><ul>${links}</ul></nav>
+    ${fallbackBody(routeInfo)}
+  </main>`;
+}
+
+function fallbackBody(routeInfo) {
+  if (routeInfo.path === "/aniimo/") {
+    return `<section><h2>Aniimo Database Entries</h2>${aniimo.slice(0, 30).map((item) => `<article><h3><a href="/aniimo/${item.id}/">${escapeHtml(item.name)}</a></h3><p>${escapeHtml(item.description)}</p><p>${escapeHtml([item.no, item.element, item.role, item.stage, item.region].join(" | "))}</p></article>`).join("")}</section>`;
+  }
+
+  if (routeInfo.detail) {
+    const item = routeInfo.detail;
+    return `<section><h2>${escapeHtml(item.name)} Details</h2><p>${escapeHtml(item.description)}</p><p>${escapeHtml(`No. ${item.no} | ${item.element} | ${item.role} | ${item.stage} | ${item.region}`)}</p><p>${escapeHtml(item.evolution)}</p></section>`;
+  }
+
+  if (routeInfo.path === "/map/") {
+    return `<section><h2>Aniimo Regions</h2>${regions.map((region) => `<article><h3><a href="/regions/${region.id}/">${escapeHtml(region.name)}</a></h3><p>${escapeHtml(region.description)}</p></article>`).join("")}</section>`;
+  }
+
+  return "";
+}
+
+function fallbackLinks(routeInfo) {
+  const base = [
+    ["/", "Aniimo Wiki"],
+    ["/aniimo/", "Aniimo Database"],
+    ["/map/", "Aniimo Map"],
+    ["/guides/", "Aniimo Guides"],
+    ["/codes/", "Aniimo Codes"],
+    ["/download/", "Aniimo Download"],
+    ["/release-date/", "Aniimo Release Date"],
+  ];
+
+  if (routeInfo.detail) return [["/aniimo/", "All Aniimo"], ...base.slice(2)];
+  return base.filter(([href]) => href !== routeInfo.path);
 }
 
 for (const route of routes) {
