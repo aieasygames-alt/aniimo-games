@@ -331,7 +331,7 @@ export function fullSitemapRoutes() {
     ...[...new Set(aniimo.map((item) => item.status))].map(statusPath),
     ...beginnerTopics.map(beginnerTopicPath),
     ...downloadTopics.map(downloadTopicPath),
-    ...codeRewardTopics.map(codeRewardTopicPath),
+    ...codeRewardTopics.filter((topic) => topic.slug !== "expired").map(codeRewardTopicPath),
     ...newsTopics.map(newsTopicPath),
     ...regions.map(locationTopicPath),
     ...choiceTopics.map(choiceTopicPath),

@@ -14,6 +14,7 @@
     "check:official": "node scripts/check-official-updates.mjs",
     "check:framework": "node scripts/framework-audit.mjs",
     "check:seo": "node scripts/seo-audit.mjs",
+    "check:expansion": "node scripts/content-expansion-audit.mjs",
     "check:content": "node scripts/content-audit.mjs",
     "check:assets": "node scripts/asset-audit.mjs",
     "check:size": "node scripts/size-audit.mjs",
