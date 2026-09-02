@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
-import { aniimo, regions, siteLastUpdated } from "../data/content.js";
+import { aniimo, regions, siteLastUpdated, sourceArchiveItems, sourceLastChecked } from "../data/content.js";
 import { canonicalUrl, fullSitemapRoutes, pageFaqsForRoute, resolveRoute, sitemapRoutes, siteUrl, structuredDataForRoute } from "../src/lib/routes.js";
 const sitemap = readFileSync("public/sitemap.xml", "utf8");
 const supplementalSitemap = readFileSync("public/sitemap-supplemental.xml", "utf8");
@@ -34,6 +34,12 @@ for (const route of discoverableRoutes) {
 for (const lastmod of [...sitemapLastmods, ...supplementalLastmods]) {
   if (lastmod !== siteLastUpdated) {
     issues.push(`Sitemap lastmod ${lastmod} does not match siteLastUpdated ${siteLastUpdated}.`);
+  }
+}
+
+for (const source of sourceArchiveItems) {
+  if (source.lastChecked !== sourceLastChecked) {
+    issues.push(`Source archive freshness mismatch for ${source.title}: ${source.lastChecked}`);
   }
 }
 

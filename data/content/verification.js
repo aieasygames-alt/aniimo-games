@@ -1,3 +1,4 @@
+import { gscObservationDate } from "./site-meta.js";
 import { officialLinks, releaseInfo } from "./sources.js";
 
 export const verificationStatus = {
@@ -70,7 +71,7 @@ export const gscObservationTemplate = {
 };
 
 export const gscLatestObservations = {
-  date: "2026-08-31",
+  date: gscObservationDate,
   range: "Last 24 hours",
   summary: "Google Search Console shows early ranking traction around Aniimo brand, guide, map, codes and character-name searches, with homepage and database pages receiving most impressions.",
   metrics: [

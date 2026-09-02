@@ -17,6 +17,7 @@ import {
   socialDiscussionResearch,
   socialIntentTopics,
   sourceArchiveItems,
+  sourceLastChecked,
   troubleshootingTopics,
 } from "../data/content.js";
 
@@ -86,6 +87,9 @@ for (const item of sourceArchiveItems) {
   requireText("sourceArchiveItems", item, "url", 12);
   requireText("sourceArchiveItems", item, "scope", 30);
   requireText("sourceArchiveItems", item, "lastChecked", 10);
+  if (item.lastChecked !== sourceLastChecked) {
+    issues.push(`sourceArchiveItems ${item.title} lastChecked does not match sourceLastChecked.`);
+  }
 }
 
 for (const item of socialDiscussionResearch) {

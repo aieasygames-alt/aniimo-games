@@ -1,3 +1,4 @@
+import { sourceLastChecked } from "./site-meta.js";
 import { officialLinks, releaseInfo } from "./sources.js";
 
 export const launchRewards = [
@@ -212,7 +213,7 @@ export const updates = [
 ];
 
 export const launchTracker = {
-  updated: "2026-08-28",
+  updated: sourceLastChecked,
   summary: "Aniimo.games is tracking the public launch path from official sources, with PC and console availability first and mobile availability one week later.",
   readiness: [
     ["PC and console date", releaseInfo.pcConsole, "Confirmed"],

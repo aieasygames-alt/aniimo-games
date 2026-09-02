@@ -1,6 +1,6 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchRewards, launchTracker, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, spawnVerificationQueue, statuses, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchRewards, launchTracker, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
@@ -299,7 +299,7 @@ export function CodesPage({ navigate }) {
             official pre-registration rewards and launch milestone rewards.
           </p>
           <InfoPanel title="Freshness Signal" rows={[
-            ["Last reviewed", "2026-08-31"],
+            ["Last reviewed", sourceLastChecked],
             ["Current status", codeVerificationTemplate.currentStatus],
             ["Source policy", "Official channel or direct in-game verification required."],
           ]} />
@@ -362,7 +362,7 @@ export function DownloadPage({ navigate }) {
               sources rather than download mirrors.
             </p>
             <InfoPanel title="Freshness Signal" rows={[
-              ["Last reviewed", "2026-08-31"],
+              ["Last reviewed", sourceLastChecked],
               ["Platform status", "Official storefront links tracked before install availability."],
               ["Source policy", "Official website and platform stores only."],
             ]} />
@@ -1224,7 +1224,7 @@ export function TopicGuidePage({ topic, kicker, icon, children }) {
       {topic.image && <img className="page-banner" src={topic.image} alt={topic.title} width="1600" height="900" loading="lazy" />}
       <p className="section-copy">{topic.intro}</p>
       <InfoPanel title="Freshness Signal" rows={[
-        ["Last reviewed", "2026-08-31"],
+        ["Last reviewed", sourceLastChecked],
         ["Source status", "Watchlist until official or live-game evidence confirms details."],
         ["Update path", "Refresh this page, source archive and related hub after verification."],
       ]} />

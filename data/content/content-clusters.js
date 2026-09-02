@@ -1,4 +1,5 @@
 import { gameInfo, officialLinks, releaseInfo } from "./sources.js";
+import { sourceLastChecked } from "./site-meta.js";
 
 export const localizedTopics = [
   {
@@ -1601,4 +1602,4 @@ export const sourceArchiveItems = [
   ["Xbox Store", officialLinks.xbox, "Xbox listing state, console availability and regional storefront wording."],
   ["App Store", officialLinks.appStore, "iOS pre-order, mobile release visibility and regional storefront wording."],
   ["Google Play", officialLinks.googlePlay, "Android pre-registration, mobile release visibility and store-description changes."],
-].map(([title, url, scope]) => ({ title, url, scope, lastChecked: "2026-08-28" }));
+].map(([title, url, scope]) => ({ title, url, scope, lastChecked: sourceLastChecked }));
