@@ -72,13 +72,13 @@ export const gscObservationTemplate = {
 
 export const gscLatestObservations = {
   date: gscObservationDate,
-  range: "3 months, visible data through 2026-08-30",
-  summary: "Google Search Console shows early ranking traction around Aniimo brand, guide, rewards, map, element chart, server-status and character-name searches, with homepage and database pages receiving most impressions.",
+  range: "Last 24 hours, exported 2026-09-02",
+  summary: "Google Search Console shows fast early traction around rewards, Discord, pre-registration, Celestis, demo, server-status, mobile and character-name searches. Mobile and Brazil are already meaningful segments.",
   metrics: [
-    ["Clicks", "10"],
-    ["Impressions", "553"],
-    ["CTR", "1.8%"],
-    ["Average position", "11.2"],
+    ["Clicks", "20"],
+    ["Impressions", "744"],
+    ["CTR", "2.69%"],
+    ["Average position", "8.09"],
   ],
   actions: [
     ["Canonical consolidation", "Keep www traffic redirected to the non-www canonical domain so Search Console signals are not split."],
@@ -86,6 +86,8 @@ export const gscLatestObservations = {
     ["Map-size intent", "Answer map-size searches without inventing exact world measurements before launch verification."],
     ["Localized demand", "Support Brazil, Germany, Spain and France with lightweight launch, download, code and official-link entry pages."],
     ["Element intent", "Add stronger element chart and typing copy without inventing matchup values before launch verification."],
+    ["Community intent", "Refresh Discord and Reddit pages because both have page-one impressions with low CTR."],
+    ["Character detail", "Prioritize Celestis as the next featured detail override based on 24-hour impressions."],
     ["Character searches", "Make Aniimo detail pages easy to scan by number, element, role, stage, location and verification status."],
   ],
   queryWatchlist: [
@@ -96,6 +98,9 @@ export const gscLatestObservations = {
     ["aniimo element chart", "Strengthen element and typing pages with source-safe matchup language."],
     ["aniimo rare forms", "Keep rare, shiny, sparkling and skin pages clearly marked as watchlist until verified."],
     ["can i play aniimo with steam account", "Prepare account-linking and Steam account guidance without confirming cross-save."],
+    ["aniimo discord", "Improve community trust copy and link from official-source pages."],
+    ["celestis aniimo", "Add Celestis featured detail notes and improve Holy/Support links."],
+    ["pre registro aniimo", "Strengthen Portuguese pre-registration and reward copy."],
   ],
 };
 
