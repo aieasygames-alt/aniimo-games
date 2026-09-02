@@ -84,8 +84,9 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
         <section id="database" className="section">
           <SectionTitle icon={<Search />} kicker="Index" title="Aniimo Database" />
           <p className="section-copy">
-            Official Aniimo names, elements, roles and stages are tracked from the public
-            Aniimo Wiki. Location details stay source-labeled and ready for launch verification.
+            Browse the full Aniimo list with official Wiki numbers, names, elements, roles,
+            stages, locations, forms and source status. This page is the Aniimo wiki-style
+            character database for users searching all Aniimo, character names and guide entries.
           </p>
           <div className="filters">
             <label className="search-field">
@@ -100,8 +101,8 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
           <TaxonomyLinks navigate={navigate} />
           {!compact && (
             <InfoPanel title="Character Search Shortcuts" rows={[
-              ["Best matching queries", "Search by Aniimo name, Wiki number, element, role, region or ability."],
-              ["Useful snippets", "Each detail page exposes location, evolution, forms, abilities and source status."],
+              ["Best matching queries", "Search all Aniimo by name, Wiki number, element, role, region, ability or form family."],
+              ["Useful snippets", "Each detail page exposes location, evolution, forms, abilities, source status and launch-verification notes."],
               ["Verification rule", "Exact spawn points stay pending until official or in-game evidence confirms them."],
             ]} />
           )}

@@ -450,6 +450,13 @@ function detailNotes({ id, name, element, role, stage, region, forms }) {
 }
 
 const featuredDetailNotes = {
+  celestis: {
+    locationNote: "Celestis is tracked under Forest of Falling Stars and now has confirmed search demand around `celestis aniimo`. Keep this page as the Holy Support route hub, then add exact comet-light, food-hoard or nest encounter evidence after launch verification.",
+    evolutionDetail: "Celestis opens the Celestis -> Stellarys line in the current local model. Keep acquisition, evolution trigger and night-route assumptions separate until official or in-game evidence confirms how Stellarys is obtained.",
+    abilityUseCase: "Celestis' Holy Support profile makes it a priority support-page candidate for healing-adjacent utility, party sustain and route-safety testing after launch.",
+    relatedRegionReason: "Forest of Falling Stars links should connect Celestis with Stellarys, Susuta and Popota, while Holy and Support links help users compare team utility without implying a final tier ranking.",
+    sourceNote: "Celestis has official Wiki-backed name, number and description data. Its route, encounter timing, evolution trigger and combat value should stay source-labeled until launch checks are complete.",
+  },
   emberpup: {
     locationNote: "Emberpup is the first public Aniimo entry and belongs to the Mistwoods route cluster. Treat it as the anchor page for early Fire-type discovery, then add exact path, weather and encounter screenshots after launch.",
     evolutionDetail: "Emberpup starts the Emberpup -> Flameruff -> Scorchhowl -> Inferlupa line. Keep each form on its own page so launch changes to branch requirements or alternate forms do not flatten the whole family into one generic note.",

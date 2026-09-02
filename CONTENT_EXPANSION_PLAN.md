@@ -236,6 +236,16 @@ Priority updates from GSC:
 - Keep Brazil, Germany, Spain and France localized entrypoints linked because those countries already show impressions.
 - Wait for more indexing data before creating large batches beyond the current sitemap expansion.
 
+## V8 - 24-Hour Performance Response
+
+The first 24-hour Performance export showed 20 clicks, 744 query impressions, 2.69% CTR and 8.09 average position. The update should favor pages that already have impressions but weak click-through:
+
+- Strengthen Discord around official invite, codes and launch-status intent because `/topics/aniimo-discord/` showed 49 impressions with 0 clicks.
+- Promote Celestis to a featured character page because `/aniimo/celestis/` and `celestis aniimo` showed page-one visibility without clicks.
+- Add Portuguese pre-registration coverage because Brazil produced 96 impressions and `pre registro aniimo` queries already ranked near the top half of page one.
+- Refresh mobile and Android download snippets with App Store, Google Play, pre-registration and APK-safety language.
+- Rewrite database intro copy to match `all Aniimo`, `Aniimo wiki`, character-name and list-style searches.
+
 ## Implementation Rules
 
 - Prefer adding topic objects to the existing content arrays before introducing new page components.

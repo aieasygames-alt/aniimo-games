@@ -3,6 +3,23 @@ import { sourceLastChecked } from "./site-meta.js";
 
 export const localizedTopics = [
   {
+    locale: "pt",
+    slug: "aniimo-pre-registro",
+    title: "Aniimo Pre Registro e Recompensas",
+    description: "Guia em portugues para pre registro de Aniimo, recompensas, Google Play, App Store, Susuta egg, codigos e fontes oficiais no Brasil.",
+    intro: "Buscas brasileiras por pre registro Aniimo ja aparecem com boa posicao. Esta pagina responde onde acompanhar o pre-registro, quais recompensas estao sendo rastreadas e por que recompensas nao devem ser tratadas como codigos ativos.",
+    points: [
+      ["Onde acompanhar", "Use o site oficial de Aniimo, Google Play e App Store quando a pagina estiver visivel na sua regiao."],
+      ["Recompensas", "Aniimo.games acompanha recompensas de pre-registro, marcos de campanha, escolha de Prismana e o misterioso ovo de Susuta separadamente."],
+      ["Codigos", "Pre-registro nao e automaticamente um codigo resgatavel. Um codigo so deve ser listado quando uma fonte oficial publicar a string."],
+    ],
+    faq: [
+      ["Onde fazer pre registro de Aniimo?", "Use o site oficial de Aniimo e as lojas oficiais, especialmente Google Play e App Store, quando estiverem disponiveis no Brasil."],
+      ["Pre registro Aniimo da recompensas?", "Sim, recompensas de pre-registro sao rastreadas, mas devem ficar separadas de codigos ativos ate haver uma confirmacao oficial."],
+      ["Aniimo tem Google Play no Brasil?", "A disponibilidade regional deve ser conferida no Google Play perto do lancamento mobile acompanhado para 23 de setembro de 2026."],
+    ],
+  },
+  {
     locale: "fr",
     slug: "aniimo-date-de-sortie",
     title: "Aniimo Date de Sortie",
@@ -448,9 +465,9 @@ export const beginnerTopics = [
 
 export const downloadTopics = [
   ["pc", "Aniimo PC Download Status & Safe Install Guide", "Track Aniimo PC download status, official storefronts, release timing, wishlist actions and safe installer guidance before launch.", "Use Steam, Epic Games Store or the official website for PC launch tracking."],
-  ["mobile", "Aniimo Mobile Download Guide", "Track Aniimo mobile download status, iOS and Android availability, pre-registration and safe app-store guidance.", "Use App Store, Google Play or the official website for mobile launch tracking."],
+  ["mobile", "Aniimo Mobile Download Guide: App Store, Google Play & Pre-Register", "Track Aniimo mobile download status, iOS and Android availability, App Store, Google Play, pre-registration and safe app-store guidance.", "Use App Store, Google Play or the official website for mobile launch tracking; mobile store visibility can vary by country before launch."],
   ["ios", "Aniimo iOS Download Guide", "Track Aniimo iOS pre-order, App Store availability, mobile launch timing and safe download guidance.", "Use the official App Store listing when it is visible in your region."],
-  ["android", "Aniimo Android Download Guide", "Track Aniimo Android pre-registration, Google Play availability, mobile launch timing and safe APK guidance.", "Use Google Play and avoid APK mirrors before launch."],
+  ["android", "Aniimo Android Download Guide: Google Play & APK Safety", "Track Aniimo Android pre-registration, Google Play availability, mobile launch timing, download status and safe APK guidance.", "Use Google Play and avoid APK mirrors before launch; Android queries should lead to official pre-registration or install pages."],
   ["ps5", "Aniimo PS5 Download Guide", "Track Aniimo PS5 wishlist, PlayStation listing, console release timing and official download guidance.", "Use the official PlayStation listing for console availability."],
   ["xbox", "Aniimo Xbox Download Guide", "Track Aniimo Xbox wishlist, Microsoft Store listing, console release timing and official download guidance.", "Use the official Xbox store listing for console availability."],
   ["epic-games", "Aniimo Epic Games Store Download Status", "Track Aniimo Epic Games Store wishlist status, PC release timing, official storefront access and safe installer guidance before launch.", "Use the official Epic Games Store listing for PC availability."],
@@ -958,32 +975,34 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-discord",
-    title: "Aniimo Discord Server",
-    description: "Find source-safe guidance for Aniimo Discord searches, official community checks, codes, beta access and launch updates.",
-    intro: "Discord searches often come from players looking for codes, beta access or real-time launch updates. This page keeps users oriented toward official channels and away from reposted invite traps.",
+    title: "Aniimo Discord Server: Official Invite, Codes & Launch Updates",
+    description: "Find the official Aniimo Discord safely, verify invite links, track code announcements, beta access, server updates and launch-day community notices.",
+    intro: "Discord searches are now one of the strongest 24-hour GSC opportunities for Aniimo.games. This page answers the real intent behind `aniimo discord`: find the official server, avoid fake invites, watch for launch updates and separate community chatter from verified guide facts.",
     points: [
-      ["Official-first rule", "Use official Aniimo website, storefront and verified social links before trusting a Discord invite shared on a third-party page."],
-      ["What to look for", "Discord can be useful for maintenance notices, code announcements, beta access updates and community reports when the source is verified."],
-      ["What not to publish", "Do not list private invites, scraped community messages or unverified code screenshots as confirmed facts."],
+      ["Official invite check", "Use the official Aniimo website, official social profiles or verified storefront links before trusting any Discord invite shared by a third-party page."],
+      ["Launch-day value", "A verified Discord can be useful for server status notices, maintenance timing, code announcements, beta access updates and region-specific player reports."],
+      ["Evidence boundary", "Do not list private invites, scraped community messages, reposted screenshots or unverified code claims as confirmed Aniimo facts."],
     ],
     faq: [
-      ["Does Aniimo have an official Discord?", "Aniimo.games only treats a Discord server as official when it is linked or verified by official Aniimo channels."],
-      ["Can Discord confirm Aniimo codes?", "Only verified official Discord announcements should be used to confirm redeem codes."],
+      ["Does Aniimo have an official Discord server?", "Aniimo.games only treats a Discord server as official when the invite is linked or verified by official Aniimo channels."],
+      ["Where should I check Aniimo Discord codes?", "Only verified official Discord announcements, official website posts or in-game notices should be used to confirm redeem codes."],
+      ["Can Discord help with Aniimo server status?", "Yes, if the server is official or verified. Community outage reports are useful signals, but server-status pages should still label them separately from official notices."],
     ],
   },
   {
     slug: "aniimo-reddit",
-    title: "Aniimo Reddit Discussions",
-    description: "Track Aniimo Reddit discussion intent for launch questions, comparisons, issues and community reports without treating rumors as facts.",
-    intro: "Reddit searches can reveal what players are worried about, but they are not the same as official confirmation. This page explains how Aniimo.games uses discussion signals safely.",
+    title: "Aniimo Reddit Discussions, Rumors & Community Questions",
+    description: "Track Aniimo Reddit discussion intent for launch questions, codes, Discord, AI concerns, issues and community reports without treating rumors as facts.",
+    intro: "Reddit searches are a useful early-warning system for Aniimo content gaps. This page turns Reddit-style questions into source-safe follow-up work without letting rumors overwrite official launch, code or platform information.",
     points: [
-      ["Useful signal", "Reddit can surface repeated questions about platforms, launch timing, codes, bugs, AI concerns and multiplayer expectations."],
+      ["Useful signal", "Reddit can surface repeated questions about platforms, launch timing, Discord, codes, bugs, AI concerns and multiplayer expectations."],
       ["Verification boundary", "Community posts should become research leads, not confirmed guide claims, until official or in-game evidence supports them."],
-      ["Refresh workflow", "If a Reddit topic gets repeated traction, update the matching guide page, then add source-safe notes and internal links."],
+      ["Refresh workflow", "If a Reddit topic gets repeated traction, update the matching guide page, add source-safe notes, then link back to the official website, Discord, codes or server-status hub."],
     ],
     faq: [
       ["Is Reddit an official Aniimo source?", "No. Reddit discussion can provide search-intent signals, but official sources or live verification should confirm facts."],
       ["Should Aniimo.games cover Reddit rumors?", "Only as clearly labeled research leads, not as final guide information."],
+      ["What Aniimo Reddit topics are worth tracking?", "Launch timing, Discord invites, code screenshots, AI-use concerns, server issues, mobile availability and character-name questions are useful topics to monitor."],
     ],
   },
   {
@@ -1391,17 +1410,18 @@ export const conversionTopics = [
   },
   {
     slug: "aniimo-pre-register-guide",
-    title: "Aniimo Pre-Register Guide",
-    description: "Learn where to pre-register for Aniimo and how to separate pre-registration rewards from redeem codes.",
-    intro: "Pre-registration pages should answer reward and platform questions clearly, because users often confuse milestone rewards with active codes.",
+    title: "Aniimo Pre-Register Guide: Rewards, Susuta Egg & Mobile Stores",
+    description: "Learn where to pre-register for Aniimo, track pre-registration rewards, Susuta egg, Google Play, App Store and how rewards differ from redeem codes.",
+    intro: "Pre-registration pages are already earning clicks, especially around rewards and Portuguese `pre registro` searches. This guide answers platform, reward and code-boundary questions in one source-safe place.",
     points: [
-      ["Use official sources", "Start with the official Aniimo website, App Store and Google Play listings when available in your region."],
-      ["Reward tracking", "Confirmed rewards include milestone items, Prismana choice and the mysterious Susuta egg."],
+      ["Use official sources", "Start with the official Aniimo website, App Store and Google Play listings when available in your region, especially for mobile launch planning."],
+      ["Reward tracking", "Confirmed reward tracking includes milestone items, Prismana choice notes and the mysterious Susuta egg."],
       ["Codes boundary", "Pre-registration rewards are not active redeem codes unless an official code string is published."],
     ],
     faq: [
-      ["Where do I pre-register for Aniimo?", "Use the official Aniimo website and official mobile store pages when available."],
+      ["Where do I pre-register for Aniimo?", "Use the official Aniimo website and official mobile store pages such as Google Play and App Store when available in your region."],
       ["Are pre-registration rewards Aniimo codes?", "Not automatically. Aniimo.games tracks rewards and redeem codes separately."],
+      ["Does Aniimo pre-registration include Susuta?", "Aniimo.games tracks the mysterious Susuta egg as a pre-registration reward item, with claim details pending official or launch verification."],
     ],
   },
   {
