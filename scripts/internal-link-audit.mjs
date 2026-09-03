@@ -4,6 +4,7 @@ import {
   beginnerTopicPath,
   choiceTopicPath,
   codeRewardTopicPath,
+  conversionTopicPath,
   downloadTopicPath,
   fullSitemapRoutes,
   glossaryTopicPath,
@@ -13,6 +14,8 @@ import {
   mediaDetailTopicPath,
   newsTopicPath,
   officialPitchTopicPath,
+  refreshPlanningTopicPath,
+  freshnessPagePath,
   searchSuggestionTopicPath,
   regionPath,
   sitemapRoutes,
@@ -24,13 +27,16 @@ import {
   beginnerTopics,
   choiceTopics,
   codeRewardTopics,
+  conversionTopics,
   downloadTopics,
+  freshnessPages,
   glossaryTopics,
   localizedTopics,
   mechanicDeepDiveTopics,
   mediaDetailTopics,
   newsTopics,
   officialPitchTopics,
+  refreshPlanningTopics,
   regions,
   searchSuggestionTopics,
   socialIntentTopics,
@@ -50,6 +56,7 @@ const contentFiles = [
   "data/content/verification.js",
   "data/content/regions.js",
   "data/content/aniimo.js",
+  "data/content/content-clusters.js",
 ];
 
 const contentLinks = new Map();
@@ -142,5 +149,8 @@ function generatedHubLinks() {
     ...mechanicDeepDiveTopics.map(mechanicDeepDiveTopicPath),
     ...mediaDetailTopics.map(mediaDetailTopicPath),
     ...localizedTopics.map(localizedTopicPath),
+    ...conversionTopics.map(conversionTopicPath),
+    ...refreshPlanningTopics.map(refreshPlanningTopicPath),
+    ...freshnessPages.map(freshnessPagePath),
   ];
 }

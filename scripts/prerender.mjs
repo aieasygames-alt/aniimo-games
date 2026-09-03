@@ -1,7 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { aniimo, regions } from "../data/content.js";
-import { canonicalUrl, prerenderRoutes, resolveRoute } from "../src/lib/routes.js";
+import { canonicalUrl, pageFaqsForRoute, prerenderRoutes, resolveRoute, structuredDataForRoute } from "../src/lib/routes.js";
 
 const indexHtml = "dist/index.html";
 const routes = prerenderRoutes();
@@ -13,6 +13,7 @@ function injectMeta(html, route) {
   const desc = routeInfo.description;
   const url = canonicalUrl(routeInfo.path);
   const fallback = fallbackHtml(routeInfo);
+  const structuredData = escapeHtml(JSON.stringify(structuredDataForRoute(routeInfo, pageFaqsForRoute(routeInfo))));
   return html
     .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
     .replace(/<meta\s+name="description"\s+content="[^"]+"\s*\/>/, `<meta name="description" content="${escapeHtml(desc)}" />`)
@@ -20,7 +21,8 @@ function injectMeta(html, route) {
     .replace(/<meta\s+property="og:title"\s+content="[^"]+"\s*\/>/, `<meta property="og:title" content="${escapeHtml(title)}" />`)
     .replace(/<meta\s+property="og:url"\s+content="[^"]+"\s*\/>/, `<meta property="og:url" content="${url}" />`)
     .replace(/<meta\s+property="og:description"\s+content="[^"]+"\s*\/>/, `<meta property="og:description" content="${escapeHtml(desc)}" />`)
-    .replace('<div id="root"></div>', `<div id="root">${fallback}</div>`);
+    .replace('<div id="root"></div>', `<div id="root">${fallback}</div>`)
+    .replace("</head>", `<script type="application/ld+json">${structuredData}</script></head>`);
 }
 
 function escapeHtml(value) {
@@ -44,6 +46,17 @@ function fallbackBody(routeInfo) {
   if (routeInfo.path === "/aniimo/") {
     const entries = priorityAniimo();
     return `<section><h2>Popular Aniimo To Check First</h2>${entries.map((item) => `<article><h3><a href="/aniimo/${item.id}/">${escapeHtml(item.name)}</a></h3><p>${escapeHtml(item.description)}</p><p>${escapeHtml([item.no, item.element, item.role, item.stage, item.region].join(" | "))}</p></article>`).join("")}</section>`;
+  }
+
+  if (routeInfo.beginnerTopic || routeInfo.downloadTopic || routeInfo.codeRewardTopic || routeInfo.newsTopic || routeInfo.choiceTopic || routeInfo.officialPitchTopic || routeInfo.socialIntentTopic || routeInfo.searchSuggestionTopic || routeInfo.glossaryTopic || routeInfo.troubleshootingTopic || routeInfo.mechanicDeepDiveTopic || routeInfo.mediaDetailTopic || routeInfo.conversionTopic || routeInfo.refreshPlanningTopic || routeInfo.freshnessPage || routeInfo.localizedTopic) {
+    const topic = routeInfo.beginnerTopic || routeInfo.downloadTopic || routeInfo.codeRewardTopic || routeInfo.newsTopic || routeInfo.choiceTopic || routeInfo.officialPitchTopic || routeInfo.socialIntentTopic || routeInfo.searchSuggestionTopic || routeInfo.glossaryTopic || routeInfo.troubleshootingTopic || routeInfo.mechanicDeepDiveTopic || routeInfo.mediaDetailTopic || routeInfo.conversionTopic || routeInfo.refreshPlanningTopic || routeInfo.freshnessPage || routeInfo.localizedTopic;
+    const points = topic.points?.map(([title, text]) => `<article><h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p></article>`).join("") || "";
+    const faq = topic.faq?.map(([question, answer]) => `<article><h3>${escapeHtml(question)}</h3><p>${escapeHtml(answer)}</p></article>`).join("") || "";
+    return `<section><h2>${escapeHtml(topic.title)}</h2><p>${escapeHtml(topic.intro || topic.description || "")}</p>${points}${faq}</section>`;
+  }
+
+  if (routeInfo.path === "/guides/") {
+    return `<section><h2>Aniimo Guides Hub</h2><p>Browse Aniimo beginner guides, official feature guides, mechanics, glossary terms and launch planning pages.</p></section>`;
   }
 
   if (routeInfo.detail) {

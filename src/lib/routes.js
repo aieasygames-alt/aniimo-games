@@ -283,6 +283,10 @@ export function resolveRoute(path) {
   const searchSuggestionTopic = searchSuggestionTopics.find((item) => searchSuggestionTopicPath(item) === normalized);
   if (searchSuggestionTopic) return { type: "search-suggestion-topic", path: searchSuggestionTopicPath(searchSuggestionTopic), title: searchSuggestionTopic.title, description: searchSuggestionTopic.description, searchSuggestionTopic };
 
+  if (normalized === "/guides/" || normalized === "/guide/") {
+    return { type: "static", path: "/guides/", label: "Guide Hub", title: "Aniimo Guides Hub", description: "Browse Aniimo beginner guides, official feature guides, mechanics, glossary terms and launch planning pages." };
+  }
+
   const glossaryTopic = glossaryTopics.find((item) => glossaryTopicPath(item) === normalized);
   if (glossaryTopic) return { type: "glossary-topic", path: glossaryTopicPath(glossaryTopic), title: glossaryTopic.title, description: glossaryTopic.description, glossaryTopic };
 

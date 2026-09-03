@@ -1,0 +1,42 @@
+import { gscLatestObservations } from "../data/content.js";
+
+const issues = [];
+
+for (const [query] of gscLatestObservations.queryWatchlist) {
+  const path = resolveWatchlistPath(query);
+  if (!path) issues.push(`Unmapped GSC watchlist query: ${query}`);
+}
+
+if (issues.length) {
+  console.error(`GSC watchlist audit failed with ${issues.length} issue(s):`);
+  issues.forEach((issue) => console.error(`- ${issue}`));
+  process.exit(1);
+}
+
+console.log(`GSC watchlist audit passed: ${gscLatestObservations.queryWatchlist.length} queries mapped.`);
+
+function resolveWatchlistPath(query) {
+  const value = query.toLowerCase();
+  if (value.includes("discord")) return "/topics/aniimo-discord/";
+  if (value.includes("reddit")) return "/topics/aniimo-reddit/";
+  if (value.includes("guide")) return "/guides/";
+  if (value.includes("celestis")) return "/aniimo/celestis/";
+  if (value.includes("inferlupa")) return "/aniimo/inferlupa/";
+  if (value.includes("glacy")) return "/aniimo/glacy/";
+  if (value.includes("junior")) return "/rewards/junior-wayfarer/";
+  if (value.includes("server")) return "/troubleshooting/aniimo-server-status/";
+  if (value.includes("google play") || value.includes("android")) return "/platforms/android/";
+  if (value.includes("mobile")) return "/platforms/mobile/";
+  if (value.includes("pre registro")) return "/pt/aniimo-pre-registro/";
+  if (value.includes("pre register")) return "/launch/aniimo-pre-register-guide/";
+  if (value.includes("shiny") || value.includes("forms") || value.includes("rare")) return "/topics/aniimo-shiny/";
+  if (value.includes("mmo")) return "/topics/aniimo-mmo/";
+  if (value.includes("ai")) return "/compare/aniimo-ai/";
+  if (value.includes("element chart") || value.includes("element")) return "/elements/fire/";
+  if (value.includes("steam account")) return "/platforms/steam/";
+  if (value.includes("wiki") || value.includes("list")) return "/topics/aniimo-wiki-dex/";
+  if (value.includes("map")) return "/map/";
+  if (value.includes("codes")) return "/codes/";
+  if (value.includes("download")) return "/download/";
+  return null;
+}

@@ -20,6 +20,7 @@
     "check:assets": "node scripts/asset-audit.mjs",
     "check:size": "node scripts/size-audit.mjs",
     "check:verification": "node scripts/verification-audit.mjs",
+    "check:gsc-watchlist": "node scripts/gsc-watchlist-audit.mjs",
     "check:live": "node scripts/live-audit.mjs",
     "indexing:candidates": "node scripts/indexing-candidates.mjs",
     "gsc:report": "node scripts/gsc-report.mjs",
