@@ -442,11 +442,6 @@ export function pageFaqsForRoute(routeInfo) {
 
 export function structuredDataForRoute(routeInfo, pageFaqs) {
   const url = canonicalUrl(routeInfo.path);
-  const breadcrumbs = [
-    { name: "Home", item: siteUrl },
-    ...(routeInfo.path !== "/" ? [{ name: routeInfo.detail?.name || routeInfo.regionDetail?.name || routeInfo.title.replace(" | Aniimo Wiki", ""), item: url }] : []),
-  ];
-
   const base = [
     {
       "@context": "https://schema.org",
@@ -459,19 +454,14 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
         "query-input": "required name=search_term_string",
       },
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: pageFaqs.map(([question, answer]) => ({
-        "@type": "Question",
-        name: question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: answer,
-        },
-      })),
-    },
-    {
+  ];
+
+  if (routeInfo.path !== "/") {
+    const breadcrumbs = [
+      { name: "Home", item: siteUrl },
+      { name: routeInfo.detail?.name || routeInfo.regionDetail?.name || routeInfo.title.replace(" | Aniimo Wiki", ""), item: url },
+    ];
+    base.push({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: breadcrumbs.map((crumb, index) => ({
@@ -480,8 +470,8 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
         name: crumb.name,
         item: crumb.item,
       })),
-    },
-  ];
+    });
+  }
 
   if (routeInfo.path === "/" || routeInfo.path === "/download/" || routeInfo.path === "/release-date/") {
     base.push({
@@ -499,11 +489,43 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
   }
 
   if (routeInfo.path === "/aniimo/") {
-    base.push(itemList("Aniimo database", aniimo.map((item) => [item.name, canonicalUrl(aniimoPath(item))])));
+    base.push({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Aniimo Database",
+      description: routeInfo.description,
+      url,
+      mainEntity: {
+        "@type": "ItemList",
+        name: "Aniimo database",
+        itemListElement: aniimo.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: canonicalUrl(aniimoPath(item)),
+          name: item.name,
+        })),
+      },
+    });
   }
 
   if (routeInfo.path === "/map/") {
-    base.push(itemList("Aniimo region guide", regions.map((region) => [region.name, canonicalUrl(regionPath(region))])));
+    base.push({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Aniimo Map",
+      description: routeInfo.description,
+      url,
+      mainEntity: {
+        "@type": "ItemList",
+        name: "Aniimo region guide",
+        itemListElement: regions.map((region, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: canonicalUrl(regionPath(region)),
+          name: region.name,
+        })),
+      },
+    });
   }
 
   if (routeInfo.detail || routeInfo.regionDetail) {
@@ -529,6 +551,20 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
 
   const topic = topicForRoute(routeInfo);
   if (topic) {
+    if (pageFaqs?.length) {
+      base.push({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: pageFaqs.map(([question, answer]) => ({
+          "@type": "Question",
+          name: question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: answer,
+          },
+        })),
+      });
+    }
     base.push({
       "@context": "https://schema.org",
       "@type": "Article",
@@ -567,20 +603,6 @@ function topicForRoute(routeInfo) {
     || routeInfo.refreshPlanningTopic
     || routeInfo.freshnessPage
     || routeInfo.localizedTopic;
-}
-
-function itemList(name, entries) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name,
-    itemListElement: entries.map(([entryName, url], index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      url,
-      name: entryName,
-    })),
-  };
 }
 
 function canonicalAssetUrl(path) {

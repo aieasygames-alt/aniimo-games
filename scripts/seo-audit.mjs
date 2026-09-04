@@ -89,8 +89,12 @@ for (const route of expectedDiscoverableRoutes) {
   const graph = structuredDataForRoute(routeInfo, pageFaqsForRoute(routeInfo));
   const faqPage = graph.find((item) => item["@type"] === "FAQPage");
   const article = graph.find((item) => item["@type"] === "Article");
-  if (!faqPage?.mainEntity?.length) issues.push(`Missing FAQPage entities for ${route}`);
+  const collectionPage = graph.find((item) => item["@type"] === "CollectionPage");
+  if (route !== `${siteUrl}/` && isTopicRoute(routeInfo) && !faqPage?.mainEntity?.length) issues.push(`Missing FAQPage entities for ${route}`);
   if (isTopicRoute(routeInfo) && !article) issues.push(`Missing Article schema for topic route: ${route}`);
+  if ((route === `${siteUrl}/aniimo/` || route === `${siteUrl}/map/`) && !collectionPage) {
+    issues.push(`Missing CollectionPage schema for ${route}`);
+  }
   if (article?.dateModified && article.dateModified !== siteLastUpdated) {
     issues.push(`Article schema dateModified mismatch for ${route}: ${article.dateModified}`);
   }
