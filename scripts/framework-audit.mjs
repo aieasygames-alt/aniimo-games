@@ -37,6 +37,11 @@ for (const file of sourceFiles) {
   });
 }
 
+const seoRuntime = readFileSync("src/seo/runtime.js", "utf8");
+if (seoRuntime.includes("application/ld+json") || seoRuntime.includes("JSON.stringify(items)")) {
+  issues.push("Client-side JSON-LD injection is still enabled in src/seo/runtime.js.");
+}
+
 const pagesSource = readFileSync("src/pages/pages.jsx", "utf8");
 const redirectsSource = readFileSync("public/_redirects", "utf8");
 
