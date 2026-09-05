@@ -551,7 +551,7 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
 
   const topic = topicForRoute(routeInfo);
   if (topic) {
-    if (pageFaqs?.length) {
+    if (pageFaqs?.length && !routeInfo.detail && !routeInfo.regionDetail) {
       base.push({
         "@context": "https://schema.org",
         "@type": "FAQPage",
