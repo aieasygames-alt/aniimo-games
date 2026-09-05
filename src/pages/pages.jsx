@@ -21,6 +21,10 @@ function gscWatchlistPath(query) {
   if (value.includes("glacy")) return "/aniimo/glacy/";
   if (value.includes("junior")) return "/rewards/junior-wayfarer/";
   if (value.includes("server")) return "/troubleshooting/aniimo-server-status/";
+  if (value.includes("logo")) return "/media/aniimo-logo/";
+  if (value.includes("demo")) return "/topics/aniimo-demo/";
+  if (value.includes("developer")) return "/compare/aniimo-developer/";
+  if (value.includes("carried items") || value.includes("held items")) return "/topics/aniimo-carried-items/";
   if (value.includes("google play") || value.includes("android")) return "/platforms/android/";
   if (value.includes("mobile")) return "/platforms/mobile/";
   if (value.includes("pre registro")) return "/pt/aniimo-pre-registro/";
@@ -62,7 +66,7 @@ export function HomePage(props) {
           <QuickCard icon={<BookOpen />} title="Database" text="Index every Aniimo with location, forms, abilities and source status." href="/aniimo/" navigate={props.navigate} />
           <QuickCard icon={<Map />} title="Map" text="Explore regions, representative Aniimo, route notes and official scenery." href="/map/" navigate={props.navigate} />
           <QuickCard icon={<Sparkles />} title="Evolution" text="Track base forms, branch forms, special conditions and launch updates." href="/evolution/" navigate={props.navigate} />
-          <QuickCard icon={<Gift />} title="Rewards" text="Track confirmed pre-registration rewards, milestone rewards and launch code status." href="/rewards/" navigate={props.navigate} />
+          <QuickCard icon={<Gift />} title="Rewards" text="Track confirmed pre-registration rewards, milestone rewards, Junior Wayfarer and launch code status." href="/rewards/" navigate={props.navigate} />
           <QuickCard icon={<CalendarDays />} title="Launch Day" text="Check server status, active codes, unlock timing and launch fixes." href="/launch-day/" navigate={props.navigate} />
           <QuickCard icon={<Compass />} title="Search Topics" text="Open guides built around official features, community questions and search demand." href="/site-index/" navigate={props.navigate} />
         </section>

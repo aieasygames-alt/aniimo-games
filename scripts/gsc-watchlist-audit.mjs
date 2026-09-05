@@ -25,6 +25,10 @@ function resolveWatchlistPath(query) {
   if (value.includes("glacy")) return "/aniimo/glacy/";
   if (value.includes("junior")) return "/rewards/junior-wayfarer/";
   if (value.includes("server")) return "/troubleshooting/aniimo-server-status/";
+  if (value.includes("logo")) return "/media/aniimo-logo/";
+  if (value.includes("demo")) return "/topics/aniimo-demo/";
+  if (value.includes("developer")) return "/compare/aniimo-developer/";
+  if (value.includes("carried items") || value.includes("held items")) return "/topics/aniimo-carried-items/";
   if (value.includes("google play") || value.includes("android")) return "/platforms/android/";
   if (value.includes("mobile")) return "/platforms/mobile/";
   if (value.includes("pre registro")) return "/pt/aniimo-pre-registro/";

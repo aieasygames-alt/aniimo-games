@@ -507,7 +507,7 @@ export const choiceTopics = [
   ["best-support-aniimo", "Best Support Aniimo to Track", "Compare confirmed Support Aniimo before launch by utility, region and source status."],
   ["best-dps-aniimo", "Best DPS Aniimo to Track", "Compare confirmed DPS Aniimo before launch by element, evolution line and source status."],
   ["best-healer-aniimo", "Best Healer Aniimo to Track", "Compare Heal-tagged Aniimo before launch by recovery role, element and route notes."],
-  ["aniimo-tier-list", "Aniimo Tier List Watchlist", "A cautious pre-launch tier-list watchlist that avoids final rankings until live testing exists."],
+  ["aniimo-tier-list", "Aniimo Tier List Watchlist", "A cautious pre-launch tier-list watchlist that explains provisional ordering before live testing exists."],
 ].map(([slug, title, description]) => ({ slug, title, description }));
 
 export const officialPitchTopics = [
@@ -663,11 +663,14 @@ export const socialIntentTopics = [
     points: [
       ["Current source position", "Aniimo.games does not claim Aniimo is AI-made unless Pawprint Studio or an official platform listing states that directly."],
       ["What is confirmed", "Official public sources identify Aniimo as a free-to-play creature-catching open-world RPG from Pawprint Studio, with Pawprint Interactive Entertainment Pte. Ltd. listed as publisher."],
+      ["What not to infer", "Do not turn trailer style, localization wording or store metadata into a claim that Aniimo uses generative AI."],
       ["How to update this page", "If official art, development, trailer, store or community policy pages add AI-related disclosures, update this page, the source archive and trust pages with the exact source and date checked."],
     ],
     faq: [
       ["Is Aniimo made with AI?", "Aniimo.games does not confirm that Aniimo is made with AI without an official statement or platform disclosure."],
       ["Does Aniimo use generative AI art?", "Aniimo.games does not publish AI-art claims unless official Aniimo, Pawprint Studio or platform disclosures support them directly."],
+      ["Why are people searching Aniimo AI?", "They want a trust check before installing, wishlisting or sharing the game, so this page should answer the question without amplifying rumors."],
+      ["Should trailer polish be treated as AI proof?", "No. Visual style, upscaling, edits or localization should not be treated as proof of generative AI use."],
       ["Why does this page exist?", "Players are searching AI-related trust questions, so this page gives a source-aware answer instead of letting rumors define the topic."],
     ],
   },
@@ -983,12 +986,14 @@ export const searchSuggestionTopics = [
     points: [
       ["Official invite check", "Use the official Aniimo website, official social profiles or verified storefront links before trusting any Discord invite shared by a third-party page."],
       ["Launch-day value", "A verified Discord can be useful for server status notices, maintenance timing, code announcements, beta access updates and region-specific player reports."],
+      ["What to avoid", "Do not copy invite screenshots, reposted code claims or fan-server chatter into the official invite field."],
       ["Evidence boundary", "Do not list private invites, scraped community messages, reposted screenshots or unverified code claims as confirmed Aniimo facts."],
     ],
     faq: [
       ["Does Aniimo have an official Discord server?", "Aniimo.games only treats a Discord server as official when the invite is linked or verified by official Aniimo channels."],
       ["Where should I check Aniimo Discord codes?", "Only verified official Discord announcements, official website posts or in-game notices should be used to confirm redeem codes."],
       ["Can Discord help with Aniimo server status?", "Yes, if the server is official or verified. Community outage reports are useful signals, but server-status pages should still label them separately from official notices."],
+      ["How do I avoid fake Discord invites?", "Only trust invites that are linked from official Aniimo channels or verified storefront pages."],
     ],
   },
   {
@@ -1000,6 +1005,7 @@ export const searchSuggestionTopics = [
       ["Useful signal", "Reddit can surface repeated questions about platforms, launch timing, Discord, codes, bugs, AI concerns and multiplayer expectations."],
       ["Verification boundary", "Community posts should become research leads, not confirmed guide claims, until official or in-game evidence supports them."],
       ["Refresh workflow", "If a Reddit topic gets repeated traction, update the matching guide page, add source-safe notes, then link back to the official website, Discord, codes or server-status hub."],
+      ["Useful topics", "Launch timing, AI-use rumors, server problems, carried items, shiny forms and character-name questions are the most useful themes to monitor."],
     ],
     faq: [
       ["Is Reddit an official Aniimo source?", "No. Reddit discussion can provide search-intent signals, but official sources or live verification should confirm facts."],
@@ -1212,10 +1218,12 @@ export const searchSuggestionTopics = [
     points: [
       ["Current status", "Aniimo.games does not confirm carried or held item mechanics until official or live-game evidence supports them."],
       ["What to capture", "Record item name, source, affected Aniimo, route, reward table, restrictions, screenshot and last verified date."],
+      ["Search intent", "Players may also mean held items, drops or loot interaction, so the page should make those terms explicit."],
       ["Related systems", "If confirmed, connect carried items to catching, rewards, Egg Heist, Twine, database detail pages and beginner guides."],
     ],
     faq: [
       ["Do Aniimo have carried items?", "Aniimo.games does not confirm carried items until official or live-game verification exists."],
+      ["Are carried items the same as held items?", "Often the search intent overlaps, so the page should separate both terms and wait for verified mechanics."],
       ["Where will item drops be tracked?", "Verified items should update rewards, mode guides, Aniimo detail pages and launch verification notes."],
     ],
   },
@@ -1342,10 +1350,12 @@ export const mediaDetailTopics = [
     points: [
       ["Current site logo", "Aniimo.games uses a compressed brand image for site navigation and keeps production media under asset checks."],
       ["Source boundary", "Official logos and brand marks should be used only when rights, source and page purpose are clear."],
+      ["Search intent", "Logo PNG searches usually want a clean brand image, not a gallery of every logo variant or fan repost."],
       ["Image SEO", "Logo pages should use descriptive alt text, stable dimensions, compressed assets and links to media and source archive pages."],
     ],
     faq: [
       ["Where is the Aniimo logo used?", "Aniimo.games uses a brand image in the site header and tracks media assets through the media gallery and asset audit."],
+      ["Can I download an Aniimo logo PNG?", "Use the official image on Aniimo.games or the official brand source when reuse rights are clear."],
       ["Can I use the Aniimo logo?", "Check official Aniimo or publisher brand guidance before reusing logos outside this guide context."],
     ],
   },
@@ -1513,11 +1523,13 @@ export const troubleshootingTopics = [
     intro: "Server-status searches spike the moment a game opens. Before launch, this page keeps the status tied to official availability and avoids inventing outage reports.",
     points: [
       ["Current status policy", "Aniimo.games only marks a server issue active after official support, storefront behavior or repeated verified live-game evidence confirms it."],
+      ["Search intent", "Users may want maintenance, outage, downtime or login availability checks, so the page should answer each term clearly."],
       ["What to check first", "Check the launch day command center, platform storefronts, official website news and official social channels."],
       ["What changes after launch", "Add maintenance windows, affected platforms, start time, resolved time, compensation notes and last checked timestamp when verified."],
     ],
     faq: [
       ["Are Aniimo servers down?", "Aniimo.games does not mark servers down before official launch availability or verified reports confirm a live issue."],
+      ["How do I know if Aniimo is under maintenance?", "Check official website posts, storefront notices and the launch day command center before trusting community reports."],
       ["Where should I check Aniimo server status?", "Start with official Aniimo news, storefront notices and the Aniimo.games launch day command center."],
     ],
   },
