@@ -13,7 +13,11 @@ function injectMeta(html, route) {
   const desc = routeInfo.description;
   const url = canonicalUrl(routeInfo.path);
   const fallback = fallbackHtml(routeInfo);
-  const structuredData = escapeHtml(JSON.stringify(structuredDataForRoute(routeInfo, pageFaqsForRoute(routeInfo))));
+  // JSON-LD is raw JSON inside a script element; HTML entity escaping makes it invalid JSON.
+  const structuredData = JSON.stringify(structuredDataForRoute(routeInfo, pageFaqsForRoute(routeInfo)))
+    .replaceAll("<", "\\u003c")
+    .replaceAll(">", "\\u003e")
+    .replaceAll("&", "\\u0026");
   return html
     .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
     .replace(/<meta\s+name="description"\s+content="[^"]+"\s*\/>/, `<meta name="description" content="${escapeHtml(desc)}" />`)
