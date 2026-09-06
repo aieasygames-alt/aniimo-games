@@ -172,6 +172,17 @@ export function findRegionBySlug(slug) {
 
 export function resolveRoute(path) {
   const normalized = normalizePath(path);
+  if (normalized === "/updates/official-news-tracker/") {
+    const target = freshnessPages.find((item) => item.slug === "official-news");
+    return {
+      type: "freshness-page-redirect",
+      path: "/updates/official-news-tracker/",
+      redirectTo: freshnessPagePath(target),
+      title: target.title,
+      description: target.description,
+      freshnessPage: target,
+    };
+  }
   const aniimoMatch = normalized.match(/^\/aniimo\/([^/]+)\//);
   if (aniimoMatch) {
     const detail = findAniimoBySlug(aniimoMatch[1]);

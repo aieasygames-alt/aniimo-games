@@ -10,6 +10,14 @@ const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup
 
 function injectMeta(html, route) {
   const routeInfo = resolveRoute(route);
+  if (routeInfo.type === "freshness-page-redirect") {
+    return html
+      .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(routeInfo.title)}</title>`)
+      .replace(/<meta\s+name="description"\s+content="[^"]+"\s*\/>/, `<meta name="description" content="${escapeHtml(routeInfo.description)}" />`)
+      .replace(/<link\s+rel="canonical"\s+href="[^"]+"\s*\/>/, `<link rel="canonical" href="${canonicalUrl(routeInfo.redirectTo)}" />`)
+      .replace("</head>", `<meta http-equiv="refresh" content="0;url=${routeInfo.redirectTo}"></head>`)
+      .replace('<div id="root"></div>', `<div id="root"><main><h1>${escapeHtml(routeInfo.title)}</h1><p>This page has moved to <a href="${routeInfo.redirectTo}">${escapeHtml(routeInfo.redirectTo)}</a>.</p></main></div>`);
+  }
   const title = routeInfo.title;
   const desc = routeInfo.description;
   const url = canonicalUrl(routeInfo.path);
