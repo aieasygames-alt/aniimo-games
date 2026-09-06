@@ -1,4 +1,4 @@
-import { launchStatusEntries, tierListSnapshots, gscLatestObservations, platformUnlockQueue } from "../data/content.js";
+import { launchPriorityPages, launchStatusEntries, tierListSnapshots, gscLatestObservations, platformUnlockQueue } from "../data/content.js";
 import { indexingCandidateSections } from "./indexing-candidate-rules.mjs";
 
 const issues = [];
@@ -27,8 +27,12 @@ for (const snapshot of tierListSnapshots) {
 }
 
 const priorityUrls = indexingCandidateSections().urls;
-for (const path of ["/launch-day/", "/download/", "/codes/", "/rewards/", "/aniimo-tier-list/", "/troubleshooting/aniimo-server-status/", "/topics/aniimo-discord/"]) {
+for (const [path] of launchPriorityPages) {
   if (!priorityUrls.some((url) => url.endsWith(path))) issues.push(`Priority launch URL is missing from indexing candidates: ${path}`);
+}
+
+if (new Set(launchPriorityPages.map(([path]) => path)).size !== launchPriorityPages.length) {
+  issues.push("Launch priority pages contain duplicate paths.");
 }
 
 if (issues.length) {

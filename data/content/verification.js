@@ -84,6 +84,19 @@ export const searchIntentStatus = {
   "aniimo-logo": { statusId: "discord", action: "Keep image source and usage notes tied to official brand materials." },
 };
 
+export const launchPriorityPages = [
+  ["/aniimo-tier-list/", "Tier list", "aniimo tier list", "Refresh with dated PVE/PVP evidence after live testing."],
+  ["/rewards/junior-wayfarer/", "Junior Wayfarer rewards", "aniimo junior wayfarer", "Verify eligibility and delivery after launch."],
+  ["/troubleshooting/aniimo-server-status/", "Server status", "aniimo servers", "Update online, maintenance, degraded, or outage state."],
+  ["/aniimo/", "Aniimo database", "aniimo wiki", "Improve character snippets and verified fields."],
+  ["/rewards/", "Rewards hub", "aniimo pre register rewards", "Keep claim status and official reward details current."],
+  ["/compare/aniimo-ai/", "AI source check", "does aniimo use ai", "Keep developer and official-source wording current."],
+  ["/topics/aniimo-discord/", "Official Discord", "aniimo discord", "Verify invite and announcement freshness."],
+  ["/download/", "Download hub", "aniimo download", "Update platform availability and safe-download paths."],
+  ["/rewards/milestones/", "Milestone rewards", "aniimo milestone rewards", "Confirm reward delivery and campaign status."],
+  ["/topics/aniimo-demo/", "Demo status", "aniimo demo", "Separate demo, playtest, beta history, and live availability."],
+];
+
 export const verificationTemplates = {
   spawnPoint: {
     requiredFields: ["aniimo", "region", "route", "condition", "verifiedAt", "source"],
@@ -172,7 +185,9 @@ export const gscLatestObservations = {
   ],
   queryWatchlist: [
     ["aniimo pre register rewards", "Keep claim eligibility, reward status, official source, and launch-day delivery guidance current."],
+    ["aniimo wiki", "Improve the database entry point with all Aniimo list, number, element, role, and source-status language."],
     ["aniimo junior wayfarer", "Keep the reward page separate from code claims and add official delivery verification after launch."],
+    ["aniimo milestone rewards", "Keep milestone thresholds, delivery state, and official campaign source current."],
     ["aniimo tier list", "Publish dated, mode-specific rankings only after live ability and balance evidence is recorded."],
     ["aniimo servers", "Update server state and incident guidance immediately after official or reproducible evidence appears."],
     ["aniimo demo", "Clarify demo, playtest, beta history, and live availability without implying an unannounced test."],

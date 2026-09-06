@@ -1,10 +1,17 @@
-import { gscLatestObservations } from "../data/content.js";
+import { gscLatestObservations, launchPriorityPages } from "../data/content.js";
 
 const issues = [];
 
 for (const [query] of gscLatestObservations.queryWatchlist) {
   const path = resolveWatchlistPath(query);
   if (!path) issues.push(`Unmapped GSC watchlist query: ${query}`);
+}
+
+for (const [, label, query, action] of launchPriorityPages) {
+  if (!label || !query || !action) issues.push("Launch priority page has incomplete query mapping.");
+  if (!gscLatestObservations.queryWatchlist.some(([watchQuery]) => watchQuery === query)) {
+    issues.push(`Launch priority query is missing from GSC watchlist: ${query}`);
+  }
 }
 
 for (const [label, value] of gscLatestObservations.metrics) {
@@ -32,6 +39,7 @@ function resolveWatchlistPath(query) {
   if (value.includes("inferlupa")) return "/aniimo/inferlupa/";
   if (value.includes("glacy")) return "/aniimo/glacy/";
   if (value.includes("junior")) return "/rewards/junior-wayfarer/";
+  if (value.includes("milestone")) return "/rewards/milestones/";
   if (value.includes("server")) return "/troubleshooting/aniimo-server-status/";
   if (value.includes("logo")) return "/media/aniimo-logo/";
   if (value.includes("demo")) return "/topics/aniimo-demo/";
