@@ -859,6 +859,7 @@ export function LaunchVerificationPage() {
           ["Fields", gscObservationTemplate.fieldsToCapture.join(", ")],
         ]} />
       </div>
+      <LaunchStatusPanel title="Launch Readiness Snapshot" entries={launchStatusEntries} />
       <section className="related-section">
         <h2>Spawn Verification Queue</h2>
         <div className="verification-grid">

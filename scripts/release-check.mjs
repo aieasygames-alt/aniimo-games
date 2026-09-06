@@ -11,6 +11,7 @@ const steps = [
   ["Size audit", ["npm", ["run", "check:size"]]],
   ["Verification audit", ["npm", ["run", "check:verification"]]],
   ["GSC watchlist audit", ["npm", ["run", "check:gsc-watchlist"]]],
+  ["Launch readiness audit", ["npm", ["run", "check:launch-readiness"]]],
 ];
 
 for (const [label, [command, args]] of steps) {
