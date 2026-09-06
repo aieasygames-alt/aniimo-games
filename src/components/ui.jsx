@@ -23,6 +23,7 @@ export function LaunchStatusPanel({ entries, title = "Launch Status" }) {
             </div>
             <p>{entry.value}</p>
             <p className="small">Checked {entry.lastChecked}</p>
+            <p className="small">{entry.note}</p>
             <a className="text-link" href={entry.source} target="_blank" rel="noreferrer">
               Check source <ChevronRight size={16} />
             </a>

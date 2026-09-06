@@ -133,6 +133,8 @@ export const platformUnlockQueue = [
   source,
 }));
 
+export const platformStatusByName = Object.fromEntries(platformUnlockQueue.map((item) => [item.platform, item]));
+
 export const gscObservationTemplate = {
   firstReviewWindow: "Review after Google Search Console starts showing impressions for submitted sitemap pages.",
   status: "Watchlist",

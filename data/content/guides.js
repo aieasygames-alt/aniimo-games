@@ -35,7 +35,7 @@ export const platforms = [
   ["Epic Games Store", "Wishlist", "Official Epic listing for the September 16 PC launch window.", officialLinks.epic],
   ["Xbox", "Wishlist", "Official Xbox listing for the September 16 console launch window.", officialLinks.xbox],
   ["PlayStation 5", "Wishlist", "Official PlayStation concept page for the September 16 console launch window.", officialLinks.playstation],
-].map(([name, action, note, url]) => ({ name, action, note, url, status: "Confirmed", lastChecked: sourceLastChecked }));
+].map(([name, action, note, url]) => ({ name, action, note, url, status: "Watchlist", lastChecked: sourceLastChecked }));
 
 export const mechanics = [
   ["Creature catching", "Players catch Aniimo with Aniipods, set traps, and time catches around encounter behavior."],

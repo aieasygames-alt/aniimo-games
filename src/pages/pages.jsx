@@ -1,6 +1,6 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchRewards, launchStatusEntries, launchTracker, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchRewards, launchStatusEntries, launchTracker, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
@@ -457,7 +457,10 @@ export function DownloadPage({ navigate }) {
                     Official source <ChevronRight size={16} />
                   </a>
                 </div>
-                <StatusBadge status={item.status} />
+                <div>
+                  <StatusBadge status={platformStatusByName[item.name]?.status || item.status} />
+                  <p className="small">Checked {item.lastChecked}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -1244,6 +1247,7 @@ export function TroubleshootingPage({ navigate }) {
         Use these pages when a download, wishlist, pre-order, store page or
         pre-registration flow is unavailable on a specific platform or country.
       </p>
+      <LaunchStatusPanel title="Live Issue Status" entries={launchStatusEntries.filter((entry) => ["server", "known-issues", "pc-console", "mobile"].includes(entry.id))} />
       <div className="site-index-grid">
         {troubleshootingTopics.map((item) => (
           <article className="link-group" key={item.slug}>

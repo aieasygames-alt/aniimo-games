@@ -1,6 +1,7 @@
 import { codeVerificationTemplate, gscObservationTemplate, launchEvidenceQueues, launchStatusEntries, platformUnlockQueue, spawnVerificationQueue, tierListSnapshots, verificationTemplates } from "../data/content.js";
 
 const issues = [];
+const allowedStatuses = new Set(["Confirmed", "Verified", "Watchlist", "Unconfirmed", "Estimated", "Unknown", "Online", "Maintenance", "Degraded", "Outage"]);
 
 for (const [name, template] of Object.entries(verificationTemplates)) {
   if (!template.requiredFields?.length) issues.push(`${name} template has no required fields.`);
@@ -33,12 +34,14 @@ for (const entry of launchStatusEntries) {
   for (const field of ["id", "label", "value", "status", "source", "lastChecked", "note"]) {
     if (!entry[field]) issues.push(`Launch status entry ${entry.id || "unknown"} is missing ${field}.`);
   }
+  if (!allowedStatuses.has(entry.status)) issues.push(`Launch status entry ${entry.id} uses unsupported status: ${entry.status}.`);
 }
 
 for (const snapshot of tierListSnapshots) {
   for (const field of ["id", "label", "status", "updated", "context", "evidence", "nextCheck"]) {
     if (!snapshot[field]) issues.push(`Tier list snapshot ${snapshot.id || "unknown"} is missing ${field}.`);
   }
+  if (!allowedStatuses.has(snapshot.status)) issues.push(`Tier list snapshot ${snapshot.id} uses unsupported status: ${snapshot.status}.`);
 }
 
 if (issues.length) {
