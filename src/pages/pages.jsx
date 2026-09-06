@@ -1798,6 +1798,12 @@ export function AboutPage() {
         on searchable guides for Aniimo names, locations, regions, release dates,
         download links, rewards, codes and beginner systems.
       </p>
+      <InfoPanel title="Editorial Ownership" rows={[
+        ["Maintained by", "Aniimo.games Editorial Team"],
+        ["First published", "2026-08-27"],
+        ["Last reviewed", sourceLastChecked],
+        ["Evidence standard", "Official public sources first; community reports remain research leads until verified."],
+      ]} />
       <SeoGuideBlock items={[
         { title: "What we cover", body: "We cover public Aniimo Wiki entries, official storefront links, public launch information, rewards, regions, gameplay mechanics and route notes that can be verified after launch." },
         { title: "How we label data", body: "Confirmed data is tied to official or in-game sources. Watchlist and unknown fields are used when an entry exists but exact element, role, region, stage or spawn information still needs verification." },

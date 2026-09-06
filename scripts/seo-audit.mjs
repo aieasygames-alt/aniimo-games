@@ -92,6 +92,8 @@ for (const route of expectedDiscoverableRoutes) {
   const collectionPage = graph.find((item) => item["@type"] === "CollectionPage");
   if (route !== `${siteUrl}/` && isTopicRoute(routeInfo) && !faqPage?.mainEntity?.length) issues.push(`Missing FAQPage entities for ${route}`);
   if (isTopicRoute(routeInfo) && !article) issues.push(`Missing Article schema for topic route: ${route}`);
+  if (article && !article.datePublished) issues.push(`Article schema missing datePublished for ${route}`);
+  if (article && article.author?.name !== "Aniimo.games Editorial Team") issues.push(`Article schema author mismatch for ${route}`);
   if ((route === `${siteUrl}/aniimo/` || route === `${siteUrl}/map/`) && !collectionPage) {
     issues.push(`Missing CollectionPage schema for ${route}`);
   }

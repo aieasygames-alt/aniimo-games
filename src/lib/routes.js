@@ -2,6 +2,13 @@ import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, conversionTopic
 
 export const siteUrl = "https://aniimo.games";
 
+export const editorialEntity = {
+  "@type": "Organization",
+  name: "Aniimo.games Editorial Team",
+  url: `${siteUrl}/about/`,
+  description: "The editorial team maintains Aniimo.games using official public sources, storefront checks, and clearly labeled live-game verification.",
+};
+
 export const staticRoutes = [
   {
     path: "/",
@@ -514,10 +521,9 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
       description: routeInfo.description,
       url,
       dateModified: siteLastUpdated,
+      datePublished: "2026-08-27",
       author: {
-        "@type": "Organization",
-        name: "Aniimo.games",
-        url: siteUrl,
+        ...editorialEntity,
       },
       publisher: {
         "@type": "Organization",
@@ -576,9 +582,9 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
       description: routeInfo.detail ? routeInfo.detail.description : routeInfo.regionDetail.theme,
       image: canonicalAssetUrl(entity.image),
       dateModified: siteLastUpdated,
+      datePublished: "2026-08-27",
       author: {
-        "@type": "Organization",
-        name: "Aniimo.games",
+        ...editorialEntity,
       },
       publisher: {
         "@type": "Organization",
@@ -610,9 +616,9 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
       headline: routeInfo.title,
       description: routeInfo.description,
       dateModified: siteLastUpdated,
+      datePublished: "2026-08-27",
       author: {
-        "@type": "Organization",
-        name: "Aniimo.games",
+        ...editorialEntity,
       },
       publisher: {
         "@type": "Organization",
