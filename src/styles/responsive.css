@@ -18,6 +18,14 @@
     grid-template-columns: 1fr;
   }
 
+  .site-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer nav {
+    justify-content: flex-start;
+  }
+
   .quick-grid,
   .aniimo-grid,
   .region-grid,

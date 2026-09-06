@@ -55,6 +55,43 @@ main {
   overflow: hidden;
 }
 
+.site-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px 40px;
+  padding: 30px clamp(18px, 5vw, 72px);
+  border-top: 1px solid rgba(23, 32, 29, 0.12);
+  background: #17201d;
+  color: #edf3ed;
+}
+
+.site-footer strong {
+  font-size: 18px;
+}
+
+.site-footer p {
+  max-width: 620px;
+  margin: 8px 0 0;
+  color: #c2d0c6;
+}
+
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+  justify-content: flex-end;
+  gap: 10px 16px;
+}
+
+.site-footer nav a {
+  color: #edf3ed;
+}
+
+.site-footer-meta {
+  grid-column: 1 / -1;
+  font-size: 13px;
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);

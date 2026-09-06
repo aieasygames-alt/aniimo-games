@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BookOpen, Download, Search } from "lucide-react";
-import { aniimo } from "../data/content.js";
+import { aniimo, officialLinks, siteLastUpdated } from "../data/content.js";
 import {
   findAniimoBySlug,
   findRegionBySlug,
@@ -270,6 +270,20 @@ function App() {
           <NotFoundPage navigate={navigate} />
         )}
       </main>
+      <footer className="site-footer">
+        <div>
+          <strong>Aniimo.games</strong>
+          <p>Independent Aniimo wiki and launch guide using official public sources and clearly labeled verification notes.</p>
+        </div>
+        <nav aria-label="Site information">
+          <a href="/about/" onClick={(event) => navigate(event, "/about/")}>About</a>
+          <a href="/editorial-policy/" onClick={(event) => navigate(event, "/editorial-policy/")}>Editorial Policy</a>
+          <a href="/sources/" onClick={(event) => navigate(event, "/sources/")}>Sources</a>
+          <a href="/contact/" onClick={(event) => navigate(event, "/contact/")}>Contact</a>
+          <a href={officialLinks.privacy} target="_blank" rel="noreferrer">Privacy</a>
+        </nav>
+        <p className="site-footer-meta">Last updated {siteLastUpdated}</p>
+      </footer>
     </>
   );
 }
