@@ -76,6 +76,14 @@ export const tierListSnapshots = [
   },
 ];
 
+export const searchIntentStatus = {
+  "aniimo-discord": { statusId: "discord", action: "Verify invite from the official website before publishing it as official." },
+  "aniimo-demo": { statusId: "pc-console", action: "Keep demo, playtest, beta history, and full launch availability separate." },
+  "aniimo-official-website": { statusId: "discord", action: "Use this page as a safe navigation hub for official site, Wiki, and storefront links." },
+  "aniimo-reddit": { statusId: "discord", action: "Treat community posts as research signals and link back to verified sources." },
+  "aniimo-logo": { statusId: "discord", action: "Keep image source and usage notes tied to official brand materials." },
+};
+
 export const verificationTemplates = {
   spawnPoint: {
     requiredFields: ["aniimo", "region", "route", "condition", "verifiedAt", "source"],

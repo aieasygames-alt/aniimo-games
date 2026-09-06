@@ -1,4 +1,4 @@
-import { codeVerificationTemplate, gscObservationTemplate, launchEvidenceQueues, launchStatusEntries, platformUnlockQueue, spawnVerificationQueue, tierListSnapshots, verificationTemplates } from "../data/content.js";
+import { codeVerificationTemplate, gscObservationTemplate, launchEvidenceQueues, launchStatusEntries, platformUnlockQueue, searchIntentStatus, spawnVerificationQueue, tierListSnapshots, verificationTemplates } from "../data/content.js";
 
 const issues = [];
 const allowedStatuses = new Set(["Confirmed", "Verified", "Watchlist", "Unconfirmed", "Estimated", "Unknown", "Online", "Maintenance", "Degraded", "Outage"]);
@@ -42,6 +42,12 @@ for (const snapshot of tierListSnapshots) {
     if (!snapshot[field]) issues.push(`Tier list snapshot ${snapshot.id || "unknown"} is missing ${field}.`);
   }
   if (!allowedStatuses.has(snapshot.status)) issues.push(`Tier list snapshot ${snapshot.id} uses unsupported status: ${snapshot.status}.`);
+}
+
+for (const [slug, item] of Object.entries(searchIntentStatus)) {
+  if (!item.statusId || !item.action || !launchStatusEntries.some((entry) => entry.id === item.statusId)) {
+    issues.push(`Search intent status mapping is incomplete: ${slug}.`);
+  }
 }
 
 if (issues.length) {

@@ -3,7 +3,7 @@ import { canonicalUrl, fullSitemapRoutes, resolveRoute } from "../src/lib/routes
 export const indexingPriorityRules = [
   {
     title: "GSC First Refresh",
-    match: (route) => ["/", "/aniimo/", "/guides/", "/map/", "/codes/", "/aniimo/glacy/", "/pt/aniimo-data-de-lancamento/", "/es/aniimo-fecha-de-lanzamiento/"].includes(route.path),
+    match: (route) => ["/", "/aniimo/", "/guides/", "/map/", "/codes/", "/rewards/junior-wayfarer/", "/aniimo-tier-list/", "/troubleshooting/aniimo-server-status/", "/topics/aniimo-discord/", "/topics/aniimo-demo/", "/download/", "/aniimo/glacy/", "/pt/aniimo-data-de-lancamento/", "/es/aniimo-fecha-de-lanzamiento/"].includes(route.path),
   },
   {
     title: "Launch Core",
