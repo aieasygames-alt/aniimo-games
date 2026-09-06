@@ -1,4 +1,4 @@
-import { codeVerificationTemplate, gscObservationTemplate, launchEvidenceQueues, platformUnlockQueue, spawnVerificationQueue, verificationTemplates } from "../data/content.js";
+import { codeVerificationTemplate, gscObservationTemplate, launchEvidenceQueues, launchStatusEntries, platformUnlockQueue, spawnVerificationQueue, tierListSnapshots, verificationTemplates } from "../data/content.js";
 
 const issues = [];
 
@@ -29,10 +29,22 @@ for (const [name, queue] of Object.entries(launchEvidenceQueues)) {
   }
 }
 
+for (const entry of launchStatusEntries) {
+  for (const field of ["id", "label", "value", "status", "source", "lastChecked", "note"]) {
+    if (!entry[field]) issues.push(`Launch status entry ${entry.id || "unknown"} is missing ${field}.`);
+  }
+}
+
+for (const snapshot of tierListSnapshots) {
+  for (const field of ["id", "label", "status", "updated", "context", "evidence", "nextCheck"]) {
+    if (!snapshot[field]) issues.push(`Tier list snapshot ${snapshot.id || "unknown"} is missing ${field}.`);
+  }
+}
+
 if (issues.length) {
   console.error(`Verification audit failed with ${issues.length} issue(s):`);
   issues.forEach((issue) => console.error(`- ${issue}`));
   process.exit(1);
 }
 
-console.log(`Verification audit passed: ${spawnVerificationQueue.length} spawn queues, ${platformUnlockQueue.length} platform queues.`);
+console.log(`Verification audit passed: ${spawnVerificationQueue.length} spawn queues, ${platformUnlockQueue.length} platform queues, ${launchStatusEntries.length} launch statuses.`);

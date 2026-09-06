@@ -4,3 +4,4 @@ dist
 .env
 .env.local
 .gsc/
+.tmp_keyword_pdf_extract/

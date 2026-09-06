@@ -7,6 +7,14 @@ for (const [query] of gscLatestObservations.queryWatchlist) {
   if (!path) issues.push(`Unmapped GSC watchlist query: ${query}`);
 }
 
+for (const [label, value] of gscLatestObservations.metrics) {
+  if (!label || !value) issues.push("GSC metrics contain an incomplete value.");
+}
+
+if (!/^\d{4}-\d{2}-\d{2}$/.test(gscLatestObservations.date)) {
+  issues.push("GSC observation date must use YYYY-MM-DD format.");
+}
+
 if (issues.length) {
   console.error(`GSC watchlist audit failed with ${issues.length} issue(s):`);
   issues.forEach((issue) => console.error(`- ${issue}`));

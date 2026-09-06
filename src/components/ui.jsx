@@ -7,6 +7,32 @@ export function StatusBadge({ status }) {
   return <span className={`status status-${status.toLowerCase()}`}>{status}</span>;
 }
 
+export function LaunchStatusPanel({ entries, title = "Launch Status" }) {
+  return (
+    <section className="launch-status-panel" aria-label={title}>
+      <div className="launch-status-heading">
+        <h2>{title}</h2>
+        <span>Official-source checks only</span>
+      </div>
+      <div className="launch-status-grid">
+        {entries.map((entry) => (
+          <article key={entry.id}>
+            <div className="launch-status-label">
+              <h3>{entry.label}</h3>
+              <StatusBadge status={entry.status} />
+            </div>
+            <p>{entry.value}</p>
+            <p className="small">Checked {entry.lastChecked}</p>
+            <a className="text-link" href={entry.source} target="_blank" rel="noreferrer">
+              Check source <ChevronRight size={16} />
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export function TaxonomyLinks({ navigate }) {
   const elementNames = [...new Set(aniimo.map((item) => item.element))];
   const roleNames = [...new Set(aniimo.map((item) => item.role))];

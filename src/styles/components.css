@@ -26,6 +26,62 @@
   background: #fff;
 }
 
+.launch-status-panel {
+  margin: 24px 0;
+  border: 1px solid rgba(23, 32, 29, 0.12);
+  border-radius: 8px;
+  background: #f5f8f1;
+  padding: 20px;
+}
+
+.launch-status-heading,
+.launch-status-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.launch-status-heading {
+  margin-bottom: 16px;
+}
+
+.launch-status-heading h2,
+.launch-status-label h3 {
+  margin: 0;
+}
+
+.launch-status-heading span,
+.launch-status-panel .small {
+  color: #52615b;
+  font-size: 13px;
+}
+
+.launch-status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.launch-status-grid article {
+  border: 1px solid rgba(23, 32, 29, 0.1);
+  border-radius: 8px;
+  background: #fff;
+  padding: 16px;
+}
+
+.launch-status-grid article > p {
+  color: #52615b;
+}
+
+.tier-snapshot {
+  margin: 28px 0;
+}
+
+.tier-snapshot > h2 {
+  margin-bottom: 14px;
+}
+
 .quick-card {
   display: block;
   min-height: 174px;

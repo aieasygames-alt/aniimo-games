@@ -1,8 +1,8 @@
 import React from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchRewards, launchTracker, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchRewards, launchStatusEntries, launchTracker, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
-import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
+import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
 const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup", "eklue", "skippy", "helgon"];
 
@@ -357,6 +357,7 @@ export function CodesPage({ navigate }) {
             ["Current status", codeVerificationTemplate.currentStatus],
             ["Source policy", "Official channel or direct in-game verification required."],
           ]} />
+          <LaunchStatusPanel title="Codes And Rewards Status" entries={launchStatusEntries.filter((entry) => ["codes", "pc-console", "mobile"].includes(entry.id))} />
           <SeoGuideBlock items={seoGuides.codes} />
           <div className="code-grid">
             {codes.map((item) => (
@@ -400,6 +401,7 @@ export function RewardsPage() {
         Confirmed official rewards include milestone items, a Prismana Aniimo choice for
         Junior Wayfarers, and a mysterious Susuta egg for official pre-registration.
       </p>
+      <LaunchStatusPanel title="Reward Delivery Status" entries={launchStatusEntries.filter((entry) => ["codes", "pc-console", "mobile"].includes(entry.id))} />
       <RewardGrid />
       <FaqBlock items={faqs.codes} />
     </section>
@@ -420,6 +422,7 @@ export function DownloadPage({ navigate }) {
               ["Platform status", "Official storefront links tracked before install availability."],
               ["Source policy", "Official website and platform stores only."],
             ]} />
+            <LaunchStatusPanel title="Platform Availability Status" entries={launchStatusEntries.filter((entry) => ["pc-console", "mobile", "server"].includes(entry.id))} />
             <SeoGuideBlock items={seoGuides.download} compact />
             <div className="date-grid">
               <InfoPanel title="Release Dates" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline]]} />
@@ -728,6 +731,7 @@ export function LaunchDayPage({ navigate }) {
     <section className="section updates-band">
       <SectionTitle icon={<CalendarDays />} kicker="Launch Day" title="Aniimo Launch Day Command Center" />
       <p className="section-copy">{launchDayCommandCenter.summary}</p>
+      <LaunchStatusPanel entries={launchStatusEntries} />
       <div className="detail-panels">
         <InfoPanel title="Current Launch Status" rows={launchDayCommandCenter.statusRows.map(([label, value, status]) => [label, `${value} (${status})`])} />
         <InfoPanel title="Fast Checks" rows={launchDayCommandCenter.searchIntents.map(([intent, answer]) => [intent, answer])} />
@@ -1544,6 +1548,22 @@ export function ChoiceTopicPage({ topic, navigate }) {
     <section className="section sources-band">
       <SectionTitle icon={<Sparkles />} kicker="Watchlist" title={topic.title} />
       <p className="section-copy">{topic.description} Final rankings should wait for live balance, route access and team testing.</p>
+      {topic.slug === "aniimo-tier-list" && (
+        <section className="tier-snapshot" aria-label="Tier list evidence">
+          <h2>Ranking Evidence</h2>
+          <div className="detail-panels">
+            {tierListSnapshots.map((snapshot) => (
+              <InfoPanel key={snapshot.id} title={snapshot.label} rows={[
+                ["Status", snapshot.status],
+                ["Updated", snapshot.updated],
+                ["Context", snapshot.context],
+                ["Evidence", snapshot.evidence],
+                ["Next check", snapshot.nextCheck],
+              ]} />
+            ))}
+          </div>
+        </section>
+      )}
       <div className="aniimo-grid">
         {picks.map((item) => (
           <article className="aniimo-card" key={item.id}>

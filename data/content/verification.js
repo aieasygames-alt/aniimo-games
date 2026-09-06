@@ -7,6 +7,75 @@ export const verificationStatus = {
   Verified: "Confirmed by official source or direct in-game verification.",
 };
 
+export const launchStatusEntries = [
+  {
+    id: "server",
+    label: "Server status",
+    value: "No live server incident tracked before launch",
+    status: "Watchlist",
+    source: officialLinks.main,
+    lastChecked: gscObservationDate,
+    note: "Change to Online, Maintenance, Degraded, or Outage only after an official post or direct storefront and in-game verification.",
+  },
+  {
+    id: "pc-console",
+    label: "PC and console availability",
+    value: releaseInfo.pcConsole,
+    status: "Confirmed",
+    source: officialLinks.website,
+    lastChecked: gscObservationDate,
+    note: "Calendar date is confirmed; store-specific unlock hour and regional rollout remain watchlist data.",
+  },
+  {
+    id: "mobile",
+    label: "Mobile availability",
+    value: releaseInfo.mobile,
+    status: "Confirmed",
+    source: officialLinks.website,
+    lastChecked: gscObservationDate,
+    note: "Check App Store and Google Play availability by country before saying install is live.",
+  },
+  {
+    id: "codes",
+    label: "Active redeem codes",
+    value: "No public redeem code confirmed yet",
+    status: "Watchlist",
+    source: officialLinks.main,
+    lastChecked: gscObservationDate,
+    note: "A code becomes active only after an official channel or direct in-game redemption test confirms it.",
+  },
+  {
+    id: "known-issues",
+    label: "Known launch issues",
+    value: "No live-game error confirmed before launch",
+    status: "Watchlist",
+    source: officialLinks.main,
+    lastChecked: gscObservationDate,
+    note: "Publish issue guidance only after official support acknowledgement or repeated, reproducible reports.",
+  },
+  {
+    id: "discord",
+    label: "Official community updates",
+    value: "Verify Discord announcements against official Aniimo channels",
+    status: "Watchlist",
+    source: officialLinks.main,
+    lastChecked: gscObservationDate,
+    note: "Community discussion can identify questions but does not confirm codes, downtime, or release changes.",
+  },
+];
+
+export const tierListSnapshots = [
+  {
+    id: "pre-launch-watchlist",
+    label: "Pre-launch watchlist",
+    status: "Watchlist",
+    updated: gscObservationDate,
+    context: "No live balance, complete ability values, team synergy, or progression data has been verified yet.",
+    evidence: "Official Aniimo names, public roles, elements, stages, descriptions, and release materials.",
+    nextCheck: "Replace this snapshot with dated PVE, PVP, support, and early-game notes after direct live testing.",
+  },
+];
+
 export const verificationTemplates = {
   spawnPoint: {
     requiredFields: ["aniimo", "region", "route", "condition", "verifiedAt", "source"],
@@ -72,13 +141,13 @@ export const gscObservationTemplate = {
 
 export const gscLatestObservations = {
   date: gscObservationDate,
-  range: "Last 24 hours, exported 2026-09-05",
-  summary: "Google Search Console now shows stronger demand around tier list, logo, pre-registration, AI-use, demo, Junior Wayfarer, carried items and server-status searches. Mobile remains the stronger device segment, and Brazil, Spain and the US are all active.",
+  range: "2026-08-28 through 2026-09-05",
+  summary: "Google Search Console shows launch-ready demand around rewards, Junior Wayfarer, tier lists, servers, demo status, Discord, downloads and character pages. Prioritize verified updates for pages already earning clicks or ranking near the first page.",
   metrics: [
-    ["Clicks", "20"],
-    ["Impressions", "744"],
-    ["CTR", "2.69%"],
-    ["Average position", "8.09"],
+    ["Clicks", "181"],
+    ["Impressions", "6.18k"],
+    ["CTR", "2.9%"],
+    ["Average position", "8.5"],
   ],
   actions: [
     ["Canonical consolidation", "Keep www traffic redirected to the non-www canonical domain so Search Console signals are not split."],
@@ -92,17 +161,16 @@ export const gscLatestObservations = {
     ["Character searches", "Make Aniimo detail pages easy to scan by number, element, role, stage, location and verification status."],
   ],
   queryWatchlist: [
-    ["aniimo guide", "Improve guide hub links and homepage wording."],
-    ["aniimo tier list", "Make the tier-list page clearly provisional and keep it linked to the database hub."],
-    ["aniimo logo png", "Add direct logo-source and usage notes to the media page."],
-    ["pre registro aniimo", "Strengthen Portuguese pre-registration and reward copy."],
-    ["aniimo ai use", "Keep AI-use wording tied to official-source checks and publisher identity."],
-    ["aniimo demo", "Clarify demo and playtest boundaries against the closed-beta timeline."],
-    ["aniimo developer", "Keep developer and publisher naming consistent across trust pages."],
-    ["aniimo junior wayfarer", "Point directly to the reward page and separate it from code queries."],
-    ["aniimo carried items", "Prepare item-interaction pages as watchlist content until verified."],
-    ["aniimo server status", "Keep launch-day availability and outage wording separate from rumor."],
-    ["aniimo discord", "Improve community trust copy and link from official-source pages."],
+    ["aniimo pre register rewards", "Keep claim eligibility, reward status, official source, and launch-day delivery guidance current."],
+    ["aniimo junior wayfarer", "Keep the reward page separate from code claims and add official delivery verification after launch."],
+    ["aniimo tier list", "Publish dated, mode-specific rankings only after live ability and balance evidence is recorded."],
+    ["aniimo servers", "Update server state and incident guidance immediately after official or reproducible evidence appears."],
+    ["aniimo demo", "Clarify demo, playtest, beta history, and live availability without implying an unannounced test."],
+    ["aniimo discord", "Place the official community path and freshness context above discussion links."],
+    ["aniimo logo png", "Keep official logo source and usage guidance clear on the media page."],
+    ["aniimo celestis", "Refresh the character detail page when forms, abilities, locations, or evolution evidence is confirmed."],
+    ["does aniimo use ai", "Keep trust claims limited to named official sources and current publisher information."],
+    ["aniimo download", "Route installation intent to official stores, platform availability, and safe-download guidance."],
   ],
 };
 

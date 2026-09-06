@@ -1,6 +1,6 @@
 # Aniimo Indexing Candidates
 
-Generated: 2026-09-01T08:02:55.628Z
+Generated: 2026-09-05T02:43:56.871Z
 
 Use this list after a GitHub push and Cloudflare deployment. Submit the first sections first when manual indexing quota is limited.
 
@@ -51,9 +51,9 @@ Use this list after a GitHub push and Cloudflare deployment. Submit the first se
 ## SEMrush Community And Media
 
 - https://aniimo.games/media/ - Aniimo Images, Screenshots & Media Gallery
-- https://aniimo.games/topics/aniimo-wiki-dex/ - Aniimo Wiki and Dex
-- https://aniimo.games/topics/aniimo-discord/ - Aniimo Discord Server
-- https://aniimo.games/topics/aniimo-reddit/ - Aniimo Reddit Discussions
+- https://aniimo.games/topics/aniimo-wiki-dex/ - Aniimo Wiki, Dex and All Aniimo List
+- https://aniimo.games/topics/aniimo-discord/ - Aniimo Discord Server: Official Invite, Codes & Launch Updates
+- https://aniimo.games/topics/aniimo-reddit/ - Aniimo Reddit Discussions, Rumors & Community Questions
 - https://aniimo.games/topics/aniimo-pax-east/ - Aniimo PAX East Watchlist
 - https://aniimo.games/topics/aniimo-tgs/ - Aniimo TGS Watchlist
 - https://aniimo.games/media/aniimo-trailers/ - Aniimo Trailers
@@ -61,24 +61,37 @@ Use this list after a GitHub push and Cloudflare deployment. Submit the first se
 
 ## SEMrush Gameplay And Trust
 
-- https://aniimo.games/compare/aniimo-ai/ - Does Aniimo Use AI?
+- https://aniimo.games/compare/aniimo-ai/ - Does Aniimo Use AI? Official Source Check
 - https://aniimo.games/compare/aniimo-developer/ - Aniimo Developer and Publisher
 - https://aniimo.games/compare/aniimo-price/ - Aniimo Price and Free-to-Play Status
 - https://aniimo.games/compare/aniimo-multiplayer/ - Is Aniimo Multiplayer?
 - https://aniimo.games/topics/aniimo-gameplay/ - Aniimo Gameplay
 - https://aniimo.games/topics/aniimo-review/ - Aniimo Review Watchlist
 - https://aniimo.games/topics/aniimo-demo/ - Aniimo Demo and Playtest Status
-- https://aniimo.games/topics/aniimo-mmo/ - Is Aniimo an MMO?
-- https://aniimo.games/topics/aniimo-shiny/ - Does Aniimo Have Shiny Forms?
+- https://aniimo.games/topics/aniimo-mmo/ - Is Aniimo an MMO or Online RPG?
+- https://aniimo.games/topics/aniimo-shiny/ - Does Aniimo Have Shiny, Rare or Special Forms?
 - https://aniimo.games/topics/aniimo-aniilog/ - Aniimo Aniilog Guide
 - https://aniimo.games/topics/aniimo-carried-items/ - Aniimo Carried Items
 
 ## Localized Entrypoints
 
+- https://aniimo.games/pt/aniimo-pre-registro/ - Aniimo Pre Registro e Recompensas
 - https://aniimo.games/fr/aniimo-date-de-sortie/ - Aniimo Date de Sortie
 - https://aniimo.games/fr/aniimo-jeu/ - Aniimo Jeu, Plateformes et Gameplay
 - https://aniimo.games/de/wann-kommt-aniimo/ - Wann Kommt Aniimo Raus?
 - https://aniimo.games/de/aniimo-spiel/ - Aniimo Spiel, Download und Plattformen
+- https://aniimo.games/es/aniimo-descargar/ - Aniimo Descargar y Fuentes Oficiales
+- https://aniimo.games/es/aniimo-codigos/ - Aniimo Codigos y Recompensas
+- https://aniimo.games/es/aniimo-sitio-oficial/ - Aniimo Sitio Oficial y Enlaces
+- https://aniimo.games/pt/aniimo-download/ - Aniimo Download e Fontes Oficiais
+- https://aniimo.games/pt/aniimo-codigos/ - Aniimo Codigos e Recompensas
+- https://aniimo.games/pt/aniimo-site-oficial/ - Aniimo Site Oficial e Links
+- https://aniimo.games/fr/aniimo-telecharger/ - Aniimo Telecharger et Sources Officielles
+- https://aniimo.games/fr/aniimo-codes/ - Aniimo Codes et Recompenses
+- https://aniimo.games/fr/aniimo-site-officiel/ - Aniimo Site Officiel et Liens
+- https://aniimo.games/de/aniimo-herunterladen/ - Aniimo Herunterladen und Offizielle Quellen
+- https://aniimo.games/de/aniimo-codes/ - Aniimo Codes und Belohnungen
+- https://aniimo.games/de/aniimo-offizielle-website/ - Aniimo Offizielle Website und Links
 
 ## Troubleshooting
 
@@ -143,10 +156,23 @@ Use this list after a GitHub push and Cloudflare deployment. Submit the first se
 - https://aniimo.games/topics/aniimo-shiny/
 - https://aniimo.games/topics/aniimo-aniilog/
 - https://aniimo.games/topics/aniimo-carried-items/
+- https://aniimo.games/pt/aniimo-pre-registro/
 - https://aniimo.games/fr/aniimo-date-de-sortie/
 - https://aniimo.games/fr/aniimo-jeu/
 - https://aniimo.games/de/wann-kommt-aniimo/
 - https://aniimo.games/de/aniimo-spiel/
+- https://aniimo.games/es/aniimo-descargar/
+- https://aniimo.games/es/aniimo-codigos/
+- https://aniimo.games/es/aniimo-sitio-oficial/
+- https://aniimo.games/pt/aniimo-download/
+- https://aniimo.games/pt/aniimo-codigos/
+- https://aniimo.games/pt/aniimo-site-oficial/
+- https://aniimo.games/fr/aniimo-telecharger/
+- https://aniimo.games/fr/aniimo-codes/
+- https://aniimo.games/fr/aniimo-site-officiel/
+- https://aniimo.games/de/aniimo-herunterladen/
+- https://aniimo.games/de/aniimo-codes/
+- https://aniimo.games/de/aniimo-offizielle-website/
 - https://aniimo.games/troubleshooting/
 - https://aniimo.games/troubleshooting/aniimo-server-status/
 - https://aniimo.games/troubleshooting/aniimo-known-issues/
