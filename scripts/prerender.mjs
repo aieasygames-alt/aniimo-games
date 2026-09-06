@@ -1,9 +1,10 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { aniimo, regions } from "../data/content.js";
+import { aniimo, gameInfo, launchPriorityPages, launchRewards, releaseInfo, regions, siteLastUpdated, sourceLastChecked } from "../data/content.js";
 import { canonicalUrl, pageFaqsForRoute, prerenderRoutes, resolveRoute, structuredDataForRoute } from "../src/lib/routes.js";
 
 const indexHtml = "dist/index.html";
+const indexTemplate = readFileSync(indexHtml, "utf8");
 const routes = prerenderRoutes();
 const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup", "eklue", "skippy", "helgon"];
 
@@ -47,6 +48,16 @@ function fallbackHtml(routeInfo) {
 }
 
 function fallbackBody(routeInfo) {
+  if (routeInfo.path === "/") {
+    const priorityLinks = launchPriorityPages.slice(0, 6)
+      .map(([href, label, query, action]) => `<li><a href="${href}">${escapeHtml(label)}</a>: ${escapeHtml(query)}. ${escapeHtml(action)}</li>`)
+      .join("");
+    const rewards = launchRewards.slice(0, 4)
+      .map((item) => `<li><strong>${escapeHtml(item.title)}:</strong> ${escapeHtml(item.reward)}</li>`)
+      .join("");
+    return `<section><h2>What is Aniimo?</h2><p>${escapeHtml(gameInfo.summary)}</p><p>Official public information lists PC and console launch for ${escapeHtml(releaseInfo.pcConsole)} and mobile launch for ${escapeHtml(releaseInfo.mobile)}. Exact unlock times, active redeem codes, live server incidents and route coordinates remain clearly labeled until official or in-game verification confirms them.</p></section><section><h2>Launch Information</h2><p>Aniimo.games tracks official download links, release dates, rewards, codes, server status, map regions and Aniimo database entries. Last source check: ${escapeHtml(sourceLastChecked)}. Last site update: ${escapeHtml(siteLastUpdated)}.</p><ul>${priorityLinks}</ul></section><section><h2>Confirmed Rewards</h2><ul>${rewards}</ul></section><section><h2>Editorial Policy</h2><p>Aniimo.games is an independent guide site. Official Aniimo, publisher, storefront and Wiki sources are preferred; community reports are treated as research leads until they can be verified.</p><p><a href="/about/">About Aniimo.games</a> | <a href="/editorial-policy/">Editorial policy</a> | <a href="/contact/">Contact</a> | <a href="/sources/">Official sources</a></p></section>`;
+  }
+
   if (routeInfo.path === "/aniimo/") {
     const entries = priorityAniimo();
     return `<section><h2>Popular Aniimo To Check First</h2>${entries.map((item) => `<article><h3><a href="/aniimo/${item.id}/">${escapeHtml(item.name)}</a></h3><p>${escapeHtml(item.description)}</p><p>${escapeHtml([item.no, item.element, item.role, item.stage, item.region].join(" | "))}</p></article>`).join("")}</section>`;
@@ -102,9 +113,9 @@ function fallbackLinks(routeInfo) {
 }
 
 for (const route of routes) {
-  const target = join("dist", route, "index.html");
+  const target = route === "/" ? indexHtml : join("dist", route, "index.html");
   mkdirSync(dirname(target), { recursive: true });
-  writeFileSync(target, injectMeta(readFileSync(indexHtml, "utf8"), route));
+  writeFileSync(target, injectMeta(indexTemplate, route));
 }
 
 console.log(`Prerendered ${routes.length} routes.`);

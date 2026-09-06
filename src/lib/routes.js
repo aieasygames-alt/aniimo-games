@@ -417,7 +417,7 @@ export function primarySitemapRoutes() {
 
 export function prerenderRoutes() {
   return uniqueRoutes([
-    ...fullSitemapRoutes().filter((path) => path !== "/"),
+    ...fullSitemapRoutes(),
     ...aniimo.flatMap((item) => (item.aliases || []).map((alias) => normalizePath(`/aniimo/${alias}`))),
   ]);
 }
@@ -445,9 +445,27 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
   const base = [
     {
       "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Aniimo.games",
+      url: siteUrl,
+      description: "Independent Aniimo wiki and guide site using official public sources and clearly labeled launch verification notes.",
+      logo: canonicalAssetUrl("/images/brand/aniimo-logo.webp"),
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "editorial support",
+        url: `${siteUrl}/contact/`,
+      },
+    },
+    {
+      "@context": "https://schema.org",
       "@type": "WebSite",
       name: "Aniimo Wiki",
       url: siteUrl,
+      publisher: {
+        "@type": "Organization",
+        name: "Aniimo.games",
+        url: siteUrl,
+      },
       potentialAction: {
         "@type": "SearchAction",
         target: `${siteUrl}/aniimo/?q={search_term_string}`,
@@ -485,6 +503,27 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
       url: siteUrl,
       image: canonicalAssetUrl(gameInfo.ogImage),
       datePublished: releaseInfo.pcConsole,
+    });
+  }
+
+  if (routeInfo.path === "/") {
+    base.push({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: routeInfo.title,
+      description: routeInfo.description,
+      url,
+      dateModified: siteLastUpdated,
+      author: {
+        "@type": "Organization",
+        name: "Aniimo.games",
+        url: siteUrl,
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Aniimo.games",
+        url: siteUrl,
+      },
     });
   }
 

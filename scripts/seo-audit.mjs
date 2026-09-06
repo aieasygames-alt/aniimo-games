@@ -128,6 +128,11 @@ const indexChecks = [
   ["Open Graph title", /property="og:title"/],
   ["Open Graph image", /property="og:image"/],
   ["Twitter card", /name="twitter:card"/],
+  ["server-rendered H1", /<h1>[^<]+<\/h1>/],
+  ["server-rendered Aniimo content", /What is Aniimo\?/],
+  ["Organization JSON-LD", /"@type":"Organization"/],
+  ["WebPage JSON-LD", /"@type":"WebPage"/],
+  ["machine-readable modified date", new RegExp(`"dateModified":"${siteLastUpdated}"`)],
 ];
 
 for (const [label, pattern] of indexChecks) {
