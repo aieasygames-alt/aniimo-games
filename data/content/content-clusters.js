@@ -1062,6 +1062,7 @@ export const searchSuggestionTopics = [
     slug: "aniimo-gameplay",
     title: "Aniimo Gameplay",
     description: "Summarize confirmed Aniimo gameplay systems including creature catching, Twine, Homeland, Egg Heist and exploration.",
+    image: "/images/media/aniimo-exploration-footage.webp",
     intro: "Gameplay searches help users decide whether Aniimo is worth following. This page summarizes confirmed public systems while keeping exact balance, route and progression details for launch verification.",
     points: [
       ["Core loop", "Official public material positions Aniimo around creature catching, collecting, open-world exploration and the world of Idyll."],
@@ -1231,6 +1232,7 @@ export const searchSuggestionTopics = [
     slug: "aniimo-pax-east",
     title: "Aniimo PAX East Watchlist",
     description: "Track Aniimo PAX East searches, event footage, announcements and source-safe follow-up pages.",
+    image: "/images/media/aniimo-pax-east-homeland.webp",
     intro: "Event searches can point to trailers, demos, interviews or preview coverage. This page keeps PAX East references as source leads until official material confirms what was shown.",
     points: [
       ["Event-source rule", "Use official event pages, official Aniimo posts, verified video uploads or storefront updates before treating PAX East details as confirmed."],
@@ -1626,6 +1628,14 @@ export const mediaGalleryItems = [
   ["Blitzwood region", "/images/regions/region-blitzwood.webp", "Region artwork used by Blitzwood map and location pages."],
   ["Nimbus Fields region", "/images/regions/region-nimbus-fields.webp", "Region artwork used by Nimbus Fields map and location pages."],
   ["Forest of Falling Stars region", "/images/regions/region-forest-of-falling-stars.webp", "Region artwork used by Forest of Falling Stars map and location pages."],
+  ["Real-time challenges", "/images/media/aniimo-real-time-challenges.webp", "Gameplay preview showing a real-time challenge encounter and team interface."],
+  ["Global launch announcement", "/images/media/aniimo-global-launch.webp", "Official-style launch announcement artwork showing PC, console and mobile timing."],
+  ["Exploration footage", "/images/media/aniimo-exploration-footage.webp", "In-game exploration footage showing traversal through an outdoor Aniimo environment."],
+  ["Exploration preview", "/images/media/aniimo-exploration.webp", "Exploration preview showing a player character moving through a bright natural area."],
+  ["PAX East Homeland preview", "/images/media/aniimo-pax-east-homeland.webp", "PAX East preview artwork showing Homeland context and an Aniimo encounter."],
+  ["Event plaza", "/images/media/aniimo-event-plaza.webp", "Event plaza scene with Aniimo gathered around a decorated public space."],
+  ["Character preview", "/images/media/aniimo-character-preview.webp", "Character and Aniimo preview image for media and reveal context."],
+  ["Aniimo events", "/images/media/aniimo-events.webp", "Aniimo event preview artwork for announcements and limited-time activity coverage."],
 ].map(([title, image, description]) => ({ title, image, description }));
 
 export const sourceArchiveItems = [
