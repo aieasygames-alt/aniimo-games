@@ -1078,6 +1078,7 @@ export const searchSuggestionTopics = [
     slug: "aniimo-combat",
     title: "Aniimo Combat Guide",
     description: "Track Aniimo combat questions around roles, elements, Twine, real-time challenges and launch verification without final balance claims.",
+    image: "/images/media/aniimo-combat-preview.webp",
     intro: "Combat searches ask whether Aniimo has battles, roles, team planning and skill expression. This page can explain confirmed public combat-adjacent systems while keeping exact stats and meta rankings for live testing.",
     points: [
       ["Confirmed anchors", "Aniimo.games can connect combat intent to roles, elements, Twine, real-time challenges and Egg Heist without inventing exact values."],
@@ -1636,6 +1637,14 @@ export const mediaGalleryItems = [
   ["Event plaza", "/images/media/aniimo-event-plaza.webp", "Event plaza scene with Aniimo gathered around a decorated public space."],
   ["Character preview", "/images/media/aniimo-character-preview.webp", "Character and Aniimo preview image for media and reveal context."],
   ["Aniimo events", "/images/media/aniimo-events.webp", "Aniimo event preview artwork for announcements and limited-time activity coverage."],
+  ["Evolution forms preview", "/images/media/aniimo-evolution-forms.webp", "Evolution preview showing multiple Aniimo forms and stage progression."],
+  ["Combat preview", "/images/media/aniimo-combat-preview.webp", "Combat preview showing an Aniimo encounter and active battle effects."],
+  ["Twine combat", "/images/media/aniimo-twine-combat.webp", "Gameplay screenshot showing Twine combat controls and a live encounter."],
+  ["Official Wiki gallery", "/images/media/aniimo-official-wiki-gallery.webp", "Official Wiki gallery screenshot showing Aniimo media and game information."],
+  ["Steam store listing", "/images/media/aniimo-steam-store.webp", "Steam store listing screenshot for Aniimo PC availability and media."],
+  ["Xbox store listing", "/images/media/aniimo-xbox-store.webp", "Xbox store listing screenshot for Aniimo console availability."],
+  ["PlayStation store listing", "/images/media/aniimo-playstation-store.webp", "PlayStation Store listing screenshot for Aniimo PS5 availability."],
+  ["Google Play listing", "/images/media/aniimo-google-play-store.webp", "Google Play listing screenshot for Aniimo Android pre-registration."],
 ].map(([title, image, description]) => ({ title, image, description }));
 
 export const sourceArchiveItems = [

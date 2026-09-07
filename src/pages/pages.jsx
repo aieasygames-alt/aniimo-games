@@ -1671,6 +1671,7 @@ export function PlatformPage({ type }) {
       title: "Aniimo Steam Download Guide",
       intro: "Aniimo PC availability is tracked for September 16, 2026, with Steam acting as one of the official storefronts.",
       names: ["Steam"],
+      image: "/images/media/aniimo-steam-store.webp",
       notes: [
         { title: "Use the official Steam listing", body: "PC players should wishlist Aniimo through Steam or use the official website to confirm launch availability. Avoid reposted installers." },
         { title: "Release timing", body: `Steam launch is tied to the PC and console window on ${releaseInfo.pcConsole}. Exact hourly unlock timing still needs storefront confirmation.` },
@@ -1681,6 +1682,7 @@ export function PlatformPage({ type }) {
       title: "Aniimo Mobile Download Guide",
       intro: "Aniimo mobile availability is tracked for September 23, 2026 through official iOS and Android storefronts.",
       names: ["App Store", "Google Play"],
+      image: "/images/media/aniimo-google-play-store.webp",
       notes: [
         { title: "Use official mobile listings", body: "Mobile players should use App Store or Google Play pages when they are visible in their region. Avoid unofficial APK mirrors before launch." },
         { title: "Release timing", body: `Mobile launch is currently tracked for ${releaseInfo.mobile}. Store visibility can vary by country and local storefront timing.` },
@@ -1691,6 +1693,7 @@ export function PlatformPage({ type }) {
       title: "Aniimo PS5 Download & Wishlist Guide",
       intro: "Aniimo PlayStation 5 availability is tracked through the official PlayStation listing and the September 16, 2026 console launch window.",
       names: ["PlayStation 5"],
+      image: "/images/media/aniimo-playstation-store.webp",
       notes: [
         { title: "Use the PlayStation listing", body: "Console players should use the official PlayStation page or the Aniimo website to track wishlist and launch availability." },
         { title: "Release timing", body: `PS5 launch is tied to the PC and console window on ${releaseInfo.pcConsole}. Exact regional store timing still needs storefront confirmation.` },
@@ -1701,6 +1704,7 @@ export function PlatformPage({ type }) {
       title: "Aniimo Xbox Download & Wishlist Guide",
       intro: "Aniimo Xbox availability is tracked through the official Xbox listing and the September 16, 2026 console launch window.",
       names: ["Xbox"],
+      image: "/images/media/aniimo-xbox-store.webp",
       notes: [
         { title: "Use the Xbox listing", body: "Xbox players should use the official Microsoft store page or the Aniimo website to track wishlist and launch availability." },
         { title: "Release timing", body: `Xbox launch is tied to the PC and console window on ${releaseInfo.pcConsole}. Exact hourly unlock timing still needs storefront confirmation.` },
@@ -1711,6 +1715,7 @@ export function PlatformPage({ type }) {
       title: "Aniimo Epic Games Store Download Guide",
       intro: "Aniimo Epic Games Store availability is tracked through the official Epic listing and the September 16, 2026 PC launch window.",
       names: ["Epic Games Store"],
+      image: "/images/media/aniimo-steam-store.webp",
       notes: [
         { title: "Use the Epic listing", body: "PC players can track Aniimo through the official Epic Games Store page or the official Aniimo website." },
         { title: "Release timing", body: `Epic Games Store launch is tied to the PC and console window on ${releaseInfo.pcConsole}. Exact store unlock timing still needs confirmation.` },
@@ -1721,6 +1726,7 @@ export function PlatformPage({ type }) {
       title: "Aniimo iOS Download & App Store Guide",
       intro: "Aniimo iOS availability is tracked through the official App Store listing and the September 23, 2026 mobile launch window.",
       names: ["App Store"],
+      image: "/images/media/aniimo-google-play-store.webp",
       notes: [
         { title: "Use the App Store", body: "iPhone and iPad players should use the official App Store listing when it is visible in their region." },
         { title: "Release timing", body: `iOS launch is tracked for ${releaseInfo.mobile}. App Store visibility can vary by country and account region.` },
@@ -1731,6 +1737,7 @@ export function PlatformPage({ type }) {
       title: "Aniimo Android Download & Google Play Guide",
       intro: "Aniimo Android availability is tracked through the official Google Play listing and the September 23, 2026 mobile launch window.",
       names: ["Google Play"],
+      image: "/images/media/aniimo-google-play-store.webp",
       notes: [
         { title: "Use Google Play", body: "Android players should use the official Google Play page by Pawprint Studio when it is available in their region." },
         { title: "Release timing", body: `Android launch is tracked for ${releaseInfo.mobile}. Google Play visibility can vary by country and local rollout timing.` },
@@ -1747,6 +1754,7 @@ export function PlatformPage({ type }) {
     <section className="section split-section download-band">
       <div>
         <SectionTitle icon={<Download />} kicker="Platforms" title={platformConfig.title} />
+        {platformConfig.image && <img className="page-banner" src={platformConfig.image} alt={`${platformConfig.names.join(" and ")} Aniimo store listing`} width="1600" height="900" loading="lazy" />}
         <p className="section-copy">{platformConfig.intro}</p>
         <SeoGuideBlock compact items={platformConfig.notes} />
       </div>
