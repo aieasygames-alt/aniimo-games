@@ -41,6 +41,9 @@ export const staticRoutes = [
   { path: "/troubleshooting/", label: "Troubleshooting", title: "Aniimo Download & Pre-Registration Troubleshooting", description: "Fix common Aniimo download, store visibility, pre-registration and region availability questions." },
   { path: "/source-archive/", label: "Source Archive", title: "Aniimo Source Archive", description: "Track official Aniimo sources, storefront links, checked dates and which pages each source supports." },
   { path: "/best-aniimo/", label: "Best Aniimo", title: "Best Aniimo to Track Before Launch | Aniimo Wiki", description: "Review useful Aniimo picks to track before launch by role, element, region coverage and official source status." },
+  { path: "/compare/aniimo/", label: "Aniimo Compare", title: "Compare Aniimo | Aniimo Wiki", description: "Compare Aniimo by element, role, stage, region, evolution, abilities and source status." },
+  { path: "/team-builder/", label: "Team Builder", title: "Aniimo Team Builder | Aniimo Wiki", description: "Build and share a six-slot Aniimo team while checking element coverage, role coverage, regions, stages and public data status." },
+  { path: "/collection-tracker/", label: "Collection Tracker", title: "Aniimo Collection Tracker | Aniimo Wiki", description: "Track viewed, wanted, captured and verified Aniimo entries locally in your browser." },
   { path: "/platforms/steam/", label: "Steam", title: "Aniimo Steam Download & Wishlist Guide", description: "Find the official Aniimo Steam page, PC launch date, wishlist notes and safe download guidance." },
   { path: "/platforms/mobile/", label: "Mobile", title: "Aniimo Mobile Download, App Store & Google Play Guide", description: "Track Aniimo mobile release timing, App Store and Google Play links, pre-registration notes and device guidance." },
   { path: "/platforms/ps5/", label: "PS5", title: "Aniimo PS5 Download & Wishlist Guide", description: "Track Aniimo PlayStation 5 launch timing, official wishlist source, console release notes and safe download guidance." },
@@ -183,6 +186,9 @@ export function resolveRoute(path) {
       freshnessPage: target,
     };
   }
+  if (normalized === "/compare/aniimo/") return { type: "aniimo-compare", path: normalized, title: "Compare Aniimo | Aniimo Wiki", description: "Compare Aniimo by element, role, stage, region, evolution, abilities and source status." };
+  if (normalized === "/team-builder/") return { type: "team-builder", path: normalized, title: "Aniimo Team Builder | Aniimo Wiki", description: "Build and share a six-slot Aniimo team while checking element coverage, role coverage, regions, stages and public data status." };
+  if (normalized === "/collection-tracker/") return { type: "collection-tracker", path: normalized, title: "Aniimo Collection Tracker | Aniimo Wiki", description: "Track viewed, wanted, captured and verified Aniimo entries locally in your browser." };
   const aniimoMatch = normalized.match(/^\/aniimo\/([^/]+)\//);
   if (aniimoMatch) {
     const detail = findAniimoBySlug(aniimoMatch[1]);

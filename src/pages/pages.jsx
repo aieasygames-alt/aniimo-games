@@ -1,5 +1,5 @@
-import React from "react";
-import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles } from "lucide-react";
+import React, { useEffect, useMemo, useState } from "react";
+import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles, Plus, X, Copy, Download as DownloadIcon } from "lucide-react";
 import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
@@ -974,7 +974,8 @@ export function SiteIndexPage({ navigate }) {
         region guides, element pages, role pages and official source pages.
       </p>
       <div className="site-index-grid">
-        <LinkGroup title="Core Guides" items={corePages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
+          <LinkGroup title="Core Guides" items={corePages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
+          <LinkGroup title="Player Tools" items={[["Aniimo Compare", "/compare/aniimo/", "Compare public Aniimo data side by side."], ["Team Builder", "/team-builder/", "Build and share a six-slot team."], ["Collection Tracker", "/collection-tracker/", "Track wanted, captured and verified entries locally."]]} navigate={navigate} />
         <LinkGroup title="GSC Query Watchlist" items={gscLatestObservations.queryWatchlist.map(([query, action]) => [
           query,
           gscWatchlistPath(query),
@@ -1063,6 +1064,53 @@ export function CompareHubPage({ navigate }) {
       <LinkGroup title="Comparison Guides" items={comparisonPages} navigate={navigate} />
     </section>
   );
+}
+
+function ToolShell({ kicker, title, intro, children }) {
+  return <section className="section page-detail tool-page"><p className="eyebrow">{kicker}</p><h1>{title}</h1><p className="section-copy">{intro}</p>{children}</section>;
+}
+
+function AniimoPicker({ selected, onToggle, limit = 4 }) {
+  const [query, setQuery] = useState("");
+  const results = aniimo.filter((item) => `${item.name} ${item.element} ${item.role}`.toLowerCase().includes(query.toLowerCase())).slice(0, 18);
+  return <div className="tool-picker"><label className="search-field"><Search size={17} /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search Aniimo" /></label><div className="picker-grid">{results.map((item) => { const active = selected.some((entry) => entry.id === item.id); return <button type="button" className={`picker-item ${active ? "active" : ""}`} key={item.id} onClick={() => onToggle(item)} disabled={!active && selected.length >= limit}><CreatureImage item={item} /><span><strong>{item.name}</strong><small>{item.element} · {item.role}</small></span>{active ? <X size={15} /> : <Plus size={15} />}</button>; })}</div></div>;
+}
+
+export function AniimoComparePage({ navigate }) {
+  const [selected, setSelected] = useState(aniimo.slice(0, 2));
+  const toggle = (item) => setSelected((current) => current.some((entry) => entry.id === item.id) ? current.filter((entry) => entry.id !== item.id) : current.length < 4 ? [...current, item] : current);
+  return <ToolShell kicker="Aniimo Tool" title="Compare Aniimo" intro="Select up to four Aniimo to compare public index data, evolution, abilities, regions and verification status.">
+    <AniimoPicker selected={selected} onToggle={toggle} />
+    <div className="tool-actions"><button type="button" className="secondary-action" onClick={() => navigator.clipboard?.writeText(`${window.location.origin}/compare/aniimo/?ids=${selected.map((item) => item.id).join(",")}`)}><Copy size={16} /> Copy comparison link</button><a className="text-link" href="/aniimo/" onClick={(e) => navigate(e, "/aniimo/")}>Browse full database <ChevronRight size={16} /></a></div>
+    <div className="comparison-table table-shell"><table><thead><tr><th>Field</th>{selected.map((item) => <th key={item.id}>{item.name}</th>)}</tr></thead><tbody>{[["No.", (item) => item.no], ["Element", (item) => item.element], ["Role", (item) => item.role], ["Stage", (item) => item.stage], ["Region", (item) => item.region], ["Forms", (item) => item.forms.join(" → ")], ["Ability", (item) => item.ability], ["Use", (item) => item.use], ["Status", (item) => item.status]].map(([label, get]) => <tr key={label}><th>{label}</th>{selected.map((item) => <td key={item.id}>{get(item)}</td>)}</tr>)}</tbody></table></div>
+  </ToolShell>;
+}
+
+export function TeamBuilderPage({ navigate }) {
+  const [team, setTeam] = useState([]);
+  const [copied, setCopied] = useState(false);
+  const toggle = (item) => setTeam((current) => current.some((entry) => entry.id === item.id) ? current.filter((entry) => entry.id !== item.id) : current.length < 6 ? [...current, item] : current);
+  const elements = [...new Set(team.map((item) => item.element))]; const roles = [...new Set(team.map((item) => item.role))];
+  const copy = () => { navigator.clipboard?.writeText(`${window.location.origin}/team-builder/?ids=${team.map((item) => item.id).join(",")}`); setCopied(true); setTimeout(() => setCopied(false), 1800); };
+  return <ToolShell kicker="Aniimo Tool" title="Aniimo Team Builder" intro="Build a six-slot team from the public database. Coverage is descriptive, not a final combat ranking, until live balance data is verified.">
+    <div className="team-slots">{Array.from({ length: 6 }, (_, index) => { const item = team[index]; return <div className="team-slot" key={item?.id || index}>{item ? <><CreatureImage item={item} /><strong>{item.name}</strong><button type="button" aria-label={`Remove ${item.name}`} onClick={() => toggle(item)}><X size={14} /></button></> : <span>Slot {index + 1}</span>}</div>; })}</div>
+    <AniimoPicker selected={team} onToggle={toggle} limit={6} />
+    <div className="coverage-grid"><InfoPanel title="Element coverage" rows={elements.length ? elements.map((value) => [value, `${team.filter((item) => item.element === value).length} selected`]) : [["Elements", "Choose Aniimo to see coverage"]]} /><InfoPanel title="Role coverage" rows={roles.length ? roles.map((value) => [value, `${team.filter((item) => item.role === value).length} selected`]) : [["Roles", "Choose Aniimo to see coverage"]]} /></div>
+    <div className="tool-actions"><button type="button" className="secondary-action" onClick={copy}><Copy size={16} /> {copied ? "Copied" : "Copy team link"}</button><a className="text-link" href="/compare/aniimo/" onClick={(e) => navigate(e, "/compare/aniimo/")}>Compare selected Aniimo <ChevronRight size={16} /></a></div>
+  </ToolShell>;
+}
+
+export function CollectionTrackerPage({ navigate }) {
+  const [state, setState] = useState(() => { try { return JSON.parse(localStorage.getItem("aniimo-tracker") || "{}"); } catch { return {}; } });
+  useEffect(() => localStorage.setItem("aniimo-tracker", JSON.stringify(state)), [state]);
+  const counts = Object.values(state).reduce((acc, value) => { acc[value] = (acc[value] || 0) + 1; return acc; }, {});
+  const update = (id, value) => setState((current) => { const next = { ...current }; if (value === "none") delete next[id]; else next[id] = value; return next; });
+  const exportData = () => { const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" }); const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.href = url; link.download = "aniimo-collection.json"; link.click(); URL.revokeObjectURL(url); };
+  return <ToolShell kicker="Aniimo Tool" title="Aniimo Collection Tracker" intro="Track wanted, captured and verified entries in this browser. No account is required; export a backup before changing devices.">
+    <div className="tracker-summary"><strong>{Object.keys(state).length} / {aniimo.length}</strong><span>tracked entries</span><span>Wanted {counts.wanted || 0}</span><span>Captured {counts.captured || 0}</span><span>Verified {counts.verified || 0}</span></div>
+    <div className="tracker-list">{aniimo.map((item) => <article className="tracker-row" key={item.id}><CreatureImage item={item} /><div><strong>{item.name}</strong><small>{item.element} · {item.region}</small></div><select value={state[item.id] || "none"} onChange={(e) => update(item.id, e.target.value)} aria-label={`Tracking status for ${item.name}`}><option value="none">Not tracked</option><option value="wanted">Wanted</option><option value="captured">Captured</option><option value="verified">Verified</option></select></article>)}</div>
+    <div className="tool-actions"><button type="button" className="secondary-action" onClick={exportData}><DownloadIcon size={16} /> Export tracker</button><a className="text-link" href="/aniimo/" onClick={(e) => navigate(e, "/aniimo/")}>Open database <ChevronRight size={16} /></a></div>
+  </ToolShell>;
 }
 
 export function MechanicsHubPage({ navigate }) {

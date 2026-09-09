@@ -55,6 +55,9 @@ import {
   TopicGuidePage,
   TroubleshootingPage,
   UpdatesPage,
+  AniimoComparePage,
+  TeamBuilderPage,
+  CollectionTrackerPage,
 } from "./pages/pages.jsx";
 import "./styles.css";
 
@@ -190,6 +193,12 @@ function App() {
           <FreshnessPage topic={routeInfo.freshnessPage} />
         ) : routeInfo.type === "localized-topic" ? (
           <TopicGuidePage topic={routeInfo.localizedTopic} kicker={routeInfo.localizedTopic.locale.toUpperCase()} icon={<Search />} />
+        ) : routeInfo.type === "aniimo-compare" ? (
+          <AniimoComparePage navigate={navigate} />
+        ) : routeInfo.type === "team-builder" ? (
+          <TeamBuilderPage navigate={navigate} />
+        ) : routeInfo.type === "collection-tracker" ? (
+          <CollectionTrackerPage navigate={navigate} />
         ) : routeInfo.path === "/aniimo/" ? (
           <DatabasePage {...sharedProps} />
         ) : routeInfo.path === "/map/" ? (
