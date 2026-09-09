@@ -113,6 +113,9 @@
 .tracker-row .creature-image { width: 48px; height: 48px; margin: 0; }
 .tracker-row div { display: grid; gap: 3px; }
 .tracker-row select { width: 100%; }
+.card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 12px; }
+.card-actions .text-link { font-size: 13px; }
+.mini-action { display: inline-flex; align-items: center; gap: 5px; border: 0; padding: 0; background: transparent; color: #1f6d55; font: inherit; font-size: 13px; font-weight: 750; cursor: pointer; }
 
 @media (max-width: 760px) {
   .team-slots { grid-template-columns: repeat(3, minmax(0, 1fr)); }

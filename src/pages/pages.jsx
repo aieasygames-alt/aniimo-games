@@ -125,6 +125,8 @@ export function HomePage(props) {
 export function DatabasePage({ query, setQuery, element, setElement, region, setRegion, role, setRole, stage, setStage, elements, regionNames, roles, stages, filteredAniimo, navigate, compact }) {
   const [statusFilter, setStatusFilter] = useState("All");
   const statusFilteredAniimo = statusFilter === "All" ? filteredAniimo : filteredAniimo.filter((item) => item.status === statusFilter);
+  const [tracked, setTracked] = useState(() => { try { return JSON.parse(localStorage.getItem("aniimo-tracker") || "{}"); } catch { return {}; } });
+  const setTracking = (item, value) => setTracked((current) => { const next = { ...current, [item.id]: value }; localStorage.setItem("aniimo-tracker", JSON.stringify(next)); return next; });
   return (
         <section id="database" className="section">
           <SectionTitle icon={<Search />} kicker="Index" title="Aniimo Database" />
@@ -191,6 +193,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
                   <a className="text-link" href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
                     View Aniimo guide <ChevronRight size={16} />
                   </a>
+                  <div className="card-actions"><a className="text-link" href={`/team-builder/?ids=${item.id}`} onClick={(event) => navigate(event, `/team-builder/?ids=${item.id}`)}><Plus size={15} /> Add to team</a><button type="button" className="mini-action" onClick={() => setTracking(item, tracked[item.id] === "wanted" ? "none" : "wanted")}><CheckCircle2 size={15} /> {tracked[item.id] === "wanted" ? "Wanted" : "Track"}</button></div>
                 </div>
               </article>
             ))}
