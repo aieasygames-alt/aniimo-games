@@ -192,6 +192,11 @@ export const faqs = {
 
 export const updates = [
   {
+    date: "2026-09-10",
+    title: "Player planning tools connected",
+    text: "Added Aniimo comparison, team planning, collection tracking, map filters, shareable tool URLs and database status filters. These tools reuse public data and keep unverified combat claims labeled.",
+  },
+  {
     date: "2026-08-30",
     title: "Social discussion research added",
     text: "Added a social-intent research pool covering comparison searches, platform access, mobile timing, codes, Twine, map routes, beta readiness and monetization concerns for future content planning.",

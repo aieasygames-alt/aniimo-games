@@ -598,6 +598,7 @@ export function UpdatesPage() {
           Open Site Index
         </a>
       </div>
+      <InfoPanel title="Current data snapshot" rows={[["Last source check", sourceLastChecked], ["Public Aniimo tracked", `${aniimo.length} entries`], ["Regions tracked", `${regions.length} regions`], ["Data policy", "Unverified balance, routes and coordinates remain clearly labeled."]]}/>
       <div className="freshness-grid">
         {freshnessPages.map((item) => (
           <article className="freshness-card" key={item.slug}>
