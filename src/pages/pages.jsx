@@ -123,6 +123,8 @@ export function HomePage(props) {
 }
 
 export function DatabasePage({ query, setQuery, element, setElement, region, setRegion, role, setRole, stage, setStage, elements, regionNames, roles, stages, filteredAniimo, navigate, compact }) {
+  const [statusFilter, setStatusFilter] = useState("All");
+  const statusFilteredAniimo = statusFilter === "All" ? filteredAniimo : filteredAniimo.filter((item) => item.status === statusFilter);
   return (
         <section id="database" className="section">
           <SectionTitle icon={<Search />} kicker="Index" title="Aniimo Database" />
@@ -140,6 +142,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             <Select label="Region" value={region} onChange={setRegion} options={regionNames} />
             <Select label="Role" value={role} onChange={setRole} options={roles} />
             <Select label="Stage" value={stage} onChange={setStage} options={stages} />
+            <Select label="Data status" value={statusFilter} onChange={setStatusFilter} options={["All", "Confirmed", "Watchlist", "Verified"]} />
           </div>
           <TaxonomyLinks navigate={navigate} />
           {!compact && (
@@ -164,7 +167,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             </section>
           )}
           <div className="aniimo-grid">
-            {filteredAniimo.map((item) => (
+            {statusFilteredAniimo.map((item) => (
               <article className="aniimo-card" key={item.id}>
                 <CreatureImage item={item} />
                 <div>
@@ -274,8 +277,9 @@ export function CollectionPage({ type, value, navigate }) {
 }
 
 export function MapPage({ compact, navigate }) {
-  const [query, setQuery] = useState("");
-  const [regionFilter, setRegionFilter] = useState("All");
+  const mapParams = new URLSearchParams(window.location.search);
+  const [query, setQuery] = useState(mapParams.get("q") || "");
+  const [regionFilter, setRegionFilter] = useState(mapParams.get("region") || "All");
   const filteredRegions = regions.filter((item) => {
     const text = `${item.name} ${item.theme} ${item.aniimo.join(" ")} ${item.mechanics.join(" ")}`.toLowerCase();
     return text.includes(query.toLowerCase()) && (regionFilter === "All" || item.name === regionFilter);
@@ -291,7 +295,7 @@ export function MapPage({ compact, navigate }) {
               ["Next verification", "Add travel-time, border and route screenshots after launch before publishing exact size claims."],
             ]} />
           )}
-          {!compact && <div className="map-toolbar"><label className="search-field"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search regions, Aniimo or mechanics" /></label><Select label="Region" value={regionFilter} onChange={setRegionFilter} options={["All", ...regions.map((item) => item.name)]} /></div>}
+          {!compact && <div className="map-toolbar"><label className="search-field"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search regions, Aniimo or mechanics" /></label><Select label="Region" value={regionFilter} onChange={setRegionFilter} options={["All", ...regions.map((item) => item.name)]} /><button type="button" className="secondary-action" onClick={() => navigator.clipboard?.writeText(`${window.location.origin}/map/?q=${encodeURIComponent(query)}&region=${encodeURIComponent(regionFilter)}`)}><Copy size={16} /> Copy map link</button></div>}
           <div className="region-grid">
             {filteredRegions.map((item) => (
               <article className="region-card" key={item.id}>
