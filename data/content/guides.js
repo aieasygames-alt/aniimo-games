@@ -70,6 +70,11 @@ export const seoGuides = {
       body:
         "Use the same account ecosystem you plan to play on at launch, confirm that the publisher and developer match the official listing, and keep launch rewards separate from redeem codes. Pre-registration and wishlist rewards are usually delivered through official systems, while redeem codes require a separate code field or redemption page. This site tracks both, but it does not link to unofficial installers.",
     },
+    {
+      title: "Why mobile dates may look different",
+      body:
+        "The official developer announcement tracks mobile launch for September 23, 2026, one week after PC and console launch. App Store or Google Play pages may show a different expected date, a pre-registration state or no date depending on country and store approval timing. Use the official Aniimo announcement and the live storefront listing together; do not treat a placeholder date as a confirmed delay.",
+    },
   ],
   release: [
     {
@@ -86,6 +91,11 @@ export const seoGuides = {
       title: "How this release tracker is maintained",
       body:
         "Release pages are updated from official public sources first. Storefront text, official news posts and the official Aniimo Wiki are preferred over reposted summaries. If an older beta date or closed test detail appears beside launch information, it is labeled as a past milestone so readers do not confuse it with the global release window.",
+    },
+    {
+      title: "What the September developer letter clarified",
+      body:
+        "The September 3 developer letter re-confirmed the global launch sequence: PC, console and Xbox Cloud Gaming on September 16, 2026, followed by mobile on September 23, 2026. Community questions about a later iOS store date should be treated as storefront timing or a placeholder until the official mobile listing changes. Exact hourly unlocks and regional rollout details remain platform-specific watchlist items.",
     },
   ],
   codes: [

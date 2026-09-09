@@ -1,29 +1,29 @@
 # Aniimo Official Update Report
 
-Generated: 2026-08-28T03:51:57.516Z
+Generated: 2026-09-09T14:59:29.006Z
 
 ## Summary
 
 - Local Aniimo entries: 89
-- Official Wiki entries found in probe page: 0
+- Official Wiki entries found in probe page: 89
 - Local regions: 6
-- Official regions seen on main page: 0
+- Official regions seen on main page: 6
 - PC/console launch date: 2026-09-16
 - Mobile launch date: 2026-09-23
 - Watchlist entries needing field verification: 36
 
 ## Fetch Status
 
-- https://www.aniimo.com/main: Failed - fetch failed
-- https://wiki.aniimo.com/item/10002877: Failed - fetch failed
+- https://www.aniimo.com/main: OK
+- https://wiki.aniimo.com/item/10002877: OK
 
 ## New Official Aniimo Missing Locally
 
-- Skipped because the official Wiki request failed.
+- None
 
 ## Local Aniimo Not Seen In Probe
 
-- Skipped because the official Wiki request failed.
+- None
 
 ## Local Entries Needing Description Review
 
@@ -70,11 +70,15 @@ Generated: 2026-08-28T03:51:57.516Z
 
 ## Region Names Not Seen On Main Page
 
-- Skipped because the official main site request failed.
+- None
 
 ## Recent Official News Titles
 
-- No news titles extracted
+- Aniimo Official Website - Global Launch Announced!
+- A Letter from the Aniimo Dev Team
+- Aniimo Global Launch Dates: Coming to PC &amp; Consoles on September 16, Mobile on September 23!
+- A New Way to Connect with Your Aniimo
+- Global Closed Beta Bond Pact Event FAQ
 
 ## Recommended Next Actions
 

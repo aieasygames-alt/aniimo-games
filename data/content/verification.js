@@ -165,7 +165,7 @@ export const gscObservationTemplate = {
 export const gscLatestObservations = {
   date: gscObservationDate,
   range: "2026-08-28 through 2026-09-05",
-  summary: "Google Search Console shows launch-ready demand around rewards, Junior Wayfarer, tier lists, servers, demo status, Discord, downloads and character pages. Prioritize verified updates for pages already earning clicks or ranking near the first page.",
+  summary: "Google Search Console and current public search signals show launch-ready demand around rewards, Junior Wayfarer, tier lists, servers, mobile timing, download pages, gameplay, Discord and character pages. Prioritize verified updates for pages already earning clicks or ranking near the first page.",
   metrics: [
     ["Clicks", "181"],
     ["Impressions", "6.18k"],

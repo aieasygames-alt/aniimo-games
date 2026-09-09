@@ -696,6 +696,7 @@ export const socialIntentTopics = [
     intro: "Price searches sit close to download intent. Aniimo.games should answer the free-to-play question clearly while keeping paid currency, battle pass and shop details in watchlist status until verified.",
     points: [
       ["Free-to-play status", "Official storefront language describes Aniimo as a free-to-play creature-catching open-world RPG."],
+      ["Community concern", "Recent player discussions ask whether paid packs, gacha-like systems or competitive advantages will appear. These are questions to monitor, not confirmed features."],
       ["Unknown economy details", "Paid currency, battle pass, shop pricing and competitive impact should wait for official or live-game verification."],
       ["Reward boundary", "Pre-registration rewards and launch gifts are tracked separately from paid purchases and redeem codes."],
     ],
@@ -1067,6 +1068,7 @@ export const searchSuggestionTopics = [
     points: [
       ["Core loop", "Official public material positions Aniimo around creature catching, collecting, open-world exploration and the world of Idyll."],
       ["Distinctive systems", "Twine, Aniipods, Homeland, RV interactions, real-time challenges and Egg Heist are the safest confirmed gameplay anchors."],
+      ["Current discussion", "Players are discussing whether launch progression favors building a deep single-Aniimo setup or collecting and developing a wider roster. Treat this as community feedback until live systems are tested."],
       ["What still changes", "Exact combat values, route requirements, progression pacing, rewards and endgame loops need official or live-game confirmation."],
     ],
     faq: [
@@ -1526,6 +1528,7 @@ export const troubleshootingTopics = [
     intro: "Server-status searches spike the moment a game opens. Before launch, this page keeps the status tied to official availability and avoids inventing outage reports.",
     points: [
       ["Current status policy", "Aniimo.games only marks a server issue active after official support, storefront behavior or repeated verified live-game evidence confirms it."],
+      ["Regional questions", "Community discussions ask whether EU and other regional servers will be available. The closed beta is not proof of final launch server routing."],
       ["Search intent", "Users may want maintenance, outage, downtime or login availability checks, so the page should answer each term clearly."],
       ["What to check first", "Check the launch day command center, platform storefronts, official website news and official social channels."],
       ["What changes after launch", "Add maintenance windows, affected platforms, start time, resolved time, compensation notes and last checked timestamp when verified."],

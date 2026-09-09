@@ -10,6 +10,8 @@ export const freshnessPages = [
     source: officialLinks.main,
     points: [
       ["Launch dates", `PC and console launch remain tracked for ${releaseInfo.pcConsole}; mobile launch remains tracked for ${releaseInfo.mobile}.`],
+      ["Developer letter", "The September 3 developer letter re-confirmed worldwide PC, console and Xbox Cloud Gaming launch on September 16, followed by mobile on September 23."],
+      ["Event closeout", "The Bond Pact event has ended; event rewards and launch rewards should stay separated from redeem codes until the live client confirms claim rules."],
       ["Official feature claims", "Feature pages should only expand when the official site, storefronts or official Wiki provide stronger wording."],
       ["Source archive", "Meaningful source changes should be logged in the source archive and update log before dependent pages are refreshed."],
     ],
@@ -69,6 +71,12 @@ export const updateWorkflowMatrix = [
   ["New redeem code", "Codes, active codes, rewards, launch tracker and changelog", "Official channel or in-game redemption screen"],
   ["New region or route proof", "Map, region, location page and related Aniimo detail pages", "Official map source or in-game screenshot evidence"],
   ["Search query movement", "Target page, FAQ block, title, meta description and internal links", "Google Search Console query data"],
+];
+
+export const recentResearchNotes = [
+  ["Official update", "The September 3 developer letter re-confirmed PC, console and Xbox Cloud Gaming for September 16, 2026, followed by mobile on September 23, 2026."],
+  ["Social discussion", "Current community questions center on mobile timing, iOS placeholder dates, PC pre-order availability, regional servers, free-to-play economy and launch progression."],
+  ["Search demand", "Search results are clustering around release date, download, Steam, PS5, Xbox, mobile, codes, launch rewards, gameplay, map, multiplayer and PAX East."],
 ];
 
 export const socialDiscussionResearch = [
