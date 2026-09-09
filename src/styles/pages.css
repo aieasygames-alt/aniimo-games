@@ -92,6 +92,7 @@
 .picker-item span { display: grid; gap: 3px; flex: 1; min-width: 0; }
 .picker-item small, .tracker-row small { color: #63716a; }
 .tool-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin: 18px 0 28px; }
+.detail-tool-actions { margin: 22px 0 30px; }
 .secondary-action { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(23,32,29,.2); border-radius: 8px; padding: 10px 14px; background: #fff; color: #1f6d55; font-weight: 750; cursor: pointer; }
 .comparison-table td { min-width: 150px; vertical-align: top; }
 .team-slots { display: grid; grid-template-columns: repeat(6, minmax(90px, 1fr)); gap: 10px; margin: 20px 0; }

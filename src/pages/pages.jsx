@@ -70,6 +70,9 @@ export function HomePage(props) {
           <QuickCard icon={<Gift />} title="Rewards" text="Track confirmed pre-registration rewards, milestone rewards, Junior Wayfarer and launch code status." href="/rewards/" navigate={props.navigate} />
           <QuickCard icon={<CalendarDays />} title="Launch Day" text="Check server status, active codes, unlock timing and launch fixes." href="/launch-day/" navigate={props.navigate} />
           <QuickCard icon={<Compass />} title="Search Topics" text="Open guides built around official features, community questions and search demand." href="/site-index/" navigate={props.navigate} />
+          <QuickCard icon={<Copy />} title="Compare Aniimo" text="Compare public entries side by side before building a team." href="/compare/aniimo/" navigate={props.navigate} />
+          <QuickCard icon={<Plus />} title="Team Builder" text="Build a six-slot team and share the selection." href="/team-builder/" navigate={props.navigate} />
+          <QuickCard icon={<CheckCircle2 />} title="Collection Tracker" text="Track wanted, captured and verified entries locally." href="/collection-tracker/" navigate={props.navigate} />
         </section>
 
         <section className="section sources-band">
@@ -1077,7 +1080,8 @@ function AniimoPicker({ selected, onToggle, limit = 4 }) {
 }
 
 export function AniimoComparePage({ navigate }) {
-  const [selected, setSelected] = useState(aniimo.slice(0, 2));
+  const initial = new URLSearchParams(window.location.search).get("ids")?.split(",").map((id) => aniimo.find((item) => item.id === id)).filter(Boolean);
+  const [selected, setSelected] = useState(initial?.length ? initial.slice(0, 4) : aniimo.slice(0, 2));
   const toggle = (item) => setSelected((current) => current.some((entry) => entry.id === item.id) ? current.filter((entry) => entry.id !== item.id) : current.length < 4 ? [...current, item] : current);
   return <ToolShell kicker="Aniimo Tool" title="Compare Aniimo" intro="Select up to four Aniimo to compare public index data, evolution, abilities, regions and verification status.">
     <AniimoPicker selected={selected} onToggle={toggle} />
@@ -1087,7 +1091,8 @@ export function AniimoComparePage({ navigate }) {
 }
 
 export function TeamBuilderPage({ navigate }) {
-  const [team, setTeam] = useState([]);
+  const initial = new URLSearchParams(window.location.search).get("ids")?.split(",").map((id) => aniimo.find((item) => item.id === id)).filter(Boolean);
+  const [team, setTeam] = useState(initial?.length ? initial.slice(0, 6) : []);
   const [copied, setCopied] = useState(false);
   const toggle = (item) => setTeam((current) => current.some((entry) => entry.id === item.id) ? current.filter((entry) => entry.id !== item.id) : current.length < 6 ? [...current, item] : current);
   const elements = [...new Set(team.map((item) => item.element))]; const roles = [...new Set(team.map((item) => item.role))];
@@ -1941,6 +1946,11 @@ export function AniimoDetail({ item, navigate }) {
           <p>{item.description}</p>
           <StatusBadge status={item.status} />
         </div>
+      </div>
+      <div className="tool-actions detail-tool-actions">
+        <a className="secondary-action" href={`/compare/aniimo/?ids=${item.id}`} onClick={(event) => navigate(event, `/compare/aniimo/?ids=${item.id}`)}><Copy size={16} /> Compare this Aniimo</a>
+        <a className="secondary-action" href={`/team-builder/?ids=${item.id}`} onClick={(event) => navigate(event, `/team-builder/?ids=${item.id}`)}><Plus size={16} /> Add to team</a>
+        <a className="secondary-action" href="/collection-tracker/" onClick={(event) => navigate(event, "/collection-tracker/")}><CheckCircle2 size={16} /> Track collection</a>
       </div>
       <div className="detail-panels">
         <InfoPanel title="Location" rows={[["Region", item.region], ["Habitat", item.habitat], ["Spawn condition", item.condition], ["Acquisition", item.acquisition]]} />
