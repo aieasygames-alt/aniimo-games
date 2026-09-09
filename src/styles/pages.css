@@ -108,6 +108,9 @@
 .tracker-summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 18px; padding: 16px; border: 1px solid rgba(23,32,29,.12); border-radius: 8px; background: #eef7ef; }
 .tracker-summary strong { font-size: 26px; color: #1f6d55; }
 .tracker-summary span { color: #50605a; }
+.progress-track { flex: 1 1 180px; height: 8px; overflow: hidden; border-radius: 99px; background: rgba(31,109,85,.16); }
+.progress-track span { display: block; height: 100%; border-radius: inherit; background: #1f6d55; transition: width .2s ease; }
+.tracker-toolbar { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; margin-top: 18px; }
 .tracker-list { display: grid; gap: 8px; margin-top: 18px; }
 .tracker-row { display: grid; grid-template-columns: 52px minmax(0, 1fr) 150px; gap: 12px; align-items: center; padding: 8px 12px; border-bottom: 1px solid rgba(23,32,29,.1); }
 .tracker-row .creature-image { width: 48px; height: 48px; margin: 0; }
