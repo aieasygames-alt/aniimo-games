@@ -274,6 +274,12 @@ export function CollectionPage({ type, value, navigate }) {
 }
 
 export function MapPage({ compact, navigate }) {
+  const [query, setQuery] = useState("");
+  const [regionFilter, setRegionFilter] = useState("All");
+  const filteredRegions = regions.filter((item) => {
+    const text = `${item.name} ${item.theme} ${item.aniimo.join(" ")} ${item.mechanics.join(" ")}`.toLowerCase();
+    return text.includes(query.toLowerCase()) && (regionFilter === "All" || item.name === regionFilter);
+  });
   return (
         <section id="map" className="section">
           <SectionTitle icon={<Compass />} kicker="World" title="Map & Region Guides" />
@@ -285,8 +291,9 @@ export function MapPage({ compact, navigate }) {
               ["Next verification", "Add travel-time, border and route screenshots after launch before publishing exact size claims."],
             ]} />
           )}
+          {!compact && <div className="map-toolbar"><label className="search-field"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search regions, Aniimo or mechanics" /></label><Select label="Region" value={regionFilter} onChange={setRegionFilter} options={["All", ...regions.map((item) => item.name)]} /></div>}
           <div className="region-grid">
-            {regions.map((item) => (
+            {filteredRegions.map((item) => (
               <article className="region-card" key={item.id}>
                 <RegionImage region={item} />
                 <h3>{item.name}</h3>
@@ -1111,10 +1118,11 @@ export function CollectionTrackerPage({ navigate }) {
   const counts = Object.values(state).reduce((acc, value) => { acc[value] = (acc[value] || 0) + 1; return acc; }, {});
   const update = (id, value) => setState((current) => { const next = { ...current }; if (value === "none") delete next[id]; else next[id] = value; return next; });
   const exportData = () => { const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" }); const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.href = url; link.download = "aniimo-collection.json"; link.click(); URL.revokeObjectURL(url); };
+  const importData = (event) => { const file = event.target.files?.[0]; if (!file) return; const reader = new FileReader(); reader.onload = () => { try { const parsed = JSON.parse(reader.result); if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) setState(parsed); } catch { /* Ignore invalid backups. */ } }; reader.readAsText(file); event.target.value = ""; };
   return <ToolShell kicker="Aniimo Tool" title="Aniimo Collection Tracker" intro="Track wanted, captured and verified entries in this browser. No account is required; export a backup before changing devices.">
     <div className="tracker-summary"><strong>{Object.keys(state).length} / {aniimo.length}</strong><span>tracked entries</span><span>Wanted {counts.wanted || 0}</span><span>Captured {counts.captured || 0}</span><span>Verified {counts.verified || 0}</span></div>
     <div className="tracker-list">{aniimo.map((item) => <article className="tracker-row" key={item.id}><CreatureImage item={item} /><div><strong>{item.name}</strong><small>{item.element} · {item.region}</small></div><select value={state[item.id] || "none"} onChange={(e) => update(item.id, e.target.value)} aria-label={`Tracking status for ${item.name}`}><option value="none">Not tracked</option><option value="wanted">Wanted</option><option value="captured">Captured</option><option value="verified">Verified</option></select></article>)}</div>
-    <div className="tool-actions"><button type="button" className="secondary-action" onClick={exportData}><DownloadIcon size={16} /> Export tracker</button><a className="text-link" href="/aniimo/" onClick={(e) => navigate(e, "/aniimo/")}>Open database <ChevronRight size={16} /></a></div>
+    <div className="tool-actions"><button type="button" className="secondary-action" onClick={exportData}><DownloadIcon size={16} /> Export tracker</button><label className="secondary-action file-action"><DownloadIcon size={16} /> Import backup<input type="file" accept="application/json" onChange={importData} /></label><a className="text-link" href="/aniimo/" onClick={(e) => navigate(e, "/aniimo/")}>Open database <ChevronRight size={16} /></a></div>
   </ToolShell>;
 }
 
