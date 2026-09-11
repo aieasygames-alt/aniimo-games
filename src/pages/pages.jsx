@@ -1689,6 +1689,7 @@ export function ChoiceTopicPage({ topic, navigate }) {
     <section className="section sources-band">
       <SectionTitle icon={<Sparkles />} kicker="Watchlist" title={topic.title} />
       <p className="section-copy">{topic.description} Final rankings should wait for live balance, route access and team testing.</p>
+      {topic.slug === "aniimo-tier-list" && <InfoPanel title="Tier List Quick Answer" rows={[["Current status", "Pre-launch watchlist, not a final ranking"], ["How to use", "Compare confirmed role, element, stage and source status"], ["Next update", "Add dated PvE, PvP and early-game evidence after launch"]]} />}
       {topic.slug === "aniimo-tier-list" && (
         <section className="tier-snapshot" aria-label="Tier list evidence">
           <h2>Ranking Evidence</h2>

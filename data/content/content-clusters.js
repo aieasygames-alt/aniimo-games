@@ -7,7 +7,7 @@ export const localizedTopics = [
     slug: "aniimo-pre-registro",
     title: "Aniimo Pre Registro e Recompensas",
     description: "Guia em portugues para pre registro de Aniimo, recompensas, Google Play, App Store, Susuta egg, codigos e fontes oficiais no Brasil.",
-    intro: "Buscas brasileiras por pre registro Aniimo ja aparecem com boa posicao. Esta pagina responde onde acompanhar o pre-registro, quais recompensas estao sendo rastreadas e por que recompensas nao devem ser tratadas como codigos ativos.",
+    intro: "Quer fazer o pre registro de Aniimo? Esta pagina explica onde acompanhar o cadastro no Brasil, quais recompensas estao confirmadas, quando verificar a entrega e por que recompensas nao devem ser tratadas como codigos ativos.",
     points: [
       ["Onde acompanhar", "Use o site oficial de Aniimo, Google Play e App Store quando a pagina estiver visivel na sua regiao."],
       ["Recompensas", "Aniimo.games acompanha recompensas de pre-registro, marcos de campanha, escolha de Prismana e o misterioso ovo de Susuta separadamente."],
@@ -56,7 +56,7 @@ export const localizedTopics = [
     slug: "wann-kommt-aniimo",
     title: "Wann Kommt Aniimo Raus?",
     description: "Pruefe den Aniimo Release, PC, Konsole, Steam, PS5, Xbox, Mobile und offizielle Download-Quellen.",
-    intro: "Diese Seite beantwortet deutsche Suchanfragen wie wann kommt Aniimo raus, Aniimo Release und Aniimo Spiel. Sie trennt bestaetigte Daten von noch nicht bestaetigten Uhrzeiten.",
+    intro: "Wann kommt Aniimo raus? Diese Seite zeigt die bestaetigten PC-, Konsolen- und Mobile-Termine und trennt offizielle Kalenderdaten von noch nicht bestaetigten Uhrzeiten.",
     points: [
       ["PC und Konsole", `Aniimo.games verfolgt den PC- und Konsolenstart fuer ${releaseInfo.pcConsole}.`],
       ["Mobile", `Der Mobile-Start fuer iOS und Android wird fuer ${releaseInfo.mobile} verfolgt.`],
