@@ -152,6 +152,10 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             <Select label="Stage" value={stage} onChange={setStage} options={stages} />
             <Select label="Data status" value={statusFilter} onChange={setStatusFilter} options={["All", "Confirmed", "Watchlist", "Verified"]} />
           </div>
+          {!compact && <div className="query-shortcuts" aria-label="Popular database searches">
+            <span>Popular searches</span>
+            {["Celestis", "Inferlupa", "Glacy", "all Aniimo", "Aniimo locations"].map((term) => <button key={term} type="button" onClick={() => setQuery(term === "all Aniimo" ? "" : term)}>{term}</button>)}
+          </div>}
           <TaxonomyLinks navigate={navigate} />
           {!compact && (
             <InfoPanel title="Character Search Shortcuts" rows={[
@@ -164,7 +168,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             <section className="related-section">
               <h2>Popular Aniimo To Check First</h2>
               <div className="related-grid">
-                {priorityAniimoPages().map((item) => (
+                {[...priorityAniimoPages(), ...["celestis", "inferlupa", "glacy"].map((id) => aniimo.find((item) => item.id === id))].filter((item, index, list) => item && list.findIndex((candidate) => candidate.id === item.id) === index).slice(0, 8).map((item) => (
                   <a className="related-card" key={item.id} href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
                     <span className="related-mark">{item.no}</span>
                     <strong>{item.name}</strong>

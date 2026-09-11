@@ -102,6 +102,10 @@
 .evidence-notes { grid-column: 1 / -1; }
 .evidence-summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px; margin: 16px 0; color: #52615b; }
 .evidence-summary strong { color: #1f6d55; font-size: 26px; }
+.query-shortcuts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0; }
+.query-shortcuts span { color: #52615b; font-size: 13px; font-weight: 700; }
+.query-shortcuts button { border: 1px solid rgba(23,32,29,.16); border-radius: 6px; padding: 7px 10px; background: #fff; color: #1f6d55; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+.query-shortcuts button:hover { border-color: #1f6d55; background: #eef7ef; }
 
 @media (max-width: 760px) { .evidence-form { grid-template-columns: 1fr; } .evidence-notes { grid-column: auto; } }
 
