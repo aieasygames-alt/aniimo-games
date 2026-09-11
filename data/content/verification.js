@@ -114,6 +114,10 @@ export const verificationTemplates = {
     requiredFields: ["date", "page", "observation", "action"],
     optionalFields: ["query", "clicks", "impressions", "position", "indexStatus"],
   },
+  launchExperience: {
+    requiredFields: ["topic", "platform", "verifiedAt", "source", "status"],
+    optionalFields: ["region", "accountType", "reproductionSteps", "screenshot", "notes"],
+  },
 };
 
 export const spawnVerificationQueue = [
@@ -164,23 +168,24 @@ export const gscObservationTemplate = {
 
 export const gscLatestObservations = {
   date: gscObservationDate,
-  range: "2026-08-28 through 2026-09-05",
-  summary: "Google Search Console and current public search signals show launch-ready demand around rewards, Junior Wayfarer, tier lists, servers, mobile timing, download pages, gameplay, Discord and character pages. Prioritize verified updates for pages already earning clicks or ranking near the first page.",
+  range: "2026-09-02 through 2026-09-08",
+  summary: "The latest seven-day GSC export shows 192 clicks and 6,166 impressions, with strongest demand around the tier list, Junior Wayfarer rewards, server status, Discord, demo and AI-use questions. Prioritize CTR improvements for high-impression pages and mobile launch verification.",
   metrics: [
-    ["Clicks", "181"],
-    ["Impressions", "6.18k"],
-    ["CTR", "2.9%"],
-    ["Average position", "8.5"],
+    ["Clicks", "192"],
+    ["Impressions", "6.17k"],
+    ["CTR", "3.11%"],
+    ["Average position", "8.23"],
   ],
   actions: [
     ["Canonical consolidation", "Keep www traffic redirected to the non-www canonical domain so Search Console signals are not split."],
-    ["Homepage CTR", "Use release date, codes, tier list, map and database language in the homepage title and first screen."],
+    ["Homepage and database CTR", "Homepage and database impressions are high but CTR is low; lead with release date, 89 Aniimo, codes, map and direct search actions."],
     ["AI trust intent", "Strengthen the AI-use page with official-source language because that query has clear trust intent."],
     ["Localized demand", "Support Brazil, Spain, France and the US with launch, download, code and official-link entry pages."],
     ["Tier list intent", "Make the tier-list page more explicit about provisional rankings and pre-launch evidence boundaries."],
     ["Community intent", "Refresh Discord and Reddit pages because both continue to attract investigation-style searches."],
     ["Logo intent", "Improve logo and media pages so brand-image queries land on a clear source-and-usage answer."],
-    ["Character detail", "Prioritize Celestis, Glacy, Junior Wayfarer and carried-item follow-up pages from the newest queries."],
+    ["Character detail", "Prioritize Celestis, Inferlupa and Glacy detail pages from the newest character queries."],
+    ["Mobile launch", "Mobile is the largest device segment; verify App Store and Google Play visibility, region, device and account flow after the September 23 launch."],
     ["Character searches", "Make Aniimo detail pages easy to scan by number, element, role, stage, location and verification status."],
   ],
   queryWatchlist: [
@@ -196,6 +201,8 @@ export const gscLatestObservations = {
     ["aniimo celestis", "Refresh the character detail page when forms, abilities, locations, or evolution evidence is confirmed."],
     ["does aniimo use ai", "Keep trust claims limited to named official sources and current publisher information."],
     ["aniimo download", "Route installation intent to official stores, platform availability, and safe-download guidance."],
+    ["pre registro aniimo", "Keep the Portuguese pre-registration page focused on reward eligibility, account matching and launch delivery."],
+    ["aniimo reddit", "Use Reddit as a research signal and improve the community page's first-screen answer and source boundary."],
   ],
 };
 
@@ -207,6 +214,16 @@ export const launchEvidenceQueues = {
       ["Reward and quantity", "Item name, currency amount, Aniipod tier, outfit, frame or creature reward.", "Watchlist"],
       ["Expiration and region", "End date, timezone, platform or country restrictions when visible.", "Watchlist"],
       ["Last tested", "Timestamp, platform and result from a direct redemption attempt after launch.", "Watchlist"],
+    ],
+  },
+  launchExperience: {
+    title: "Launch Experience Evidence Queue",
+    rows: [
+      ["Mobile store availability", "App Store and Google Play install or pre-registration state, region, device, timestamp and official listing URL.", "Watchlist"],
+      ["Account and cross-platform flow", "Official account guidance plus direct sign-in or account-link verification by platform.", "Watchlist"],
+      ["Co-op and PVP rules", "In-game mode screen, official rules or reproducible session evidence; separate Egg Heist wording from unverified open-world claims.", "Watchlist"],
+      ["Economy and monetization", "Official purchase screens, published terms or repeatable live-game evidence; distinguish optional purchases from progression requirements.", "Watchlist"],
+      ["Localization and known issues", "Reproducible language, login, loading or display issue with platform, region, timestamp and official response when available.", "Watchlist"],
     ],
   },
   download: {

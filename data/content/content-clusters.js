@@ -657,8 +657,8 @@ export const socialIntentTopics = [
   },
   {
     slug: "aniimo-ai",
-    title: "Does Aniimo Use AI? Official Source Check",
-    description: "Answer Aniimo AI-use questions with official-source boundaries, developer information, art-claim caution and Aniimo.games verification policy.",
+    title: "Does Aniimo Use AI? Official Source and Disclosure Check",
+    description: "Does Aniimo use AI? Check the current official disclosure status, developer information and evidence boundary before trusting AI-art or development claims.",
     intro: "Search Console now shows Aniimo AI-use queries near page one. This page answers that trust intent carefully: it records what official sources say, keeps art and development claims separate, and avoids repeating unsupported AI rumors.",
     points: [
       ["Current source position", "Aniimo.games does not claim Aniimo is AI-made unless Pawprint Studio or an official platform listing states that directly."],
@@ -981,9 +981,9 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-discord",
-    title: "Aniimo Discord Server: Official Invite, Codes & Launch Updates",
-    description: "Find the official Aniimo Discord safely, verify invite links, track code announcements, beta access, server updates and launch-day community notices.",
-    intro: "Discord searches are now one of the strongest 24-hour GSC opportunities for Aniimo.games. This page answers the real intent behind `aniimo discord`: find the official server, avoid fake invites, watch for launch updates and separate community chatter from verified guide facts.",
+    title: "Aniimo Discord Server: Official Invite, Codes & Status Updates",
+    description: "Find the official Aniimo Discord invite, verify code announcements, follow server updates and separate official notices from community discussion.",
+    intro: "Looking for the Aniimo Discord server? Use this page to find the official community path, check launch announcements and codes, avoid fake invites, and separate community chatter from verified guide facts.",
     points: [
       ["Official invite check", "Use the official Aniimo website, official social profiles or verified storefront links before trusting any Discord invite shared by a third-party page."],
       ["Launch-day value", "A verified Discord can be useful for server status notices, maintenance timing, code announcements, beta access updates and region-specific player reports."],
@@ -1653,6 +1653,7 @@ export const mediaGalleryItems = [
 export const sourceArchiveItems = [
   ["Official website", officialLinks.website, "Launch rewards, registration flow, platform links and campaign messaging."],
   ["Official main site", officialLinks.main, "Launch announcements, beta timeline and news updates."],
+  ["Developer letter (September 3, 2026)", officialLinks.developerLetter, "PC, console and Xbox Cloud Gaming launch on September 16, mobile launch on September 23, and the development team's launch context."],
   ["Official Wiki", officialLinks.officialWiki, "Public Aniimo names, numbers, descriptions and visible index changes."],
   ["Steam", officialLinks.steam, "PC storefront wording, wishlist state, tags, media and release availability."],
   ["Epic Games Store", officialLinks.epic, "Epic storefront wording, wishlist state and PC release availability."],

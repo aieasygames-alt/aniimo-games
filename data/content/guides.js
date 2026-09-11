@@ -192,6 +192,11 @@ export const faqs = {
 
 export const updates = [
   {
+    date: "2026-09-11",
+    title: "Launch research and verification plan updated",
+    text: "Recorded the September 3 developer letter, platform launch sequence, current community questions and search-intent priorities. Added launch verification coverage for mobile availability, multiplayer, economy and localization without turning community reports into confirmed game facts.",
+  },
+  {
     date: "2026-09-10",
     title: "Player planning tools connected",
     text: "Added Aniimo comparison, team planning, collection tracking, map filters, shareable tool URLs and database status filters. These tools reuse public data and keep unverified combat claims labeled.",

@@ -80,7 +80,7 @@ export function HomePage(props) {
           <InfoPanel title="Search Console Signal" rows={[
             ["Review window", `${gscLatestObservations.date}, ${gscLatestObservations.range}`],
             ["Early performance", `${gscLatestObservations.metrics[1][1]} impressions, ${gscLatestObservations.metrics[0][1]} clicks, ${gscLatestObservations.metrics[3][1]} average position.`],
-            ["Current action", "Strengthen release date, codes, map, guide and character-name entry points."],
+            ["Current action", "Prioritize release date, codes, map, 89-character database and community entry points."],
           ]} />
           <div className="site-index-grid">
             <LinkGroup title="Launch Answers" items={[
@@ -133,7 +133,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
           <p className="section-copy">
             Browse the full Aniimo list with official Wiki numbers, names, elements, roles,
             stages, locations, forms and source status. This page is the Aniimo wiki-style
-            character database for users searching all Aniimo, character names and guide entries.
+            character database for users searching all 89 Aniimo, character names and guide entries.
           </p>
           <div className="filters">
             <label className="search-field">
@@ -417,7 +417,8 @@ export function RewardsPage() {
       <img className="page-banner" src="/images/banners/banner-susuta-hunt.webp" alt="Aniimo Susuta Hunt event" />
       <p className="section-copy">
         Confirmed official rewards include milestone items, a Prismana Aniimo choice for
-        Junior Wayfarers, and a mysterious Susuta egg for official pre-registration.
+        Junior Wayfarers, and a mysterious Susuta egg for official pre-registration. Claim
+        delivery should be checked on the same account used for registration after launch.
       </p>
       <LaunchStatusPanel title="Reward Delivery Status" entries={launchStatusEntries.filter((entry) => ["codes", "pc-console", "mobile"].includes(entry.id))} />
       <RewardGrid />
@@ -852,6 +853,38 @@ export function LaunchDayPage({ navigate }) {
 }
 
 export function LaunchVerificationPage() {
+  const [records, setRecords] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("aniimo-launch-evidence") || "[]"); } catch { return []; }
+  });
+  const [draft, setDraft] = useState({ topic: "Mobile store availability", platform: "", status: "Watchlist", source: "", notes: "" });
+  useEffect(() => localStorage.setItem("aniimo-launch-evidence", JSON.stringify(records)), [records]);
+  const recordCounts = records.reduce((counts, record) => ({ ...counts, [record.status]: (counts[record.status] || 0) + 1 }), {});
+  function addRecord(event) {
+    event.preventDefault();
+    if (!draft.platform.trim() || !draft.source.trim()) return;
+    setRecords((current) => [{ ...draft, id: `${Date.now()}`, verifiedAt: new Date().toISOString() }, ...current]);
+    setDraft({ topic: "Mobile store availability", platform: "", status: "Watchlist", source: "", notes: "" });
+  }
+  function exportRecords() {
+    const blob = new Blob([JSON.stringify(records, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url; link.download = "aniimo-launch-evidence.json"; link.click(); URL.revokeObjectURL(url);
+  }
+  function importRecords(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const incoming = JSON.parse(reader.result);
+        if (!Array.isArray(incoming)) throw new Error("Expected an array");
+        setRecords((current) => [...incoming.filter((item) => item && item.topic && item.platform && item.source), ...current]);
+      } catch { /* Ignore malformed handoff files. */ }
+    };
+    reader.readAsText(file);
+    event.target.value = "";
+  }
   return (
     <section className="section sources-band">
       <SectionTitle icon={<CheckCircle2 />} kicker="Workflow" title="Aniimo Launch Verification Checklist" />
@@ -877,7 +910,25 @@ export function LaunchVerificationPage() {
           ["First review", gscObservationTemplate.firstReviewWindow],
           ["Fields", gscObservationTemplate.fieldsToCapture.join(", ")],
         ]} />
+        <InfoPanel title="Launch Experience Fields" rows={[
+          ["Required", verificationTemplates.launchExperience.requiredFields.join(", ")],
+          ["Optional", verificationTemplates.launchExperience.optionalFields.join(", ")],
+        ]} />
       </div>
+      <section className="related-section evidence-capture">
+        <h2>Local Evidence Capture</h2>
+        <p className="section-copy">Save timestamped launch observations in this browser. These notes remain unverified until an editor checks the source or reproduces the result.</p>
+        <form className="evidence-form" onSubmit={addRecord}>
+          <label><span>Topic</span><select value={draft.topic} onChange={(event) => setDraft({ ...draft, topic: event.target.value })}>{["Mobile store availability", "Account and cross-platform flow", "Co-op and PVP rules", "Economy and monetization", "Localization and known issues", "Server status", "Redeem code"].map((item) => <option key={item}>{item}</option>)}</select></label>
+          <label><span>Platform</span><input value={draft.platform} onChange={(event) => setDraft({ ...draft, platform: event.target.value })} placeholder="Steam, iOS, Android..." required /></label>
+          <label><span>Status</span><select value={draft.status} onChange={(event) => setDraft({ ...draft, status: event.target.value })}><option>Watchlist</option><option>Verified</option><option>Rejected</option></select></label>
+          <label><span>Source URL</span><input type="url" value={draft.source} onChange={(event) => setDraft({ ...draft, source: event.target.value })} placeholder="https://..." required /></label>
+          <label className="evidence-notes"><span>Notes</span><textarea value={draft.notes} onChange={(event) => setDraft({ ...draft, notes: event.target.value })} placeholder="Region, device, reproduction steps, screenshot path..." /></label>
+          <button className="primary-action" type="submit"><Plus size={16} /> Add observation</button>
+        </form>
+        <div className="tool-actions"><button className="secondary-action" type="button" onClick={exportRecords} disabled={!records.length}><DownloadIcon size={16} /> Export JSON</button><label className="secondary-action file-action"><DownloadIcon size={16} /> Import JSON<input type="file" accept="application/json" onChange={importRecords} /></label><button className="secondary-action" type="button" onClick={() => setRecords([])} disabled={!records.length}><X size={16} /> Clear local records</button></div>
+        {records.length > 0 && <><div className="evidence-summary"><strong>{records.length}</strong><span>observations</span><span>{recordCounts.Watchlist || 0} pending review</span><span>{recordCounts.Verified || 0} verified</span><span>{recordCounts.Rejected || 0} rejected</span></div><div className="table-shell freshness-table"><table><thead><tr><th>Time</th><th>Topic</th><th>Platform</th><th>Status</th><th>Evidence</th></tr></thead><tbody>{records.map((record) => <tr key={record.id}><td>{new Date(record.verifiedAt).toLocaleString()}</td><td>{record.topic}</td><td>{record.platform}</td><td><StatusBadge status={record.status} /></td><td><a href={record.source} target="_blank" rel="noreferrer">Source</a>{record.notes && <><br />{record.notes}</>}</td></tr>)}</tbody></table></div></>}
+      </section>
       <LaunchStatusPanel title="Launch Readiness Snapshot" entries={launchStatusEntries} />
       <section className="related-section">
         <h2>Spawn Verification Queue</h2>
@@ -1494,6 +1545,7 @@ function topicExactRelatedLinks(slug) {
 
 function topicEvidenceQueue(topic) {
   const slug = topic.slug || "";
+  if (slug.includes("multiplayer") || slug.includes("coop") || slug.includes("pvp") || slug.includes("ai") || slug.includes("reddit") || slug.includes("discord")) return launchEvidenceQueues.launchExperience;
   if (slug.includes("code") || slug.includes("beta-key")) return launchEvidenceQueues.codes;
   if (slug.includes("apk") || slug.includes("torrent") || slug.includes("download") || slug.includes("steam") || slug.includes("game-pass") || slug.includes("ps4") || slug.includes("cross-save") || slug.includes("controller") || slug.includes("system-requirements")) return launchEvidenceQueues.download;
   if (slug.includes("pax") || slug.includes("tgs") || slug.includes("trailer") || slug.includes("logo")) return launchEvidenceQueues.events;
@@ -1999,6 +2051,9 @@ export function AniimoDetail({ item, navigate }) {
         [`Where can I find ${item.name}?`, `${item.name} is listed in the official Aniimo Wiki and tracked under ${item.region}. Exact spawn points can be added after launch verification.`],
         [`What forms does ${item.name} have?`, `${item.name} currently lists these forms: ${item.forms.join(", ")}.`],
         [`What role is ${item.name}?`, `${item.name} is currently tagged as ${item.role} and ${item.stage}.`],
+        ...(item.id === "celestis" ? [["What is Celestis in Aniimo?", "Celestis is Aniimo No. 005, currently listed as a Holy Support Aniimo at Lumin Stage. Its exact live-game location, ability values and evolution requirements remain subject to launch verification."]] : []),
+        ...(item.id === "glacy" ? [["Where is Glacy in Aniimo?", "Glacy is currently tracked in Nimbus Fields as an Ice DPS Aniimo at Lumin Stage. This page does not publish a precise spawn point until it is confirmed in the live game or by an official source."]] : []),
+        ...(item.id === "inferlupa" ? [["How do I get Inferlupa in Aniimo?", "Inferlupa is Aniimo No. 004, a Fire DPS entry at Nova Stage. Its acquisition route and any evolution requirement should be treated as watchlist data until live-game or official evidence is available."]] : []),
       ]} />
     </section>
   );

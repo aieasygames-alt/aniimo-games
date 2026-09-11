@@ -1,6 +1,7 @@
 export const officialLinks = {
   website: "https://www.aniimo.com/",
   main: "https://www.aniimo.com/main",
+  developerLetter: "https://aniimo.com/newslist/detail/100064",
   officialWiki: "https://wiki.aniimo.com/",
   googlePlay: "https://play.google.com/store/apps/details?hl=en&id=com.x.aniimos",
   appStore: "https://apps.apple.com/app/aniimo/id6759098797",
