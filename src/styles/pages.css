@@ -6,6 +6,13 @@
   background: #fbfbf6;
 }
 
+.launch-answer-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; padding-top: 24px; padding-bottom: 24px; background: #eef4e7; }
+.answer-card { display: grid; gap: 5px; padding: 16px; border: 1px solid rgba(23,32,29,.12); border-radius: 8px; background: #fff; }
+.answer-card strong { color: #1f6d55; font-size: 28px; line-height: 1; }
+.answer-card span { color: #52615b; font-size: 14px; }
+.answer-card a { display: inline-flex; align-items: center; gap: 5px; color: #1f6d55; font-size: 13px; font-weight: 750; }
+@media (max-width: 760px) { .launch-answer-strip { grid-template-columns: 1fr; } }
+
 .detail-list {
   display: grid;
   gap: 12px;

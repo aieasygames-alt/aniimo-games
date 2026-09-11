@@ -63,6 +63,12 @@ export function HomePage(props) {
           </div>
         </section>
 
+        <section className="section launch-answer-strip" aria-label="Quick Aniimo answers">
+          <div className="answer-card"><strong>89</strong><span>public Aniimo entries</span><a href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>Open database <ChevronRight size={15} /></a></div>
+          <div className="answer-card"><strong>Sep 16</strong><span>PC and console launch</span><a href="/release-date/" onClick={(event) => props.navigate(event, "/release-date/")}>See timeline <ChevronRight size={15} /></a></div>
+          <div className="answer-card"><strong>Sep 23</strong><span>iOS and Android launch</span><a href="/platforms/mobile/" onClick={(event) => props.navigate(event, "/platforms/mobile/")}>Mobile details <ChevronRight size={15} /></a></div>
+        </section>
+
         <section className="quick-grid" aria-label="Core sections">
           <QuickCard icon={<BookOpen />} title="Database" text="Index every Aniimo with location, forms, abilities and source status." href="/aniimo/" navigate={props.navigate} />
           <QuickCard icon={<Map />} title="Map" text="Explore regions, representative Aniimo, route notes and official scenery." href="/map/" navigate={props.navigate} />
@@ -441,6 +447,7 @@ export function DownloadPage({ navigate }) {
               ["Platform status", "Official storefront links tracked before install availability."],
               ["Source policy", "Official website and platform stores only."],
             ]} />
+            <InfoPanel title="Mobile Search Answer" rows={[["Android", "Google Play pre-registration and official listing"], ["iOS", "App Store mobile launch tracking"], ["Date", releaseInfo.mobile], ["Safety", "Use official stores only; avoid APK mirrors"]]} />
             <LaunchStatusPanel title="Platform Availability Status" entries={launchStatusEntries.filter((entry) => ["pc-console", "mobile", "server"].includes(entry.id))} />
             <SeoGuideBlock items={seoGuides.download} compact />
             <div className="date-grid">
