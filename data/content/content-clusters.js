@@ -534,7 +534,7 @@ export const officialPitchTopics = [
     title: "Aniimo Twine Guide",
     description: "Learn how Aniimo Twine is officially described and what combat, traversal and puzzle details still need launch verification.",
     image: "/images/mechanics/mechanic-twine.webp",
-    intro: "Twine is the most distinctive Aniimo mechanic for SEO because users will search what it means, how it works and whether it changes exploration or combat.",
+    intro: "Twine is one of Aniimo's distinctive mechanics. Players want to know what it means, how it works and whether it changes exploration or combat.",
     points: [
       ["What Twine means", "Twine is the system that lets a player become a collected Aniimo and use that Aniimo's abilities."],
       ["Why it matters", "Twine can connect creature collection to puzzle routes, traversal locks, combat roles and team planning."],
@@ -709,7 +709,7 @@ export const socialIntentTopics = [
     slug: "aniimo-multiplayer",
     title: "Is Aniimo Multiplayer?",
     description: "Track Aniimo multiplayer, co-op, PVP, Egg Heist and real-time challenge questions with source-safe wording.",
-    intro: "Multiplayer searches are already visible in SEMrush. This page should explain confirmed multiplayer-adjacent systems without overstating matchmaking, co-op campaign or final PVP rules before launch testing.",
+    intro: "Players are asking whether Aniimo supports multiplayer. This page explains confirmed online systems without overstating matchmaking, co-op campaign or final PVP rules before launch testing.",
     points: [
       ["Confirmed multiplayer-adjacent systems", "Official public material describes real-time challenges and Egg Heist, a PVEVP mode with three-player teams."],
       ["What still needs verification", "Matchmaking rules, friend invites, crossplay, platform pools, co-op exploration and final PVP rewards need official or live-game confirmation."],
@@ -848,7 +848,7 @@ export const searchSuggestionTopics = [
     slug: "aniimo-beta-key",
     title: "Aniimo Beta Key and Access Safety",
     description: "Track Aniimo beta key, beta code, account-buying and test-access searches with official-source safety guidance.",
-    intro: "SEMrush shows beta key and beta code searches. This page protects users from gray-market account and key pages while explaining what beta access information is actually confirmed.",
+    intro: "Beta key and beta code searches can lead to gray-market account and key pages. This guide explains what beta access information is actually confirmed and how to stay safe.",
     points: [
       ["Past beta context", `The currently tracked closed beta started on ${releaseInfo.closedBeta}, with signup deadline ${releaseInfo.betaSignupDeadline}.`],
       ["Do not buy keys", "Avoid beta key buying, account buying, reposted key lists and unofficial download pages unless official Aniimo channels confirm a legitimate access path."],

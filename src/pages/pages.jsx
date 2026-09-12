@@ -82,7 +82,7 @@ export function HomePage(props) {
         </section>
 
         <section className="section sources-band">
-          <SectionTitle icon={<Compass />} kicker="Launch Search" title="High-Intent Aniimo Searches" />
+          <SectionTitle icon={<Compass />} kicker="Launch Guide" title="Popular Aniimo Questions" />
           <InfoPanel title="Search Console Signal" rows={[
             ["Review window", `${gscLatestObservations.date}, ${gscLatestObservations.range}`],
             ["Early performance", `${gscLatestObservations.metrics[1][1]} impressions, ${gscLatestObservations.metrics[0][1]} clicks, ${gscLatestObservations.metrics[3][1]} average position.`],
@@ -772,7 +772,7 @@ export function LaunchDayPage({ navigate }) {
       </div>
       <div className="site-index-grid">
         <LinkGroup title="Launch Day Actions" items={launchDayCommandCenter.quickActions} navigate={navigate} />
-        <LinkGroup title="High-Intent Search Paths" items={[
+        <LinkGroup title="Quick Help for Launch Day" items={[
           ["Active Aniimo Codes", "/codes/active/", "Check active code status and verification notes."],
           ["Server Status", "/troubleshooting/aniimo-server-status/", "Track maintenance, outage and launch availability checks."],
           ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Track login, black screen, stuck loading and platform-specific launch errors."],
@@ -792,7 +792,7 @@ export function LaunchDayPage({ navigate }) {
           ["Price and Free-to-Play", "/compare/aniimo-price/", "Separate free-to-play status from unverified economy details."],
           ["Is Aniimo Multiplayer?", "/compare/aniimo-multiplayer/", "Track real-time challenges, Egg Heist, co-op and PVP questions."],
         ]} navigate={navigate} />
-        <LinkGroup title="SEMrush Long-Tail Follow Ups" items={[
+        <LinkGroup title="More Player Questions" items={[
           ["Crossplay", "/compare/aniimo-crossplay/", "Track crossplay, cross-save and account-linking questions."],
           ["Co-Op", "/compare/aniimo-coop/", "Separate team-mode language from unverified open-world co-op claims."],
           ["PVP", "/compare/aniimo-pvp/", "Explain Egg Heist PVEVP while final competitive rules remain watchlist."],
@@ -1435,7 +1435,7 @@ export function TopicGuidePage({ topic, kicker, icon, children }) {
         ["Source status", "Watchlist until official or live-game evidence confirms details."],
         ["Update path", "Refresh this page, source archive and related hub after verification."],
       ]} />
-      {statusEntry && <LaunchStatusPanel title="Search Intent Status" entries={[statusEntry]} />}
+      {statusEntry && <LaunchStatusPanel title="Answer Status" entries={[statusEntry]} />}
       {intentStatus && <InfoPanel title="Next Editorial Action" rows={[["Action", intentStatus.action], ["Target", topic.title]]} />}
       <EditorialBlock title="Key Points" items={topic.points} />
       {evidenceQueue && <EvidenceQueue queue={evidenceQueue} />}
@@ -1761,7 +1761,7 @@ export function BestAniimoPage({ navigate }) {
     <section className="section sources-band">
       <SectionTitle icon={<Sparkles />} kicker="Guide" title="Best Aniimo to Track Before Launch" />
       <p className="section-copy">
-        This pre-launch list focuses on confirmed public entries with useful search intent:
+        This pre-launch list focuses on confirmed public entries that are useful for planning:
         damage roles, support utility, region coverage and clear official descriptions.
         It is not a final tier list because launch balance, exact abilities and team data
         still need in-game verification.
