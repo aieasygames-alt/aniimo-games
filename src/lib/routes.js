@@ -158,7 +158,7 @@ export function freshnessPagePath(topic) {
 }
 
 export function localizedTopicPath(topic) {
-  return normalizePath(`/${topic.locale}/${topic.slug}`);
+  return normalizePath(`/${topic.locale === "pt" ? "pt-br" : topic.locale}/${topic.slug}`);
 }
 
 export function canonicalUrl(path) {
@@ -175,6 +175,11 @@ export function findRegionBySlug(slug) {
 
 export function resolveRoute(path) {
   const normalized = normalizePath(path);
+  if (normalized.startsWith("/pt/")) {
+    const legacy = normalized.replace(/^\/pt\//, "/pt-br/");
+    const target = localizedTopics.find((item) => localizedTopicPath(item) === legacy);
+    if (target) return { type: "localized-legacy", path: normalized, redirectTo: legacy, title: target.title, description: target.description, localizedTopic: target };
+  }
   if (normalized === "/updates/official-news-tracker/") {
     const target = freshnessPages.find((item) => item.slug === "official-news");
     return {

@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BookOpen, Download, Search } from "lucide-react";
 import { aniimo, officialLinks, siteLastUpdated } from "../data/content.js";
+import { localeForPath } from "../data/locales/index.js";
 import {
   findAniimoBySlug,
   findRegionBySlug,
@@ -144,6 +145,7 @@ function App() {
             </a>
           ))}
         </nav>
+        <a className="language-switch" href={localeForPath(path) === "pt-BR" ? "/" : "/pt-br/aniimo-download/"} onClick={(event) => navigate(event, localeForPath(path) === "pt-BR" ? "/" : "/pt-br/aniimo-download/")}>{localeForPath(path) === "pt-BR" ? "English" : "Português (Brasil)"}</a>
       </header>
 
       <main>

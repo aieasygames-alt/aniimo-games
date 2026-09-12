@@ -3,7 +3,7 @@ import { canonicalUrl, fullSitemapRoutes, resolveRoute } from "../src/lib/routes
 export const indexingPriorityRules = [
   {
     title: "GSC First Refresh",
-    match: (route) => ["/", "/aniimo/", "/guides/", "/map/", "/codes/", "/rewards/", "/rewards/junior-wayfarer/", "/rewards/milestones/", "/aniimo-tier-list/", "/troubleshooting/aniimo-server-status/", "/topics/aniimo-discord/", "/topics/aniimo-demo/", "/download/", "/aniimo/glacy/", "/pt/aniimo-data-de-lancamento/", "/es/aniimo-fecha-de-lanzamiento/"].includes(route.path),
+    match: (route) => ["/", "/aniimo/", "/guides/", "/map/", "/codes/", "/rewards/", "/rewards/junior-wayfarer/", "/rewards/milestones/", "/aniimo-tier-list/", "/troubleshooting/aniimo-server-status/", "/topics/aniimo-discord/", "/topics/aniimo-demo/", "/download/", "/aniimo/glacy/", "/pt-br/aniimo-data-de-lancamento/", "/es/aniimo-fecha-de-lanzamiento/"].includes(route.path),
   },
   {
     title: "Launch Core",
@@ -27,7 +27,7 @@ export const indexingPriorityRules = [
   },
   {
     title: "Localized Entrypoints",
-    match: (route) => /^\/(fr|de|pt|es)\//.test(route.path),
+    match: (route) => /^\/(fr|de|pt|pt-br|es)\//.test(route.path),
   },
   {
     title: "Troubleshooting",

@@ -2,6 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { aniimo, gameInfo, launchPriorityPages, launchRewards, releaseInfo, regions, siteLastUpdated, sourceLastChecked } from "../data/content.js";
 import { canonicalUrl, pageFaqsForRoute, prerenderRoutes, resolveRoute, structuredDataForRoute } from "../src/lib/routes.js";
+import { localeForPath } from "../data/locales/index.js";
 
 const indexHtml = "dist/index.html";
 const indexTemplate = readFileSync(indexHtml, "utf8");
@@ -10,12 +11,13 @@ const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup
 
 function injectMeta(html, route) {
   const routeInfo = resolveRoute(route);
-  if (routeInfo.type === "freshness-page-redirect") {
+  const lang = localeForPath(route);
+  if (routeInfo.type === "freshness-page-redirect" || routeInfo.type === "localized-legacy") {
     return html
       .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(routeInfo.title)}</title>`)
       .replace(/<meta\s+name="description"\s+content="[^"]+"\s*\/>/, `<meta name="description" content="${escapeHtml(routeInfo.description)}" />`)
       .replace(/<link\s+rel="canonical"\s+href="[^"]+"\s*\/>/, `<link rel="canonical" href="${canonicalUrl(routeInfo.redirectTo)}" />`)
-      .replace("</head>", `<meta http-equiv="refresh" content="0;url=${routeInfo.redirectTo}"></head>`)
+      .replace("</head>", `<meta http-equiv="refresh" content="0;url=${routeInfo.redirectTo}"><link rel="alternate" hreflang="en" href="${canonicalUrl("/")}"><link rel="alternate" hreflang="pt-BR" href="${canonicalUrl(routeInfo.redirectTo)}"></head>`)
       .replace('<div id="root"></div>', `<div id="root"><main><h1>${escapeHtml(routeInfo.title)}</h1><p>This page has moved to <a href="${routeInfo.redirectTo}">${escapeHtml(routeInfo.redirectTo)}</a>.</p></main></div>`);
   }
   const title = routeInfo.title;
@@ -28,6 +30,7 @@ function injectMeta(html, route) {
     .replaceAll(">", "\\u003e")
     .replaceAll("&", "\\u0026");
   return html
+    .replace(/<html lang="[^"]+">/, `<html lang="${lang}">`)
     .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
     .replace(/<meta\s+name="description"\s+content="[^"]+"\s*\/>/, `<meta name="description" content="${escapeHtml(desc)}" />`)
     .replace(/<link\s+rel="canonical"\s+href="[^"]+"\s*\/>/, `<link rel="canonical" href="${url}" />`)
@@ -35,7 +38,7 @@ function injectMeta(html, route) {
     .replace(/<meta\s+property="og:url"\s+content="[^"]+"\s*\/>/, `<meta property="og:url" content="${url}" />`)
     .replace(/<meta\s+property="og:description"\s+content="[^"]+"\s*\/>/, `<meta property="og:description" content="${escapeHtml(desc)}" />`)
     .replace('<div id="root"></div>', `<div id="root">${fallback}</div>`)
-    .replace("</head>", `<script type="application/ld+json">${structuredData}</script></head>`);
+    .replace("</head>", `<link rel="alternate" hreflang="${lang === "pt-BR" ? "pt-BR" : "en"}" href="${url}"><link rel="alternate" hreflang="x-default" href="${canonicalUrl(lang === "pt-BR" ? "/" : routeInfo.path)}"><script type="application/ld+json">${structuredData}</script></head>`);
 }
 
 function escapeHtml(value) {
@@ -112,7 +115,7 @@ function fallbackLinks(routeInfo) {
     ["/release-date/", "Aniimo Release Date"],
     ["/launch/", "Aniimo Launch Hub"],
     ["/topics/aniimo-discord/", "Aniimo Discord"],
-    ["/pt/aniimo-pre-registro/", "Aniimo Pre Registro"],
+    ["/pt-br/aniimo-pre-registro/", "Aniimo Pre Registro"],
     ["/topics/aniimo-wiki-dex/", "Aniimo Wiki Dex"],
   ];
 

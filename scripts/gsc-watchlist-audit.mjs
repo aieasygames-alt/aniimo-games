@@ -47,7 +47,7 @@ function resolveWatchlistPath(query) {
   if (value.includes("carried items") || value.includes("held items")) return "/topics/aniimo-carried-items/";
   if (value.includes("google play") || value.includes("android")) return "/platforms/android/";
   if (value.includes("mobile")) return "/platforms/mobile/";
-  if (value.includes("pre registro")) return "/pt/aniimo-pre-registro/";
+  if (value.includes("pre registro")) return "/pt-br/aniimo-pre-registro/";
   if (value.includes("pre register")) return "/launch/aniimo-pre-register-guide/";
   if (value.includes("shiny") || value.includes("forms") || value.includes("rare")) return "/topics/aniimo-shiny/";
   if (value.includes("mmo")) return "/topics/aniimo-mmo/";

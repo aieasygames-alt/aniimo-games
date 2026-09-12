@@ -28,7 +28,7 @@ function gscWatchlistPath(query) {
   if (value.includes("carried items") || value.includes("held items")) return "/topics/aniimo-carried-items/";
   if (value.includes("google play") || value.includes("android")) return "/platforms/android/";
   if (value.includes("mobile")) return "/platforms/mobile/";
-  if (value.includes("pre registro")) return "/pt/aniimo-pre-registro/";
+  if (value.includes("pre registro")) return "/pt-br/aniimo-pre-registro/";
   if (value.includes("pre register")) return "/launch/aniimo-pre-register-guide/";
   if (value.includes("shiny") || value.includes("forms") || value.includes("rare")) return "/topics/aniimo-shiny/";
   if (value.includes("mmo")) return "/topics/aniimo-mmo/";
@@ -462,7 +462,7 @@ export function DownloadPage({ navigate }) {
             <LinkGroup title="Download Search Safety" items={[
               ["Android Google Play", "/platforms/android/", "Track Google Play pre-registration, Android launch timing and safe APK guidance."],
               ["Mobile App Stores", "/platforms/mobile/", "Check App Store, Google Play and mobile launch-window notes."],
-              ["Portuguese Pre-Register", "/pt/aniimo-pre-registro/", "Answer Brazil pre-registro reward and storefront searches."],
+              ["Portuguese Pre-Register", "/pt-br/aniimo-pre-registro/", "Answer Brazil pre-registro reward and storefront searches."],
               ["APK Safety", "/topics/aniimo-apk/", "Use official Android paths instead of APK mirrors."],
               ["Torrent Safety", "/topics/aniimo-torrent/", "Avoid unofficial installers and reposted clients."],
               ["Official Website", "/topics/aniimo-official-website/", "Find verified site, Wiki and storefront links."],
@@ -518,7 +518,7 @@ export function ReleaseDatePage() {
         <div className="hero-actions section-actions">
           <a className="secondary-action" href="/fr/aniimo-date-de-sortie/" onClick={(event) => navigate(event, "/fr/aniimo-date-de-sortie/")}><Search size={18} /> Date de sortie</a>
           <a className="secondary-action" href="/de/wann-kommt-aniimo/" onClick={(event) => navigate(event, "/de/wann-kommt-aniimo/")}><Search size={18} /> Wann kommt Aniimo</a>
-          <a className="secondary-action" href="/pt/aniimo-data-de-lancamento/" onClick={(event) => navigate(event, "/pt/aniimo-data-de-lancamento/")}><Search size={18} /> Data de lancamento</a>
+          <a className="secondary-action" href="/pt-br/aniimo-data-de-lancamento/" onClick={(event) => navigate(event, "/pt-br/aniimo-data-de-lancamento/")}><Search size={18} /> Data de lancamento</a>
           <a className="secondary-action" href="/es/aniimo-fecha-de-lanzamiento/" onClick={(event) => navigate(event, "/es/aniimo-fecha-de-lanzamiento/")}><Search size={18} /> Fecha de lanzamiento</a>
         </div>
       </div>

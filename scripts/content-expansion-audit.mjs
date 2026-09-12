@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
-import { canonicalUrl, fullSitemapRoutes, resolveRoute, sitemapRoutes } from "../src/lib/routes.js";
+import { canonicalUrl, fullSitemapRoutes, localizedTopicPath, resolveRoute, sitemapRoutes } from "../src/lib/routes.js";
+import { localizedTopics } from "../data/content.js";
 
 const planPath = "CONTENT_EXPANSION_PLAN.md";
 const issues = [];
@@ -120,7 +121,7 @@ function routeForPage(page) {
     "Is Aniimo multiplayer?": "/compare/aniimo-multiplayer/",
     "Is Aniimo pay to win?": "/compare/is-aniimo-pay-to-win/",
     "Spanish release date": "/es/aniimo-fecha-de-lanzamiento/",
-    "Portuguese release date": "/pt/aniimo-data-de-lancamento/",
+    "Portuguese release date": localizedTopicPath(localizedTopics.find((topic) => topic.slug === "aniimo-data-de-lancamento")),
     "French download": "/fr/aniimo-telecharger/",
     "German download": "/de/aniimo-herunterladen/",
   };
