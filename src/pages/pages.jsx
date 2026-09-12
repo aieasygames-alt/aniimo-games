@@ -83,10 +83,10 @@ export function HomePage(props) {
 
         <section className="section sources-band">
           <SectionTitle icon={<Compass />} kicker="Launch Guide" title="Popular Aniimo Questions" />
-          <InfoPanel title="Search Console Signal" rows={[
-            ["Review window", `${gscLatestObservations.date}, ${gscLatestObservations.range}`],
-            ["Early performance", `${gscLatestObservations.metrics[1][1]} impressions, ${gscLatestObservations.metrics[0][1]} clicks, ${gscLatestObservations.metrics[3][1]} average position.`],
-            ["Current action", "Prioritize release date, codes, map, 89-character database and community entry points."],
+          <InfoPanel title="What Players Need" rows={[
+            ["Aniimo database", "Browse all 89 public entries by name, element, role, region and stage."],
+            ["Launch dates", "PC and console launch on Sep 16; iOS and Android follow on Sep 23."],
+            ["Community help", "Use the official Discord and source links for launch news and support."],
           ]} />
           <div className="site-index-grid">
             <LinkGroup title="Launch Answers" items={[
@@ -152,6 +152,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             <Select label="Stage" value={stage} onChange={setStage} options={stages} />
             <Select label="Data status" value={statusFilter} onChange={setStatusFilter} options={["All", "Confirmed", "Watchlist", "Verified"]} />
           </div>
+          <p className="filter-summary" aria-live="polite">Showing {statusFilteredAniimo.length} of {aniimo.length} Aniimo</p>
           {!compact && <div className="query-shortcuts" aria-label="Popular database searches">
             <span>Popular searches</span>
             {["Celestis", "Inferlupa", "Glacy", "all Aniimo", "Aniimo locations"].map((term) => <button key={term} type="button" onClick={() => setQuery(term === "all Aniimo" ? "" : term)}>{term}</button>)}
@@ -380,10 +381,10 @@ export function CodesPage({ navigate }) {
             No public redeem code is confirmed yet. This page separates actual codes from
             official pre-registration rewards and launch milestone rewards.
           </p>
-          <InfoPanel title="Freshness Signal" rows={[
+          <InfoPanel title="Page Status" rows={[
             ["Last reviewed", sourceLastChecked],
             ["Current status", codeVerificationTemplate.currentStatus],
-            ["Source policy", "Official channel or direct in-game verification required."],
+            ["How it is checked", "Official channels or direct in-game verification are required."],
           ]} />
           <LaunchStatusPanel title="Codes And Rewards Status" entries={launchStatusEntries.filter((entry) => ["codes", "pc-console", "mobile"].includes(entry.id))} />
           <SeoGuideBlock items={seoGuides.codes} />
@@ -446,10 +447,10 @@ export function DownloadPage({ navigate }) {
               {releaseInfo.note} Store links and regional availability stay tied to official
               sources rather than download mirrors.
             </p>
-            <InfoPanel title="Freshness Signal" rows={[
+            <InfoPanel title="Page Status" rows={[
               ["Last reviewed", sourceLastChecked],
               ["Platform status", "Official storefront links tracked before install availability."],
-              ["Source policy", "Official website and platform stores only."],
+              ["Safe install path", "Use the official website and platform stores only."],
             ]} />
             <InfoPanel title="Mobile Search Answer" rows={[["Android", "Google Play pre-registration and official listing"], ["iOS", "App Store mobile launch tracking"], ["Date", releaseInfo.mobile], ["Safety", "Use official stores only; avoid APK mirrors"]]} />
             <LaunchStatusPanel title="Platform Availability Status" entries={launchStatusEntries.filter((entry) => ["pc-console", "mobile", "server"].includes(entry.id))} />
@@ -506,7 +507,7 @@ export function ReleaseDatePage() {
         <p className="section-copy">{releaseInfo.note}</p>
         <SeoGuideBlock items={seoGuides.release} compact />
         <InfoPanel title="Official Timeline" rows={[["PC and consoles", releaseInfo.pcConsole], ["Mobile", releaseInfo.mobile], ["Closed beta", releaseInfo.closedBeta], ["Beta signup deadline", releaseInfo.betaSignupDeadline], ["Timezone note", releaseInfo.timezoneNote], ["Source", releaseInfo.source]]} />
-        <InfoPanel title="SEMrush Release Queries" rows={[
+        <InfoPanel title="Release Questions" rows={[
           ["when does Aniimo come out", "Answered by the official PC, console and mobile date split."],
           ["Aniimo date de sortie", "French searchers can use the localized release page."],
           ["wann kommt Aniimo raus", "German searchers can use the localized release page."],
@@ -1430,13 +1431,13 @@ export function TopicGuidePage({ topic, kicker, icon, children }) {
       <SectionTitle icon={icon} kicker={kicker} title={topic.title} />
       {topic.image && <img className="page-banner" src={topic.image} alt={topic.title} width="1600" height="900" loading="lazy" />}
       <p className="section-copy">{topic.intro}</p>
-      <InfoPanel title="Freshness Signal" rows={[
+      <InfoPanel title="Page Status" rows={[
         ["Last reviewed", sourceLastChecked],
-        ["Source status", "Watchlist until official or live-game evidence confirms details."],
-        ["Update path", "Refresh this page, source archive and related hub after verification."],
+        ["What is confirmed", "Details remain provisional until official or live-game evidence confirms them."],
+        ["Last checked", "This page is reviewed again when official information or live-game evidence changes."],
       ]} />
       {statusEntry && <LaunchStatusPanel title="Answer Status" entries={[statusEntry]} />}
-      {intentStatus && <InfoPanel title="Next Editorial Action" rows={[["Action", intentStatus.action], ["Target", topic.title]]} />}
+      {intentStatus && <InfoPanel title="What We Are Checking Next" rows={[["Next check", intentStatus.action], ["Page", topic.title]]} />}
       <EditorialBlock title="Key Points" items={topic.points} />
       {evidenceQueue && <EvidenceQueue queue={evidenceQueue} />}
       {children}

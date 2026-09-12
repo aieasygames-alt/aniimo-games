@@ -124,7 +124,7 @@
 .map-toolbar .search-field { flex: 1 1 300px; }
 .file-action { position: relative; overflow: hidden; }
 .file-action input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-.secondary-action { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(23,32,29,.2); border-radius: 8px; padding: 10px 14px; background: #fff; color: #1f6d55; font-weight: 750; cursor: pointer; }
+.secondary-action { display: inline-flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%; border: 1px solid rgba(23,32,29,.2); border-radius: 8px; padding: 10px 14px; background: #fff; color: #1f6d55; font-weight: 750; cursor: pointer; overflow-wrap: anywhere; }
 .comparison-table td { min-width: 150px; vertical-align: top; }
 .team-slots { display: grid; grid-template-columns: repeat(6, minmax(90px, 1fr)); gap: 10px; margin: 20px 0; }
 .team-slot { position: relative; display: grid; min-height: 120px; place-items: center; align-content: center; gap: 4px; border: 1px dashed rgba(23,32,29,.25); border-radius: 8px; background: #fff; color: #63716a; text-align: center; }

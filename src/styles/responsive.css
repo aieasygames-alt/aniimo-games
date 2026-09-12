@@ -47,6 +47,30 @@
     grid-template-columns: 1fr;
   }
 
+  .quick-card,
+  .aniimo-card,
+  .region-card,
+  .code-card,
+  .reward-card,
+  .platform-card,
+  .faq-list article,
+  .status-grid article,
+  .guide-columns article,
+  .source-row,
+  .filters,
+  .search-field,
+  .select-field {
+    min-width: 0;
+  }
+
+  .source-row span,
+  .quick-card p,
+  .section-copy,
+  .secondary-action,
+  .primary-action {
+    overflow-wrap: anywhere;
+  }
+
   .hero {
     min-height: auto;
   }

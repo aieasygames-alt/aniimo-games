@@ -143,6 +143,13 @@
   margin-bottom: 18px;
 }
 
+.filter-summary {
+  margin: -6px 0 18px;
+  color: #52615b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .search-field,
 .select-field {
   display: flex;
