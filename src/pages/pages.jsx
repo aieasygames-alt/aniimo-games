@@ -2014,7 +2014,8 @@ export function ContactPage() {
   );
 }
 
-export function AniimoDetail({ item, navigate }) {
+export function AniimoDetail({ item, navigate, localized = false }) {
+  const pt = localized;
   const sameElement = aniimo.filter((candidate) => candidate.id !== item.id && candidate.element === item.element).slice(0, 6);
   const sameRegion = aniimo.filter((candidate) => candidate.id !== item.id && candidate.region === item.region).slice(0, 6);
   const sameRole = aniimo.filter((candidate) => candidate.id !== item.id && candidate.role === item.role).slice(0, 6);
@@ -2022,13 +2023,13 @@ export function AniimoDetail({ item, navigate }) {
 
   return (
     <section className="section page-detail">
-      <a className="text-link" href="/aniimo/" onClick={(event) => navigate(event, "/aniimo/")}>Back to database</a>
+      <a className="text-link" href={pt ? "/pt-br/aniimo/" : "/aniimo/"} onClick={(event) => navigate(event, pt ? "/pt-br/aniimo/" : "/aniimo/")}>{pt ? "Voltar para a Pokédex" : "Back to database"}</a>
       <div className="detail-hero">
         <CreatureImage item={item} large />
         <div>
-          <p className="eyebrow">Aniimo detail page</p>
-          <h1>{item.name} Location, Evolution, Forms & Abilities</h1>
-          <p>{item.description}</p>
+          <p className="eyebrow">{pt ? "Detalhes do Aniimo" : "Aniimo detail page"}</p>
+          <h1>{pt ? `${item.name}: localização, evolução, formas e habilidades` : `${item.name} Location, Evolution, Forms & Abilities`}</h1>
+          <p>{pt ? `Confira ${item.name}, Aniimo nº ${item.no}, com região, função, estágio, formas e status da fonte oficial.` : item.description}</p>
           <StatusBadge status={item.status} />
         </div>
       </div>
@@ -2056,11 +2057,11 @@ export function AniimoDetail({ item, navigate }) {
         <GuideItem title="Related route logic" text={item.relatedRegionReason} />
         <GuideItem title="Source note" text={item.sourceNote} />
       </div>
-      <RelatedAniimo title="Evolution Line" items={aniimo.filter((candidate) => item.forms.includes(candidate.name))} navigate={navigate} />
-      <RelatedAniimo title={`More ${item.region} Aniimo`} items={sameRegion} navigate={navigate} />
-      <RelatedAniimo title={`More ${item.element} Aniimo`} items={sameElement} navigate={navigate} />
-      <RelatedAniimo title={`More ${item.role} Aniimo`} items={sameRole} navigate={navigate} />
-      <RelatedAniimo title={`More ${item.stage} Aniimo`} items={sameStage} navigate={navigate} />
+      <RelatedAniimo title={pt ? "Linha de evolução" : "Evolution Line"} items={aniimo.filter((candidate) => item.forms.includes(candidate.name))} navigate={navigate} localized={pt} />
+      <RelatedAniimo title={pt ? `Mais Aniimo de ${item.region}` : `More ${item.region} Aniimo`} items={sameRegion} navigate={navigate} localized={pt} />
+      <RelatedAniimo title={pt ? `Mais Aniimo de elemento ${item.element}` : `More ${item.element} Aniimo`} items={sameElement} navigate={navigate} localized={pt} />
+      <RelatedAniimo title={pt ? `Mais Aniimo de função ${item.role}` : `More ${item.role} Aniimo`} items={sameRole} navigate={navigate} localized={pt} />
+      <RelatedAniimo title={pt ? `Mais Aniimo de estágio ${item.stage}` : `More ${item.stage} Aniimo`} items={sameStage} navigate={navigate} localized={pt} />
       <RelatedRegions currentRegion={item.region} navigate={navigate} />
       <FaqBlock items={[
         [`Where can I find ${item.name}?`, `${item.name} is listed in the official Aniimo Wiki and tracked under ${item.region}. Exact spawn points can be added after launch verification.`],

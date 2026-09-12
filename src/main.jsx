@@ -60,6 +60,7 @@ import {
   TeamBuilderPage,
   CollectionTrackerPage,
 } from "./pages/pages.jsx";
+import { localizedAniimoPath } from "./lib/routes.js";
 import "./styles.css";
 
 function App() {
@@ -150,7 +151,9 @@ function App() {
       </header>
 
       <main>
-        {detail ? (
+        {routeInfo.type === "localized-aniimo" ? (
+          <AniimoDetail item={routeInfo.detail} navigate={navigate} localized />
+        ) : detail ? (
           <AniimoDetail item={detail} navigate={navigate} />
         ) : regionDetail ? (
           <RegionDetail region={regionDetail} navigate={navigate} />

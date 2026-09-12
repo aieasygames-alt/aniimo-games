@@ -72,6 +72,10 @@ export function aniimoPath(item) {
   return normalizePath(`/aniimo/${item.id}`);
 }
 
+export function localizedAniimoPath(item, locale = "pt-BR") {
+  return normalizePath(`/${locale === "pt-BR" ? "pt-br" : locale}/aniimo/${item.id}`);
+}
+
 export function regionPath(region) {
   return normalizePath(`/regions/${region.id}`);
 }
@@ -175,6 +179,11 @@ export function findRegionBySlug(slug) {
 
 export function resolveRoute(path) {
   const normalized = normalizePath(path);
+  const localizedAniimoMatch = normalized.match(/^\/pt-br\/aniimo\/([^/]+)\/$/);
+  if (localizedAniimoMatch) {
+    const item = findAniimoBySlug(localizedAniimoMatch[1]);
+    if (item) return { type: "localized-aniimo", path: localizedAniimoPath(item), title: `${item.name} Aniimo: Localização, Evolução e Habilidades`, description: `Guia em português sobre ${item.name}: região, formas, evolução, função, habilidade e status da fonte oficial.`, detail: item, locale: "pt-BR" };
+  }
   if (normalized.startsWith("/pt/")) {
     const legacy = normalized.replace(/^\/pt\//, "/pt-br/");
     const target = localizedTopics.find((item) => localizedTopicPath(item) === legacy);
@@ -380,6 +389,7 @@ export function fullSitemapRoutes() {
     ...freshnessPages.map(freshnessPagePath),
     ...localizedTopics.map(localizedTopicPath),
     ...aniimo.map(aniimoPath),
+    ...aniimo.filter((item) => ["emberpup", "inferlupa", "glacy", "celestis", "eklue", "skippy", "susuta", "fragrancier", "wisptis", "helgon", "cozite"].includes(item.id)).map((item) => localizedAniimoPath(item)),
     ...regions.map(regionPath),
   ]);
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { ChevronRight } from "lucide-react";
 import { aniimo, regions, siteLastUpdated, statuses } from "../../data/content.js";
-import { aniimoPath, elementPath, regionPath, rolePath, stagePath, statusPath } from "../lib/routes.js";
+import { aniimoPath, localizedAniimoPath, elementPath, regionPath, rolePath, stagePath, statusPath } from "../lib/routes.js";
 import { messagesForPath } from "../../data/locales/index.js";
 
 function uiMessages() {
@@ -207,7 +207,7 @@ export function SourcePanel({ source, status }) {
   );
 }
 
-export function RelatedAniimo({ title, items, navigate }) {
+export function RelatedAniimo({ title, items, navigate, localized = false }) {
   if (!items.length) return null;
 
   return (
@@ -215,7 +215,7 @@ export function RelatedAniimo({ title, items, navigate }) {
       <h2>{title}</h2>
       <div className="related-grid">
         {items.map((item) => (
-          <a className="related-card" key={item.id} href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
+          <a className="related-card" key={item.id} href={localized ? localizedAniimoPath(item) : aniimoPath(item)} onClick={(event) => navigate(event, localized ? localizedAniimoPath(item) : aniimoPath(item))}>
             <span className="related-mark">{item.no}</span>
             <strong>{item.name}</strong>
             <span>{item.element} / {item.role}</span>
