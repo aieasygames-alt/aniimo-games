@@ -12,3 +12,7 @@ export function localeForPath(path) {
 export function localePrefix(locale) {
   return locale === "pt-BR" ? "/pt-br" : "";
 }
+
+export function messagesForPath(path) {
+  return locales[localeForPath(path)] || locales[defaultLocale];
+}

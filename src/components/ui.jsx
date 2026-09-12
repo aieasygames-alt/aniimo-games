@@ -2,17 +2,23 @@ import React from "react";
 import { ChevronRight } from "lucide-react";
 import { aniimo, regions, siteLastUpdated, statuses } from "../../data/content.js";
 import { aniimoPath, elementPath, regionPath, rolePath, stagePath, statusPath } from "../lib/routes.js";
+import { messagesForPath } from "../../data/locales/index.js";
+
+function uiMessages() {
+  return messagesForPath(typeof window === "undefined" ? "/" : window.location.pathname).ui;
+}
 
 export function StatusBadge({ status }) {
   return <span className={`status status-${status.toLowerCase()}`}>{status}</span>;
 }
 
 export function LaunchStatusPanel({ entries, title = "Launch Status" }) {
+  const ui = uiMessages();
   return (
     <section className="launch-status-panel" aria-label={title}>
       <div className="launch-status-heading">
         <h2>{title}</h2>
-        <span>Official-source checks only</span>
+        <span>{ui.officialOnly}</span>
       </div>
       <div className="launch-status-grid">
         {entries.map((entry) => (
@@ -22,10 +28,10 @@ export function LaunchStatusPanel({ entries, title = "Launch Status" }) {
               <StatusBadge status={entry.status} />
             </div>
             <p>{entry.value}</p>
-            <p className="small">Checked {entry.lastChecked}</p>
+            <p className="small">{ui.checked} {entry.lastChecked}</p>
             <p className="small">{entry.note}</p>
             <a className="text-link" href={entry.source} target="_blank" rel="noreferrer">
-              Check source <ChevronRight size={16} />
+              {ui.checkSource} <ChevronRight size={16} />
             </a>
           </article>
         ))}
@@ -124,9 +130,10 @@ export function GuideItem({ title, text }) {
 }
 
 export function FaqBlock({ items }) {
+  const ui = uiMessages();
   return (
     <section className="faq-block">
-      <h2>FAQ</h2>
+      <h2>{ui.faq}</h2>
       <div className="faq-list">
         {items.map(([question, answer]) => (
           <article key={question}>
@@ -182,18 +189,19 @@ export function SeoGuideBlock({ items, compact = false }) {
 }
 
 export function SourcePanel({ source, status }) {
+  const ui = uiMessages();
   return (
     <article className="info-panel source-panel">
-      <h2>Official Source</h2>
+      <h2>{ui.officialSource}</h2>
       <p>{statuses[status]}</p>
       <dl>
-        <dt>Status</dt>
+        <dt>{ui.status}</dt>
         <dd>{status}</dd>
-        <dt>Last updated</dt>
+        <dt>{ui.lastUpdated}</dt>
         <dd>{siteLastUpdated}</dd>
       </dl>
       <a className="text-link" href={source} target="_blank" rel="noreferrer">
-        Visit source <ChevronRight size={16} />
+        {ui.visitSource} <ChevronRight size={16} />
       </a>
     </article>
   );
@@ -219,12 +227,13 @@ export function RelatedAniimo({ title, items, navigate }) {
 }
 
 export function RelatedRegions({ currentRegion, navigate }) {
+  const ui = uiMessages();
   const items = regions.filter((region) => region.name === currentRegion);
   if (!items.length) return null;
 
   return (
     <section className="related-section">
-      <h2>Related Region</h2>
+      <h2>{ui.relatedRegion}</h2>
       <div className="region-grid">
         {items.map((region) => (
           <article className="region-card" key={region.id}>
@@ -232,7 +241,7 @@ export function RelatedRegions({ currentRegion, navigate }) {
             <h3>{region.name}</h3>
             <p>{region.theme}</p>
             <a className="text-link" href={regionPath(region)} onClick={(event) => navigate(event, regionPath(region))}>
-              View region guide <ChevronRight size={16} />
+              {ui.viewRegion} <ChevronRight size={16} />
             </a>
           </article>
         ))}

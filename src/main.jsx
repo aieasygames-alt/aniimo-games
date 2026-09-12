@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BookOpen, Download, Search } from "lucide-react";
 import { aniimo, officialLinks, siteLastUpdated } from "../data/content.js";
-import { localeForPath } from "../data/locales/index.js";
+import { localeForPath, messagesForPath } from "../data/locales/index.js";
 import {
   findAniimoBySlug,
   findRegionBySlug,
@@ -108,6 +108,7 @@ function App() {
   }, [path]);
 
   const routeInfo = resolveRoute(path);
+  const ui = messagesForPath(path);
   const aniimoMatch = path.match(/^\/aniimo\/([^/]+)\//);
   const regionMatch = path.match(/^\/regions\/([^/]+)\//);
   const detail = aniimoMatch ? findAniimoBySlug(aniimoMatch[1]) : null;
@@ -139,9 +140,9 @@ function App() {
           <img src="/images/brand/aniimo-logo.webp" alt="Aniimo Wiki" width="180" height="78" />
         </a>
         <nav>
-          {navRoutes.map(({ label, path }) => (
-            <a key={label} href={path} onClick={(event) => navigate(event, path)}>
-              {label}
+          {navRoutes.map(({ label, path: navPath }) => (
+            <a key={label} href={navPath} onClick={(event) => navigate(event, navPath)}>
+              {localeForPath(path) === "pt-BR" ? ({ Database: ui.nav.database, Map: ui.nav.map, Guides: ui.nav.guides, Launch: ui.nav.launch, Codes: ui.nav.codes }[label] || label) : label}
             </a>
           ))}
         </nav>

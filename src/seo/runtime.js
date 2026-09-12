@@ -1,5 +1,6 @@
 import { canonicalUrl, resolveRoute } from "../lib/routes.js";
 import { localeForPath } from "../../data/locales/index.js";
+import { localizedTopics } from "../../data/content.js";
 
 export function applySeo(path) {
   const routeInfo = resolveRoute(path);
@@ -17,7 +18,9 @@ export function applySeo(path) {
 
 function syncHreflang(path, locale) {
   document.querySelectorAll("link[data-locale-alternate]").forEach((node) => node.remove());
-  const links = locale === "pt-BR" ? [{ lang: "en", href: "/" }, { lang: "pt-BR", href: path }, { lang: "x-default", href: "/" }] : [{ lang: "en", href: path }, { lang: "x-default", href: path }];
+  const portugueseMatch = localizedTopics.find((topic) => `/${topic.locale === "pt" ? "pt-br" : topic.locale}/${topic.slug}/` === path);
+  const englishHref = portugueseMatch ? "/" : path;
+  const links = locale === "pt-BR" ? [{ lang: "en", href: englishHref }, { lang: "pt-BR", href: path }, { lang: "x-default", href: englishHref }] : [{ lang: "en", href: path }, { lang: "x-default", href: path }];
   links.forEach(({ lang, href }) => {
     const node = document.createElement("link");
     node.rel = "alternate";
