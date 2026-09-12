@@ -1037,6 +1037,7 @@ export function SiteIndexPage({ navigate }) {
     ["French Release", "/fr/aniimo-date-de-sortie/", "Answer French release-date searches."],
     ["German Release", "/de/wann-kommt-aniimo/", "Answer German release-date searches."],
   ];
+  const portuguesePages = localizedTopics.filter((item) => item.locale === "pt").map((item) => [item.title, localizedTopicPath(item), item.description]);
   const trustPages = staticRoutes.filter((route) => ["/about/", "/editorial-policy/", "/contact/"].includes(route.path));
   const elementNames = [...new Set(aniimo.map((item) => item.element))];
   const roleNames = [...new Set(aniimo.map((item) => item.role))];
@@ -1080,6 +1081,7 @@ export function SiteIndexPage({ navigate }) {
         <LinkGroup title="Launch Conversion Guides" items={conversionPages} navigate={navigate} />
         <LinkGroup title="Growth Refresh Plans" items={refreshPages} navigate={navigate} />
         <LinkGroup title="Localized Search Entrypoints" items={localizedPages} navigate={navigate} />
+        <LinkGroup title="Português (Brasil)" items={portuguesePages} navigate={navigate} />
         <LinkGroup title="Region Guides" items={regions.map((item) => [item.name, regionPath(item), item.theme])} navigate={navigate} />
         <LinkGroup title="Location Guides" items={regions.map((item) => [`${item.name} Locations`, locationTopicPath(item), `Track ${item.name} route and spawn verification tasks.`])} navigate={navigate} />
         <LinkGroup title="Element Guides" items={elementNames.map((item) => [`${item} Aniimo`, elementPath(item), `Browse ${item} entries by number, role, stage and source status.`])} navigate={navigate} />

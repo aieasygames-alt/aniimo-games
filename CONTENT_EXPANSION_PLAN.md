@@ -2,6 +2,8 @@
 
 Last updated: 2026-09-02
 
+Localization update: the first Brazil Portuguese (`pt-BR`) core entry batch is now shipped under `/pt-br/`, with legacy `/pt/` redirects retained. Additional detail-page translation remains data-dependent.
+
 ## Goal
 
 Expand Aniimo.games from a broad pre-launch wiki into a durable search-intent hub. New content should answer real user questions, preserve source trust, and avoid thin or overconfident pages while Aniimo facts are still changing.
