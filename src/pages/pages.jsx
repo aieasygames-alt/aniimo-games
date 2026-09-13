@@ -46,7 +46,7 @@ export function HomePage(props) {
           <div className="hero-copy">
             <p className="eyebrow">Database, map routes, evolution and launch rewards</p>
             <h1>Aniimo Wiki: Release Date, Codes, Map & Database</h1>
-            <p>{gameInfo.summary}</p>
+            <p>{gameInfo.summary} Get the fastest verified answers here: 89 public Aniimo entries, PC and console on September 16, and mobile on September 23.</p>
             <div className="hero-actions">
               <a className="primary-action" href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>
                 <Search size={18} />
@@ -136,11 +136,16 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
   return (
         <section id="database" className="section">
           <SectionTitle icon={<Search />} kicker="Index" title="Aniimo Database" />
-          <p className="section-copy">
+            <p className="section-copy">
             Browse the full Aniimo list with official Wiki numbers, names, elements, roles,
             stages, locations, forms and source status. This page is the Aniimo wiki-style
             character database for users searching all 89 Aniimo, character names and guide entries.
           </p>
+          <div className="answer-strip database-answer-strip" aria-label="Database quick answers">
+            <div><strong>89</strong><span>public entries</span></div>
+            <div><strong>Search</strong><span>name, element, role or region</span></div>
+            <div><strong>Status</strong><span>confirmed, watchlist or verified</span></div>
+          </div>
           <div className="filters">
             <label className="search-field">
               <Search size={18} />

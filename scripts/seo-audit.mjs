@@ -77,6 +77,7 @@ for (const route of expectedDiscoverableRoutes) {
   const title = html.match(/<title>(.*?)<\/title>/)?.[1];
   const description = html.match(/<meta\s+name="description"\s+content="([^"]+)"/)?.[1];
   const canonical = html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/)?.[1];
+  const alternates = [...html.matchAll(/<link\s+rel="alternate"\s+hreflang="([^"]+)"\s+href="([^"]+)"/g)].map((match) => match[1]);
 
   if (!title) issues.push(`Missing title in ${htmlPath}`);
   if (!description) issues.push(`Missing meta description in ${htmlPath}`);

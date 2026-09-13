@@ -6,7 +6,8 @@ import { localeForPath } from "../data/locales/index.js";
 
 const indexHtml = "dist/index.html";
 const indexTemplate = readFileSync(indexHtml, "utf8");
-const routes = prerenderRoutes();
+// Alias URLs are handled by host-level redirects and should not get indexable HTML.
+const routes = prerenderRoutes().filter((route) => !["/aniimo/dreaple", "/aniimo/nimbi", "/aniimo/turbo"].includes(route));
 const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup", "eklue", "skippy", "helgon"];
 
 function injectMeta(html, route) {
@@ -30,6 +31,7 @@ function injectMeta(html, route) {
     .replaceAll(">", "\\u003e")
     .replaceAll("&", "\\u0026");
   const englishAlternate = routeInfo.type === "localized-aniimo" ? canonicalUrl(aniimoPath(routeInfo.detail)) : canonicalUrl(lang === "pt-BR" ? "/" : routeInfo.path);
+  html = html.replace(/<link\s+rel="alternate"\s+hreflang="[^"]+"\s+href="[^"]+"\s*\/?\s*>/g, "");
   return html
     .replace(/<html lang="[^"]+">/, `<html lang="${lang}">`)
     .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`)

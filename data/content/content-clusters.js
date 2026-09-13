@@ -702,8 +702,8 @@ export const socialIntentTopics = [
   },
   {
     slug: "aniimo-ai",
-    title: "Does Aniimo Use AI? Official Source and Disclosure Check",
-    description: "Does Aniimo use AI? Check the current official disclosure status, developer information and evidence boundary before trusting AI-art or development claims.",
+    title: "Does Aniimo Use AI? Official Disclosure Check",
+    description: "Does Aniimo use AI? Check official developer and platform disclosures, separate facts from AI-art rumors, and see when this page was last verified.",
     intro: "Search Console now shows Aniimo AI-use queries near page one. This page answers that trust intent carefully: it records what official sources say, keeps art and development claims separate, and avoids repeating unsupported AI rumors.",
     points: [
       ["Current source position", "Aniimo.games does not claim Aniimo is AI-made unless Pawprint Studio or an official platform listing states that directly."],
@@ -1026,8 +1026,8 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-discord",
-    title: "Aniimo Discord Server: Official Invite, Codes & Status Updates",
-    description: "Find the official Aniimo Discord invite, verify code announcements, follow server updates and separate official notices from community discussion.",
+    title: "Aniimo Discord: Official Invite, Codes & Status",
+    description: "Find the official Aniimo Discord path, verify code announcements and follow launch updates without trusting fake invites or unverified claims.",
     intro: "Looking for the Aniimo Discord server? Use this page to find the official community path, check launch announcements and codes, avoid fake invites, and separate community chatter from verified guide facts.",
     points: [
       ["Official invite check", "Use the official Aniimo website, official social profiles or verified storefront links before trusting any Discord invite shared by a third-party page."],

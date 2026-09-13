@@ -107,6 +107,11 @@
 .query-shortcuts button { border: 1px solid rgba(23,32,29,.16); border-radius: 6px; padding: 7px 10px; background: #fff; color: #1f6d55; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
 .query-shortcuts button:hover { border-color: #1f6d55; background: #eef7ef; }
 
+.database-answer-strip { margin: 22px 0 18px; }
+.database-answer-strip > div { display: flex; flex-direction: column; gap: 2px; }
+.database-answer-strip strong { color: #1f6d55; font-size: 20px; }
+.database-answer-strip span { color: #53635b; font-size: 13px; font-weight: 650; }
+
 @media (max-width: 760px) { .evidence-form { grid-template-columns: 1fr; } .evidence-notes { grid-column: auto; } }
 
 .tool-page { max-width: 1180px; }

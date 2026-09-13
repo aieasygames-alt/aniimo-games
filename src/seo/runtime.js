@@ -18,10 +18,13 @@ export function applySeo(path) {
 
 function syncHreflang(path, locale) {
   document.querySelectorAll("link[data-locale-alternate]").forEach((node) => node.remove());
+  document.querySelectorAll("link[rel='alternate'][hreflang]").forEach((node) => node.remove());
   const portugueseMatch = localizedTopics.find((topic) => `/${topic.locale === "pt" ? "pt-br" : topic.locale}/${topic.slug}/` === path);
   const routeInfo = resolveRoute(path);
   const englishHref = routeInfo.type === "localized-aniimo" ? aniimoPath(routeInfo.detail) : (portugueseMatch ? "/" : path);
-  const links = locale === "pt-BR" ? [{ lang: "en", href: englishHref }, { lang: "pt-BR", href: path }, { lang: "x-default", href: englishHref }] : [{ lang: "en", href: path }, { lang: "x-default", href: path }];
+  const links = locale === "pt-BR"
+    ? [{ lang: "en", href: englishHref }, { lang: "pt-BR", href: path }, { lang: "x-default", href: englishHref }]
+    : [{ lang: "en", href: path }, { lang: "x-default", href: path }];
   links.forEach(({ lang, href }) => {
     const node = document.createElement("link");
     node.rel = "alternate";
