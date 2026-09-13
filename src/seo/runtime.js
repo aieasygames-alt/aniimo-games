@@ -8,8 +8,9 @@ export function applySeo(path) {
   document.documentElement.lang = locale === "pt-BR" ? "pt-BR" : "en";
 
   document.title = routeInfo.title;
+  setMeta("meta[name='robots']", "content", routeInfo.type === "not-found" ? "noindex,follow" : "index,follow");
   setMeta("meta[name='description']", "content", routeInfo.description);
-  setMeta("link[rel='canonical']", "href", canonicalUrl(routeInfo.path));
+  setMeta("link[rel='canonical']", "href", routeInfo.type === "not-found" ? canonicalUrl(path) : canonicalUrl(routeInfo.path));
   setMeta("meta[property='og:title']", "content", routeInfo.title);
   setMeta("meta[property='og:url']", "content", canonicalUrl(routeInfo.path));
   setMeta("meta[property='og:description']", "content", routeInfo.description);

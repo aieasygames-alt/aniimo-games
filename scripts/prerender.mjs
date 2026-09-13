@@ -23,7 +23,7 @@ function injectMeta(html, route) {
   }
   const title = routeInfo.title;
   const desc = routeInfo.description;
-  const url = canonicalUrl(routeInfo.path);
+  const url = canonicalUrl(routeInfo.type === "not-found" ? route : routeInfo.path);
   const fallback = fallbackHtml(routeInfo);
   // JSON-LD is raw JSON inside a script element; HTML entity escaping makes it invalid JSON.
   const structuredData = JSON.stringify(structuredDataForRoute(routeInfo, pageFaqsForRoute(routeInfo)))
@@ -36,6 +36,7 @@ function injectMeta(html, route) {
     .replace(/<html lang="[^"]+">/, `<html lang="${lang}">`)
     .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
     .replace(/<meta\s+name="description"\s+content="[^"]+"\s*\/>/, `<meta name="description" content="${escapeHtml(desc)}" />`)
+    .replace(/<meta\s+name="robots"\s+content="[^"]+"\s*\/>/, `<meta name="robots" content="${routeInfo.type === "not-found" ? "noindex,follow" : "index,follow"}" />`)
     .replace(/<link\s+rel="canonical"\s+href="[^"]+"\s*\/>/, `<link rel="canonical" href="${url}" />`)
     .replace(/<meta\s+property="og:title"\s+content="[^"]+"\s*\/>/, `<meta property="og:title" content="${escapeHtml(title)}" />`)
     .replace(/<meta\s+property="og:url"\s+content="[^"]+"\s*\/>/, `<meta property="og:url" content="${url}" />`)
