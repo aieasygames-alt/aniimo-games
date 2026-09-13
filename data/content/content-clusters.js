@@ -510,7 +510,7 @@ export const beginnerTopics = [
 
 export const downloadTopics = [
   ["pc", "Aniimo PC Download Status & Safe Install Guide", "Track Aniimo PC download status, official storefronts, release timing, wishlist actions and safe installer guidance before launch.", "Use Steam, Epic Games Store or the official website for PC launch tracking."],
-  ["mobile", "Aniimo Mobile Download Guide: App Store, Google Play & Pre-Register", "Track Aniimo mobile download status, iOS and Android availability, App Store, Google Play, pre-registration and safe app-store guidance.", "Use App Store, Google Play or the official website for mobile launch tracking; mobile store visibility can vary by country before launch."],
+  ["mobile", "Aniimo Mobile Download: App Store & Google Play", "Track Aniimo mobile download status, iOS and Android availability, App Store, Google Play, pre-registration and safe app-store guidance.", "Use App Store, Google Play or the official website for mobile launch tracking; mobile store visibility can vary by country before launch."],
   ["ios", "Aniimo iOS Download Guide", "Track Aniimo iOS pre-order, App Store availability, mobile launch timing and safe download guidance.", "Use the official App Store listing when it is visible in your region."],
   ["android", "Aniimo Android Download Guide: Google Play & APK Safety", "Track Aniimo Android pre-registration, Google Play availability, mobile launch timing, download status and safe APK guidance.", "Use Google Play and avoid APK mirrors before launch; Android queries should lead to official pre-registration or install pages."],
   ["ps5", "Aniimo PS5 Download Guide", "Track Aniimo PS5 wishlist, PlayStation listing, console release timing and official download guidance.", "Use the official PlayStation listing for console availability."],
@@ -1474,7 +1474,7 @@ export const conversionTopics = [
   },
   {
     slug: "aniimo-pre-register-guide",
-    title: "Aniimo Pre-Register Guide: Rewards, Susuta Egg & Mobile Stores",
+    title: "Aniimo Pre-Register: Rewards, Susuta Egg & Stores",
     description: "Learn where to pre-register for Aniimo, track pre-registration rewards, Susuta egg, Google Play, App Store and how rewards differ from redeem codes.",
     intro: "Pre-registration pages are already earning clicks, especially around rewards and Portuguese `pre registro` searches. This guide answers platform, reward and code-boundary questions in one source-safe place.",
     points: [

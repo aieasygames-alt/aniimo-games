@@ -85,6 +85,7 @@ for (const route of expectedDiscoverableRoutes) {
   if (canonical && canonical !== route) issues.push(`Canonical mismatch in ${htmlPath}: ${canonical} should be ${route}`);
   if (canonical && !sitemapSet.has(canonical)) issues.push(`Canonical is not in sitemap: ${canonical}`);
   if (description && description.length < 80) issues.push(`Meta description is too short in ${htmlPath}`);
+  if (title && title.length > 65) issues.push(`Title is too long in ${htmlPath}: ${title.length} characters`);
 
   const routeInfo = resolveRoute(route.replace(siteUrl, ""));
   const graph = structuredDataForRoute(routeInfo, pageFaqsForRoute(routeInfo));
