@@ -1,11 +1,11 @@
 # Aniimo Official Update Report
 
-Generated: 2026-09-09T14:59:29.006Z
+Generated: 2026-09-13T04:07:40.053Z
 
 ## Summary
 
 - Local Aniimo entries: 89
-- Official Wiki entries found in probe page: 89
+- Official Wiki entries found in probe page: 92
 - Local regions: 6
 - Official regions seen on main page: 6
 - PC/console launch date: 2026-09-16
@@ -19,7 +19,9 @@ Generated: 2026-09-09T14:59:29.006Z
 
 ## New Official Aniimo Missing Locally
 
-- None
+- Nimbi
+- Turbo
+- Dreaple
 
 ## Local Aniimo Not Seen In Probe
 
