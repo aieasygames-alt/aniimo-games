@@ -430,7 +430,7 @@ export function RewardsPage() {
   return (
     <section id="rewards" className="section">
       <SectionTitle icon={<Gift />} kicker="Rewards" title="Aniimo Pre-Registration Rewards" />
-      <img className="page-banner" src="/images/banners/banner-susuta-hunt.webp" alt="Aniimo Susuta Hunt event" />
+          <img className="page-banner" src="/images/banners/banner-susuta-hunt.webp" alt="Aniimo Susuta Hunt event" width="1600" height="900" loading="lazy" decoding="async" />
       <p className="section-copy">
         Confirmed official rewards include milestone items, a Prismana Aniimo choice for
         Junior Wayfarers, and a mysterious Susuta egg for official pre-registration. Claim
@@ -1347,7 +1347,7 @@ export function MediaPage({ navigate }) {
       <div className="media-grid">
         {mediaGalleryItems.map((item) => (
           <article className="media-card" key={item.image}>
-            <img src={item.image} alt={item.title} width="420" height="236" loading="lazy" />
+            <img src={item.image} alt={item.title} width="420" height="236" loading="lazy" decoding="async" />
             <div>
               <h2>{item.title}</h2>
               <p>{item.description}</p>
@@ -1442,7 +1442,7 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
   return (
     <section className="section sources-band">
       <SectionTitle icon={icon} kicker={kicker} title={topic.title} />
-      {topic.image && <img className="page-banner" src={topic.image} alt={topic.title} width="1600" height="900" loading="lazy" />}
+      {topic.image && <img className="page-banner" src={topic.image} alt={topic.title} width="1600" height="900" loading="lazy" decoding="async" />}
       <p className="section-copy">{topic.intro}</p>
       <InfoPanel title="Page Status" rows={[
         ["Last reviewed", sourceLastChecked],
@@ -1908,7 +1908,7 @@ export function PlatformPage({ type }) {
       <a className="text-link" href="/download/">Back to all download options <ChevronRight size={16} /></a>
       <div>
         <SectionTitle icon={<Download />} kicker="Platforms" title={platformConfig.title} />
-        {platformConfig.image && <img className="page-banner" src={platformConfig.image} alt={`${platformConfig.names.join(" and ")} Aniimo store listing`} width="1600" height="900" loading="lazy" />}
+        {platformConfig.image && <img className="page-banner" src={platformConfig.image} alt={`${platformConfig.names.join(" and ")} Aniimo store listing`} width="1600" height="900" loading="lazy" decoding="async" />}
         <p className="section-copy">{platformConfig.intro}</p>
         <SeoGuideBlock compact items={platformConfig.notes} />
       </div>

@@ -74,7 +74,7 @@ export function TaxonomyLinks({ navigate }) {
 
 export function CreatureImage({ item, large = false }) {
   return item.image ? (
-    <img className={`creature-image ${large ? "large" : ""}`} src={item.image} alt={`${item.name} Aniimo`} width={large ? 148 : 86} height={large ? 148 : 86} loading={large ? "eager" : "lazy"} />
+    <img className={`creature-image ${large ? "large" : ""}`} src={item.image} alt={`${item.name} Aniimo`} width={large ? 148 : 86} height={large ? 148 : 86} loading={large ? "eager" : "lazy"} decoding="async" />
   ) : (
     <div className={`creature-mark ${large ? "large" : ""}`}>{item.name.slice(0, 1)}</div>
   );
@@ -82,7 +82,7 @@ export function CreatureImage({ item, large = false }) {
 
 export function RegionImage({ region, compact = false }) {
   return region.image ? (
-    <img className={`region-image ${compact ? "compact-map" : ""}`} src={region.image} alt={`${region.name} region`} width={compact ? 260 : 640} height={compact ? 168 : 360} loading="lazy" />
+    <img className={`region-image ${compact ? "compact-map" : ""}`} src={region.image} alt={`${region.name} region`} width={compact ? 260 : 640} height={compact ? 168 : 360} loading="lazy" decoding="async" />
   ) : (
     <div className={`region-map ${compact ? "compact-map" : ""}`}><span>{region.name}</span></div>
   );

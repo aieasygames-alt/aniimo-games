@@ -7,6 +7,8 @@
   .topbar nav {
     width: 100%;
     overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
     padding-bottom: 4px;
     white-space: nowrap;
   }
