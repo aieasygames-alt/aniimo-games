@@ -179,27 +179,27 @@ function App() {
         ) : routeInfo.type === "choice-topic" ? (
           <ChoiceTopicPage topic={routeInfo.choiceTopic} navigate={navigate} />
         ) : routeInfo.type === "official-pitch-topic" ? (
-          <TopicGuidePage topic={routeInfo.officialPitchTopic} kicker="Official Guide" icon={<BookOpen />} />
+          <TopicGuidePage topic={routeInfo.officialPitchTopic} kicker="Official Guide" icon={<BookOpen />} navigate={navigate} />
         ) : routeInfo.type === "social-intent-topic" ? (
-          <TopicGuidePage topic={routeInfo.socialIntentTopic} kicker="Comparison" icon={<Search />} />
+          <TopicGuidePage topic={routeInfo.socialIntentTopic} kicker="Comparison" icon={<Search />} navigate={navigate} />
         ) : routeInfo.type === "search-suggestion-topic" ? (
-          <TopicGuidePage topic={routeInfo.searchSuggestionTopic} kicker="Search Topic" icon={<Search />} />
+          <TopicGuidePage topic={routeInfo.searchSuggestionTopic} kicker="Search Topic" icon={<Search />} navigate={navigate} />
         ) : routeInfo.type === "glossary-topic" ? (
-          <TopicGuidePage topic={routeInfo.glossaryTopic} kicker="Glossary" icon={<BookOpen />} />
+          <TopicGuidePage topic={routeInfo.glossaryTopic} kicker="Glossary" icon={<BookOpen />} navigate={navigate} />
         ) : routeInfo.type === "troubleshooting-topic" ? (
-          <TopicGuidePage topic={routeInfo.troubleshootingTopic} kicker="Troubleshooting" icon={<Download />} />
+          <TopicGuidePage topic={routeInfo.troubleshootingTopic} kicker="Troubleshooting" icon={<Download />} navigate={navigate} />
         ) : routeInfo.type === "mechanic-deep-dive-topic" ? (
-          <TopicGuidePage topic={routeInfo.mechanicDeepDiveTopic} kicker="Mechanics" icon={<BookOpen />} />
+          <TopicGuidePage topic={routeInfo.mechanicDeepDiveTopic} kicker="Mechanics" icon={<BookOpen />} navigate={navigate} />
         ) : routeInfo.type === "media-detail-topic" ? (
-          <TopicGuidePage topic={routeInfo.mediaDetailTopic} kicker="Media" icon={<Search />} />
+          <TopicGuidePage topic={routeInfo.mediaDetailTopic} kicker="Media" icon={<Search />} navigate={navigate} />
         ) : routeInfo.type === "conversion-topic" ? (
-          <TopicGuidePage topic={routeInfo.conversionTopic} kicker="Launch" icon={<Download />} />
+          <TopicGuidePage topic={routeInfo.conversionTopic} kicker="Launch" icon={<Download />} navigate={navigate} />
         ) : routeInfo.type === "refresh-planning-topic" ? (
-          <TopicGuidePage topic={routeInfo.refreshPlanningTopic} kicker="Growth" icon={<Search />} />
+          <TopicGuidePage topic={routeInfo.refreshPlanningTopic} kicker="Growth" icon={<Search />} navigate={navigate} />
         ) : routeInfo.type === "freshness-page" ? (
           <FreshnessPage topic={routeInfo.freshnessPage} />
         ) : routeInfo.type === "localized-topic" ? (
-          <TopicGuidePage topic={routeInfo.localizedTopic} kicker={routeInfo.localizedTopic.locale.toUpperCase()} icon={<Search />} />
+          <TopicGuidePage topic={routeInfo.localizedTopic} kicker={routeInfo.localizedTopic.locale.toUpperCase()} icon={<Search />} navigate={navigate} />
         ) : routeInfo.type === "aniimo-compare" ? (
           <AniimoComparePage navigate={navigate} />
         ) : routeInfo.type === "team-builder" ? (

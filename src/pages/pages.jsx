@@ -1433,7 +1433,7 @@ export function SourceArchivePage() {
   );
 }
 
-export function TopicGuidePage({ topic, kicker, icon, children }) {
+export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
   const relatedLinks = topicRelatedLinks(topic);
   const evidenceQueue = topicEvidenceQueue(topic);
   const intentStatus = searchIntentStatus[topic.slug];
@@ -1459,6 +1459,10 @@ export function TopicGuidePage({ topic, kicker, icon, children }) {
         <a className="text-link" href={href}>{text} <ChevronRight size={16} /></a>,
       ])} />
       <FaqBlock items={topic.faq} />
+      <div className="hero-actions section-actions topic-next-actions">
+        <a className="primary-action" href="/guides/" onClick={(event) => navigate?.(event, "/guides/")}><BookOpen size={18} /> Browse related guides</a>
+        <a className="secondary-action" href={topic.source} target="_blank" rel="noreferrer"><Search size={18} /> Check official source</a>
+      </div>
     </section>
   );
 }
@@ -1901,6 +1905,7 @@ export function PlatformPage({ type }) {
 
   return (
     <section className="section split-section download-band">
+      <a className="text-link" href="/download/">Back to all download options <ChevronRight size={16} /></a>
       <div>
         <SectionTitle icon={<Download />} kicker="Platforms" title={platformConfig.title} />
         {platformConfig.image && <img className="page-banner" src={platformConfig.image} alt={`${platformConfig.names.join(" and ")} Aniimo store listing`} width="1600" height="900" loading="lazy" />}

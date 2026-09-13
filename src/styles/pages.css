@@ -112,6 +112,7 @@
 .database-answer-strip strong { color: #1f6d55; font-size: 20px; }
 .database-answer-strip span { color: #53635b; font-size: 13px; font-weight: 650; }
 .mobile-store-actions { margin: 18px 0 22px; }
+.topic-next-actions { margin-top: 24px; }
 
 @media (max-width: 760px) { .evidence-form { grid-template-columns: 1fr; } .evidence-notes { grid-column: auto; } }
 
