@@ -58,6 +58,7 @@ export const staticRoutes = [
 ];
 
 const primaryNavPaths = ["/aniimo/", "/map/", "/guides/", "/mechanics/", "/launch/", "/codes/", "/site-index/"];
+const localizedFeaturedIds = ["emberpup", "inferlupa", "glacy", "celestis", "eklue", "skippy", "susuta", "fragrancier", "wisptis", "helgon", "cozite"];
 
 export const navRoutes = primaryNavPaths
   .map((path) => staticRoutes.find((item) => item.path === path))
@@ -451,6 +452,7 @@ export function primarySitemapRoutes() {
     ...regions.map(regionPath),
     ...regions.map(locationTopicPath),
     ...featuredAniimo.map((slug) => aniimo.find((item) => item.id === slug)).filter(Boolean).map(aniimoPath),
+    ...aniimo.filter((item) => localizedFeaturedIds.includes(item.id)).map((item) => localizedAniimoPath(item)),
   ]).filter((path) => fullSitemapRoutes().includes(path));
 }
 
