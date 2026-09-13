@@ -109,6 +109,7 @@ function App() {
   }, [path]);
 
   const routeInfo = resolveRoute(path);
+  const portugueseHref = path.startsWith("/pt-br/") ? "/" : (path.startsWith("/aniimo/") && routeInfo.detail ? `/pt-br/aniimo/${routeInfo.detail.id}/` : "/pt-br/aniimo-download/");
   const ui = messagesForPath(path);
   const aniimoMatch = path.match(/^\/aniimo\/([^/]+)\//);
   const regionMatch = path.match(/^\/regions\/([^/]+)\//);
@@ -147,7 +148,7 @@ function App() {
             </a>
           ))}
         </nav>
-        <a className="language-switch" href={localeForPath(path) === "pt-BR" ? "/" : "/pt-br/aniimo-download/"} onClick={(event) => navigate(event, localeForPath(path) === "pt-BR" ? "/" : "/pt-br/aniimo-download/")}>{localeForPath(path) === "pt-BR" ? "English" : "Português (Brasil)"}</a>
+        <a className="language-switch" href={localeForPath(path) === "pt-BR" ? "/" : portugueseHref} onClick={(event) => navigate(event, localeForPath(path) === "pt-BR" ? "/" : portugueseHref)}>{localeForPath(path) === "pt-BR" ? "English" : "Português (Brasil)"}</a>
       </header>
 
       <main>

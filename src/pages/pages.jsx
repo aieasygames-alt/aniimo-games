@@ -458,6 +458,10 @@ export function DownloadPage({ navigate }) {
               ["Safe install path", "Use the official website and platform stores only."],
             ]} />
             <InfoPanel title="Mobile Search Answer" rows={[["Android", "Google Play pre-registration and official listing"], ["iOS", "App Store mobile launch tracking"], ["Date", releaseInfo.mobile], ["Safety", "Use official stores only; avoid APK mirrors"]]} />
+            <div className="hero-actions section-actions mobile-store-actions">
+              <a className="primary-action" href="/platforms/mobile/" onClick={(event) => navigate(event, "/platforms/mobile/")}><Download size={18} /> Open mobile store guide</a>
+              <a className="secondary-action" href="/platforms/android/" onClick={(event) => navigate(event, "/platforms/android/")}><Search size={18} /> Android status</a>
+            </div>
             <LaunchStatusPanel title="Platform Availability Status" entries={launchStatusEntries.filter((entry) => ["pc-console", "mobile", "server"].includes(entry.id))} />
             <SeoGuideBlock items={seoGuides.download} compact />
             <div className="date-grid">

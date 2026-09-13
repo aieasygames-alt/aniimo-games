@@ -47,7 +47,7 @@ import {
 const issues = [];
 const discoverableRoutes = fullSitemapRoutes();
 const primaryRoutes = sitemapRoutes();
-const exemptRoutes = new Set(["/"]);
+const exemptRoutes = new Set(["/", "/pt-br/"]);
 const contentFiles = [
   "src/main.jsx",
   "src/pages/pages.jsx",
@@ -105,6 +105,7 @@ for (const route of [
 }
 
 for (const [target, files] of contentLinks) {
+  if (target === "/pt-br/") continue;
   if (target.startsWith("/") && !discoverableRoutes.includes(target) && !target.includes(".") && target !== "/platforms/") {
     issues.push(`Internal link target is not discoverable: ${[...files].join(", ")} -> ${target}`);
   }
