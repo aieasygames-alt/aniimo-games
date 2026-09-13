@@ -163,6 +163,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             {["Celestis", "Inferlupa", "Glacy", "all Aniimo", "Aniimo locations"].map((term) => <button key={term} type="button" onClick={() => setQuery(term === "all Aniimo" ? "" : term)}>{term}</button>)}
           </div>}
           <TaxonomyLinks navigate={navigate} />
+          {!compact && <LinkGroup title="Popular Search Paths" items={[["Aniimo Tier List", "/aniimo-tier-list/", "Compare provisional roles and evidence."], ["Aniimo Elements", "/aniimo-elements/", "Browse element-based entries."], ["Aniimo Roles", "/aniimo-roles/", "Find DPS, support and healer roles."], ["Aniimo Discord", "/topics/aniimo-discord/", "Check official community-source guidance."], ["Aniimo AI Use", "/compare/aniimo-ai/", "Review official AI disclosure checks."]]} navigate={navigate} />}
           {!compact && (
             <InfoPanel title="Character Search Shortcuts" rows={[
               ["Best matching queries", "Search all Aniimo by name, Wiki number, element, role, region, ability or form family."],
@@ -315,6 +316,7 @@ export function MapPage({ compact, navigate }) {
             ]} />
           )}
           {!compact && <div className="map-toolbar"><label className="search-field"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search regions, Aniimo or mechanics" /></label><Select label="Region" value={regionFilter} onChange={setRegionFilter} options={["All", ...regions.map((item) => item.name)]} /><button type="button" className="secondary-action" onClick={() => navigator.clipboard?.writeText(`${window.location.origin}/map/?q=${encodeURIComponent(query)}&region=${encodeURIComponent(regionFilter)}`)}><Copy size={16} /> Copy map link</button></div>}
+          {!compact && <p className="section-copy map-answer">Looking for the Aniimo map size? The final measured world size is not confirmed yet; this page tracks {regions.length} public regions and adds route evidence after launch verification.</p>}
           <div className="region-grid">
             {filteredRegions.map((item) => (
               <article className="region-card" key={item.id}>
@@ -458,6 +460,7 @@ export function DownloadPage({ navigate }) {
               ["Safe install path", "Use the official website and platform stores only."],
             ]} />
             <InfoPanel title="Mobile Search Answer" rows={[["Android", "Google Play pre-registration and official listing"], ["iOS", "App Store mobile launch tracking"], ["Date", releaseInfo.mobile], ["Safety", "Use official stores only; avoid APK mirrors"]]} />
+            <p className="section-copy download-answer">For Aniimo game download searches, use the official store links below. There is no safe reason to use an APK mirror or torrent.</p>
             <div className="hero-actions section-actions mobile-store-actions">
               <a className="primary-action" href="/platforms/mobile/" onClick={(event) => navigate(event, "/platforms/mobile/")}><Download size={18} /> Open mobile store guide</a>
               <a className="secondary-action" href="/platforms/android/" onClick={(event) => navigate(event, "/platforms/android/")}><Search size={18} /> Android status</a>
@@ -713,6 +716,9 @@ export function FreshnessPage({ topic }) {
     <section className="section updates-band">
       <SectionTitle icon={<CalendarDays />} kicker="Freshness" title={topic.title} />
       <p className="section-copy">{topic.intro}</p>
+      {(topic.slug === "aniimo-discord" || topic.slug === "aniimo-reddit") && <InfoPanel title="Community Search Answer" rows={[["Official status", "Use only links verified by Aniimo or Pawprint Studio."], ["What this page provides", "A source-safe path for launch, codes, server and player-report questions."], ["What is not confirmed", "Third-party invites, screenshots and rumors are not official facts."]]}/>} 
+      {topic.slug === "aniimo-ai" && <InfoPanel title="AI Search Answer" rows={[["Current answer", "No official source reviewed here confirms that Aniimo is made with generative AI."], ["Evidence rule", "Trailer style, upscaling or visual polish is not proof of AI use."], ["Next check", "Update this answer only when the developer, publisher or platform publishes a direct disclosure."]]}/>} 
+      {topic.slug === "aniimo-tier-list" && <InfoPanel title="Tier List Search Answer" rows={[["Current answer", "This is a pre-launch watchlist, not a final competitive ranking."], ["How to compare", "Use role, element, stage and source status until live balance evidence exists."], ["Next update", "Add dated PvE, PvP and early-game testing after launch."]]}/>} 
       <div className="detail-panels">
         <InfoPanel title="Tracking Scope" rows={[["Source type", topic.sourceType], ["Primary source", topic.source], ["Status", "Maintained as a source-aware update page"]]} />
         <InfoPanel title="Related Actions" rows={freshnessWatchlist.slice(0, 3).map(([label, check]) => [label, check])} />
