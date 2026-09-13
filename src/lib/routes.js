@@ -649,6 +649,7 @@ export function structuredDataForRoute(routeInfo, pageFaqs) {
       "@type": "Article",
       headline: routeInfo.title,
       description: routeInfo.description,
+      image: canonicalAssetUrl(topic.image || gameInfo.ogImage),
       dateModified: siteLastUpdated,
       datePublished: "2026-08-27",
       author: {

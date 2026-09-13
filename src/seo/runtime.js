@@ -1,6 +1,6 @@
 import { aniimoPath, canonicalUrl, resolveRoute } from "../lib/routes.js";
 import { localeForPath } from "../../data/locales/index.js";
-import { localizedTopics } from "../../data/content.js";
+import { gameInfo, localizedTopics, siteLastUpdated } from "../../data/content.js";
 
 export function applySeo(path) {
   const routeInfo = resolveRoute(path);
@@ -13,6 +13,8 @@ export function applySeo(path) {
   setMeta("meta[property='og:title']", "content", routeInfo.title);
   setMeta("meta[property='og:url']", "content", canonicalUrl(routeInfo.path));
   setMeta("meta[property='og:description']", "content", routeInfo.description);
+  setMeta("meta[property='og:image']", "content", gameInfo.ogImage?.startsWith("http") ? gameInfo.ogImage : `https://aniimo.games${gameInfo.ogImage}`);
+  setMeta("meta[name='dateModified']", "content", siteLastUpdated);
   syncHreflang(routeInfo.path, locale);
 }
 
