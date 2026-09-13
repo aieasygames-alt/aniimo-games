@@ -1026,8 +1026,8 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-discord",
-    title: "Aniimo Discord: Official Invite, Codes & Status",
-    description: "Find the official Aniimo Discord path, verify code announcements and follow launch updates without trusting fake invites or unverified claims.",
+    title: "Aniimo Discord: Official Server, Invite, Codes & Status",
+    description: "Looking for the Aniimo Discord server? Find the official invite path, verify code announcements and follow launch updates without trusting fake links.",
     intro: "Looking for the Aniimo Discord server? Use this page to find the official community path, check launch announcements and codes, avoid fake invites, and separate community chatter from verified guide facts.",
     points: [
       ["Official invite check", "Use the official Aniimo website, official social profiles or verified storefront links before trusting any Discord invite shared by a third-party page."],
@@ -1044,8 +1044,8 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-reddit",
-    title: "Aniimo Reddit Discussions, Rumors & Community Questions",
-    description: "Track Aniimo Reddit discussion intent for launch questions, codes, Discord, AI concerns, issues and community reports without treating rumors as facts.",
+    title: "Aniimo Reddit: Community Discussions, Rumors & Questions",
+    description: "Looking for Aniimo Reddit discussions? Track launch questions, codes, Discord, AI concerns and community reports without treating rumors as facts.",
     intro: "Reddit searches are a useful early-warning system for Aniimo content gaps. This page turns Reddit-style questions into source-safe follow-up work without letting rumors overwrite official launch, code or platform information.",
     points: [
       ["Useful signal", "Reddit can surface repeated questions about platforms, launch timing, Discord, codes, bugs, AI concerns and multiplayer expectations."],
