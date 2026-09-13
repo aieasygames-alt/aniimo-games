@@ -1,7 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { aniimo, gameInfo, launchPriorityPages, launchRewards, releaseInfo, regions, siteLastUpdated, sourceLastChecked } from "../data/content.js";
-import { canonicalUrl, pageFaqsForRoute, prerenderRoutes, resolveRoute, structuredDataForRoute } from "../src/lib/routes.js";
+import { aniimoPath, canonicalUrl, pageFaqsForRoute, prerenderRoutes, resolveRoute, structuredDataForRoute } from "../src/lib/routes.js";
 import { localeForPath } from "../data/locales/index.js";
 
 const indexHtml = "dist/index.html";
@@ -29,6 +29,7 @@ function injectMeta(html, route) {
     .replaceAll("<", "\\u003c")
     .replaceAll(">", "\\u003e")
     .replaceAll("&", "\\u0026");
+  const englishAlternate = routeInfo.type === "localized-aniimo" ? canonicalUrl(aniimoPath(routeInfo.detail)) : canonicalUrl(lang === "pt-BR" ? "/" : routeInfo.path);
   return html
     .replace(/<html lang="[^"]+">/, `<html lang="${lang}">`)
     .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
@@ -38,7 +39,7 @@ function injectMeta(html, route) {
     .replace(/<meta\s+property="og:url"\s+content="[^"]+"\s*\/>/, `<meta property="og:url" content="${url}" />`)
     .replace(/<meta\s+property="og:description"\s+content="[^"]+"\s*\/>/, `<meta property="og:description" content="${escapeHtml(desc)}" />`)
     .replace('<div id="root"></div>', `<div id="root">${fallback}</div>`)
-    .replace("</head>", `<link rel="alternate" hreflang="${lang === "pt-BR" ? "pt-BR" : "en"}" href="${url}"><link rel="alternate" hreflang="x-default" href="${canonicalUrl(lang === "pt-BR" ? "/" : routeInfo.path)}"><script type="application/ld+json">${structuredData}</script></head>`);
+    .replace("</head>", `<link rel="alternate" hreflang="${lang === "pt-BR" ? "pt-BR" : "en"}" href="${url}"><link rel="alternate" hreflang="en" href="${englishAlternate}"><link rel="alternate" hreflang="x-default" href="${englishAlternate}"><script type="application/ld+json">${structuredData}</script></head>`);
 }
 
 function escapeHtml(value) {
