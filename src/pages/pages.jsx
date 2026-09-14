@@ -318,6 +318,7 @@ export function MapPage({ compact, navigate }) {
           )}
           {!compact && <div className="map-toolbar"><label className="search-field"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search regions, Aniimo or mechanics" /></label><Select label="Region" value={regionFilter} onChange={setRegionFilter} options={["All", ...regions.map((item) => item.name)]} /><button type="button" className="secondary-action" onClick={() => navigator.clipboard?.writeText(`${window.location.origin}/map/?q=${encodeURIComponent(query)}&region=${encodeURIComponent(regionFilter)}`)}><Copy size={16} /> Copy map link</button></div>}
           {!compact && <p className="section-copy map-answer">Looking for the Aniimo map size? The final measured world size is not confirmed yet; this page tracks {regions.length} public regions and adds route evidence after launch verification.</p>}
+          {!compact && <LinkGroup title="Map Search Answers" items={[["Map Size", "/map/", "See the current measured-size status and public region count."], ["Aniimo Locations", "/topics/aniimo-locations/", "Find the verification plan for creature spawn routes."], ["Evolution List", "/topics/aniimo-evolution-list/", "Browse creature forms and evolution coverage."]]} navigate={navigate} />}
           <div className="region-grid">
             {filteredRegions.map((item) => (
               <article className="region-card" key={item.id}>
@@ -2057,12 +2058,12 @@ export function AniimoDetail({ item, navigate, localized = false }) {
   return (
     <section className="section page-detail">
       <a className="text-link" href={pt ? "/pt-br/aniimo/" : "/aniimo/"} onClick={(event) => navigate(event, pt ? "/pt-br/aniimo/" : "/aniimo/")}>{pt ? "Voltar para a Pokédex" : "Back to database"}</a>
-      <div className="detail-hero">
+          <div className="detail-hero">
         <CreatureImage item={item} large />
         <div>
           <p className="eyebrow">{pt ? "Detalhes do Aniimo" : "Aniimo detail page"}</p>
           <h1>{pt ? `${item.name}: localização, evolução, formas e habilidades` : `${item.name} Location, Evolution, Forms & Abilities`}</h1>
-          <p>{pt ? `Confira ${item.name}, Aniimo nº ${item.no}, com região, função, estágio, formas e status da fonte oficial.` : item.description}</p>
+          <p>{pt ? `Confira ${item.name}, Aniimo nº ${item.no}, com região, função, estágio, formas e status da fonte oficial.` : `${item.name} location, evolution, forms and abilities: browse Aniimo No. ${item.no}, ${item.element} element, ${item.role} role, ${item.region} region and current source status.`}</p>
           <StatusBadge status={item.status} />
         </div>
       </div>
