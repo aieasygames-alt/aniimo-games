@@ -1108,8 +1108,8 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-gameplay",
-    title: "Aniimo Gameplay",
-    description: "Summarize confirmed Aniimo gameplay systems including creature catching, Twine, Homeland, Egg Heist and exploration.",
+    title: "Aniimo Gameplay Guide: Catching, Twine, Combat & Exploration",
+    description: "What is Aniimo gameplay like? Review creature catching, Twine, Homeland, combat, Egg Heist and open-world exploration from confirmed sources.",
     image: "/images/media/aniimo-exploration-footage.webp",
     intro: "Gameplay searches help users decide whether Aniimo is worth following. This page summarizes confirmed public systems while keeping exact balance, route and progression details for launch verification.",
     points: [
@@ -1202,8 +1202,8 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-evolution-list",
-    title: "Aniimo Evolution List",
-    description: "Browse Aniimo evolution-list search intent with source-safe notes for forms, stages, families and post-launch verification.",
+    title: "Aniimo Evolution List: Forms, Stages & Creature Families",
+    description: "Browse the Aniimo evolution list with forms, Lumin/Gamma/Nova stages, creature families and requirements awaiting official verification.",
     intro: "Evolution-list searches come from players trying to understand forms and progression. Aniimo.games can support this intent through current stages and evolution notes while avoiding unverified requirements.",
     points: [
       ["Current database path", "Use the Aniimo database and evolution guide for tracked stages, families, official descriptions and detail pages."],
@@ -1217,8 +1217,8 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-locations",
-    title: "Aniimo Locations List",
-    description: "Browse Aniimo location-list search intent with region links, route-watchlist notes and spawn verification requirements.",
+    title: "Aniimo Locations: Creature Spawn Regions & Route Guide",
+    description: "Find Aniimo locations by region, review current creature route notes and see which spawn points still need launch verification.",
     intro: "Location-list searches will become stronger after launch, but exact coordinates should not be invented. This page routes users to regions, location guides and verification queues.",
     points: [
       ["Current location model", "Aniimo.games tracks region assignments and location notes where available, while exact spawn points stay pending."],

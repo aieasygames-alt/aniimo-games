@@ -463,6 +463,11 @@ export function DownloadPage({ navigate }) {
             ]} />
             <InfoPanel title="Mobile Search Answer" rows={[["Android", "Google Play pre-registration and official listing"], ["iOS", "App Store mobile launch tracking"], ["Date", releaseInfo.mobile], ["Safety", "Use official stores only; avoid APK mirrors"]]} />
             <p className="section-copy download-answer">For Aniimo game download searches, use the official store links below. There is no safe reason to use an APK mirror or torrent.</p>
+            <div className="answer-strip download-answer-strip" aria-label="Download quick answers">
+              <div><strong>PC</strong><span>Steam and Epic paths</span></div>
+              <div><strong>Console</strong><span>PS5 and Xbox listings</span></div>
+              <div><strong>Mobile</strong><span>App Store and Google Play</span></div>
+            </div>
             <LinkGroup title="High-Intent Download Paths" items={[["Aniimo Mobile Download", "/platforms/mobile/", "Check iOS and Android store availability."], ["Aniimo Steam Download", "/platforms/steam/", "Open the official PC storefront path."], ["Aniimo Android Download", "/platforms/android/", "Check Google Play and APK safety guidance."], ["Aniimo Release Date", "/release-date/", "Compare PC, console and mobile dates."]]} navigate={navigate} />
             <div className="hero-actions section-actions mobile-store-actions">
               <a className="primary-action" href="/platforms/mobile/" onClick={(event) => navigate(event, "/platforms/mobile/")}><Download size={18} /> Open mobile store guide</a>
