@@ -136,10 +136,11 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
   return (
         <section id="database" className="section">
           <SectionTitle icon={<Search />} kicker="Index" title="Aniimo Database" />
-            <p className="section-copy">
+          <p className="section-copy">
             Browse the full Aniimo list with official Wiki numbers, names, elements, roles,
             stages, locations, forms and source status. This page is the Aniimo wiki-style
-            character database for users searching all 89 Aniimo, character names and guide entries.
+            creature database for users searching all 89 Aniimo, character names, locations,
+            evolutions and guide entries.
           </p>
           <div className="answer-strip database-answer-strip" aria-label="Database quick answers">
             <div><strong>89</strong><span>public entries</span></div>
@@ -716,7 +717,7 @@ export function FreshnessPage({ topic }) {
   return (
     <section className="section updates-band">
       <SectionTitle icon={<CalendarDays />} kicker="Freshness" title={topic.title} />
-      <p className="section-copy">{topic.intro}</p>
+          <p className="section-copy">{topic.intro}</p>
       {(topic.slug === "aniimo-logo") && <InfoPanel title="Logo Search Answer" rows={[["Asset", "Use the Aniimo logo preview and source notes on this page."], ["Format", "The production asset is served as WebP for faster loading."], ["Source rule", "Use official or site-prepared brand assets rather than reposted files."]]}/>} 
       {(topic.slug === "aniimo-discord" || topic.slug === "aniimo-reddit") && <InfoPanel title="Community Search Answer" rows={[["Official status", "Use only links verified by Aniimo or Pawprint Studio."], ["What this page provides", "A source-safe path for launch, codes, server and player-report questions."], ["What is not confirmed", "Third-party invites, screenshots and rumors are not official facts."]]}/>} 
       {topic.slug === "aniimo-ai" && <InfoPanel title="AI Search Answer" rows={[["Current answer", "No official source reviewed here confirms that Aniimo is made with generative AI."], ["Evidence rule", "Trailer style, upscaling or visual polish is not proof of AI use."], ["Next check", "Update this answer only when the developer, publisher or platform publishes a direct disclosure."]]}/>} 
@@ -1517,6 +1518,14 @@ function topicRelatedLinks(topic) {
     links.push(
       ["Download", "/download/", "Find official platform links"],
       ["Release Date", "/release-date/", "Check launch timing"],
+    );
+  }
+
+  if (slug === "aniimo-reddit") {
+    links.push(
+      ["Verified Launch Answer", "/release-date/", "Check confirmed launch timing"],
+      ["Official Game Download", "/download/", "Use safe platform download paths"],
+      ["Creature Database", "/aniimo/", "Search named creatures and evolutions"],
     );
   }
 
