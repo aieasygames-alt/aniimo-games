@@ -423,6 +423,7 @@ export function CodesPage({ navigate }) {
             ))}
           </div>
           <RewardGrid />
+          <InfoPanel title="Claim Before You Start" rows={[["Account", "Use the same account used for pre-registration or the official platform listing."], ["Reward type", "Campaign rewards and redeem codes are separate; do not expect every reward to have a code."], ["Availability", "Check platform, region and launch status before reporting a missing reward."], ["Evidence", "Keep the announcement, account, platform and timestamp if a claim fails."]]} />
           <EvidenceQueue queue={launchEvidenceQueues.codes} />
           <LinkGroup title="Code Search Safety" items={[
             ["Beta Key Safety", "/topics/aniimo-beta-key/", "Avoid key buying, fake access pages and unofficial invite claims."],
@@ -448,6 +449,8 @@ export function RewardsPage() {
       </p>
       <LaunchStatusPanel title="Reward Delivery Status" entries={launchStatusEntries.filter((entry) => ["codes", "pc-console", "mobile"].includes(entry.id))} />
       <RewardGrid />
+      <InfoPanel title="Reward Categories" rows={[["Pre-registration", "Rewards tied to official registration or store actions."], ["Milestones", "Campaign items unlocked by published community thresholds."], ["Launch events", "Free items associated with official global launch events."], ["Redeem codes", "Separate code strings that require an official redemption flow."]]} />
+      <InfoPanel title="Claim Checklist" rows={[["1. Account", "Sign in with the account used for registration or platform access."], ["2. Store", "Confirm the official store listing and the correct country/region."], ["3. Timing", "Check the launch status and delivery window before retrying."], ["4. Report", "Record platform, region, time and screenshot if the reward is missing."]]} />
       <FaqBlock items={faqs.codes} />
     </section>
   );
@@ -496,6 +499,7 @@ export function DownloadPage({ navigate }) {
               ["Torrent Safety", "/topics/aniimo-torrent/", "Avoid unofficial installers and reposted clients."],
               ["Official Website", "/topics/aniimo-official-website/", "Find verified site, Wiki and storefront links."],
               ["Region Availability", "/troubleshooting/aniimo-region-availability/", "Check account, country and storefront availability."],
+              ["Download Not Available", "/troubleshooting/aniimo-download-not-available/", "Troubleshoot missing install buttons or delayed store rollout."],
             ]} navigate={navigate} />
             <LinkGroup title="Platform Intent" items={[
               ["Steam Deck", "/topics/aniimo-steam-deck/", "Track compatibility questions after PC launch."],
@@ -611,17 +615,21 @@ export function StatusGuide() {
 }
 
 function RewardGrid() {
+  const groups = [
+    ["Pre-registration", launchRewards.filter((item) => /pre|junior|susuta/i.test(`${item.title} ${item.reward}`))],
+    ["Milestones", launchRewards.filter((item) => /milestone|\d+M/i.test(`${item.title} ${item.reward}`))],
+    ["Launch events", launchRewards.filter((item) => /launch event/i.test(item.title))],
+  ];
   return (
-    <div className="reward-grid">
-      {launchRewards.map((item) => (
+    <div className="reward-groups">
+      {groups.map(([label, items]) => <section className="reward-group" key={label}><h2>{label}</h2><div className="reward-grid">{items.map((item) => (
         <article className="reward-card" key={item.title}>
           <div>
             <h3>{item.title}</h3>
             <p>{item.reward}</p>
           </div>
           <StatusBadge status={item.status} />
-        </article>
-      ))}
+        </article>))}</div></section>)}
     </div>
   );
 }

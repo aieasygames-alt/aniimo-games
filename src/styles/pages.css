@@ -213,6 +213,8 @@ th {
   gap: 16px;
   margin-top: 18px;
 }
+.reward-groups { display: grid; gap: 28px; }
+.reward-group > h2 { margin-bottom: 10px; font-size: 22px; }
 
 .reward-card {
   border: 1px solid rgba(23, 32, 29, 0.1);
