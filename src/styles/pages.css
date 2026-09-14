@@ -84,10 +84,13 @@
 
 .table-shell {
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid rgba(23, 32, 29, 0.1);
   border-radius: 8px;
   background: #fff;
 }
+.table-shell::after { content: "Swipe horizontally to see more"; display: block; padding: 7px 14px; color: #63716a; font-size: 12px; text-align: right; }
+@media (min-width: 761px) { .table-shell::after { display: none; } }
 
 .evidence-form {
   display: grid;
