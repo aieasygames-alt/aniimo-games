@@ -1481,6 +1481,7 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
         ["What is confirmed", "Details remain provisional until official or live-game evidence confirms them."],
         ["Last checked", "This page is reviewed again when official information or live-game evidence changes."],
       ]} />
+      <div className="source-level" aria-label="Source level"><strong>Source level</strong><span>{topic.sourceType || "Editorial review"}</span><span>Facts and community leads are kept separate.</span></div>
       {statusEntry && <LaunchStatusPanel title="Answer Status" entries={[statusEntry]} />}
       {intentStatus && <InfoPanel title="What We Are Checking Next" rows={[["Next check", intentStatus.action], ["Page", topic.title]]} />}
       <EditorialBlock title="Key Points" items={topic.points} />
@@ -1491,12 +1492,23 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
         <a className="text-link" href={href}>{text} <ChevronRight size={16} /></a>,
       ])} />
       <FaqBlock items={topic.faq} />
+      <FeedbackPanel topic={topic.title} />
       <div className="hero-actions section-actions topic-next-actions">
         <a className="primary-action" href="/guides/" onClick={(event) => navigate?.(event, "/guides/")}><BookOpen size={18} /> Browse related guides</a>
         <a className="secondary-action" href={topic.source} target="_blank" rel="noreferrer"><Search size={18} /> Check official source</a>
       </div>
     </section>
   );
+}
+
+function FeedbackPanel({ topic }) {
+  const [kind, setKind] = useState("Correction");
+  const [notes, setNotes] = useState("");
+  function exportFeedback() {
+    const payload = `Aniimo.games feedback\nPage: ${topic}\nType: ${kind}\nNotes: ${notes}\nURL: ${window.location.href}`;
+    navigator.clipboard?.writeText(payload);
+  }
+  return <section className="feedback-panel"><h2>Report a correction or missing detail</h2><p>Prepare a review note locally; it is not published automatically.</p><div className="feedback-controls"><select value={kind} onChange={(event) => setKind(event.target.value)} aria-label="Feedback type"><option>Correction</option><option>Missing detail</option><option>Broken link</option><option>Source update</option></select><textarea value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="What should be checked? Include a source URL or platform details." aria-label="Feedback notes" /><button type="button" className="secondary-action" onClick={exportFeedback}>Copy report</button></div></section>;
 }
 
 function topicRelatedLinks(topic) {

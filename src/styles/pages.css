@@ -108,6 +108,15 @@
 .query-shortcuts button:hover { border-color: #1f6d55; background: #eef7ef; }
 .filter-drawer summary { margin: 14px 0 8px; color: #1f6d55; font-weight: 800; cursor: pointer; }
 .filter-drawer summary::marker { color: #1f6d55; }
+.source-level { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 16px; margin: 16px 0; padding: 12px 14px; border-left: 3px solid #1f6d55; background: #f2f7ef; color: #52615b; }
+.source-level strong { color: #1f6d55; }
+.feedback-panel { margin-top: 28px; padding: 18px; border: 1px solid rgba(23,32,29,.14); border-radius: 8px; background: #fff; }
+.feedback-panel h2 { margin: 0 0 6px; font-size: 20px; }
+.feedback-panel p { margin: 0 0 14px; color: #52615b; }
+.feedback-controls { display: grid; grid-template-columns: 180px minmax(0, 1fr) auto; gap: 10px; align-items: start; }
+.feedback-controls select, .feedback-controls textarea { width: 100%; border: 1px solid rgba(23,32,29,.18); border-radius: 6px; padding: 10px 12px; background: #fff; color: #17201d; font: inherit; }
+.feedback-controls textarea { min-height: 44px; resize: vertical; }
+@media (max-width: 760px) { .feedback-controls { grid-template-columns: 1fr; } }
 
 .database-answer-strip { margin: 22px 0 18px; }
 .database-answer-strip > div { display: flex; flex-direction: column; gap: 2px; }
