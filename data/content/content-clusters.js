@@ -875,8 +875,8 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-wiki-dex",
-    title: "Aniimo Wiki, Dex and All Aniimo List",
-    description: "Browse Aniimo wiki, dex, all Aniimo list and character database search intent with links to official names, creature pages, roles and elements.",
+    title: "Aniimo Wiki Dex: All 89 Creatures, Names & Evolutions",
+    description: "Browse the Aniimo wiki dex and all 89 creature entries with official names, numbers, roles, elements, evolutions and source notes.",
     intro: "Wiki, dex, all Aniimo and list searches usually mean users want a complete creature index. This page connects that intent to the Aniimo.games database while keeping official Wiki facts and launch-only route claims separate.",
     points: [
       ["Database path", "Use the Aniimo database for tracked names, official numbers, elements, roles, stages, images and source status."],
@@ -936,8 +936,8 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-cross-save",
-    title: "Does Aniimo Have Cross-Save?",
-    description: "Track Aniimo cross-save, account linking, platform progression and launch verification questions with careful source-safe wording.",
+    title: "Aniimo Cross-Save: Account Linking & Platform Progress",
+    description: "Does Aniimo have cross-save? Track account linking, shared progression and platform verification for PC, console and mobile.",
     intro: "Cross-save searches appear when players plan to start on one platform and continue on another. Aniimo.games should answer the account and progression question directly while keeping unverified platform-linking rules in watchlist status.",
     points: [
       ["Current status", "Aniimo.games does not confirm cross-save until official sources or live-game testing verify account linking and shared progression."],
@@ -1396,8 +1396,8 @@ export const mediaDetailTopics = [
   },
   {
     slug: "aniimo-logo",
-    title: "Aniimo Logo and Brand Assets",
-    description: "Track Aniimo logo search intent, brand asset usage, source notes and where logo images appear on Aniimo.games.",
+    title: "Aniimo Logo: Official Image, PNG Use & Brand Assets",
+    description: "Find the Aniimo logo, official image usage notes, PNG guidance, source context and brand-asset links on Aniimo.games.",
     intro: "Logo searches can bring image traffic and brand-verification users. This page keeps logo usage tied to site navigation, media assets and official-source context.",
     points: [
       ["Current site logo", "Aniimo.games uses a compressed brand image for site navigation and keeps production media under asset checks."],
