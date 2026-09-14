@@ -130,7 +130,8 @@ export function HomePage(props) {
 
 export function DatabasePage({ query, setQuery, element, setElement, region, setRegion, role, setRole, stage, setStage, elements, regionNames, roles, stages, filteredAniimo, navigate, compact }) {
   const [statusFilter, setStatusFilter] = useState("All");
-  const statusFilteredAniimo = statusFilter === "All" ? filteredAniimo : filteredAniimo.filter((item) => item.status === statusFilter);
+  const [sortBy, setSortBy] = useState("Number");
+  const statusFilteredAniimo = (statusFilter === "All" ? filteredAniimo : filteredAniimo.filter((item) => item.status === statusFilter)).slice().sort((a, b) => sortBy === "Name" ? a.name.localeCompare(b.name) : Number(a.no) - Number(b.no));
   const [tracked, setTracked] = useState(() => { try { return JSON.parse(localStorage.getItem("aniimo-tracker") || "{}"); } catch { return {}; } });
   const setTracking = (item, value) => setTracked((current) => { const next = { ...current, [item.id]: value }; localStorage.setItem("aniimo-tracker", JSON.stringify(next)); return next; });
   return (
@@ -159,9 +160,11 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             <Select label="Role" value={role} onChange={setRole} options={roles} />
             <Select label="Stage" value={stage} onChange={setStage} options={stages} />
             <Select label="Data status" value={statusFilter} onChange={setStatusFilter} options={["All", "Confirmed", "Watchlist", "Verified"]} />
+            <Select label="Sort" value={sortBy} onChange={setSortBy} options={["Number", "Name"]} />
           </div>
           </details>
           <p className="filter-summary" aria-live="polite">Showing {statusFilteredAniimo.length} of {aniimo.length} Aniimo</p>
+          {!statusFilteredAniimo.length && <InfoPanel title="No matching creatures" rows={[["Try this", "Clear a filter or search by name, region, element, role or stage."], ["Browse instead", "Open the full creature list or use the popular search shortcuts below."]]} />}
           {!compact && <div className="query-shortcuts" aria-label="Popular database searches">
             <span>Popular searches</span>
             {["Celestis", "Inferlupa", "Glacy", "all Aniimo", "Aniimo locations"].map((term) => <button key={term} type="button" onClick={() => setQuery(term === "all Aniimo" ? "" : term)}>{term}</button>)}
@@ -452,7 +455,7 @@ export function RewardsPage() {
 
 export function DownloadPage({ navigate }) {
   const [device, setDevice] = useState("All devices");
-  const visiblePlatforms = device === "All devices" ? platforms : platforms.filter((item) => item.name.toLowerCase().includes(device.toLowerCase()) || (device === "Console" && /xbox|playstation|ps5/i.test(item.name)) || (device === "Mobile" && /ios|android|mobile/i.test(item.name)) || (device === "PC" && /steam|epic|pc/i.test(item.name)));
+  const visiblePlatforms = device === "All devices" ? platforms : platforms.filter((item) => (device === "Console" && /xbox|playstation|ps5/i.test(item.name)) || (device === "Mobile" && /app store|google play/i.test(item.name)) || (device === "PC" && /steam|epic/i.test(item.name)));
   return (
         <section id="download" className="section split-section download-band">
           <div>
@@ -2083,6 +2086,7 @@ export function AniimoDetail({ item, navigate, localized = false }) {
         <a className="secondary-action" href={`/team-builder/?ids=${item.id}`} onClick={(event) => navigate(event, `/team-builder/?ids=${item.id}`)}><Plus size={16} /> Add to team</a>
         <a className="secondary-action" href="/collection-tracker/" onClick={(event) => navigate(event, "/collection-tracker/")}><CheckCircle2 size={16} /> Track collection</a>
       </div>
+      {!pt && <div className="quick-facts" aria-label={`${item.name} quick facts`}><div><strong>{item.no}</strong><span>Wiki number</span></div><div><strong>{item.element}</strong><span>Element</span></div><div><strong>{item.role}</strong><span>Role</span></div><div><strong>{item.region}</strong><span>Region</span></div></div>}
       <div className="detail-panels">
         {!pt && <AnswerStatus status={item.status} checked={sourceLastChecked} sourceType="Official Wiki and source review" next={`Open the ${item.region} region guide or compare ${item.name}.`} />}
         <InfoPanel title="Location" rows={[["Region", item.region], ["Habitat", item.habitat], ["Spawn condition", item.condition], ["Acquisition", item.acquisition]]} />
