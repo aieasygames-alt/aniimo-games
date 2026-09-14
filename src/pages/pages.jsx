@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles, Plus, X, Copy, Download as DownloadIcon } from "lucide-react";
 import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
-import { CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
+import { AnswerStatus, CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
 const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup", "eklue", "skippy", "helgon"];
 
@@ -147,6 +147,8 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             <div><strong>Search</strong><span>name, element, role or region</span></div>
             <div><strong>Status</strong><span>confirmed, watchlist or verified</span></div>
           </div>
+          <details className="filter-drawer" open>
+            <summary>Filter the creature list</summary>
           <div className="filters">
             <label className="search-field">
               <Search size={18} />
@@ -158,6 +160,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             <Select label="Stage" value={stage} onChange={setStage} options={stages} />
             <Select label="Data status" value={statusFilter} onChange={setStatusFilter} options={["All", "Confirmed", "Watchlist", "Verified"]} />
           </div>
+          </details>
           <p className="filter-summary" aria-live="polite">Showing {statusFilteredAniimo.length} of {aniimo.length} Aniimo</p>
           {!compact && <div className="query-shortcuts" aria-label="Popular database searches">
             <span>Popular searches</span>
@@ -448,6 +451,8 @@ export function RewardsPage() {
 }
 
 export function DownloadPage({ navigate }) {
+  const [device, setDevice] = useState("All devices");
+  const visiblePlatforms = device === "All devices" ? platforms : platforms.filter((item) => item.name.toLowerCase().includes(device.toLowerCase()) || (device === "Console" && /xbox|playstation|ps5/i.test(item.name)) || (device === "Mobile" && /ios|android|mobile/i.test(item.name)) || (device === "PC" && /steam|epic|pc/i.test(item.name)));
   return (
         <section id="download" className="section split-section download-band">
           <div>
@@ -468,6 +473,7 @@ export function DownloadPage({ navigate }) {
               <div><strong>Console</strong><span>PS5 and Xbox listings</span></div>
               <div><strong>Mobile</strong><span>App Store and Google Play</span></div>
             </div>
+            <div className="device-picker" role="group" aria-label="Choose download device">{["All devices", "PC", "Console", "Mobile"].map((item) => <button key={item} type="button" className={device === item ? "active" : ""} onClick={() => setDevice(item)}>{item}</button>)}</div>
             <LinkGroup title="High-Intent Download Paths" items={[["Aniimo Mobile Download", "/platforms/mobile/", "Check iOS and Android store availability."], ["Aniimo Steam Download", "/platforms/steam/", "Open the official PC storefront path."], ["Aniimo Android Download", "/platforms/android/", "Check Google Play and APK safety guidance."], ["Aniimo Release Date", "/release-date/", "Compare PC, console and mobile dates."]]} navigate={navigate} />
             <div className="hero-actions section-actions mobile-store-actions">
               <a className="primary-action" href="/platforms/mobile/" onClick={(event) => navigate(event, "/platforms/mobile/")}><Download size={18} /> Open mobile store guide</a>
@@ -498,7 +504,7 @@ export function DownloadPage({ navigate }) {
             <FaqBlock items={faqs.download} />
           </div>
           <div className="platform-list">
-            {platforms.map((item) => (
+            {visiblePlatforms.map((item) => (
               <article key={item.name} className="platform-card">
                 <div>
                   <h3>{item.name}</h3>
@@ -2078,6 +2084,7 @@ export function AniimoDetail({ item, navigate, localized = false }) {
         <a className="secondary-action" href="/collection-tracker/" onClick={(event) => navigate(event, "/collection-tracker/")}><CheckCircle2 size={16} /> Track collection</a>
       </div>
       <div className="detail-panels">
+        {!pt && <AnswerStatus status={item.status} checked={sourceLastChecked} sourceType="Official Wiki and source review" next={`Open the ${item.region} region guide or compare ${item.name}.`} />}
         <InfoPanel title="Location" rows={[["Region", item.region], ["Habitat", item.habitat], ["Spawn condition", item.condition], ["Acquisition", item.acquisition]]} />
         <InfoPanel title="Index Data" rows={[["No.", item.no], ["Element", item.element], ["Role", item.role], ["Stage", item.stage]]} />
         <InfoPanel title="Search Match" rows={[

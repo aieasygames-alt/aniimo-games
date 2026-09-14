@@ -12,6 +12,10 @@ export function StatusBadge({ status }) {
   return <span className={`status status-${status.toLowerCase()}`}>{status}</span>;
 }
 
+export function AnswerStatus({ status = "Watchlist", checked, sourceType = "Source-aware review", next = "Check the linked source before acting." }) {
+  return <section className="answer-status" aria-label="Answer status"><div className="answer-status-heading"><div><span className="eyebrow">Answer status</span><h2>{status}</h2></div><StatusBadge status={status} /></div><div className="answer-status-grid"><div><strong>Source</strong><span>{sourceType}</span></div><div><strong>Last checked</strong><span>{checked || siteLastUpdated}</span></div><div><strong>Next step</strong><span>{next}</span></div></div></section>;
+}
+
 export function LaunchStatusPanel({ entries, title = "Launch Status" }) {
   const ui = uiMessages();
   return (

@@ -71,6 +71,17 @@ function App() {
   const [role, setRole] = useState("All");
   const [stage, setStage] = useState("All");
 
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (path === "/aniimo/") {
+      setQuery(params.get("q") || "");
+      setElement(params.get("element") || "All");
+      setRegion(params.get("region") || "All");
+      setRole(params.get("role") || "All");
+      setStage(params.get("stage") || "All");
+    }
+  }, [path]);
+
   const elements = ["All", ...new Set(aniimo.map((item) => item.element))];
   const regionNames = ["All", ...new Set(aniimo.map((item) => item.region))];
   const roles = ["All", ...new Set(aniimo.map((item) => item.role))];
@@ -97,6 +108,18 @@ function App() {
     setPath(nextPath);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
+
+  React.useEffect(() => {
+    if (path !== "/aniimo/") return;
+    const params = new URLSearchParams();
+    if (query) params.set("q", query);
+    if (element !== "All") params.set("element", element);
+    if (region !== "All") params.set("region", region);
+    if (role !== "All") params.set("role", role);
+    if (stage !== "All") params.set("stage", stage);
+    const next = params.toString() ? `/aniimo/?${params}` : "/aniimo/";
+    if (window.location.pathname + window.location.search !== next) window.history.replaceState({}, "", next);
+  }, [path, query, element, region, role, stage]);
 
   React.useEffect(() => {
     const onPopState = () => setPath(normalizePath(window.location.pathname));
