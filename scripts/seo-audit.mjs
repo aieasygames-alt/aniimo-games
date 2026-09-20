@@ -12,6 +12,13 @@ const sitemapLastmods = [...sitemap.matchAll(/<lastmod>(.*?)<\/lastmod>/g)].map(
 const supplementalLastmods = [...supplementalSitemap.matchAll(/<lastmod>(.*?)<\/lastmod>/g)].map((match) => match[1]);
 const discoverableRoutes = [...routes, ...supplementalRoutes];
 const issues = [];
+const currentDate = new Date().toISOString().slice(0, 10);
+
+if (!/^\d{4}-\d{2}-\d{2}$/.test(siteLastUpdated)) {
+  issues.push(`siteLastUpdated must use YYYY-MM-DD: ${siteLastUpdated}`);
+} else if (siteLastUpdated > currentDate) {
+  issues.push(`siteLastUpdated cannot be in the future: ${siteLastUpdated}`);
+}
 
 if (!robots.includes(`Sitemap: ${siteUrl}/sitemap.xml`)) {
   issues.push("robots.txt does not point to the production sitemap.");
