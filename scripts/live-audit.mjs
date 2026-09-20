@@ -16,6 +16,11 @@ const importantPages = [
   `${siteUrl}/robots.txt`,
   `${siteUrl}/sitemap.xml`,
 ];
+const canonicalHostChecks = [
+  "https://www.aniimo.games/",
+  "https://www.aniimo.games/aniimo/",
+  "https://www.aniimo.games/topics/aniimo-controller-support/",
+];
 const indexingCandidateUrls = indexingCandidateSections().urls;
 const requiredPages = [...new Set([...importantPages, ...indexingCandidateUrls])];
 
@@ -28,6 +33,10 @@ for (const route of expected) {
 
 for (const url of requiredPages) {
   await checkUrl(url);
+}
+
+for (const url of canonicalHostChecks) {
+  await checkCanonicalHostRedirect(url);
 }
 
 const sitemapSample = sampleUrls(expected.filter((url) => !requiredPages.includes(url)), 24);
@@ -84,4 +93,21 @@ function sampleUrls(urls, limit) {
     sampled.push(urls[index]);
   }
   return sampled;
+}
+
+async function checkCanonicalHostRedirect(url) {
+  const response = await fetch(url, { redirect: "manual" }).catch((error) => {
+    issues.push(`Failed to fetch ${url}: ${error.message}`);
+    return null;
+  });
+  if (!response) return;
+
+  const expected = url.replace("https://www.aniimo.games", siteUrl);
+  if (![301, 308].includes(response.status)) {
+    issues.push(`www host must permanently redirect for ${url}: received ${response.status}`);
+    return;
+  }
+  if (response.headers.get("location") !== expected) {
+    issues.push(`www redirect target mismatch for ${url}: ${response.headers.get("location") || "missing"}`);
+  }
 }
