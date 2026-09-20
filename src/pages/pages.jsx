@@ -44,9 +44,9 @@ export function HomePage(props) {
     <>
         <section className="hero">
           <div className="hero-copy">
-            <p className="eyebrow">Database, map routes, evolution and launch rewards</p>
-            <h1>Aniimo Wiki: Release Date, Codes, Map & Database</h1>
-            <p>{gameInfo.summary} Get the fastest verified answers here: 89 public Aniimo entries, PC and console on September 16, and mobile on September 23.</p>
+            <p className="eyebrow">Live PC and console guide, mobile launch support</p>
+            <h1>Aniimo Wiki: Codes, Map, Database & Launch Help</h1>
+            <p>{gameInfo.summary} Get verified launch help: public Aniimo entries, official PC and console paths, account guidance and mobile availability on September 23.</p>
             <div className="hero-actions">
               <a className="primary-action" href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>
                 <Search size={18} />
@@ -65,7 +65,7 @@ export function HomePage(props) {
 
         <section className="section launch-answer-strip" aria-label="Quick Aniimo answers">
           <div className="answer-card"><strong>89</strong><span>public Aniimo entries</span><a href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>Open database <ChevronRight size={15} /></a></div>
-          <div className="answer-card"><strong>Sep 16</strong><span>PC and console launch</span><a href="/release-date/" onClick={(event) => props.navigate(event, "/release-date/")}>See timeline <ChevronRight size={15} /></a></div>
+          <div className="answer-card"><strong>Live</strong><span>PC and console platforms</span><a href="/download/" onClick={(event) => props.navigate(event, "/download/")}>Open download guide <ChevronRight size={15} /></a></div>
           <div className="answer-card"><strong>Sep 23</strong><span>iOS and Android launch</span><a href="/platforms/mobile/" onClick={(event) => props.navigate(event, "/platforms/mobile/")}>Mobile details <ChevronRight size={15} /></a></div>
         </section>
 
@@ -85,8 +85,8 @@ export function HomePage(props) {
           <SectionTitle icon={<Compass />} kicker="Launch Guide" title="Popular Aniimo Questions" />
           <InfoPanel title="What Players Need" rows={[
             ["Aniimo database", "Browse all 89 public entries by name, element, role, region and stage."],
-            ["Launch dates", "PC and console launch on Sep 16; iOS and Android follow on Sep 23."],
-            ["Community help", "Use the official Discord and source links for launch news and support."],
+            ["Platform status", "PC, Steam, Epic, PS5 and Xbox are live; iOS and Android are scheduled for Sep 23."],
+            ["Launch help", "Check official sources, known issues, codes and account guidance before using community fixes."],
           ]} />
           <div className="site-index-grid">
             <LinkGroup title="Launch Answers" items={[
@@ -396,15 +396,15 @@ export function CodesPage({ navigate }) {
         <section id="codes" className="section">
           <SectionTitle icon={<Gift />} kicker="Rewards" title="Codes & Rewards" />
           <p className="section-copy">
-            No public redeem code is confirmed yet. This page separates actual codes from
-            official pre-registration rewards and launch milestone rewards.
+            The official Aniimo code list has not been published here yet. This page separates
+            official codes from community reports, pre-registration rewards and launch milestones.
           </p>
           <InfoPanel title="Page Status" rows={[
             ["Last reviewed", sourceLastChecked],
             ["Current status", codeVerificationTemplate.currentStatus],
             ["How it is checked", "Official channels or direct in-game verification are required."],
           ]} />
-          <InfoPanel title="Code Answer" rows={[["Active codes", "No redeem code is listed as active unless an official source or direct in-game test confirms it."], ["If a code fails", "Check exact spelling, expiration, platform and region before trying again."], ["Not a code", "Pre-registration, milestone and launch-event rewards may be delivered without a redeem string."]]} />
+          <InfoPanel title="Code Answer" rows={[["Official code status", "No code is marked official here until Aniimo publishes it or a direct in-game redemption test confirms it."], ["Community reports", "Community-reported strings are leads, not confirmed rewards. Do not enter credentials or download files to claim them."], ["If a code fails", "Check exact spelling, expiration, platform and region before trying again."], ["Not a code", "Pre-registration, milestone and launch-event rewards may be delivered without a redeem string."]]} />
           <LaunchStatusPanel title="Codes And Rewards Status" entries={launchStatusEntries.filter((entry) => ["codes", "pc-console", "mobile"].includes(entry.id))} />
           <SeoGuideBlock items={seoGuides.codes} />
           <div className="code-grid">
@@ -817,7 +817,8 @@ export function LaunchDayPage({ navigate }) {
       <div className="detail-panels">
         <InfoPanel title="Current Launch Status" rows={launchDayCommandCenter.statusRows.map(([label, value, status]) => [label, `${value} (${status})`])} />
         <InfoPanel title="Fast Checks" rows={launchDayCommandCenter.searchIntents.map(([intent, answer]) => [intent, answer])} />
-        <InfoPanel title="Start Here" rows={[["Cannot download", "Check Download Unavailable, then platform and region availability."], ["Cannot log in", "Check Server Status and Known Issues before resetting anything."], ["Missing reward or code", "Open Codes & Rewards and confirm account, platform and official status."], ["Looking for a creature", "Search the Database, then use its region guide for current location notes."]]} />
+        <InfoPanel title="Start Here" rows={[["PC or console", "Use the official Steam, Epic, PS5 or Xbox listing; Aniimo is live on these platforms."], ["Mobile on Sep 23", "Use the same Aniimo account as PC to continue shared data when mobile becomes available."], ["Cannot log in", "Check Server Status and Known Issues before resetting anything; queues and slower loading can occur at launch."], ["Missing reward or code", "Open Codes & Rewards and confirm account, platform and official status."], ["Looking for a creature", "Search the Database, then use its region guide for current location notes."]]} />
+        <InfoPanel title="Evidence And Limits" rows={[["Confirmed by official launch news", "PC and mobile share the same data when you use the same account."], ["Server limit", "Data on different servers is independent; confirm the server before creating a character."], ["Still check in-game", "Friend matchmaking, platform pools and mode-specific crossplay behavior."], ["Official support", "Use the launch notice and PC/console FAQ before trying community fixes."]]} />
       </div>
       <div className="site-index-grid">
         <LinkGroup title="Launch Day Actions" items={launchDayCommandCenter.quickActions} navigate={navigate} />
@@ -825,7 +826,7 @@ export function LaunchDayPage({ navigate }) {
           ["Active Aniimo Codes", "/codes/active/", "Check active code status and verification notes."],
           ["Server Status", "/troubleshooting/aniimo-server-status/", "Track maintenance, outage and launch availability checks."],
           ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Track login, black screen, stuck loading and platform-specific launch errors."],
-          ["Download Unavailable", "/troubleshooting/aniimo-download-not-available/", "Fix missing download buttons and pre-launch store timing issues."],
+          ["Download Unavailable", "/troubleshooting/aniimo-download-not-available/", "Fix missing download buttons, platform rollout and region issues."],
           ["Region Availability", "/troubleshooting/aniimo-region-availability/", "Track country, account and platform-region availability issues."],
           ["Server & Code Verification", "/launch-verification/", "Record launch evidence before publishing it as confirmed."],
         ]} navigate={navigate} />

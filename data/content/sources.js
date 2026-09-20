@@ -2,6 +2,8 @@ export const officialLinks = {
   website: "https://www.aniimo.com/",
   main: "https://www.aniimo.com/main",
   developerLetter: "https://aniimo.com/newslist/detail/100064",
+  liveLaunch: "https://www.aniimo.com/newslist/detail/100115",
+  pcConsoleSupport: "https://aniimo.com/newslist/detail/100089",
   officialWiki: "https://wiki.aniimo.com/",
   googlePlay: "https://play.google.com/store/apps/details?hl=en&id=com.x.aniimos",
   appStore: "https://apps.apple.com/app/aniimo/id6759098797",
@@ -34,7 +36,7 @@ export const releaseInfo = {
   launchStatus: "Confirmed",
   timezoneNote: "Official dates are listed by calendar date. Store availability can vary by platform, region and local storefront update timing.",
   note:
-    "Official site news lists PC and console launch on September 16, 2026, with mobile launch on September 23, 2026.",
+    "Aniimo is live on PC and consoles. Official news lists mobile availability for September 23, 2026.",
   source: officialLinks.main,
   timeline: [
     ["2025-06-30", "Global closed beta signup deadline"],

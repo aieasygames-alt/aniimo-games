@@ -18,8 +18,8 @@ export const launchRewards = [
 
 export const codes = [
   {
-    code: "No official redeem code published",
-    reward: "Track this page for launch codes and global campaign rewards.",
+    code: "Official code list pending",
+    reward: "Official codes are not yet listed by Aniimo. Community-reported strings require an official announcement or direct redemption test before they are marked active here.",
     status: "Watchlist",
     updated: sourceLastChecked,
     source: officialLinks.main,
@@ -28,13 +28,13 @@ export const codes = [
 ];
 
 export const platforms = [
-  ["Official website", "Pre-registration", "Official pre-registration and launch reward hub.", officialLinks.website],
-  ["App Store", "Pre-order", "Official iOS listing for mobile launch tracking.", officialLinks.appStore],
-  ["Google Play", "Pre-register", "Android store page by Pawprint Studio with wishlist and pre-registration support.", officialLinks.googlePlay],
-  ["Steam", "Wishlist", "Official PC storefront listing for the September 16 PC launch window.", officialLinks.steam],
-  ["Epic Games Store", "Wishlist", "Official Epic listing for the September 16 PC launch window.", officialLinks.epic],
-  ["Xbox", "Wishlist", "Official Xbox listing for the September 16 console launch window.", officialLinks.xbox],
-  ["PlayStation 5", "Wishlist", "Official PlayStation concept page for the September 16 console launch window.", officialLinks.playstation],
+  ["Official website", "Download", "Official launch and platform hub.", officialLinks.website],
+  ["App Store", "Mobile launch", "Official iOS listing for the September 23 mobile launch.", officialLinks.appStore],
+  ["Google Play", "Mobile launch", "Official Android listing for the September 23 mobile launch.", officialLinks.googlePlay],
+  ["Steam", "Play now", "Official PC storefront; Aniimo is live.", officialLinks.steam],
+  ["Epic Games Store", "Play now", "Official PC storefront; Aniimo is live.", officialLinks.epic],
+  ["Xbox", "Play now", "Official Xbox storefront; Aniimo is live.", officialLinks.xbox],
+  ["PlayStation 5", "Play now", "Official PlayStation storefront; Aniimo is live.", officialLinks.playstation],
 ].map(([name, action, note, url]) => ({ name, action, note, url, status: "Watchlist", lastChecked: sourceLastChecked }));
 
 export const mechanics = [
@@ -260,40 +260,40 @@ export const launchTracker = {
 };
 
 export const launchDayCommandCenter = {
-  updated: "2026-08-30",
-  summary: "A launch-day operating page for players who need the fastest path to official downloads, platform unlock status, redeem code checks, server status and common launch fixes.",
+  updated: sourceLastChecked,
+  summary: "A live launch support page for players who need official download paths, account guidance, code checks, server status and platform-specific fixes.",
   statusRows: [
-    ["PC and console launch", releaseInfo.pcConsole, "Confirmed"],
+    ["PC and console availability", "Live on PC, Steam, Epic, PS5 and Xbox", "Verified"],
     ["Mobile launch", releaseInfo.mobile, "Confirmed"],
-    ["Exact unlock hour", "Pending official storefront confirmation", "Watchlist"],
-    ["Server status", "No live server incident tracked before launch", "Watchlist"],
-    ["Active redeem codes", "No public redeem code confirmed yet", "Watchlist"],
-    ["Known launch errors", "No live-game error confirmed before launch", "Watchlist"],
+    ["PC and mobile data", "Shared with the same account", "Verified"],
+    ["Server status", "No Aniimo-wide outage currently marked confirmed", "Verified"],
+    ["Active redeem codes", "Official code list pending", "Watchlist"],
+    ["Known launch errors", "Login queues and slower loading can occur", "Verified"],
   ],
   quickActions: [
     ["Download safely", "/download/", "Use official website, Steam, Epic Games Store, Xbox, PlayStation, App Store or Google Play links."],
     ["Check active codes", "/codes/", "Separate confirmed rewards from redeemable code strings and verify each code before marking it active."],
-    ["Track release timing", "/release-date/", "Use confirmed calendar dates while exact unlock hours remain platform-specific watchlist data."],
-    ["Fix launch issues", "/troubleshooting/", "Start with store visibility, region availability, pre-registration, server-status and download-unavailable checks."],
+    ["Account and cross-platform", "/topics/aniimo-cross-save/", "Continue PC data on mobile with the same account; check server boundaries before creating a character."],
+    ["Fix launch issues", "/troubleshooting/", "Start with server status, known issues, store visibility, region and download checks."],
     ["Verify live data", "/launch-verification/", "Capture spawn, unlock, code and Search Console observations with timestamps and sources."],
   ],
   firstDayChecks: [
-    ["Hour 0", "Confirm official launch posts, storefront availability and exact unlock-hour language."],
-    ["Hour 1", "Update download, release-date and platform pages with any store-specific availability changes."],
-    ["Hour 2", "Check official social channels, Discord/news posts and in-game notices for redeem codes or compensation."],
-    ["Hour 4", "Record common launch errors only after repeated reports or official support acknowledgement."],
-    ["Hour 8", "Refresh homepage, launch hub, codes, troubleshooting and update log with verified changes."],
-    ["Hour 24", "Review Search Console discovery, update sitemap if needed and prepare IndexNow submission after deployment."],
+    ["Now", "Check official launch posts, storefront availability and account guidance."],
+    ["Mobile launch", "Verify App Store and Google Play availability, same-account continuation and regional rollout."],
+    ["Code review", "Check official news and in-game redemption before publishing a code string as active."],
+    ["Issue review", "Record common errors only after official support acknowledgement or reproducible platform reports."],
+    ["Daily refresh", "Update homepage, launch hub, codes, troubleshooting and update log with verified changes."],
+    ["Weekly review", "Review Search Console discovery, sitemap freshness and high-intent search paths."],
   ],
   searchIntents: [
-    ["Aniimo server status", "Answer whether the game is live, under maintenance or waiting for official launch."],
+    ["Aniimo server status", "Answer whether the game is live, under maintenance or affected by a confirmed incident."],
     ["Aniimo not working", "Route users to download, region and storefront checks before suggesting unsupported fixes."],
     ["Aniimo redeem codes", "Show the active-code policy and link to confirmed rewards when no code string exists."],
-    ["Aniimo unlock time", "Explain the difference between confirmed dates and platform-specific hourly rollout."],
+    ["Aniimo mobile launch", "Explain the September 23 mobile date, same-account PC progress and country-specific storefront checks."],
     ["Aniimo download button missing", "Send users to official platform pages and avoid mirrors or APK reposts."],
   ],
   faq: [
-    ["Is Aniimo live right now?", "Aniimo.games treats Aniimo as live only after official launch availability or storefront access is confirmed. Current confirmed dates are September 16, 2026 for PC and consoles and September 23, 2026 for mobile."],
+    ["Is Aniimo live right now?", "Aniimo is live on Windows PC, Steam, Epic Games Store, PS5 and Xbox according to official launch news. Mobile iOS and Android availability is scheduled for September 23, 2026."],
     ["Where should I check first on launch day?", "Start with the Launch Day page, then open download, release-date, codes, troubleshooting and platform pages for the specific issue."],
     ["Will launch errors be listed here?", "Yes, but only after official support posts, storefront behavior or repeated verified reports make the issue clear enough to publish responsibly."],
   ],

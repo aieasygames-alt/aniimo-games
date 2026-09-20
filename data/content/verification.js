@@ -1,4 +1,4 @@
-import { gscObservationDate } from "./site-meta.js";
+import { gscObservationDate, sourceLastChecked } from "./site-meta.js";
 import { officialLinks, releaseInfo } from "./sources.js";
 
 export const verificationStatus = {
@@ -11,20 +11,20 @@ export const launchStatusEntries = [
   {
     id: "server",
     label: "Server status",
-    value: "No live server incident tracked before launch",
-    status: "Watchlist",
-    source: officialLinks.main,
-    lastChecked: gscObservationDate,
-    note: "Change to Online, Maintenance, Degraded, or Outage only after an official post or direct storefront and in-game verification.",
+    value: "No Aniimo-wide outage currently marked confirmed",
+    status: "Verified",
+    source: officialLinks.liveLaunch,
+    lastChecked: sourceLastChecked,
+    note: "Official launch guidance notes possible login queues and slower loading. Mark an incident only when an official notice or reproducible evidence identifies it.",
   },
   {
     id: "pc-console",
     label: "PC and console availability",
-    value: releaseInfo.pcConsole,
-    status: "Confirmed",
-    source: officialLinks.website,
-    lastChecked: gscObservationDate,
-    note: "Calendar date is confirmed; store-specific unlock hour and regional rollout remain watchlist data.",
+    value: "Live on Windows PC, Steam, Epic, PS5 and Xbox",
+    status: "Verified",
+    source: officialLinks.liveLaunch,
+    lastChecked: sourceLastChecked,
+    note: "Use the official platform listing for country-specific storefront availability.",
   },
   {
     id: "mobile",
@@ -32,26 +32,26 @@ export const launchStatusEntries = [
     value: releaseInfo.mobile,
     status: "Confirmed",
     source: officialLinks.website,
-    lastChecked: gscObservationDate,
-    note: "Check App Store and Google Play availability by country before saying install is live.",
+    lastChecked: sourceLastChecked,
+    note: "Official news lists iOS and Android availability for September 23. Check App Store and Google Play by country before saying install is live.",
   },
   {
     id: "codes",
     label: "Active redeem codes",
-    value: "No public redeem code confirmed yet",
+    value: "Official code list not yet published",
     status: "Watchlist",
     source: officialLinks.main,
-    lastChecked: gscObservationDate,
-    note: "A code becomes active only after an official channel or direct in-game redemption test confirms it.",
+    lastChecked: sourceLastChecked,
+    note: "Community-reported code strings remain separately labeled until an official channel or direct in-game redemption test confirms them.",
   },
   {
     id: "known-issues",
     label: "Known launch issues",
-    value: "No live-game error confirmed before launch",
+    value: "Launch login and storefront issues are being tracked",
     status: "Watchlist",
     source: officialLinks.main,
-    lastChecked: gscObservationDate,
-    note: "Publish issue guidance only after official support acknowledgement or repeated, reproducible reports.",
+    lastChecked: sourceLastChecked,
+    note: "Official launch guidance identifies login queues and slower loading as possible at launch. Keep fixes source-labeled and platform-specific.",
   },
   {
     id: "discord",
@@ -59,7 +59,7 @@ export const launchStatusEntries = [
     value: "Verify Discord announcements against official Aniimo channels",
     status: "Watchlist",
     source: officialLinks.main,
-    lastChecked: gscObservationDate,
+    lastChecked: sourceLastChecked,
     note: "Community discussion can identify questions but does not confirm codes, downtime, or release changes.",
   },
 ];

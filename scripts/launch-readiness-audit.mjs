@@ -1,4 +1,4 @@
-import { launchPriorityPages, launchStatusEntries, tierListSnapshots, gscLatestObservations, platformUnlockQueue } from "../data/content.js";
+import { launchPriorityPages, launchStatusEntries, tierListSnapshots, gscLatestObservations, platformUnlockQueue, sourceLastChecked } from "../data/content.js";
 import { indexingCandidateSections } from "./indexing-candidate-rules.mjs";
 
 const issues = [];
@@ -10,8 +10,8 @@ for (const id of requiredStatuses) {
 }
 
 for (const entry of launchStatusEntries) {
-  if (entry.lastChecked !== gscLatestObservations.date) {
-    issues.push(`Stale launch status ${entry.id}: ${entry.lastChecked} (expected ${gscLatestObservations.date}).`);
+  if (entry.lastChecked !== sourceLastChecked) {
+    issues.push(`Stale launch status ${entry.id}: ${entry.lastChecked} (expected ${sourceLastChecked}).`);
   }
   if (!/^https:\/\//.test(entry.source)) issues.push(`Launch status ${entry.id} has an invalid source URL.`);
 }

@@ -800,16 +800,16 @@ export const socialIntentTopics = [
   {
     slug: "aniimo-crossplay",
     title: "Does Aniimo Have Crossplay?",
-    description: "Track Aniimo crossplay, cross-platform account and platform-pool questions with source-safe launch verification notes.",
-    intro: "Crossplay searches usually appear when a multi-platform game nears launch. Aniimo.games should answer confirmed platforms clearly while keeping account linking and cross-platform matchmaking in watchlist status.",
+    description: "Does Aniimo support crossplay? Check confirmed PC, console and mobile account details, plus server and purchase limits that still need verification.",
+    intro: "Aniimo is live on PC and consoles, with mobile due September 23. Official launch information confirms PC and mobile share the same data when you use the same account; platform matchmaking, server selection and purchase handling need separate checks.",
     points: [
-      ["Confirmed platforms", "Aniimo.games tracks PC, PlayStation 5, Xbox, iOS and Android as official platform paths."],
-      ["Crossplay status", "Crossplay, cross-save, platform pools and account-linking rules should not be marked confirmed until official wording or live testing verifies them."],
-      ["Where to verify", "Check platform storefronts, official news, in-game account settings and launch verification notes before updating crossplay claims."],
+      ["PC and mobile progress", "Official launch news says PC and mobile share the same data. Sign in on mobile with the same account used on PC to continue that adventure after mobile availability begins."],
+      ["Server boundary", "Do not assume progress transfers between servers. Official pre-download guidance says data on different servers is independent, and PS5 server assignment follows the PSN account region."],
+      ["Crossplay boundary", "Steam lists cross-platform multiplayer, but specific friend, matchmaking and platform-pool behavior should be checked in-game before making a mode-specific promise."],
     ],
     faq: [
-      ["Does Aniimo support crossplay?", "Aniimo.games does not confirm crossplay until official sources or live-game testing verify it."],
-      ["Will Aniimo have cross-save?", "Cross-save and account-linking rules should stay watchlist data until official or in-game confirmation exists."],
+      ["Does Aniimo support crossplay?", "Steam lists cross-platform multiplayer. Specific friend, matchmaking and server rules should be verified in-game for the mode you plan to play."],
+      ["Does Aniimo have cross-save?", "Official launch news confirms PC and mobile share the same data when you sign in with the same account. Do not assume data transfers between different servers."],
     ],
   },
   {
@@ -969,16 +969,16 @@ export const searchSuggestionTopics = [
   {
     slug: "aniimo-cross-save",
     title: "Aniimo Cross-Save: Account Linking & Platform Progress",
-    description: "Does Aniimo have cross-save? Track account linking, shared progression and platform verification for PC, console and mobile.",
-    intro: "Cross-save searches appear when players plan to start on one platform and continue on another. Aniimo.games should answer the account and progression question directly while keeping unverified platform-linking rules in watchlist status.",
+    description: "Aniimo cross-save and account linking status: continue PC progress on mobile, understand server limits, and avoid creating the wrong character.",
+    intro: "Official launch news says PC and mobile share the same data when you sign in with the same account. This page explains that confirmed path while keeping server transfers, console linking and purchase rules clearly separated.",
     points: [
-      ["Current status", "Aniimo.games does not confirm cross-save until official sources or live-game testing verify account linking and shared progression."],
-      ["What to verify", "Check account creation, login providers, PC-console-mobile linking, platform restrictions, purchase handling and save migration after launch."],
-      ["Related pages", "Cross-save updates should refresh crossplay, platform guides, download pages and launch verification notes together."],
+      ["Confirmed path", "Start on PC, then sign in on mobile with the same Aniimo account after mobile launch to continue the same data."],
+      ["Before creating a character", "Confirm the intended account and server first. Official guidance says data on different servers is independent."],
+      ["Console and purchases", "Pre-order content must first be claimed by logging in on the console where it was purchased. Official guidance says linked accessories and items can then be used on other platforms within the same server."],
     ],
     faq: [
-      ["Does Aniimo have cross-save?", "Aniimo.games does not confirm cross-save until official wording or live-game testing verifies shared progression."],
-      ["What should cross-save testing include?", "Useful testing should include account linking, platform pairs, purchases, rewards, save migration and last verified date."],
+      ["Does Aniimo have cross-save?", "PC and mobile share the same data when the same account is used, according to official launch news. Data on different servers is independent."],
+      ["Can I claim console pre-order items on another platform?", "Claim the pack first by logging in on the console where it was purchased. Official guidance says linked accessories and items can then be used on other platforms within the same server."],
     ],
   },
   {
@@ -999,17 +999,17 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-system-requirements",
-    title: "Aniimo System Requirements",
-    description: "Track Aniimo PC and mobile system requirements, download size, device support and performance verification after launch.",
-    intro: "System-requirement searches help players decide whether they can install Aniimo safely. This page should not invent specs before official storefronts or support pages publish them.",
+    title: "Aniimo System Requirements: PC Specs & Storage",
+    description: "Check official Aniimo PC minimum and recommended specs, 40GB storage guidance, and current performance verification for Steam and the official launcher.",
+    intro: "Aniimo is live on PC. Steam lists the requirements below; mobile device requirements should be checked in the App Store or Google Play after mobile launch because supported devices can vary by country and store version.",
     points: [
-      ["Current status", "Aniimo.games treats minimum and recommended specs as watchlist fields until official storefronts or support pages confirm them."],
-      ["What to capture", "Record OS, CPU, GPU, memory, storage, controller support, mobile device limits, download size and last checked source."],
-      ["Performance follow-up", "After launch, connect tested settings, black-screen fixes, stuck-loading reports and platform-specific performance notes."],
+      ["Minimum PC specs", "Steam lists Windows 10, Intel Core i7-4770 or AMD Ryzen 7 2700, 8GB RAM, GTX 970 or RX 5600, DirectX 11 and 40GB storage."],
+      ["Recommended PC specs", "Steam lists Windows 10 or later, Intel Core i7-10700 or AMD Ryzen 5 5600, 16GB RAM, RTX 3060 or RX 6700, DirectX 11 and 40GB storage."],
+      ["Launch troubleshooting", "For a stalled official PC download, official support guidance recommends restarting the PC or reopening the launcher as administrator and selecting Update Game. Do not use modified clients or unofficial fixes."],
     ],
     faq: [
-      ["What are the Aniimo system requirements?", "Aniimo.games should wait for official storefront or support-page specs before publishing final requirements."],
-      ["Will download size be listed?", "Download size should be added only after official storefronts or live installation checks verify it."],
+      ["What are the Aniimo system requirements?", "Steam lists 8GB RAM and 40GB storage as minimum, with 16GB RAM and an RTX 3060 or RX 6700 as recommended. Check the Steam listing for the current official wording."],
+      ["How much storage does Aniimo need?", "Steam lists 40GB available storage. Official pre-download guidance advised keeping 30-35GB free, so leave additional headroom for updates."],
     ],
   },
   {
@@ -1625,14 +1625,15 @@ export const troubleshootingTopics = [
     slug: "aniimo-known-issues",
     title: "Aniimo Known Issues",
     description: "Track Aniimo known issues for launch errors, login problems, black screen reports, stuck loading and platform-specific fixes.",
-    intro: "Known-issue pages are useful only when they separate verified problems from rumor. This page prepares the structure for launch errors without publishing unverified fixes.",
+    intro: "Known-issue pages are useful only when they separate official launch guidance from unverified reports. Aniimo's launch notice warns that login queues and slower loading can occur while player volume is high.",
     points: [
-      ["Issue threshold", "List an issue only after official acknowledgement, repeatable storefront behavior or multiple consistent verified reports."],
+      ["Official launch guidance", "Login queues and slower loading can occur at launch. Keep a stable connection, close unnecessary background programs and verify that the device meets official requirements."],
+      ["Issue threshold", "List a specific defect only after official acknowledgement, repeatable storefront behavior or multiple consistent reports with platform and time."],
       ["Fields to capture", "Record affected platform, error text, first seen time, workaround, fix status, source and last checked timestamp."],
       ["Related pages", "Route download problems to the download-not-available guide, region problems to region availability, and code problems to the codes page."],
     ],
     faq: [
-      ["Does Aniimo have known launch issues?", "No live-game issue is marked confirmed on Aniimo.games before launch. This page will update when verified evidence exists."],
+      ["Does Aniimo have known launch issues?", "Official launch guidance warns about possible login queues and slower loading while player volume is high. No broader Aniimo-wide incident is currently marked confirmed here."],
       ["Should I trust random Aniimo fix downloads?", "No. Avoid unofficial fix files, APK mirrors or modified installers. Use official sources and storefront updates."],
     ],
   },
@@ -1640,9 +1641,9 @@ export const troubleshootingTopics = [
     slug: "aniimo-download-not-available",
     title: "Aniimo Download Not Available",
     description: "Troubleshoot why Aniimo download, wishlist, pre-order or pre-registration may not appear on your platform yet.",
-    intro: "Before launch, a missing download button is usually a storefront timing, region or pre-launch availability issue rather than a reason to use mirrors.",
+    intro: "Aniimo is live on PC and consoles; mobile availability is scheduled for September 23. A missing download button can still be a storefront, region, account or rollout issue rather than a reason to use mirrors.",
     points: [
-      ["Check the date", `PC and console launch is tracked for ${releaseInfo.pcConsole}; mobile launch is tracked for ${releaseInfo.mobile}.`],
+      ["Check the platform", "PC, Steam, Epic, PS5 and Xbox are live according to official launch news. Mobile iOS and Android availability remains scheduled for September 23."],
       ["Check the right storefront", "Use Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play or the official Aniimo website."],
       ["Avoid mirrors", "Do not use APK mirrors, reposted installers or unofficial download buttons when official store access is not live."],
     ],
@@ -1735,6 +1736,8 @@ export const mediaGalleryItems = [
 export const sourceArchiveItems = [
   ["Official website", officialLinks.website, "Launch rewards, registration flow, platform links and campaign messaging."],
   ["Official main site", officialLinks.main, "Launch announcements, beta timeline and news updates."],
+  ["Official PC and console launch notice (September 16, 2026)", officialLinks.liveLaunch, "Live PC and console availability, September 23 mobile timing, PC-mobile shared data and launch queue guidance."],
+  ["Official PC and console support FAQ (September 14, 2026)", officialLinks.pcConsoleSupport, "Installation, storage, supported regions, server boundaries and console pre-order claim guidance."],
   ["Developer letter (September 3, 2026)", officialLinks.developerLetter, "PC, console and Xbox Cloud Gaming launch on September 16, mobile launch on September 23, and the development team's launch context."],
   ["Official Wiki", officialLinks.officialWiki, "Public Aniimo names, numbers, descriptions and visible index changes."],
   ["Steam", officialLinks.steam, "PC storefront wording, wishlist state, tags, media and release availability."],
