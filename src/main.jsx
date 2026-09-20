@@ -238,7 +238,7 @@ function App() {
         ) : routeInfo.path === "/codes/" ? (
           <CodesPage navigate={navigate} />
         ) : routeInfo.path === "/rewards/" ? (
-          <RewardsPage />
+          <RewardsPage navigate={navigate} />
         ) : routeInfo.path === "/download/" ? (
           <DownloadPage navigate={navigate} />
         ) : routeInfo.path === "/release-date/" ? (

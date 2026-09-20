@@ -326,6 +326,7 @@ export function MapPage({ compact, navigate }) {
               ["Next verification", "Add travel-time, border and route screenshots after launch before publishing exact size claims."],
             ]} />
           )}
+          {!compact && <AnswerStatus status="Watchlist" checked={sourceLastChecked} sourceType="Official region material and source review" next="Search a region or creature, then use its guide before relying on a precise route, weather or time condition." />}
           {!compact && <div className="map-toolbar"><label className="search-field"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search regions, Aniimo or mechanics" /></label><Select label="Region" value={regionFilter} onChange={setRegionFilter} options={["All", ...regions.map((item) => item.name)]} /><button type="button" className="secondary-action" onClick={() => navigator.clipboard?.writeText(`${window.location.origin}/map/?q=${encodeURIComponent(query)}&region=${encodeURIComponent(regionFilter)}`)}><Copy size={16} /> Copy map link</button></div>}
           {!compact && <p className="section-copy map-answer">Looking for the Aniimo map size? The final measured world size is not confirmed yet; this page tracks {regions.length} public regions and adds route evidence after launch verification.</p>}
           {!compact && <InfoPanel title="Map and Location Answer" rows={[["Find a region", "Search the map by region, Aniimo name or mechanic, then open the region guide."], ["Find a creature", "Region pages connect Celestis, Eko, Sherro and other listed Aniimo to current source-labeled location notes."], ["Exact spawns", "Coordinates, weather and time conditions stay unconfirmed until supported by official or reproducible evidence."]]} />}
@@ -781,6 +782,7 @@ export function FreshnessPage({ topic }) {
     <section className="section updates-band">
       <SectionTitle icon={<CalendarDays />} kicker="Freshness" title={topic.title} />
           <p className="section-copy">{topic.intro}</p>
+      {(topic.slug === "aniimo-discord" || topic.slug === "aniimo-reddit") && <AnswerStatus status="Watchlist" checked={sourceLastChecked} sourceType="Official Aniimo channels and community research" next="Open an official channel for announcements; treat invites, screenshots and player claims as leads until verified." />}
       {(topic.slug === "aniimo-logo") && <InfoPanel title="Logo Search Answer" rows={[["Asset", "Use the Aniimo logo preview and source notes on this page."], ["Format", "The production asset is served as WebP for faster loading."], ["Source rule", "Use official or site-prepared brand assets rather than reposted files."]]}/>}
       {(topic.slug === "aniimo-discord" || topic.slug === "aniimo-reddit") && <InfoPanel title="Community Search Answer" rows={[["Official status", "Use only links verified by Aniimo or Pawprint Studio."], ["What this page provides", "A source-safe path for launch, codes, server and player-report questions."], ["What is not confirmed", "Third-party invites, screenshots and rumors are not official facts."]]}/>}
       {topic.slug === "aniimo-controller-support" && <InfoPanel title="Controller Support Status" rows={[["PC", "Official PC storefronts are tracked; controller behavior requires official or reproducible verification."], ["Console", "Xbox and PS5 paths are tracked; native control schemes require live-client confirmation."], ["Mobile", "Touch controls and Bluetooth controller support are checked separately."], ["Steam Deck", "Compatibility, text size and layout require separate testing."]]}/>}
@@ -1478,6 +1480,7 @@ export function TroubleshootingPage({ navigate }) {
         Use these pages when a download, store page, login, reward claim or region
         availability path is unavailable on a specific platform or country.
       </p>
+      <AnswerStatus status="Watchlist" checked={sourceLastChecked} sourceType="Official Aniimo news and storefront status" next="Choose the problem type below, then record platform, country, account, server and time before retrying." />
       <LinkGroup title="Start With Your Problem" items={[
         ["Cannot log in or load", "/troubleshooting/aniimo-server-status/", "Check official status and known launch issues before resetting anything."],
         ["Store page or install button missing", "/troubleshooting/aniimo-download-not-available/", "Check device, country, storefront account and official listing status."],
