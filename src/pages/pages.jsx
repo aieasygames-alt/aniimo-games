@@ -148,6 +148,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             <div><strong>Search</strong><span>name, element, role or region</span></div>
             <div><strong>Status</strong><span>confirmed, watchlist or verified</span></div>
           </div>
+          {!compact && <InfoPanel title="Aniimo Characters: Quick Answer" rows={[["What this list includes", "All 89 tracked Aniimo characters with number, element, role, region, stage and source status."], ["Find a character", "Search a name such as Celestis, Eko or Sherro, then open the detail page for location and evolution notes."], ["Location accuracy", "Region associations are listed now; exact spawn points need verified in-game or official evidence."]]} />}
           <details className="filter-drawer" open>
             <summary>Filter the creature list</summary>
           <div className="filters">
@@ -167,7 +168,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
           {!statusFilteredAniimo.length && <InfoPanel title="No matching creatures" rows={[["Try this", "Clear a filter or search by name, region, element, role or stage."], ["Browse instead", "Open the full creature list or use the popular search shortcuts below."]]} />}
           {!compact && <div className="query-shortcuts" aria-label="Popular database searches">
             <span>Popular searches</span>
-            {["Celestis", "Inferlupa", "Glacy", "all Aniimo", "Aniimo locations"].map((term) => <button key={term} type="button" onClick={() => setQuery(term === "all Aniimo" ? "" : term)}>{term}</button>)}
+            {["Celestis", "Eko", "Sherro", "Geoclaw", "all Aniimo", "Aniimo locations"].map((term) => <button key={term} type="button" onClick={() => setQuery(term === "all Aniimo" ? "" : term)}>{term}</button>)}
           </div>}
           <TaxonomyLinks navigate={navigate} />
           {!compact && <LinkGroup title="Popular Search Paths" items={[["Aniimo Tier List", "/aniimo-tier-list/", "Compare provisional roles and evidence."], ["Aniimo Elements", "/aniimo-elements/", "Browse element-based entries."], ["Aniimo Roles", "/aniimo-roles/", "Find DPS, support and healer roles."], ["Aniimo Discord", "/topics/aniimo-discord/", "Check official community-source guidance."], ["Aniimo AI Use", "/compare/aniimo-ai/", "Review official AI disclosure checks."]]} navigate={navigate} />}
@@ -324,6 +325,7 @@ export function MapPage({ compact, navigate }) {
           )}
           {!compact && <div className="map-toolbar"><label className="search-field"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search regions, Aniimo or mechanics" /></label><Select label="Region" value={regionFilter} onChange={setRegionFilter} options={["All", ...regions.map((item) => item.name)]} /><button type="button" className="secondary-action" onClick={() => navigator.clipboard?.writeText(`${window.location.origin}/map/?q=${encodeURIComponent(query)}&region=${encodeURIComponent(regionFilter)}`)}><Copy size={16} /> Copy map link</button></div>}
           {!compact && <p className="section-copy map-answer">Looking for the Aniimo map size? The final measured world size is not confirmed yet; this page tracks {regions.length} public regions and adds route evidence after launch verification.</p>}
+          {!compact && <InfoPanel title="Map and Location Answer" rows={[["Find a region", "Search the map by region, Aniimo name or mechanic, then open the region guide."], ["Find a creature", "Region pages connect Celestis, Eko, Sherro and other listed Aniimo to current source-labeled location notes."], ["Exact spawns", "Coordinates, weather and time conditions stay unconfirmed until supported by official or reproducible evidence."]]} />}
           {!compact && <LinkGroup title="Map Search Answers" items={[["Map Size", "/map/", "See the current measured-size status and public region count."], ["Aniimo Locations", "/topics/aniimo-locations/", "Find the verification plan for creature spawn routes."], ["Evolution List", "/topics/aniimo-evolution-list/", "Browse creature forms and evolution coverage."]]} navigate={navigate} />}
           <div className="region-grid">
             {filteredRegions.map((item) => (
@@ -401,6 +403,7 @@ export function CodesPage({ navigate }) {
             ["Current status", codeVerificationTemplate.currentStatus],
             ["How it is checked", "Official channels or direct in-game verification are required."],
           ]} />
+          <InfoPanel title="Code Answer" rows={[["Active codes", "No redeem code is listed as active unless an official source or direct in-game test confirms it."], ["If a code fails", "Check exact spelling, expiration, platform and region before trying again."], ["Not a code", "Pre-registration, milestone and launch-event rewards may be delivered without a redeem string."]]} />
           <LaunchStatusPanel title="Codes And Rewards Status" entries={launchStatusEntries.filter((entry) => ["codes", "pc-console", "mobile"].includes(entry.id))} />
           <SeoGuideBlock items={seoGuides.codes} />
           <div className="code-grid">
@@ -813,6 +816,7 @@ export function LaunchDayPage({ navigate }) {
       <div className="detail-panels">
         <InfoPanel title="Current Launch Status" rows={launchDayCommandCenter.statusRows.map(([label, value, status]) => [label, `${value} (${status})`])} />
         <InfoPanel title="Fast Checks" rows={launchDayCommandCenter.searchIntents.map(([intent, answer]) => [intent, answer])} />
+        <InfoPanel title="Start Here" rows={[["Cannot download", "Check Download Unavailable, then platform and region availability."], ["Cannot log in", "Check Server Status and Known Issues before resetting anything."], ["Missing reward or code", "Open Codes & Rewards and confirm account, platform and official status."], ["Looking for a creature", "Search the Database, then use its region guide for current location notes."]]} />
       </div>
       <div className="site-index-grid">
         <LinkGroup title="Launch Day Actions" items={launchDayCommandCenter.quickActions} navigate={navigate} />
@@ -2168,6 +2172,7 @@ export function RegionDetail({ region, navigate }) {
       </div>
       <div className="detail-panels">
         <InfoPanel title="Known Aniimo" rows={region.aniimo.map((name) => ["Encounter", name])} />
+        <InfoPanel title="Location Answer" rows={[["Current region association", `${region.aniimo.join(", ")} are currently listed for ${region.name}.`], ["What this means", "This is a source-labeled region association, not an exact coordinate or guaranteed encounter condition."], ["Next step", "Open an Aniimo detail page for its role, forms and current location notes."]]} />
         <InfoPanel title="Route Notes" rows={[["Exploration", region.theme], ["Mechanics", region.mechanics.join(", ")], ["Data status", statuses[region.status]], ["Last updated", siteLastUpdated]]} />
         <InfoPanel title="Launch Checklist" rows={region.checklist.map((item, index) => [`Check ${index + 1}`, item])} />
       </div>
@@ -2179,6 +2184,7 @@ export function RegionDetail({ region, navigate }) {
       <RelatedAniimo title={`${region.name} Aniimo`} items={regionAniimo} navigate={navigate} />
       <FaqBlock items={[
         [`Which Aniimo appear in ${region.name}?`, `Current listed encounters include ${region.aniimo.join(", ")}.`],
+        [`Where are ${region.aniimo[0]} in Aniimo?`, `${region.aniimo[0]} is currently associated with ${region.name}. Exact spawn points and conditions need official or reproducible in-game verification.`],
         [`Is the ${region.name} route confirmed?`, `This region is marked ${region.status}. Update it after official launch or in-game verification.`],
       ]} />
     </section>
