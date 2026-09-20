@@ -720,16 +720,18 @@ export const socialIntentTopics = [
   {
     slug: "is-aniimo-pay-to-win",
     title: "Is Aniimo Pay to Win?",
-    description: "Track Aniimo monetization questions with careful wording around free-to-play status, rewards and unknown launch economy details.",
-    intro: "Free-to-play games naturally create monetization questions. This page should answer what is known and clearly label what remains unknown before launch.",
+    description: "Is Aniimo pay to win? Check the current evidence status for free-to-play and in-app-purchase facts, player concerns, and unverified competitive impact.",
+    intro: "Aniimo is free to play and its Steam listing identifies in-app purchases. That alone does not establish whether paid options create a competitive advantage, so this page separates storefront facts, player concerns and evidence still needed for a fair answer.",
     points: [
-      ["Known fact", "Official storefront language describes Aniimo as free-to-play."],
-      ["Known rewards", "Pre-registration rewards and launch event items are tracked separately from redeem codes and paid purchases."],
-      ["Unknown economy", "Final shop structure, paid currency, battle pass details and competitive impact should wait for official or in-game verification."],
+      ["Confirmed storefront facts", "Steam lists Aniimo as free-to-play and identifies in-app purchases. Google Play also identifies in-app purchases on the official listing."],
+      ["What this does not prove", "A store purchase label does not by itself show whether optional spending changes competitive outcomes, progression gates or match balance."],
+      ["What players are discussing", "Recent community discussion focuses on shop density, paid packs, event value and whether the experience feels gacha-like. These are player opinions and research signals, not a mechanism verdict."],
+      ["Evidence needed", "A durable pay-to-win conclusion needs official purchase details plus reproducible checks of what is paid, what is earnable, where it applies and whether it changes competitive results."],
     ],
     faq: [
       ["Is Aniimo free to play?", "Yes. Official storefront language describes Aniimo as free-to-play."],
-      ["Is Aniimo pay to win?", "Aniimo.games does not label the game pay-to-win without verified launch economy and balance data."],
+      ["Does Aniimo have in-app purchases?", "Yes. Steam and Google Play identify in-app purchases on their Aniimo listings."],
+      ["Is Aniimo pay to win?", "Aniimo.games does not make that verdict without verified purchase effects, earnable alternatives and competitive-impact evidence."],
     ],
   },
   {
@@ -769,17 +771,19 @@ export const socialIntentTopics = [
   {
     slug: "aniimo-price",
     title: "Aniimo Price and Free-to-Play Status",
-    description: "Check whether Aniimo is free to play, what price information is confirmed and which economy details still need launch verification.",
-    intro: "Price searches sit close to download intent. Aniimo.games should answer the free-to-play question clearly while keeping paid currency, battle pass and shop details in watchlist status until verified.",
+    description: "Is Aniimo free? Check official free-to-play status, in-app-purchase disclosures, paid-content boundaries and the current evidence level for shop claims.",
+    intro: "Aniimo is free to play on its official storefronts. Those listings also disclose in-app purchases, so price questions need a direct answer without turning social-media reactions or an unreviewed shop screen into a complete economy guide.",
     points: [
       ["Free-to-play status", "Official storefront language describes Aniimo as a free-to-play creature-catching open-world RPG."],
-      ["Community concern", "Recent player discussions ask whether paid packs, gacha-like systems or competitive advantages will appear. These are questions to monitor, not confirmed features."],
-      ["Unknown economy details", "Paid currency, battle pass, shop pricing and competitive impact should wait for official or live-game verification."],
+      ["Store disclosure", "Steam and Google Play identify in-app purchases. This confirms optional paid content exists, not its effect on progression or competitive balance."],
+      ["Community concern", "Players are actively discussing paid packs, shop presentation and gacha-like expectations. Treat those conversations as feedback signals rather than a factual list of mechanics."],
+      ["Unknown economy details", "Paid currency, pass structure, exact shop pricing, earnable alternatives and competitive impact need official documentation or reproducible live-game evidence."],
       ["Reward boundary", "Pre-registration rewards and launch gifts are tracked separately from paid purchases and redeem codes."],
     ],
     faq: [
       ["Is Aniimo free?", "Yes. Official storefront language describes Aniimo as free-to-play."],
-      ["How much does Aniimo cost?", "Aniimo is tracked as free-to-play, while optional purchases and economy details need official or live-game verification."],
+      ["Does Aniimo have in-app purchases?", "Yes. Steam and Google Play identify in-app purchases on their Aniimo listings."],
+      ["How much does Aniimo cost?", "The game is free to play. Optional purchase pricing and the effect of paid options should be checked in the current official storefront or in-game shop."],
     ],
   },
   {

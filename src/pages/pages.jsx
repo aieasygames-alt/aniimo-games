@@ -1497,6 +1497,7 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
       <div className="source-level" aria-label="Source level"><strong>Source level</strong><span>{topic.sourceType || "Editorial review"}</span><span>Facts and community leads are kept separate.</span></div>
       {statusEntry && <LaunchStatusPanel title="Answer Status" entries={[statusEntry]} />}
       {intentStatus && <InfoPanel title="What We Are Checking Next" rows={[["Next check", intentStatus.action], ["Page", topic.title]]} />}
+      {(["is-aniimo-pay-to-win", "aniimo-price", "aniimo-vs-genshin"].includes(topic.slug)) && <InfoPanel title="Economy Fact Status" rows={[["Confirmed", "Aniimo is free to play; Steam and Google Play identify in-app purchases."], ["Player feedback", "Shop density, paid packs and gacha-like expectations are active discussion topics, not a final mechanism verdict."], ["Not established here", "Whether optional purchases create a competitive advantage, progression gate or mode-specific imbalance."], ["Review standard", "Official purchase detail plus repeatable live-game evidence of cost, earnable alternatives and impact."]]} />}
       <EditorialBlock title="Key Points" items={topic.points} />
       {evidenceQueue && <EvidenceQueue queue={evidenceQueue} />}
       {children}

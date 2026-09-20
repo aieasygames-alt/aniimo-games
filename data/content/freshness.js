@@ -75,7 +75,7 @@ export const updateWorkflowMatrix = [
 
 export const recentResearchNotes = [
   ["Official update", "The September 3 developer letter re-confirmed PC, console and Xbox Cloud Gaming for September 16, 2026, followed by mobile on September 23, 2026."],
-  ["Social discussion", "Current community questions center on mobile timing, iOS placeholder dates, PC pre-order availability, regional servers, free-to-play economy and launch progression."],
+  ["Social discussion", "Current community questions center on mobile timing, account and server boundaries, code claims, launch performance, shop value and whether optional purchases feel gacha-like."],
   ["Search demand", "Search results are clustering around release date, download, Steam, PS5, Xbox, mobile, codes, launch rewards, gameplay, map, multiplayer and PAX East."],
 ];
 
@@ -124,8 +124,8 @@ export const socialDiscussionResearch = [
   },
   {
     topic: "Monetization and pay-to-win concerns",
-    signals: "Free-to-play games often trigger questions about paid currency, battle passes, gacha-like systems and competitive fairness.",
-    contentOpportunity: "Keep the pay-to-win page source-aware and update it only when official economy details or live tests exist.",
-    sourcePolicy: "Avoid economy claims until official systems are published or tested in-game.",
+    signals: "Post-launch discussion centers on shop density, paid packs, gacha-like expectations and competitive fairness.",
+    contentOpportunity: "Separate official free-to-play and in-app-purchase disclosures from player sentiment, then add purchase-effect evidence as it is verified.",
+    sourcePolicy: "Do not turn a store label or social-media opinion into a pay-to-win verdict; require official detail and reproducible impact evidence.",
   },
 ];
