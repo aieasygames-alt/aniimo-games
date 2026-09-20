@@ -444,12 +444,12 @@ export function CodesPage({ navigate }) {
 export function RewardsPage() {
   return (
     <section id="rewards" className="section">
-      <SectionTitle icon={<Gift />} kicker="Rewards" title="Aniimo Pre-Registration Rewards" />
+      <SectionTitle icon={<Gift />} kicker="Rewards" title="Aniimo Rewards & Claim Status" />
           <img className="page-banner" src="/images/banners/banner-susuta-hunt.webp" alt="Aniimo Susuta Hunt event" width="1600" height="900" loading="lazy" decoding="async" />
       <p className="section-copy">
-        Confirmed official rewards include milestone items, a Prismana Aniimo choice for
-        Junior Wayfarers, and a mysterious Susuta egg for official pre-registration. Claim
-        delivery should be checked on the same account used for registration after launch.
+        Confirmed official reward campaigns include milestone items, a Prismana Aniimo choice for
+        Junior Wayfarers, and a mysterious Susuta egg for official pre-registration. Claim delivery
+        needs to be checked on the same account, server and platform used for the campaign.
       </p>
       <LaunchStatusPanel title="Reward Delivery Status" entries={launchStatusEntries.filter((entry) => ["codes", "pc-console", "mobile"].includes(entry.id))} />
       <RewardGrid />
@@ -473,10 +473,10 @@ export function DownloadPage({ navigate }) {
             </p>
             <InfoPanel title="Page Status" rows={[
               ["Last reviewed", sourceLastChecked],
-              ["Platform status", "Official storefront links tracked before install availability."],
+              ["Platform status", "PC and consoles are live; mobile availability is scheduled for September 23 and varies by country."],
               ["Safe install path", "Use the official website and platform stores only."],
             ]} />
-            <InfoPanel title="Mobile Search Answer" rows={[["Android", "Google Play pre-registration and official listing"], ["iOS", "App Store mobile launch tracking"], ["Date", releaseInfo.mobile], ["Safety", "Use official stores only; avoid APK mirrors"]]} />
+            <InfoPanel title="Mobile Search Answer" rows={[["Android", "Check the official Google Play listing by country and device"], ["iOS", "Check the official App Store listing by country and device"], ["Date", releaseInfo.mobile], ["Safety", "Use official stores only; avoid APK mirrors"]]} />
             <p className="section-copy download-answer">For Aniimo game download searches, use the official store links below. There is no safe reason to use an APK mirror or torrent.</p>
             <div className="answer-strip download-answer-strip" aria-label="Download quick answers">
               <div><strong>PC</strong><span>Steam and Epic paths</span></div>
@@ -496,7 +496,7 @@ export function DownloadPage({ navigate }) {
             </div>
             <EvidenceQueue queue={launchEvidenceQueues.download} />
             <LinkGroup title="Download Search Safety" items={[
-              ["Android Google Play", "/platforms/android/", "Track Google Play pre-registration, Android launch timing and safe APK guidance."],
+              ["Android Google Play", "/platforms/android/", "Check Google Play availability and safe Android installation guidance."],
               ["Mobile App Stores", "/platforms/mobile/", "Check App Store, Google Play and mobile launch-window notes."],
               ["Portuguese Pre-Register", "/pt-br/aniimo-pre-registro/", "Answer Brazil pre-registro reward and storefront searches."],
               ["APK Safety", "/topics/aniimo-apk/", "Use official Android paths instead of APK mirrors."],
@@ -578,6 +578,19 @@ export function BeginnerPage({ navigate }) {
   return (
         <section id="guides" className="section guide-band">
           <SectionTitle icon={<BookOpen />} kicker="Guide" title="Beginner Guide" />
+      <InfoPanel title="Your First Session" rows={[
+        ["1. Start on an official platform", "PC and consoles are live. Check App Store or Google Play availability in your country for the September 23 mobile launch."],
+        ["2. Choose account and server carefully", "PC and mobile share data with the same Aniimo account; different servers keep independent data."],
+        ["3. Keep rewards separate from codes", "Campaign rewards and redeem codes are different. Only use a code published by an official channel or shown in the current client."],
+        ["4. Learn before optimizing", "Start with catching, Twine and the database. Routes, builds and tier claims need current evidence."],
+      ]} />
+      <LinkGroup title="Start Playing" items={[
+        ["First Hour Guide", "/aniimo-first-hour-guide/", "Follow a source-aware first-session checklist."],
+        ["Catching Basics", "/how-to-catch-aniimo/", "Learn confirmed Aniipod and trap basics."],
+        ["What Is Twine?", "/what-is-twine/", "Understand the core transformation-style system."],
+        ["Account & Cross-Save", "/topics/aniimo-cross-save/", "Check the same-account and server rules."],
+        ["Codes & Rewards", "/codes/", "Check official code status separately from campaign rewards."],
+      ]} navigate={navigate} />
       <div className="guide-columns">
             {mechanics.map((item) => (
               <GuideItem key={item.title} title={item.title} text={item.text} />

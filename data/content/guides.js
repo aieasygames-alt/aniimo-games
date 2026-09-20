@@ -58,17 +58,17 @@ export const seoGuides = {
     {
       title: "How to download Aniimo safely",
       body:
-        "The safest way to download Aniimo is to start from an official storefront or the official Aniimo website. Aniimo is listed as a free-to-play creature-catching open-world RPG, and each platform page can use a slightly different call to action before launch. Steam and Epic Games Store use wishlist flows for PC discovery, console pages use platform store wishlists, and mobile pages can show pre-order or pre-registration depending on region. Avoid APK mirrors, reposted installers, and unofficial download buttons, especially before the global launch windows are active.",
+        "The safest way to download Aniimo is to start from an official storefront or the official Aniimo website. PC and console are live through Steam, Epic Games Store, PlayStation 5 and Xbox. Mobile is scheduled for September 23, so App Store and Google Play availability must be checked in your country. Avoid APK mirrors, reposted installers and unofficial download buttons.",
     },
     {
       title: "Which Aniimo platform should you choose?",
       body:
-        "PC and console players should track the September 16, 2026 launch window through Steam, Epic Games Store, Xbox, PlayStation and the official website. Mobile players should track the September 23, 2026 launch window through Google Play and the App Store. If a store page is not visible in your country yet, use the official website as the source of truth and check again closer to launch because regional storefront visibility can change without a separate news post.",
+        "PC and console players can use Steam, Epic Games Store, Xbox, PlayStation and the official website now. Mobile players should check Google Play and the App Store on September 23. If a mobile store page is not available in your country, use the official launch announcement and the local storefront together; regional visibility can change without a separate news post.",
     },
     {
       title: "Before installing",
       body:
-        "Use the same account ecosystem you plan to play on at launch, confirm that the publisher and developer match the official listing, and keep launch rewards separate from redeem codes. Pre-registration and wishlist rewards are usually delivered through official systems, while redeem codes require a separate code field or redemption page. This site tracks both, but it does not link to unofficial installers.",
+        "Use the Aniimo account you intend to keep, confirm that the publisher and developer match the official listing, and keep campaign rewards separate from redeem codes. PC and mobile share data when the same Aniimo account is used, while data on different servers is independent. A code should only be entered when an official channel or the current game client shows a redemption flow.",
     },
     {
       title: "Why mobile dates may look different",
@@ -141,9 +141,9 @@ export const seoGuides = {
 
 export const editorialGuides = {
   download: [
-    ["Use official storefronts", "Start from the official website or platform store page for your device. Avoid APK mirrors or unofficial installers until Pawprint Studio publishes direct files."],
-    ["Check platform dates", "PC and console availability is tracked for September 16, 2026, while mobile availability is tracked for September 23, 2026."],
-    ["Wishlist or pre-register", "Store pages can use different labels, but wishlist, pre-order and pre-register actions all help you follow launch availability."],
+    ["Use official storefronts", "Start from the official website or platform store page for your device. PC and console are live; avoid APK mirrors and unofficial installers."],
+    ["Check mobile by country", "Mobile availability is scheduled for September 23, 2026. Check the App Store or Google Play listing for your country and device."],
+    ["Keep your account consistent", "Use the Aniimo account and server you intend to keep. PC and mobile share data with the same account, while different servers are independent."],
   ],
   release: [
     ["PC and console first", "The official launch announcement lists PC and console launch before mobile."],
@@ -182,12 +182,12 @@ export const faqs = {
     ["What are the official pre-registration rewards?", "Official rewards include Glimmer, Aniipod Ultra, Companion Promise avatar frame, Sunlit Meadow outfit, a Prismana Aniimo choice and a Susuta egg."],
   ],
   download: [
-    ["Where can I pre-register for Aniimo?", "Use the official Aniimo website and official store pages such as Google Play when available in your region."],
-    ["What platforms is Aniimo launching on?", "Official news lists PC and consoles on September 16, 2026, and mobile on September 23, 2026."],
+    ["Where can I download Aniimo?", "Use the official Steam, Epic Games Store, Xbox or PlayStation listing for PC and console. Check the official App Store or Google Play listing for mobile availability in your region."],
+    ["What platforms is Aniimo available on?", "Official news confirms PC and consoles are live, with mobile scheduled for September 23, 2026."],
   ],
   snippets: [
-    ["Is Aniimo out yet?", "Aniimo is not treated as live here until official launch availability is confirmed. The current official dates are September 16, 2026 for PC and consoles and September 23, 2026 for mobile."],
-    ["Is Aniimo on Steam?", "Yes. Aniimo has an official Steam listing for PC wishlist and launch tracking."],
+    ["Is Aniimo out yet?", "Aniimo is live on PC and consoles. Official news schedules the mobile launch for September 23, 2026; availability must be checked by country and storefront."],
+    ["Is Aniimo on Steam?", "Yes. Aniimo is live through its official Steam listing for PC."],
     ["Are there Aniimo codes?", "No public redeem code is confirmed on Aniimo.games yet. Confirmed pre-registration and milestone rewards are tracked separately from redeem codes."],
     ["How many Aniimo are confirmed?", "Aniimo.games currently tracks 89 public Aniimo names from the official Wiki probe workflow."],
     ["Is Aniimo free to play?", "Official storefront language describes Aniimo as a free-to-play creature-catching open-world RPG."],
