@@ -138,11 +138,16 @@
 .device-picker button { border: 1px solid rgba(23,32,29,.18); border-radius: 6px; padding: 8px 12px; background: #fff; color: #1f6d55; font: inherit; font-weight: 750; cursor: pointer; }
 .device-picker button.active, .device-picker button:hover { background: #1f6d55; color: #fff; }
 .quick-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 20px 0 24px; }
+.location-answer { display: flex; justify-content: space-between; gap: 24px; margin: 20px 0; padding: 18px; border: 1px solid rgba(31,109,85,.24); border-radius: 8px; background: #f2f7ef; }
+.location-answer h2 { margin: 4px 0 8px; font-size: 24px; }
+.location-answer p { max-width: 720px; margin: 0; color: #43514b; }
+.location-answer-status { display: grid; align-content: start; gap: 9px; min-width: 180px; color: #52615b; font-size: 13px; }
 .quick-facts > div { display: grid; gap: 3px; padding: 12px; border: 1px solid rgba(23,32,29,.12); border-radius: 8px; background: #eef7ef; }
 .quick-facts strong { color: #1f6d55; font-size: 18px; }
 .quick-facts span { color: #53635b; font-size: 12px; }
 @media (max-width: 760px) { .answer-status-grid { grid-template-columns: 1fr; } }
 @media (max-width: 760px) { .quick-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .location-answer { flex-direction: column; gap: 14px; } .location-answer-status { min-width: 0; } }
 
 @media (max-width: 760px) { .evidence-form { grid-template-columns: 1fr; } .evidence-notes { grid-column: auto; } }
 

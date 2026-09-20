@@ -2091,6 +2091,7 @@ export function ContactPage() {
 
 export function AniimoDetail({ item, navigate, localized = false }) {
   const pt = localized;
+  const itemRegion = regions.find((region) => region.name === item.region);
   const sameElement = aniimo.filter((candidate) => candidate.id !== item.id && candidate.element === item.element).slice(0, 6);
   const sameRegion = aniimo.filter((candidate) => candidate.id !== item.id && candidate.region === item.region).slice(0, 6);
   const sameRole = aniimo.filter((candidate) => candidate.id !== item.id && candidate.role === item.role).slice(0, 6);
@@ -2109,10 +2110,12 @@ export function AniimoDetail({ item, navigate, localized = false }) {
         </div>
       </div>
       <div className="tool-actions detail-tool-actions">
+        {!pt && itemRegion && <a className="primary-action" href={regionPath(itemRegion)} onClick={(event) => navigate(event, regionPath(itemRegion))}><Map size={16} /> Open {item.region} guide</a>}
         <a className="secondary-action" href={`/compare/aniimo/?ids=${item.id}`} onClick={(event) => navigate(event, `/compare/aniimo/?ids=${item.id}`)}><Copy size={16} /> Compare this Aniimo</a>
         <a className="secondary-action" href={`/team-builder/?ids=${item.id}`} onClick={(event) => navigate(event, `/team-builder/?ids=${item.id}`)}><Plus size={16} /> Add to team</a>
         <a className="secondary-action" href="/collection-tracker/" onClick={(event) => navigate(event, "/collection-tracker/")}><CheckCircle2 size={16} /> Track collection</a>
       </div>
+      {!pt && <section className="location-answer" aria-label={`${item.name} location answer`}><div><span className="eyebrow">Location answer</span><h2>Where is {item.name}?</h2><p>{item.name} is currently associated with <strong>{item.region}</strong>. This is a source-labeled region answer, not an exact spawn coordinate.</p></div><div className="location-answer-status"><StatusBadge status={item.status} /><span>Exact route, time and conditions need official or reproducible in-game verification.</span></div></section>}
       {!pt && <div className="quick-facts" aria-label={`${item.name} quick facts`}><div><strong>{item.no}</strong><span>Wiki number</span></div><div><strong>{item.element}</strong><span>Element</span></div><div><strong>{item.role}</strong><span>Role</span></div><div><strong>{item.region}</strong><span>Region</span></div></div>}
       <div className="detail-panels">
         {!pt && <AnswerStatus status={item.status} checked={sourceLastChecked} sourceType="Official Wiki and source review" next={`Open the ${item.region} region guide or compare ${item.name}.`} />}
@@ -2181,6 +2184,9 @@ export function RegionDetail({ region, navigate }) {
         <GuideItem title={`${region.name} guide plan`} text={region.guideNote} />
         <GuideItem title="Verification priority" text={`After launch, add route screenshots, exact encounter notes and mechanic-specific checks for ${region.mechanics.join(", ")}.`} />
         <GuideItem title="Source note" text={`This page uses official region material first. Community route findings should be added only after they can be checked against the live game.`} />
+      </div>
+      <div className="hero-actions section-actions">
+        {regionAniimo.slice(0, 3).map((item) => <a className="secondary-action" key={item.id} href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}><Search size={16} /> {item.name} details</a>)}
       </div>
       <RelatedAniimo title={`${region.name} Aniimo`} items={regionAniimo} navigate={navigate} />
       <FaqBlock items={[
