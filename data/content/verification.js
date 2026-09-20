@@ -143,18 +143,18 @@ export const codeVerificationTemplate = {
 };
 
 export const platformUnlockQueue = [
-  ["Steam", releaseInfo.pcConsole, officialLinks.steam],
-  ["Epic Games Store", releaseInfo.pcConsole, officialLinks.epic],
-  ["Xbox", releaseInfo.pcConsole, officialLinks.xbox],
-  ["PlayStation 5", releaseInfo.pcConsole, officialLinks.playstation],
-  ["App Store", releaseInfo.mobile, officialLinks.appStore],
-  ["Google Play", releaseInfo.mobile, officialLinks.googlePlay],
-].map(([platform, releaseDate, source]) => ({
+  ["Steam", releaseInfo.pcConsole, officialLinks.steam, "Live", "Verified"],
+  ["Epic Games Store", releaseInfo.pcConsole, officialLinks.epic, "Live", "Verified"],
+  ["Xbox", releaseInfo.pcConsole, officialLinks.xbox, "Live", "Verified"],
+  ["PlayStation 5", releaseInfo.pcConsole, officialLinks.playstation, "Live", "Verified"],
+  ["App Store", releaseInfo.mobile, officialLinks.appStore, "Check by country on launch day", "Watchlist"],
+  ["Google Play", releaseInfo.mobile, officialLinks.googlePlay, "Check by country on launch day", "Watchlist"],
+].map(([platform, releaseDate, source, unlockTime, status]) => ({
   platform,
   releaseDate,
-  unlockTime: "Watchlist",
+  unlockTime,
   timezone: "Watchlist",
-  status: "Watchlist",
+  status,
   source,
 }));
 

@@ -918,14 +918,14 @@ export function LaunchVerificationPage() {
   const [records, setRecords] = useState(() => {
     try { return JSON.parse(localStorage.getItem("aniimo-launch-evidence") || "[]"); } catch { return []; }
   });
-  const [draft, setDraft] = useState({ topic: "Mobile store availability", platform: "", status: "Watchlist", source: "", notes: "" });
+  const [draft, setDraft] = useState({ topic: "Mobile store availability", platform: "", region: "", device: "", account: "", server: "", status: "Watchlist", source: "", notes: "" });
   useEffect(() => localStorage.setItem("aniimo-launch-evidence", JSON.stringify(records)), [records]);
   const recordCounts = records.reduce((counts, record) => ({ ...counts, [record.status]: (counts[record.status] || 0) + 1 }), {});
   function addRecord(event) {
     event.preventDefault();
     if (!draft.platform.trim() || !draft.source.trim()) return;
     setRecords((current) => [{ ...draft, id: `${Date.now()}`, verifiedAt: new Date().toISOString() }, ...current]);
-    setDraft({ topic: "Mobile store availability", platform: "", status: "Watchlist", source: "", notes: "" });
+    setDraft({ topic: "Mobile store availability", platform: "", region: "", device: "", account: "", server: "", status: "Watchlist", source: "", notes: "" });
   }
   function exportRecords() {
     const blob = new Blob([JSON.stringify(records, null, 2)], { type: "application/json" });
@@ -983,13 +983,17 @@ export function LaunchVerificationPage() {
         <form className="evidence-form" onSubmit={addRecord}>
           <label><span>Topic</span><select value={draft.topic} onChange={(event) => setDraft({ ...draft, topic: event.target.value })}>{["Mobile store availability", "Account and cross-platform flow", "Co-op and PVP rules", "Economy and monetization", "Localization and known issues", "Server status", "Redeem code"].map((item) => <option key={item}>{item}</option>)}</select></label>
           <label><span>Platform</span><input value={draft.platform} onChange={(event) => setDraft({ ...draft, platform: event.target.value })} placeholder="Steam, iOS, Android..." required /></label>
+          <label><span>Region</span><input value={draft.region} onChange={(event) => setDraft({ ...draft, region: event.target.value })} placeholder="Country or store region" /></label>
+          <label><span>Device</span><input value={draft.device} onChange={(event) => setDraft({ ...draft, device: event.target.value })} placeholder="Phone, console or PC" /></label>
+          <label><span>Account</span><input value={draft.account} onChange={(event) => setDraft({ ...draft, account: event.target.value })} placeholder="Same account, new account..." /></label>
+          <label><span>Server</span><input value={draft.server} onChange={(event) => setDraft({ ...draft, server: event.target.value })} placeholder="Server or auto-assigned" /></label>
           <label><span>Status</span><select value={draft.status} onChange={(event) => setDraft({ ...draft, status: event.target.value })}><option>Watchlist</option><option>Verified</option><option>Rejected</option></select></label>
           <label><span>Source URL</span><input type="url" value={draft.source} onChange={(event) => setDraft({ ...draft, source: event.target.value })} placeholder="https://..." required /></label>
           <label className="evidence-notes"><span>Notes</span><textarea value={draft.notes} onChange={(event) => setDraft({ ...draft, notes: event.target.value })} placeholder="Region, device, reproduction steps, screenshot path..." /></label>
           <button className="primary-action" type="submit"><Plus size={16} /> Add observation</button>
         </form>
         <div className="tool-actions"><button className="secondary-action" type="button" onClick={exportRecords} disabled={!records.length}><DownloadIcon size={16} /> Export JSON</button><label className="secondary-action file-action"><DownloadIcon size={16} /> Import JSON<input type="file" accept="application/json" onChange={importRecords} /></label><button className="secondary-action" type="button" onClick={() => setRecords([])} disabled={!records.length}><X size={16} /> Clear local records</button></div>
-        {records.length > 0 && <><div className="evidence-summary"><strong>{records.length}</strong><span>observations</span><span>{recordCounts.Watchlist || 0} pending review</span><span>{recordCounts.Verified || 0} verified</span><span>{recordCounts.Rejected || 0} rejected</span></div><div className="table-shell freshness-table"><table><thead><tr><th>Time</th><th>Topic</th><th>Platform</th><th>Status</th><th>Evidence</th></tr></thead><tbody>{records.map((record) => <tr key={record.id}><td>{new Date(record.verifiedAt).toLocaleString()}</td><td>{record.topic}</td><td>{record.platform}</td><td><StatusBadge status={record.status} /></td><td><a href={record.source} target="_blank" rel="noreferrer">Source</a>{record.notes && <><br />{record.notes}</>}</td></tr>)}</tbody></table></div></>}
+        {records.length > 0 && <><div className="evidence-summary"><strong>{records.length}</strong><span>observations</span><span>{recordCounts.Watchlist || 0} pending review</span><span>{recordCounts.Verified || 0} verified</span><span>{recordCounts.Rejected || 0} rejected</span></div><div className="table-shell freshness-table"><table><thead><tr><th>Time</th><th>Topic</th><th>Platform</th><th>Context</th><th>Status</th><th>Evidence</th></tr></thead><tbody>{records.map((record) => <tr key={record.id}><td>{new Date(record.verifiedAt).toLocaleString()}</td><td>{record.topic}</td><td>{record.platform}</td><td>{[record.region, record.device, record.account, record.server].filter(Boolean).join(" · ") || "Not recorded"}</td><td><StatusBadge status={record.status} /></td><td><a href={record.source} target="_blank" rel="noreferrer">Source</a>{record.notes && <><br />{record.notes}</>}</td></tr>)}</tbody></table></div></>}
       </section>
       <LaunchStatusPanel title="Launch Readiness Snapshot" entries={launchStatusEntries} />
       <section className="related-section">
@@ -1012,8 +1016,8 @@ export function LaunchVerificationPage() {
             <article className="verification-card" key={item.platform}>
               <StatusBadge status={item.status} />
               <h3>{item.platform}</h3>
-              <p>Release date: {item.releaseDate}</p>
-              <p>Unlock time: {item.unlockTime}</p>
+              <p>{item.status === "Verified" ? "Availability: live" : `Scheduled: ${item.releaseDate}`}</p>
+              <p>Store check: {item.unlockTime}</p>
               <a className="text-link" href={item.source} target="_blank" rel="noreferrer">
                 Official source <ChevronRight size={16} />
               </a>
@@ -1883,57 +1887,57 @@ export function PlatformPage({ type }) {
   const platformMap = {
     steam: {
       title: "Aniimo Steam Download Guide",
-      intro: "Aniimo PC availability is tracked for September 16, 2026, with Steam acting as one of the official storefronts.",
+      intro: "Aniimo is live on Steam. Use the official store page for the current client, system requirements and platform-specific update notices.",
       names: ["Steam"],
       image: "/images/media/aniimo-steam-store.webp",
       notes: [
-        { title: "Use the official Steam listing", body: "PC players should wishlist Aniimo through Steam or use the official website to confirm launch availability. Avoid reposted installers." },
-        { title: "Release timing", body: `Steam launch is tied to the PC and console window on ${releaseInfo.pcConsole}. Exact hourly unlock timing still needs storefront confirmation.` },
-        { title: "Account planning", body: "Use the Steam account you expect to play on at launch so wishlist and launch notices stay connected to the right storefront." },
+        { title: "Use the official Steam listing", body: "Install Aniimo only from Steam or the official Aniimo website. Avoid reposted launchers, modified clients and download mirrors." },
+        { title: "System requirements", body: "Steam lists 40GB available storage, 8GB RAM minimum and 16GB RAM recommended. Recheck the store page before a large update." },
+        { title: "Account planning", body: "Use the Aniimo account you plan to continue with on mobile. Official launch news says PC and mobile share data when the same account is used." },
       ],
     },
     mobile: {
       title: "Aniimo Mobile Download Guide",
-      intro: "Aniimo mobile availability is tracked for September 23, 2026 through official iOS and Android storefronts.",
+      intro: "Aniimo mobile is scheduled for September 23, 2026 through official iOS and Android storefronts. Check the store in your country on launch day before relying on a search result or APK listing.",
       names: ["App Store", "Google Play"],
       image: "/images/media/aniimo-google-play-store.webp",
       notes: [
-        { title: "Use official mobile listings", body: "Mobile players should use App Store or Google Play pages when they are visible in their region. Avoid unofficial APK mirrors before launch." },
-        { title: "Release timing", body: `Mobile launch is currently tracked for ${releaseInfo.mobile}. Store visibility can vary by country and local storefront timing.` },
-        { title: "Account planning", body: "Use the mobile store account you expect to play on at launch so pre-order or pre-registration notices stay connected to the right storefront." },
+        { title: "Use official mobile listings", body: "Use the App Store or Google Play listing linked here. Do not use APK mirrors, repackaged clients or account-login pages promoted in social posts." },
+        { title: "Launch-day store check", body: `Mobile availability is scheduled for ${releaseInfo.mobile}. Check your country, store account, device compatibility and listing publisher before treating a missing button as an outage.` },
+        { title: "Continue the right account", body: "Official launch news says PC and mobile share the same data with the same Aniimo account. Confirm the intended account and server before creating another character." },
       ],
     },
     ps5: {
       title: "Aniimo PS5 Download & Wishlist Guide",
-      intro: "Aniimo PlayStation 5 availability is tracked through the official PlayStation listing and the September 16, 2026 console launch window.",
+      intro: "Aniimo is live on PlayStation 5. Use the official PlayStation listing and confirm the PSN region before treating a storefront difference as an availability problem.",
       names: ["PlayStation 5"],
       image: "/images/media/aniimo-playstation-store.webp",
       notes: [
-        { title: "Use the PlayStation listing", body: "Console players should use the official PlayStation page or the Aniimo website to track wishlist and launch availability." },
-        { title: "Release timing", body: `PS5 launch is tied to the PC and console window on ${releaseInfo.pcConsole}. Exact regional store timing still needs storefront confirmation.` },
-        { title: "Before launch", body: "Keep platform-store alerts enabled and avoid any download page that is not connected to PlayStation or the official Aniimo website." },
+        { title: "Use the PlayStation listing", body: "Install from the official PlayStation listing or official Aniimo links. Avoid third-party download pages and account offers." },
+        { title: "Server region", body: "Official support guidance says the PS5 server is assigned from the PSN account region. Data on different servers is independent." },
+        { title: "Purchased content", body: "Claim a PS5 pre-order pack by first logging in on PS5. Linked items can then be used on other platforms within the same server." },
       ],
     },
     xbox: {
       title: "Aniimo Xbox Download & Wishlist Guide",
-      intro: "Aniimo Xbox availability is tracked through the official Xbox listing and the September 16, 2026 console launch window.",
+      intro: "Aniimo is live on Xbox. Use the official Xbox listing for access, account and regional storefront details.",
       names: ["Xbox"],
       image: "/images/media/aniimo-xbox-store.webp",
       notes: [
-        { title: "Use the Xbox listing", body: "Xbox players should use the official Microsoft store page or the Aniimo website to track wishlist and launch availability." },
-        { title: "Release timing", body: `Xbox launch is tied to the PC and console window on ${releaseInfo.pcConsole}. Exact hourly unlock timing still needs storefront confirmation.` },
-        { title: "Reward planning", body: "Use the same Xbox account you expect to play on at launch so store notices and launch access stay aligned." },
+        { title: "Use the Xbox listing", body: "Install from the official Xbox store or official Aniimo links. Avoid download pages that ask for account details or separate launchers." },
+        { title: "Cloud access", body: "Official pre-download guidance links Xbox Cloud Gaming. Streaming availability and playtime depend on the Microsoft account and a stable connection." },
+        { title: "Purchased content", body: "Claim an Xbox pre-order pack by first logging in on Xbox. Linked items can then be used on other platforms within the same server." },
       ],
     },
     "epic-games": {
       title: "Aniimo Epic Games Store Download Guide",
-      intro: "Aniimo Epic Games Store availability is tracked through the official Epic listing and the September 16, 2026 PC launch window.",
+      intro: "Aniimo is live through the official Epic Games Store listing. Check that listing for client access and platform notices.",
       names: ["Epic Games Store"],
       image: "/images/media/aniimo-steam-store.webp",
       notes: [
-        { title: "Use the Epic listing", body: "PC players can track Aniimo through the official Epic Games Store page or the official Aniimo website." },
-        { title: "Release timing", body: `Epic Games Store launch is tied to the PC and console window on ${releaseInfo.pcConsole}. Exact store unlock timing still needs confirmation.` },
-        { title: "Installer safety", body: "Do not use reposted installers or unofficial download buttons before the official store page provides access." },
+        { title: "Use the Epic listing", body: "Install Aniimo from the official Epic Games Store page or the official Aniimo website." },
+        { title: "Current client", body: "Use the store client to obtain updates. Do not substitute old beta files, reposted installers or unofficial patches." },
+        { title: "Account planning", body: "Use the Aniimo account you intend to continue with on mobile, and check server selection before creating a second character." },
       ],
     },
     ios: {
@@ -1942,9 +1946,9 @@ export function PlatformPage({ type }) {
       names: ["App Store"],
       image: "/images/media/aniimo-google-play-store.webp",
       notes: [
-        { title: "Use the App Store", body: "iPhone and iPad players should use the official App Store listing when it is visible in their region." },
-        { title: "Release timing", body: `iOS launch is tracked for ${releaseInfo.mobile}. App Store visibility can vary by country and account region.` },
-        { title: "Pre-order notes", body: "If pre-order is available in your region, use the account you expect to play on at launch." },
+        { title: "Use the App Store", body: "Use the official App Store listing when it is visible in your region. Do not install enterprise profiles or unofficial sideloaded clients." },
+        { title: "Release timing", body: `iOS launch is tracked for ${releaseInfo.mobile}. Check your country, App Store account and device compatibility if the install button is missing.` },
+        { title: "Account continuation", body: "Sign in with the same Aniimo account used on PC to continue shared data. Confirm the server before creating a new character." },
       ],
     },
     android: {
@@ -1953,9 +1957,9 @@ export function PlatformPage({ type }) {
       names: ["Google Play"],
       image: "/images/media/aniimo-google-play-store.webp",
       notes: [
-        { title: "Use Google Play", body: "Android players should use the official Google Play page by Pawprint Studio when it is available in their region." },
-        { title: "Release timing", body: `Android launch is tracked for ${releaseInfo.mobile}. Google Play visibility can vary by country and local rollout timing.` },
-        { title: "APK safety", body: "Avoid APK mirrors before launch. This site links to official storefronts and does not host installers." },
+        { title: "Use Google Play", body: "Use the official Google Play page by Pawprint Studio when it is available in your region. Confirm the publisher before installing." },
+        { title: "Release timing", body: `Android launch is tracked for ${releaseInfo.mobile}. Check country, Google Play account and device compatibility if availability differs from reports online.` },
+        { title: "APK safety", body: "Avoid APK mirrors, modified clients and installers sent through social posts. This site links only to the official storefront." },
       ],
     },
   };
