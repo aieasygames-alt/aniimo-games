@@ -402,6 +402,13 @@ export function CodesPage({ navigate }) {
             The official Aniimo code list has not been published here yet. This page separates
             official codes from community reports, pre-registration rewards and launch milestones.
           </p>
+          <LinkGroup title="What do you need help with?" items={[
+            ["I have a code", "/codes/how-to-redeem/", "Check the official code status and redemption evidence before entering it."],
+            ["A reward is missing", "/rewards/", "Check account, server, platform and campaign delivery guidance."],
+            ["A code does not work", "/codes/aniimo-codes-not-working/", "Check spelling, expiry, platform and region without trusting reposted lists."],
+            ["I need current launch help", "/launch-day/", "Check official status before changing accounts or reinstalling."],
+          ]} navigate={navigate} />
+          <AnswerStatus status="Watchlist" checked={sourceLastChecked} sourceType="Official Aniimo channels and direct in-game verification" next="Use only an official announcement or the in-game redemption flow before entering a code." />
           <InfoPanel title="Page Status" rows={[
             ["Last reviewed", sourceLastChecked],
             ["Current status", codeVerificationTemplate.currentStatus],
@@ -444,7 +451,7 @@ export function CodesPage({ navigate }) {
   );
 }
 
-export function RewardsPage() {
+export function RewardsPage({ navigate }) {
   return (
     <section id="rewards" className="section">
       <SectionTitle icon={<Gift />} kicker="Rewards" title="Aniimo Rewards & Claim Status" />
@@ -454,6 +461,13 @@ export function RewardsPage() {
         Junior Wayfarers, and a mysterious Susuta egg for official pre-registration. Claim delivery
         needs to be checked on the same account, server and platform used for the campaign.
       </p>
+      <LinkGroup title="Claim a Reward" items={[
+        ["Check campaign eligibility", "/rewards/junior-wayfarer/", "Confirm the official Junior Wayfarer campaign details."],
+        ["Check milestone rewards", "/rewards/milestones/", "Review official milestone items separately from codes."],
+        ["A reward is missing", "/troubleshooting/aniimo-pre-registration-not-working/", "Check account, region, store and campaign availability."],
+        ["Looking for codes?", "/codes/", "Redeem codes are separate from campaign rewards."],
+      ]} navigate={navigate} />
+      <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official Aniimo reward campaigns" next="Confirm your account, server, region and platform before reporting a missing campaign reward." />
       <LaunchStatusPanel title="Reward Delivery Status" entries={launchStatusEntries.filter((entry) => ["codes", "pc-console", "mobile"].includes(entry.id))} />
       <RewardGrid />
       <InfoPanel title="Reward Categories" rows={[["Pre-registration", "Rewards tied to official registration or store actions."], ["Milestones", "Campaign items unlocked by published community thresholds."], ["Launch events", "Free items associated with official global launch events."], ["Redeem codes", "Separate code strings that require an official redemption flow."]]} />
@@ -1464,6 +1478,12 @@ export function TroubleshootingPage({ navigate }) {
         Use these pages when a download, store page, login, reward claim or region
         availability path is unavailable on a specific platform or country.
       </p>
+      <LinkGroup title="Start With Your Problem" items={[
+        ["Cannot log in or load", "/troubleshooting/aniimo-server-status/", "Check official status and known launch issues before resetting anything."],
+        ["Store page or install button missing", "/troubleshooting/aniimo-download-not-available/", "Check device, country, storefront account and official listing status."],
+        ["Reward or pre-registration issue", "/troubleshooting/aniimo-pre-registration-not-working/", "Check campaign account, region and store details."],
+        ["Code does not work", "/codes/aniimo-codes-not-working/", "Check official status, expiry, platform and region."],
+      ]} navigate={navigate} />
       <LaunchStatusPanel title="Live Issue Status" entries={launchStatusEntries.filter((entry) => ["server", "known-issues", "pc-console", "mobile"].includes(entry.id))} />
       <div className="site-index-grid">
         {troubleshootingTopics.map((item) => (
