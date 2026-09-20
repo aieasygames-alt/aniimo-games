@@ -1922,7 +1922,7 @@ export function PlatformPage({ type }) {
       ],
     },
     ps5: {
-      title: "Aniimo PS5 Download & Wishlist Guide",
+      title: "Aniimo on PS5: Store & Server Guide",
       intro: "Aniimo is live on PlayStation 5. Use the official PlayStation listing and confirm the PSN region before treating a storefront difference as an availability problem.",
       names: ["PlayStation 5"],
       image: "/images/media/aniimo-playstation-store.webp",
@@ -1933,7 +1933,7 @@ export function PlatformPage({ type }) {
       ],
     },
     xbox: {
-      title: "Aniimo Xbox Download & Wishlist Guide",
+      title: "Aniimo on Xbox: Store & Access Guide",
       intro: "Aniimo is live on Xbox. Use the official Xbox listing for access, account and regional storefront details.",
       names: ["Xbox"],
       image: "/images/media/aniimo-xbox-store.webp",
