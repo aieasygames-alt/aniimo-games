@@ -12,6 +12,14 @@
   background: #eef4e7;
 }
 
+.primary-task-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.primary-task-grid .quick-card {
+  min-height: 148px;
+}
+
 .quick-card,
 .aniimo-card,
 .region-card,
@@ -141,6 +149,38 @@
   grid-template-columns: minmax(220px, 1fr) 160px 190px 150px 180px;
   gap: 12px;
   margin-bottom: 18px;
+}
+
+.device-decision-picker {
+  margin: 22px 0 14px;
+}
+
+.platform-decision-list {
+  margin: 0 0 22px;
+}
+
+.platform-decision-list .platform-card {
+  align-items: center;
+}
+
+.platform-decision-list .primary-action {
+  margin-top: 8px;
+}
+
+.download-details {
+  border-top: 1px solid rgba(23, 32, 29, 0.12);
+  padding-top: 8px;
+}
+
+.download-details > summary {
+  cursor: pointer;
+  color: #1f6d55;
+  font-weight: 800;
+  padding: 12px 0;
+}
+
+.download-details > summary + * {
+  margin-top: 12px;
 }
 
 .filter-summary {

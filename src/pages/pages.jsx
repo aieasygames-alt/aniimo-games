@@ -45,16 +45,20 @@ export function HomePage(props) {
         <section className="hero">
           <div className="hero-copy">
             <p className="eyebrow">Live PC and console guide, mobile launch support</p>
-            <h1>Aniimo Wiki: Codes, Map, Database & Launch Help</h1>
-            <p>{gameInfo.summary} Get verified launch help: public Aniimo entries, official PC and console paths, account guidance and mobile availability on September 23.</p>
+            <h1>Find the right Aniimo answer, fast.</h1>
+            <p>{gameInfo.summary} Search the public database, open an official store path, or check current launch support without sorting through rumor guides.</p>
             <div className="hero-actions">
               <a className="primary-action" href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>
                 <Search size={18} />
-                Search Database
+                Find an Aniimo
               </a>
-              <a className="secondary-action" href="/codes/" onClick={(event) => props.navigate(event, "/codes/")}>
-                <Gift size={18} />
-                Check Codes
+              <a className="secondary-action" href="/download/" onClick={(event) => props.navigate(event, "/download/")}>
+                <Download size={18} />
+                Choose a platform
+              </a>
+              <a className="secondary-action" href="/launch-day/" onClick={(event) => props.navigate(event, "/launch-day/")}>
+                <CheckCircle2 size={18} />
+                Check current status
               </a>
             </div>
           </div>
@@ -69,16 +73,10 @@ export function HomePage(props) {
           <div className="answer-card"><strong>Sep 23</strong><span>iOS and Android launch</span><a href="/platforms/mobile/" onClick={(event) => props.navigate(event, "/platforms/mobile/")}>Mobile details <ChevronRight size={15} /></a></div>
         </section>
 
-        <section className="quick-grid" aria-label="Core sections">
-          <QuickCard icon={<BookOpen />} title="Database" text="Index every Aniimo with location, forms, abilities and source status." href="/aniimo/" navigate={props.navigate} />
-          <QuickCard icon={<Map />} title="Map" text="Explore regions, representative Aniimo, route notes and official scenery." href="/map/" navigate={props.navigate} />
-          <QuickCard icon={<Sparkles />} title="Evolution" text="Track base forms, branch forms, special conditions and launch updates." href="/evolution/" navigate={props.navigate} />
-          <QuickCard icon={<Gift />} title="Rewards" text="Track confirmed pre-registration rewards, milestone rewards, Junior Wayfarer and launch code status." href="/rewards/" navigate={props.navigate} />
-          <QuickCard icon={<CalendarDays />} title="Launch Day" text="Check server status, active codes, unlock timing and launch fixes." href="/launch-day/" navigate={props.navigate} />
-          <QuickCard icon={<Compass />} title="Search Topics" text="Open guides built around official features, community questions and search demand." href="/site-index/" navigate={props.navigate} />
-          <QuickCard icon={<Copy />} title="Compare Aniimo" text="Compare public entries side by side before building a team." href="/compare/aniimo/" navigate={props.navigate} />
-          <QuickCard icon={<Plus />} title="Team Builder" text="Build a six-slot team and share the selection." href="/team-builder/" navigate={props.navigate} />
-          <QuickCard icon={<CheckCircle2 />} title="Collection Tracker" text="Track wanted, captured and verified entries locally." href="/collection-tracker/" navigate={props.navigate} />
+        <section className="quick-grid primary-task-grid" aria-label="Start with a task">
+          <QuickCard icon={<Search />} title="Find an Aniimo" text="Search all public entries by name, region, element, role and stage." href="/aniimo/" navigate={props.navigate} />
+          <QuickCard icon={<Download />} title="Download safely" text="Choose your device, then open the matching official store path." href="/download/" navigate={props.navigate} />
+          <QuickCard icon={<CheckCircle2 />} title="Solve a current issue" text="Check server, store, reward and account guidance before trying community fixes." href="/launch-day/" navigate={props.navigate} />
         </section>
 
         <section className="section sources-band">
@@ -461,21 +459,44 @@ export function RewardsPage() {
 }
 
 export function DownloadPage({ navigate }) {
-  const [device, setDevice] = useState("All devices");
-  const visiblePlatforms = device === "All devices" ? platforms : platforms.filter((item) => (device === "Console" && /xbox|playstation|ps5/i.test(item.name)) || (device === "Mobile" && /app store|google play/i.test(item.name)) || (device === "PC" && /steam|epic/i.test(item.name)));
+  const [device, setDevice] = useState("PC");
+  const deviceOptions = ["PC", "PS5", "Xbox", "iOS", "Android"];
+  const deviceConfig = {
+    PC: { stores: ["Steam", "Epic Games Store"], title: "PC is live", note: "Install through Steam or Epic Games Store. Check the official store page for the current client and PC requirements." },
+    PS5: { stores: ["PlayStation 5"], title: "PS5 is live", note: "Install through the official PlayStation listing. Your PSN region determines the server assignment." },
+    Xbox: { stores: ["Xbox"], title: "Xbox is live", note: "Install through the official Xbox listing and use the current store page for regional access details." },
+    iOS: { stores: ["App Store"], title: "iOS availability check", note: "Mobile is scheduled for September 23. Check the App Store using your country, account and device before treating a missing install button as an outage." },
+    Android: { stores: ["Google Play"], title: "Android availability check", note: "Mobile is scheduled for September 23. Check Google Play using your country, account and device; avoid APK mirrors." },
+  };
+  const selectedDevice = deviceConfig[device];
+  const visiblePlatforms = platforms.filter((item) => selectedDevice.stores.includes(item.name));
   return (
         <section id="download" className="section split-section download-band">
           <div>
-            <SectionTitle icon={<Download />} kicker="Platforms" title="Download & Release Info" />
+            <SectionTitle icon={<Download />} kicker="Platforms" title="Choose Your Official Download" />
             <p className="section-copy">
-              {releaseInfo.note} Store links and regional availability stay tied to official
-              sources rather than download mirrors.
+              Pick your device first. This page shows the official path, current status and the
+              next check for that platform.
             </p>
-            <InfoPanel title="Page Status" rows={[
-              ["Last reviewed", sourceLastChecked],
-              ["Platform status", "PC and consoles are live; mobile availability is scheduled for September 23 and varies by country."],
-              ["Safe install path", "Use the official website and platform stores only."],
-            ]} />
+            <AnswerStatus status={device === "iOS" || device === "Android" ? "Confirmed" : "Verified"} checked={sourceLastChecked} sourceType="Official Aniimo launch news and storefronts" next={selectedDevice.note} />
+            <InfoPanel title={selectedDevice.title} rows={[["Official path", selectedDevice.stores.join(" or ")], ["Current guidance", selectedDevice.note], ["Account rule", "Use the Aniimo account and server you intend to keep. PC and mobile share data with the same Aniimo account; different servers are independent."]]} />
+            <div className="device-picker device-decision-picker" role="group" aria-label="Choose your platform">{deviceOptions.map((item) => <button key={item} type="button" className={device === item ? "active" : ""} onClick={() => setDevice(item)}>{item}</button>)}</div>
+            <div className="platform-list platform-decision-list">
+              {visiblePlatforms.map((item) => (
+                <article key={item.name} className="platform-card">
+                  <div>
+                    <h3>{item.name}</h3>
+                    <p className="platform-action">{item.action}</p>
+                    <p>{item.note}</p>
+                    <a className="primary-action" href={item.url} target="_blank" rel="noreferrer">Open official {item.name} <ChevronRight size={16} /></a>
+                  </div>
+                  <div><StatusBadge status={platformStatusByName[item.name]?.status || item.status} /><p className="small">Checked {item.lastChecked}</p></div>
+                </article>
+              ))}
+            </div>
+            <details className="download-details">
+              <summary>More platform, reward and troubleshooting details</summary>
+              <InfoPanel title="Page Status" rows={[["Last reviewed", sourceLastChecked], ["Platform status", "PC and consoles are live; mobile availability is scheduled for September 23 and varies by country."], ["Safe install path", "Use the official website and platform stores only."]]} />
             <InfoPanel title="Mobile Search Answer" rows={[["Android", "Check the official Google Play listing by country and device"], ["iOS", "Check the official App Store listing by country and device"], ["Date", releaseInfo.mobile], ["Safety", "Use official stores only; avoid APK mirrors"]]} />
             <p className="section-copy download-answer">For Aniimo game download searches, use the official store links below. There is no safe reason to use an APK mirror or torrent.</p>
             <div className="answer-strip download-answer-strip" aria-label="Download quick answers">
@@ -513,24 +534,7 @@ export function DownloadPage({ navigate }) {
             ]} navigate={navigate} />
             <EditorialBlock title="Download Checklist" items={editorialGuides.download} />
             <FaqBlock items={faqs.download} />
-          </div>
-          <div className="platform-list">
-            {visiblePlatforms.map((item) => (
-              <article key={item.name} className="platform-card">
-                <div>
-                  <h3>{item.name}</h3>
-                  <p className="platform-action">{item.action}</p>
-                  <p>{item.note}</p>
-                  <a className="text-link" href={item.url} target="_blank" rel="noreferrer">
-                    Official source <ChevronRight size={16} />
-                  </a>
-                </div>
-                <div>
-                  <StatusBadge status={platformStatusByName[item.name]?.status || item.status} />
-                  <p className="small">Checked {item.lastChecked}</p>
-                </div>
-              </article>
-            ))}
+            </details>
           </div>
         </section>
   );
