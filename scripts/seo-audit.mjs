@@ -5,6 +5,7 @@ const sitemap = readFileSync("public/sitemap.xml", "utf8");
 const supplementalSitemap = readFileSync("public/sitemap-supplemental.xml", "utf8");
 const robots = readFileSync("public/robots.txt", "utf8");
 const index = readFileSync("dist/index.html", "utf8");
+const seoRuntime = readFileSync("src/seo/runtime.js", "utf8");
 
 const routes = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
 const supplementalRoutes = [...supplementalSitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
@@ -30,6 +31,10 @@ if (!robots.includes(`Sitemap: ${siteUrl}/sitemap-supplemental.xml`)) {
 
 if (!robots.includes("Allow: /")) {
   issues.push("robots.txt does not allow crawling.");
+}
+
+if (!seoRuntime.includes('searchParams.has("ids")') || !seoRuntime.includes('"noindex,follow"')) {
+  issues.push("Tool share URLs with ids query parameters must be marked noindex,follow.");
 }
 
 for (const route of discoverableRoutes) {

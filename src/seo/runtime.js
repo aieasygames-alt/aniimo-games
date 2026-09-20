@@ -5,10 +5,12 @@ import { gameInfo, localizedTopics, siteLastUpdated } from "../../data/content.j
 export function applySeo(path) {
   const routeInfo = resolveRoute(path);
   const locale = localeForPath(path);
+  const searchParams = new URLSearchParams(window.location.search);
+  const isToolShareUrl = searchParams.has("ids") && ["/compare/aniimo/", "/team-builder/"].includes(routeInfo.path);
   document.documentElement.lang = locale === "pt-BR" ? "pt-BR" : "en";
 
   document.title = routeInfo.title;
-  setMeta("meta[name='robots']", "content", routeInfo.type === "not-found" ? "noindex,follow" : "index,follow");
+  setMeta("meta[name='robots']", "content", routeInfo.type === "not-found" || isToolShareUrl ? "noindex,follow" : "index,follow");
   setMeta("meta[name='description']", "content", routeInfo.description);
   setMeta("link[rel='canonical']", "href", routeInfo.type === "not-found" ? canonicalUrl(path) : canonicalUrl(routeInfo.path));
   setMeta("meta[property='og:title']", "content", routeInfo.title);
