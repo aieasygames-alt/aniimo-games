@@ -213,6 +213,11 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
                     <dt>No.</dt>
                     <dd>{item.no}</dd>
                   </dl>
+                  <div className="aniimo-card-status" aria-label={`${item.name} answer status`}>
+                    <span><strong>Location</strong>{item.region}</span>
+                    <span><strong>Evolution</strong>{item.forms.length > 1 ? "Listed" : "Not listed"}</span>
+                    <span><strong>Checked</strong>{sourceLastChecked}</span>
+                  </div>
                   <a className="text-link" href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
                     View Aniimo guide <ChevronRight size={16} />
                   </a>
@@ -2141,6 +2146,15 @@ export function AniimoDetail({ item, navigate, localized = false }) {
       </div>
       {!pt && <section className="location-answer" aria-label={`${item.name} location answer`}><div><span className="eyebrow">Location answer</span><h2>Where is {item.name}?</h2><p>{item.name} is currently associated with <strong>{item.region}</strong>. This is a source-labeled region answer, not an exact spawn coordinate.</p></div><div className="location-answer-status"><StatusBadge status={item.status} /><span>Exact route, time and conditions need official or reproducible in-game verification.</span></div></section>}
       {!pt && <div className="quick-facts" aria-label={`${item.name} quick facts`}><div><strong>{item.no}</strong><span>Wiki number</span></div><div><strong>{item.element}</strong><span>Element</span></div><div><strong>{item.role}</strong><span>Role</span></div><div><strong>{item.region}</strong><span>Region</span></div></div>}
+      {!pt && <section className="player-answer" aria-label={`${item.name} player quick answer`}>
+        <div><span className="eyebrow">Player quick answer</span><h2>What can I confirm about {item.name}?</h2></div>
+        <dl>
+          <div><dt>Where</dt><dd>{item.region}</dd><small>Region association is source-labeled; exact coordinates are not yet confirmed.</small></div>
+          <div><dt>How to get</dt><dd>{item.acquisition}</dd><small>Use the region guide before treating a route, time or condition as final.</small></div>
+          <div><dt>Evolution</dt><dd>{item.forms.length > 1 ? item.forms.join(" -> ") : "No listed form path"}</dd><small>{item.evolution || "Exact requirements need current evidence."}</small></div>
+          <div><dt>Last checked</dt><dd>{sourceLastChecked}</dd><small>Official Wiki and source review.</small></div>
+        </dl>
+      </section>}
       <div className="detail-panels">
         {!pt && <AnswerStatus status={item.status} checked={sourceLastChecked} sourceType="Official Wiki and source review" next={`Open the ${item.region} region guide or compare ${item.name}.`} />}
         <InfoPanel title="Location" rows={[["Region", item.region], ["Habitat", item.habitat], ["Spawn condition", item.condition], ["Acquisition", item.acquisition]]} />
