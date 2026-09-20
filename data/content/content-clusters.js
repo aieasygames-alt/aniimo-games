@@ -257,6 +257,22 @@ export const localizedTopics = [
     ],
   },
   {
+    locale: "pt",
+    slug: "aniimo-controle",
+    title: "Aniimo Tem Suporte a Controle? PC, Console e Mobile",
+    description: "Confira em portugues o suporte a controle de Aniimo no PC, Xbox, PS5, Steam Deck e mobile, com status de verificacao atual.",
+    intro: "Suporte a controle e uma das duvidas mais frequentes de Aniimo apos o lancamento. Esta pagina separa plataformas oficiais de recursos de entrada que ainda precisam de confirmacao oficial ou teste reproduzivel.",
+    points: [
+      ["PC", "Steam e Epic Games Store sao caminhos oficiais no PC. Mapeamento, vibracao e remapeamento precisam de fonte oficial ou teste reproduzivel."],
+      ["Consoles", "Xbox e PlayStation 5 sao acompanhados como plataformas oficiais. O esquema exato de controles precisa ser confirmado no cliente ou por documentacao oficial."],
+      ["Mobile e Steam Deck", "Controles touch, Bluetooth e compatibilidade com Steam Deck devem ser verificados separadamente."],
+    ],
+    faq: [
+      ["Aniimo tem suporte a controle?", "Aniimo.games separa os caminhos oficiais de plataforma dos recursos de controle que ainda precisam de confirmacao oficial ou teste reproduzivel."],
+      ["Posso jogar Aniimo no Steam Deck?", "Compatibilidade, tamanho do texto e layout de controle no Steam Deck precisam de verificacao separada."],
+    ],
+  },
+  {
     locale: "fr",
     slug: "aniimo-telecharger",
     title: "Aniimo Telecharger et Sources Officielles",
@@ -350,6 +366,22 @@ export const localizedTopics = [
     faq: [
       ["Was ist die offizielle Aniimo Website?", "Aniimo.games fuehrt Nutzer ueber das Quellenarchiv zur offiziellen Website, zum offiziellen Wiki und zu verifizierten Stores."],
       ["Sollte ich Drittanbieter-Links nutzen?", "Nicht fuer Downloads, Codes oder Beta Keys. Nutze offizielle Quellen, wann immer moeglich."],
+    ],
+  },
+  {
+    locale: "de",
+    slug: "aniimo-controller-support",
+    title: "Aniimo Controller Support: PC, Konsole und Mobile",
+    description: "Pruefe auf Deutsch den Aniimo Controller Support fuer PC, Xbox, PS5, Steam Deck und Mobile sowie den aktuellen Verifizierungsstatus.",
+    intro: "Controller Support ist eine der haeufigsten Aniimo Fragen nach dem Launch. Diese Seite trennt offizielle Plattformwege von Eingabeoptionen, die erst durch Support-Hinweise oder reproduzierbare Tests bestaetigt werden muessen.",
+    points: [
+      ["PC", "Steam und Epic Games Store sind offizielle PC-Wege. Controller-Mapping, Vibration und Remapping brauchen eine offizielle Angabe oder einen reproduzierbaren Test."],
+      ["Konsole", "Xbox und PlayStation 5 werden als offizielle Plattformwege verfolgt. Die genaue Steuerung muss im Live-Client oder durch Plattformdokumentation bestaetigt werden."],
+      ["Mobile und Steam Deck", "Touch-Steuerung, Bluetooth-Controller und Steam-Deck-Kompatibilitaet werden getrennt geprueft."],
+    ],
+    faq: [
+      ["Hat Aniimo Controller Support?", "Aniimo.games trennt offizielle Plattformwege von Controller-Funktionen, die noch eine offizielle oder reproduzierbare Bestaetigung brauchen."],
+      ["Kann ich Aniimo auf Steam Deck spielen?", "Steam-Deck-Kompatibilitaet, Textgroesse und Controller-Layout sollten separat getestet werden."],
     ],
   },
 ];

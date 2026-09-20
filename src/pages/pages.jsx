@@ -869,6 +869,7 @@ export function LaunchDayPage({ navigate }) {
           localizedTopicPath(item),
           item.description,
         ])} navigate={navigate} />
+        <LinkGroup title="International Setup Help" items={[["Controller Support (Deutsch)", "/de/aniimo-controller-support/", "Check PC, console, mobile and Steam Deck controller status."], ["Suporte a Controle (Brasil)", "/pt-br/aniimo-controle/", "Check PC, console, mobile and Steam Deck controller status."], ["German Codes", "/de/aniimo-codes/", "Check codes, rewards and verification status."], ["Brazil Codes", "/pt-br/aniimo-codigos/", "Check rewards, codes and official-source status."]]} navigate={navigate} />
       </div>
       <section className="related-section">
         <h2>First 24 Hours Update Plan</h2>
