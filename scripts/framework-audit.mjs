@@ -45,7 +45,9 @@ if (seoRuntime.includes("application/ld+json") || seoRuntime.includes("JSON.stri
 const pagesSource = readFileSync("src/pages/pages.jsx", "utf8");
 const redirectsSource = readFileSync("public/_redirects", "utf8");
 
-if (!redirectsSource.includes("Host=www.aniimo.games") || !redirectsSource.includes("https://aniimo.games/:splat")) {
+const hasHostConditionRedirect = redirectsSource.includes("Host=www.aniimo.games") && redirectsSource.includes("https://aniimo.games/:splat");
+const hasAbsoluteDomainRedirect = redirectsSource.includes("https://www.aniimo.games/* https://aniimo.games/:splat 301!");
+if (!hasHostConditionRedirect && !hasAbsoluteDomainRedirect) {
   issues.push("Missing www to non-www redirect rule in public/_redirects.");
 }
 

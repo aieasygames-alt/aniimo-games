@@ -951,13 +951,14 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-controller-support",
-    title: "Aniimo Controller Support",
-    description: "Track Aniimo controller support for PC, console, Steam Deck and mobile with post-launch verification notes.",
-    intro: "Controller-support searches are practical setup questions. This page prepares a source-safe place to document gamepad, touch, keyboard and Steam Deck behavior after launch.",
+    title: "Aniimo Controller Support: PC, Console & Mobile Status",
+    description: "Does Aniimo have controller support? Check the current PC, console, Steam Deck and mobile controller status, plus what still needs verification.",
+    intro: "Controller support is one of the highest-demand Aniimo setup questions. This page separates confirmed platform paths from controller behavior that still needs a reproducible in-game or official support check.",
     points: [
-      ["Current status", "Controller support should stay watchlist on Aniimo.games until official platform text or live testing confirms input options."],
-      ["What to test", "Check Xbox, PlayStation and generic controllers on PC, native console controls, mobile touch controls, remapping, vibration and accessibility options."],
-      ["Where updates flow", "Controller findings should update best settings, Steam Deck, platform pages and known issues if input problems appear."],
+      ["PC status", "Steam and Epic are official PC paths. Controller support, remapping and vibration need an official support note or reproducible PC test before being marked verified."],
+      ["Console status", "Xbox and PlayStation 5 storefront paths are tracked. Native console control schemes should be verified by the live client or official platform documentation."],
+      ["Mobile and Steam Deck", "Mobile touch controls are distinct from Bluetooth controller support; Steam Deck compatibility, text size and controller mapping also need separate testing."],
+      ["How to report a problem", "Record platform, controller model, connection type, input issue, game version and timestamp. Route crashes or black screens to Known Issues."],
     ],
     faq: [
       ["Can I play Aniimo with a controller?", "Aniimo.games should verify controller support through official wording or live platform testing before marking it confirmed."],
@@ -1044,9 +1045,9 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-reddit",
-    title: "Aniimo Reddit: Community Hub, Launch Questions & Safe Answers",
-    description: "Looking for Aniimo Reddit? Find the community topics players discuss most, then verify launch, codes, Discord, AI and download answers against official sources.",
-    intro: "Aniimo Reddit searches usually mean players want a fast community answer about launch timing, downloads, codes, Discord, servers or named creatures. Use this page as a research hub, then follow the verified links below for the answer that can be trusted.",
+    title: "Aniimo Reddit: Community Updates & Verified Answers",
+    description: "Looking for Aniimo Reddit discussions? Find the questions players are asking, official answer paths for launch, codes and servers, and community safety guidance.",
+    intro: "Aniimo Reddit searches usually mean players want current discussion, not an unverified rumor archive. Start with the community question below, then use the linked official answer path for downloads, codes, server status and named creatures.",
     points: [
       ["Useful signal", "Reddit can surface repeated questions about platforms, launch timing, Discord, codes, bugs, AI concerns and multiplayer expectations."],
       ["Verification boundary", "Community posts should become research leads, not confirmed guide claims, until official or in-game evidence supports them."],
@@ -1570,18 +1571,18 @@ export const glossaryTopics = [
 export const troubleshootingTopics = [
   {
     slug: "aniimo-server-status",
-    title: "Aniimo Server Status",
-    description: "Track Aniimo server status, maintenance watchlist notes, launch availability and where to verify official outage updates.",
-    intro: "Server-status searches spike the moment a game opens. Before launch, this page keeps the status tied to official availability and avoids inventing outage reports.",
+    title: "Aniimo Server Status: Maintenance, Login & Outage Updates",
+    description: "Check Aniimo server status, maintenance and login outage updates. See the current verification state, official update paths and platform-specific next steps.",
+    intro: "No active Aniimo-wide outage is marked confirmed here unless an official notice or repeatable live evidence supports it. Use this page to distinguish maintenance, login trouble, platform availability and isolated account issues.",
     points: [
-      ["Current status policy", "Aniimo.games only marks a server issue active after official support, storefront behavior or repeated verified live-game evidence confirms it."],
+      ["Current check", "No active Aniimo-wide outage is currently marked confirmed by Aniimo.games. Check official news and your platform store before treating a local login issue as a server outage."],
       ["Regional questions", "Community discussions ask whether EU and other regional servers will be available. The closed beta is not proof of final launch server routing."],
       ["Search intent", "Users may want maintenance, outage, downtime or login availability checks, so the page should answer each term clearly."],
       ["What to check first", "Check the launch day command center, platform storefronts, official website news and official social channels."],
-      ["What changes after launch", "Add maintenance windows, affected platforms, start time, resolved time, compensation notes and last checked timestamp when verified."],
+      ["Verified incident format", "Confirmed updates list affected platforms, regions, start time, resolved time, official source and last checked timestamp."],
     ],
     faq: [
-      ["Are Aniimo servers down?", "Aniimo.games does not mark servers down before official launch availability or verified reports confirm a live issue."],
+      ["Are Aniimo servers down?", "No Aniimo-wide outage is currently marked confirmed here. Check official news, your platform store and the launch day hub for the latest verification path."],
       ["How do I know if Aniimo is under maintenance?", "Check official website posts, storefront notices and the launch day command center before trusting community reports."],
       ["Where should I check Aniimo server status?", "Start with official Aniimo news, storefront notices and the Aniimo.games launch day command center."],
     ],
