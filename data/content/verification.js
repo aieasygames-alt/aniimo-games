@@ -67,12 +67,12 @@ export const launchStatusEntries = [
 export const tierListSnapshots = [
   {
     id: "pre-launch-watchlist",
-    label: "Pre-launch watchlist",
+    label: "Live-data watchlist",
     status: "Watchlist",
     updated: gscObservationDate,
-    context: "No live balance, complete ability values, team synergy, or progression data has been verified yet.",
+    context: "No complete balance, ability values, team synergy or progression data has been verified here yet.",
     evidence: "Official Aniimo names, public roles, elements, stages, descriptions, and release materials.",
-    nextCheck: "Replace this snapshot with dated PVE, PVP, support, and early-game notes after direct live testing.",
+    nextCheck: "Replace this snapshot with dated PVE, PVP, support and early-game notes after direct current-client testing.",
   },
 ];
 

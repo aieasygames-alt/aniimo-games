@@ -565,7 +565,7 @@ export function ReleaseDatePage() {
             <time>{date}</time>
             <div>
               <h3>{label}</h3>
-              <p>{date >= "2026-09-16" ? "Future launch milestone tracked from official news." : "Past official milestone."}</p>
+              <p>{date > "2026-09-20" ? "Upcoming official milestone." : "Past official milestone."}</p>
             </div>
           </article>
         ))}
@@ -758,12 +758,12 @@ export function FreshnessPage({ topic }) {
     <section className="section updates-band">
       <SectionTitle icon={<CalendarDays />} kicker="Freshness" title={topic.title} />
           <p className="section-copy">{topic.intro}</p>
-      {(topic.slug === "aniimo-logo") && <InfoPanel title="Logo Search Answer" rows={[["Asset", "Use the Aniimo logo preview and source notes on this page."], ["Format", "The production asset is served as WebP for faster loading."], ["Source rule", "Use official or site-prepared brand assets rather than reposted files."]]}/>} 
-      {(topic.slug === "aniimo-discord" || topic.slug === "aniimo-reddit") && <InfoPanel title="Community Search Answer" rows={[["Official status", "Use only links verified by Aniimo or Pawprint Studio."], ["What this page provides", "A source-safe path for launch, codes, server and player-report questions."], ["What is not confirmed", "Third-party invites, screenshots and rumors are not official facts."]]}/>} 
-      {topic.slug === "aniimo-controller-support" && <InfoPanel title="Controller Support Status" rows={[["PC", "Official PC storefronts are tracked; controller behavior requires official or reproducible verification."], ["Console", "Xbox and PS5 paths are tracked; native control schemes require live-client confirmation."], ["Mobile", "Touch controls and Bluetooth controller support are checked separately."], ["Steam Deck", "Compatibility, text size and layout require separate testing."]]}/>} 
-      {topic.slug === "aniimo-server-status" && <InfoPanel title="Current Server Check" rows={[["Aniimo-wide outage", "No active outage is marked confirmed here."], ["Check first", "Official Aniimo news, platform store notices and the launch-day hub."], ["If only you are affected", "Check account, platform, region and known issues before retrying."], ["Evidence standard", "Official notice or repeatable live evidence with platform and time."]]}/>} 
-      {topic.slug === "aniimo-ai" && <InfoPanel title="AI Search Answer" rows={[["Current answer", "No official source reviewed here confirms that Aniimo is made with generative AI."], ["Evidence rule", "Trailer style, upscaling or visual polish is not proof of AI use."], ["Next check", "Update this answer only when the developer, publisher or platform publishes a direct disclosure."]]}/>} 
-      {topic.slug === "aniimo-tier-list" && <InfoPanel title="Tier List Search Answer" rows={[["Current answer", "This is a pre-launch watchlist, not a final competitive ranking."], ["How to compare", "Use role, element, stage and source status until live balance evidence exists."], ["Next update", "Add dated PvE, PvP and early-game testing after launch."]]}/>} 
+      {(topic.slug === "aniimo-logo") && <InfoPanel title="Logo Search Answer" rows={[["Asset", "Use the Aniimo logo preview and source notes on this page."], ["Format", "The production asset is served as WebP for faster loading."], ["Source rule", "Use official or site-prepared brand assets rather than reposted files."]]}/>}
+      {(topic.slug === "aniimo-discord" || topic.slug === "aniimo-reddit") && <InfoPanel title="Community Search Answer" rows={[["Official status", "Use only links verified by Aniimo or Pawprint Studio."], ["What this page provides", "A source-safe path for launch, codes, server and player-report questions."], ["What is not confirmed", "Third-party invites, screenshots and rumors are not official facts."]]}/>}
+      {topic.slug === "aniimo-controller-support" && <InfoPanel title="Controller Support Status" rows={[["PC", "Official PC storefronts are tracked; controller behavior requires official or reproducible verification."], ["Console", "Xbox and PS5 paths are tracked; native control schemes require live-client confirmation."], ["Mobile", "Touch controls and Bluetooth controller support are checked separately."], ["Steam Deck", "Compatibility, text size and layout require separate testing."]]}/>}
+      {topic.slug === "aniimo-server-status" && <InfoPanel title="Current Server Check" rows={[["Aniimo-wide outage", "No active outage is marked confirmed here."], ["Check first", "Official Aniimo news, platform store notices and the launch-day hub."], ["If only you are affected", "Check account, platform, region and known issues before retrying."], ["Evidence standard", "Official notice or repeatable live evidence with platform and time."]]}/>}
+      {topic.slug === "aniimo-ai" && <InfoPanel title="AI Search Answer" rows={[["Current answer", "No official source reviewed here confirms that Aniimo is made with generative AI."], ["Evidence rule", "Trailer style, upscaling or visual polish is not proof of AI use."], ["Next check", "Update this answer only when the developer, publisher or platform publishes a direct disclosure."]]}/>}
+      {topic.slug === "aniimo-tier-list" && <InfoPanel title="Tier List Search Answer" rows={[["Current answer", "This is a source-labeled watchlist, not a final competitive ranking."], ["How to compare", "Use role, element, stage and source status until live balance evidence exists."], ["Next update", "Add dated PvE, PvP and early-game testing from the current client."]]}/>}
       <div className="detail-panels">
         <InfoPanel title="Tracking Scope" rows={[["Source type", topic.sourceType], ["Primary source", topic.source], ["Status", "Maintained as a source-aware update page"]]} />
         <InfoPanel title="Related Actions" rows={freshnessWatchlist.slice(0, 3).map(([label, check]) => [label, check])} />
@@ -1283,8 +1283,8 @@ export function MechanicsHubPage({ navigate }) {
     <section className="section sources-band">
       <SectionTitle icon={<Sparkles />} kicker="Mechanics" title="Aniimo Mechanics Guides" />
       <p className="section-copy">
-        Learn the systems that make Aniimo searchable before launch: catching,
-        Twine, Homeland, Egg Heist, Lost Isles and verification rules.
+        Learn the systems players use now: catching, Twine, Homeland, Egg Heist,
+        Lost Isles and source-aware verification rules.
       </p>
       <div className="site-index-grid">
         <LinkGroup title="Official Mechanics" items={officialMechanicPages} navigate={navigate} />
@@ -1309,8 +1309,8 @@ export function LaunchHubPage({ navigate }) {
     <section className="section sources-band">
       <SectionTitle icon={<CalendarDays />} kicker="Launch" title="Aniimo Launch Hub" />
       <p className="section-copy">
-        Track launch dates, platform pages, wishlist and pre-registration actions,
-        safe downloads, rewards and code status from one hub.
+        Check live PC and console access, mobile store availability, safe downloads,
+        reward claim status, code status and current support paths from one hub.
       </p>
       <div className="site-index-grid">
         <LinkGroup title="Launch Actions" items={conversionPages} navigate={navigate} />
@@ -1321,7 +1321,7 @@ export function LaunchHubPage({ navigate }) {
           ["Release Date", "/release-date/", "Track PC, console and mobile launch windows."],
           ["Launch Tracker", "/launch-tracker/", "Monitor source status, rewards, platforms and verification tasks."],
           ["Discord", "/topics/aniimo-discord/", "Check official community paths for launch notices and code announcements."],
-          ["Troubleshooting", "/troubleshooting/", "Fix download, store visibility, pre-registration and region availability issues."],
+          ["Troubleshooting", "/troubleshooting/", "Fix download, store visibility, login, reward and region availability issues."],
           ["Server Status", "/troubleshooting/aniimo-server-status/", "Prepare a source-safe status page for launch-day outage searches."],
           ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Prepare a verified issue log for login, black screen and stuck-loading searches."],
         ]} navigate={navigate} />
@@ -1450,10 +1450,10 @@ export function MediaPage({ navigate }) {
 export function TroubleshootingPage({ navigate }) {
   return (
     <section className="section sources-band">
-      <SectionTitle icon={<Download />} kicker="Help" title="Aniimo Download & Pre-Registration Troubleshooting" />
+      <SectionTitle icon={<Download />} kicker="Help" title="Aniimo Download & Store Availability Troubleshooting" />
       <p className="section-copy">
-        Use these pages when a download, wishlist, pre-order, store page or
-        pre-registration flow is unavailable on a specific platform or country.
+        Use these pages when a download, store page, login, reward claim or region
+        availability path is unavailable on a specific platform or country.
       </p>
       <LaunchStatusPanel title="Live Issue Status" entries={launchStatusEntries.filter((entry) => ["server", "known-issues", "pc-console", "mobile"].includes(entry.id))} />
       <div className="site-index-grid">
@@ -1825,7 +1825,7 @@ export function ChoiceTopicPage({ topic, navigate }) {
         ))}
       </div>
       <FaqBlock items={[
-        ["Is this a final Aniimo tier list?", "No. This is a pre-launch watchlist until live testing confirms balance, availability and team value."],
+        ["Is this a final Aniimo tier list?", "No. This is a source-labeled watchlist until current testing confirms balance, availability and team value."],
         ["How are picks chosen?", "Picks use confirmed public entries, role labels, element labels, evolution lines and source status."],
       ]} />
     </section>
@@ -1856,9 +1856,9 @@ export function BestAniimoPage({ navigate }) {
 
   return (
     <section className="section sources-band">
-      <SectionTitle icon={<Sparkles />} kicker="Guide" title="Best Aniimo to Track Before Launch" />
+      <SectionTitle icon={<Sparkles />} kicker="Guide" title="Best Aniimo Watchlist" />
       <p className="section-copy">
-        This pre-launch list focuses on confirmed public entries that are useful for planning:
+        This source-labeled list focuses on confirmed public entries that are useful for planning:
         damage roles, support utility, region coverage and clear official descriptions.
         It is not a final tier list because launch balance, exact abilities and team data
         still need in-game verification.
@@ -1889,9 +1889,9 @@ export function BestAniimoPage({ navigate }) {
         ))}
       </div>
       <SeoGuideBlock items={[
-        { title: "How this list is chosen", body: "The list prioritizes official entries that already have confirmed roles, elements, descriptions and useful internal links. It should be treated as a watchlist for launch planning, not a final competitive ranking." },
-        { title: "What changes after launch", body: "After launch, this page should be updated with tested combat performance, Twine utility, route access, team synergy and early-game availability." },
-        { title: "Best next step", body: "Use this page to jump into detail pages, then compare same-role and same-region Aniimo before deciding what to track for launch." },
+        { title: "How this list is chosen", body: "The list prioritizes official entries that already have confirmed roles, elements, descriptions and useful internal links. It remains a watchlist, not a final competitive ranking." },
+        { title: "What still needs evidence", body: "Add dated combat performance, Twine utility, route access, team synergy and early-game availability only after current-client testing." },
+        { title: "Best next step", body: "Use this page to jump into detail pages, then compare same-role and same-region Aniimo before deciding what to play or track." },
       ]} />
     </section>
   );
@@ -2013,16 +2013,16 @@ export function PlatformPage({ type }) {
 export function PreRegistrationRewardsPage() {
   return (
     <section className="section sources-band">
-      <SectionTitle icon={<Gift />} kicker="Rewards" title="Aniimo Pre-Registration Rewards Guide" />
+      <SectionTitle icon={<Gift />} kicker="Rewards" title="Aniimo Pre-Registration Reward Claims" />
       <p className="section-copy">
-        This page separates confirmed pre-registration rewards from future redeem codes.
-        Use it to track official campaign items, milestone rewards and claim notes before
-        the global launch windows arrive.
+        This page separates confirmed pre-registration campaign rewards from redeem codes.
+        Use it to check official campaign items, milestone rewards and current claim notes
+        without treating historical rewards as active codes.
       </p>
       <RewardGrid />
       <SeoGuideBlock items={[
         { title: "Confirmed reward types", body: "Official reward tracking includes Glimmer, Aniipod Ultra, Companion Promise avatar frame, Sunlit Meadow outfit, a Prismana Aniimo choice and a mysterious Susuta egg." },
-        { title: "How to claim", body: "Start from the official website or official storefront pages. Reward delivery can depend on account, region and platform systems after launch." },
+        { title: "How to claim", body: "Start from the official website or official storefront pages. Reward delivery can depend on the account, server, region and platform used for the campaign." },
         { title: "Code versus reward", body: "A pre-registration reward is not automatically a redeem code. This site keeps rewards and codes separate so search users can avoid misleading code lists." },
       ]} />
     </section>
