@@ -349,6 +349,7 @@ export function MapPage({ compact, navigate }) {
               ))}
             </div>
           )}
+          {!compact && <FaqBlock items={faqs.map} />}
           {!compact && <EditorialBlock title="Map Maintenance Notes" items={editorialGuides.wiki} />}
         </section>
   );

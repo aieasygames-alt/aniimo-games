@@ -993,7 +993,7 @@ export const searchSuggestionTopics = [
       ["How to report a problem", "Record platform, controller model, connection type, input issue, game version and timestamp. Route crashes or black screens to Known Issues."],
     ],
     faq: [
-      ["Can I play Aniimo with a controller?", "Aniimo.games should verify controller support through official wording or live platform testing before marking it confirmed."],
+      ["Does Aniimo have controller support?", "Aniimo.games should verify controller support through official wording or live platform testing before marking it confirmed."],
       ["Will mobile controller support be tracked?", "Yes. Mobile controller support should be tested separately from touch controls after iOS and Android availability is live."],
     ],
   },
@@ -1088,6 +1088,7 @@ export const searchSuggestionTopics = [
       ["Fast path", "For a confirmed answer, open the release date, download, codes, server-status or creature database page instead of relying on an unsourced post."],
     ],
     faq: [
+      ["Where can I find Aniimo Reddit discussions?", "Search Reddit for player discussion, but use the linked Aniimo.games guides and official Aniimo or Pawprint Studio sources for confirmed answers about launch, codes, servers and platforms."],
       ["Is Reddit an official Aniimo source?", "No. Reddit discussion can provide search-intent signals, but official sources or live verification should confirm facts."],
       ["Should Aniimo.games cover Reddit rumors?", "Only as clearly labeled research leads, not as final guide information."],
       ["What Aniimo Reddit topics are worth tracking?", "Launch timing, Discord invites, code screenshots, AI-use concerns, server issues, mobile availability and character-name questions are useful topics to monitor."],
@@ -1614,6 +1615,7 @@ export const troubleshootingTopics = [
       ["Verified incident format", "Confirmed updates list affected platforms, regions, start time, resolved time, official source and last checked timestamp."],
     ],
     faq: [
+      ["What is Aniimo server status right now?", "No Aniimo-wide outage is currently marked confirmed here. Check official news, your platform store and the launch day hub for the latest verification path."],
       ["Are Aniimo servers down?", "No Aniimo-wide outage is currently marked confirmed here. Check official news, your platform store and the launch day hub for the latest verification path."],
       ["How do I know if Aniimo is under maintenance?", "Check official website posts, storefront notices and the launch day command center before trusting community reports."],
       ["Where should I check Aniimo server status?", "Start with official Aniimo news, storefront notices and the Aniimo.games launch day command center."],

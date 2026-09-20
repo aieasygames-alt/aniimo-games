@@ -169,8 +169,13 @@ export const faqs = {
     ["What is Twine in Aniimo?", "Twine lets players become collected Aniimo and use their skills for puzzles, battles, traversal and exploration."],
   ],
   database: [
+    ["Where can I find Aniimo characters?", "Use the Aniimo database to search all 89 public creatures by name, element, role, region, stage and evolution. Each detail page links to its current source-labeled location guide."],
     ["How many Aniimo names are listed?", "This site currently tracks 89 public Aniimo names discoverable from the official Aniimo Wiki probe page."],
     ["Are elements and roles official?", "Confirmed entries use official Wiki element, role and stage labels. Newly synced index-only entries keep unknown fields labeled until verified."],
+  ],
+  map: [
+    ["How big is the Aniimo map?", "A final measured Aniimo world size is not confirmed here yet. Aniimo.games currently tracks six public regions and will add measurements only after official or reproducible evidence is available."],
+    ["Where can I find Aniimo locations?", "Search by region or creature name, then open the linked region and Aniimo detail pages for current source-labeled location notes. Exact spawn coordinates, weather and time conditions need verification."],
   ],
   codes: [
     ["Are there official Aniimo codes?", "No public redeem code is confirmed here yet. This page separates redeem codes from official milestone rewards."],
