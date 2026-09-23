@@ -85,9 +85,9 @@ const matchedByName = officialNames.filter((name) => localNames.includes(name));
 const matchedByNumber = officialNumbers.filter((no) => localNumbers.includes(no));
 const wikiIsLocalized = officialAniimo.length > 20 && matchedByName.length === 0 && matchedByNumber.length > 20;
 const missingLocally = wikiFetch.ok
-  ? (wikiIsLocalized ? officialAniimo.filter((item) => !localNumbers.includes(item.no)).map((item) => `${item.no} ${item.name}`) : officialNames.filter((name) => !localNames.includes(name)))
+  ? officialAniimo.filter((item) => !localNames.includes(item.name) && !localNumbers.includes(item.no)).map((item) => `${item.no} ${item.name}`)
   : [];
-const localOnly = wikiFetch.ok && !wikiIsLocalized ? localNames.filter((name) => !officialNames.includes(name)) : [];
+const localOnly = wikiFetch.ok ? aniimo.filter((item) => !officialNames.includes(item.name) && !officialNumbers.includes(item.no)).map((item) => `${item.no} ${item.name}`) : [];
 const missingDescriptions = aniimo.filter((item) => !item.description || item.description.length < 20).map((item) => item.name);
 const watchlistEntries = aniimo.filter((item) => item.element === "Unknown" || item.role === "Watchlist" || item.region === "Official Wiki").map((item) => `${item.no} ${item.name}`);
 const regionNames = extractKnownRegionNames(mainHtml);
@@ -102,7 +102,7 @@ Generated: ${new Date().toISOString()}
 
 - Local Aniimo entries: ${aniimo.length}
 - Official Wiki entries found in probe page: ${officialAniimo.length}
-- Wiki comparison mode: ${wikiIsLocalized ? "Localized names matched by official number" : "Names matched directly"}
+- Wiki comparison mode: ${wikiIsLocalized ? "Localized names with number-first matching" : "Names with number-first fallback matching"}
 - Local regions: ${regions.length}
 - Official regions seen on main page: ${regionNames.length}
 - PC/console launch date: ${releaseInfo.pcConsole}
@@ -121,7 +121,7 @@ ${officialAniimo.length ? markdownList(missingLocally, "None") : "- Skipped beca
 
 ## Local Aniimo Not Seen In Probe
 
-${officialAniimo.length ? (wikiIsLocalized ? "- Not compared by name because the official Wiki source is localized." : markdownList(localOnly, "None")) : "- Skipped because no fetchable official Wiki entry list was found."}
+${officialAniimo.length ? markdownList(localOnly, "None") : "- Skipped because no fetchable official Wiki entry list was found."}
 
 ## Local Entries Needing Description Review
 

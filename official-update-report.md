@@ -1,12 +1,12 @@
 # Aniimo Official Update Report
 
-Generated: 2026-09-23T14:28:42.414Z
+Generated: 2026-09-23T14:31:29.232Z
 
 ## Summary
 
 - Local Aniimo entries: 90
 - Official Wiki entries found in probe page: 81
-- Wiki comparison mode: Names matched directly
+- Wiki comparison mode: Names with number-first fallback matching
 - Local regions: 6
 - Official regions seen on main page: 6
 - PC/console launch date: 2026-09-16
@@ -21,26 +21,20 @@ Generated: 2026-09-23T14:28:42.414Z
 
 ## New Official Aniimo Missing Locally
 
-- Nimbi
-- Turbo
-- Dreaple
-- Squarrel
+- None
 
 ## Local Aniimo Not Seen In Probe
 
-- Somniwing
-- Reefish
-- Coraliz
-- Cheekie
-- Wavwal
-- Bubbeep
-- Glameep
-- Dazmand
-- Fulmintis
-- Popapus
-- Gachapus
-- Malangel
-- Malevsera
+- 084 Reefish
+- 085 Coraliz
+- 086 Cheekie
+- 087 Wavwal
+- 088 Bubbeep
+- 089 Glameep
+- 090 Popapus
+- 091 Gachapus
+- 092 Malangel
+- 093 Malevsera
 
 ## Local Entries Needing Description Review
 
