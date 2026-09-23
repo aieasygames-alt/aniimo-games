@@ -2,7 +2,8 @@ import { writeFileSync } from "node:fs";
 import { aniimo, regions, releaseInfo } from "../data/content.js";
 
 const officialMain = "https://www.aniimo.com/main";
-const officialWikiProbe = "https://wiki.aniimo.com/item/10002877";
+const officialWikiHome = "https://wiki.aniimo.com/";
+const legacyWikiProbe = "https://wiki.aniimo.com/item/10002877";
 const reportPath = "official-update-report.md";
 
 async function fetchText(url) {
@@ -21,6 +22,14 @@ async function fetchText(url) {
 
 function uniq(values) {
   return [...new Set(values.filter(Boolean))];
+}
+
+function extractWikiCandidates(html) {
+  const urls = [...html.matchAll(/href=["']([^"']+)["']/g)]
+    .map((match) => match[1].replaceAll("\\/", "/"))
+    .map((value) => value.startsWith("/") ? `https://wiki.aniimo.com${value}` : value)
+    .filter((value) => value.startsWith("https://wiki.aniimo.com/"));
+  return uniq(urls).filter((url) => /item|wiki|aniimo/i.test(url)).slice(0, 12);
 }
 
 function extractWikiAniimo(html) {
@@ -43,7 +52,7 @@ function extractKnownRegionNames(html) {
 }
 
 function extractNewsTitles(html) {
-  return uniq([...html.matchAll(/title="([^"]+)"/g)].map((match) => match[1]))
+  return uniq([...html.matchAll(/title="([^"]+)"/g)].map((match) => match[1].trim()))
     .filter((title) => /Aniimo|Global|Beta|Launch|Wayfarer/i.test(title))
     .slice(0, 20);
 }
@@ -54,7 +63,16 @@ function markdownList(items, emptyText) {
 }
 
 const mainFetch = await fetchText(officialMain);
-const wikiFetch = await fetchText(officialWikiProbe);
+const wikiHomeFetch = await fetchText(officialWikiHome);
+const wikiCandidates = uniq([
+  ...extractWikiCandidates(mainFetch.text),
+  ...extractWikiCandidates(wikiHomeFetch.text),
+  legacyWikiProbe,
+]);
+const wikiFetches = await Promise.all(wikiCandidates.map(fetchText));
+const wikiFetch = wikiFetches.find((result) => result.ok && extractWikiAniimo(result.text).length > 0)
+  || wikiFetches.find((result) => result.ok)
+  || wikiFetches[0];
 const mainHtml = mainFetch.text;
 const wikiHtml = wikiFetch.text;
 
@@ -86,15 +104,16 @@ Generated: ${new Date().toISOString()}
 ## Fetch Status
 
 - ${mainFetch.url}: ${mainFetch.ok ? "OK" : `Failed - ${mainFetch.error}`}
-- ${wikiFetch.url}: ${wikiFetch.ok ? "OK" : `Failed - ${wikiFetch.error}`}
+- ${wikiHomeFetch.url}: ${wikiHomeFetch.ok ? "OK" : `Failed - ${wikiHomeFetch.error}`}
+- Wiki data probe: ${wikiFetch.ok ? `${wikiFetch.url} (${officialAniimo.length} entries)` : `Failed - ${wikiFetch.error}`}
 
 ## New Official Aniimo Missing Locally
 
-${wikiFetch.ok ? markdownList(missingLocally, "None") : "- Skipped because the official Wiki request failed."}
+${officialAniimo.length ? markdownList(missingLocally, "None") : "- Skipped because no fetchable official Wiki entry list was found."}
 
 ## Local Aniimo Not Seen In Probe
 
-${wikiFetch.ok ? markdownList(localOnly, "None") : "- Skipped because the official Wiki request failed."}
+${officialAniimo.length ? markdownList(localOnly, "None") : "- Skipped because no fetchable official Wiki entry list was found."}
 
 ## Local Entries Needing Description Review
 
@@ -114,6 +133,7 @@ ${markdownList(newsTitles, "No news titles extracted")}
 
 ## Recommended Next Actions
 
+- If the Wiki data probe reports zero entries, review the discovered official Wiki links before treating the database as current.
 - If "New Official Aniimo Missing Locally" is not empty, run \`npm run sync:aniimo\` and review the generated data before publishing.
 - If watchlist entries shrink after official Wiki updates, replace Unknown and Watchlist fields with sourced values.
 - If official news titles change, review release date, rewards, codes, download and launch tracker pages.

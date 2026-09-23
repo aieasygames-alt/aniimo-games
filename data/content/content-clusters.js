@@ -544,7 +544,7 @@ export const beginnerTopics = [
 
 export const downloadTopics = [
   ["pc", "Aniimo PC Download Status & Safe Install Guide", "Download Aniimo on PC through official storefronts, check system requirements and avoid unofficial installers.", "Use Steam, Epic Games Store or the official website for PC installation."],
-  ["mobile", "Aniimo Mobile Download: App Store & Google Play", "Check Aniimo iOS and Android availability by country, use official app stores and avoid APK mirrors.", "Use App Store, Google Play or the official website for mobile availability; mobile release is scheduled for September 23."],
+  ["mobile", "Aniimo Mobile Download: App Store & Google Play", "Check Aniimo iOS and Android availability by country, use official app stores and avoid APK mirrors.", "Use App Store, Google Play or the official website for mobile availability; mobile is live, while store visibility can vary by country and device."],
   ["ios", "Aniimo iOS Download Guide", "Check Aniimo iOS availability on the official App Store for your country and device, then use the official install path.", "Use the official App Store listing when it is available in your region."],
   ["android", "Aniimo Android Download Guide: Google Play & APK Safety", "Check Aniimo Android availability on Google Play, follow the official install path and avoid APK mirrors.", "Use Google Play and avoid APK mirrors; check availability in your country on September 23."],
   ["ps5", "Aniimo PS5 Download Guide", "Download Aniimo through the official PlayStation listing and check PSN-region server notes before you begin.", "Use the official PlayStation listing for console installation."],
@@ -1647,9 +1647,9 @@ export const troubleshootingTopics = [
     slug: "aniimo-download-not-available",
     title: "Aniimo Download Not Available",
     description: "Troubleshoot why Aniimo download, wishlist, pre-order or pre-registration may not appear on your platform yet.",
-    intro: "Aniimo is live on PC and consoles; mobile availability is scheduled for September 23. A missing download button can still be a storefront, region, account or rollout issue rather than a reason to use mirrors.",
+    intro: "Aniimo is live on PC, consoles and mobile. A missing download button can still be a storefront, region, account, device or rollout issue rather than a reason to use mirrors.",
     points: [
-      ["Check the platform", "PC, Steam, Epic, PS5 and Xbox are live according to official launch news. Mobile iOS and Android availability remains scheduled for September 23."],
+      ["Check the platform", "PC, Steam, Epic, PS5, Xbox, iOS and Android are live according to official launch news. Check the official mobile store by country and device."],
       ["Check the right storefront", "Use Steam, Epic Games Store, PlayStation, Xbox, App Store, Google Play or the official Aniimo website."],
       ["Avoid mirrors", "Do not use APK mirrors, reposted installers or unofficial download buttons when official store access is not live."],
     ],

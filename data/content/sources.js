@@ -4,6 +4,8 @@ export const officialLinks = {
   developerLetter: "https://aniimo.com/newslist/detail/100064",
   liveLaunch: "https://www.aniimo.com/newslist/detail/100115",
   pcConsoleSupport: "https://aniimo.com/newslist/detail/100089",
+  mobileLaunch: "https://www.aniimo.com/main",
+  septemberUpdate: "https://www.aniimo.com/main",
   officialWiki: "https://wiki.aniimo.com/",
   googlePlay: "https://play.google.com/store/apps/details?hl=en&id=com.x.aniimos",
   appStore: "https://apps.apple.com/app/aniimo/id6759098797",
@@ -34,15 +36,15 @@ export const releaseInfo = {
   closedBeta: "2025-07-04",
   betaSignupDeadline: "2025-06-30",
   launchStatus: "Confirmed",
-  timezoneNote: "Official dates are listed by calendar date. Store availability can vary by platform, region and local storefront update timing.",
+  timezoneNote: "PC, console, iOS and Android are live. Store visibility, version rollout and maintenance notices can still vary by platform, region and local storefront update timing.",
   note:
-    "Aniimo is live on PC and consoles. Official news lists mobile availability for September 23, 2026.",
+    "Aniimo is live on PC, consoles, iOS and Android. Use the official storefront for your country and device, then check current update and maintenance notices before troubleshooting.",
   source: officialLinks.main,
   timeline: [
     ["2025-06-30", "Global closed beta signup deadline"],
     ["2025-07-04", "Global closed beta start"],
     ["2026-08-26", "Official global launch dates announced"],
     ["2026-09-16", "PC and console launch window"],
-    ["2026-09-23", "Mobile launch window"],
+    ["2026-09-23", "Mobile launch and Setting Out in Pursuit of the Wind: Part I update"],
   ],
 };

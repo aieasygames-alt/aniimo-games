@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles, Plus, X, Copy, Download as DownloadIcon } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, liveUpdate, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { AnswerStatus, CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
@@ -44,7 +44,7 @@ export function HomePage(props) {
     <>
         <section className="hero">
           <div className="hero-copy">
-            <p className="eyebrow">Live PC and console guide, mobile launch support</p>
+            <p className="eyebrow">Live PC, console and mobile guide</p>
             <h1>Find the right Aniimo answer, fast.</h1>
             <p>{gameInfo.summary} Search the public database, open an official store path, or check current launch support without sorting through rumor guides.</p>
             <div className="hero-actions">
@@ -70,7 +70,7 @@ export function HomePage(props) {
         <section className="section launch-answer-strip" aria-label="Quick Aniimo answers">
           <div className="answer-card"><strong>89</strong><span>public Aniimo entries</span><a href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>Open database <ChevronRight size={15} /></a></div>
           <div className="answer-card"><strong>Live</strong><span>PC and console platforms</span><a href="/download/" onClick={(event) => props.navigate(event, "/download/")}>Open download guide <ChevronRight size={15} /></a></div>
-          <div className="answer-card"><strong>Sep 23</strong><span>iOS and Android launch</span><a href="/platforms/mobile/" onClick={(event) => props.navigate(event, "/platforms/mobile/")}>Mobile details <ChevronRight size={15} /></a></div>
+          <div className="answer-card"><strong>Live</strong><span>iOS and Android platforms</span><a href="/platforms/mobile/" onClick={(event) => props.navigate(event, "/platforms/mobile/")}>Mobile details <ChevronRight size={15} /></a></div>
         </section>
 
         <section className="quick-grid primary-task-grid" aria-label="Start with a task">
@@ -83,14 +83,15 @@ export function HomePage(props) {
           <SectionTitle icon={<Compass />} kicker="Launch Guide" title="Popular Aniimo Questions" />
           <InfoPanel title="What Players Need" rows={[
             ["Aniimo database", "Browse all 89 public entries by name, element, role, region and stage."],
-            ["Platform status", "PC, Steam, Epic, PS5 and Xbox are live; iOS and Android are scheduled for Sep 23."],
+            ["Platform status", "PC, Steam, Epic, PS5, Xbox, iOS and Android are live; check storefront availability by country and device."],
             ["Launch help", "Check official sources, known issues, codes and account guidance before using community fixes."],
           ]} />
           <div className="site-index-grid">
             <LinkGroup title="Launch Answers" items={[
               ["Release Date", "/release-date/", "Check PC, console and mobile launch dates."],
               ["Download", "/download/", "Use official Steam, Epic, console and mobile paths."],
-              ["Launch Day", "/launch-day/", "Track status, codes, unlock timing and common fixes."],
+              ["Launch Day", "/launch-day/", "Track status, codes, current updates and common fixes."],
+              ["Events", "/events/", "Check official event schedules and unlock requirements."],
               ["Codes", "/codes/", "Check active-code verification and reward status."],
             ]} navigate={props.navigate} />
             <LinkGroup title="Risky Search Safety" items={[
@@ -485,8 +486,8 @@ export function DownloadPage({ navigate }) {
     PC: { stores: ["Steam", "Epic Games Store"], title: "PC is live", note: "Install through Steam or Epic Games Store. Check the official store page for the current client and PC requirements." },
     PS5: { stores: ["PlayStation 5"], title: "PS5 is live", note: "Install through the official PlayStation listing. Your PSN region determines the server assignment." },
     Xbox: { stores: ["Xbox"], title: "Xbox is live", note: "Install through the official Xbox listing and use the current store page for regional access details." },
-    iOS: { stores: ["App Store"], title: "iOS availability check", note: "Mobile is scheduled for September 23. Check the App Store using your country, account and device before treating a missing install button as an outage." },
-    Android: { stores: ["Google Play"], title: "Android availability check", note: "Mobile is scheduled for September 23. Check Google Play using your country, account and device; avoid APK mirrors." },
+    iOS: { stores: ["App Store"], title: "iOS is live", note: "Use the official App Store listing. Check your country, account and device before treating a missing install button as an outage." },
+    Android: { stores: ["Google Play"], title: "Android is live", note: "Use the official Google Play listing. Check your country, account and device; avoid APK mirrors." },
   };
   const selectedDevice = deviceConfig[device];
   const visiblePlatforms = platforms.filter((item) => selectedDevice.stores.includes(item.name));
@@ -516,7 +517,7 @@ export function DownloadPage({ navigate }) {
             </div>
             <details className="download-details">
               <summary>More platform, reward and troubleshooting details</summary>
-              <InfoPanel title="Page Status" rows={[["Last reviewed", sourceLastChecked], ["Platform status", "PC and consoles are live; mobile availability is scheduled for September 23 and varies by country."], ["Safe install path", "Use the official website and platform stores only."]]} />
+              <InfoPanel title="Page Status" rows={[["Last reviewed", sourceLastChecked], ["Platform status", "PC, consoles and mobile are live; mobile storefront visibility can vary by country and device."], ["Safe install path", "Use the official website and platform stores only."]]} />
             <InfoPanel title="Mobile Search Answer" rows={[["Android", "Check the official Google Play listing by country and device"], ["iOS", "Check the official App Store listing by country and device"], ["Date", releaseInfo.mobile], ["Safety", "Use official stores only; avoid APK mirrors"]]} />
             <p className="section-copy download-answer">For Aniimo game download searches, use the official store links below. There is no safe reason to use an APK mirror or torrent.</p>
             <div className="answer-strip download-answer-strip" aria-label="Download quick answers">
@@ -603,7 +604,7 @@ export function BeginnerPage({ navigate }) {
         <section id="guides" className="section guide-band">
           <SectionTitle icon={<BookOpen />} kicker="Guide" title="Beginner Guide" />
       <InfoPanel title="Your First Session" rows={[
-        ["1. Start on an official platform", "PC and consoles are live. Check App Store or Google Play availability in your country for the September 23 mobile launch."],
+        ["1. Start on an official platform", "PC, consoles and mobile are live. Check the App Store or Google Play availability in your country and on your device before using any workaround."],
         ["2. Choose account and server carefully", "PC and mobile share data with the same Aniimo account; different servers keep independent data."],
         ["3. Keep rewards separate from codes", "Campaign rewards and redeem codes are different. Only use a code published by an official channel or shown in the current client."],
         ["4. Learn before optimizing", "Start with catching, Twine and the database. Routes, builds and tier claims need current evidence."],
@@ -777,6 +778,35 @@ export function UpdatesPage() {
   );
 }
 
+export function EventsPage({ navigate }) {
+  return (
+    <section className="section updates-band">
+      <SectionTitle icon={<CalendarDays />} kicker="Official Update" title="Aniimo Events and September Update" />
+      <p className="section-copy">{liveUpdate.summary}</p>
+      <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official Aniimo September update notice" next="Recheck the official notice after maintenance or before publishing changed event times, eligibility or rewards." />
+      <div className="detail-panels">
+        <InfoPanel title="Current Update" rows={[["Update", liveUpdate.title], ["Published", liveUpdate.date], ["Time standard", "All event times below are UTC+8"], ["Mobile", "iOS and Android are live; check official stores by country and device"]]} />
+        <InfoPanel title="Maintenance and Compensation" rows={[["Official notice", liveUpdate.maintenance], ["Before acting", "Verify the client version, maintenance completion time and eligibility in the current official notice."]]} />
+      </div>
+      <div className="table-shell freshness-table">
+        <table>
+          <thead><tr><th>Event</th><th>Schedule</th><th>Eligibility and details</th></tr></thead>
+          <tbody>{liveUpdate.events.map(([name, schedule, detail]) => <tr key={name}><td>{name}</td><td>{schedule}</td><td>{detail}</td></tr>)}</tbody>
+        </table>
+      </div>
+      <SeoGuideBlock items={[
+        { title: "Use official timing", body: "The schedule is recorded in UTC+8 exactly as listed in the official update. Confirm the current notice before treating an event as active or expired in another time zone." },
+        { title: "Keep event facts narrow", body: "This page records official dates, entry requirements and publicly stated details. Drop rates, optimal routes, team builds and economy advice need current-client evidence before publication." },
+        { title: "What to do if an event is unavailable", body: "Check game maintenance, your character requirement, server, local storefront version and the official update notice before relying on community screenshots or workaround guides." },
+      ]} />
+      <div className="hero-actions section-actions">
+        <a className="primary-action" href={liveUpdate.source} target="_blank" rel="noreferrer"><Search size={18} /> Check official update</a>
+        <a className="secondary-action" href="/launch-day/" onClick={(event) => navigate(event, "/launch-day/")}><CheckCircle2 size={18} /> Open launch support</a>
+      </div>
+    </section>
+  );
+}
+
 export function FreshnessPage({ topic }) {
   return (
     <section className="section updates-band">
@@ -855,11 +885,12 @@ export function LaunchDayPage({ navigate }) {
       <div className="detail-panels">
         <InfoPanel title="Current Launch Status" rows={launchDayCommandCenter.statusRows.map(([label, value, status]) => [label, `${value} (${status})`])} />
         <InfoPanel title="Fast Checks" rows={launchDayCommandCenter.searchIntents.map(([intent, answer]) => [intent, answer])} />
-        <InfoPanel title="Start Here" rows={[["PC or console", "Use the official Steam, Epic, PS5 or Xbox listing; Aniimo is live on these platforms."], ["Mobile on Sep 23", "Use the same Aniimo account as PC to continue shared data when mobile becomes available."], ["Cannot log in", "Check Server Status and Known Issues before resetting anything; queues and slower loading can occur at launch."], ["Missing reward or code", "Open Codes & Rewards and confirm account, platform and official status."], ["Looking for a creature", "Search the Database, then use its region guide for current location notes."]]} />
+        <InfoPanel title="Start Here" rows={[["PC or console", "Use the official Steam, Epic, PS5 or Xbox listing; Aniimo is live on these platforms."], ["Mobile", "Aniimo is live on iOS and Android. Use the same Aniimo account as PC and check the official store by country and device."], ["Cannot log in", "Check Server Status and Known Issues before resetting anything; queues and slower loading can occur at launch."], ["Missing reward or code", "Open Codes & Rewards and confirm account, platform and official status."], ["Looking for a creature", "Search the Database, then use its region guide for current location notes."]]} />
         <InfoPanel title="Evidence And Limits" rows={[["Confirmed by official launch news", "PC and mobile share the same data when you use the same account."], ["Server limit", "Data on different servers is independent; confirm the server before creating a character."], ["Still check in-game", "Friend matchmaking, platform pools and mode-specific crossplay behavior."], ["Official support", "Use the launch notice and PC/console FAQ before trying community fixes."]]} />
       </div>
       <div className="site-index-grid">
         <LinkGroup title="Launch Day Actions" items={launchDayCommandCenter.quickActions} navigate={navigate} />
+        <LinkGroup title="Current Update" items={[["Events and September Update", "/events/", "Check the official event schedule, maintenance notes and unlock requirements."]]} navigate={navigate} />
         <LinkGroup title="Quick Help for Launch Day" items={[
           ["Active Aniimo Codes", "/codes/active/", "Check active code status and verification notes."],
           ["Server Status", "/troubleshooting/aniimo-server-status/", "Track maintenance, outage and launch availability checks."],
@@ -1944,12 +1975,12 @@ export function PlatformPage({ type }) {
     },
     mobile: {
       title: "Aniimo Mobile Download Guide",
-      intro: "Aniimo mobile is scheduled for September 23, 2026 through official iOS and Android storefronts. Check the store in your country on launch day before relying on a search result or APK listing.",
+      intro: "Aniimo mobile is live through official iOS and Android storefronts. Check the store in your country and on your device before relying on a search result or APK listing.",
       names: ["App Store", "Google Play"],
       image: "/images/media/aniimo-google-play-store.webp",
       notes: [
         { title: "Use official mobile listings", body: "Use the App Store or Google Play listing linked here. Do not use APK mirrors, repackaged clients or account-login pages promoted in social posts." },
-        { title: "Launch-day store check", body: `Mobile availability is scheduled for ${releaseInfo.mobile}. Check your country, store account, device compatibility and listing publisher before treating a missing button as an outage.` },
+        { title: "Mobile store check", body: `Mobile launched on ${releaseInfo.mobile}. Check your country, store account, device compatibility and listing publisher before treating a missing button as an outage.` },
         { title: "Continue the right account", body: "Official launch news says PC and mobile share the same data with the same Aniimo account. Confirm the intended account and server before creating another character." },
       ],
     },
@@ -1988,23 +2019,23 @@ export function PlatformPage({ type }) {
     },
     ios: {
       title: "Aniimo iOS Download & App Store Guide",
-      intro: "Aniimo iOS availability is tracked through the official App Store listing and the September 23, 2026 mobile launch window.",
+      intro: "Aniimo iOS is live through the official App Store listing. Country, account and device compatibility can still affect visibility.",
       names: ["App Store"],
       image: "/images/media/aniimo-google-play-store.webp",
       notes: [
         { title: "Use the App Store", body: "Use the official App Store listing when it is visible in your region. Do not install enterprise profiles or unofficial sideloaded clients." },
-        { title: "Release timing", body: `iOS launch is tracked for ${releaseInfo.mobile}. Check your country, App Store account and device compatibility if the install button is missing.` },
+        { title: "Availability", body: `iOS launched on ${releaseInfo.mobile}. Check your country, App Store account and device compatibility if the install button is missing.` },
         { title: "Account continuation", body: "Sign in with the same Aniimo account used on PC to continue shared data. Confirm the server before creating a new character." },
       ],
     },
     android: {
       title: "Aniimo Android Download & Google Play Guide",
-      intro: "Aniimo Android availability is tracked through the official Google Play listing and the September 23, 2026 mobile launch window.",
+      intro: "Aniimo Android is live through the official Google Play listing. Country, account and device compatibility can still affect visibility.",
       names: ["Google Play"],
       image: "/images/media/aniimo-google-play-store.webp",
       notes: [
         { title: "Use Google Play", body: "Use the official Google Play page by Pawprint Studio when it is available in your region. Confirm the publisher before installing." },
-        { title: "Release timing", body: `Android launch is tracked for ${releaseInfo.mobile}. Check country, Google Play account and device compatibility if availability differs from reports online.` },
+        { title: "Availability", body: `Android launched on ${releaseInfo.mobile}. Check country, Google Play account and device compatibility if availability differs from reports online.` },
         { title: "APK safety", body: "Avoid APK mirrors, modified clients and installers sent through social posts. This site links only to the official storefront." },
       ],
     },

@@ -28,6 +28,7 @@ import {
   DownloadTopicPage,
   EditorialPolicyPage,
   EvolutionPage,
+  EventsPage,
   FreshnessPage,
   GuideSummary,
   GlossaryPage,
@@ -247,6 +248,8 @@ function App() {
           <BeginnerPage navigate={navigate} />
         ) : routeInfo.path === "/updates/" ? (
           <UpdatesPage />
+        ) : routeInfo.path === "/events/" ? (
+          <EventsPage navigate={navigate} />
         ) : routeInfo.path === "/launch-day/" ? (
           <LaunchDayPage navigate={navigate} />
         ) : routeInfo.path === "/launch-tracker/" ? (

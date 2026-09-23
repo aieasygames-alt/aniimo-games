@@ -29,8 +29,8 @@ export const codes = [
 
 export const platforms = [
   ["Official website", "Download", "Official launch and platform hub.", officialLinks.website],
-  ["App Store", "Mobile launch", "Official iOS listing for the September 23 mobile launch.", officialLinks.appStore],
-  ["Google Play", "Mobile launch", "Official Android listing for the September 23 mobile launch.", officialLinks.googlePlay],
+  ["App Store", "Play now", "Official iOS listing. Availability and client version can vary by country and device.", officialLinks.appStore],
+  ["Google Play", "Play now", "Official Android listing. Availability and client version can vary by country and device.", officialLinks.googlePlay],
   ["Steam", "Play now", "Official PC storefront; Aniimo is live.", officialLinks.steam],
   ["Epic Games Store", "Play now", "Official PC storefront; Aniimo is live.", officialLinks.epic],
   ["Xbox", "Play now", "Official Xbox storefront; Aniimo is live.", officialLinks.xbox],
@@ -58,12 +58,12 @@ export const seoGuides = {
     {
       title: "How to download Aniimo safely",
       body:
-        "The safest way to download Aniimo is to start from an official storefront or the official Aniimo website. PC and console are live through Steam, Epic Games Store, PlayStation 5 and Xbox. Mobile is scheduled for September 23, so App Store and Google Play availability must be checked in your country. Avoid APK mirrors, reposted installers and unofficial download buttons.",
+        "The safest way to download Aniimo is to start from an official storefront or the official Aniimo website. PC, console and mobile are live through the listed official stores. App Store and Google Play visibility can still differ by country and device, so check the live listing before using any workaround. Avoid APK mirrors, reposted installers and unofficial download buttons.",
     },
     {
       title: "Which Aniimo platform should you choose?",
       body:
-        "PC and console players can use Steam, Epic Games Store, Xbox, PlayStation and the official website now. Mobile players should check Google Play and the App Store on September 23. If a mobile store page is not available in your country, use the official launch announcement and the local storefront together; regional visibility can change without a separate news post.",
+        "PC and console players can use Steam, Epic Games Store, Xbox, PlayStation and the official website. Mobile players can use Google Play and the App Store where the official listing is visible. If a mobile store page is not available in your country, compare the official Aniimo announcement with the local storefront; regional visibility can change without a separate news post.",
     },
     {
       title: "Before installing",
@@ -73,7 +73,7 @@ export const seoGuides = {
     {
       title: "Why mobile dates may look different",
       body:
-        "The official developer announcement tracks mobile launch for September 23, 2026, one week after PC and console launch. App Store or Google Play pages may show a different expected date, a pre-registration state or no date depending on country and store approval timing. Use the official Aniimo announcement and the live storefront listing together; do not treat a placeholder date as a confirmed delay.",
+        "Mobile launched on September 23, 2026, one week after PC and console. App Store or Google Play pages can still differ by country, account, device compatibility and client-rollout timing. Use the official Aniimo announcement and the live storefront listing together; do not treat a missing install button as proof of a global outage.",
     },
   ],
   release: [
@@ -83,9 +83,9 @@ export const seoGuides = {
         "The official launch announcement lists Aniimo for PC and consoles on September 16, 2026, followed by mobile on September 23, 2026. That gives the game two visible launch moments: one for Steam, Epic Games Store, Xbox and PlayStation discovery, and one for iOS and Android store availability. The dates should be treated as official calendar dates, while exact hourly unlock timing can still vary by platform, country and storefront update schedule.",
     },
     {
-      title: "What is confirmed before launch?",
+      title: "What is confirmed after launch?",
       body:
-        "Confirmed public information includes the developer and publisher, platform availability, the free-to-play open-world RPG positioning, core systems such as catching with Aniipods, Twine, Homeland, real-time challenges and region-based exploration. Exact launch-day server opening time, complete spawn tables, balance values and final event cadence should remain marked as watchlist data until official sources or in-game verification confirm them.",
+        "Confirmed public information includes the developer and publisher, live platform availability, the free-to-play open-world RPG positioning, core systems such as catching with Aniipods, Twine, Homeland, real-time challenges and region-based exploration. Complete spawn tables, balance values, exact economic impact and mode-specific competitive rules should remain marked as watchlist data until official sources or in-game verification confirm them.",
     },
     {
       title: "How this release tracker is maintained",
@@ -95,7 +95,7 @@ export const seoGuides = {
     {
       title: "What the September developer letter clarified",
       body:
-        "The September 3 developer letter re-confirmed the global launch sequence: PC, console and Xbox Cloud Gaming on September 16, 2026, followed by mobile on September 23, 2026. Community questions about a later iOS store date should be treated as storefront timing or a placeholder until the official mobile listing changes. Exact hourly unlocks and regional rollout details remain platform-specific watchlist items.",
+        "The September 3 developer letter confirmed the global launch sequence: PC, console and Xbox Cloud Gaming on September 16, 2026, followed by mobile on September 23, 2026. Both launch milestones have now passed. Current questions should focus on storefront visibility, client version, account flow and official maintenance notices rather than countdown timing.",
     },
   ],
   codes: [
@@ -142,13 +142,13 @@ export const seoGuides = {
 export const editorialGuides = {
   download: [
     ["Use official storefronts", "Start from the official website or platform store page for your device. PC and console are live; avoid APK mirrors and unofficial installers."],
-    ["Check mobile by country", "Mobile availability is scheduled for September 23, 2026. Check the App Store or Google Play listing for your country and device."],
+    ["Check mobile by country", "Mobile is live. Check the App Store or Google Play listing for your country, account and device before trying unsupported installation methods."],
     ["Keep your account consistent", "Use the Aniimo account and server you intend to keep. PC and mobile share data with the same account, while different servers are independent."],
   ],
   release: [
     ["PC and console first", "The official launch announcement lists PC and console launch before mobile."],
-    ["Mobile follows one week later", "The mobile launch window is September 23, 2026, giving store pages time to roll out by region."],
-    ["Exact unlock times", "Exact hourly unlock timing is not listed here yet; use store pages and official news for the final countdown."],
+    ["Mobile is live", "The mobile launch date was September 23, 2026. Use the live App Store or Google Play listing for country and device availability."],
+    ["Current availability", "Use store pages and official news for maintenance, region and client-version changes rather than countdown timing."],
   ],
   codes: [
     ["Redeem codes", "No public redeem code is confirmed here yet. Keep code claims separate from official pre-registration rewards."],
@@ -183,19 +183,24 @@ export const faqs = {
   ],
   download: [
     ["Where can I download Aniimo?", "Use the official Steam, Epic Games Store, Xbox or PlayStation listing for PC and console. Check the official App Store or Google Play listing for mobile availability in your region."],
-    ["What platforms is Aniimo available on?", "Official news confirms PC and consoles are live, with mobile scheduled for September 23, 2026."],
+    ["What platforms is Aniimo available on?", "Aniimo is live on PC, consoles, iOS and Android. Check the official storefront for country, device and client-version availability."],
   ],
   snippets: [
-    ["Is Aniimo out yet?", "Aniimo is live on PC and consoles. Official news schedules the mobile launch for September 23, 2026; availability must be checked by country and storefront."],
+    ["Is Aniimo out yet?", "Yes. Aniimo is live on PC, consoles, iOS and Android. Availability can still vary by country, storefront and device."],
     ["Is Aniimo on Steam?", "Yes. Aniimo is live through its official Steam listing for PC."],
     ["Are there Aniimo codes?", "No public redeem code is confirmed on Aniimo.games yet. Confirmed pre-registration and milestone rewards are tracked separately from redeem codes."],
     ["How many Aniimo are confirmed?", "Aniimo.games currently tracks 89 public Aniimo names from the official Wiki probe workflow."],
     ["Is Aniimo free to play?", "Official storefront language describes Aniimo as a free-to-play creature-catching open-world RPG."],
-    ["Is Aniimo on mobile?", "Yes. Mobile availability is tracked through iOS and Android storefronts for the September 23, 2026 launch window."],
+    ["Is Aniimo on mobile?", "Yes. Aniimo is live on iOS and Android. Check the official App Store or Google Play listing for your country and device."],
   ],
 };
 
 export const updates = [
+  {
+    date: "2026-09-23",
+    title: "Mobile launch and September update coverage added",
+    text: "Updated platform, launch and download guidance for the live iOS and Android release. Added official update and event planning coverage while keeping code strings, detailed economy claims and location routes behind verification rules.",
+  },
   {
     date: "2026-09-11",
     title: "Launch research and verification plan updated",
@@ -240,10 +245,10 @@ export const updates = [
 
 export const launchTracker = {
   updated: sourceLastChecked,
-  summary: "Aniimo.games is tracking the public launch path from official sources, with PC and console availability first and mobile availability one week later.",
+  summary: "Aniimo.games tracks the live PC, console and mobile game using official announcements, storefront checks and clearly labeled in-game verification.",
   readiness: [
     ["PC and console date", releaseInfo.pcConsole, "Confirmed"],
-    ["Mobile date", releaseInfo.mobile, "Confirmed"],
+    ["Mobile availability", "Live on iOS and Android; check storefront by country and device", "Verified"],
     ["Official platform links", "Website, Steam, Epic, Xbox, PlayStation, App Store and Google Play", "Confirmed"],
     ["Pre-registration rewards", "Milestones, Prismana Aniimo choice and mysterious Susuta egg", "Confirmed"],
     ["Redeem codes", "No public redeem code confirmed yet", "Watchlist"],
@@ -251,11 +256,11 @@ export const launchTracker = {
     ["Spawn routes", "Coordinates and route screenshots need live verification", "Watchlist"],
   ],
   nextChecks: [
-    "Check official website and main news for launch posts.",
-    "Check Steam, Epic, Xbox, PlayStation, App Store and Google Play for storefront copy changes.",
-    "Check official Wiki for new Aniimo entries, renamed entries or changed stage labels.",
+    "Check official website and main news for live updates, maintenance and event notices.",
+    "Check Steam, Epic, Xbox, PlayStation, App Store and Google Play for live storefront, client and regional availability changes.",
+    "Check the official Wiki entry path for new Aniimo entries, renamed entries or changed stage labels.",
     "Update codes only after a redeemable string appears on an official channel or in-game redemption screen.",
-    "After launch, add verified route screenshots, weather windows, time windows and platform unlock notes.",
+    "Add verified route screenshots, weather windows, time windows and platform-specific issue notes.",
   ],
 };
 
@@ -264,7 +269,7 @@ export const launchDayCommandCenter = {
   summary: "A live launch support page for players who need official download paths, account guidance, code checks, server status and platform-specific fixes.",
   statusRows: [
     ["PC and console availability", "Live on PC, Steam, Epic, PS5 and Xbox", "Verified"],
-    ["Mobile launch", releaseInfo.mobile, "Confirmed"],
+    ["Mobile availability", "Live on iOS and Android; check storefront by country and device", "Verified"],
     ["PC and mobile data", "Shared with the same account", "Verified"],
     ["Server status", "No Aniimo-wide outage currently marked confirmed", "Verified"],
     ["Active redeem codes", "Official code list pending", "Watchlist"],
@@ -279,7 +284,7 @@ export const launchDayCommandCenter = {
   ],
   firstDayChecks: [
     ["Now", "Check official launch posts, storefront availability and account guidance."],
-    ["Mobile launch", "Verify App Store and Google Play availability, same-account continuation and regional rollout."],
+    ["Mobile availability", "Verify App Store and Google Play availability, same-account continuation and region-specific store behavior."],
     ["Code review", "Check official news and in-game redemption before publishing a code string as active."],
     ["Issue review", "Record common errors only after official support acknowledgement or reproducible platform reports."],
     ["Daily refresh", "Update homepage, launch hub, codes, troubleshooting and update log with verified changes."],
@@ -289,11 +294,11 @@ export const launchDayCommandCenter = {
     ["Aniimo server status", "Answer whether the game is live, under maintenance or affected by a confirmed incident."],
     ["Aniimo not working", "Route users to download, region and storefront checks before suggesting unsupported fixes."],
     ["Aniimo redeem codes", "Show the active-code policy and link to confirmed rewards when no code string exists."],
-    ["Aniimo mobile launch", "Explain the September 23 mobile date, same-account PC progress and country-specific storefront checks."],
+    ["Aniimo mobile download", "Explain live iOS and Android availability, same-account PC progress and country-specific storefront checks."],
     ["Aniimo download button missing", "Send users to official platform pages and avoid mirrors or APK reposts."],
   ],
   faq: [
-    ["Is Aniimo live right now?", "Aniimo is live on Windows PC, Steam, Epic Games Store, PS5 and Xbox according to official launch news. Mobile iOS and Android availability is scheduled for September 23, 2026."],
+    ["Is Aniimo live right now?", "Aniimo is live on Windows PC, Steam, Epic Games Store, PS5, Xbox, iOS and Android according to official launch news. Check storefront availability for your country and device."],
     ["Where should I check first on launch day?", "Start with the Launch Day page, then open download, release-date, codes, troubleshooting and platform pages for the specific issue."],
     ["Will launch errors be listed here?", "Yes, but only after official support posts, storefront behavior or repeated verified reports make the issue clear enough to publish responsibly."],
   ],

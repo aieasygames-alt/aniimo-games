@@ -29,11 +29,11 @@ export const launchStatusEntries = [
   {
     id: "mobile",
     label: "Mobile availability",
-    value: releaseInfo.mobile,
-    status: "Confirmed",
+    value: "Live on iOS and Android; check storefront by country and device",
+    status: "Verified",
     source: officialLinks.website,
     lastChecked: sourceLastChecked,
-    note: "Official news lists iOS and Android availability for September 23. Check App Store and Google Play by country before saying install is live.",
+    note: "Official news lists iOS and Android availability from September 23. Check App Store and Google Play by country and device before diagnosing a missing install button.",
   },
   {
     id: "codes",
@@ -147,8 +147,8 @@ export const platformUnlockQueue = [
   ["Epic Games Store", releaseInfo.pcConsole, officialLinks.epic, "Live", "Verified"],
   ["Xbox", releaseInfo.pcConsole, officialLinks.xbox, "Live", "Verified"],
   ["PlayStation 5", releaseInfo.pcConsole, officialLinks.playstation, "Live", "Verified"],
-  ["App Store", releaseInfo.mobile, officialLinks.appStore, "Check by country on launch day", "Watchlist"],
-  ["Google Play", releaseInfo.mobile, officialLinks.googlePlay, "Check by country on launch day", "Watchlist"],
+  ["App Store", releaseInfo.mobile, officialLinks.appStore, "Live; check by country and device", "Verified"],
+  ["Google Play", releaseInfo.mobile, officialLinks.googlePlay, "Live; check by country and device", "Verified"],
 ].map(([platform, releaseDate, source, unlockTime, status]) => ({
   platform,
   releaseDate,

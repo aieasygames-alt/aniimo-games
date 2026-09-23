@@ -56,6 +56,21 @@ export const freshnessPages = [
   },
 ];
 
+export const liveUpdate = {
+  title: "Setting Out in Pursuit of the Wind: Part I",
+  date: "2026-09-23",
+  source: officialLinks.septemberUpdate,
+  summary: "The official homepage lists this September 23 update alongside the live iOS and Android release. Event schedules are displayed in UTC+8 and should be rechecked when maintenance or platform notices change.",
+  maintenance: "The update notice lists maintenance on September 23 from 00:00 to 10:00 UTC+8 and Glimmer x500 compensation for eligible accounts. Check the official notice for any changed completion time or eligibility wording.",
+  events: [
+    ["Egg Heist Team Mode: Chaos Mode", "September 24, 04:00 UTC+8", "Reach Tier IV Elite Egg Seeker. Team play is recommended."],
+    ["Glamour Star", "September 25, 04:00 to October 2, 03:59 UTC+8", "Reach Student II and submit a themed Aniimo entry."],
+    ["Aniimo Discovery", "September 25, 04:00 to October 9, 03:59 UTC+8", "Reach Student II; free Search Attempts replenish periodically and do not stack."],
+    ["Vein Abundance: Rosetower Woods", "September 28, 04:00 to October 5, 03:59 UTC+8", "Prismana Form Melloblum is listed for Rosetower Woods."],
+    ["Journey Chronicles", "October 1, 04:00 to October 29, 03:59 UTC+8", "Reach Student I and log in for the listed number of days to claim gifts."],
+  ],
+};
+
 export const freshnessWatchlist = [
   ["Official news", "Check launch posts, rewards posts, feature pages and official Wiki changes.", "Update news tracker, source archive and affected guide pages."],
   ["Platform changes", "Check Steam, Epic Games Store, Xbox, PlayStation, App Store and Google Play.", "Update download, platform and launch tracker pages."],

@@ -1,11 +1,11 @@
 # Aniimo Official Update Report
 
-Generated: 2026-09-13T04:07:40.053Z
+Generated: 2026-09-23T14:12:59.345Z
 
 ## Summary
 
 - Local Aniimo entries: 89
-- Official Wiki entries found in probe page: 92
+- Official Wiki entries found in probe page: 81
 - Local regions: 6
 - Official regions seen on main page: 6
 - PC/console launch date: 2026-09-16
@@ -15,17 +15,32 @@ Generated: 2026-09-13T04:07:40.053Z
 ## Fetch Status
 
 - https://www.aniimo.com/main: OK
-- https://wiki.aniimo.com/item/10002877: OK
+- https://wiki.aniimo.com/: OK
+- Wiki data probe: https://wiki.aniimo.com/ (81 entries)
 
 ## New Official Aniimo Missing Locally
 
 - Nimbi
 - Turbo
 - Dreaple
+- Squarrel
+- Squashel
 
 ## Local Aniimo Not Seen In Probe
 
-- None
+- Somniwing
+- Reefish
+- Coraliz
+- Cheekie
+- Wavwal
+- Bubbeep
+- Glameep
+- Dazmand
+- Fulmintis
+- Popapus
+- Gachapus
+- Malangel
+- Malevsera
 
 ## Local Entries Needing Description Review
 
@@ -77,13 +92,14 @@ Generated: 2026-09-13T04:07:40.053Z
 ## Recent Official News Titles
 
 - Aniimo Official Website - Global Launch Announced!
-- A Letter from the Aniimo Dev Team
-- Aniimo Global Launch Dates: Coming to PC &amp; Consoles on September 16, Mobile on September 23!
-- A New Way to Connect with Your Aniimo
-- Global Closed Beta Bond Pact Event FAQ
+- Aniimo Is Officially Live on Mobile—Embark on Your Twine Journey Anytime, Anywhere!
+- Aniimo Mobile Pre-Download Now Available!
+Coming to All Platforms on September 23!
+- Aniimo Is Now Live on PC &amp; Console!
 
 ## Recommended Next Actions
 
+- If the Wiki data probe reports zero entries, review the discovered official Wiki links before treating the database as current.
 - If "New Official Aniimo Missing Locally" is not empty, run `npm run sync:aniimo` and review the generated data before publishing.
 - If watchlist entries shrink after official Wiki updates, replace Unknown and Watchlist fields with sourced values.
 - If official news titles change, review release date, rewards, codes, download and launch tracker pages.
