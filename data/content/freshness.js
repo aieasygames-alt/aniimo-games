@@ -71,6 +71,42 @@ export const liveUpdate = {
   ],
 };
 
+export const postLaunchEvidence = {
+  monetization: {
+    title: "Economy and Monetization: Evidence Status",
+    rows: [
+      ["Confirmed", "Aniimo is free to play. Official storefronts disclose in-app purchases."],
+      ["Not a conclusion", "A store disclosure does not establish pay-to-win, gacha, a progression wall or competitive advantage by itself."],
+      ["Evidence needed", "Capture the purchase screen, price and currency, earnable alternative, affected system, platform, region, version and a reproducible impact."],
+      ["Community input", "Player reports can identify questions to test, but cannot be promoted to a product-wide economy claim without direct evidence."],
+    ],
+  },
+  firstWeek: [
+    ["Secure account and server", "Use the account and server you intend to keep before creating extra characters or claiming account-bound rewards."],
+    ["Finish current update prerequisites", "Check the official event page for Student I, Student II or Egg Heist tier requirements before planning an event route."],
+    ["Use resources with a purpose", "Do not copy unverified resource-hoarding or purchase advice. Record version, resource name and repeatable outcome before publishing a recommendation."],
+    ["Record useful evidence", "When a route, event, shop or issue is tested, keep platform, server, region, time, screenshots and the current client version."],
+  ],
+  mobileTroubleshooting: [
+    ["Store page not visible", "Confirm country, store account, device compatibility and official listing URL; do not install an APK mirror."],
+    ["Install or update fails", "Check free storage, current client version, official maintenance notice and platform-store error message before reinstalling."],
+    ["Wrong progress or character", "Sign in with the intended Aniimo account and confirm the server. Different servers keep independent data."],
+    ["Performance or controls", "Capture device model, operating-system version, client version, graphics setting, network state and repeatable steps before reporting it as a known issue."],
+  ],
+  eventAniimo: {
+    melloblum: {
+      title: "Prismana Form Melloblum event availability",
+      detail: "The September update lists Prismana Form Melloblum in Vein Abundance at Rosetower Woods from September 28, 04:00 to October 5, 03:59 UTC+8.",
+      source: officialLinks.septemberUpdate,
+    },
+    waleetle: {
+      title: "Prismana Form Waleetle event availability",
+      detail: "The September update lists Prismana Form Waleetle at Berylline Vale from October 5, 04:00 to October 12, 03:59 UTC+8.",
+      source: officialLinks.septemberUpdate,
+    },
+  },
+};
+
 export const freshnessWatchlist = [
   ["Official news", "Check launch posts, rewards posts, feature pages and official Wiki changes.", "Update news tracker, source archive and affected guide pages."],
   ["Platform changes", "Check Steam, Epic Games Store, Xbox, PlayStation, App Store and Google Play.", "Update download, platform and launch tracker pages."],

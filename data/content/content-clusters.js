@@ -439,7 +439,7 @@ export const beginnerTopics = [
     description: "Aniimo beginner tips: start safely on a live platform, use the right account, check rewards and learn catching and Twine without relying on rumor guides.",
     intro: "This beginner page focuses on practical first-session choices: use an official platform, confirm the right account and server, separate rewards from codes, then learn catching and Twine before chasing unverified routes.",
     points: [
-      ["Start official", "Use the official Steam, Epic, PS5 or Xbox listing. For mobile, check App Store or Google Play availability in your country on September 23."],
+      ["Start official", "Use the official Steam, Epic, PS5, Xbox, App Store or Google Play listing. Mobile is live, but storefront visibility can still vary by country and device."],
       ["Confirm account and server", "PC and mobile share data when the same Aniimo account is used, but data on different servers is independent."],
       ["Track rewards separately", "Pre-registration rewards and redeem codes are different. Do not treat rewards as active codes."],
       ["Use the database", "Start with the Aniimo database, then follow region, role and element links for comparison."],
@@ -484,14 +484,14 @@ export const beginnerTopics = [
     slug: "aniimo-best-settings",
     title: "Aniimo Best Settings",
     description: "Prepare Aniimo best settings checks for graphics, controls, account safety, performance and platform-specific launch options.",
-    intro: "Best-settings searches usually come from players already trying the game. Before launch, this page prepares what to test without inventing graphics or control menus.",
+    intro: "Best-settings searches usually come from players already trying the game. This page separates platform-specific checks from settings claims that still need reproducible current-client testing.",
     points: [
-      ["Graphics and performance", "After launch, test presets, frame-rate options, resolution scaling, battery settings and device-specific behavior."],
+      ["Graphics and performance", "Test presets, frame-rate options, resolution scaling, battery settings and device-specific behavior with platform, device and client-version notes."],
       ["Controls and camera", "Check controller support, touch controls, camera sensitivity, aim assist, vibration and accessibility options by platform."],
       ["Account and downloads", "Keep official installer, account binding, notification and store-region settings visible because launch access issues often look like settings problems."],
     ],
     faq: [
-      ["What are the best Aniimo settings?", "Final best settings should wait for live testing on PC, console, iOS and Android."],
+      ["What are the best Aniimo settings?", "Best settings should be published only with current-client testing on the named PC, console, iOS or Android device."],
       ["Will this page cover controller settings?", "Yes, controller and touch settings should be added after platform-specific launch testing."],
     ],
   },
@@ -506,7 +506,7 @@ export const beginnerTopics = [
       ["Trusting unverified routes", "Do not treat screenshots, short clips or community guesses as final spawn tables without region, condition and timestamp evidence."],
     ],
     faq: [
-      ["What is the biggest Aniimo beginner mistake?", "The biggest pre-launch mistake is using unofficial downloads or code claims instead of verified official sources."],
+      ["What is the biggest Aniimo beginner mistake?", "Using unofficial downloads or code claims instead of verified official sources remains one of the biggest avoidable mistakes."],
       ["Can this page change after launch?", "Yes. After launch it should add tested mistakes around routing, Twine, rewards, settings and early-game progression."],
     ],
   },
@@ -807,9 +807,9 @@ export const socialIntentTopics = [
     slug: "aniimo-crossplay",
     title: "Does Aniimo Have Crossplay?",
     description: "Does Aniimo support crossplay? Check confirmed PC, console and mobile account details, plus server and purchase limits that still need verification.",
-    intro: "Aniimo is live on PC and consoles, with mobile due September 23. Official launch information confirms PC and mobile share the same data when you use the same account; platform matchmaking, server selection and purchase handling need separate checks.",
+    intro: "Aniimo is live on PC, consoles and mobile. Official launch information confirms PC and mobile share the same data when you use the same account; platform matchmaking, server selection and purchase handling need separate checks.",
     points: [
-      ["PC and mobile progress", "Official launch news says PC and mobile share the same data. Sign in on mobile with the same account used on PC to continue that adventure after mobile availability begins."],
+      ["PC and mobile progress", "Official launch news says PC and mobile share the same data. Sign in on mobile with the same account used on PC to continue that adventure."],
       ["Server boundary", "Do not assume progress transfers between servers. Official pre-download guidance says data on different servers is independent, and PS5 server assignment follows the PSN account region."],
       ["Crossplay boundary", "Steam lists cross-platform multiplayer, but specific friend, matchmaking and platform-pool behavior should be checked in-game before making a mode-specific promise."],
     ],
@@ -978,7 +978,7 @@ export const searchSuggestionTopics = [
     description: "Aniimo cross-save and account linking status: continue PC progress on mobile, understand server limits, and avoid creating the wrong character.",
     intro: "Official launch news says PC and mobile share the same data when you sign in with the same account. This page explains that confirmed path while keeping server transfers, console linking and purchase rules clearly separated.",
     points: [
-      ["Confirmed path", "Start on PC, then sign in on mobile with the same Aniimo account after mobile launch to continue the same data."],
+      ["Confirmed path", "Sign in on mobile with the same Aniimo account used on PC to continue the same data."],
       ["Before creating a character", "Confirm the intended account and server first. Official guidance says data on different servers is independent."],
       ["Console and purchases", "Pre-order content must first be claimed by logging in on the console where it was purchased. Official guidance says linked accessories and items can then be used on other platforms within the same server."],
     ],

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles, Plus, X, Copy, Download as DownloadIcon } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, liveUpdate, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, liveUpdate, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, postLaunchEvidence, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { AnswerStatus, CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
@@ -1574,6 +1574,9 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
       {statusEntry && <LaunchStatusPanel title="Answer Status" entries={[statusEntry]} />}
       {intentStatus && <InfoPanel title="What We Are Checking Next" rows={[["Next check", intentStatus.action], ["Page", topic.title]]} />}
       {(["is-aniimo-pay-to-win", "aniimo-price", "aniimo-vs-genshin"].includes(topic.slug)) && <InfoPanel title="Economy Fact Status" rows={[["Confirmed", "Aniimo is free to play; Steam and Google Play identify in-app purchases."], ["Player feedback", "Shop density, paid packs and gacha-like expectations are active discussion topics, not a final mechanism verdict."], ["Not established here", "Whether optional purchases create a competitive advantage, progression gate or mode-specific imbalance."], ["Review standard", "Official purchase detail plus repeatable live-game evidence of cost, earnable alternatives and impact."]]} />}
+      {(["is-aniimo-pay-to-win", "aniimo-price", "aniimo-vs-genshin"].includes(topic.slug)) && <InfoPanel title={postLaunchEvidence.monetization.title} rows={postLaunchEvidence.monetization.rows} />}
+      {(["aniimo-beginner-tips", "aniimo-first-hour-guide", "aniimo-beginner-mistakes"].includes(topic.slug)) && <InfoPanel title="First Week: Evidence-First Priorities" rows={postLaunchEvidence.firstWeek} />}
+      {(["aniimo-download-not-available", "aniimo-region-availability", "aniimo-known-issues"].includes(topic.slug)) && <InfoPanel title="Mobile Issue Triage" rows={postLaunchEvidence.mobileTroubleshooting} />}
       <EditorialBlock title="Key Points" items={topic.points} />
       {evidenceQueue && <EvidenceQueue queue={evidenceQueue} />}
       {children}
@@ -2175,6 +2178,7 @@ export function ContactPage() {
 export function AniimoDetail({ item, navigate, localized = false }) {
   const pt = localized;
   const itemRegion = regions.find((region) => region.name === item.region);
+  const eventAvailability = postLaunchEvidence.eventAniimo[item.id];
   const sameElement = aniimo.filter((candidate) => candidate.id !== item.id && candidate.element === item.element).slice(0, 6);
   const sameRegion = aniimo.filter((candidate) => candidate.id !== item.id && candidate.region === item.region).slice(0, 6);
   const sameRole = aniimo.filter((candidate) => candidate.id !== item.id && candidate.role === item.role).slice(0, 6);
@@ -2211,6 +2215,7 @@ export function AniimoDetail({ item, navigate, localized = false }) {
       </section>}
       <div className="detail-panels">
         {!pt && <AnswerStatus status={item.status} checked={sourceLastChecked} sourceType="Official Wiki and source review" next={`Open the ${item.region} region guide or compare ${item.name}.`} />}
+        {!pt && eventAvailability && <InfoPanel title={eventAvailability.title} rows={[["Official event detail", eventAvailability.detail], ["Source rule", "This is event availability, not a permanent spawn route or exact coordinate."], ["Time standard", "Confirm the current official update before treating the event as active or expired."]]} />}
         <InfoPanel title="Location" rows={[["Region", item.region], ["Habitat", item.habitat], ["Spawn condition", item.condition], ["Acquisition", item.acquisition]]} />
         <InfoPanel title="Index Data" rows={[["No.", item.no], ["Element", item.element], ["Role", item.role], ["Stage", item.stage]]} />
         <InfoPanel title="Search Match" rows={[
@@ -2246,6 +2251,7 @@ export function AniimoDetail({ item, navigate, localized = false }) {
         ...(item.id === "geoclaw" ? [["Where is Geoclaw in Aniimo?", "Geoclaw is currently associated with Mistwoods. Exact Alpha Geoclaw encounter points, conditions and route requirements need official or reproducible verification before publication."]] : []),
         ...(item.id === "glacy" ? [["Where is Glacy in Aniimo?", "Glacy is currently tracked in Nimbus Fields as an Ice DPS Aniimo at Lumin Stage. This page does not publish a precise spawn point until it is confirmed in the live game or by an official source."]] : []),
         ...(item.id === "inferlupa" ? [["How do I get Inferlupa in Aniimo?", "Inferlupa is Aniimo No. 004, a Fire DPS entry at Nova Stage. Its acquisition route and any evolution requirement should be treated as watchlist data until live-game or official evidence is available."]] : []),
+        ...(eventAvailability ? [[`Is ${item.name} available in an event?`, `${eventAvailability.detail} Confirm the official update and current client before treating this as a permanent location.`]] : []),
       ]} />
     </section>
   );
