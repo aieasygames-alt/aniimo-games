@@ -1,10 +1,11 @@
-import { writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { aniimo, regions, releaseInfo } from "../data/content.js";
 
 const officialMain = "https://www.aniimo.com/main";
 const officialWikiHome = "https://wiki.aniimo.com/";
 const legacyWikiProbe = "https://wiki.aniimo.com/item/10002877";
 const reportPath = "official-update-report.md";
+const snapshotPath = "official-wiki-snapshot.json";
 
 async function fetchText(url) {
   try {
@@ -62,6 +63,16 @@ function markdownList(items, emptyText) {
   return items.map((item) => `- ${item}`).join("\n");
 }
 
+function readSnapshot() {
+  if (!existsSync(snapshotPath)) return null;
+  try {
+    const snapshot = JSON.parse(readFileSync(snapshotPath, "utf8"));
+    return Array.isArray(snapshot?.numbers) ? snapshot : null;
+  } catch {
+    return null;
+  }
+}
+
 const mainFetch = await fetchText(officialMain);
 const wikiHomeFetch = await fetchText(officialWikiHome);
 const wikiCandidates = uniq([
@@ -93,6 +104,16 @@ const watchlistEntries = aniimo.filter((item) => item.element === "Unknown" || i
 const regionNames = extractKnownRegionNames(mainHtml);
 const missingRegions = mainFetch.ok ? regions.map((region) => region.name).filter((name) => !regionNames.includes(name)) : [];
 const newsTitles = extractNewsTitles(mainHtml);
+const previousSnapshot = readSnapshot();
+const currentNumbers = [...new Set(officialNumbers)].sort();
+const previousNumbers = previousSnapshot?.numbers || [];
+const newlyVisibleNumbers = previousSnapshot ? currentNumbers.filter((no) => !previousNumbers.includes(no)) : [];
+const noLongerVisibleNumbers = previousSnapshot ? previousNumbers.filter((no) => !currentNumbers.includes(no)) : [];
+const snapshot = {
+  checkedAt: new Date().toISOString(),
+  source: wikiFetch.url,
+  numbers: currentNumbers,
+};
 
 const report = `# Aniimo Official Update Report
 
@@ -103,6 +124,7 @@ Generated: ${new Date().toISOString()}
 - Local Aniimo entries: ${aniimo.length}
 - Official Wiki entries found in probe page: ${officialAniimo.length}
 - Wiki comparison mode: ${wikiIsLocalized ? "Localized names with number-first matching" : "Names with number-first fallback matching"}
+- Previous Wiki snapshot: ${previousSnapshot ? previousSnapshot.checkedAt : "None (baseline created this run)"}
 - Local regions: ${regions.length}
 - Official regions seen on main page: ${regionNames.length}
 - PC/console launch date: ${releaseInfo.pcConsole}
@@ -122,6 +144,11 @@ ${officialAniimo.length ? markdownList(missingLocally, "None") : "- Skipped beca
 ## Local Aniimo Not Seen In Probe
 
 ${officialAniimo.length ? markdownList(localOnly, "None") : "- Skipped because no fetchable official Wiki entry list was found."}
+
+## Wiki Probe Changes Since Last Snapshot
+
+- Newly visible official numbers: ${previousSnapshot ? (newlyVisibleNumbers.join(", ") || "None") : "Baseline created"}
+- No longer visible official numbers: ${previousSnapshot ? (noLongerVisibleNumbers.join(", ") || "None") : "Baseline created"}
 
 ## Local Entries Needing Description Review
 
@@ -149,4 +176,5 @@ ${markdownList(newsTitles, "No news titles extracted")}
 `;
 
 writeFileSync(reportPath, report);
+writeFileSync(snapshotPath, `${JSON.stringify(snapshot, null, 2)}\n`);
 console.log(report);

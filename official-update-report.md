@@ -1,12 +1,13 @@
 # Aniimo Official Update Report
 
-Generated: 2026-09-23T14:31:29.232Z
+Generated: 2026-09-23T14:33:06.714Z
 
 ## Summary
 
 - Local Aniimo entries: 90
 - Official Wiki entries found in probe page: 81
 - Wiki comparison mode: Names with number-first fallback matching
+- Previous Wiki snapshot: 2026-09-23T14:32:54.500Z
 - Local regions: 6
 - Official regions seen on main page: 6
 - PC/console launch date: 2026-09-16
@@ -35,6 +36,11 @@ Generated: 2026-09-23T14:31:29.232Z
 - 091 Gachapus
 - 092 Malangel
 - 093 Malevsera
+
+## Wiki Probe Changes Since Last Snapshot
+
+- Newly visible official numbers: None
+- No longer visible official numbers: None
 
 ## Local Entries Needing Description Review
 
