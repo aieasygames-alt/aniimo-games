@@ -63,13 +63,27 @@ export const liveUpdate = {
   summary: "The official homepage lists this September 23 update alongside the live iOS and Android release. Event schedules are displayed in UTC+8 and should be rechecked when maintenance or platform notices change.",
   maintenance: "The update notice lists maintenance on September 23 from 00:00 to 10:00 UTC+8 and Glimmer x500 compensation for eligible accounts. Check the official notice for any changed completion time or eligibility wording.",
   events: [
-    ["Egg Heist Team Mode: Chaos Mode", "September 24, 04:00 UTC+8", "Reach Tier IV Elite Egg Seeker. Team play is recommended."],
-    ["Glamour Star", "September 25, 04:00 to October 2, 03:59 UTC+8", "Reach Student II and submit a themed Aniimo entry."],
-    ["Aniimo Discovery", "September 25, 04:00 to October 9, 03:59 UTC+8", "Reach Student II; free Search Attempts replenish periodically and do not stack."],
-    ["Vein Abundance: Rosetower Woods", "September 28, 04:00 to October 5, 03:59 UTC+8", "Prismana Form Melloblum is listed for Rosetower Woods."],
-    ["Journey Chronicles", "October 1, 04:00 to October 29, 03:59 UTC+8", "Reach Student I and log in for the listed number of days to claim gifts."],
+    { name: "Egg Heist Team Mode: Chaos Mode", startsAt: "2026-09-24T04:00:00+08:00", endsAt: null, detail: "Reach Tier IV Elite Egg Seeker. Team play is recommended." },
+    { name: "Glamour Star", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-10-02T03:59:00+08:00", detail: "Reach Student II and submit a themed Aniimo entry." },
+    { name: "Aniimo Discovery", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-10-09T03:59:00+08:00", detail: "Reach Student II; free Search Attempts replenish periodically and do not stack." },
+    { name: "Vein Abundance: Rosetower Woods", startsAt: "2026-09-28T04:00:00+08:00", endsAt: "2026-10-05T03:59:00+08:00", detail: "Prismana Form Melloblum is listed for Rosetower Woods." },
+    { name: "Journey Chronicles", startsAt: "2026-10-01T04:00:00+08:00", endsAt: "2026-10-29T03:59:00+08:00", detail: "Reach Student I and log in for the listed number of days to claim gifts." },
   ],
 };
+
+export function eventStatus(event, now = new Date()) {
+  const start = new Date(event.startsAt);
+  const end = event.endsAt ? new Date(event.endsAt) : null;
+  if (now < start) return "Upcoming";
+  if (end && now > end) return "Ended";
+  return "Active";
+}
+
+export function eventSchedule(event) {
+  const start = new Date(event.startsAt).toLocaleString("en-GB", { timeZone: "Asia/Shanghai", dateStyle: "medium", timeStyle: "short" });
+  const end = event.endsAt ? new Date(event.endsAt).toLocaleString("en-GB", { timeZone: "Asia/Shanghai", dateStyle: "medium", timeStyle: "short" }) : "No end time listed";
+  return `${start} to ${end} UTC+8`;
+}
 
 export const postLaunchEvidence = {
   monetization: {

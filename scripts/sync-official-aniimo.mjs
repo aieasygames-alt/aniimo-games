@@ -3,26 +3,49 @@ import { basename } from "node:path";
 import { execFileSync } from "node:child_process";
 import { aniimo } from "../data/content.js";
 
-const wikiUrl = "https://wiki.aniimo.com/item/10002877";
+const wikiHomeUrl = "https://wiki.aniimo.com/";
+const legacyWikiUrl = "https://wiki.aniimo.com/item/10002877";
 const aniimoFile = "data/content/aniimo.js";
 const imageDir = "public/images/aniimo";
+const applyChanges = process.argv.includes("--apply");
 
-const response = await fetch(wikiUrl, {
-  headers: {
-    "user-agent": "aniimo-games-sync/1.0",
-  },
-});
+const wikiHome = await fetchText(wikiHomeUrl);
+const candidates = uniq([
+  ...extractWikiCandidates(wikiHome.text),
+  legacyWikiUrl,
+]);
+const probes = await Promise.all(candidates.map(fetchText));
+const sourceFetch = probes.find((result) => result.ok && extractWikiAniimo(result.text).length > 0)
+  || probes.find((result) => result.ok);
 
-if (!response.ok) {
-  throw new Error(`Failed to fetch official Wiki: ${response.status}`);
+if (!sourceFetch) {
+  throw new Error("Failed to find a fetchable official Wiki source.");
 }
 
-const officialEntries = extractWikiAniimo(await response.text());
+const officialEntries = extractWikiAniimo(sourceFetch.text);
+if (!officialEntries.length) {
+  throw new Error(`No Aniimo entries found in ${sourceFetch.url}. Review the official Wiki source before syncing.`);
+}
 const localNames = new Set(aniimo.map((item) => item.name));
-const missing = officialEntries.filter((item) => !localNames.has(item.name));
+const localNumbers = new Set(aniimo.map((item) => item.no));
+const matchedByName = officialEntries.filter((item) => localNames.has(item.name));
+const matchedByNumber = officialEntries.filter((item) => localNumbers.has(item.no));
+const missing = officialEntries.filter((item) => !localNames.has(item.name) && !localNumbers.has(item.no));
+const languageMismatch = officialEntries.length > 20 && matchedByName.length === 0 && matchedByNumber.length > 20;
+
+if (languageMismatch) {
+  console.log("Official Wiki content appears localized. Matching is using official numbers; do not apply name changes from this source.");
+}
 
 if (!missing.length) {
-  console.log("No missing official Aniimo entries.");
+  console.log(`No missing official Aniimo entries in ${sourceFetch.url}.`);
+  process.exit(0);
+}
+
+console.log(`Official Wiki source: ${sourceFetch.url}`);
+console.log(`Potential new entries: ${missing.map((item) => `${item.no} ${item.name}`).join(", ") || "None"}`);
+if (!applyChanges) {
+  console.log("Dry run only. Re-run with `npm run sync:aniimo -- --apply` after reviewing the official source and generated changes.");
   process.exit(0);
 }
 
@@ -74,6 +97,30 @@ function extractWikiAniimo(html) {
     image,
     description,
   }));
+}
+
+async function fetchText(url) {
+  try {
+    const response = await fetch(url, {
+      headers: { "user-agent": "aniimo-games-sync/1.0" },
+    });
+    if (!response.ok) return { url, ok: false, text: "" };
+    return { url, ok: true, text: await response.text() };
+  } catch {
+    return { url, ok: false, text: "" };
+  }
+}
+
+function extractWikiCandidates(html) {
+  return uniq([...html.matchAll(/href=["']([^"']+)["']/g)]
+    .map((match) => match[1].replaceAll("\\/", "/"))
+    .map((value) => value.startsWith("/") ? `https://wiki.aniimo.com${value}` : value)
+    .filter((value) => value.startsWith("https://wiki.aniimo.com/"))
+    .filter((value) => /item|wiki|aniimo/i.test(value))).slice(0, 12);
+}
+
+function uniq(values) {
+  return [...new Set(values.filter(Boolean))];
 }
 
 function insertBefore(source, marker, insertion, fromIndex) {

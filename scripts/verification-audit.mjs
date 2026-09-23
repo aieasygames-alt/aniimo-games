@@ -1,7 +1,7 @@
-import { codeVerificationTemplate, gscObservationTemplate, launchEvidenceQueues, launchStatusEntries, platformUnlockQueue, searchIntentStatus, spawnVerificationQueue, tierListSnapshots, verificationTemplates } from "../data/content.js";
+import { codeVerificationTemplate, eventStatus, gscObservationTemplate, launchEvidenceQueues, launchStatusEntries, liveUpdate, platformUnlockQueue, searchIntentStatus, spawnVerificationQueue, tierListSnapshots, verificationTemplates } from "../data/content.js";
 
 const issues = [];
-const allowedStatuses = new Set(["Confirmed", "Verified", "Watchlist", "Unconfirmed", "Estimated", "Unknown", "Online", "Maintenance", "Degraded", "Outage"]);
+const allowedStatuses = new Set(["Confirmed", "Verified", "Watchlist", "Unconfirmed", "Estimated", "Unknown", "Online", "Maintenance", "Degraded", "Outage", "Upcoming", "Active", "Ended"]);
 
 for (const [name, template] of Object.entries(verificationTemplates)) {
   if (!template.requiredFields?.length) issues.push(`${name} template has no required fields.`);
@@ -48,6 +48,15 @@ for (const [slug, item] of Object.entries(searchIntentStatus)) {
   if (!item.statusId || !item.action || !launchStatusEntries.some((entry) => entry.id === item.statusId)) {
     issues.push(`Search intent status mapping is incomplete: ${slug}.`);
   }
+}
+
+for (const event of liveUpdate.events) {
+  if (!event.name || !event.startsAt || !event.detail) issues.push(`Live update event is incomplete: ${JSON.stringify(event)}`);
+  const start = new Date(event.startsAt);
+  const end = event.endsAt ? new Date(event.endsAt) : null;
+  if (Number.isNaN(start.valueOf()) || (end && Number.isNaN(end.valueOf()))) issues.push(`Live update event has an invalid date: ${event.name}`);
+  if (end && end <= start) issues.push(`Live update event ends before it starts: ${event.name}`);
+  if (!allowedStatuses.has(eventStatus(event))) issues.push(`Live update event has an unsupported calculated status: ${event.name}`);
 }
 
 if (issues.length) {
