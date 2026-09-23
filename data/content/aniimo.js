@@ -90,6 +90,7 @@ const names = [
   ["091", "gachapus", "Gachapus", "Unknown", "Watchlist", "Official Index"],
   ["092", "malangel", "Malangel", "Unknown", "Watchlist", "Official Index"],
   ["093", "malevsera", "Malevsera", "Unknown", "Watchlist", "Official Index"],
+  ["048", "squashel", "Squashel", "Unknown", "Watchlist", "Official Index"],
 ];
 
 const aniimoImages = {
@@ -182,6 +183,7 @@ const aniimoImages = {
   gachapus: "/images/aniimo/aniimo-gachapus.webp",
   malangel: "/images/aniimo/aniimo-malangel.webp",
   malevsera: "/images/aniimo/aniimo-malevsera.webp",
+  squashel: "/images/aniimo/aniimo-squashel.webp",
 };
 
 const officialDescriptions = {
@@ -274,6 +276,7 @@ const officialDescriptions = {
   gachapus: "With a quick tap from its nimble tentacles, it can launch all kinds of capsule bubbles from its head. No one knows what will pop out next—a delightful surprise, or a complete accident.",
   malangel: "They disguise themselves with a cheerful smile to sneak up on targets. Once in combat, they reveal their true colors and bare their fangs poised to strike.",
   malevsera: "They hide their fangs and claws in their soft body. Expert at using their gentle, harmless look to lower other creatures' guard before casually freezing them into ice sculptures.",
+  squashel: "Squashel has twin fist-like tails, giving its power a super-boost. Pinecones thrown with that force strike like cannonballs — not to be underestimated.",
 };
 
 const regionByAniimo = {
@@ -366,6 +369,7 @@ const regionByAniimo = {
   gachapus: "Official Wiki",
   malangel: "Official Wiki",
   malevsera: "Official Wiki",
+  squashel: "Official Wiki",
 };
 
 const evolutionFamilies = [

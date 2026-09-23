@@ -2179,6 +2179,7 @@ export function AniimoDetail({ item, navigate, localized = false }) {
   const pt = localized;
   const itemRegion = regions.find((region) => region.name === item.region);
   const eventAvailability = postLaunchEvidence.eventAniimo[item.id];
+  const linkedEvent = eventAvailability ? liveUpdate.events.find((event) => event.name === eventAvailability.eventName) : null;
   const sameElement = aniimo.filter((candidate) => candidate.id !== item.id && candidate.element === item.element).slice(0, 6);
   const sameRegion = aniimo.filter((candidate) => candidate.id !== item.id && candidate.region === item.region).slice(0, 6);
   const sameRole = aniimo.filter((candidate) => candidate.id !== item.id && candidate.role === item.role).slice(0, 6);
@@ -2215,7 +2216,7 @@ export function AniimoDetail({ item, navigate, localized = false }) {
       </section>}
       <div className="detail-panels">
         {!pt && <AnswerStatus status={item.status} checked={sourceLastChecked} sourceType="Official Wiki and source review" next={`Open the ${item.region} region guide or compare ${item.name}.`} />}
-        {!pt && eventAvailability && <InfoPanel title={eventAvailability.title} rows={[["Official event detail", eventAvailability.detail], ["Source rule", "This is event availability, not a permanent spawn route or exact coordinate."], ["Time standard", "Confirm the current official update before treating the event as active or expired."]]} />}
+        {!pt && eventAvailability && <InfoPanel title={eventAvailability.title} rows={[["Official event detail", eventAvailability.detail], ["Event status", linkedEvent ? eventStatus(linkedEvent) : "Watchlist"], ["Schedule", linkedEvent ? eventSchedule(linkedEvent) : "Check official update"], ["Source rule", "This is event availability, not a permanent spawn route or exact coordinate."]]} />}
         <InfoPanel title="Location" rows={[["Region", item.region], ["Habitat", item.habitat], ["Spawn condition", item.condition], ["Acquisition", item.acquisition]]} />
         <InfoPanel title="Index Data" rows={[["No.", item.no], ["Element", item.element], ["Role", item.role], ["Stage", item.stage]]} />
         <InfoPanel title="Search Match" rows={[
@@ -2251,7 +2252,7 @@ export function AniimoDetail({ item, navigate, localized = false }) {
         ...(item.id === "geoclaw" ? [["Where is Geoclaw in Aniimo?", "Geoclaw is currently associated with Mistwoods. Exact Alpha Geoclaw encounter points, conditions and route requirements need official or reproducible verification before publication."]] : []),
         ...(item.id === "glacy" ? [["Where is Glacy in Aniimo?", "Glacy is currently tracked in Nimbus Fields as an Ice DPS Aniimo at Lumin Stage. This page does not publish a precise spawn point until it is confirmed in the live game or by an official source."]] : []),
         ...(item.id === "inferlupa" ? [["How do I get Inferlupa in Aniimo?", "Inferlupa is Aniimo No. 004, a Fire DPS entry at Nova Stage. Its acquisition route and any evolution requirement should be treated as watchlist data until live-game or official evidence is available."]] : []),
-        ...(eventAvailability ? [[`Is ${item.name} available in an event?`, `${eventAvailability.detail} Confirm the official update and current client before treating this as a permanent location.`]] : []),
+        ...(eventAvailability ? [[`Is ${item.name} available in an event?`, `${eventAvailability.detail} ${linkedEvent ? `${eventSchedule(linkedEvent)}. Current status: ${eventStatus(linkedEvent)}.` : ""} Confirm the official update and current client before treating this as a permanent location.`]] : []),
       ]} />
     </section>
   );

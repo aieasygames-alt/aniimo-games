@@ -1,16 +1,17 @@
 # Aniimo Official Update Report
 
-Generated: 2026-09-23T14:12:59.345Z
+Generated: 2026-09-23T14:28:42.414Z
 
 ## Summary
 
-- Local Aniimo entries: 89
+- Local Aniimo entries: 90
 - Official Wiki entries found in probe page: 81
+- Wiki comparison mode: Names matched directly
 - Local regions: 6
 - Official regions seen on main page: 6
 - PC/console launch date: 2026-09-16
 - Mobile launch date: 2026-09-23
-- Watchlist entries needing field verification: 36
+- Watchlist entries needing field verification: 37
 
 ## Fetch Status
 
@@ -24,7 +25,6 @@ Generated: 2026-09-23T14:12:59.345Z
 - Turbo
 - Dreaple
 - Squarrel
-- Squashel
 
 ## Local Aniimo Not Seen In Probe
 
@@ -84,6 +84,7 @@ Generated: 2026-09-23T14:12:59.345Z
 - 091 Gachapus
 - 092 Malangel
 - 093 Malevsera
+- 048 Squashel
 
 ## Region Names Not Seen On Main Page
 

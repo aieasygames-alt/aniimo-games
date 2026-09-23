@@ -67,6 +67,7 @@ export const liveUpdate = {
     { name: "Glamour Star", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-10-02T03:59:00+08:00", detail: "Reach Student II and submit a themed Aniimo entry." },
     { name: "Aniimo Discovery", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-10-09T03:59:00+08:00", detail: "Reach Student II; free Search Attempts replenish periodically and do not stack." },
     { name: "Vein Abundance: Rosetower Woods", startsAt: "2026-09-28T04:00:00+08:00", endsAt: "2026-10-05T03:59:00+08:00", detail: "Prismana Form Melloblum is listed for Rosetower Woods." },
+    { name: "Vein Abundance: Berylline Vale", startsAt: "2026-10-05T04:00:00+08:00", endsAt: "2026-10-12T03:59:00+08:00", detail: "Prismana Form Waleetle is listed for Berylline Vale." },
     { name: "Journey Chronicles", startsAt: "2026-10-01T04:00:00+08:00", endsAt: "2026-10-29T03:59:00+08:00", detail: "Reach Student I and log in for the listed number of days to claim gifts." },
   ],
 };
@@ -110,12 +111,14 @@ export const postLaunchEvidence = {
   eventAniimo: {
     melloblum: {
       title: "Prismana Form Melloblum event availability",
-      detail: "The September update lists Prismana Form Melloblum in Vein Abundance at Rosetower Woods from September 28, 04:00 to October 5, 03:59 UTC+8.",
+      eventName: "Vein Abundance: Rosetower Woods",
+      detail: "The September update lists Prismana Form Melloblum in Vein Abundance at Rosetower Woods.",
       source: officialLinks.septemberUpdate,
     },
     waleetle: {
       title: "Prismana Form Waleetle event availability",
-      detail: "The September update lists Prismana Form Waleetle at Berylline Vale from October 5, 04:00 to October 12, 03:59 UTC+8.",
+      eventName: "Vein Abundance: Berylline Vale",
+      detail: "The September update lists Prismana Form Waleetle at Berylline Vale.",
       source: officialLinks.septemberUpdate,
     },
   },

@@ -79,8 +79,15 @@ const wikiHtml = wikiFetch.text;
 const officialAniimo = extractWikiAniimo(wikiHtml);
 const officialNames = officialAniimo.map((item) => item.name);
 const localNames = aniimo.map((item) => item.name);
-const missingLocally = wikiFetch.ok ? officialNames.filter((name) => !localNames.includes(name)) : [];
-const localOnly = wikiFetch.ok ? localNames.filter((name) => !officialNames.includes(name)) : [];
+const officialNumbers = officialAniimo.map((item) => item.no);
+const localNumbers = aniimo.map((item) => item.no);
+const matchedByName = officialNames.filter((name) => localNames.includes(name));
+const matchedByNumber = officialNumbers.filter((no) => localNumbers.includes(no));
+const wikiIsLocalized = officialAniimo.length > 20 && matchedByName.length === 0 && matchedByNumber.length > 20;
+const missingLocally = wikiFetch.ok
+  ? (wikiIsLocalized ? officialAniimo.filter((item) => !localNumbers.includes(item.no)).map((item) => `${item.no} ${item.name}`) : officialNames.filter((name) => !localNames.includes(name)))
+  : [];
+const localOnly = wikiFetch.ok && !wikiIsLocalized ? localNames.filter((name) => !officialNames.includes(name)) : [];
 const missingDescriptions = aniimo.filter((item) => !item.description || item.description.length < 20).map((item) => item.name);
 const watchlistEntries = aniimo.filter((item) => item.element === "Unknown" || item.role === "Watchlist" || item.region === "Official Wiki").map((item) => `${item.no} ${item.name}`);
 const regionNames = extractKnownRegionNames(mainHtml);
@@ -95,6 +102,7 @@ Generated: ${new Date().toISOString()}
 
 - Local Aniimo entries: ${aniimo.length}
 - Official Wiki entries found in probe page: ${officialAniimo.length}
+- Wiki comparison mode: ${wikiIsLocalized ? "Localized names matched by official number" : "Names matched directly"}
 - Local regions: ${regions.length}
 - Official regions seen on main page: ${regionNames.length}
 - PC/console launch date: ${releaseInfo.pcConsole}
@@ -113,7 +121,7 @@ ${officialAniimo.length ? markdownList(missingLocally, "None") : "- Skipped beca
 
 ## Local Aniimo Not Seen In Probe
 
-${officialAniimo.length ? markdownList(localOnly, "None") : "- Skipped because no fetchable official Wiki entry list was found."}
+${officialAniimo.length ? (wikiIsLocalized ? "- Not compared by name because the official Wiki source is localized." : markdownList(localOnly, "None")) : "- Skipped because no fetchable official Wiki entry list was found."}
 
 ## Local Entries Needing Description Review
 

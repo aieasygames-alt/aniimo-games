@@ -11,11 +11,13 @@ const applyChanges = process.argv.includes("--apply");
 
 const wikiHome = await fetchText(wikiHomeUrl);
 const candidates = uniq([
+  wikiHomeUrl,
   ...extractWikiCandidates(wikiHome.text),
   legacyWikiUrl,
 ]);
 const probes = await Promise.all(candidates.map(fetchText));
-const sourceFetch = probes.find((result) => result.ok && extractWikiAniimo(result.text).length > 0)
+const sourceFetch = probes.find((result) => result.url === wikiHomeUrl && result.ok && extractWikiAniimo(result.text).length > 0)
+  || probes.find((result) => result.ok && extractWikiAniimo(result.text).length > 0)
   || probes.find((result) => result.ok);
 
 if (!sourceFetch) {
