@@ -32,8 +32,14 @@ console.log(`GSC watchlist audit passed: ${gscLatestObservations.queryWatchlist.
 
 function resolveWatchlistPath(query) {
   const value = query.toLowerCase();
+  if (value.includes("controller")) return "/topics/aniimo-controller-support/";
   if (value.includes("discord")) return "/topics/aniimo-discord/";
   if (value.includes("reddit")) return "/topics/aniimo-reddit/";
+  if (value.includes("blitzwood")) return "/regions/blitzwood/";
+  if (value.includes("mistwoods")) return "/regions/mistwoods/";
+  if (value.includes("eko location")) return "/aniimo/eko/";
+  if (value.includes("geschenkcode")) return "/codes/";
+  if (value.includes("reroll")) return "/aniimo-reroll-guide/";
   if (value.includes("guide")) return "/guides/";
   if (value.includes("celestis")) return "/aniimo/celestis/";
   if (value.includes("inferlupa")) return "/aniimo/inferlupa/";

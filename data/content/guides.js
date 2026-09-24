@@ -156,7 +156,7 @@ export const editorialGuides = {
     ["Verification rule", "A code should only be marked active after it appears on an official channel or can be redeemed in-game."],
   ],
   wiki: [
-    ["Aniimo index", "The database currently tracks all 89 public Aniimo entries discoverable from the official Wiki probe page. Entries with incomplete element, role or stage data remain labeled as watchlist fields."],
+    ["Aniimo index", "The database currently tracks all 90 public Aniimo entries discoverable from the official Wiki probe page. Entries with incomplete element, role or stage data remain labeled as watchlist fields."],
     ["Map index", "Six public world regions are connected to guide pages with official artwork and representative Aniimo."],
     ["Maintenance", "New official Wiki and site updates should flow into the changelog before pages are refreshed."],
   ],
@@ -169,8 +169,8 @@ export const faqs = {
     ["What is Twine in Aniimo?", "Twine lets players become collected Aniimo and use their skills for puzzles, battles, traversal and exploration."],
   ],
   database: [
-    ["Where can I find Aniimo characters?", "Use the Aniimo database to search all 89 public creatures by name, element, role, region, stage and evolution. Each detail page links to its current source-labeled location guide."],
-    ["How many Aniimo names are listed?", "This site currently tracks 89 public Aniimo names discoverable from the official Aniimo Wiki probe page."],
+    ["Where can I find Aniimo characters?", "Use the Aniimo database to search all 90 public creatures by name, element, role, region, stage and evolution. Each detail page links to its current source-labeled location guide."],
+    ["How many Aniimo names are listed?", "This site currently tracks 90 public Aniimo names discoverable from the official Aniimo Wiki probe page."],
     ["Are elements and roles official?", "Confirmed entries use official Wiki element, role and stage labels. Newly synced index-only entries keep unknown fields labeled until verified."],
   ],
   map: [
@@ -189,7 +189,7 @@ export const faqs = {
     ["Is Aniimo out yet?", "Yes. Aniimo is live on PC, consoles, iOS and Android. Availability can still vary by country, storefront and device."],
     ["Is Aniimo on Steam?", "Yes. Aniimo is live through its official Steam listing for PC."],
     ["Are there Aniimo codes?", "No public redeem code is confirmed on Aniimo.games yet. Confirmed pre-registration and milestone rewards are tracked separately from redeem codes."],
-    ["How many Aniimo are confirmed?", "Aniimo.games currently tracks 89 public Aniimo names from the official Wiki probe workflow."],
+    ["How many Aniimo are confirmed?", "Aniimo.games currently tracks 90 public Aniimo names from the official Wiki probe workflow."],
     ["Is Aniimo free to play?", "Official storefront language describes Aniimo as a free-to-play creature-catching open-world RPG."],
     ["Is Aniimo on mobile?", "Yes. Aniimo is live on iOS and Android. Check the official App Store or Google Play listing for your country and device."],
   ],

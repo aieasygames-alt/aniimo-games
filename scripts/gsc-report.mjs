@@ -170,6 +170,12 @@ function normalizePage(url) {
 
 function queryAction(query) {
   const value = query.toLowerCase();
+  if (value.includes("controller")) return "Strengthen controller support guidance, platform limits and links to known issues.";
+  if (value.includes("junior wayfarer")) return "Refresh Junior Wayfarer eligibility, delivery status and official reward-source links.";
+  if (value.includes("server") || value.includes("down")) return "Keep server-status language source-dated and link to known issues and launch support.";
+  if (value.includes("blitzwood") || value.includes("mistwoods")) return "Strengthen the matching region hub and source-labeled location links.";
+  if (value.includes("location")) return "Improve the matching Aniimo location answer without claiming unverified coordinates.";
+  if (value.includes("reroll")) return "Link to the reroll guide and keep account-reset advice verification-labeled.";
   if (value.includes("map")) return "Strengthen map-size, region count and route-verification content.";
   if (value.includes("code")) return "Keep code pages fresh and separate rewards from redeemable strings.";
   if (value.includes("guide")) return "Route homepage and site-index links toward the guide hub.";
@@ -190,7 +196,7 @@ function filterRange() {
   const filterPath = join(inputDir, "Filters.csv");
   if (!existsSync(filterPath)) return "Unknown";
   const rows = readCsv("Filters.csv");
-  return rows.find((row) => row.Filter === "Time range")?.Value || "Unknown";
+  return rows.find((row) => row.Filter === "Time range" || row.Filter === "Date")?.Value || "Unknown";
 }
 
 function weightedPosition(rows) {

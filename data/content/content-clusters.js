@@ -862,7 +862,7 @@ export const searchSuggestionTopics = [
       ["After launch", "Add exact routes, screenshots and tested ability notes once live verification exists."],
     ],
     faq: [
-      ["How many Aniimo characters are listed?", "Aniimo.games currently tracks 89 public Aniimo entries from the official Wiki workflow."],
+      ["How many Aniimo characters are listed?", "Aniimo.games currently tracks 90 public Aniimo entries from the official Wiki workflow."],
       ["Are all characters playable?", "The site should avoid final playable claims unless official or in-game sources confirm the exact status."],
     ],
   },
@@ -913,8 +913,8 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-wiki-dex",
-    title: "Aniimo Wiki Dex: All 89 Creatures, Names & Evolutions",
-    description: "Browse the Aniimo wiki dex and all 89 creature entries with official names, numbers, roles, elements, evolutions and source notes.",
+    title: "Aniimo Wiki Dex: All 90 Creatures, Names & Evolutions",
+    description: "Browse the Aniimo wiki dex and all 90 creature entries with official names, numbers, roles, elements, evolutions and source notes.",
     intro: "Wiki, dex, all Aniimo and list searches usually mean users want a complete creature index. This page connects that intent to the Aniimo.games database while keeping official Wiki facts and launch-only route claims separate.",
     points: [
       ["Database path", "Use the Aniimo database for tracked names, official numbers, elements, roles, stages, images and source status."],

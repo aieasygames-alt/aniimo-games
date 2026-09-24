@@ -14,8 +14,14 @@ function priorityAniimoPages() {
 
 function gscWatchlistPath(query) {
   const value = query.toLowerCase();
+  if (value.includes("controller")) return "/topics/aniimo-controller-support/";
   if (value.includes("discord")) return "/topics/aniimo-discord/";
   if (value.includes("reddit")) return "/topics/aniimo-reddit/";
+  if (value.includes("blitzwood")) return "/regions/blitzwood/";
+  if (value.includes("mistwoods")) return "/regions/mistwoods/";
+  if (value.includes("eko location")) return "/aniimo/eko/";
+  if (value.includes("geschenkcode")) return "/codes/";
+  if (value.includes("reroll")) return "/aniimo-reroll-guide/";
   if (value.includes("celestis")) return "/aniimo/celestis/";
   if (value.includes("inferlupa")) return "/aniimo/inferlupa/";
   if (value.includes("glacy")) return "/aniimo/glacy/";
@@ -68,7 +74,7 @@ export function HomePage(props) {
         </section>
 
         <section className="section launch-answer-strip" aria-label="Quick Aniimo answers">
-          <div className="answer-card"><strong>89</strong><span>public Aniimo entries</span><a href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>Open database <ChevronRight size={15} /></a></div>
+          <div className="answer-card"><strong>{aniimo.length}</strong><span>public Aniimo entries</span><a href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>Open database <ChevronRight size={15} /></a></div>
           <div className="answer-card"><strong>Live</strong><span>PC and console platforms</span><a href="/download/" onClick={(event) => props.navigate(event, "/download/")}>Open download guide <ChevronRight size={15} /></a></div>
           <div className="answer-card"><strong>Live</strong><span>iOS and Android platforms</span><a href="/platforms/mobile/" onClick={(event) => props.navigate(event, "/platforms/mobile/")}>Mobile details <ChevronRight size={15} /></a></div>
         </section>
@@ -82,7 +88,7 @@ export function HomePage(props) {
         <section className="section sources-band">
           <SectionTitle icon={<Compass />} kicker="Launch Guide" title="Popular Aniimo Questions" />
           <InfoPanel title="What Players Need" rows={[
-            ["Aniimo database", "Browse all 89 public entries by name, element, role, region and stage."],
+            ["Aniimo database", `Browse all ${aniimo.length} public entries by name, element, role, region and stage.`],
             ["Platform status", "PC, Steam, Epic, PS5, Xbox, iOS and Android are live; check storefront availability by country and device."],
             ["Launch help", "Check official sources, known issues, codes and account guidance before using community fixes."],
           ]} />
@@ -139,15 +145,15 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
           <p className="section-copy">
             Browse the full Aniimo list with official Wiki numbers, names, elements, roles,
             stages, locations, forms and source status. This page is the Aniimo wiki-style
-            creature database for users searching all 89 Aniimo, character names, locations,
+            creature database for users searching all {aniimo.length} Aniimo, character names, locations,
             evolutions and guide entries.
           </p>
           <div className="answer-strip database-answer-strip" aria-label="Database quick answers">
-            <div><strong>89</strong><span>public entries</span></div>
+            <div><strong>{aniimo.length}</strong><span>public entries</span></div>
             <div><strong>Search</strong><span>name, element, role or region</span></div>
             <div><strong>Status</strong><span>confirmed, watchlist or verified</span></div>
           </div>
-          {!compact && <InfoPanel title="Aniimo Characters: Quick Answer" rows={[["What this list includes", "All 89 tracked Aniimo characters with number, element, role, region, stage and source status."], ["Find a character", "Search a name such as Celestis, Eko or Sherro, then open the detail page for location and evolution notes."], ["Location accuracy", "Region associations are listed now; exact spawn points need verified in-game or official evidence."]]} />}
+          {!compact && <InfoPanel title="Aniimo Characters: Quick Answer" rows={[["What this list includes", `All ${aniimo.length} tracked Aniimo characters with number, element, role, region, stage and source status.`], ["Find a character", "Search a name such as Celestis, Eko or Sherro, then open the detail page for location and evolution notes."], ["Location accuracy", "Region associations are listed now; exact spawn points need verified in-game or official evidence."]]} />}
           <details className="filter-drawer" open>
             <summary>Filter the creature list</summary>
           <div className="filters">
