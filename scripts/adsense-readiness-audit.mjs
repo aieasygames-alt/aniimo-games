@@ -2,12 +2,21 @@ import { existsSync, readFileSync } from "node:fs";
 import { fullSitemapRoutes, siteUrl } from "../src/lib/routes.js";
 
 const publisherId = "ca-pub-9405779043815952";
+const adsTxtRecord = `google.com, pub-9405779043815952, DIRECT, f08c47fec0942fa0`;
 const localChecks = [];
 const liveChecks = [];
 const index = readFileSync("index.html", "utf8");
 const redirects = readFileSync("public/_redirects", "utf8");
 const privacySource = readFileSync("src/pages/pages.jsx", "utf8");
 const routes = new Set(fullSitemapRoutes());
+
+if (!existsSync("public/ads.txt") || !readFileSync("public/ads.txt", "utf8").trim().split(/\r?\n/).includes(adsTxtRecord)) {
+  localChecks.push("Missing the required Google AdSense ads.txt authorization record in public/ads.txt.");
+}
+
+if (!existsSync("dist/ads.txt") || !readFileSync("dist/ads.txt", "utf8").trim().split(/\r?\n/).includes(adsTxtRecord)) {
+  localChecks.push("Missing the ads.txt authorization record from the production build. Run the production build before auditing.");
+}
 
 if (!index.includes(`adsbygoogle.js?client=${publisherId}`)) {
   localChecks.push("Missing the AdSense loader script with the configured publisher ID in index.html.");
@@ -61,6 +70,19 @@ for (const path of pages) {
   }
 }
 
+const adsTxtUrl = `${siteUrl}/ads.txt`;
+const adsTxtResponse = await fetch(adsTxtUrl, { redirect: "manual" }).catch((error) => {
+  liveChecks.push(`${adsTxtUrl} could not be fetched: ${error.message}`);
+  return null;
+});
+if (adsTxtResponse) {
+  if (adsTxtResponse.status !== 200) {
+    liveChecks.push(`${adsTxtUrl} returned ${adsTxtResponse.status}; deploy ads.txt before applying.`);
+  } else if (!(await adsTxtResponse.text()).trim().split(/\r?\n/).includes(adsTxtRecord)) {
+    liveChecks.push(`${adsTxtUrl} does not contain the required Google AdSense authorization record.`);
+  }
+}
+
 for (const path of ["/", "/aniimo/"]) {
   const url = `https://www.aniimo.games${path}`;
   const response = await fetch(url, { redirect: "manual" }).catch((error) => {
@@ -80,4 +102,4 @@ if (liveChecks.length) {
   process.exit(1);
 }
 
-console.log(`AdSense readiness audit passed: ${pages.length} public trust pages, ad loader, privacy disclosures and canonical host redirect verified.`);
+console.log(`AdSense readiness audit passed: ${pages.length} public trust pages, ad loader, ads.txt, privacy disclosures and canonical host redirect verified.`);
