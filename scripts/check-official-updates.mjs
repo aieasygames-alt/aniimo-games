@@ -6,6 +6,7 @@ const officialWikiHome = "https://wiki.aniimo.com/";
 const legacyWikiProbe = "https://wiki.aniimo.com/item/10002877";
 const reportPath = "official-update-report.md";
 const snapshotPath = "official-wiki-snapshot.json";
+const newsSnapshotPath = "official-news-snapshot.json";
 
 async function fetchText(url) {
   try {
@@ -73,6 +74,16 @@ function readSnapshot() {
   }
 }
 
+function readNewsSnapshot() {
+  if (!existsSync(newsSnapshotPath)) return null;
+  try {
+    const snapshot = JSON.parse(readFileSync(newsSnapshotPath, "utf8"));
+    return Array.isArray(snapshot?.items) ? snapshot : null;
+  } catch {
+    return null;
+  }
+}
+
 const mainFetch = await fetchText(officialMain);
 const wikiHomeFetch = await fetchText(officialWikiHome);
 const wikiCandidates = uniq([
@@ -104,7 +115,12 @@ const watchlistEntries = aniimo.filter((item) => item.element === "Unknown" || i
 const regionNames = extractKnownRegionNames(mainHtml);
 const missingRegions = mainFetch.ok ? regions.map((region) => region.name).filter((name) => !regionNames.includes(name)) : [];
 const newsTitles = extractNewsTitles(mainHtml);
+const newsItems = [...mainHtml.matchAll(/href="([^"?]+)"[^>]*title="([^"]+)"/g)]
+  .map((match) => ({ url: new URL(match[1], officialMain).href, title: match[2].trim() }))
+  .filter((item) => /Aniimo|Global|Beta|Launch|Wayfarer/i.test(item.title))
+  .slice(0, 20);
 const previousSnapshot = readSnapshot();
+const previousNewsSnapshot = readNewsSnapshot();
 const currentNumbers = [...new Set(officialNumbers)].sort();
 const previousNumbers = previousSnapshot?.numbers || [];
 const newlyVisibleNumbers = previousSnapshot ? currentNumbers.filter((no) => !previousNumbers.includes(no)) : [];
@@ -114,6 +130,13 @@ const snapshot = {
   source: wikiFetch.url,
   numbers: currentNumbers,
 };
+const newsSnapshot = {
+  checkedAt: new Date().toISOString(),
+  source: officialMain,
+  items: newsItems,
+};
+const priorNewsUrls = new Set((previousNewsSnapshot?.items || []).map((item) => item.url));
+const newNewsItems = previousNewsSnapshot ? newsItems.filter((item) => !priorNewsUrls.has(item.url)) : [];
 
 const report = `# Aniimo Official Update Report
 
@@ -166,6 +189,10 @@ ${mainFetch.ok ? markdownList(missingRegions, "None") : "- Skipped because the o
 
 ${markdownList(newsTitles, "No news titles extracted")}
 
+## Official News Changes Since Last Snapshot
+
+${previousNewsSnapshot ? markdownList(newNewsItems.map((item) => `${item.title} - ${item.url}`), "None") : "- Baseline created"}
+
 ## Recommended Next Actions
 
 - If the Wiki data probe reports zero entries, review the discovered official Wiki links before treating the database as current.
@@ -177,4 +204,5 @@ ${markdownList(newsTitles, "No news titles extracted")}
 
 writeFileSync(reportPath, report);
 writeFileSync(snapshotPath, `${JSON.stringify(snapshot, null, 2)}\n`);
+writeFileSync(newsSnapshotPath, `${JSON.stringify(newsSnapshot, null, 2)}\n`);
 console.log(report);

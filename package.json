@@ -23,6 +23,7 @@
     "check:gsc-watchlist": "node scripts/gsc-watchlist-audit.mjs",
     "check:launch-readiness": "node scripts/launch-readiness-audit.mjs",
     "check:live": "node scripts/live-audit.mjs",
+    "check:monitoring": "node scripts/monitoring-report.mjs",
     "indexing:candidates": "node scripts/indexing-candidates.mjs",
     "gsc:report": "node scripts/gsc-report.mjs",
     "gsc:auth": "node scripts/gsc-api.mjs auth",
