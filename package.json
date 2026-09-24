@@ -25,6 +25,7 @@
     "check:verification": "node scripts/verification-audit.mjs",
     "check:gsc-watchlist": "node scripts/gsc-watchlist-audit.mjs",
     "check:launch-readiness": "node scripts/launch-readiness-audit.mjs",
+    "check:adsense": "node scripts/adsense-readiness-audit.mjs",
     "check:live": "node scripts/live-audit.mjs",
     "check:monitoring": "node scripts/monitoring-report.mjs",
     "indexing:candidates": "node scripts/indexing-candidates.mjs",

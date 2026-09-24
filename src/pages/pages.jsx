@@ -2181,6 +2181,37 @@ export function ContactPage() {
   );
 }
 
+export function PrivacyPolicyPage() {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<CheckCircle2 />} kicker="Trust" title="Privacy Policy" />
+      <p className="section-copy">
+        This policy explains how Aniimo.games handles limited visitor information and
+        third-party services. Aniimo.games is an independent guide site and is not
+        affiliated with Aniimo, Pawprint Studio, Google or Google AdSense.
+      </p>
+      <InfoPanel title="Policy Details" rows={[
+        ["Site", "Aniimo.games"],
+        ["Effective date", "2026-09-24"],
+        ["Contact", "Use the Contact page to report a privacy concern or request."],
+      ]} />
+      <SeoGuideBlock items={[
+        { title: "Information collected", body: "Aniimo.games does not require an account or collect names, email addresses or payment information through the site. Our hosting provider may process technical information such as IP address, browser type, device information, referring URL and request logs to deliver and secure the site." },
+        { title: "Cookies and Google advertising", body: "Aniimo.games uses Google AdSense services. Google and its advertising partners may use cookies or similar technologies to show and measure ads based on visits to this and other sites, subject to applicable law and consent requirements. Google may use advertising cookies to serve personalized ads where permitted." },
+        { title: "Your choices", body: "You can control or delete cookies in your browser settings. Where available, you can manage Google ad personalization at Google Ads Settings. Visitors in regions that require consent will be offered the applicable privacy choices before non-essential advertising technologies are used." },
+        { title: "External links", body: "Guide pages link to official Aniimo websites, storefronts and other external services. Their privacy practices are governed by their own policies, not this policy." },
+        { title: "Data retention and sharing", body: "Aniimo.games does not sell personal information. Technical data retained by hosting, security, analytics or advertising providers is subject to those providers' retention practices and legal obligations." },
+        { title: "Updates and contact", body: "This policy may change when site services or legal requirements change. The effective date above will be updated with material revisions. For privacy questions, use the site's Contact page and include the relevant page URL." },
+      ]} />
+      <LinkGroup title="Related Policies" items={[
+        ["Contact", "/contact/", "Reach the site maintainer about privacy questions or correction requests."],
+        ["Editorial Policy", "/editorial-policy/", "Review the source and correction standards used by Aniimo.games."],
+        ["Google Privacy & Terms", "https://policies.google.com/technologies/ads", "Learn how Google uses information from sites and apps that use its services."],
+      ]} />
+    </section>
+  );
+}
+
 export function AniimoDetail({ item, navigate, localized = false }) {
   const pt = localized;
   const itemRegion = regions.find((region) => region.name === item.region);

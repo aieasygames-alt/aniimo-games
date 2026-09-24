@@ -56,6 +56,7 @@ export const staticRoutes = [
   { path: "/about/", label: "About", title: "About Aniimo.games", description: "Learn what Aniimo.games covers, how the independent guide site uses official public Aniimo sources and how content is maintained." },
   { path: "/editorial-policy/", label: "Editorial Policy", title: "Aniimo.games Editorial Policy", description: "Review Aniimo.games source policy, verification labels, update workflow and correction standards." },
   { path: "/contact/", label: "Contact", title: "Contact Aniimo.games", description: "Contact Aniimo.games about corrections, missing Aniimo data, source updates, image issues and site feedback." },
+  { path: "/privacy-policy/", label: "Privacy Policy", title: "Aniimo.games Privacy Policy", description: "Learn how Aniimo.games uses cookies, Google advertising services and visitor information." },
 ];
 
 const primaryNavPaths = ["/aniimo/", "/map/", "/guides/", "/mechanics/", "/launch/", "/codes/", "/site-index/"];

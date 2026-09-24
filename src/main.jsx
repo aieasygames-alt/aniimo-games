@@ -47,6 +47,7 @@ import {
   NotFoundPage,
   PlatformPage,
   PreRegistrationRewardsPage,
+  PrivacyPolicyPage,
   RegionDetail,
   ReleaseDatePage,
   RewardsPage,
@@ -302,6 +303,8 @@ function App() {
           <EditorialPolicyPage />
         ) : routeInfo.path === "/contact/" ? (
           <ContactPage />
+        ) : routeInfo.path === "/privacy-policy/" ? (
+          <PrivacyPolicyPage />
         ) : routeInfo.path === "/" && path === "/" ? (
           <>
             <HomePage {...sharedProps} />
@@ -322,7 +325,7 @@ function App() {
           <a href="/editorial-policy/" onClick={(event) => navigate(event, "/editorial-policy/")}>Editorial Policy</a>
           <a href="/sources/" onClick={(event) => navigate(event, "/sources/")}>Sources</a>
           <a href="/contact/" onClick={(event) => navigate(event, "/contact/")}>Contact</a>
-          <a href={officialLinks.privacy} target="_blank" rel="noreferrer">Privacy</a>
+          <a href="/privacy-policy/" onClick={(event) => navigate(event, "/privacy-policy/")}>Privacy</a>
         </nav>
         <p className="site-footer-meta">Last updated {siteLastUpdated}</p>
       </footer>
