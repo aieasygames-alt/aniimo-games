@@ -626,13 +626,13 @@ export const officialPitchTopics = [
   },
   {
     slug: "aniimo-egg-heist-guide",
-    title: "Aniimo Egg Heist Guide",
-    description: "Track Aniimo Egg Heist as an official PVEVP mode and prepare launch verification for team size, rewards, routes and combat rules.",
+    title: "Aniimo Egg Heist Guide: Team Mode, Requirements & Status",
+    description: "Check what Aniimo Egg Heist officially confirms about its PVEVP team mode, current event availability, entry requirements, rewards and rules still awaiting verification.",
     image: "/images/mechanics/mechanic-egg-heist.webp",
-    intro: "Egg Heist deserves a standalone guide because it answers a different intent from database, download and map searches: players want to know how the mode works.",
+    intro: "Egg Heist is an official PVEVP team mode for players who want a direct answer on what the mode is, how to enter it, and which details still need current-client verification.",
     points: [
       ["Mode identity", "Egg Heist is described as a PVEVP mode, so pages should explain that it combines exploration, enemy pressure and player-versus-player risk."],
-      ["Team structure", "Official text describes three-player teams. Matchmaking, party limits and rewards need live verification."],
+      ["Team structure", "Official text describes three-player teams. The September update lists Chaos Mode with a Tier IV Elite Egg Seeker requirement and recommends team play; matchmaking, party limits and rewards still need live verification."],
       ["Lost Isles watchlist", "The Lost Isles setting should be tracked separately from the six public region pages until route details are confirmed."],
     ],
     faq: [
@@ -1067,7 +1067,7 @@ export const searchSuggestionTopics = [
     slug: "aniimo-discord",
     title: "Aniimo Discord: Official Server, Invite, Codes & Status",
     description: "Looking for the Aniimo Discord server? Find the official invite path, verify code announcements and follow launch updates without trusting fake links.",
-    intro: "Looking for the Aniimo Discord server? Use this page to find the official community path, check launch announcements and codes, avoid fake invites, and separate community chatter from verified guide facts.",
+    intro: "Looking for the Aniimo Discord server? Start with the verified official-community path below, then use official announcements for maintenance, codes and launch updates. Do not trust invite screenshots or reposted links as proof of an official server.",
     points: [
       ["Official invite check", "Use the official Aniimo website, official social profiles or verified storefront links before trusting any Discord invite shared by a third-party page."],
       ["Launch-day value", "A verified Discord can be useful for server status notices, maintenance timing, code announcements, beta access updates and region-specific player reports."],
@@ -1612,7 +1612,7 @@ export const troubleshootingTopics = [
     slug: "aniimo-server-status",
     title: "Aniimo Server Status: Maintenance, Login & Outage Updates",
     description: "Check Aniimo server status, maintenance and login outage updates. See the current verification state, official update paths and platform-specific next steps.",
-    intro: "No active Aniimo-wide outage is marked confirmed here unless an official notice or repeatable live evidence supports it. Use this page to distinguish maintenance, login trouble, platform availability and isolated account issues.",
+    intro: "This live support page distinguishes confirmed Aniimo-wide outages from maintenance, storefront availability and local account problems. Its status is dated and source-labeled so historical launch notices are not confused with a current incident.",
     points: [
       ["Current check", "No active Aniimo-wide outage is currently marked confirmed by Aniimo.games. Check official news and your platform store before treating a local login issue as a server outage."],
       ["Regional questions", "Community discussions ask whether EU and other regional servers will be available. The closed beta is not proof of final launch server routing."],
@@ -1629,9 +1629,9 @@ export const troubleshootingTopics = [
   },
   {
     slug: "aniimo-known-issues",
-    title: "Aniimo Known Issues",
-    description: "Track Aniimo known issues for launch errors, login problems, black screen reports, stuck loading and platform-specific fixes.",
-    intro: "Known-issue pages are useful only when they separate official launch guidance from unverified reports. Aniimo's launch notice warns that login queues and slower loading can occur while player volume is high.",
+    title: "Aniimo Known Issues: Login, Loading, Store & Reward Help",
+    description: "Check Aniimo known issues for login queues, server-not-ready errors, stuck loading, store visibility, updates and reward claims with platform-specific next steps.",
+    intro: "This index keeps official launch guidance separate from unverified player reports. Each row records the affected scope, a safe next step, source, and last checked date.",
     points: [
       ["Official launch guidance", "Login queues and slower loading can occur at launch. Keep a stable connection, close unnecessary background programs and verify that the device meets official requirements."],
       ["Issue threshold", "List a specific defect only after official acknowledgement, repeatable storefront behavior or multiple consistent reports with platform and time."],

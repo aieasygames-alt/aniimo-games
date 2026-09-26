@@ -1,15 +1,26 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles, Plus, X, Copy, Download as DownloadIcon } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, eventSchedule, eventStatus, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, liveUpdate, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, postLaunchEvidence, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, eventSchedule, eventStatus, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, liveIssueRegistry, liveSupportStatus, liveUpdate, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, postLaunchEvidence, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { AnswerStatus, CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
 const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup", "eklue", "skippy", "helgon"];
+const highIntentAniimoIds = new Set(["besauce", "fragrancier", "infergon", "blazen", "tubster", "fentuft", "thornblade", "pawney", "fenmane", "geodeback"]);
 
 function priorityAniimoPages() {
   return priorityAniimoIds
     .map((id) => aniimo.find((item) => item.id === id))
     .filter(Boolean);
+}
+
+function creatureSearchAnswer(item) {
+  const unverified = [item.element, item.role, item.stage, item.region].filter((value) => value === "Unknown" || value === "Official Wiki").length > 0;
+  return [
+    ["Official identity", `${item.name} is listed as Aniimo No. ${item.no} in the tracked public Wiki data.`],
+    ["Current classification", `${item.element} element, ${item.role} role, ${item.stage} stage, ${item.region} region.`],
+    ["Location and evolution", unverified ? "Exact location, evolution and gameplay-use details are still watchlist fields. This page does not infer them from the name or flavor text." : "Use the source-labeled region and form information above; exact routes, conditions and requirements still need official or reproducible in-game verification."],
+    ["Last reviewed", sourceLastChecked],
+  ];
 }
 
 function gscWatchlistPath(query) {
@@ -50,21 +61,21 @@ export function HomePage(props) {
     <>
         <section className="hero">
           <div className="hero-copy">
-            <p className="eyebrow">Live PC, console and mobile guide</p>
-            <h1>Find the right Aniimo answer, fast.</h1>
-            <p>{gameInfo.summary} Search the public database, open an official store path, or check current launch support without sorting through rumor guides.</p>
+            <p className="eyebrow">Independent live Aniimo guide</p>
+            <h1>Server status, downloads, issues and Aniimo answers.</h1>
+            <p>{gameInfo.summary} Check a dated support answer, use an official store path, browse known issues, or search the public database without sorting through rumor guides.</p>
             <div className="hero-actions">
-              <a className="primary-action" href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>
-                <Search size={18} />
-                Find an Aniimo
+              <a className="primary-action" href="/troubleshooting/aniimo-server-status/" onClick={(event) => props.navigate(event, "/troubleshooting/aniimo-server-status/")}>
+                <CheckCircle2 size={18} />
+                Server status
               </a>
               <a className="secondary-action" href="/download/" onClick={(event) => props.navigate(event, "/download/")}>
                 <Download size={18} />
                 Choose a platform
               </a>
-              <a className="secondary-action" href="/launch-day/" onClick={(event) => props.navigate(event, "/launch-day/")}>
-                <CheckCircle2 size={18} />
-                Check current status
+              <a className="secondary-action" href="/troubleshooting/aniimo-known-issues/" onClick={(event) => props.navigate(event, "/troubleshooting/aniimo-known-issues/")}>
+                <BookOpen size={18} />
+                Known issues
               </a>
             </div>
           </div>
@@ -74,15 +85,16 @@ export function HomePage(props) {
         </section>
 
         <section className="section launch-answer-strip" aria-label="Quick Aniimo answers">
-          <div className="answer-card"><strong>{aniimo.length}</strong><span>public Aniimo entries</span><a href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>Open database <ChevronRight size={15} /></a></div>
+          <div className="answer-card"><strong>Checked</strong><span>server status: {liveSupportStatus.lastChecked}</span><a href="/troubleshooting/aniimo-server-status/" onClick={(event) => props.navigate(event, "/troubleshooting/aniimo-server-status/")}>Check status <ChevronRight size={15} /></a></div>
           <div className="answer-card"><strong>Live</strong><span>PC and console platforms</span><a href="/download/" onClick={(event) => props.navigate(event, "/download/")}>Open download guide <ChevronRight size={15} /></a></div>
-          <div className="answer-card"><strong>Live</strong><span>iOS and Android platforms</span><a href="/platforms/mobile/" onClick={(event) => props.navigate(event, "/platforms/mobile/")}>Mobile details <ChevronRight size={15} /></a></div>
+          <div className="answer-card"><strong>{aniimo.length}</strong><span>public Aniimo entries</span><a href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>Open database <ChevronRight size={15} /></a></div>
         </section>
 
         <section className="quick-grid primary-task-grid" aria-label="Start with a task">
-          <QuickCard icon={<Search />} title="Find an Aniimo" text="Search all public entries by name, region, element, role and stage." href="/aniimo/" navigate={props.navigate} />
+          <QuickCard icon={<CheckCircle2 />} title="Check server status" text="See the dated outage, maintenance and platform-status answer first." href="/troubleshooting/aniimo-server-status/" navigate={props.navigate} />
           <QuickCard icon={<Download />} title="Download safely" text="Choose your device, then open the matching official store path." href="/download/" navigate={props.navigate} />
-          <QuickCard icon={<CheckCircle2 />} title="Solve a current issue" text="Check server, store, reward and account guidance before trying community fixes." href="/launch-day/" navigate={props.navigate} />
+          <QuickCard icon={<BookOpen />} title="Known issues" text="Check login, loading, store and reward guidance before trying community fixes." href="/troubleshooting/aniimo-known-issues/" navigate={props.navigate} />
+          <QuickCard icon={<Search />} title="Find an Aniimo" text="Search all public entries by name, region, element, role and stage." href="/aniimo/" navigate={props.navigate} />
         </section>
 
         <section className="section sources-band">
@@ -1579,6 +1591,26 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
       <div className="source-level" aria-label="Source level"><strong>Source level</strong><span>{topic.sourceType || "Editorial review"}</span><span>Facts and community leads are kept separate.</span></div>
       {statusEntry && <LaunchStatusPanel title="Answer Status" entries={[statusEntry]} />}
       {intentStatus && <InfoPanel title="What We Are Checking Next" rows={[["Next check", intentStatus.action], ["Page", topic.title]]} />}
+      {topic.slug === "aniimo-server-status" && <LiveSupportStatus />}
+      {topic.slug === "aniimo-known-issues" && <LiveIssueTable />}
+      {topic.slug === "aniimo-discord" && <InfoPanel title="Official Community Path" rows={[
+        ["Verification", "Use a Discord destination only when it is linked by Aniimo, Pawprint Studio, or another verified official Aniimo channel."],
+        ["Last reviewed", sourceLastChecked],
+        ["For maintenance", "Use the server-status page and official Aniimo news as the confirmed incident record; Discord posts can provide an additional official announcement path."],
+        ["For codes", "Only official announcements or in-game notices can move a code into the confirmed list."],
+      ]} />}
+      {topic.slug === "aniimo-egg-heist-guide" && <InfoPanel title="Egg Heist: Current Answer" rows={[
+        ["Mode", "Official public material describes Egg Heist as a PVEVP mode in the Lost Isles."],
+        ["Team guidance", "Official wording describes three-player teams; the September update lists Chaos Mode, requires Tier IV Elite Egg Seeker, and recommends team play."],
+        ["Current event status", eggHeistEventStatus()],
+        ["Still to verify", "Matchmaking, scoring, rewards, party limits, route strategy, and final competitive rules require current official or reproducible in-game evidence."],
+      ]} />}
+      {topic.slug === "aniimo-pre-registro" && <InfoPanel title="Mobile Availability and Reward Status" rows={[
+        ["Current availability", "Aniimo is live on iOS and Android. Open the official store for your country and device."],
+        ["Pre-registration", "Treat pre-registration as a past campaign state; check current official reward eligibility and account delivery guidance before assuming a claim is available."],
+        ["Account and store checks", "Use the same account and country settings expected by the official store, then check current app version and campaign notice."],
+        ["Need help", "Open the mobile platform guide or the reward troubleshooting path before using unofficial installers or code lists."],
+      ]} />}
       {(["is-aniimo-pay-to-win", "aniimo-price", "aniimo-vs-genshin"].includes(topic.slug)) && <InfoPanel title="Economy Fact Status" rows={[["Confirmed", "Aniimo is free to play; Steam and Google Play identify in-app purchases."], ["Player feedback", "Shop density, paid packs and gacha-like expectations are active discussion topics, not a final mechanism verdict."], ["Not established here", "Whether optional purchases create a competitive advantage, progression gate or mode-specific imbalance."], ["Review standard", "Official purchase detail plus repeatable live-game evidence of cost, earnable alternatives and impact."]]} />}
       {(["is-aniimo-pay-to-win", "aniimo-price", "aniimo-vs-genshin"].includes(topic.slug)) && <InfoPanel title={postLaunchEvidence.monetization.title} rows={postLaunchEvidence.monetization.rows} />}
       {(["aniimo-beginner-tips", "aniimo-first-hour-guide", "aniimo-beginner-mistakes"].includes(topic.slug)) && <InfoPanel title="First Week: Evidence-First Priorities" rows={postLaunchEvidence.firstWeek} />}
@@ -1595,6 +1627,48 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
       <div className="hero-actions section-actions topic-next-actions">
         <a className="primary-action" href="/guides/" onClick={(event) => navigate?.(event, "/guides/")}><BookOpen size={18} /> Browse related guides</a>
         <a className="secondary-action" href={topic.source} target="_blank" rel="noreferrer"><Search size={18} /> Check official source</a>
+      </div>
+    </section>
+  );
+}
+
+function eggHeistEventStatus() {
+  const event = liveUpdate.events.find((item) => item.name.includes("Egg Heist"));
+  return event ? eventStatus(event) : "Check official update";
+}
+
+function LiveSupportStatus() {
+  return (
+    <>
+      <AnswerStatus status={liveSupportStatus.status} checked={liveSupportStatus.lastChecked} sourceType={liveSupportStatus.sourceType} next={liveSupportStatus.nextAction} />
+      <InfoPanel title="Current Server Check" rows={[
+        ["Current state", liveSupportStatus.state],
+        ["Last checked", liveSupportStatus.lastChecked],
+        ["Platform scope", liveSupportStatus.platformScope],
+        ["What this means", liveSupportStatus.summary],
+      ]} />
+      <section className="related-section">
+        <h2>Confirmed Maintenance History</h2>
+        <div className="table-shell freshness-table">
+          <table>
+            <thead><tr><th>Date</th><th>State</th><th>Scope</th><th>Detail</th><th>Source</th></tr></thead>
+            <tbody>{liveSupportStatus.incidentHistory.map((incident) => <tr key={`${incident.date}-${incident.state}`}><td>{incident.date}</td><td>{incident.state}</td><td>{incident.scope}</td><td>{incident.detail}</td><td><a className="text-link" href={incident.source} target="_blank" rel="noreferrer">Official notice</a></td></tr>)}</tbody>
+          </table>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function LiveIssueTable() {
+  return (
+    <section className="related-section">
+      <h2>Current Issue Index</h2>
+      <div className="table-shell freshness-table">
+        <table>
+          <thead><tr><th>Issue</th><th>Affected scope</th><th>Status</th><th>Safe next step</th><th>Checked</th></tr></thead>
+          <tbody>{liveIssueRegistry.map((item) => <tr key={item.issue}><td>{item.issue}</td><td>{item.platforms}</td><td><StatusBadge status={item.status} /></td><td>{item.workaround} <a className="text-link" href={item.source} target="_blank" rel="noreferrer">Source</a></td><td>{item.checked}</td></tr>)}</tbody>
+        </table>
       </div>
     </section>
   );
@@ -2251,6 +2325,7 @@ export function AniimoDetail({ item, navigate, localized = false }) {
           <div><dt>Last checked</dt><dd>{sourceLastChecked}</dd><small>Official Wiki and source review.</small></div>
         </dl>
       </section>}
+      {!pt && highIntentAniimoIds.has(item.id) && <InfoPanel title={`${item.name}: Search Answer`} rows={creatureSearchAnswer(item)} />}
       <div className="detail-panels">
         {!pt && <AnswerStatus status={item.status} checked={sourceLastChecked} sourceType="Official Wiki and source review" next={`Open the ${item.region} region guide or compare ${item.name}.`} />}
         {!pt && eventAvailability && <InfoPanel title={eventAvailability.title} rows={[["Official event detail", eventAvailability.detail], ["Event status", linkedEvent ? eventStatus(linkedEvent) : "Watchlist"], ["Schedule", linkedEvent ? eventSchedule(linkedEvent) : "Check official update"], ["Source rule", "This is event availability, not a permanent spawn route or exact coordinate."]]} />}

@@ -560,7 +560,9 @@ export const aniimo = names.map(([no, id, name, element, role, stage, aliases = 
     forms,
     ability: officialDescriptions[id],
     description: officialDescriptions[id],
-    use: `${roleUse[role]} Twine can turn ${name}'s traits into exploration, combat or route-solving utility.`,
+    use: roleUse[role]
+      ? `${roleUse[role]} Twine can turn ${name}'s traits into exploration, combat or route-solving utility.`
+      : `${name}'s gameplay use remains a watchlist field until official or reproducible in-game evidence confirms its role and Twine utility.`,
     ...notes,
     status: "Confirmed",
     source: officialLinks.officialWiki,

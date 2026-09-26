@@ -64,6 +64,61 @@ export const launchStatusEntries = [
   },
 ];
 
+export const liveSupportStatus = {
+  state: "No confirmed Aniimo-wide outage",
+  status: "Verified",
+  lastChecked: sourceLastChecked,
+  source: officialLinks.main,
+  sourceType: "Official Aniimo news and storefront checks",
+  summary: "Aniimo.games has not identified a current Aniimo-wide outage from the latest official-source review. A local sign-in or install issue can still be platform, account, region, device, or client-version specific.",
+  platformScope: "PC, console, iOS, and Android availability remains source-checked by platform and storefront.",
+  nextAction: "Check official Aniimo news, the matching storefront, and the known-issues index before retrying or changing account settings.",
+  incidentHistory: [
+    {
+      date: "2026-09-23",
+      state: "Scheduled maintenance",
+      scope: "Official September update notice",
+      detail: "The official update listed maintenance from 00:00 to 10:00 UTC+8. This historical notice is not evidence of a current outage.",
+      source: officialLinks.septemberUpdate,
+    },
+  ],
+};
+
+export const liveIssueRegistry = [
+  {
+    issue: "Login queue or slower loading",
+    platforms: "All platforms during high traffic",
+    status: "Watchlist",
+    workaround: "Wait briefly, confirm the current client version and check server status before retrying repeated sign-ins.",
+    source: officialLinks.liveLaunch,
+    checked: sourceLastChecked,
+  },
+  {
+    issue: "Server not ready or sign-in failure",
+    platforms: "Platform, account, or region dependent",
+    status: "Watchlist",
+    workaround: "Check for a confirmed outage first. Then verify account, storefront region, connection, and current game update before reinstalling.",
+    source: officialLinks.main,
+    checked: sourceLastChecked,
+  },
+  {
+    issue: "Store page or install button missing",
+    platforms: "Steam, Epic, PlayStation, Xbox, App Store, Google Play",
+    status: "Watchlist",
+    workaround: "Open the official store for the same country and account. Confirm device support and regional availability; do not use mirrors or unofficial installers.",
+    source: officialLinks.website,
+    checked: sourceLastChecked,
+  },
+  {
+    issue: "Code or reward claim does not complete",
+    platforms: "Platform and campaign dependent",
+    status: "Watchlist",
+    workaround: "Confirm that the code or reward is official, current, and eligible for the account, platform, and region before retrying.",
+    source: officialLinks.main,
+    checked: sourceLastChecked,
+  },
+];
+
 export const tierListSnapshots = [
   {
     id: "pre-launch-watchlist",

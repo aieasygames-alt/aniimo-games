@@ -13,8 +13,8 @@ export const staticRoutes = [
   {
     path: "/",
     label: "Home",
-    title: "Aniimo Wiki: 90 Creatures, Release Date, Codes & Map",
-    description: "Aniimo Wiki with 90 creature entries, September 16 PC and console launch, September 23 mobile date, codes, map guides and official downloads.",
+    title: "Aniimo Guide: Server Status, Download, Issues & Database",
+    description: "Independent Aniimo live guide for server status, official downloads, known issues, current updates and the Aniimo creature database.",
     nav: false,
   },
   { path: "/aniimo/", label: "Database", title: "Aniimo Characters: All 90 Creatures, Locations & Evolutions", description: "Find all 90 public Aniimo characters by name, element, role, region, stage and evolution. Each entry shows its current source and location-verification status." },
