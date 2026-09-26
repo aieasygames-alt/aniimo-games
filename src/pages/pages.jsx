@@ -100,12 +100,15 @@ export function HomePage(props) {
         <section className="section sources-band">
           <SectionTitle icon={<Compass />} kicker="Launch Guide" title="Popular Aniimo Questions" />
           <InfoPanel title="What Players Need" rows={[
-            ["Aniimo database", `Browse all ${aniimo.length} public entries by name, element, role, region and stage.`],
-            ["Platform status", "PC, Steam, Epic, PS5, Xbox, iOS and Android are live; check storefront availability by country and device."],
-            ["Launch help", "Check official sources, known issues, codes and account guidance before using community fixes."],
+            ["Is Aniimo down?", "Start with Server Status for a dated, source-labeled outage or maintenance answer."],
+            ["Cannot log in or see the game?", "Use Known Issues to separate account, platform, region, store and client-version problems from a global outage."],
+            ["Where can I download Aniimo?", "PC, Steam, Epic, PS5, Xbox, iOS and Android are live; check storefront availability by country and device."],
+            ["Looking for an Aniimo?", `Browse all ${aniimo.length} public entries by name, element, role, region and stage.`],
           ]} />
           <div className="site-index-grid">
             <LinkGroup title="Launch Answers" items={[
+              ["Server Status", "/troubleshooting/aniimo-server-status/", "Check a dated outage and maintenance answer."],
+              ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Resolve login, store, update and reward problems."],
               ["Release Date", "/release-date/", "Check PC, console and mobile launch dates."],
               ["Download", "/download/", "Use official Steam, Epic, console and mobile paths."],
               ["Launch Day", "/launch-day/", "Track status, codes, current updates and common fixes."],
@@ -113,6 +116,7 @@ export function HomePage(props) {
               ["Codes", "/codes/", "Check active-code verification and reward status."],
             ]} navigate={props.navigate} />
             <LinkGroup title="Risky Search Safety" items={[
+              ["Aniimo Discord", "/topics/aniimo-discord/", "Find the source-safe official community path."],
               ["APK Safety", "/topics/aniimo-apk/", "Route Android APK searches toward official sources."],
               ["Torrent Safety", "/topics/aniimo-torrent/", "Explain why unofficial installers are unsafe."],
               ["Beta Key Safety", "/topics/aniimo-beta-key/", "Avoid key buying and fake test access."],
@@ -1606,10 +1610,10 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
         ["Still to verify", "Matchmaking, scoring, rewards, party limits, route strategy, and final competitive rules require current official or reproducible in-game evidence."],
       ]} />}
       {topic.slug === "aniimo-pre-registro" && <InfoPanel title="Mobile Availability and Reward Status" rows={[
-        ["Current availability", "Aniimo is live on iOS and Android. Open the official store for your country and device."],
-        ["Pre-registration", "Treat pre-registration as a past campaign state; check current official reward eligibility and account delivery guidance before assuming a claim is available."],
-        ["Account and store checks", "Use the same account and country settings expected by the official store, then check current app version and campaign notice."],
-        ["Need help", "Open the mobile platform guide or the reward troubleshooting path before using unofficial installers or code lists."],
+        ["Disponibilidade atual", "Aniimo esta disponivel no iOS e Android. Abra a loja oficial do seu pais e dispositivo."],
+        ["Pre-registro", "Trate o pre-registro como uma campanha anterior. Confirme elegibilidade atual e entrega da recompensa antes de supor que existe um resgate pendente."],
+        ["Conta e loja", "Use a mesma conta e configuracao de pais esperadas pela loja oficial; depois confirme a versao atual e o aviso da campanha."],
+        ["Precisa de ajuda", "Abra o guia mobile ou a pagina de solucao de problemas de recompensas antes de usar instaladores ou listas de codigos nao oficiais."],
       ]} />}
       {(["is-aniimo-pay-to-win", "aniimo-price", "aniimo-vs-genshin"].includes(topic.slug)) && <InfoPanel title="Economy Fact Status" rows={[["Confirmed", "Aniimo is free to play; Steam and Google Play identify in-app purchases."], ["Player feedback", "Shop density, paid packs and gacha-like expectations are active discussion topics, not a final mechanism verdict."], ["Not established here", "Whether optional purchases create a competitive advantage, progression gate or mode-specific imbalance."], ["Review standard", "Official purchase detail plus repeatable live-game evidence of cost, earnable alternatives and impact."]]} />}
       {(["is-aniimo-pay-to-win", "aniimo-price", "aniimo-vs-genshin"].includes(topic.slug)) && <InfoPanel title={postLaunchEvidence.monetization.title} rows={postLaunchEvidence.monetization.rows} />}
@@ -1694,6 +1698,51 @@ function topicRelatedLinks(topic) {
 
   if (exactLinks) {
     links.push(...exactLinks);
+    return links;
+  }
+
+  if (slug === "aniimo-server-status") {
+    links.push(
+      ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Check platform-specific login, store and reward guidance"],
+      ["Download", "/download/", "Open the matching official storefront"],
+      ["Official Community", "/topics/aniimo-discord/", "Verify official announcements and avoid fake invites"],
+    );
+    return links;
+  }
+
+  if (slug === "aniimo-known-issues") {
+    links.push(
+      ["Server Status", "/troubleshooting/aniimo-server-status/", "Check whether a confirmed outage or maintenance notice exists"],
+      ["Mobile Download", "/platforms/mobile/", "Check country, device and storefront availability"],
+      ["Codes and Rewards", "/codes/", "Keep code and reward claim troubleshooting separate"],
+    );
+    return links;
+  }
+
+  if (slug === "aniimo-discord") {
+    links.push(
+      ["Server Status", "/troubleshooting/aniimo-server-status/", "Read the dated status and maintenance answer"],
+      ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Check source-labeled platform guidance"],
+      ["Codes", "/codes/", "Confirm codes through official notices or the game client"],
+    );
+    return links;
+  }
+
+  if (slug === "aniimo-egg-heist-guide") {
+    links.push(
+      ["Events", "/events/", "Check the official event schedule and requirements"],
+      ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Check current support guidance before diagnosing access"],
+      ["Mechanics", "/mechanics/", "Review confirmed Twine and gameplay terminology"],
+    );
+    return links;
+  }
+
+  if (slug === "aniimo-pre-registro") {
+    links.push(
+      ["Aniimo Mobile", "/platforms/mobile/", "Verifique iOS, Android, pais e dispositivo"],
+      ["Recompensas", "/rewards/", "Confira status e elegibilidade de recompensas oficiais"],
+      ["Solucao de problemas", "/troubleshooting/aniimo-pre-registration-not-working/", "Verifique conta, campanha e disponibilidade"],
+    );
     return links;
   }
 
