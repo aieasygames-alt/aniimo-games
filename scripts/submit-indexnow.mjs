@@ -4,13 +4,16 @@ import { siteUrl } from "../src/lib/routes.js";
 const key = "1d4f7299d7d34b68ac75b38ffb9498f8";
 const keyLocation = `${siteUrl}/${key}.txt`;
 const endpoint = "https://www.bing.com/indexnow";
-const sitemap = readFileSync("public/sitemap.xml", "utf8");
-const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
+const sitemapFiles = ["public/sitemap.xml", "public/sitemap-supplemental.xml"];
+const urls = [...new Set(sitemapFiles.flatMap((file) => {
+  const sitemap = readFileSync(file, "utf8");
+  return [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
+}))];
 const chunkSize = 100;
 const issues = [];
 
 if (!urls.length) {
-  console.error("IndexNow submit failed: no URLs found in public/sitemap.xml.");
+  console.error("IndexNow submit failed: no URLs found in the published sitemaps.");
   process.exit(1);
 }
 
@@ -47,4 +50,4 @@ if (issues.length) {
   process.exit(1);
 }
 
-console.log(`IndexNow submit finished: ${urls.length} URLs submitted with keyLocation ${keyLocation}.`);
+console.log(`IndexNow submit finished: ${urls.length} URLs from ${sitemapFiles.length} sitemaps submitted with keyLocation ${keyLocation}.`);
