@@ -197,6 +197,11 @@ export const faqs = {
 
 export const updates = [
   {
+    date: "2026-10-01",
+    title: "Version 1.1 event and player-support coverage refreshed",
+    text: "Refreshed live events, controller, code-redeeming, account and Egg Heist guidance from official Version 1.1 and September 30 patch notes. Community reports remain research signals, not confirmed game facts.",
+  },
+  {
     date: "2026-09-23",
     title: "Mobile launch and September update coverage added",
     text: "Updated platform, launch and download guidance for the live iOS and Android release. Added official update and event planning coverage while keeping code strings, detailed economy claims and location routes behind verification rules.",
@@ -268,6 +273,7 @@ export const launchDayCommandCenter = {
   updated: sourceLastChecked,
   summary: "A live launch support page for players who need official download paths, account guidance, code checks, server status and platform-specific fixes.",
   statusRows: [
+    ["Current client update", "September 30 resource update: restart the client to download current resources", "Verified"],
     ["PC and console availability", "Live on PC, Steam, Epic, PS5 and Xbox", "Verified"],
     ["Mobile availability", "Live on iOS and Android; check storefront by country and device", "Verified"],
     ["PC and mobile data", "Shared with the same account", "Verified"],
@@ -276,6 +282,7 @@ export const launchDayCommandCenter = {
     ["Known launch errors", "Login queues and slower loading can occur", "Verified"],
   ],
   quickActions: [
+    ["Current events", "/events/", "Check active status, UTC+8 windows, requirements and official event details."],
     ["Download safely", "/download/", "Use official website, Steam, Epic Games Store, Xbox, PlayStation, App Store or Google Play links."],
     ["Check active codes", "/codes/", "Separate confirmed rewards from redeemable code strings and verify each code before marking it active."],
     ["Account and cross-platform", "/topics/aniimo-cross-save/", "Continue PC data on mobile with the same account; check server boundaries before creating a character."],

@@ -7,11 +7,11 @@ export const freshnessPages = [
     description: "Track official Aniimo news, launch announcements, platform posts, reward updates and source-aware page refreshes.",
     intro: "This tracker turns official Aniimo updates into a repeatable publishing workflow. Each item records the source, the site pages affected and the next action before claims are expanded.",
     sourceType: "Official news",
-    source: officialLinks.main,
+    source: officialLinks.versionOneOne,
     points: [
-      ["Launch dates", `PC and console launch remain tracked for ${releaseInfo.pcConsole}; mobile launch remains tracked for ${releaseInfo.mobile}.`],
-      ["Developer letter", "The September 3 developer letter re-confirmed worldwide PC, console and Xbox Cloud Gaming launch on September 16, followed by mobile on September 23."],
-      ["Event closeout", "The Bond Pact event has ended; event rewards and launch rewards should stay separated from redeem codes until the live client confirms claim rules."],
+      ["Version 1.1", "The September 23 Steam update added mobile availability, Irisalis event progression, Holo-Battle Interlink and Egg Heist Chaos Mode alongside the current event schedule."],
+      ["September 30 resource update", "The latest patch did not announce server downtime. Restart the client to download current resources; its notes include controller reward-claiming, performance and Irisalis fixes."],
+      ["Current event boundary", "Event rewards, pre-registration campaigns and redeem codes remain separate support paths. An active-looking code string is not official until an official notice or direct in-game verification confirms it."],
       ["Official feature claims", "Feature pages should only expand when the official site, storefronts or official Wiki provide stronger wording."],
       ["Source archive", "Meaningful source changes should be logged in the source archive and update log before dependent pages are refreshed."],
     ],
@@ -60,15 +60,29 @@ export const liveUpdate = {
   title: "Setting Out in Pursuit of the Wind: Part I",
   date: "2026-09-23",
   source: officialLinks.septemberUpdate,
-  summary: "The official homepage lists this September 23 update alongside the live iOS and Android release. Event schedules are displayed in UTC+8 and should be rechecked when maintenance or platform notices change.",
+  summary: "Version 1.1 launched mobile availability and current seasonal activities. Event schedules are displayed in UTC+8 and should be rechecked when maintenance or platform notices change.",
   maintenance: "The update notice lists maintenance on September 23 from 00:00 to 10:00 UTC+8 and Glimmer x500 compensation for eligible accounts. Check the official notice for any changed completion time or eligibility wording.",
   events: [
-    { name: "Egg Heist Team Mode: Chaos Mode", startsAt: "2026-09-24T04:00:00+08:00", endsAt: null, detail: "Reach Tier IV Elite Egg Seeker. Team play is recommended." },
-    { name: "Glamour Star", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-10-02T03:59:00+08:00", detail: "Reach Student II and submit a themed Aniimo entry." },
-    { name: "Aniimo Discovery", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-10-09T03:59:00+08:00", detail: "Reach Student II; free Search Attempts replenish periodically and do not stack." },
-    { name: "Vein Abundance: Rosetower Woods", startsAt: "2026-09-28T04:00:00+08:00", endsAt: "2026-10-05T03:59:00+08:00", detail: "Prismana Form Melloblum is listed for Rosetower Woods." },
-    { name: "Vein Abundance: Berylline Vale", startsAt: "2026-10-05T04:00:00+08:00", endsAt: "2026-10-12T03:59:00+08:00", detail: "Prismana Form Waleetle is listed for Berylline Vale." },
-    { name: "Journey Chronicles", startsAt: "2026-10-01T04:00:00+08:00", endsAt: "2026-10-29T03:59:00+08:00", detail: "Reach Student I and log in for the listed number of days to claim gifts." },
+    { name: "Egg Heist Team Mode: Chaos Mode", startsAt: "2026-09-24T04:00:00+08:00", endsAt: null, requirements: "Reach Tier IV: Elite Egg Seeker and use a Chaos Ticket.", detail: "Higher Prismana Aniimo Egg and Prismatic Collectible drop rates are listed; strict escape conditions apply and team play is recommended.", source: officialLinks.versionOneOne },
+    { name: "Glamour Star", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-10-02T03:59:00+08:00", requirements: "Reach Student II.", detail: "Submit a Floral Soiree-themed Aniimo entry for score-milestone rewards.", source: officialLinks.versionOneOne },
+    { name: "Aniimo Discovery", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-10-09T03:59:00+08:00", requirements: "Reach Student II.", detail: "Free Search Attempts replenish periodically and do not stack; use Search Buffs as research progresses.", source: officialLinks.versionOneOne },
+    { name: "Vein Abundance: Rosetower Woods", startsAt: "2026-09-28T04:00:00+08:00", endsAt: "2026-10-05T03:59:00+08:00", requirements: "Reach Student II.", detail: "Prismana Form Melloblum is listed for Rosetower Woods. This is event availability, not a permanent spawn route.", source: officialLinks.versionOneOne },
+    { name: "Vein Abundance: Berylline Vale", startsAt: "2026-10-05T04:00:00+08:00", endsAt: "2026-10-12T03:59:00+08:00", requirements: "Reach Student II.", detail: "Prismana Form Waleetle is listed for Berylline Vale. This is event availability, not a permanent spawn route.", source: officialLinks.versionOneOne },
+    { name: "Journey Chronicles", startsAt: "2026-10-01T04:00:00+08:00", endsAt: "2026-10-29T03:59:00+08:00", requirements: "Reach Student I.", detail: "Log in for the designated days during the event to claim travel gifts.", source: officialLinks.versionOneOne },
+  ],
+};
+
+export const currentPatch = {
+  title: "Patch Notes v1.0.3629693.0",
+  date: "2026-09-30",
+  source: officialLinks.septemberThirtyPatch,
+  summary: "A resource update was released without announced server downtime. Restart the client to download the latest resources.",
+  eligibility: "Glimmer x100 is listed for Pathfinders registered before Version 1.1.",
+  highlights: [
+    ["Controller", "Improved the controller experience when claiming progress-bar rewards."],
+    ["Performance", "Improved performance when logging in and switching scenes."],
+    ["Irisalis", "Raised available Transmogrification Presets from three to five and corrected Irisalis presentation issues."],
+    ["Visual fixes", "Corrected several reported texture, effect, accessory and interaction issues."],
   ],
 };
 

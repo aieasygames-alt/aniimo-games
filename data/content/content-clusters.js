@@ -395,6 +395,7 @@ export const beginnerTopics = [
     points: [
       ["Use Aniipods", "Official store text describes catching Aniimo with Aniipods. Exact item tiers and catch-rate behavior should be verified from the current client or official guide."],
       ["Watch encounter behavior", "Unique Aniimo may react to environment, weather, phenomena and time of day, so route notes should capture more than a single coordinate."],
+      ["Build from evidence", "Use a tested route, condition and item before turning a capture observation into advice. Prismana event availability is not a permanent route claim."],
       ["Record the source", "When a catch route is added, include the region, condition, screenshot or official source, and verification date."],
     ],
     faq: [
@@ -564,10 +565,10 @@ export const downloadTopics = [
 }));
 
 export const codeRewardTopics = [
-  ["how-to-redeem", "How to Redeem Aniimo Codes", "Prepare for Aniimo code redemption with source checks, reward fields, platform restrictions and last-tested timestamps.", "Redeem steps should be filled only after the game client or official support pages expose a redemption flow."],
+  ["how-to-redeem", "How to Redeem Aniimo Codes", "Redeem Aniimo codes from the current game client, then verify reward delivery, platform restrictions and source status.", "Current-client flow: open the main menu, open Settings, choose Account, select Gift Code Redemption, enter the code exactly, then claim the reward from in-game mail. Check the current client and official source before treating any string as active."],
   ["active", "Active Aniimo Codes", "Track active Aniimo codes, rewards, expiration dates and verification status once official codes are published.", "No active public redeem code is confirmed on Aniimo.games yet."],
   ["expired", "Expired Aniimo Codes", "Archive expired Aniimo codes with reward history, expiration dates and source notes after launch.", "Expired codes should be moved here only after an active code has passed its official expiration."],
-  ["aniimo-codes-not-working", "Aniimo Codes Not Working", "Troubleshoot Aniimo codes not working with source checks, expiration status, platform restrictions and post-launch test notes.", "Code-failure reports should be separated from unconfirmed code lists, reward claims and fake screenshots until official or in-game verification exists."],
+  ["aniimo-codes-not-working", "Aniimo Codes Not Working", "Troubleshoot Aniimo codes not working with source checks, exact case, eligibility, reward mail and current-client checks.", "Check the original source and exact character case first, then eligibility, expiration, platform and region. Confirm the in-game mail prerequisite and restart the client before reporting a repeatable failure to official support."],
   ["junior-wayfarer", "Junior Wayfarer Rewards", "Track Junior Wayfarer Aniimo rewards, Prismana choice notes and official claim status.", "Junior Wayfarer reward details should stay tied to official campaign pages."],
   ["susuta-egg", "Mysterious Susuta Egg Reward", "Track the Aniimo Susuta egg reward, pre-registration source and claim verification notes.", "The mysterious Susuta egg is tracked as a confirmed pre-registration reward."],
   ["milestones", "Aniimo Milestone Rewards", "Track Aniimo pre-registration milestone rewards including Glimmer, Aniipod Ultra, avatar frame and outfit rewards.", "Milestone rewards are confirmed rewards, not redeem codes unless an official code string is published."],
@@ -632,12 +633,13 @@ export const officialPitchTopics = [
     intro: "Egg Heist is an official PVEVP team mode for players who want a direct answer on what the mode is, how to enter it, and which details still need current-client verification.",
     points: [
       ["Mode identity", "Egg Heist is described as a PVEVP mode, so pages should explain that it combines exploration, enemy pressure and player-versus-player risk."],
-      ["Team structure", "Official text describes three-player teams. The September update lists Chaos Mode with a Tier IV Elite Egg Seeker requirement and recommends team play; matchmaking, party limits and rewards still need live verification."],
+      ["Chaos Mode entry", "The September update lists Chaos Mode with a Tier IV Elite Egg Seeker requirement and a Chaos Ticket. It recommends team play and says strict escape conditions apply."],
+      ["Published reward wording", "Chaos Mode lists higher Prismana Aniimo Egg and Prismatic Collectible drop rates. Exact percentages, full tables and drop guarantees are not published here."],
       ["Lost Isles watchlist", "The Lost Isles setting should be tracked separately from the six public region pages until route details are confirmed."],
     ],
     faq: [
       ["Is Egg Heist confirmed?", "Yes. Egg Heist is an official gameplay mode mentioned in public Aniimo material."],
-      ["Are Egg Heist rewards known?", "Not fully. Rewards and event cadence should remain watchlist data until official launch or in-game confirmation."],
+      ["Are Egg Heist rewards known?", "The current official wording lists higher Prismana Aniimo Egg and Prismatic Collectible drop rates in Chaos Mode. Exact values and reward tables still need official or in-game verification."],
     ],
   },
   {
@@ -979,11 +981,13 @@ export const searchSuggestionTopics = [
     intro: "Official launch news says PC and mobile share the same data when you sign in with the same account. This page explains that confirmed path while keeping server transfers, console linking and purchase rules clearly separated.",
     points: [
       ["Confirmed path", "Sign in on mobile with the same Aniimo account used on PC to continue the same data."],
-      ["Before creating a character", "Confirm the intended account and server first. Official guidance says data on different servers is independent."],
+      ["Before creating a character", "Confirm the intended platform account, selected server and account-link state first. Official guidance says data on different servers is independent."],
       ["Console and purchases", "Pre-order content must first be claimed by logging in on the console where it was purchased. Official guidance says linked accessories and items can then be used on other platforms within the same server."],
+      ["If progress is missing", "Do not create a replacement character immediately. Recheck the intended account and server, capture the platform and client version, then use official support for an unresolved account-link problem."],
     ],
     faq: [
       ["Does Aniimo have cross-save?", "PC and mobile share the same data when the same account is used, according to official launch news. Data on different servers is independent."],
+      ["What should I check before switching platforms?", "Confirm the same Aniimo account, the intended server and the account-link state before creating a character or claiming an account-bound reward. Platform-specific exceptions should go to official support."],
       ["Can I claim console pre-order items on another platform?", "Claim the pack first by logging in on the console where it was purchased. Official guidance says linked accessories and items can then be used on other platforms within the same server."],
     ],
   },
@@ -991,15 +995,17 @@ export const searchSuggestionTopics = [
     slug: "aniimo-controller-support",
     title: "Aniimo Controller Support: PC, Console & Mobile Status",
     description: "Does Aniimo have controller support? Check the current PC, console, Steam Deck and mobile controller status, plus what still needs verification.",
-    intro: "Controller support is one of the highest-demand Aniimo setup questions. This page separates confirmed platform paths from controller behavior that still needs a reproducible in-game or official support check.",
+    intro: "Controller support is one of the highest-demand Aniimo setup questions. Official Steam support directs PC players to disable Steam Input, restart the game and retest native controller input; platform-specific behavior remains separated below.",
     points: [
-      ["PC status", "Steam and Epic are official PC paths. Controller support, remapping and vibration need an official support note or reproducible PC test before being marked verified."],
+      ["Steam PC setup", "Open Steam Library > Aniimo > Properties > Controller, disable Steam Input, restart Aniimo and retest. This is the official Steam FAQ path for controller problems and button prompts."],
       ["Console status", "Xbox and PlayStation 5 storefront paths are tracked. Native console control schemes should be verified by the live client or official platform documentation."],
-      ["Mobile and Steam Deck", "Mobile touch controls are distinct from Bluetooth controller support; Steam Deck compatibility, text size and controller mapping also need separate testing."],
+      ["September 30 update", "Patch v1.0.3629693.0 specifically improved controller progress-bar reward claiming. Restart the client to download the current resources before reporting a repeatable issue."],
+      ["Mobile and Steam Deck", "Mobile touch controls are distinct from Bluetooth controller support; Steam Deck compatibility, text size and controller mapping still need separate testing."],
       ["How to report a problem", "Record platform, controller model, connection type, input issue, game version and timestamp. Route crashes or black screens to Known Issues."],
     ],
     faq: [
-      ["Does Aniimo have controller support?", "Aniimo.games should verify controller support through official wording or live platform testing before marking it confirmed."],
+      ["Does Aniimo have controller support?", "Official Steam support provides a native-input troubleshooting path: disable Steam Input, restart the game, then retest. Console, mobile and Steam Deck behavior should still be checked separately."],
+      ["Why are my button prompts wrong on Steam?", "Use the official Steam Input troubleshooting path first: disable Steam Input in Aniimo's Steam Controller properties, restart the game, then retest. Record controller model and game version if the problem remains."],
       ["Will mobile controller support be tracked?", "Yes. Mobile controller support should be tested separately from touch controls after iOS and Android availability is live."],
     ],
   },
@@ -1373,15 +1379,16 @@ export const mechanicDeepDiveTopics = [
     title: "Aniimo Egg Heist Rules",
     description: "Prepare a source-safe Egg Heist rules guide for team size, PVEVP structure, Lost Isles routing and post-launch verification.",
     image: "/images/mechanics/mechanic-egg-heist.webp",
-    intro: "Egg Heist rule searches need a clear page before launch, but exact scoring, rewards and matchmaking details should remain watchlist fields.",
+    intro: "Egg Heist Chaos Mode is live from the Version 1.1 update. This page records its published entry requirements and risk/reward wording while keeping unlisted scoring, matchmaking and exact reward tables out of scope.",
     points: [
-      ["Confirmed mode shape", "Egg Heist is described as a PVEVP mode with three-player teams."],
-      ["Rules to verify", "Scoring, extraction conditions, rewards, penalties, matchmaking and event cadence need official or live-game confirmation."],
+      ["Chaos Mode entry", "Chaos Mode requires Tier IV: Elite Egg Seeker and a Chaos Ticket. The official update recommends teaming up because strict escape conditions apply."],
+      ["Published reward wording", "The update lists higher Prismana Aniimo Egg and Prismatic Collectible drop rates plus a chance at Secret Collectibles. It does not provide a complete reward table here."],
+      ["Rules to verify", "Scoring, extraction conditions, exact drop rates, penalties, matchmaking and event cadence still need official or live-game confirmation."],
       ["Internal links", "Egg Heist pages should connect to Twine, roles, best Aniimo watchlists, codes and launch verification."],
     ],
     faq: [
-      ["How many players are in Egg Heist?", "Official public material describes three-player teams."],
-      ["Are Egg Heist rewards confirmed?", "Not fully on Aniimo.games yet. Reward details should stay watchlist until verified."],
+      ["What do I need for Egg Heist Chaos Mode?", "The Version 1.1 update lists Tier IV: Elite Egg Seeker and a Chaos Ticket. Team play is recommended because escape conditions are strict."],
+      ["Are Egg Heist rewards confirmed?", "The official update confirms higher-drop wording for Chaos Mode, but not a complete reward table or exact odds. Aniimo.games keeps those details unverified until sourced."],
     ],
   },
   {
@@ -1389,9 +1396,9 @@ export const mechanicDeepDiveTopics = [
     title: "Aniimo Egg Heist Rewards",
     description: "Track Aniimo Egg Heist reward questions without inventing unconfirmed event drops or code rewards.",
     image: "/images/mechanics/mechanic-egg-heist.webp",
-    intro: "Reward searches can attract users, but they are also easy to mislead. This page keeps Egg Heist reward status separate from pre-registration rewards and redeem codes.",
+    intro: "Reward searches can attract users, but they are also easy to mislead. Chaos Mode officially advertises higher drops for certain categories; this page keeps that wording separate from an exact reward table, pre-registration rewards and redeem codes.",
     points: [
-      ["Known boundary", "Egg Heist is an official mode, but full reward tables are not treated as confirmed on Aniimo.games."],
+      ["Published Chaos Mode rewards", "The Version 1.1 update lists higher Prismana Aniimo Egg and Prismatic Collectible drop rates and a chance at Secret Collectibles. Exact probabilities and item quantities are not published here."],
       ["What to capture later", "After launch, capture item name, quantity, mode requirement, weekly limits, platform restrictions and last tested date."],
       ["Related rewards", "Keep Egg Heist rewards separate from pre-registration milestones, launch event gifts and active redeem codes."],
     ],
@@ -1630,10 +1637,12 @@ export const troubleshootingTopics = [
   {
     slug: "aniimo-known-issues",
     title: "Aniimo Known Issues: Login, Loading, Store & Reward Help",
-    description: "Check Aniimo known issues for login queues, server-not-ready errors, stuck loading, store visibility, updates and reward claims with platform-specific next steps.",
+    description: "Track official Aniimo support guidance and unverified issue reports for login, loading, store visibility, updates and reward claims with platform-specific next steps.",
     intro: "This index keeps official launch guidance separate from unverified player reports. Each row records the affected scope, a safe next step, source, and last checked date.",
     points: [
       ["Official launch guidance", "Login queues and slower loading can occur at launch. Keep a stable connection, close unnecessary background programs and verify that the device meets official requirements."],
+      ["Controller prompts or input", "On Steam, use the official path: disable Steam Input in Aniimo's Controller properties, restart the game and retest. Record controller model, connection type and client version if the problem continues."],
+      ["Reward mail or code claim", "Check the code source and exact case, eligibility, expiry, platform and region. Then check the in-game mail flow and restart the current client before reporting a repeatable failure."],
       ["Issue threshold", "List a specific defect only after official acknowledgement, repeatable storefront behavior or multiple consistent reports with platform and time."],
       ["Fields to capture", "Record affected platform, error text, first seen time, workaround, fix status, source and last checked timestamp."],
       ["Related pages", "Route download problems to the download-not-available guide, region problems to region availability, and code problems to the codes page."],

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles, Plus, X, Copy, Download as DownloadIcon } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, downloadTopics, editorialGuides, eventSchedule, eventStatus, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, liveIssueRegistry, liveSupportStatus, liveUpdate, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, postLaunchEvidence, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, currentPatch, downloadTopics, editorialGuides, eventSchedule, eventStatus, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, liveIssueRegistry, liveSupportStatus, liveUpdate, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, postLaunchEvidence, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { AnswerStatus, CreatureImage, EditorialBlock, FaqBlock, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
@@ -438,6 +438,11 @@ export function CodesPage({ navigate }) {
             ["Current status", codeVerificationTemplate.currentStatus],
             ["How it is checked", "Official channels or direct in-game verification are required."],
           ]} />
+          <InfoPanel title="Current Client Guidance" rows={[
+            ["Redeem flow", "Open the main menu, then Settings, Account and Gift Code Redemption. Enter the exact code and check in-game mail."],
+            ["If it fails", "Check spelling, expiry, account eligibility, platform and region before trying again."],
+            ["Reward boundary", "Pre-registration, milestone and event rewards may not use a redeem string."],
+          ]} />
           <InfoPanel title="Code Answer" rows={[["Official code status", "No code is marked official here until Aniimo publishes it or a direct in-game redemption test confirms it."], ["Community reports", "Community-reported strings are leads, not confirmed rewards. Do not enter credentials or download files to claim them."], ["If a code fails", "Check exact spelling, expiration, platform and region before trying again."], ["Not a code", "Pre-registration, milestone and launch-event rewards may be delivered without a redeem string."]]} />
           <LaunchStatusPanel title="Codes And Rewards Status" entries={launchStatusEntries.filter((entry) => ["codes", "pc-console", "mobile"].includes(entry.id))} />
           <SeoGuideBlock items={seoGuides.codes} />
@@ -803,26 +808,27 @@ export function UpdatesPage() {
 export function EventsPage({ navigate }) {
   return (
     <section className="section updates-band">
-      <SectionTitle icon={<CalendarDays />} kicker="Official Update" title="Aniimo Events and September Update" />
+      <SectionTitle icon={<CalendarDays />} kicker="Official Update" title="Aniimo Events and Version 1.1" />
       <p className="section-copy">{liveUpdate.summary}</p>
       <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official Aniimo September update notice" next="Recheck the official notice after maintenance or before publishing changed event times, eligibility or rewards." />
       <div className="detail-panels">
         <InfoPanel title="Current Update" rows={[["Update", liveUpdate.title], ["Published", liveUpdate.date], ["Time standard", "All event times below are UTC+8"], ["Mobile", "iOS and Android are live; check official stores by country and device"]]} />
-        <InfoPanel title="Maintenance and Compensation" rows={[["Official notice", liveUpdate.maintenance], ["Before acting", "Verify the client version, maintenance completion time and eligibility in the current official notice."]]} />
+        <InfoPanel title="Latest Resource Update" rows={[["Patch", `${currentPatch.title} (${currentPatch.date})`], ["Player action", currentPatch.summary], ["Eligibility", currentPatch.eligibility]]} />
       </div>
       <div className="table-shell freshness-table">
         <table>
-          <thead><tr><th>Event</th><th>Status</th><th>Schedule</th><th>Eligibility and details</th></tr></thead>
-          <tbody>{liveUpdate.events.map((event) => <tr key={event.name}><td>{event.name}</td><td><StatusBadge status={eventStatus(event)} /></td><td>{eventSchedule(event)}</td><td>{event.detail}</td></tr>)}</tbody>
+          <thead><tr><th>Event</th><th>Status</th><th>Schedule</th><th>Requirements</th><th>Official details</th></tr></thead>
+          <tbody>{liveUpdate.events.map((event) => <tr key={event.name}><td>{event.name}</td><td><StatusBadge status={eventStatus(event)} /></td><td>{eventSchedule(event)}</td><td>{event.requirements}</td><td>{event.detail} <a href={event.source} target="_blank" rel="noreferrer">Source</a></td></tr>)}</tbody>
         </table>
       </div>
       <SeoGuideBlock items={[
         { title: "Use official timing", body: "The schedule is recorded in UTC+8 exactly as listed in the official update. Confirm the current notice before treating an event as active or expired in another time zone." },
         { title: "Keep event facts narrow", body: "This page records official dates, entry requirements and publicly stated details. Drop rates, optimal routes, team builds and economy advice need current-client evidence before publication." },
-        { title: "What to do if an event is unavailable", body: "Check game maintenance, your character requirement, server, local storefront version and the official update notice before relying on community screenshots or workaround guides." },
+        { title: "What to do if an event is unavailable", body: "Restart after the September 30 resource update, then check your character requirement, server, local storefront version and the official notice before relying on community screenshots or workaround guides." },
       ]} />
       <div className="hero-actions section-actions">
         <a className="primary-action" href={liveUpdate.source} target="_blank" rel="noreferrer"><Search size={18} /> Check official update</a>
+        <a className="secondary-action" href={currentPatch.source} target="_blank" rel="noreferrer"><Download size={18} /> Check latest patch</a>
         <a className="secondary-action" href="/launch-day/" onClick={(event) => navigate(event, "/launch-day/")}><CheckCircle2 size={18} /> Open launch support</a>
       </div>
     </section>
@@ -837,7 +843,7 @@ export function FreshnessPage({ topic }) {
       {(topic.slug === "aniimo-discord" || topic.slug === "aniimo-reddit") && <AnswerStatus status="Watchlist" checked={sourceLastChecked} sourceType="Official Aniimo channels and community research" next="Open an official channel for announcements; treat invites, screenshots and player claims as leads until verified." />}
       {(topic.slug === "aniimo-logo") && <InfoPanel title="Logo Search Answer" rows={[["Asset", "Use the Aniimo logo preview and source notes on this page."], ["Format", "The production asset is served as WebP for faster loading."], ["Source rule", "Use official or site-prepared brand assets rather than reposted files."]]}/>}
       {(topic.slug === "aniimo-discord" || topic.slug === "aniimo-reddit") && <InfoPanel title="Community Search Answer" rows={[["Official status", "Use only links verified by Aniimo or Pawprint Studio."], ["What this page provides", "A source-safe path for launch, codes, server and player-report questions."], ["What is not confirmed", "Third-party invites, screenshots and rumors are not official facts."]]}/>}
-      {topic.slug === "aniimo-controller-support" && <InfoPanel title="Controller Support Status" rows={[["PC", "Official PC storefronts are tracked; controller behavior requires official or reproducible verification."], ["Console", "Xbox and PS5 paths are tracked; native control schemes require live-client confirmation."], ["Mobile", "Touch controls and Bluetooth controller support are checked separately."], ["Steam Deck", "Compatibility, text size and layout require separate testing."]]}/>}
+      {topic.slug === "aniimo-controller-support" && <InfoPanel title="Controller Support Status" rows={[["Steam PC", "Disable Steam Input in Aniimo's Steam Controller properties, restart, then retest native controller input."], ["Latest patch", "September 30 improved controller progress-bar reward claiming; restart to download current resources."], ["Console", "Xbox and PS5 controls should be treated separately from the Steam Input path."], ["Mobile and Steam Deck", "Bluetooth/mobile and handheld compatibility still need separate verification."]]}/>}
       {topic.slug === "aniimo-server-status" && <InfoPanel title="Current Server Check" rows={[["Aniimo-wide outage", "No active outage is marked confirmed here."], ["Check first", "Official Aniimo news, platform store notices and the launch-day hub."], ["If only you are affected", "Check account, platform, region and known issues before retrying."], ["Evidence standard", "Official notice or repeatable live evidence with platform and time."]]}/>}
       {topic.slug === "aniimo-ai" && <InfoPanel title="AI Search Answer" rows={[["Current answer", "No official source reviewed here confirms that Aniimo is made with generative AI."], ["Evidence rule", "Trailer style, upscaling or visual polish is not proof of AI use."], ["Next check", "Update this answer only when the developer, publisher or platform publishes a direct disclosure."]]}/>}
       {topic.slug === "aniimo-tier-list" && <InfoPanel title="Tier List Search Answer" rows={[["Current answer", "This is a source-labeled watchlist, not a final competitive ranking."], ["How to compare", "Use role, element, stage and source status until live balance evidence exists."], ["Next update", "Add dated PvE, PvP and early-game testing from the current client."]]}/>}
@@ -1605,9 +1611,10 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
       ]} />}
       {topic.slug === "aniimo-egg-heist-guide" && <InfoPanel title="Egg Heist: Current Answer" rows={[
         ["Mode", "Official public material describes Egg Heist as a PVEVP mode in the Lost Isles."],
-        ["Team guidance", "Official wording describes three-player teams; the September update lists Chaos Mode, requires Tier IV Elite Egg Seeker, and recommends team play."],
+        ["Team guidance", "Official wording describes three-player teams; the September update lists Chaos Mode, requires Tier IV Elite Egg Seeker plus a Chaos Ticket, and recommends team play."],
         ["Current event status", eggHeistEventStatus()],
-        ["Still to verify", "Matchmaking, scoring, rewards, party limits, route strategy, and final competitive rules require current official or reproducible in-game evidence."],
+        ["Reward boundary", "The update lists higher Prismana Aniimo Egg and Prismatic Collectible drop rates, but not exact probabilities or full reward tables."],
+        ["Still to verify", "Matchmaking, scoring, party limits, route strategy, and final competitive rules require current official or reproducible in-game evidence."],
       ]} />}
       {topic.slug === "aniimo-pre-registro" && <InfoPanel title="Mobile Availability and Reward Status" rows={[
         ["Disponibilidade atual", "Aniimo esta disponivel no iOS e Android. Abra a loja oficial do seu pais e dispositivo."],
