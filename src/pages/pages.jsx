@@ -57,6 +57,7 @@ function gscWatchlistPath(query) {
 }
 
 export function HomePage(props) {
+  const activeEventCount = liveUpdate.events.filter((event) => eventStatus(event) === "Active").length;
   return (
     <>
         <section className="hero">
@@ -87,7 +88,7 @@ export function HomePage(props) {
         <section className="section launch-answer-strip" aria-label="Quick Aniimo answers">
           <div className="answer-card"><strong>Checked</strong><span>server status: {liveSupportStatus.lastChecked}</span><a href="/troubleshooting/aniimo-server-status/" onClick={(event) => props.navigate(event, "/troubleshooting/aniimo-server-status/")}>Check status <ChevronRight size={15} /></a></div>
           <div className="answer-card"><strong>Live</strong><span>PC and console platforms</span><a href="/download/" onClick={(event) => props.navigate(event, "/download/")}>Open download guide <ChevronRight size={15} /></a></div>
-          <div className="answer-card"><strong>Events</strong><span>Version 1.1 schedule and requirements</span><a href="/events/" onClick={(event) => props.navigate(event, "/events/")}>Check events <ChevronRight size={15} /></a></div>
+          <div className="answer-card"><strong>{activeEventCount}</strong><span>Version 1.1 events active now</span><a href="/events/" onClick={(event) => props.navigate(event, "/events/")}>Check events <ChevronRight size={15} /></a></div>
           <div className="answer-card"><strong>{aniimo.length}</strong><span>public Aniimo entries</span><a href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>Open database <ChevronRight size={15} /></a></div>
         </section>
 
@@ -810,6 +811,8 @@ export function UpdatesPage() {
 export function EventsPage({ navigate }) {
   const eventOrder = { Active: 0, Upcoming: 1, Ended: 2 };
   const orderedEvents = [...liveUpdate.events].sort((left, right) => eventOrder[eventStatus(left)] - eventOrder[eventStatus(right)] || new Date(left.startsAt) - new Date(right.startsAt));
+  const activeEvents = orderedEvents.filter((event) => eventStatus(event) === "Active");
+  const upcomingEvents = orderedEvents.filter((event) => eventStatus(event) === "Upcoming");
   return (
     <section className="section updates-band">
       <SectionTitle icon={<CalendarDays />} kicker="Official Update" title="Aniimo Events and Version 1.1" />
@@ -818,6 +821,18 @@ export function EventsPage({ navigate }) {
       <div className="detail-panels">
         <InfoPanel title="Current Update" rows={[["Update", liveUpdate.title], ["Published", liveUpdate.date], ["Time standard", "All event times below are UTC+8"], ["Irisalis journey", "Windchaser's Departure runs through December 10 UTC+8; follow current-client progression for the related Aniipod steps."], ["Mobile", "iOS and Android are live; check official stores by country and device"]]} />
         <InfoPanel title="Latest Resource Update" rows={[["Patch", `${currentPatch.title} (${currentPatch.date})`], ["Player action", currentPatch.summary], ["Eligibility", currentPatch.eligibility]]} />
+      </div>
+      <div className="event-summary-grid">
+        <article>
+          <span className="eyebrow">Active now</span>
+          <strong>{activeEvents.length}</strong>
+          <p>{activeEvents.map((event) => event.name).join(" · ")}</p>
+        </article>
+        <article>
+          <span className="eyebrow">Up next</span>
+          <strong>{upcomingEvents.length || "-"}</strong>
+          <p>{upcomingEvents.length ? upcomingEvents.map((event) => `${event.name}: ${eventSchedule(event)}`).join(" · ") : "No upcoming event window is currently listed."}</p>
+        </article>
       </div>
       <div className="table-shell freshness-table">
         <table>

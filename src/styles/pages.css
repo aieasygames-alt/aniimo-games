@@ -92,6 +92,12 @@
 .table-shell::after { content: "Swipe horizontally to see more"; display: block; padding: 7px 14px; color: #63716a; font-size: 12px; text-align: right; }
 @media (min-width: 761px) { .table-shell::after { display: none; } }
 
+.event-summary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 20px 0; }
+.event-summary-grid article { display: grid; align-content: start; gap: 8px; min-height: 150px; padding: 18px; border: 1px solid rgba(31,109,85,.2); border-radius: 8px; background: #eef7ef; }
+.event-summary-grid strong { color: #1f6d55; font-size: 34px; line-height: 1; }
+.event-summary-grid p { margin: 0; color: #43514b; overflow-wrap: anywhere; }
+@media (max-width: 760px) { .event-summary-grid { grid-template-columns: 1fr; } }
+
 .evidence-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
