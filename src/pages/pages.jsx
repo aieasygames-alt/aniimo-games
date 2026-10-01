@@ -812,7 +812,7 @@ export function EventsPage({ navigate }) {
       <p className="section-copy">{liveUpdate.summary}</p>
       <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official Aniimo September update notice" next="Recheck the official notice after maintenance or before publishing changed event times, eligibility or rewards." />
       <div className="detail-panels">
-        <InfoPanel title="Current Update" rows={[["Update", liveUpdate.title], ["Published", liveUpdate.date], ["Time standard", "All event times below are UTC+8"], ["Mobile", "iOS and Android are live; check official stores by country and device"]]} />
+        <InfoPanel title="Current Update" rows={[["Update", liveUpdate.title], ["Published", liveUpdate.date], ["Time standard", "All event times below are UTC+8"], ["Irisalis journey", "Windchaser's Departure runs through December 10 UTC+8; follow current-client progression for the related Aniipod steps."], ["Mobile", "iOS and Android are live; check official stores by country and device"]]} />
         <InfoPanel title="Latest Resource Update" rows={[["Patch", `${currentPatch.title} (${currentPatch.date})`], ["Player action", currentPatch.summary], ["Eligibility", currentPatch.eligibility]]} />
       </div>
       <div className="table-shell freshness-table">
