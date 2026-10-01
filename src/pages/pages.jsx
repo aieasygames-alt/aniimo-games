@@ -429,6 +429,20 @@ export function CodesPage({ navigate }) {
             The official Aniimo code list has not been published here yet. This page separates
             official codes from community reports, pre-registration rewards and launch milestones.
           </p>
+          <section className="action-priority" aria-label="Code and reward starting points">
+            <div>
+              <span className="eyebrow">Have a code?</span>
+              <h2>Verify it before entering it.</h2>
+              <p>Use the current-client redemption flow and keep official code status separate from community lists.</p>
+              <a className="primary-action" href="/codes/how-to-redeem/" onClick={(event) => navigate(event, "/codes/how-to-redeem/")}><Gift size={18} /> Redeem a code</a>
+            </div>
+            <div>
+              <span className="eyebrow">Missing a reward?</span>
+              <h2>Check account, campaign and mail first.</h2>
+              <p>Campaign rewards, milestones and redeem codes can follow different delivery paths.</p>
+              <a className="secondary-action" href="/rewards/" onClick={(event) => navigate(event, "/rewards/")}><CheckCircle2 size={18} /> Check reward status</a>
+            </div>
+          </section>
           <LinkGroup title="What do you need help with?" items={[
             ["I have a code", "/codes/how-to-redeem/", "Check the official code status and redemption evidence before entering it."],
             ["A reward is missing", "/rewards/", "Check account, server, platform and campaign delivery guidance."],
@@ -493,6 +507,20 @@ export function RewardsPage({ navigate }) {
         Junior Wayfarers, and a mysterious Susuta egg for official pre-registration. Claim delivery
         needs to be checked on the same account, server and platform used for the campaign.
       </p>
+      <section className="action-priority" aria-label="Reward claim starting points">
+        <div>
+          <span className="eyebrow">Claiming a campaign reward?</span>
+          <h2>Confirm eligibility before waiting for delivery.</h2>
+          <p>Use the campaign path, account, server and platform that were used for registration or purchase.</p>
+          <a className="primary-action" href="/rewards/junior-wayfarer/" onClick={(event) => navigate(event, "/rewards/junior-wayfarer/")}><Gift size={18} /> Check eligibility</a>
+        </div>
+        <div>
+          <span className="eyebrow">Nothing arrived?</span>
+          <h2>Record the account and store context.</h2>
+          <p>Check delivery timing and in-game mail before reporting a missing reward or changing accounts.</p>
+          <a className="secondary-action" href="/troubleshooting/aniimo-pre-registration-not-working/" onClick={(event) => navigate(event, "/troubleshooting/aniimo-pre-registration-not-working/")}><BookOpen size={18} /> Resolve a missing reward</a>
+        </div>
+      </section>
       <LinkGroup title="Claim a Reward" items={[
         ["Check campaign eligibility", "/rewards/junior-wayfarer/", "Confirm the official Junior Wayfarer campaign details."],
         ["Check milestone rewards", "/rewards/milestones/", "Review official milestone items separately from codes."],
@@ -1559,6 +1587,20 @@ export function TroubleshootingPage({ navigate }) {
         availability path is unavailable on a specific platform or country.
       </p>
       <AnswerStatus status="Watchlist" checked={sourceLastChecked} sourceType="Official Aniimo news and storefront status" next="Choose the problem type below, then record platform, country, account, server and time before retrying." />
+      <section className="action-priority action-priority-help" aria-label="Troubleshooting starting points">
+        <div>
+          <span className="eyebrow">Cannot play?</span>
+          <h2>Check global status before changing your account.</h2>
+          <p>Use the source-labeled server status answer first, then follow the platform-specific path if the issue is local.</p>
+          <a className="primary-action" href="/troubleshooting/aniimo-server-status/" onClick={(event) => navigate(event, "/troubleshooting/aniimo-server-status/")}><CheckCircle2 size={18} /> Check server status</a>
+        </div>
+        <div>
+          <span className="eyebrow">Cannot install?</span>
+          <h2>Confirm store, device and country.</h2>
+          <p>Use official listings rather than APK mirrors or reposted clients when a platform page is unavailable.</p>
+          <a className="secondary-action" href="/download/" onClick={(event) => navigate(event, "/download/")}><Download size={18} /> Choose a platform</a>
+        </div>
+      </section>
       <LinkGroup title="Start With Your Problem" items={[
         ["Cannot log in or load", "/troubleshooting/aniimo-server-status/", "Check official status and known launch issues before resetting anything."],
         ["Store page or install button missing", "/troubleshooting/aniimo-download-not-available/", "Check device, country, storefront account and official listing status."],
