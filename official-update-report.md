@@ -1,13 +1,13 @@
 # Aniimo Official Update Report
 
-Generated: 2026-10-01T02:47:26.531Z
+Generated: 2026-10-06T12:38:57.318Z
 
 ## Summary
 
 - Local Aniimo entries: 90
 - Official Wiki entries found in probe page: 81
 - Wiki comparison mode: Names with number-first fallback matching
-- Previous Wiki snapshot: 2026-09-24T02:02:40.065Z
+- Previous Wiki snapshot: 2026-10-01T02:47:26.530Z
 - Local regions: 6
 - Official regions seen on main page: 6
 - PC/console launch date: 2026-09-16

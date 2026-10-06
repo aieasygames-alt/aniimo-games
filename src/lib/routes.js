@@ -224,11 +224,14 @@ export function resolveRoute(path) {
   if (regionMatch) {
     const regionDetail = findRegionBySlug(regionMatch[1]);
     if (regionDetail) {
+      const highIntentRegions = new Set(["sea-of-flowers", "forest-of-falling-stars", "blitzwood"]);
       return {
         type: "region",
         path: regionPath(regionDetail),
-        title: `${regionDetail.name} Aniimo Locations & Route Guide`,
-        description: `${regionDetail.name} route guide with official region art, representative Aniimo, mechanics and verification notes.`,
+        title: highIntentRegions.has(regionDetail.id) ? `${regionDetail.name} Aniimo Map, Locations & Route Guide` : `${regionDetail.name} Aniimo Locations & Route Guide`,
+        description: highIntentRegions.has(regionDetail.id)
+          ? `Plan a ${regionDetail.name} Aniimo route: choose a creature or resource, open the region map layer, use travel points, and verify live encounter conditions.`
+          : `${regionDetail.name} route guide with official region art, representative Aniimo, mechanics and verification notes.`,
         regionDetail,
       };
     }
