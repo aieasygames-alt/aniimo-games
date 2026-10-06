@@ -999,6 +999,7 @@ export function FreshnessPage({ topic }) {
       {(topic.slug === "aniimo-logo") && <InfoPanel title="Logo Search Answer" rows={[["Asset", "Use the Aniimo logo preview and source notes on this page."], ["Format", "The production asset is served as WebP for faster loading."], ["Source rule", "Use official or site-prepared brand assets rather than reposted files."]]}/>}
       {(topic.slug === "aniimo-discord" || topic.slug === "aniimo-reddit") && <InfoPanel title="Community Search Answer" rows={[["Official status", "Use only links verified by Aniimo or Pawprint Studio."], ["What this page provides", "A source-safe path for launch, codes, server and player-report questions."], ["What is not confirmed", "Third-party invites, screenshots and rumors are not official facts."]]}/>}
       {topic.slug === "aniimo-controller-support" && <InfoPanel title="Controller Support Status" rows={[["Steam PC", "Disable Steam Input in Aniimo's Steam Controller properties, restart, then retest native controller input."], ["Latest patch", "September 30 improved controller progress-bar reward claiming; restart to download current resources."], ["Console", "Xbox and PS5 controls should be treated separately from the Steam Input path."], ["Mobile and Steam Deck", "Bluetooth/mobile and handheld compatibility still need separate verification."]]}/>}
+      {topic.slug === "aniimo-controller-support" && <ControllerTroubleshootingFlow navigate={navigate} />}
       {topic.slug === "aniimo-server-status" && <InfoPanel title="Current Server Check" rows={[["Aniimo-wide outage", "No active outage is marked confirmed here."], ["Check first", "Official Aniimo news, platform store notices and the launch-day hub."], ["If only you are affected", "Check account, platform, region and known issues before retrying."], ["Evidence standard", "Official notice or repeatable live evidence with platform and time."]]}/>}
       {topic.slug === "aniimo-ai" && <InfoPanel title="AI Search Answer" rows={[["Current answer", "No official source reviewed here confirms that Aniimo is made with generative AI."], ["Evidence rule", "Trailer style, upscaling or visual polish is not proof of AI use."], ["Next check", "Update this answer only when the developer, publisher or platform publishes a direct disclosure."]]}/>}
       {topic.slug === "aniimo-tier-list" && <InfoPanel title="Tier List Search Answer" rows={[["Current answer", "This is a source-labeled watchlist, not a final competitive ranking."], ["How to compare", "Use role, element, stage and source status until live balance evidence exists."], ["Next update", "Add dated PvE, PvP and early-game testing from the current client."]]}/>}
@@ -1026,6 +1027,20 @@ export function FreshnessPage({ topic }) {
           Check Source
         </a>
       </div>
+    </section>
+  );
+}
+
+function ControllerTroubleshootingFlow({ navigate }) {
+  return (
+    <section className="section compact-section" aria-label="Controller troubleshooting flow">
+      <SectionTitle icon={<CheckCircle2 />} kicker="Fix input" title="Follow the path for your platform" />
+      <div className="detail-panels">
+        <article className="info-panel"><div className="info-panel-heading"><h2>Steam PC: prompts or input do not work</h2><StatusBadge status="Confirmed" /></div><ol className="inline-list"><li>Open Steam Library, select Aniimo, then Manage and Properties.</li><li>Open Controller and set Steam Input to Disable Steam Input.</li><li>Restart Aniimo and retest native controller input.</li></ol><p className="small">This is the official Steam troubleshooting path. Do not assume it applies to console, mobile or Steam Deck.</p></article>
+        <article className="info-panel"><div className="info-panel-heading"><h2>Reward progress button does not respond</h2><StatusBadge status="Confirmed" /></div><ol className="inline-list"><li>Restart the client to load the September 30 resource update.</li><li>Retry the progress-bar reward claim with the current client.</li><li>If it repeats, record platform, controller model, connection type, client version and time.</li></ol><p className="small">The September 30 patch specifically lists an improvement to controller progress-bar reward claiming.</p></article>
+        <article className="info-panel"><div className="info-panel-heading"><h2>Console, mobile or Steam Deck</h2><StatusBadge status="Watchlist" /></div><p>Keep these paths separate from Steam PC. Console controls, Bluetooth controller support on mobile, and Steam Deck mappings need platform-specific verification.</p><a className="text-link" href="/troubleshooting/aniimo-known-issues/" onClick={(event) => navigate(event, "/troubleshooting/aniimo-known-issues/")}>Open known issues <ChevronRight size={16} /></a></article>
+      </div>
+      <div className="hero-actions section-actions"><a className="secondary-action" href="/codes/" onClick={(event) => navigate(event, "/codes/")}><Gift size={16} /> Reward and code help</a><a className="secondary-action" href="/events/" onClick={(event) => navigate(event, "/events/")}><CalendarDays size={16} /> Current event status</a></div>
     </section>
   );
 }
@@ -1714,6 +1729,7 @@ export function TroubleshootingPage({ navigate }) {
         ["Store page or install button missing", "/troubleshooting/aniimo-download-not-available/", "Check device, country, storefront account and official listing status."],
         ["Reward or pre-registration issue", "/troubleshooting/aniimo-pre-registration-not-working/", "Check campaign account, region and store details."],
         ["Code does not work", "/codes/aniimo-codes-not-working/", "Check official status, expiry, platform and region."],
+        ["Controller or button prompts", "/topics/aniimo-controller-support/", "Use the official Steam Input path on PC; keep console and mobile checks separate."],
       ]} navigate={navigate} />
       <LaunchStatusPanel title="Live Issue Status" entries={launchStatusEntries.filter((entry) => ["server", "known-issues", "pc-console", "mobile"].includes(entry.id))} />
       <div className="site-index-grid">
