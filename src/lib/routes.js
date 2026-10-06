@@ -27,6 +27,7 @@ export const staticRoutes = [
   { path: "/beginner-guide/", label: "Guides", title: "Aniimo Beginner Guide: Catching, Twine & Progression", description: "Learn Aniimo basics including catching, Twine, environment encounters, Homeland, RV systems and beginner progression." },
   { path: "/updates/", label: "Updates", title: "Aniimo Updates & Source Log", description: "Follow Aniimo.games update history, official source checks, content freshness notes and launch tracking changes." },
   { path: "/events/", label: "Events", title: "Aniimo Events: Version 1.1 Schedule & Requirements", description: "Track Aniimo Version 1.1 events, Irisalis progression, Egg Heist Chaos Mode, unlock requirements and UTC+8 timing from official sources." },
+  { path: "/weekly-plan/", label: "Weekly Plan", title: "Aniimo Weekly Plan: Current Events & Repeatable Activities", description: "Plan a useful Aniimo week using current event status, known repeatable activities, eligibility checks and official source links." },
   { path: "/launch-day/", label: "Launch Day", title: "Aniimo Launch Day Server Status, Codes & Fixes", description: "Use the Aniimo launch day command center for server status, official downloads, active codes, unlock timing and common launch fixes." },
   { path: "/launch-tracker/", label: "Launch Tracker", title: "Aniimo Launch Tracker", description: "Track Aniimo launch readiness across platform dates, official rewards, code status, source checks and post-launch verification tasks." },
   { path: "/launch-verification/", label: "Launch Verification", title: "Aniimo Launch Verification Checklist", description: "Prepare Aniimo post-launch verification templates for spawn routes, redeem codes, platform unlock times and Search Console observations." },
@@ -206,6 +207,7 @@ export function resolveRoute(path) {
   if (normalized === "/compare/aniimo/") return { type: "aniimo-compare", path: normalized, title: "Compare Aniimo | Aniimo Wiki", description: "Compare Aniimo by element, role, stage, region, evolution, abilities and source status." };
   if (normalized === "/team-builder/") return { type: "team-builder", path: normalized, title: "Aniimo Team Builder | Aniimo Wiki", description: "Build and share a six-slot Aniimo team while checking element coverage, role coverage, regions, stages and public data status." };
   if (normalized === "/collection-tracker/") return { type: "collection-tracker", path: normalized, title: "Aniimo Collection Tracker | Aniimo Wiki", description: "Track viewed, wanted, captured and verified Aniimo entries locally in your browser." };
+  if (normalized === "/weekly-plan/") return { type: "weekly-plan", path: normalized, title: "Aniimo Weekly Plan: Current Events & Repeatable Activities", description: "Plan a useful Aniimo week using current event status, known repeatable activities, eligibility checks and official source links." };
   const aniimoMatch = normalized.match(/^\/aniimo\/([^/]+)\//);
   if (aniimoMatch) {
     const detail = findAniimoBySlug(aniimoMatch[1]);
@@ -428,6 +430,7 @@ export function primarySitemapRoutes() {
     "/launch-tracker/",
     "/launch-verification/",
     "/events/",
+    "/weekly-plan/",
     "/site-index/",
     "/mechanics/",
     "/evolution/",

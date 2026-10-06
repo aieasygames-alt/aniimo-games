@@ -960,8 +960,27 @@ export function EventsPage({ navigate }) {
       <div className="hero-actions section-actions">
         <a className="primary-action" href={liveUpdate.source} target="_blank" rel="noreferrer"><Search size={18} /> Check official update</a>
         <a className="secondary-action" href={currentPatch.source} target="_blank" rel="noreferrer"><Download size={18} /> Check latest patch</a>
+        <a className="secondary-action" href="/weekly-plan/" onClick={(event) => navigate(event, "/weekly-plan/")}><CalendarDays size={18} /> Open weekly plan</a>
         <a className="secondary-action" href="/launch-day/" onClick={(event) => navigate(event, "/launch-day/")}><CheckCircle2 size={18} /> Open launch support</a>
       </div>
+    </section>
+  );
+}
+
+export function WeeklyPlanPage({ navigate }) {
+  const repeatableNames = new Set(["Legendary Journey: Windchaser's Departure", "Holo-Battle Interlink", "Egg Heist Team Mode: Chaos Mode"]);
+  const activeEvents = liveUpdate.events.filter((event) => eventStatus(event) === "Active");
+  const repeatableEvents = liveUpdate.events.filter((event) => repeatableNames.has(event.name));
+  return (
+    <section className="section updates-band">
+      <SectionTitle icon={<CalendarDays />} kicker="Current week" title="Plan your next useful Aniimo session" />
+      <p className="section-copy">This page turns the current official event schedule into a short planning checklist. It does not invent daily tasks, reward quantities or reset rules that still require current-client verification.</p>
+      <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official Version 1.1 event notice" next="Check the current client before relying on a requirement, reset timing or availability state." />
+      <section className="event-summary-grid" aria-label="Weekly activity counts"><article><span className="eyebrow">Active windows</span><strong>{activeEvents.length}</strong><p>Current time-window activities listed by the official update.</p></article><article><span className="eyebrow">Repeatable focus</span><strong>{repeatableEvents.length}</strong><p>Legendary Journey, Holo-Battle Interlink and Egg Heist are tracked separately from one-off windows.</p></article></section>
+      <section className="section compact-section" aria-label="Repeatable activity plan"><SectionTitle icon={<Compass />} kicker="Start here" title="Choose one repeatable goal before opening a map" /><div className="detail-panels">{repeatableEvents.map((event) => <article className="info-panel" key={event.name}><div className="info-panel-heading"><h2>{event.name}</h2><StatusBadge status={eventStatus(event)} /></div><p>{event.detail}</p><dl><div><dt>Requirement</dt><dd>{event.requirements}</dd></div><div><dt>Schedule</dt><dd>{eventSchedule(event)}</dd></div></dl><a className="text-link" href={event.source} target="_blank" rel="noreferrer">Official details <ChevronRight size={16} /></a></article>)}</div></section>
+      <section className="section compact-section" aria-label="Current limited time events"><SectionTitle icon={<Sparkles />} kicker="Time-limited" title="Check these windows before they end" /><div className="detail-panels">{activeEvents.filter((event) => !repeatableNames.has(event.name)).map((event) => <article className="info-panel" key={event.name}><div className="info-panel-heading"><h2>{event.name}</h2><StatusBadge status={eventStatus(event)} /></div><p>{event.detail}</p><p className="small"><strong>Requirement:</strong> {event.requirements}</p><p className="small"><strong>Window:</strong> {eventSchedule(event)}</p></article>)}</div></section>
+      <InfoPanel title="Before You Finish a Session" rows={[["Update check", "Restart the client when a current resource update is listed, then retry a repeatable issue before reporting it."], ["Progress proof", "Record platform, server, client version and a screenshot when an eligibility or reward state differs from the official notice."], ["Map objective", "For exploration, pick one creature or resource objective and use the matching region guide instead of opening every marker layer."], ["No claimed reset", "Daily and weekly reset hours, caps and reward quantities stay out of this plan unless confirmed in the live client or an official update."]]} />
+      <div className="hero-actions section-actions"><a className="primary-action" href="/events/" onClick={(event) => navigate(event, "/events/")}><CalendarDays size={18} /> Full event schedule</a><a className="secondary-action" href="/map/" onClick={(event) => navigate(event, "/map/")}><Map size={18} /> Pick a region route</a><a className="secondary-action" href="/troubleshooting/aniimo-known-issues/" onClick={(event) => navigate(event, "/troubleshooting/aniimo-known-issues/")}><CheckCircle2 size={18} /> Resolve an issue</a></div>
     </section>
   );
 }

@@ -29,6 +29,7 @@ import {
   EditorialPolicyPage,
   EvolutionPage,
   EventsPage,
+  WeeklyPlanPage,
   FreshnessPage,
   GuideSummary,
   GlossaryPage,
@@ -231,6 +232,8 @@ function App() {
           <TeamBuilderPage navigate={navigate} />
         ) : routeInfo.type === "collection-tracker" ? (
           <CollectionTrackerPage navigate={navigate} />
+        ) : routeInfo.type === "weekly-plan" ? (
+          <WeeklyPlanPage navigate={navigate} />
         ) : routeInfo.path === "/aniimo/" ? (
           <DatabasePage {...sharedProps} />
         ) : routeInfo.path === "/map/" ? (
