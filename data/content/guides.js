@@ -46,9 +46,9 @@ export const mechanics = [
 ].map(([title, text]) => ({ title, text, source: officialLinks.googlePlay }));
 
 export const mapGuide = [
-  ["Region coverage", "All six public world regions now have official artwork and launch-ready guide pages."],
+  ["Region coverage", "All six public world regions have official artwork, a route guide and a linked community-map entrance for planning."],
   ["Map size searches", "Aniimo.games tracks map-size intent through the six public regions, visible region art and launch verification queues. Exact world scale, border size and travel-time measurements should be added only after official or in-game confirmation."],
-  ["Encounter routing", "Each region links to representative Aniimo and keeps route details separate from claims that still need launch verification."],
+  ["Encounter routing", "Each region links to representative Aniimo, a usable route-planning map and source-labeled location notes; exact spawns remain separate until verified."],
   ["Verification pass", "After launch, update each area with coordinates, weather windows, time-of-day notes and traversal requirements."],
   ["Internal linking", "Region pages link back into Aniimo details so search visitors can move between map, evolution and database pages."],
 ];
@@ -174,8 +174,8 @@ export const faqs = {
     ["Are elements and roles official?", "Confirmed entries use official Wiki element, role and stage labels. Newly synced index-only entries keep unknown fields labeled until verified."],
   ],
   map: [
-    ["How big is the Aniimo map?", "A final measured Aniimo world size is not confirmed here yet. Aniimo.games currently tracks six public regions and will add measurements only after official or reproducible evidence is available."],
-    ["Where can I find Aniimo locations?", "Search by region or creature name, then open the linked region and Aniimo detail pages for current source-labeled location notes. Exact spawn coordinates, weather and time conditions need verification."],
+    ["How big is the Aniimo map?", "A final measured Aniimo world size is not confirmed here yet. Aniimo.games currently tracks six public regions with linked route-planning maps and will add measurements only after official or reproducible evidence is available."],
+    ["Where can I find Aniimo locations?", "Search by region or creature name, then open the linked region guide and community map for current source-labeled location notes. Exact spawn coordinates, weather and time conditions need verification in the live game."],
   ],
   codes: [
     ["Are there official Aniimo codes?", "No public redeem code is confirmed here yet. This page separates redeem codes from official milestone rewards."],

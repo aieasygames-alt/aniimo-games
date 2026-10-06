@@ -62,9 +62,9 @@ export function HomePage(props) {
     <>
         <section className="hero">
           <div className="hero-copy">
-            <p className="eyebrow">Independent live Aniimo guide</p>
-            <h1>Server status, downloads, issues and Aniimo answers.</h1>
-            <p>{gameInfo.summary} Check a dated support answer, use an official store path, browse known issues, or search the public database without sorting through rumor guides.</p>
+            <p className="eyebrow">Independent Aniimo game guide</p>
+            <h1>Aniimo map, locations, downloads and live game answers.</h1>
+            <p>{gameInfo.summary} Find a creature's region, open a practical community map, use an official store path, or check current issues without sorting through rumor guides.</p>
             <div className="hero-actions">
               <a className="primary-action" href="/troubleshooting/aniimo-server-status/" onClick={(event) => props.navigate(event, "/troubleshooting/aniimo-server-status/")}>
                 <CheckCircle2 size={18} />
@@ -73,6 +73,10 @@ export function HomePage(props) {
               <a className="secondary-action" href="/download/" onClick={(event) => props.navigate(event, "/download/")}>
                 <Download size={18} />
                 Choose a platform
+              </a>
+              <a className="secondary-action" href="/map/" onClick={(event) => props.navigate(event, "/map/")}>
+                <Map size={18} />
+                Open map guides
               </a>
               <a className="secondary-action" href="/troubleshooting/aniimo-known-issues/" onClick={(event) => props.navigate(event, "/troubleshooting/aniimo-known-issues/")}>
                 <BookOpen size={18} />
@@ -90,6 +94,21 @@ export function HomePage(props) {
           <div className="answer-card"><strong>Live</strong><span>PC and console platforms</span><a href="/download/" onClick={(event) => props.navigate(event, "/download/")}>Open download guide <ChevronRight size={15} /></a></div>
           <div className="answer-card"><strong>{activeEventCount}</strong><span>Version 1.1 events active now</span><a href="/events/" onClick={(event) => props.navigate(event, "/events/")}>Check events <ChevronRight size={15} /></a></div>
           <div className="answer-card"><strong>{aniimo.length}</strong><span>public Aniimo entries</span><a href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>Open database <ChevronRight size={15} /></a></div>
+        </section>
+
+        <section className="section player-entry-grid" aria-label="Aniimo game starting points">
+          <article>
+            <span className="eyebrow">Find locations</span>
+            <h2>Start with a region, then open a usable map.</h2>
+            <p>All six tracked regions include official-region context, a community-map entrance and route-planning checks.</p>
+            <a className="primary-action" href="/map/" onClick={(event) => props.navigate(event, "/map/")}><Map size={18} /> Browse map guides</a>
+          </article>
+          <article>
+            <span className="eyebrow">Get the game</span>
+            <h2>Choose a store before downloading.</h2>
+            <p>Use verified Steam, Epic, PlayStation, Xbox, App Store and Google Play paths. Country and device can still affect storefront visibility.</p>
+            <a className="secondary-action" href="/download/" onClick={(event) => props.navigate(event, "/download/")}><Download size={18} /> Open official downloads</a>
+          </article>
         </section>
 
         <section className="quick-grid primary-task-grid" aria-label="Start with a task">
@@ -173,6 +192,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             <div><strong>Status</strong><span>confirmed, watchlist or verified</span></div>
           </div>
           {!compact && <InfoPanel title="Aniimo Characters: Quick Answer" rows={[["What this list includes", `All ${aniimo.length} tracked Aniimo characters with number, element, role, region, stage and source status.`], ["Find a character", "Search a name such as Celestis, Eko or Sherro, then open the detail page for location and evolution notes."], ["Location accuracy", "Region associations are listed now; exact spawn points need verified in-game or official evidence."]]} />}
+          {!compact && <LinkGroup title="Location and Map Shortcuts" items={regions.filter((item) => item.map).map((item) => [item.name, regionPath(item), `Open the ${item.name} guide, community map and route-planning checklist.`])} navigate={navigate} />}
           <details className="filter-drawer" open>
             <summary>Filter the creature list</summary>
           <div className="filters">
@@ -337,6 +357,7 @@ export function MapPage({ compact, navigate }) {
   const mapParams = new URLSearchParams(window.location.search);
   const [query, setQuery] = useState(mapParams.get("q") || "");
   const [regionFilter, setRegionFilter] = useState(mapParams.get("region") || "All");
+  const mappedRegions = regions.filter((item) => item.map);
   const filteredRegions = regions.filter((item) => {
     const text = `${item.name} ${item.theme} ${item.aniimo.join(" ")} ${item.mechanics.join(" ")}`.toLowerCase();
     return text.includes(query.toLowerCase()) && (regionFilter === "All" || item.name === regionFilter);
@@ -354,8 +375,9 @@ export function MapPage({ compact, navigate }) {
           )}
           {!compact && <AnswerStatus status="Watchlist" checked={sourceLastChecked} sourceType="Official region material and source review" next="Search a region or creature, then use its guide before relying on a precise route, weather or time condition." />}
           {!compact && <div className="map-toolbar"><label className="search-field"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search regions, Aniimo or mechanics" /></label><Select label="Region" value={regionFilter} onChange={setRegionFilter} options={["All", ...regions.map((item) => item.name)]} /><button type="button" className="secondary-action" onClick={() => navigator.clipboard?.writeText(`${window.location.origin}/map/?q=${encodeURIComponent(query)}&region=${encodeURIComponent(regionFilter)}`)}><Copy size={16} /> Copy map link</button></div>}
-          {!compact && <p className="section-copy map-answer">Looking for the Aniimo map size? The final measured world size is not confirmed yet; this page tracks {regions.length} public regions and adds route evidence after launch verification.</p>}
+          {!compact && <p className="section-copy map-answer">Find an Aniimo location by opening one of the {regions.length} regional map tools below. A final measured world size is not confirmed yet, and exact spawn routes stay source-labeled until verified.</p>}
           {!compact && <InfoPanel title="Map and Location Answer" rows={[["Find a region", "Search the map by region, Aniimo name or mechanic, then open the region guide."], ["Find a creature", "Region pages connect Celestis, Eko, Sherro and other listed Aniimo to current source-labeled location notes."], ["Exact spawns", "Coordinates, weather and time conditions stay unconfirmed until supported by official or reproducible evidence."]]} />}
+          {!compact && <section className="map-tool-summary" aria-label="Community map availability"><div><span className="eyebrow">Route tools</span><h2>{mappedRegions.length} regions have a usable community map</h2><p>Open these planning tools for markers and route building, then use the live game to verify final encounters.</p></div><div>{mappedRegions.map((item) => <a className="secondary-action" key={item.id} href={item.map.mapUrl} target="_blank" rel="noreferrer"><Map size={16} /> {item.name}</a>)}</div></section>}
           {!compact && <LinkGroup title="Map Search Answers" items={[["Map Size", "/map/", "See the current measured-size status and public region count."], ["Aniimo Locations", "/topics/aniimo-locations/", "Find the verification plan for creature spawn routes."], ["Evolution List", "/topics/aniimo-evolution-list/", "Browse creature forms and evolution coverage."]]} navigate={navigate} />}
           <div className="region-grid">
             {filteredRegions.map((item) => (
@@ -366,9 +388,11 @@ export function MapPage({ compact, navigate }) {
                 <p className="small">Known Aniimo: {item.aniimo.join(", ")}</p>
                 <p className="small">Mechanics: {item.mechanics.join(", ")}</p>
                 <StatusBadge status={item.status} />
+                {item.map && <p className="map-available"><Map size={15} /> Community map available</p>}
                 <a className="text-link" href={regionPath(item)} onClick={(event) => navigate(event, regionPath(item))}>
                   View region guide <ChevronRight size={16} />
                 </a>
+                {item.map && <a className="text-link" href={item.map.mapUrl} target="_blank" rel="noreferrer">Open community map <ChevronRight size={16} /></a>}
               </article>
             ))}
           </div>
@@ -540,6 +564,15 @@ export function RewardsPage({ navigate }) {
 export function DownloadPage({ navigate }) {
   const [device, setDevice] = useState("PC");
   const deviceOptions = ["PC", "PS5", "Xbox", "iOS", "Android"];
+  const platformAnswers = [
+    ["PC", "Available", "Steam and Epic Games Store", "/platforms/steam/"],
+    ["PS5", "Available", "Official PlayStation 5 listing", "/platforms/ps5/"],
+    ["Xbox", "Available", "Official Xbox listing", "/platforms/xbox/"],
+    ["iPhone and iPad", "Available", "Official App Store listing", "/platforms/ios/"],
+    ["Android", "Available", "Official Google Play listing", "/platforms/android/"],
+    ["Nintendo Switch", "Not confirmed", "No official Switch or Switch 2 listing is tracked", "/compare/is-aniimo-on-switch/"],
+    ["PS4", "Not confirmed", "PS5 is tracked; no official PS4 listing is confirmed", "/topics/aniimo-ps4/"],
+  ];
   const deviceConfig = {
     PC: { stores: ["Steam", "Epic Games Store"], title: "PC is live", note: "Install through Steam or Epic Games Store. Check the official store page for the current client and PC requirements." },
     PS5: { stores: ["PlayStation 5"], title: "PS5 is live", note: "Install through the official PlayStation listing. Your PSN region determines the server assignment." },
@@ -557,6 +590,16 @@ export function DownloadPage({ navigate }) {
               Pick your device first. This page shows the official path, current status and the
               next check for that platform.
             </p>
+            <section className="platform-answer-matrix" aria-label="Aniimo platform availability">
+              <div>
+                <span className="eyebrow">Platform answer</span>
+                <h2>Where can you play Aniimo?</h2>
+                <p>Use a confirmed storefront when one is listed. Switch and PS4 are not presented as available until an official listing confirms them.</p>
+              </div>
+              <div className="platform-answer-list">
+                {platformAnswers.map(([platform, status, detail, href]) => <a key={platform} href={href} onClick={(event) => href.startsWith("/") && navigate(event, href)}><span><strong>{platform}</strong><small>{detail}</small></span><span className={status === "Available" ? "availability confirmed" : "availability watchlist"}>{status}</span></a>)}
+              </div>
+            </section>
             <AnswerStatus status={device === "iOS" || device === "Android" ? "Confirmed" : "Verified"} checked={sourceLastChecked} sourceType="Official Aniimo launch news and storefronts" next={selectedDevice.note} />
             <InfoPanel title={selectedDevice.title} rows={[["Official path", selectedDevice.stores.join(" or ")], ["Current guidance", selectedDevice.note], ["Account rule", "Use the Aniimo account and server you intend to keep. PC and mobile share data with the same Aniimo account; different servers are independent."]]} />
             <div className="device-picker device-decision-picker" role="group" aria-label="Choose your platform">{deviceOptions.map((item) => <button key={item} type="button" className={device === item ? "active" : ""} onClick={() => setDevice(item)}>{item}</button>)}</div>
@@ -609,6 +652,7 @@ export function DownloadPage({ navigate }) {
               ["Steam Deck", "/topics/aniimo-steam-deck/", "Track compatibility questions after PC launch."],
               ["Game Pass", "/topics/aniimo-game-pass/", "Separate Xbox availability from Game Pass catalog claims."],
               ["PS4", "/topics/aniimo-ps4/", "Answer PS4 searches while PlayStation tracking stays PS5-focused."],
+              ["Nintendo Switch", "/compare/is-aniimo-on-switch/", "Check the explicit Switch and Switch 2 availability status."],
               ["Crossplay", "/compare/aniimo-crossplay/", "Track crossplay, cross-save and account-linking questions."],
             ]} navigate={navigate} />
             <EditorialBlock title="Download Checklist" items={editorialGuides.download} />
@@ -737,16 +781,24 @@ function RewardGrid() {
 export function UpdatesPage() {
   return (
     <section className="section updates-band">
-      <SectionTitle icon={<CalendarDays />} kicker="Freshness" title="Update Log" />
-      <div className="hero-actions section-actions">
-        <a className="primary-action" href="/launch-tracker/">
-          <CalendarDays size={18} />
-          Open Launch Tracker
-        </a>
-        <a className="secondary-action" href="/site-index/">
-          <Compass size={18} />
-          Open Site Index
-        </a>
+      <SectionTitle icon={<CalendarDays />} kicker="Current Game" title="Aniimo Updates, Events & Player Guides" />
+      <p className="section-copy">Check the latest source-labeled update, active activities and the next useful game guide. The site changelog and source-monitoring detail remain below for readers who need them.</p>
+      <section className="current-update-callout" aria-label="Current Aniimo update">
+        <div>
+          <span className="eyebrow">Current update</span>
+          <h2>{currentPatch.title}</h2>
+          <p>{currentPatch.summary}</p>
+          <a className="primary-action" href={currentPatch.source} target="_blank" rel="noreferrer"><CalendarDays size={18} /> Read official patch notes</a>
+        </div>
+        <dl>
+          <div><dt>Updated</dt><dd>{currentPatch.date}</dd></div>
+          <div><dt>Start here</dt><dd>Restart the client, then check events or current issues.</dd></div>
+          <div><dt>Player impact</dt><dd>Controller reward-claiming, login performance and Irisalis fixes are listed in the current notes.</dd></div>
+        </dl>
+      </section>
+      <div className="site-index-grid player-update-links">
+        <LinkGroup title="Play Now" items={[["Current Events", "/events/", "Check active event requirements, time windows and official details."], ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Check current login, loading, reward and platform fixes."], ["Official Download", "/download/", "Open the right official store for your device."], ["Map and Locations", "/map/", "Find a region guide and use a source-labeled route workflow."]]} />
+        <LinkGroup title="Track the Game" items={[["Launch Tracker", "/launch-tracker/", "Check platform, reward, code and source status."], ["Official News", "/updates/official-news/", "Review official announcements and affected guides."], ["Source Archive", "/source-archive/", "See the primary sources used for current claims."], ["Site Changelog", "/updates/site-changelog/", "Review material Aniimo.games updates."]]} />
       </div>
       <InfoPanel title="Current data snapshot" rows={[["Last source check", sourceLastChecked], ["Public Aniimo tracked", `${aniimo.length} entries`], ["Regions tracked", `${regions.length} regions`], ["Data policy", "Unverified balance, routes and coordinates remain clearly labeled."]]}/>
       <div className="freshness-grid">
@@ -2035,6 +2087,8 @@ export function LocationTopicPage({ region, navigate }) {
         <InfoPanel title="Region Focus" rows={[["Theme", region.theme], ["Mechanics", region.mechanics.join(", ")], ["Status", region.status]]} />
         <InfoPanel title="Verification Queue" rows={region.checklist.map((item, index) => [`Check ${index + 1}`, item])} />
       </div>
+      {region.map && <section className="location-map-link" aria-label={`${region.name} map link`}><div><span className="eyebrow">Plan the route</span><h2>Open the {region.name} community map</h2><p>{region.map.mapSummary}</p></div><a className="primary-action" href={region.map.mapUrl} target="_blank" rel="noreferrer"><Map size={18} /> Open map</a><p className="small">External community markers are planning aids. Confirm the encounter in the live game before treating a marker as permanent.</p></section>}
+      <div className="hero-actions section-actions"><a className="secondary-action" href={regionPath(region)} onClick={(event) => navigate(event, regionPath(region))}><Compass size={16} /> Open full {region.name} guide</a></div>
       <RelatedAniimo title={`${region.name} Aniimo`} items={regionAniimo} navigate={navigate} />
     </section>
   );
@@ -2427,11 +2481,13 @@ export function AniimoDetail({ item, navigate, localized = false }) {
       </div>
       <div className="tool-actions detail-tool-actions">
         {!pt && itemRegion && <a className="primary-action" href={regionPath(itemRegion)} onClick={(event) => navigate(event, regionPath(itemRegion))}><Map size={16} /> Open {item.region} guide</a>}
+        {!pt && itemRegion?.map && <a className="secondary-action" href={`${itemRegion.map.mapUrl}${itemRegion.map.mapUrl.includes("?") ? "&" : "?"}aniimo=${encodeURIComponent(item.id)}`} target="_blank" rel="noreferrer"><Compass size={16} /> Open {item.name} on community map</a>}
         <a className="secondary-action" href={`/compare/aniimo/?ids=${item.id}`} onClick={(event) => navigate(event, `/compare/aniimo/?ids=${item.id}`)}><Copy size={16} /> Compare this Aniimo</a>
         <a className="secondary-action" href={`/team-builder/?ids=${item.id}`} onClick={(event) => navigate(event, `/team-builder/?ids=${item.id}`)}><Plus size={16} /> Add to team</a>
         <a className="secondary-action" href="/collection-tracker/" onClick={(event) => navigate(event, "/collection-tracker/")}><CheckCircle2 size={16} /> Track collection</a>
       </div>
       {!pt && <section className="location-answer" aria-label={`${item.name} location answer`}><div><span className="eyebrow">Location answer</span><h2>Where is {item.name}?</h2><p>{item.name} is currently associated with <strong>{item.region}</strong>. This is a source-labeled region answer, not an exact spawn coordinate.</p></div><div className="location-answer-status"><StatusBadge status={item.status} /><span>Exact route, time and conditions need official or reproducible in-game verification.</span></div></section>}
+      {!pt && itemRegion?.map && <section className="creature-map-plan" aria-label={`Find ${item.name}`}><div><span className="eyebrow">Find this Aniimo</span><h2>Plan a {item.name} route in {item.region}</h2><p>{itemRegion.map.mapSummary}</p><a className="primary-action" href={`${itemRegion.map.mapUrl}${itemRegion.map.mapUrl.includes("?") ? "&" : "?"}aniimo=${encodeURIComponent(item.id)}`} target="_blank" rel="noreferrer"><Map size={18} /> Open {item.name} on map</a></div><ol><li>Open the region map and use the Aniimo search or region filter.</li><li>Check the weather and time conditions listed in the live client before traveling.</li><li>Confirm the encounter in-game; community markers can change with game updates.</li></ol></section>}
       {!pt && <div className="quick-facts" aria-label={`${item.name} quick facts`}><div><strong>{item.no}</strong><span>Wiki number</span></div><div><strong>{item.element}</strong><span>Element</span></div><div><strong>{item.role}</strong><span>Role</span></div><div><strong>{item.region}</strong><span>Region</span></div></div>}
       {!pt && <section className="player-answer" aria-label={`${item.name} player quick answer`}>
         <div><span className="eyebrow">Player quick answer</span><h2>What can I confirm about {item.name}?</h2></div>
@@ -2508,10 +2564,22 @@ export function RegionDetail({ region, navigate }) {
         <InfoPanel title="Route Notes" rows={[["Exploration", region.theme], ["Mechanics", region.mechanics.join(", ")], ["Data status", statuses[region.status]], ["Last updated", siteLastUpdated]]} />
         <InfoPanel title="Launch Checklist" rows={region.checklist.map((item, index) => [`Check ${index + 1}`, item])} />
       </div>
+      {region.map && <section className="community-map-callout" aria-label={`${region.name} community map`}>
+        <div>
+          <p className="eyebrow">Community map</p>
+          <h2>Open a usable {region.name} map</h2>
+          <p>{region.map.mapSummary}</p>
+          <a className="primary-action" href={region.map.mapUrl} target="_blank" rel="noreferrer"><Map size={18} /> Open {region.map.mapProvider}</a>
+        </div>
+        <ol>
+          {region.map.practicalNotes.map((note) => <li key={note}>{note}</li>)}
+        </ol>
+        <p className="community-map-disclaimer">External community data can change. Aniimo.games does not copy or republish its map tiles or markers; confirm the final encounter in your live game.</p>
+      </section>}
       <div className="detail-editorial">
         <GuideItem title={`${region.name} guide plan`} text={region.guideNote} />
         <GuideItem title="Verification priority" text={`After launch, add route screenshots, exact encounter notes and mechanic-specific checks for ${region.mechanics.join(", ")}.`} />
-        <GuideItem title="Source note" text={`This page uses official region material first. Community route findings should be added only after they can be checked against the live game.`} />
+        <GuideItem title="Source note" text={region.map ? `Official region material remains the primary source. The linked ${region.map.mapProvider} is an external planning tool; its specific markers should be confirmed in the live game before being treated as permanent route facts.` : "This page uses official region material first. Community route findings should be added only after they can be checked against the live game."} />
       </div>
       <div className="hero-actions section-actions">
         {regionAniimo.slice(0, 3).map((item) => <a className="secondary-action" key={item.id} href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}><Search size={16} /> {item.name} details</a>)}
