@@ -1,5 +1,4 @@
-https://www.aniimo.games/ https://aniimo.games/ 301!
-https://www.aniimo.games/* https://aniimo.games/:splat 301!
+/* https://aniimo.games/:splat 301!
 /updates/official-news-tracker/ /updates/official-news/ 301
 /updates/official-news-tracker /updates/official-news/ 301
 /aniimo/nimbi /aniimo/bolty/ 301
@@ -9,4 +8,3 @@ https://www.aniimo.games/* https://aniimo.games/:splat 301!
 /aniimo/dreaple /aniimo/fentuft/ 301
 /aniimo/dreaple/ /aniimo/fentuft/ 301
 /pt/:splat /pt-br/:splat 301
-/* /index.html 200

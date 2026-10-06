@@ -47,7 +47,8 @@ const redirectsSource = readFileSync("public/_redirects", "utf8");
 
 const hasHostConditionRedirect = redirectsSource.includes("Host=www.aniimo.games") && redirectsSource.includes("https://aniimo.games/:splat");
 const hasAbsoluteDomainRedirect = redirectsSource.includes("https://www.aniimo.games/* https://aniimo.games/:splat 301!");
-if (!hasHostConditionRedirect && !hasAbsoluteDomainRedirect) {
+const hasPagesCompatibleDomainRedirect = redirectsSource.includes("/* https://aniimo.games/:splat 301!");
+if (!hasHostConditionRedirect && !hasAbsoluteDomainRedirect && !hasPagesCompatibleDomainRedirect) {
   issues.push("Missing www to non-www redirect rule in public/_redirects.");
 }
 
