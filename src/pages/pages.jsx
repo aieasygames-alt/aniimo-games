@@ -468,6 +468,7 @@ export function CodesPage({ navigate }) {
               <a className="secondary-action" href="/rewards/" onClick={(event) => navigate(event, "/rewards/")}><CheckCircle2 size={18} /> Check reward status</a>
             </div>
           </section>
+          <PlayerActionStatus navigate={navigate} />
           <LinkGroup title="What do you need help with?" items={[
             ["I have a code", "/codes/how-to-redeem/", "Check the official code status and redemption evidence before entering it."],
             ["A reward is missing", "/rewards/", "Check account, server, platform and campaign delivery guidance."],
@@ -546,6 +547,7 @@ export function RewardsPage({ navigate }) {
           <a className="secondary-action" href="/troubleshooting/aniimo-pre-registration-not-working/" onClick={(event) => navigate(event, "/troubleshooting/aniimo-pre-registration-not-working/")}><BookOpen size={18} /> Resolve a missing reward</a>
         </div>
       </section>
+      <PlayerActionStatus navigate={navigate} focus="reward" />
       <LinkGroup title="Claim a Reward" items={[
         ["Check campaign eligibility", "/rewards/junior-wayfarer/", "Confirm the official Junior Wayfarer campaign details."],
         ["Check milestone rewards", "/rewards/milestones/", "Review official milestone items separately from codes."],
@@ -779,6 +781,34 @@ function RewardGrid() {
   );
 }
 
+function PlayerActionStatus({ navigate, focus = "code" }) {
+  const irisalisEvent = liveUpdate.events.find((event) => event.name.includes("Windchaser's Departure"));
+  const codeAction = {
+    title: "I have a redeem code",
+    status: "Watchlist",
+    answer: "Enter a string only after the official announcement or the current client confirms it. The current site does not mark a public code as official.",
+    href: "/codes/how-to-redeem/",
+    action: "Open redemption steps",
+  };
+  const rewardAction = {
+    title: "A campaign reward is missing",
+    status: "Confirmed",
+    answer: "Check the same account, server, platform and in-game mail used for the campaign before changing accounts or reinstalling.",
+    href: "/troubleshooting/aniimo-pre-registration-not-working/",
+    action: "Resolve missing reward",
+  };
+  const actions = focus === "reward" ? [rewardAction, codeAction] : [codeAction, rewardAction];
+  return (
+    <section className="section compact-section" aria-label="Player reward actions">
+      <SectionTitle icon={<CheckCircle2 />} kicker="Do this now" title="Choose the path that matches your situation" />
+      <div className="detail-panels">
+        {actions.map((item) => <article className="info-panel" key={item.title}><div className="info-panel-heading"><h2>{item.title}</h2><StatusBadge status={item.status} /></div><p>{item.answer}</p><a className="text-link" href={item.href} onClick={(event) => navigate(event, item.href)}>{item.action} <ChevronRight size={16} /></a></article>)}
+        {irisalisEvent && <article className="info-panel"><div className="info-panel-heading"><h2>I want to progress Irisalis</h2><StatusBadge status={eventStatus(irisalisEvent)} /></div><p>{irisalisEvent.requirements} {irisalisEvent.detail}</p><a className="text-link" href="/events/" onClick={(event) => navigate(event, "/events/")}>Check event status <ChevronRight size={16} /></a></article>}
+      </div>
+    </section>
+  );
+}
+
 export function UpdatesPage() {
   return (
     <section className="section updates-band">
@@ -903,6 +933,7 @@ export function EventsPage({ navigate }) {
         <InfoPanel title="Current Update" rows={[["Update", liveUpdate.title], ["Published", liveUpdate.date], ["Time standard", "All event times below are UTC+8"], ["Irisalis journey", "Windchaser's Departure runs through December 10 UTC+8; follow current-client progression for the related Aniipod steps."], ["Mobile", "iOS and Android are live; check official stores by country and device"]]} />
         <InfoPanel title="Latest Resource Update" rows={[["Patch", `${currentPatch.title} (${currentPatch.date})`], ["Player action", currentPatch.summary], ["Eligibility", currentPatch.eligibility]]} />
       </div>
+      <IrisalisJourneyPanel navigate={navigate} />
       <div className="event-summary-grid">
         <article>
           <span className="eyebrow">Active now</span>
@@ -930,6 +961,30 @@ export function EventsPage({ navigate }) {
         <a className="primary-action" href={liveUpdate.source} target="_blank" rel="noreferrer"><Search size={18} /> Check official update</a>
         <a className="secondary-action" href={currentPatch.source} target="_blank" rel="noreferrer"><Download size={18} /> Check latest patch</a>
         <a className="secondary-action" href="/launch-day/" onClick={(event) => navigate(event, "/launch-day/")}><CheckCircle2 size={18} /> Open launch support</a>
+      </div>
+    </section>
+  );
+}
+
+function IrisalisJourneyPanel({ navigate }) {
+  const event = liveUpdate.events.find((item) => item.name.includes("Windchaser's Departure"));
+  if (!event) return null;
+  return (
+    <section className="location-answer" aria-label="Irisalis event progress">
+      <div>
+        <span className="eyebrow">Irisalis event path</span>
+        <h2>Check the current Legendary Journey before planning a route.</h2>
+        <p>{event.detail}</p>
+      </div>
+      <div className="location-answer-status">
+        <StatusBadge status={eventStatus(event)} />
+        <span>{eventSchedule(event)}</span>
+        <span>{event.requirements}</span>
+        <a className="text-link" href={event.source} target="_blank" rel="noreferrer">Official event details <ChevronRight size={16} /></a>
+      </div>
+      <div className="hero-actions section-actions">
+        <a className="primary-action" href={event.source} target="_blank" rel="noreferrer"><Sparkles size={18} /> Open official Irisalis event</a>
+        <a className="secondary-action" href="/codes/" onClick={(eventClick) => navigate(eventClick, "/codes/")}><Gift size={18} /> Check rewards and codes</a>
       </div>
     </section>
   );
