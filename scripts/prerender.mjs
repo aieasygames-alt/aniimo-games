@@ -1,7 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { aniimo, gameInfo, launchPriorityPages, launchRewards, releaseInfo, regions, siteLastUpdated, sourceLastChecked } from "../data/content.js";
-import { aniimoPath, canonicalUrl, isIndexableAniimo, pageFaqsForRoute, prerenderRoutes, resolveRoute, structuredDataForRoute } from "../src/lib/routes.js";
+import { aniimoPath, canonicalUrl, isIndexableAniimo, isNoindexRoute, pageFaqsForRoute, prerenderRoutes, resolveRoute, structuredDataForRoute } from "../src/lib/routes.js";
 import { localeForPath } from "../data/locales/index.js";
 
 const indexHtml = "dist/index.html";
@@ -44,7 +44,7 @@ function injectMeta(html, route) {
     .replace(/<html lang="[^"]+">/, `<html lang="${lang}">`)
     .replace(/<title>.*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
     .replace(/<meta\s+name="description"\s+content="[^"]+"\s*\/>/, `<meta name="description" content="${escapeHtml(desc)}" />`)
-    .replace(/<meta\s+name="robots"\s+content="[^"]+"\s*\/>/, `<meta name="robots" content="${routeInfo.type === "not-found" ? "noindex,follow" : "index,follow"}" />`)
+    .replace(/<meta\s+name="robots"\s+content="[^"]+"\s*\/>/, `<meta name="robots" content="${routeInfo.type === "not-found" || isNoindexRoute(routeInfo.path) ? "noindex,follow" : "index,follow"}" />`)
     .replace(/<link\s+rel="canonical"\s+href="[^"]+"\s*\/>/, `<link rel="canonical" href="${url}" />`)
     .replace(/<meta\s+property="og:title"\s+content="[^"]+"\s*\/>/, `<meta property="og:title" content="${escapeHtml(title)}" />`)
     .replace(/<meta\s+property="og:url"\s+content="[^"]+"\s*\/>/, `<meta property="og:url" content="${url}" />`)

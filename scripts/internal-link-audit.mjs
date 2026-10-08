@@ -147,7 +147,7 @@ function generatedHubLinks() {
     ...choiceTopics.map(choiceTopicPath),
     ...officialPitchTopics.map(officialPitchTopicPath),
     ...socialIntentTopics.map(socialIntentTopicPath),
-    ...searchSuggestionTopics.map(searchSuggestionTopicPath),
+    ...searchSuggestionTopics.filter((topic) => !archivedNoindexRoutes.includes(searchSuggestionTopicPath(topic))).map(searchSuggestionTopicPath),
     ...glossaryTopics.map(glossaryTopicPath),
     ...troubleshootingTopics.map(troubleshootingTopicPath),
     ...mechanicDeepDiveTopics.map(mechanicDeepDiveTopicPath),

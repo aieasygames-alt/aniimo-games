@@ -36,6 +36,10 @@ for (const route of archivedNoindexRoutes) {
   if (!headers.includes(`${route}\n  X-Robots-Tag: noindex, follow`)) {
     issues.push(`${route} is an archive page but has no explicit HTTP noindex rule.`);
   }
+  const file = `dist${route.replace(/\/$/, "")}/index.html`;
+  if (existsSync(file) && !readFileSync(file, "utf8").includes('meta name="robots" content="noindex,follow"')) {
+    issues.push(`${route} is an archive page but its prerendered HTML is missing noindex.`);
+  }
 }
 
 for (const route of fullSitemapRoutes()) {

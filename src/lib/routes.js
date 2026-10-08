@@ -84,7 +84,13 @@ export const maintenanceNoindexRoutes = [
   "/launch-verification/",
 ];
 
-export const archivedNoindexRoutes = newsTopics.map(newsTopicPath);
+export const archivedNoindexRoutes = [
+  ...newsTopics.map(newsTopicPath),
+  "/topics/aniimo-review/",
+  "/topics/aniimo-demo/",
+  "/topics/aniimo-pax-east/",
+  "/topics/aniimo-tgs/",
+];
 
 export const noindexRoutes = [...maintenanceNoindexRoutes, ...archivedNoindexRoutes];
 
@@ -424,7 +430,7 @@ export function fullSitemapRoutes() {
     ...choiceTopics.map(choiceTopicPath),
     ...officialPitchTopics.map(officialPitchTopicPath),
     ...socialIntentTopics.map(socialIntentTopicPath),
-    ...searchSuggestionTopics.map(searchSuggestionTopicPath),
+    ...searchSuggestionTopics.filter((topic) => !noindexRoutes.includes(searchSuggestionTopicPath(topic))).map(searchSuggestionTopicPath),
     ...glossaryTopics.map(glossaryTopicPath),
     ...troubleshootingTopics.map(troubleshootingTopicPath),
     ...mechanicDeepDiveTopics.map(mechanicDeepDiveTopicPath),
