@@ -1,4 +1,4 @@
-import { aniimoPath, canonicalUrl, isMaintenanceNoindexRoute, resolveRoute } from "../lib/routes.js";
+import { aniimoPath, canonicalUrl, isNoindexRoute, resolveRoute } from "../lib/routes.js";
 import { localeForPath } from "../../data/locales/index.js";
 import { gameInfo, localizedTopics, siteLastUpdated } from "../../data/content.js";
 
@@ -10,7 +10,7 @@ export function applySeo(path) {
   document.documentElement.lang = locale === "pt-BR" ? "pt-BR" : "en";
 
   document.title = routeInfo.title;
-  setMeta("meta[name='robots']", "content", routeInfo.type === "not-found" || isToolShareUrl || isMaintenanceNoindexRoute(routeInfo.path) ? "noindex,follow" : "index,follow");
+  setMeta("meta[name='robots']", "content", routeInfo.type === "not-found" || isToolShareUrl || isNoindexRoute(routeInfo.path) ? "noindex,follow" : "index,follow");
   setMeta("meta[name='description']", "content", routeInfo.description);
   setMeta("link[rel='canonical']", "href", routeInfo.type === "not-found" ? canonicalUrl(path) : canonicalUrl(routeInfo.path));
   setMeta("meta[property='og:title']", "content", routeInfo.title);

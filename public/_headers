@@ -82,3 +82,11 @@
   X-Robots-Tag: noindex, nofollow
 /launch-verification/
   X-Robots-Tag: noindex, nofollow
+/news/launch-date-announcement/
+  X-Robots-Tag: noindex, follow
+/news/closed-beta/
+  X-Robots-Tag: noindex, follow
+/news/platform-announcement/
+  X-Robots-Tag: noindex, follow
+/news/pre-registration-rewards/
+  X-Robots-Tag: noindex, follow

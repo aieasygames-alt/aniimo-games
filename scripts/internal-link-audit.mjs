@@ -15,6 +15,7 @@ import {
   mechanicDeepDiveTopicPath,
   mediaDetailTopicPath,
   maintenanceNoindexRoutes,
+  archivedNoindexRoutes,
   newsTopicPath,
   officialPitchTopicPath,
   refreshPlanningTopicPath,
@@ -108,7 +109,7 @@ for (const route of [
 
 for (const [target, files] of contentLinks) {
   if (target === "/pt-br/") continue;
-  if (target.startsWith("/") && !discoverableRoutes.includes(target) && !maintenanceNoindexRoutes.includes(target) && !target.includes(".") && target !== "/platforms/") {
+  if (target.startsWith("/") && !discoverableRoutes.includes(target) && !maintenanceNoindexRoutes.includes(target) && !archivedNoindexRoutes.includes(target) && !target.includes(".") && target !== "/platforms/") {
     issues.push(`Internal link target is not discoverable: ${[...files].join(", ")} -> ${target}`);
   }
 }
@@ -143,7 +144,6 @@ function generatedHubLinks() {
     ...beginnerTopics.map(beginnerTopicPath),
     ...downloadTopics.map(downloadTopicPath),
     ...codeRewardTopics.map(codeRewardTopicPath),
-    ...newsTopics.map(newsTopicPath),
     ...choiceTopics.map(choiceTopicPath),
     ...officialPitchTopics.map(officialPitchTopicPath),
     ...socialIntentTopics.map(socialIntentTopicPath),

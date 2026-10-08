@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { aniimo } from "../data/content.js";
-import { fullSitemapRoutes, isIndexableAniimo, maintenanceNoindexRoutes, resolveRoute } from "../src/lib/routes.js";
+import { archivedNoindexRoutes, fullSitemapRoutes, isIndexableAniimo, maintenanceNoindexRoutes, resolveRoute } from "../src/lib/routes.js";
 
 const issues = [];
 const indexableIds = new Set(aniimo.filter(isIndexableAniimo).map((item) => item.id));
@@ -26,6 +26,15 @@ for (const route of maintenanceNoindexRoutes) {
   }
   if (!headers.includes(`${route}\n  X-Robots-Tag: noindex, nofollow`)) {
     issues.push(`${route} is an operational page but has no explicit HTTP noindex rule.`);
+  }
+}
+
+for (const route of archivedNoindexRoutes) {
+  if (fullSitemapRoutes().includes(route)) {
+    issues.push(`${route} is an archive page but remains discoverable.`);
+  }
+  if (!headers.includes(`${route}\n  X-Robots-Tag: noindex, follow`)) {
+    issues.push(`${route} is an archive page but has no explicit HTTP noindex rule.`);
   }
 }
 

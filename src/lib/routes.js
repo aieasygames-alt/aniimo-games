@@ -84,8 +84,16 @@ export const maintenanceNoindexRoutes = [
   "/launch-verification/",
 ];
 
+export const archivedNoindexRoutes = newsTopics.map(newsTopicPath);
+
+export const noindexRoutes = [...maintenanceNoindexRoutes, ...archivedNoindexRoutes];
+
 export function isMaintenanceNoindexRoute(path) {
   return maintenanceNoindexRoutes.includes(normalizePath(path));
+}
+
+export function isNoindexRoute(path) {
+  return noindexRoutes.includes(normalizePath(path));
 }
 
 export function normalizePath(path) {
@@ -404,7 +412,7 @@ export function sitemapRoutes() {
 export function fullSitemapRoutes() {
   const indexableAniimo = aniimo.filter(isIndexableAniimo);
   return uniqueRoutes([
-    ...staticRoutes.filter((item) => !maintenanceNoindexRoutes.includes(item.path)).map((item) => item.path),
+    ...staticRoutes.filter((item) => !noindexRoutes.includes(item.path)).map((item) => item.path),
     ...[...new Set(indexableAniimo.map((item) => item.element))].map(elementPath),
     ...[...new Set(indexableAniimo.map((item) => item.role))].map(rolePath),
     ...[...new Set(indexableAniimo.map((item) => item.stage))].map(stagePath),
@@ -412,7 +420,6 @@ export function fullSitemapRoutes() {
     ...beginnerTopics.map(beginnerTopicPath),
     ...downloadTopics.map(downloadTopicPath),
     ...codeRewardTopics.map(codeRewardTopicPath),
-    ...newsTopics.map(newsTopicPath),
     ...regions.map(locationTopicPath),
     ...choiceTopics.map(choiceTopicPath),
     ...officialPitchTopics.map(officialPitchTopicPath),

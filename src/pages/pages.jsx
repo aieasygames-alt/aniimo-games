@@ -1358,7 +1358,6 @@ export function SiteIndexPage({ navigate }) {
   const downloadPages = downloadTopics.map((item) => [item.title, downloadTopicPath(item), item.description]);
   const beginnerPages = beginnerTopics.map((item) => [item.title, beginnerTopicPath(item), item.description]);
   const codeRewardPages = codeRewardTopics.map((item) => [item.title, codeRewardTopicPath(item), item.description]);
-  const newsPages = newsTopics.map((item) => [item.title, newsTopicPath(item), item.summary]);
   const choicePages = choiceTopics.map((item) => [item.title, choiceTopicPath(item), item.description]);
   const officialPitchPages = officialPitchTopics.map((item) => [item.title, officialPitchTopicPath(item), item.description]);
   const socialIntentPages = socialIntentTopics.map((item) => [item.title, socialIntentTopicPath(item), item.description]);
@@ -1406,7 +1405,7 @@ export function SiteIndexPage({ navigate }) {
         <LinkGroup title="Download Decisions" items={downloadPages} navigate={navigate} />
         <LinkGroup title="Beginner Questions" items={beginnerPages} navigate={navigate} />
         <LinkGroup title="Codes & Rewards" items={codeRewardPages} navigate={navigate} />
-        <LinkGroup title="News & Updates" items={newsPages} navigate={navigate} />
+        <LinkGroup title="News & Updates" items={[["Official News", "/updates/official-news/", "Read dated official announcements and affected guide changes."], ["Platform Changes", "/updates/platform-changes/", "Track store, region and platform availability changes."], ["Site Changelog", "/updates/site-changelog/", "Review material Aniimo.games guide updates."]]} navigate={navigate} />
         <LinkGroup title="Official Feature Guides" items={officialPitchPages} navigate={navigate} />
         <LinkGroup title="Community Question Guides" items={socialIntentPages} navigate={navigate} />
         <LinkGroup title="Search Topic Guides" items={searchSuggestionPages} navigate={navigate} />
