@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles, Plus, X, Copy, Download as DownloadIcon } from "lucide-react";
 import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, currentPatch, downloadTopics, editorialGuides, eventSchedule, eventStatus, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, liveIssueRegistry, liveSupportStatus, liveUpdate, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, postLaunchEvidence, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
-import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
+import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, isIndexableAniimo, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { AnswerStatus, CreatureImage, EditorialBlock, FaqBlock, FreshnessNotice, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
 const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup", "eklue", "skippy", "helgon"];
@@ -264,9 +264,11 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
                     <span><strong>Evolution</strong>{item.forms.length > 1 ? "Listed" : "Not listed"}</span>
                     <span><strong>Checked</strong>{sourceLastChecked}</span>
                   </div>
-                  <a className="text-link" href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
-                    View Aniimo guide <ChevronRight size={16} />
-                  </a>
+                  {isIndexableAniimo(item) ? (
+                    <a className="text-link" href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
+                      View Aniimo guide <ChevronRight size={16} />
+                    </a>
+                  ) : <p className="small">Official name entry: detail guide is pending verification.</p>}
                   <div className="card-actions"><a className="text-link" href={`/team-builder/?ids=${item.id}`} onClick={(event) => navigate(event, `/team-builder/?ids=${item.id}`)}><Plus size={15} /> Add to team</a><button type="button" className="mini-action" onClick={() => setTracking(item, tracked[item.id] === "wanted" ? "none" : "wanted")}><CheckCircle2 size={15} /> {tracked[item.id] === "wanted" ? "Wanted" : "Track"}</button></div>
                 </div>
               </article>
@@ -341,9 +343,11 @@ export function CollectionPage({ type, value, navigate }) {
                 <dt>Stage</dt>
                 <dd>{item.stage}</dd>
               </dl>
-              <a className="text-link" href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
-                View Aniimo guide <ChevronRight size={16} />
-              </a>
+              {isIndexableAniimo(item) ? (
+                <a className="text-link" href={aniimoPath(item)} onClick={(event) => navigate(event, aniimoPath(item))}>
+                  View Aniimo guide <ChevronRight size={16} />
+                </a>
+              ) : <p className="small">Official name entry: detail guide is pending verification.</p>}
             </div>
           </article>
         ))}
@@ -1382,7 +1386,7 @@ export function SiteIndexPage({ navigate }) {
     ["German Release", "/de/wann-kommt-aniimo/", "Answer German release-date searches."],
   ];
   const portuguesePages = localizedTopics.filter((item) => item.locale === "pt").map((item) => [item.title, localizedTopicPath(item), item.description]);
-  const portugueseAniimoPages = ["emberpup", "inferlupa", "glacy", "celestis", "eklue", "skippy", "susuta", "fragrancier", "wisptis", "helgon", "cozite"].map((id) => aniimo.find((item) => item.id === id)).filter(Boolean).map((item) => [item.name, `/pt-br/aniimo/${item.id}/`, `Guia em português sobre ${item.name}, nº ${item.no}, região, função e status da fonte.`]);
+  const portugueseAniimoPages = ["emberpup", "inferlupa", "glacy", "celestis", "eklue", "skippy", "susuta"].map((id) => aniimo.find((item) => item.id === id)).filter(isIndexableAniimo).map((item) => [item.name, `/pt-br/aniimo/${item.id}/`, `Guia em português sobre ${item.name}, nº ${item.no}, região, função e status da fonte.`]);
   const trustPages = staticRoutes.filter((route) => ["/about/", "/editorial-policy/", "/contact/"].includes(route.path));
   const elementNames = [...new Set(aniimo.map((item) => item.element))];
   const roleNames = [...new Set(aniimo.map((item) => item.role))];

@@ -26,6 +26,7 @@
     "check:gsc-watchlist": "node scripts/gsc-watchlist-audit.mjs",
     "check:launch-readiness": "node scripts/launch-readiness-audit.mjs",
     "check:adsense": "node scripts/adsense-readiness-audit.mjs",
+    "check:low-value": "node scripts/low-value-content-audit.mjs",
     "check:live": "node scripts/live-audit.mjs",
     "check:monitoring": "node scripts/monitoring-report.mjs",
     "check:webmaster": "node scripts/webmaster-readiness-audit.mjs",

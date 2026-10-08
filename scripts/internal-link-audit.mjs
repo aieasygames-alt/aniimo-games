@@ -7,6 +7,7 @@ import {
   conversionTopicPath,
   downloadTopicPath,
   fullSitemapRoutes,
+  isIndexableAniimo,
   glossaryTopicPath,
   locationTopicPath,
   localizedTopicPath,
@@ -135,7 +136,7 @@ function extractLinks(source) {
 
 function generatedHubLinks() {
   return [
-    ...aniimo.map(aniimoPath),
+    ...aniimo.filter(isIndexableAniimo).map(aniimoPath),
     ...regions.map(regionPath),
     ...regions.map(locationTopicPath),
     ...beginnerTopics.map(beginnerTopicPath),
@@ -151,7 +152,7 @@ function generatedHubLinks() {
     ...mechanicDeepDiveTopics.map(mechanicDeepDiveTopicPath),
     ...mediaDetailTopics.map(mediaDetailTopicPath),
     ...localizedTopics.map(localizedTopicPath),
-    ...aniimo.filter((item) => ["emberpup", "inferlupa", "glacy", "celestis", "eklue", "skippy", "susuta", "fragrancier", "wisptis", "helgon", "cozite"].includes(item.id)).map((item) => localizedAniimoPath(item)),
+    ...aniimo.filter((item) => ["emberpup", "inferlupa", "glacy", "celestis", "eklue", "skippy", "susuta"].includes(item.id)).filter(isIndexableAniimo).map((item) => localizedAniimoPath(item)),
     ...conversionTopics.map(conversionTopicPath),
     ...refreshPlanningTopics.map(refreshPlanningTopicPath),
     ...freshnessPages.map(freshnessPagePath),

@@ -67,6 +67,13 @@ export const navRoutes = primaryNavPaths
   .map((path) => staticRoutes.find((item) => item.path === path))
   .filter(Boolean);
 
+// An individual detail page is indexable only once its core game data is sourced.
+// Official Wiki name-only entries remain available in the database, but do not make
+// useful standalone search landing pages until their taxonomy and region are known.
+export function isIndexableAniimo(item) {
+  return item.status === "Confirmed" && item.element !== "Unknown" && item.role !== "Watchlist" && item.stage !== "Official Index" && item.region !== "Official Wiki";
+}
+
 export function normalizePath(path) {
   if (!path || path === "/") return "/";
   return path.endsWith("/") ? path : `${path}/`;
@@ -186,7 +193,7 @@ export function resolveRoute(path) {
   const localizedAniimoMatch = normalized.match(/^\/pt-br\/aniimo\/([^/]+)\/$/);
   if (localizedAniimoMatch) {
     const item = findAniimoBySlug(localizedAniimoMatch[1]);
-    if (item) return { type: "localized-aniimo", path: localizedAniimoPath(item), title: `${item.name} Aniimo: Localização, Evolução e Habilidades`, description: `Guia em português sobre ${item.name}: região, formas, evolução, função, habilidade e status da fonte oficial.`, detail: item, locale: "pt-BR" };
+    if (item && isIndexableAniimo(item)) return { type: "localized-aniimo", path: localizedAniimoPath(item), title: `${item.name} Aniimo: Localização, Evolução e Habilidades`, description: `Guia em português sobre ${item.name}: região, formas, evolução, função, habilidade e status da fonte oficial.`, detail: item, locale: "pt-BR" };
   }
   if (normalized.startsWith("/pt/")) {
     const legacy = normalized.replace(/^\/pt\//, "/pt-br/");
@@ -211,7 +218,7 @@ export function resolveRoute(path) {
   const aniimoMatch = normalized.match(/^\/aniimo\/([^/]+)\//);
   if (aniimoMatch) {
     const detail = findAniimoBySlug(aniimoMatch[1]);
-    if (detail) {
+    if (detail && isIndexableAniimo(detail)) {
       return {
         type: "aniimo",
         path: aniimoPath(detail),
@@ -373,12 +380,13 @@ export function sitemapRoutes() {
 }
 
 export function fullSitemapRoutes() {
+  const indexableAniimo = aniimo.filter(isIndexableAniimo);
   return uniqueRoutes([
     ...staticRoutes.map((item) => item.path),
-    ...[...new Set(aniimo.map((item) => item.element))].map(elementPath),
-    ...[...new Set(aniimo.map((item) => item.role))].map(rolePath),
-    ...[...new Set(aniimo.map((item) => item.stage))].map(stagePath),
-    ...[...new Set(aniimo.map((item) => item.status))].map(statusPath),
+    ...[...new Set(indexableAniimo.map((item) => item.element))].map(elementPath),
+    ...[...new Set(indexableAniimo.map((item) => item.role))].map(rolePath),
+    ...[...new Set(indexableAniimo.map((item) => item.stage))].map(stagePath),
+    ...[...new Set(indexableAniimo.map((item) => item.status))].map(statusPath),
     ...beginnerTopics.map(beginnerTopicPath),
     ...downloadTopics.map(downloadTopicPath),
     ...codeRewardTopics.map(codeRewardTopicPath),
@@ -396,8 +404,8 @@ export function fullSitemapRoutes() {
     ...refreshPlanningTopics.map(refreshPlanningTopicPath),
     ...freshnessPages.map(freshnessPagePath),
     ...localizedTopics.map(localizedTopicPath),
-    ...aniimo.map(aniimoPath),
-    ...aniimo.filter((item) => ["emberpup", "inferlupa", "glacy", "celestis", "eklue", "skippy", "susuta", "fragrancier", "wisptis", "helgon", "cozite"].includes(item.id)).map((item) => localizedAniimoPath(item)),
+    ...indexableAniimo.map(aniimoPath),
+    ...indexableAniimo.filter((item) => ["emberpup", "inferlupa", "glacy", "celestis", "eklue", "skippy", "susuta"].includes(item.id)).map((item) => localizedAniimoPath(item)),
     ...regions.map(regionPath),
   ]);
 }
@@ -460,8 +468,8 @@ export function primarySitemapRoutes() {
     ...mediaDetailTopics.filter((topic) => ["aniimo-trailers", "aniimo-logo"].includes(topic.slug)).map(mediaDetailTopicPath),
     ...regions.map(regionPath),
     ...regions.map(locationTopicPath),
-    ...featuredAniimo.map((slug) => aniimo.find((item) => item.id === slug)).filter(Boolean).map(aniimoPath),
-    ...aniimo.filter((item) => localizedFeaturedIds.includes(item.id)).map((item) => localizedAniimoPath(item)),
+    ...featuredAniimo.map((slug) => aniimo.find((item) => item.id === slug)).filter(isIndexableAniimo).map(aniimoPath),
+    ...aniimo.filter((item) => localizedFeaturedIds.includes(item.id)).filter(isIndexableAniimo).map((item) => localizedAniimoPath(item)),
   ]).filter((path) => fullSitemapRoutes().includes(path));
 }
 

@@ -5,6 +5,7 @@ import { aniimo, officialLinks, siteLastUpdated } from "../data/content.js";
 import { localeForPath, messagesForPath } from "../data/locales/index.js";
 import {
   findAniimoBySlug,
+  isIndexableAniimo,
   findRegionBySlug,
   navRoutes,
   normalizePath,
@@ -180,7 +181,7 @@ function App() {
       <main>
         {routeInfo.type === "localized-aniimo" ? (
           <AniimoDetail item={routeInfo.detail} navigate={navigate} localized />
-        ) : detail ? (
+        ) : detail && isIndexableAniimo(detail) ? (
           <AniimoDetail item={detail} navigate={navigate} />
         ) : regionDetail ? (
           <RegionDetail region={regionDetail} navigate={navigate} />
