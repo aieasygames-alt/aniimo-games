@@ -508,6 +508,7 @@ export function primarySitemapRoutes() {
 export function prerenderRoutes() {
   return uniqueRoutes([
     ...fullSitemapRoutes(),
+    ...archivedNoindexRoutes,
     ...aniimo.flatMap((item) => (item.aliases || []).map((alias) => normalizePath(`/aniimo/${alias}`))),
   ]);
 }
