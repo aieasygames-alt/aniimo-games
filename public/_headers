@@ -72,3 +72,13 @@
   X-Robots-Tag: noindex, nofollow
 /aniimo/squashel/
   X-Robots-Tag: noindex, nofollow
+/growth/
+  X-Robots-Tag: noindex, nofollow
+/growth/gsc-refresh-plan/
+  X-Robots-Tag: noindex, nofollow
+/growth/query-refresh-watchlist/
+  X-Robots-Tag: noindex, nofollow
+/launch-tracker/
+  X-Robots-Tag: noindex, nofollow
+/launch-verification/
+  X-Robots-Tag: noindex, nofollow

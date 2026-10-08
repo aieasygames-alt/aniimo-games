@@ -14,6 +14,7 @@ import {
   localizedAniimoPath,
   mechanicDeepDiveTopicPath,
   mediaDetailTopicPath,
+  maintenanceNoindexRoutes,
   newsTopicPath,
   officialPitchTopicPath,
   refreshPlanningTopicPath,
@@ -107,7 +108,7 @@ for (const route of [
 
 for (const [target, files] of contentLinks) {
   if (target === "/pt-br/") continue;
-  if (target.startsWith("/") && !discoverableRoutes.includes(target) && !target.includes(".") && target !== "/platforms/") {
+  if (target.startsWith("/") && !discoverableRoutes.includes(target) && !maintenanceNoindexRoutes.includes(target) && !target.includes(".") && target !== "/platforms/") {
     issues.push(`Internal link target is not discoverable: ${[...files].join(", ")} -> ${target}`);
   }
 }

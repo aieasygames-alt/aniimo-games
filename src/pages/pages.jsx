@@ -1357,14 +1357,13 @@ export function SourcesPage() {
 
 export function SiteIndexPage({ navigate }) {
   const corePages = staticRoutes.filter((route) =>
-    ["/aniimo/", "/map/", "/evolution/", "/codes/", "/rewards/", "/download/", "/release-date/", "/beginner-guide/", "/launch-day/", "/launch-tracker/", "/launch-verification/", "/best-aniimo/", "/sources/"].includes(route.path),
+    ["/aniimo/", "/map/", "/evolution/", "/codes/", "/rewards/", "/download/", "/release-date/", "/beginner-guide/", "/launch-day/", "/best-aniimo/", "/sources/"].includes(route.path),
   );
   const platformPages = staticRoutes.filter((route) => route.path.startsWith("/platforms/"));
   const downloadPages = downloadTopics.map((item) => [item.title, downloadTopicPath(item), item.description]);
   const beginnerPages = beginnerTopics.map((item) => [item.title, beginnerTopicPath(item), item.description]);
   const codeRewardPages = codeRewardTopics.map((item) => [item.title, codeRewardTopicPath(item), item.description]);
   const newsPages = newsTopics.map((item) => [item.title, newsTopicPath(item), item.summary]);
-  const freshnessItems = freshnessPages.map((item) => [item.title, freshnessPagePath(item), item.description]);
   const choicePages = choiceTopics.map((item) => [item.title, choiceTopicPath(item), item.description]);
   const officialPitchPages = officialPitchTopics.map((item) => [item.title, officialPitchTopicPath(item), item.description]);
   const socialIntentPages = socialIntentTopics.map((item) => [item.title, socialIntentTopicPath(item), item.description]);
@@ -1374,7 +1373,6 @@ export function SiteIndexPage({ navigate }) {
   const mechanicPages = mechanicDeepDiveTopics.map((item) => [item.title, mechanicDeepDiveTopicPath(item), item.description]);
   const mediaPages = mediaDetailTopics.map((item) => [item.title, mediaDetailTopicPath(item), item.description]);
   const conversionPages = conversionTopics.map((item) => [item.title, conversionTopicPath(item), item.description]);
-  const refreshPages = refreshPlanningTopics.map((item) => [item.title, refreshPlanningTopicPath(item), item.description]);
   const localizedPages = localizedTopics.map((item) => [item.title, localizedTopicPath(item), item.description]);
   const launchSearchPages = [
     ["Launch Day", "/launch-day/", "Track server status, codes, unlock timing and launch fixes."],
@@ -1407,11 +1405,6 @@ export function SiteIndexPage({ navigate }) {
       <div className="site-index-grid">
           <LinkGroup title="Core Guides" items={corePages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
           <LinkGroup title="Player Tools" items={[["Aniimo Compare", "/compare/aniimo/", "Compare public Aniimo data side by side."], ["Team Builder", "/team-builder/", "Build and share a six-slot team."], ["Collection Tracker", "/collection-tracker/", "Track wanted, captured and verified entries locally."]]} navigate={navigate} />
-        <LinkGroup title="GSC Query Watchlist" items={gscLatestObservations.queryWatchlist.map(([query, action]) => [
-          query,
-          gscWatchlistPath(query),
-          action,
-        ])} navigate={navigate} />
         <LinkGroup title="Launch Priority Pages" items={launchPriorityPages.map(([path, label, query, action]) => [label, path, `${query}: ${action}`])} navigate={navigate} />
         <LinkGroup title="Launch Search Shortcuts" items={launchSearchPages} navigate={navigate} />
         <LinkGroup title="Platform Pages" items={platformPages.map((item) => [item.label, item.path, item.description])} navigate={navigate} />
@@ -1419,7 +1412,6 @@ export function SiteIndexPage({ navigate }) {
         <LinkGroup title="Beginner Questions" items={beginnerPages} navigate={navigate} />
         <LinkGroup title="Codes & Rewards" items={codeRewardPages} navigate={navigate} />
         <LinkGroup title="News & Updates" items={newsPages} navigate={navigate} />
-        <LinkGroup title="Freshness Trackers" items={freshnessItems} navigate={navigate} />
         <LinkGroup title="Official Feature Guides" items={officialPitchPages} navigate={navigate} />
         <LinkGroup title="Community Question Guides" items={socialIntentPages} navigate={navigate} />
         <LinkGroup title="Search Topic Guides" items={searchSuggestionPages} navigate={navigate} />
@@ -1428,7 +1420,6 @@ export function SiteIndexPage({ navigate }) {
         <LinkGroup title="Mechanic Deep Dives" items={mechanicPages} navigate={navigate} />
         <LinkGroup title="Media Details" items={mediaPages} navigate={navigate} />
         <LinkGroup title="Launch Conversion Guides" items={conversionPages} navigate={navigate} />
-        <LinkGroup title="Growth Refresh Plans" items={refreshPages} navigate={navigate} />
         <LinkGroup title="Localized Search Entrypoints" items={localizedPages} navigate={navigate} />
         <LinkGroup title="Português (Brasil)" items={portuguesePages} navigate={navigate} />
         <LinkGroup title="Pokédex em Português" items={portugueseAniimoPages} navigate={navigate} />

@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { aniimo } from "../data/content.js";
-import { fullSitemapRoutes, isIndexableAniimo, resolveRoute } from "../src/lib/routes.js";
+import { fullSitemapRoutes, isIndexableAniimo, maintenanceNoindexRoutes, resolveRoute } from "../src/lib/routes.js";
 
 const issues = [];
 const indexableIds = new Set(aniimo.filter(isIndexableAniimo).map((item) => item.id));
@@ -17,6 +17,15 @@ for (const item of aniimo) {
   }
   if (!isIndexableAniimo(item) && !headers.includes(`${detailPath}\n  X-Robots-Tag: noindex, nofollow`)) {
     issues.push(`${detailPath} is retired from search but has no explicit HTTP noindex rule.`);
+  }
+}
+
+for (const route of maintenanceNoindexRoutes) {
+  if (fullSitemapRoutes().includes(route)) {
+    issues.push(`${route} is an operational page but remains discoverable.`);
+  }
+  if (!headers.includes(`${route}\n  X-Robots-Tag: noindex, nofollow`)) {
+    issues.push(`${route} is an operational page but has no explicit HTTP noindex rule.`);
   }
 }
 

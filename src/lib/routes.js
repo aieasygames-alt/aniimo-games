@@ -74,6 +74,20 @@ export function isIndexableAniimo(item) {
   return item.status === "Confirmed" && item.element !== "Unknown" && item.role !== "Watchlist" && item.stage !== "Official Index" && item.region !== "Official Wiki";
 }
 
+// These operational pages remain available to editors, but are not player-facing
+// search destinations and must never be included in discovery surfaces.
+export const maintenanceNoindexRoutes = [
+  "/growth/",
+  "/growth/gsc-refresh-plan/",
+  "/growth/query-refresh-watchlist/",
+  "/launch-tracker/",
+  "/launch-verification/",
+];
+
+export function isMaintenanceNoindexRoute(path) {
+  return maintenanceNoindexRoutes.includes(normalizePath(path));
+}
+
 export function normalizePath(path) {
   if (!path || path === "/") return "/";
   return path.endsWith("/") ? path : `${path}/`;
@@ -382,7 +396,7 @@ export function sitemapRoutes() {
 export function fullSitemapRoutes() {
   const indexableAniimo = aniimo.filter(isIndexableAniimo);
   return uniqueRoutes([
-    ...staticRoutes.map((item) => item.path),
+    ...staticRoutes.filter((item) => !["/growth/", "/launch-tracker/", "/launch-verification/"].includes(item.path)).map((item) => item.path),
     ...[...new Set(indexableAniimo.map((item) => item.element))].map(elementPath),
     ...[...new Set(indexableAniimo.map((item) => item.role))].map(rolePath),
     ...[...new Set(indexableAniimo.map((item) => item.stage))].map(stagePath),
@@ -401,7 +415,6 @@ export function fullSitemapRoutes() {
     ...mechanicDeepDiveTopics.map(mechanicDeepDiveTopicPath),
     ...mediaDetailTopics.map(mediaDetailTopicPath),
     ...conversionTopics.map(conversionTopicPath),
-    ...refreshPlanningTopics.map(refreshPlanningTopicPath),
     ...freshnessPages.map(freshnessPagePath),
     ...localizedTopics.map(localizedTopicPath),
     ...indexableAniimo.map(aniimoPath),
@@ -435,8 +448,6 @@ export function primarySitemapRoutes() {
     "/release-date/",
     "/launch/",
     "/launch-day/",
-    "/launch-tracker/",
-    "/launch-verification/",
     "/events/",
     "/weekly-plan/",
     "/site-index/",
