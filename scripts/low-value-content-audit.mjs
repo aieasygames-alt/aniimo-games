@@ -4,6 +4,7 @@ import { fullSitemapRoutes, isIndexableAniimo, resolveRoute } from "../src/lib/r
 
 const issues = [];
 const indexableIds = new Set(aniimo.filter(isIndexableAniimo).map((item) => item.id));
+const headers = readFileSync("public/_headers", "utf8");
 
 for (const item of aniimo) {
   const detailPath = `/aniimo/${item.id}/`;
@@ -13,6 +14,9 @@ for (const item of aniimo) {
   }
   if (isDiscoverable && [item.element, item.role, item.stage, item.region].some((value) => ["Unknown", "Watchlist", "Official Index", "Official Wiki"].includes(value))) {
     issues.push(`${detailPath} has unresolved core fields but is still discoverable.`);
+  }
+  if (!isIndexableAniimo(item) && !headers.includes(`${detailPath}\n  X-Robots-Tag: noindex, nofollow`)) {
+    issues.push(`${detailPath} is retired from search but has no explicit HTTP noindex rule.`);
   }
 }
 
