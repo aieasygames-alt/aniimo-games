@@ -287,7 +287,7 @@ export const launchDayCommandCenter = {
     ["Check active codes", "/codes/", "Separate confirmed rewards from redeemable code strings and verify each code before marking it active."],
     ["Account and cross-platform", "/topics/aniimo-cross-save/", "Continue PC data on mobile with the same account; check server boundaries before creating a character."],
     ["Fix launch issues", "/troubleshooting/", "Start with server status, known issues, store visibility, region and download checks."],
-    ["Verify live data", "/launch-verification/", "Capture spawn, unlock, code and Search Console observations with timestamps and sources."],
+    ["Check current updates", "/updates/", "Review dated official updates, source notes and current player guidance."],
   ],
   firstDayChecks: [
     ["Now", "Check official launch posts, storefront availability and account guidance."],

@@ -34,12 +34,9 @@ import {
   FreshnessPage,
   GuideSummary,
   GlossaryPage,
-  GrowthHubPage,
   GuideHubPage,
   HomePage,
-  LaunchTrackerPage,
   LaunchDayPage,
-  LaunchVerificationPage,
   LaunchHubPage,
   MediaPage,
   LocationTopicPage,
@@ -257,10 +254,6 @@ function App() {
           <EventsPage navigate={navigate} />
         ) : routeInfo.path === "/launch-day/" ? (
           <LaunchDayPage navigate={navigate} />
-        ) : routeInfo.path === "/launch-tracker/" ? (
-          <LaunchTrackerPage />
-        ) : routeInfo.path === "/launch-verification/" ? (
-          <LaunchVerificationPage />
         ) : routeInfo.path === "/sources/" ? (
           <SourcesPage />
         ) : routeInfo.path === "/site-index/" ? (
@@ -273,8 +266,6 @@ function App() {
           <MechanicsHubPage navigate={navigate} />
         ) : routeInfo.path === "/launch/" ? (
           <LaunchHubPage navigate={navigate} />
-        ) : routeInfo.path === "/growth/" ? (
-          <GrowthHubPage navigate={navigate} />
         ) : routeInfo.path === "/glossary/" ? (
           <GlossaryPage navigate={navigate} />
         ) : routeInfo.path === "/media/" ? (

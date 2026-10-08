@@ -204,6 +204,14 @@ export function findRegionBySlug(slug) {
 
 export function resolveRoute(path) {
   const normalized = normalizePath(path);
+  if (isMaintenanceNoindexRoute(normalized)) {
+    return {
+      type: "not-found",
+      path: normalized,
+      title: "Page Not Available | Aniimo.games",
+      description: "This Aniimo.games page is not available as a public guide.",
+    };
+  }
   const localizedAniimoMatch = normalized.match(/^\/pt-br\/aniimo\/([^/]+)\/$/);
   if (localizedAniimoMatch) {
     const item = findAniimoBySlug(localizedAniimoMatch[1]);
@@ -396,7 +404,7 @@ export function sitemapRoutes() {
 export function fullSitemapRoutes() {
   const indexableAniimo = aniimo.filter(isIndexableAniimo);
   return uniqueRoutes([
-    ...staticRoutes.filter((item) => !["/growth/", "/launch-tracker/", "/launch-verification/"].includes(item.path)).map((item) => item.path),
+    ...staticRoutes.filter((item) => !maintenanceNoindexRoutes.includes(item.path)).map((item) => item.path),
     ...[...new Set(indexableAniimo.map((item) => item.element))].map(elementPath),
     ...[...new Set(indexableAniimo.map((item) => item.role))].map(rolePath),
     ...[...new Set(indexableAniimo.map((item) => item.stage))].map(stagePath),

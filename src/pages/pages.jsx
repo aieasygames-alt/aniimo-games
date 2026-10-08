@@ -835,7 +835,7 @@ export function UpdatesPage() {
       </section>
       <div className="site-index-grid player-update-links">
         <LinkGroup title="Play Now" items={[["Current Events", "/events/", "Check active event requirements, time windows and official details."], ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Check current login, loading, reward and platform fixes."], ["Official Download", "/download/", "Open the right official store for your device."], ["Map and Locations", "/map/", "Find a region guide and use a source-labeled route workflow."]]} />
-        <LinkGroup title="Track the Game" items={[["Launch Tracker", "/launch-tracker/", "Check platform, reward, code and source status."], ["Official News", "/updates/official-news/", "Review official announcements and affected guides."], ["Source Archive", "/source-archive/", "See the primary sources used for current claims."], ["Site Changelog", "/updates/site-changelog/", "Review material Aniimo.games updates."]]} />
+        <LinkGroup title="Track the Game" items={[["Official News", "/updates/official-news/", "Review official announcements and affected guides."], ["Source Archive", "/source-archive/", "See the primary sources used for current claims."], ["Site Changelog", "/updates/site-changelog/", "Review material Aniimo.games updates."], ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Check current login, loading and reward fixes."]]} />
       </div>
       <InfoPanel title="Current data snapshot" rows={[["Last source check", sourceLastChecked], ["Public Aniimo tracked", `${aniimo.length} entries`], ["Regions tracked", `${regions.length} regions`], ["Data policy", "Unverified balance, routes and coordinates remain clearly labeled."]]}/>
       <div className="freshness-grid">
@@ -1087,12 +1087,7 @@ export function LaunchTrackerPage() {
         { title: "What is still watchlist", body: "Redeem codes, exact unlock hours, final spawn routes, weather windows and combat values should wait for official posts or live-game verification." },
         { title: "How this page changes", body: "When official sources change, update this tracker first, then refresh detail pages, sitemap metadata and the update log so readers can see what changed." },
       ]} />
-      <div className="hero-actions section-actions">
-        <a className="primary-action" href="/launch-verification/">
-          <CheckCircle2 size={18} />
-          Open Verification Checklist
-        </a>
-      </div>
+      <div className="hero-actions section-actions"><a className="primary-action" href="/updates/official-news/" onClick={(event) => navigate(event, "/updates/official-news/")}><CalendarDays size={18} /> Check official news</a></div>
       <FaqBlock items={[
         ["What does the Aniimo launch tracker monitor?", "It tracks official launch dates, platform links, reward status, code status, source checks and post-launch verification tasks."],
         ["When should launch data be updated?", "Update it when official news, storefront listings, the official Wiki or live-game verification confirms a change."],
@@ -1122,7 +1117,7 @@ export function LaunchDayPage({ navigate }) {
           ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Track login, black screen, stuck loading and platform-specific launch errors."],
           ["Download Unavailable", "/troubleshooting/aniimo-download-not-available/", "Fix missing download buttons, platform rollout and region issues."],
           ["Region Availability", "/troubleshooting/aniimo-region-availability/", "Track country, account and platform-region availability issues."],
-          ["Server & Code Verification", "/launch-verification/", "Record launch evidence before publishing it as confirmed."],
+          ["How to Redeem", "/codes/how-to-redeem/", "Follow the current code-redeem steps and official status guidance."],
         ]} navigate={navigate} />
         <LinkGroup title="First Session Guides" items={[
           ["First Hour Guide", "/aniimo-first-hour-guide/", "Plan account setup, rewards, catching, Twine and route verification."],
@@ -1564,8 +1559,8 @@ export function MechanicsHubPage({ navigate }) {
         <LinkGroup title="Related Terms" items={relatedGlossary} navigate={navigate} />
         <LinkGroup title="Core Pages" items={[
           ["Beginner Guide", "/beginner-guide/", "Learn catching, Twine, environment encounters, Homeland and beginner progression."],
-          ["Map Guide", "/map/", "Connect mechanics to regions, route notes and post-launch verification."],
-          ["Launch Verification", "/launch-verification/", "Track the fields needed after launch for mechanics and routes."],
+          ["Map Guide", "/map/", "Connect mechanics to regions and source-labeled route notes."],
+          ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Check current platform-specific gameplay and client issues."],
         ]} navigate={navigate} />
       </div>
     </section>
@@ -1591,7 +1586,7 @@ export function LaunchHubPage({ navigate }) {
         <LinkGroup title="Launch Operations" items={[
           ["Launch Day", "/launch-day/", "Check server status, active codes, unlock timing and launch fixes."],
           ["Release Date", "/release-date/", "Track PC, console and mobile launch windows."],
-          ["Launch Tracker", "/launch-tracker/", "Monitor source status, rewards, platforms and verification tasks."],
+          ["Official News", "/updates/official-news/", "Review dated official announcements and affected guides."],
           ["Discord", "/topics/aniimo-discord/", "Check official community paths for launch notices and code announcements."],
           ["Troubleshooting", "/troubleshooting/", "Fix download, store visibility, login, reward and region availability issues."],
           ["Server Status", "/troubleshooting/aniimo-server-status/", "Prepare a source-safe status page for launch-day outage searches."],
@@ -1634,7 +1629,7 @@ export function GrowthHubPage({ navigate }) {
         ])} navigate={navigate} />
         <LinkGroup title="Maintenance Pages" items={[
           ["Source Archive", "/source-archive/", "Review official source links and checked dates."],
-          ["Launch Verification", "/launch-verification/", "Prepare post-launch evidence fields."],
+          ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Review player-facing platform and client issues."],
           ["Update Log", "/updates/", "Track shipped content and source changes."],
           ["Site Index", "/site-index/", "Review all major content hubs and internal links."],
         ]} navigate={navigate} />
@@ -2033,7 +2028,7 @@ function topicExactRelatedLinks(slug) {
     ],
     "aniimo-locations": [
       ["Map", "/map/", "Open region and route guides"],
-      ["Launch Verification", "/launch-verification/", "Use spawn verification templates"],
+      ["Source Archive", "/source-archive/", "Review sources behind route and creature guidance"],
       ["Region Availability", "/troubleshooting/aniimo-region-availability/", "Check regional access notes"],
     ],
     "aniimo-vs-temtem": [
@@ -2487,7 +2482,7 @@ export function EditorialPolicyPage() {
         ["Reddit Discussions", "/topics/aniimo-reddit/", "Treat community posts as research leads, not confirmed facts."],
         ["Discord Server", "/topics/aniimo-discord/", "Verify invite and code claims through official channels."],
         ["Beta Key Safety", "/topics/aniimo-beta-key/", "Avoid gray-market access and fake beta-code pages."],
-        ["Launch Verification", "/launch-verification/", "Record route, code, platform and GSC evidence after launch."],
+        ["Source Archive", "/source-archive/", "Review the official sources used for routes, codes and platform guidance."],
       ]} />
     </section>
   );
@@ -2512,7 +2507,7 @@ export function ContactPage() {
         ["Editorial Policy", "/editorial-policy/", "Check source hierarchy and correction standards."],
         ["Source Archive", "/source-archive/", "Find the official source type that supports the change."],
         ["Update Log", "/updates/", "Review recent source and content changes."],
-        ["Launch Tracker", "/launch-tracker/", "Check whether the item is already in the verification queue."],
+        ["Known Issues", "/troubleshooting/aniimo-known-issues/", "Check whether a current player-facing issue is already documented."],
       ]} />
     </section>
   );
