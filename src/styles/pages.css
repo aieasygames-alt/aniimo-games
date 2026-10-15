@@ -619,3 +619,22 @@ th {
   font-size: 12px;
   font-weight: 850;
 }
+
+/* A field-journal hierarchy: immediate tasks first, evidence just below. */
+.player-desk-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.player-desk-grid article { padding: 24px; background: #f4f1e7; border-top: 3px solid #286148; border-radius: 4px 4px 18px 18px; }
+.player-desk-grid h2 { font-size: 23px; line-height: 1.2; }
+.player-desk-grid a { display: flex; align-items: center; gap: 6px; margin-top: 14px; font-weight: 750; }
+.field-note { margin: 24px 0; padding: clamp(18px, 3vw, 32px); border: 1px solid #cad6cb; border-left: 5px solid #286148; border-radius: 4px 18px 18px 4px; background: #f5f8f1; min-width: 0; }
+.field-note h2 { margin: 8px 0 20px; font-size: clamp(22px, 3vw, 30px); }
+.field-note dl { margin: 0 0 20px; }
+.field-note dl > div { display: grid; grid-template-columns: minmax(130px, 1fr) 3fr; gap: 20px; padding: 14px 0; border-top: 1px solid #d9e2d6; }
+.field-note dt { font-weight: 800; }
+.field-note dd { margin: 0; line-height: 1.65; }
+.event-archive { margin: 24px 0; border: 1px solid #cad6cb; border-radius: 12px; padding: 20px; }
+.event-archive summary { cursor: pointer; font-weight: 800; }
+.event-archive article { padding: 16px 0; border-top: 1px solid #d9e2d6; }
+@media (max-width: 720px) {
+  .player-desk-grid { grid-template-columns: 1fr; }
+  .field-note dl > div { grid-template-columns: 1fr; gap: 6px; }
+}

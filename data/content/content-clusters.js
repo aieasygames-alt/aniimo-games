@@ -647,7 +647,7 @@ export const officialPitchTopics = [
     title: "Aniimo Homeland Guide",
     description: "Track Aniimo Homeland, RV, crops, decoration and Aniimo interaction systems from official public information.",
     image: "/images/mechanics/mechanic-homeland.webp",
-    intro: "Homeland content gives the site a non-combat guide path for players searching building, farming, housing and companion interaction questions.",
+    intro: "Build a Homeland around the functions you use: your RV, farming, decoration and companion interactions. Start with unlocked features, keep a clear daily route, and check a buff's requirements and activation state before spending materials.",
     points: [
       ["Personal RV", "Official text presents the RV as part of the player's personal home base."],
       ["Build and decorate", "Homeland pages can cover decoration planning while keeping exact recipes and unlock costs for launch verification."],
@@ -655,7 +655,7 @@ export const officialPitchTopics = [
     ],
     faq: [
       ["Does Aniimo have housing?", "Aniimo has a Homeland/RV system in official public material."],
-      ["Can Homeland guides include recipes now?", "Only if an official source publishes them. Otherwise recipes should be added after launch testing."],
+      ["How do I activate Park Buffs?", "Check the buff panel in your current client for unlock conditions, ingredients and active-effect indicators. Exact recipes and stacking rules are not verified here; crafting alone should not be assumed to activate an effect."],
     ],
   },
 ];
@@ -1399,11 +1399,11 @@ export const mechanicDeepDiveTopics = [
     intro: "Reward searches can attract users, but they are also easy to mislead. Chaos Mode officially advertises higher drops for certain categories; this page keeps that wording separate from an exact reward table, pre-registration rewards and redeem codes.",
     points: [
       ["Published Chaos Mode rewards", "The Version 1.1 update lists higher Prismana Aniimo Egg and Prismatic Collectible drop rates and a chance at Secret Collectibles. Exact probabilities and item quantities are not published here."],
-      ["What to capture later", "After launch, capture item name, quantity, mode requirement, weekly limits, platform restrictions and last tested date."],
+      ["Check before a run", "Confirm item name, mode requirement, weekly limits and client version before relying on a reward table. The October 13 feedback discusses future collectible paths, not a newly available drop table."],
       ["Related rewards", "Keep Egg Heist rewards separate from pre-registration milestones, launch event gifts and active redeem codes."],
     ],
     faq: [
-      ["Does Egg Heist give rewards?", "Aniimo.games should wait for official or in-game confirmation before publishing exact reward tables."],
+      ["Does Egg Heist give rewards?", "The official Chaos Mode notice lists Prismana Aniimo Eggs and Prismatic Collectibles with higher-drop wording, plus a chance at Secret Collectibles. Exact odds and quantities are not verified here."],
       ["Where will Egg Heist rewards be updated?", "Update this page, the codes page, rewards page and launch verification page once verified."],
     ],
   },

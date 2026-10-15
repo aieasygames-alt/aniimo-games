@@ -6,3 +6,4 @@ export * from "./content/verification.js";
 export * from "./content/content-clusters.js";
 export * from "./content/freshness.js";
 export * from "./content/site-meta.js";
+export * from "./content/october-field-notes.js";

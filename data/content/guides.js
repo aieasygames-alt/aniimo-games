@@ -196,6 +196,7 @@ export const faqs = {
 };
 
 export const updates = [
+  { date: "2026-10-15", title: "October activities and practical guides refreshed", text: "Added the official Inferlupa date-only activity, October 13 Egg Heist explanations and future-plan boundaries, weekly activity states, and a Homeland planning checklist. October reviews are item-dated; older Wiki fields retain their previous review date." },
   {
     date: "2026-10-01",
     title: "Version 1.1 event and player-support coverage refreshed",

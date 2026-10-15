@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { fieldNotesForPath, updateOutlook } from "../../data/content/october-field-notes.js";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles, Plus, X, Copy, Download as DownloadIcon } from "lucide-react";
 import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, currentPatch, downloadTopics, editorialGuides, eventSchedule, eventStatus, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, liveIssueRegistry, liveSupportStatus, liveUpdate, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, postLaunchEvidence, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, isIndexableAniimo, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
@@ -6,6 +7,15 @@ import { AnswerStatus, CreatureImage, EditorialBlock, FaqBlock, FreshnessNotice,
 
 const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup", "eklue", "skippy", "helgon"];
 const highIntentAniimoIds = new Set(["besauce", "fragrancier", "infergon", "blazen", "tubster", "fentuft", "thornblade", "pawney", "fenmane", "geodeback"]);
+
+function FieldNotes({ path, outlook = false }) {
+  return (outlook ? [updateOutlook] : fieldNotesForPath(path)).map((note) => <section className="field-note" key={note.title} aria-label={note.title}>
+    <p className="eyebrow">{note.checked ? `Official source reviewed ${note.checked}` : "Practical checklist · unverified values excluded"}</p>
+    <h2>{note.title}</h2>
+    <dl>{note.points.map(([label, text]) => <div key={label}><dt>{label}</dt><dd>{text}</dd></div>)}</dl>
+    <a className="text-link" href={note.source} target="_blank" rel="noreferrer">{note.checked ? "Read the official announcement" : "Official game information"} <ChevronRight size={16} /></a>
+  </section>);
+}
 
 function priorityAniimoPages() {
   return priorityAniimoIds
@@ -109,6 +119,16 @@ export function HomePage(props) {
             <p>Use verified Steam, Epic, PlayStation, Xbox, App Store and Google Play paths. Country and device can still affect storefront visibility.</p>
             <a className="secondary-action" href="/download/" onClick={(event) => props.navigate(event, "/download/")}><Download size={18} /> Open official downloads</a>
           </article>
+        </section>
+
+        <section className="section player-desk" aria-label="Player field desk">
+          <SectionTitle icon={<Compass />} kicker="Player field desk" title="A clear next step, not another rumor feed" />
+          <div className="player-desk-grid">
+            <article><span className="eyebrow">01 / This week's windows</span><h2>Check before traveling</h2><p>Source-dated activities, weekly opening times and windows that need a client check.</p><a href="/events/">Open event calendar <ChevronRight size={16} /></a></article>
+            <article><span className="eyebrow">02 / Something went wrong</span><h2>Find the right fix</h2><p>Separate server maintenance from account, device and client issues.</p><a href="/troubleshooting/aniimo-known-issues/">Troubleshoot an issue <ChevronRight size={16} /></a></article>
+            <article><span className="eyebrow">03 / Go deeper</span><h2>Make your next run count</h2><p>Read the official Egg Heist explanation or plan a useful Homeland.</p><a href="/mechanics/egg-heist-rules/">Egg Heist rules <ChevronRight size={16} /></a><a href="/guides/aniimo-homeland-guide/">Homeland checklist <ChevronRight size={16} /></a></article>
+          </div>
+          <FieldNotes path="/" />
         </section>
 
         <section className="quick-grid primary-task-grid" aria-label="Start with a task">
@@ -926,19 +946,21 @@ export function UpdatesPage() {
 }
 
 export function EventsPage({ navigate }) {
-  const eventOrder = { Active: 0, Upcoming: 1, Ended: 2 };
-  const orderedEvents = [...liveUpdate.events].sort((left, right) => eventOrder[eventStatus(left)] - eventOrder[eventStatus(right)] || new Date(left.startsAt) - new Date(right.startsAt));
+  const eventOrder = { Active: 0, "Check in client": 1, Upcoming: 2, "Closed this week": 3, Ended: 4 };
+  const orderedEvents = [...liveUpdate.events].sort((left, right) => eventOrder[eventStatus(left)] - eventOrder[eventStatus(right)] || new Date(left.startsAt || left.startDate) - new Date(right.startsAt || right.startDate));
   const activeEvents = orderedEvents.filter((event) => eventStatus(event) === "Active");
   const upcomingEvents = orderedEvents.filter((event) => eventStatus(event) === "Upcoming");
   return (
     <section className="section updates-band">
-      <SectionTitle icon={<CalendarDays />} kicker="Official Update" title="Aniimo Events and Version 1.1" />
-      <p className="section-copy">{liveUpdate.summary} The table below separates active, upcoming and ended windows from permanent-game availability; all times use UTC+8.</p>
+      <SectionTitle icon={<CalendarDays />} kicker="Official sources" title="Aniimo events: current windows and what to check" />
+      <p className="section-copy">Timed September notices use UTC+8; the October Inferlupa post gives dates only. A listed event is not proof that it is open on every server.</p>
+      <FieldNotes path="/events/" />
+      <FieldNotes outlook />
       <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official Aniimo September update notice" next="Recheck the official notice after maintenance or before publishing changed event times, eligibility or rewards." />
-      <FreshnessNotice subject="Event schedule" checked={sourceLastChecked} sourceType="official Version 1.1 and patch notices" message="Status is calculated from listed UTC+8 windows; open the official notice when maintenance or current-client information differs." />
+      <FreshnessNotice subject="September event schedule" checked={sourceLastChecked} sourceType="official Version 1.1 and patch notices" message="Older timed windows use UTC+8. October source reviews are dated separately; date-only activities require a client check." />
       <div className="detail-panels">
-        <InfoPanel title="Current Update" rows={[["Update", liveUpdate.title], ["Published", liveUpdate.date], ["Time standard", "All event times below are UTC+8"], ["Irisalis journey", "Windchaser's Departure runs through December 10 UTC+8; follow current-client progression for the related Aniipod steps."], ["Mobile", "iOS and Android are live; check official stores by country and device"]]} />
-        <InfoPanel title="Latest Resource Update" rows={[["Patch", `${currentPatch.title} (${currentPatch.date})`], ["Player action", currentPatch.summary], ["Eligibility", currentPatch.eligibility]]} />
+        <InfoPanel title="Recorded September Update" rows={[["Update", liveUpdate.title], ["Published", liveUpdate.date], ["Time standard", "Timed notices: UTC+8. October Inferlupa: dates only."], ["Mobile", "iOS and Android are live; check official stores by country and device"]]} />
+        <InfoPanel title="Last Recorded Resource Update" rows={[["Patch", `${currentPatch.title} (${currentPatch.date})`], ["Player action", currentPatch.summary], ["Eligibility", currentPatch.eligibility]]} />
       </div>
       <IrisalisJourneyPanel navigate={navigate} />
       <div className="event-summary-grid">
@@ -956,11 +978,12 @@ export function EventsPage({ navigate }) {
       <div className="table-shell freshness-table">
         <table>
           <thead><tr><th>Event</th><th>Status</th><th>Schedule</th><th>Requirements</th><th>Official details</th></tr></thead>
-          <tbody>{orderedEvents.map((event) => <tr key={event.name}><td>{event.name}</td><td><StatusBadge status={eventStatus(event)} /></td><td>{eventSchedule(event)}</td><td>{event.requirements}</td><td>{event.detail} <a href={event.source} target="_blank" rel="noreferrer">Source</a></td></tr>)}</tbody>
+          <tbody>{orderedEvents.filter((event) => eventStatus(event) !== "Ended").map((event) => <tr key={event.name}><td>{event.name}</td><td><StatusBadge status={eventStatus(event)} /></td><td>{eventSchedule(event)}</td><td>{event.requirements}</td><td>{event.detail} <a href={event.source} target="_blank" rel="noreferrer">Source</a>{event.checked && <small> Reviewed {event.checked}</small>}</td></tr>)}</tbody>
         </table>
       </div>
+      <details className="event-archive"><summary>Past event windows ({orderedEvents.filter((event) => eventStatus(event) === "Ended").length})</summary>{orderedEvents.filter((event) => eventStatus(event) === "Ended").map((event) => <article key={event.name}><h3>{event.name}</h3><p>{eventSchedule(event)}</p><p>{event.detail}</p><a href={event.source} target="_blank" rel="noreferrer">Historical official notice</a></article>)}</details>
       <SeoGuideBlock items={[
-        { title: "Use official timing", body: "The schedule is recorded in UTC+8 exactly as listed in the official update. Confirm the current notice before treating an event as active or expired in another time zone." },
+        { title: "Use official timing", body: "Each activity lists its own time precision. Dates without a source time zone need a client check, not an exact countdown. Recurring activities can be closed between weekly windows." },
         { title: "Keep event facts narrow", body: "This page records official dates, entry requirements and publicly stated details. Drop rates, optimal routes, team builds and economy advice need current-client evidence before publication." },
         { title: "What to do if an event is unavailable", body: "Restart after the September 30 resource update, then check your character requirement, server, local storefront version and the official notice before relying on community screenshots or workaround guides." },
       ]} />
@@ -982,6 +1005,7 @@ export function WeeklyPlanPage({ navigate }) {
     <section className="section updates-band">
       <SectionTitle icon={<CalendarDays />} kicker="Current week" title="Plan your next useful Aniimo session" />
       <p className="section-copy">This page turns the current official event schedule into a short planning checklist. It does not invent daily tasks, reward quantities or reset rules that still require current-client verification.</p>
+      <FieldNotes path="/weekly-plan/" />
       <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official Version 1.1 event notice" next="Check the current client before relying on a requirement, reset timing or availability state." />
       <FreshnessNotice subject="Weekly plan" checked={sourceLastChecked} sourceType="official event notices" message="This is a planning layer over published events, not a claim that unlisted daily caps, resets or rewards are current." />
       <section className="event-summary-grid" aria-label="Weekly activity counts"><article><span className="eyebrow">Active windows</span><strong>{activeEvents.length}</strong><p>Current time-window activities listed by the official update.</p></article><article><span className="eyebrow">Repeatable focus</span><strong>{repeatableEvents.length}</strong><p>Legendary Journey, Holo-Battle Interlink and Egg Heist are tracked separately from one-off windows.</p></article></section>
@@ -1799,6 +1823,9 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
       {statusEntry && <LaunchStatusPanel title="Answer Status" entries={[statusEntry]} />}
       {intentStatus && <InfoPanel title="What We Are Checking Next" rows={[["Next check", intentStatus.action], ["Page", topic.title]]} />}
       {topic.slug === "aniimo-server-status" && <LiveSupportStatus />}
+      <FieldNotes path={`/${topic.slug}/`} />
+      <FieldNotes path={`/mechanics/${topic.slug}/`} />
+      <FieldNotes path={`/guides/${topic.slug}/`} />
       {topic.slug === "aniimo-known-issues" && <LiveIssueTable />}
       {topic.slug === "aniimo-discord" && <InfoPanel title="Official Community Path" rows={[
         ["Verification", "Use a Discord destination only when it is linked by Aniimo, Pawprint Studio, or another verified official Aniimo channel."],
@@ -2565,6 +2592,7 @@ export function AniimoDetail({ item, navigate, localized = false }) {
           <StatusBadge status={item.status} />
         </div>
       </div>
+      {!pt && <FieldNotes path={`/aniimo/${item.id}/`} />}
       <div className="tool-actions detail-tool-actions">
         {!pt && itemRegion && <a className="primary-action" href={regionPath(itemRegion)} onClick={(event) => navigate(event, regionPath(itemRegion))}><Map size={16} /> Open {item.region} guide</a>}
         {!pt && itemRegion?.map && <a className="secondary-action" href={`${itemRegion.map.mapUrl}${itemRegion.map.mapUrl.includes("?") ? "&" : "?"}aniimo=${encodeURIComponent(item.id)}`} target="_blank" rel="noreferrer"><Compass size={16} /> Open {item.name} on community map</a>}
@@ -2645,6 +2673,7 @@ export function RegionDetail({ region, navigate }) {
         </div>
       </div>
       <div className="detail-panels">
+        <FieldNotes path={regionPath(region)} />
         <InfoPanel title="Known Aniimo" rows={region.aniimo.map((name) => ["Encounter", name])} />
         <InfoPanel title="Location Answer" rows={[["Current region association", `${region.aniimo.join(", ")} are currently listed for ${region.name}.`], ["What this means", "This is a source-labeled region association, not an exact coordinate or guaranteed encounter condition."], ["Next step", "Open an Aniimo detail page for its role, forms and current location notes."]]} />
         <InfoPanel title="Route Notes" rows={[["Exploration", region.theme], ["Mechanics", region.mechanics.join(", ")], ["Data status", statuses[region.status]], ["Last updated", siteLastUpdated]]} />

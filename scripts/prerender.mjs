@@ -3,6 +3,8 @@ import { dirname, join } from "node:path";
 import { aniimo, gameInfo, launchPriorityPages, launchRewards, releaseInfo, regions, siteLastUpdated, sourceLastChecked } from "../data/content.js";
 import { aniimoPath, canonicalUrl, isIndexableAniimo, isNoindexRoute, pageFaqsForRoute, prerenderRoutes, resolveRoute, structuredDataForRoute } from "../src/lib/routes.js";
 import { localeForPath } from "../data/locales/index.js";
+import { fieldNotesForPath, updateOutlook } from "../data/content/october-field-notes.js";
+import { liveUpdate, eventSchedule } from "../data/content/freshness.js";
 
 const indexHtml = "dist/index.html";
 const indexTemplate = readFileSync(indexHtml, "utf8");
@@ -32,7 +34,11 @@ function injectMeta(html, route) {
       .replace(/<meta\s+name="robots"\s+content="[^"]+"\s*\/>/, `<meta name="robots" content="noindex,follow" />`)
       .replace('<div id="root"></div>', `<div id="root"><main class="prerender-fallback"><h1>${escapeHtml(routeInfo.detail.name)} entry is being verified</h1><p>This official-name entry remains available in the Aniimo database, but its element, role, stage, region and gameplay details are not yet sufficiently verified for a standalone guide.</p><p><a href="/aniimo/">Browse the verified Aniimo database</a> | <a href="/sources/">Review sources</a></p></main></div>`);
   }
-  const fallback = fallbackHtml(routeInfo);
+  const notes = [...fieldNotesForPath(routeInfo.path), ...(routeInfo.path === "/events/" ? [updateOutlook] : [])];
+  const noteHtml = notes.map((note) => `<section><h2>${escapeHtml(note.title)}</h2>${note.checked ? `<p>Official source reviewed ${escapeHtml(note.checked)}</p>` : "<p>Editorial checklist; exact values remain unverified.</p>"}<dl>${note.points.map(([label, text]) => `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(text)}</dd>`).join("")}</dl><a href="${escapeHtml(note.source)}">Source</a></section>`).join("");
+  // Keep schedules readable without JS; calculate live status only in the client.
+  const scheduleHtml = routeInfo.path === "/events/" ? `<section><h2>Published activity windows</h2><p>These are recorded schedules, not a live server-status check.</p>${liveUpdate.events.map((event) => `<article><h3>${escapeHtml(event.name)}</h3><p>${escapeHtml(eventSchedule(event))}</p><p>${escapeHtml(event.requirements)}</p><p>${escapeHtml(event.detail)}</p><a href="${escapeHtml(event.source)}">Official event source</a></article>`).join("")}</section>` : "";
+  const fallback = fallbackHtml(routeInfo).replace("</main>", `${noteHtml}${scheduleHtml}</main>`);
   // JSON-LD is raw JSON inside a script element; HTML entity escaping makes it invalid JSON.
   const structuredData = JSON.stringify(structuredDataForRoute(routeInfo, pageFaqsForRoute(routeInfo)))
     .replaceAll("<", "\\u003c")

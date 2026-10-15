@@ -51,12 +51,14 @@ for (const [slug, item] of Object.entries(searchIntentStatus)) {
 }
 
 for (const event of liveUpdate.events) {
-  if (!event.name || !event.startsAt || !event.detail) issues.push(`Live update event is incomplete: ${JSON.stringify(event)}`);
-  const start = new Date(event.startsAt);
-  const end = event.endsAt ? new Date(event.endsAt) : null;
+  if (!event.name || !(event.startsAt || event.startDate) || !event.detail || !event.source) issues.push(`Live update event is incomplete: ${JSON.stringify(event)}`);
+  if (event.startDate && (!/^\d{4}-\d{2}-\d{2}$/.test(event.startDate) || !/^\d{4}-\d{2}-\d{2}$/.test(event.endDate || ""))) issues.push(`Date-only event must include both ISO dates: ${event.name}`);
+  const start = new Date(event.startsAt || event.startDate);
+  const end = event.endsAt || event.endDate ? new Date(event.endsAt || event.endDate) : null;
   if (Number.isNaN(start.valueOf()) || (end && Number.isNaN(end.valueOf()))) issues.push(`Live update event has an invalid date: ${event.name}`);
   if (end && end <= start) issues.push(`Live update event ends before it starts: ${event.name}`);
-  if (!allowedStatuses.has(eventStatus(event))) issues.push(`Live update event has an unsupported calculated status: ${event.name}`);
+  if (!new Set(["Active", "Upcoming", "Ended", "Check in client", "Closed this week"]).has(eventStatus(event))) issues.push(`Live update event has an unsupported calculated status: ${event.name}`);
+  if (event.recurrence && ![event.recurrence.opens, event.recurrence.closes].every((value) => Number.isInteger(value) && value >= 0 && value < 10080)) issues.push(`Invalid weekly window: ${event.name}`);
 }
 
 if (issues.length) {

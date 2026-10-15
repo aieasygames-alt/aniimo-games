@@ -1,4 +1,5 @@
 import { officialLinks, releaseInfo } from "./sources.js";
+import { inferlupaEventSource, octoberReviewDate } from "./october-field-notes.js";
 
 export const freshnessPages = [
   {
@@ -63,8 +64,9 @@ export const liveUpdate = {
   summary: "Version 1.1 launched mobile availability and current seasonal activities. Event schedules are displayed in UTC+8 and should be rechecked when maintenance or platform notices change.",
   maintenance: "The update notice lists maintenance on September 23 from 00:00 to 10:00 UTC+8 and Glimmer x500 compensation for eligible accounts. Check the official notice for any changed completion time or eligibility wording.",
   events: [
+    { name: "Prismana Inferlupa: Nimbus Fields", startDate: "2026-10-12", endDate: "2026-10-19", checked: octoberReviewDate, requirements: "Confirm entry requirements in your server's client; the post does not list a level.", detail: "Nurture the bloom in Nimbus Fields and trigger a Prismana Flow to attract special Prismana Inferlupa. Limited-time availability, not a permanent spawn. Exact closing hour and time zone are unspecified.", source: inferlupaEventSource },
     { name: "Legendary Journey: Windchaser's Departure", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-12-10T03:59:00+08:00", requirements: "Follow the current Legendary Journey progression in the client.", detail: "The Version 1.1 update introduces Irisalis and related Aniipod progression through this journey. Exact progression steps and weekly limits should be confirmed in the current client.", source: officialLinks.versionOneOne },
-    { name: "Holo-Battle Interlink", startsAt: "2026-09-24T04:00:00+08:00", endsAt: null, requirements: "Reach Trailblazer I.", detail: "This recurring Thursday-to-Monday co-op or AI activity has three replayable routes. Star and Support rewards reset weekly; exact route details remain current-client verification work.", source: officialLinks.versionOneOne },
+    { name: "Holo-Battle Interlink", startsAt: "2026-09-24T04:00:00+08:00", endsAt: null, recurrence: { opens: 4 * 1440 + 240, closes: 1 * 1440 + 240 }, requirements: "Reach Trailblazer I.", detail: "Open Thursday 04:00 through Monday 03:59 UTC+8 for co-op or AI play, with three replayable routes. Star and Support rewards reset weekly; confirm current-client changes.", source: officialLinks.versionOneOne },
     { name: "Egg Heist Team Mode: Chaos Mode", startsAt: "2026-09-24T04:00:00+08:00", endsAt: null, requirements: "Reach Tier IV: Elite Egg Seeker and use a Chaos Ticket.", detail: "Higher Prismana Aniimo Egg and Prismatic Collectible drop rates are listed; strict escape conditions apply and team play is recommended.", source: officialLinks.versionOneOne },
     { name: "Glamour Star", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-10-02T03:59:00+08:00", requirements: "Reach Student II.", detail: "Submit a Floral Soiree-themed Aniimo entry for score-milestone rewards.", source: officialLinks.versionOneOne },
     { name: "Aniimo Discovery", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-10-09T03:59:00+08:00", requirements: "Reach Student II.", detail: "Free Search Attempts replenish periodically and do not stack; use Search Buffs as research progresses.", source: officialLinks.versionOneOne },
@@ -89,14 +91,33 @@ export const currentPatch = {
 };
 
 export function eventStatus(event, now = new Date()) {
+  if (!Number.isFinite(now.getTime())) return "Check in client";
+  if (event.startDate) {
+    // Unknown source time zone: UTC±14 guard band, never assert Active.
+    const earliestStart = Date.parse(`${event.startDate}T00:00:00+14:00`);
+    const latestEnd = Date.parse(`${event.endDate}T23:59:59.999-12:00`);
+    if (now.getTime() < earliestStart) return "Upcoming";
+    if (now.getTime() > latestEnd) return "Ended";
+    return "Check in client";
+  }
   const start = new Date(event.startsAt);
   const end = event.endsAt ? new Date(event.endsAt) : null;
+  if (!Number.isFinite(start.getTime()) || (end && !Number.isFinite(end.getTime()))) return "Check in client";
   if (now < start) return "Upcoming";
   if (end && now > end) return "Ended";
+  if (event.recurrence) {
+    const local = new Date(now.getTime() + 8 * 60 * 60 * 1000);
+    const minute = local.getUTCDay() * 1440 + local.getUTCHours() * 60 + local.getUTCMinutes();
+    const { opens, closes } = event.recurrence;
+    const open = opens > closes ? minute >= opens || minute < closes : minute >= opens && minute < closes;
+    return open ? "Active" : "Closed this week";
+  }
   return "Active";
 }
 
 export function eventSchedule(event) {
+  if (event.startDate) return `${event.startDate} to ${event.endDate} — dates only; exact closing hour and time zone not specified. Check your server's client.`;
+  if (event.recurrence) return "Every Thursday 04:00 to Monday 03:59 UTC+8; check current-client changes.";
   const start = new Date(event.startsAt).toLocaleString("en-GB", { timeZone: "Asia/Shanghai", dateStyle: "medium", timeStyle: "short" });
   const end = event.endsAt ? new Date(event.endsAt).toLocaleString("en-GB", { timeZone: "Asia/Shanghai", dateStyle: "medium", timeStyle: "short" }) : "No end time listed";
   return `${start} to ${end} UTC+8`;
