@@ -149,7 +149,6 @@ export const launchPriorityPages = [
   ["/topics/aniimo-discord/", "Official Discord", "aniimo discord", "Verify invite and announcement freshness."],
   ["/download/", "Download hub", "aniimo download", "Update platform availability and safe-download paths."],
   ["/rewards/milestones/", "Milestone rewards", "aniimo milestone rewards", "Confirm reward delivery and campaign status."],
-  ["/topics/aniimo-demo/", "Demo status", "aniimo demo", "Separate demo, playtest, beta history, and live availability."],
 ];
 
 export const verificationTemplates = {
