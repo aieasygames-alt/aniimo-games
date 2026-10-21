@@ -1,13 +1,13 @@
 # Aniimo Official Update Report
 
-Generated: 2026-10-06T12:38:57.318Z
+Generated: 2026-10-20T03:38:08.410Z
 
 ## Summary
 
 - Local Aniimo entries: 90
 - Official Wiki entries found in probe page: 81
 - Wiki comparison mode: Names with number-first fallback matching
-- Previous Wiki snapshot: 2026-10-01T02:47:26.530Z
+- Previous Wiki snapshot: 2026-10-06T12:38:57.316Z
 - Local regions: 6
 - Official regions seen on main page: 6
 - PC/console launch date: 2026-09-16
@@ -93,9 +93,6 @@ Generated: 2026-10-06T12:38:57.318Z
 ## Recent Official News Titles
 
 - Aniimo Official Website - Global Launch Announced!
-- Aniimo Is Officially Live on Mobile—Embark on Your Twine Journey Anytime, Anywhere!
-- Aniimo Mobile Pre-Download Now Available!
-Coming to All Platforms on September 23!
 
 ## Official News Changes Since Last Snapshot
 

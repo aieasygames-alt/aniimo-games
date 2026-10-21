@@ -12,7 +12,6 @@ const importantPages = [
   `${siteUrl}/platforms/epic-games/`,
   `${siteUrl}/platforms/ios/`,
   `${siteUrl}/platforms/android/`,
-  `${siteUrl}/launch-tracker/`,
   `${siteUrl}/robots.txt`,
   `${siteUrl}/sitemap.xml`,
 ];
