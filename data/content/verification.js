@@ -47,11 +47,11 @@ export const launchStatusEntries = [
   {
     id: "known-issues",
     label: "Known launch issues",
-    value: "Launch login and storefront issues are being tracked",
+    value: "October platform, mobile, reward and gameplay issues are tracked",
     status: "Watchlist",
-    source: officialLinks.main,
+    source: officialLinks.octoberKnownIssues,
     lastChecked: sourceLastChecked,
-    note: "Official launch guidance identifies login queues and slower loading as possible at launch. Keep fixes source-labeled and platform-specific.",
+    note: "The October 16 notice separates known issues from dated fixes. Check the current client and later notices before treating an item as still active.",
   },
   {
     id: "discord",
@@ -77,7 +77,7 @@ export const liveSupportStatus = {
     {
       date: "2026-09-23",
       state: "Scheduled maintenance",
-      scope: "Official September update notice",
+      scope: "Official historical September update notice",
       detail: "The official update listed maintenance from 00:00 to 10:00 UTC+8. This historical notice is not evidence of a current outage.",
       source: officialLinks.septemberUpdate,
     },
@@ -99,6 +99,54 @@ export const liveIssueRegistry = [
     status: "Watchlist",
     workaround: "Check for a confirmed outage first. Then verify account, storefront region, connection, and current game update before reinstalling.",
     source: officialLinks.main,
+    checked: sourceLastChecked,
+  },
+  {
+    issue: "Android Stars and the Knight Journey freeze",
+    platforms: "Android devices",
+    status: "Watchlist",
+    workaround: "Try Performance Mode, disable Shadows, or use the upper-right skip button as described in the official notice.",
+    source: officialLinks.octoberKnownIssues,
+    checked: sourceLastChecked,
+  },
+  {
+    issue: "Mobile reward claim after PC login",
+    platforms: "Mobile after switching from PC",
+    status: "Watchlist",
+    workaround: "Log in again and confirm the current client before reporting the reward as missing.",
+    source: officialLinks.octoberKnownIssues,
+    checked: sourceLastChecked,
+  },
+  {
+    issue: "Irisalis Ultimate damage or clone failure",
+    platforms: "Rare cases under poor network conditions",
+    status: "Watchlist",
+    workaround: "Confirm the client is current and record network conditions, platform and the affected skill before reporting it.",
+    source: officialLinks.octoberKnownIssues,
+    checked: sourceLastChecked,
+  },
+  {
+    issue: "Alpha capture status error",
+    platforms: "All platforms; rare capture cases",
+    status: "Watchlist",
+    workaround: "Retry only after confirming the current client; record the Alpha, platform, server and exact error message.",
+    source: officialLinks.octoberKnownIssues,
+    checked: sourceLastChecked,
+  },
+  {
+    issue: "Forest of Butterfly Dreams event page display issue",
+    platforms: "Indoor locations such as ChillBeanz",
+    status: "Watchlist",
+    workaround: "Leave the current area and reopen the event page as described in the official notice.",
+    source: officialLinks.octoberKnownIssues,
+    checked: sourceLastChecked,
+  },
+  {
+    issue: "Monthly Pass or Companion Handbook gifting failure",
+    platforms: "Some mobile accounts",
+    status: "Watchlist",
+    workaround: "Avoid repeated purchases; record the account, character, platform and purchase result for official support.",
+    source: officialLinks.octoberKnownIssues,
     checked: sourceLastChecked,
   },
   {
@@ -137,6 +185,13 @@ export const searchIntentStatus = {
   "aniimo-official-website": { statusId: "discord", action: "Use this page as a safe navigation hub for official site, Wiki, and storefront links." },
   "aniimo-reddit": { statusId: "discord", action: "Treat community posts as research signals and link back to verified sources." },
   "aniimo-logo": { statusId: "discord", action: "Keep image source and usage notes tied to official brand materials." },
+};
+
+export const wikiProbeGaps = {
+  status: "Watchlist",
+  lastChecked: sourceLastChecked,
+  note: "A missing individual Wiki route is a retrieval gap, not proof that a local Aniimo was removed. Keep the local name-only record until a stable official source or correction confirms a change.",
+  numbers: ["083", "084", "085", "086", "087", "088", "089", "090", "091", "092", "093"],
 };
 
 export const launchPriorityPages = [

@@ -1,5 +1,5 @@
 // Item-level dates do not imply that older Wiki data was rechecked.
-export const octoberReviewDate = "2026-10-15";
+export const octoberReviewDate = "2026-10-20";
 export const inferlupaEventSource = "https://x.com/Aniimo_EN/status/2109675867899035881";
 export const eggHeistFeedbackSource = "https://x.com/Aniimo_EN/status/2109841601434669066";
 const inferlupaNotes = {
@@ -32,14 +32,25 @@ const homelandNotes = {
   points: [
     ["Start with unlocked functions", "Check your current RV, farming and decoration functions before planning a layout. Keep frequently used interactions easy to reach. This is an editorial layout suggestion, not a bonus mechanic."],
     ["Park Buffs: check before crafting", "Read the unlock condition, ingredients, effect and activation state in your client. Verify whether crafting and activation are separate actions. Exact recipes, durations and stacking rules are not verified here."],
+    ["Park Buff evidence checklist", "Before publishing a Park Buff claim, record the feature name, unlock condition, ingredients, effect text, activation step, duration, stacking behavior, platform, client version and screenshot. A tour video can show a layout but cannot prove the bonus rules."],
     ["Build around a daily route", "Group the interactions you use and leave a clear walking path. Test it before spending more on decoration. A tour video can inspire a layout but does not prove that every object grants an effect."],
     ["If a bonus is missing", "Recheck requirements and the active-effect indicator. Record your platform, server, client version and screenshot for support; do not repeatedly spend materials based on an unverified guide."],
+  ],
+};
+const knownIssueNotes = {
+  title: "Official known issues and fixes: October 16–17", source: "https://www.aniimo.com/newslist/detail/100208", checked: octoberReviewDate,
+  points: [
+    ["Current issue examples", "The official notice lists Irisalis Ultimate registration, mobile Sparkling Prismana colors, avatar-frame delivery, Alpha capture errors, Android quest freezes and cross-device reward claiming as known issues."],
+    ["Safe Android workaround", "For the Stars and the Knight Journey freeze, the official notice suggests Performance Mode or disabling Shadows, or using the upper-right skip button."],
+    ["Recent fixes", "The notice records fixes for Tiered Grand Gifts Stage 4 rewards, Egg Heist collectible flicker, console menu lag and several Home, Holo-Battle and controller problems."],
+    ["Version boundary", "A listed issue or fix belongs to the official notice date. Check the current client and later notices before treating it as still active."],
   ],
 };
 export function fieldNotesForPath(path) {
   if (["/", "/events/", "/weekly-plan/", "/aniimo/inferlupa/", "/regions/nimbus-fields/"].includes(path)) return [inferlupaNotes];
   if (["/mechanics/egg-heist-rules/", "/mechanics/egg-heist-rewards/", "/guides/aniimo-egg-heist-guide/"].includes(path)) return [eggHeistNotes, statNotes];
   if (path === "/guides/aniimo-homeland-guide/") return [homelandNotes];
+  if (["/troubleshooting/aniimo-known-issues/", "/troubleshooting/", "/launch-day/"].includes(path)) return [knownIssueNotes];
   return [];
 }
 export const updateOutlook = {

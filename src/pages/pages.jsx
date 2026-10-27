@@ -953,13 +953,13 @@ export function EventsPage({ navigate }) {
   return (
     <section className="section updates-band">
       <SectionTitle icon={<CalendarDays />} kicker="Official sources" title="Aniimo events: current windows and what to check" />
-      <p className="section-copy">Timed September notices use UTC+8; the October Inferlupa post gives dates only. A listed event is not proof that it is open on every server.</p>
+      <p className="section-copy">The October 15 resource update adds Home Season timing; older timed notices use UTC+8 and the October Inferlupa post gives dates only. A listed event is not proof that it is open on every server.</p>
       <FieldNotes path="/events/" />
       <FieldNotes outlook />
-      <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official Aniimo September update notice" next="Recheck the official notice after maintenance or before publishing changed event times, eligibility or rewards." />
-      <FreshnessNotice subject="September event schedule" checked={sourceLastChecked} sourceType="official Version 1.1 and patch notices" message="Older timed windows use UTC+8. October source reviews are dated separately; date-only activities require a client check." />
+      <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official Aniimo October update notice" next="Recheck the official notice after maintenance or before publishing changed event times, eligibility or rewards." />
+      <FreshnessNotice subject="October event schedule" checked={sourceLastChecked} sourceType="official update and known-issue notices" message="Regional Harvest Gathering times are published separately; date-only activities require a client check." />
       <div className="detail-panels">
-        <InfoPanel title="Recorded September Update" rows={[["Update", liveUpdate.title], ["Published", liveUpdate.date], ["Time standard", "Timed notices: UTC+8. October Inferlupa: dates only."], ["Mobile", "iOS and Android are live; check official stores by country and device"]]} />
+        <InfoPanel title="Recorded Current Update" rows={[["Update", liveUpdate.title], ["Published", liveUpdate.date], ["Time standard", "Regional Harvest Gathering times are listed by server region; date-only activities require a client check."], ["Mobile", "iOS and Android are live; check official stores by country and device"]]} />
         <InfoPanel title="Last Recorded Resource Update" rows={[["Patch", `${currentPatch.title} (${currentPatch.date})`], ["Player action", currentPatch.summary], ["Eligibility", currentPatch.eligibility]]} />
       </div>
       <IrisalisJourneyPanel navigate={navigate} />
@@ -985,11 +985,11 @@ export function EventsPage({ navigate }) {
       <SeoGuideBlock items={[
         { title: "Use official timing", body: "Each activity lists its own time precision. Dates without a source time zone need a client check, not an exact countdown. Recurring activities can be closed between weekly windows." },
         { title: "Keep event facts narrow", body: "This page records official dates, entry requirements and publicly stated details. Drop rates, optimal routes, team builds and economy advice need current-client evidence before publication." },
-        { title: "What to do if an event is unavailable", body: "Restart after the September 30 resource update, then check your character requirement, server, local storefront version and the official notice before relying on community screenshots or workaround guides." },
+        { title: "What to do if an event is unavailable", body: "Restart after the October 15 resource update, then check your character requirement, server, local storefront version and the official notice before relying on community screenshots or workaround guides." },
       ]} />
       <div className="hero-actions section-actions">
         <a className="primary-action" href={liveUpdate.source} target="_blank" rel="noreferrer"><Search size={18} /> Check official update</a>
-        <a className="secondary-action" href={currentPatch.source} target="_blank" rel="noreferrer"><Download size={18} /> Check latest patch</a>
+        <a className="secondary-action" href={currentPatch.source} target="_blank" rel="noreferrer"><Download size={18} /> Check latest update</a>
         <a className="secondary-action" href="/weekly-plan/" onClick={(event) => navigate(event, "/weekly-plan/")}><CalendarDays size={18} /> Open weekly plan</a>
         <a className="secondary-action" href="/launch-day/" onClick={(event) => navigate(event, "/launch-day/")}><CheckCircle2 size={18} /> Open launch support</a>
       </div>
@@ -1006,7 +1006,7 @@ export function WeeklyPlanPage({ navigate }) {
       <SectionTitle icon={<CalendarDays />} kicker="Current week" title="Plan your next useful Aniimo session" />
       <p className="section-copy">This page turns the current official event schedule into a short planning checklist. It does not invent daily tasks, reward quantities or reset rules that still require current-client verification.</p>
       <FieldNotes path="/weekly-plan/" />
-      <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official Version 1.1 event notice" next="Check the current client before relying on a requirement, reset timing or availability state." />
+      <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official October event notice" next="Check the current client before relying on a requirement, reset timing or availability state." />
       <FreshnessNotice subject="Weekly plan" checked={sourceLastChecked} sourceType="official event notices" message="This is a planning layer over published events, not a claim that unlisted daily caps, resets or rewards are current." />
       <section className="event-summary-grid" aria-label="Weekly activity counts"><article><span className="eyebrow">Active windows</span><strong>{activeEvents.length}</strong><p>Current time-window activities listed by the official update.</p></article><article><span className="eyebrow">Repeatable focus</span><strong>{repeatableEvents.length}</strong><p>Legendary Journey, Holo-Battle Interlink and Egg Heist are tracked separately from one-off windows.</p></article></section>
       <section className="section compact-section" aria-label="Repeatable activity plan"><SectionTitle icon={<Compass />} kicker="Start here" title="Choose one repeatable goal before opening a map" /><div className="detail-panels">{repeatableEvents.map((event) => <article className="info-panel" key={event.name}><div className="info-panel-heading"><h2>{event.name}</h2><StatusBadge status={eventStatus(event)} /></div><p>{event.detail}</p><dl><div><dt>Requirement</dt><dd>{event.requirements}</dd></div><div><dt>Schedule</dt><dd>{eventSchedule(event)}</dd></div></dl><a className="text-link" href={event.source} target="_blank" rel="noreferrer">Official details <ChevronRight size={16} /></a></article>)}</div></section>
@@ -1049,7 +1049,7 @@ export function FreshnessPage({ topic }) {
       {(topic.slug === "aniimo-discord" || topic.slug === "aniimo-reddit") && <AnswerStatus status="Watchlist" checked={sourceLastChecked} sourceType="Official Aniimo channels and community research" next="Open an official channel for announcements; treat invites, screenshots and player claims as leads until verified." />}
       {(topic.slug === "aniimo-logo") && <InfoPanel title="Logo Search Answer" rows={[["Asset", "Use the Aniimo logo preview and source notes on this page."], ["Format", "The production asset is served as WebP for faster loading."], ["Source rule", "Use official or site-prepared brand assets rather than reposted files."]]}/>}
       {(topic.slug === "aniimo-discord" || topic.slug === "aniimo-reddit") && <InfoPanel title="Community Search Answer" rows={[["Official status", "Use only links verified by Aniimo or Pawprint Studio."], ["What this page provides", "A source-safe path for launch, codes, server and player-report questions."], ["What is not confirmed", "Third-party invites, screenshots and rumors are not official facts."]]}/>}
-      {topic.slug === "aniimo-controller-support" && <InfoPanel title="Controller Support Status" rows={[["Steam PC", "Disable Steam Input in Aniimo's Steam Controller properties, restart, then retest native controller input."], ["Latest patch", "September 30 improved controller progress-bar reward claiming; restart to download current resources."], ["Console", "Xbox and PS5 controls should be treated separately from the Steam Input path."], ["Mobile and Steam Deck", "Bluetooth/mobile and handheld compatibility still need separate verification."]]}/>}
+      {topic.slug === "aniimo-controller-support" && <InfoPanel title="Controller Support Status" rows={[["Steam PC", "Disable Steam Input in Aniimo's Steam Controller properties, restart, then retest native controller input."], ["Latest update", "The October 15 update improved Home batch acceleration controls and added Select All support."], ["Console", "Xbox and PS5 controls should be treated separately from the Steam Input path."], ["Mobile and Steam Deck", "Bluetooth/mobile and handheld compatibility still need separate verification."]]}/>}
       {topic.slug === "aniimo-controller-support" && <ControllerTroubleshootingFlow navigate={navigate} />}
       {topic.slug === "aniimo-server-status" && <InfoPanel title="Current Server Check" rows={[["Aniimo-wide outage", "No active outage is marked confirmed here."], ["Check first", "Official Aniimo news, platform store notices and the launch-day hub."], ["If only you are affected", "Check account, platform, region and known issues before retrying."], ["Evidence standard", "Official notice or repeatable live evidence with platform and time."]]}/>}
       {topic.slug === "aniimo-ai" && <InfoPanel title="AI Search Answer" rows={[["Current answer", "No official source reviewed here confirms that Aniimo is made with generative AI."], ["Evidence rule", "Trailer style, upscaling or visual polish is not proof of AI use."], ["Next check", "Update this answer only when the developer, publisher or platform publishes a direct disclosure."]]}/>}
@@ -1088,7 +1088,7 @@ function ControllerTroubleshootingFlow({ navigate }) {
       <SectionTitle icon={<CheckCircle2 />} kicker="Fix input" title="Follow the path for your platform" />
       <div className="detail-panels">
         <article className="info-panel"><div className="info-panel-heading"><h2>Steam PC: prompts or input do not work</h2><StatusBadge status="Confirmed" /></div><ol className="inline-list"><li>Open Steam Library, select Aniimo, then Manage and Properties.</li><li>Open Controller and set Steam Input to Disable Steam Input.</li><li>Restart Aniimo and retest native controller input.</li></ol><p className="small">This is the official Steam troubleshooting path. Do not assume it applies to console, mobile or Steam Deck.</p></article>
-        <article className="info-panel"><div className="info-panel-heading"><h2>Reward progress button does not respond</h2><StatusBadge status="Confirmed" /></div><ol className="inline-list"><li>Restart the client to load the September 30 resource update.</li><li>Retry the progress-bar reward claim with the current client.</li><li>If it repeats, record platform, controller model, connection type, client version and time.</li></ol><p className="small">The September 30 patch specifically lists an improvement to controller progress-bar reward claiming.</p></article>
+        <article className="info-panel"><div className="info-panel-heading"><h2>Reward progress button does not respond</h2><StatusBadge status="Confirmed" /></div><ol className="inline-list"><li>Restart the client to load the latest resource update.</li><li>Retry the progress-bar reward claim with the current client.</li><li>If it repeats, record platform, controller model, connection type, client version and time.</li></ol><p className="small">The official update history includes controller reward-claiming and Home controller improvements; check the current client before reporting a repeatable issue.</p></article>
         <article className="info-panel"><div className="info-panel-heading"><h2>Console, mobile or Steam Deck</h2><StatusBadge status="Watchlist" /></div><p>Keep these paths separate from Steam PC. Console controls, Bluetooth controller support on mobile, and Steam Deck mappings need platform-specific verification.</p><a className="text-link" href="/troubleshooting/aniimo-known-issues/" onClick={(event) => navigate(event, "/troubleshooting/aniimo-known-issues/")}>Open known issues <ChevronRight size={16} /></a></article>
       </div>
       <div className="hero-actions section-actions"><a className="secondary-action" href="/codes/" onClick={(event) => navigate(event, "/codes/")}><Gift size={16} /> Reward and code help</a><a className="secondary-action" href="/events/" onClick={(event) => navigate(event, "/events/")}><CalendarDays size={16} /> Current event status</a></div>
@@ -1134,7 +1134,7 @@ export function LaunchDayPage({ navigate }) {
       </div>
       <div className="site-index-grid">
         <LinkGroup title="Launch Day Actions" items={launchDayCommandCenter.quickActions} navigate={navigate} />
-        <LinkGroup title="Current Update" items={[["Version 1.1 Events", "/events/", "Check active and upcoming windows, eligibility, Irisalis progression and official source links."], ["Latest Client Patch", "/events/", "Restart after the September 30 resource update before reporting a repeatable issue."]]} navigate={navigate} />
+        <LinkGroup title="Current Update" items={[["Version 1.1 Events", "/events/", "Check active and upcoming windows, eligibility, Irisalis progression and official source links."], ["Latest Client Update", "/events/", "Restart after the October 15 resource update before reporting a repeatable issue."]]} navigate={navigate} />
         <LinkGroup title="Quick Help for Launch Day" items={[
           ["Active Aniimo Codes", "/codes/active/", "Check active code status and verification notes."],
           ["Server Status", "/troubleshooting/aniimo-server-status/", "Track maintenance, outage and launch availability checks."],
@@ -1824,6 +1824,7 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
       {intentStatus && <InfoPanel title="What We Are Checking Next" rows={[["Next check", intentStatus.action], ["Page", topic.title]]} />}
       {topic.slug === "aniimo-server-status" && <LiveSupportStatus />}
       <FieldNotes path={`/${topic.slug}/`} />
+      {topic.slug === "aniimo-known-issues" && <FieldNotes path="/troubleshooting/aniimo-known-issues/" />}
       <FieldNotes path={`/mechanics/${topic.slug}/`} />
       <FieldNotes path={`/guides/${topic.slug}/`} />
       {topic.slug === "aniimo-known-issues" && <LiveIssueTable />}

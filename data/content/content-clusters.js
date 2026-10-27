@@ -647,7 +647,7 @@ export const officialPitchTopics = [
     title: "Aniimo Homeland Guide",
     description: "Track Aniimo Homeland, RV, crops, decoration and Aniimo interaction systems from official public information.",
     image: "/images/mechanics/mechanic-homeland.webp",
-    intro: "Build a Homeland around the functions you use: your RV, farming, decoration and companion interactions. Start with unlocked features, keep a clear daily route, and check a buff's requirements and activation state before spending materials.",
+    intro: "Build a Homeland around the functions you use: your RV, farming, decoration and companion interactions. Start with unlocked features, keep a clear daily route, and check a buff's requirements and activation state before spending materials. Exact Park Buff recipes, durations and stacking rules remain client-verification fields.",
     points: [
       ["Personal RV", "Official text presents the RV as part of the player's personal home base."],
       ["Build and decorate", "Homeland pages can cover decoration planning while keeping exact recipes and unlock costs for launch verification."],
@@ -1177,12 +1177,15 @@ export const searchSuggestionTopics = [
     intro: "Combat searches ask whether Aniimo has battles, roles, team planning and skill expression. This page can explain confirmed public combat-adjacent systems while keeping exact stats and meta rankings for live testing.",
     points: [
       ["Confirmed anchors", "Aniimo.games can connect combat intent to roles, elements, Twine, real-time challenges and Egg Heist without inventing exact values."],
+      ["Damage and role boundary", "Official feedback describes a level-based baseline attack correction for non-DPS roles and a break-value role for BREAK Aniimo. This does not justify one universal attack build or a final ranking."],
+      ["How to compare stats", "Compare the same Aniimo level, skill, target and buffs. Separate damage, support utility and break contribution before deciding whether a material investment is useful."],
       ["What to verify", "Damage values, cooldowns, enemy types, party rules, PVP impact, difficulty and best-team rankings need official or live-game evidence."],
       ["Internal links", "Combat updates should refresh role pages, best Aniimo watchlists, Twine abilities, Egg Heist and beginner guides."],
     ],
     faq: [
       ["Does Aniimo have combat?", "Aniimo.games tracks combat-related public systems such as roles, Twine, real-time challenges and Egg Heist, while exact rules need verification."],
-      ["Is there an Aniimo combat meta?", "No final combat meta should be published before live balance, skill values and team rules are verified."],
+      ["Is there an Aniimo combat meta?", "No final combat meta should be published before live balance, skill values and team rules are verified. Use role, element and evidence status as planning labels only."],
+      ["How should I allocate stats?", "Do not use a universal attack recommendation. Record the role, level, skill, target, buffs and version; BREAK contribution and support utility may not be represented by one damage screenshot."],
     ],
   },
   {

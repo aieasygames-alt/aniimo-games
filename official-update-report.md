@@ -1,13 +1,13 @@
 # Aniimo Official Update Report
 
-Generated: 2026-10-20T03:38:08.410Z
+Generated: 2026-10-27T06:58:53.917Z
 
 ## Summary
 
 - Local Aniimo entries: 90
-- Official Wiki entries found in probe page: 81
+- Official Wiki entries found across individual item probes: 81
 - Wiki comparison mode: Names with number-first fallback matching
-- Previous Wiki snapshot: 2026-10-06T12:38:57.316Z
+- Previous Wiki snapshot: 2026-10-27T06:51:27.340Z
 - Local regions: 6
 - Official regions seen on main page: 6
 - PC/console launch date: 2026-09-16
@@ -18,7 +18,7 @@ Generated: 2026-10-20T03:38:08.410Z
 
 - https://www.aniimo.com/main: OK
 - https://wiki.aniimo.com/: OK
-- Wiki data probe: https://wiki.aniimo.com/ (81 entries)
+- Wiki data probe: https://wiki.aniimo.com/item/001/basic-form (81 entries)
 
 ## New Official Aniimo Missing Locally
 
@@ -36,6 +36,12 @@ Generated: 2026-10-20T03:38:08.410Z
 - 091 Gachapus
 - 092 Malangel
 - 093 Malevsera
+
+## Individual Wiki Item Probe Gaps
+
+- 030: HTTP 404 (https://wiki.aniimo.com/item/030/basic-form returned 404)
+
+These gaps are probe results, not deletion instructions. A 404 or fetch failure does not by itself prove that a local entry was removed from the official game data.
 
 ## Wiki Probe Changes Since Last Snapshot
 

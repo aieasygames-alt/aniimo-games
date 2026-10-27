@@ -1,4 +1,4 @@
-import { codeVerificationTemplate, eventStatus, gscObservationTemplate, launchEvidenceQueues, launchStatusEntries, liveUpdate, platformUnlockQueue, searchIntentStatus, spawnVerificationQueue, tierListSnapshots, verificationTemplates } from "../data/content.js";
+import { codeVerificationTemplate, eventStatus, gscObservationTemplate, launchEvidenceQueues, launchStatusEntries, liveUpdate, platformUnlockQueue, searchIntentStatus, spawnVerificationQueue, tierListSnapshots, verificationTemplates, wikiProbeGaps } from "../data/content.js";
 
 const issues = [];
 const allowedStatuses = new Set(["Confirmed", "Verified", "Watchlist", "Unconfirmed", "Estimated", "Unknown", "Online", "Maintenance", "Degraded", "Outage", "Upcoming", "Active", "Ended"]);
@@ -48,6 +48,10 @@ for (const [slug, item] of Object.entries(searchIntentStatus)) {
   if (!item.statusId || !item.action || !launchStatusEntries.some((entry) => entry.id === item.statusId)) {
     issues.push(`Search intent status mapping is incomplete: ${slug}.`);
   }
+}
+
+if (wikiProbeGaps.status !== "Watchlist" || !wikiProbeGaps.lastChecked || !wikiProbeGaps.note || !wikiProbeGaps.numbers?.length) {
+  issues.push("Wiki probe gap policy is incomplete.");
 }
 
 for (const event of liveUpdate.events) {

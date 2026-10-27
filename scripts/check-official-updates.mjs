@@ -4,22 +4,31 @@ import { aniimo, regions, releaseInfo } from "../data/content.js";
 const officialMain = "https://www.aniimo.com/main";
 const officialWikiHome = "https://wiki.aniimo.com/";
 const legacyWikiProbe = "https://wiki.aniimo.com/item/10002877";
+const officialItemNumbers = [
+  ...Array.from({ length: 82 }, (_, index) => String(index + 1).padStart(3, "0")),
+  "10002", "10003", "11001", "99996", "99998",
+];
 const reportPath = "official-update-report.md";
 const snapshotPath = "official-wiki-snapshot.json";
 const newsSnapshotPath = "official-news-snapshot.json";
 
 async function fetchText(url) {
-  try {
-    const response = await fetch(url, {
-      headers: {
-        "user-agent": "aniimo-games-update-check/1.0",
-      },
-    });
-    if (!response.ok) throw new Error(`${url} returned ${response.status}`);
-    return { url, ok: true, text: await response.text() };
-  } catch (error) {
-    return { url, ok: false, text: "", error: error.message };
+  let error = "Unknown fetch error";
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          "user-agent": "aniimo-games-update-check/1.0",
+        },
+      });
+      if (!response.ok) return { url, ok: false, status: response.status, text: "", error: `${url} returned ${response.status}` };
+      return { url, ok: true, status: response.status, text: await response.text() };
+    } catch (caught) {
+      error = caught.message;
+      await new Promise((resolve) => setTimeout(resolve, 250 * (attempt + 1)));
+    }
   }
+  return { url, ok: false, status: 0, text: "", error };
 }
 
 function uniq(values) {
@@ -31,7 +40,7 @@ function extractWikiCandidates(html) {
     .map((match) => match[1].replaceAll("\\/", "/"))
     .map((value) => value.startsWith("/") ? `https://wiki.aniimo.com${value}` : value)
     .filter((value) => value.startsWith("https://wiki.aniimo.com/"));
-  return uniq(urls).filter((url) => /item|wiki|aniimo/i.test(url)).slice(0, 12);
+  return uniq(urls).filter((url) => /\/item\/\d+\/basic-form$/.test(url));
 }
 
 function extractWikiAniimo(html) {
@@ -90,6 +99,7 @@ const wikiCandidates = uniq([
   ...extractWikiCandidates(mainFetch.text),
   ...extractWikiCandidates(wikiHomeFetch.text),
   legacyWikiProbe,
+  ...officialItemNumbers.map((number) => `https://wiki.aniimo.com/item/${number}/basic-form`),
 ]);
 const wikiFetches = await Promise.all(wikiCandidates.map(fetchText));
 const wikiFetch = wikiFetches.find((result) => result.ok && extractWikiAniimo(result.text).length > 0)
@@ -98,7 +108,14 @@ const wikiFetch = wikiFetches.find((result) => result.ok && extractWikiAniimo(re
 const mainHtml = mainFetch.text;
 const wikiHtml = wikiFetch.text;
 
-const officialAniimo = extractWikiAniimo(wikiHtml);
+const officialAniimo = [...new Map(
+  wikiFetches.flatMap((result) => result.ok ? extractWikiAniimo(result.text) : [])
+    .map((item) => [item.no, item]),
+)].map(([, item]) => item);
+const itemProbeResults = wikiFetches.filter((result) => /\/item\/\d+\/basic-form$/.test(result.url));
+const unavailableItemProbes = itemProbeResults
+  .filter((result) => !result.ok)
+  .map((result) => ({ number: result.url.match(/\/item\/(\d+)\//)?.[1] || "unknown", status: result.status, error: result.error }));
 const officialNames = officialAniimo.map((item) => item.name);
 const localNames = aniimo.map((item) => item.name);
 const officialNumbers = officialAniimo.map((item) => item.no);
@@ -145,7 +162,7 @@ Generated: ${new Date().toISOString()}
 ## Summary
 
 - Local Aniimo entries: ${aniimo.length}
-- Official Wiki entries found in probe page: ${officialAniimo.length}
+- Official Wiki entries found across individual item probes: ${officialAniimo.length}
 - Wiki comparison mode: ${wikiIsLocalized ? "Localized names with number-first matching" : "Names with number-first fallback matching"}
 - Previous Wiki snapshot: ${previousSnapshot ? previousSnapshot.checkedAt : "None (baseline created this run)"}
 - Local regions: ${regions.length}
@@ -167,6 +184,12 @@ ${officialAniimo.length ? markdownList(missingLocally, "None") : "- Skipped beca
 ## Local Aniimo Not Seen In Probe
 
 ${officialAniimo.length ? markdownList(localOnly, "None") : "- Skipped because no fetchable official Wiki entry list was found."}
+
+## Individual Wiki Item Probe Gaps
+
+${unavailableItemProbes.length ? markdownList(unavailableItemProbes.map((item) => `${item.number}: HTTP ${item.status || "fetch failed"}${item.error ? ` (${item.error})` : ""}`), "None") : "- None"}
+
+These gaps are probe results, not deletion instructions. A 404 or fetch failure does not by itself prove that a local entry was removed from the official game data.
 
 ## Wiki Probe Changes Since Last Snapshot
 

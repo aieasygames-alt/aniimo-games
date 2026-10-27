@@ -196,6 +196,7 @@ export const faqs = {
 };
 
 export const updates = [
+  { date: "2026-10-20", title: "October 15–17 update and known-issues coverage refreshed", text: "Added the October 15 Home Season and Harvest Gathering update, linked the October 16 known-issues notice, and separated recent fixes from unresolved platform and reward problems." },
   { date: "2026-10-15", title: "October activities and practical guides refreshed", text: "Added the official Inferlupa date-only activity, October 13 Egg Heist explanations and future-plan boundaries, weekly activity states, and a Homeland planning checklist. October reviews are item-dated; older Wiki fields retain their previous review date." },
   {
     date: "2026-10-01",
@@ -274,13 +275,13 @@ export const launchDayCommandCenter = {
   updated: sourceLastChecked,
   summary: "A live launch support page for players who need official download paths, account guidance, code checks, server status and platform-specific fixes.",
   statusRows: [
-    ["Current client update", "September 30 resource update: restart the client to download current resources", "Verified"],
+    ["Current client update", "October 15 resource update: restart the client to download current resources", "Verified"],
     ["PC and console availability", "Live on PC, Steam, Epic, PS5 and Xbox", "Verified"],
     ["Mobile availability", "Live on iOS and Android; check storefront by country and device", "Verified"],
     ["PC and mobile data", "Shared with the same account", "Verified"],
     ["Server status", "No Aniimo-wide outage currently marked confirmed", "Verified"],
     ["Active redeem codes", "Official code list pending", "Watchlist"],
-    ["Known launch errors", "Login queues and slower loading can occur", "Verified"],
+    ["Known issues", "October platform, mobile, reward and gameplay issues are tracked", "Watchlist"],
   ],
   quickActions: [
     ["Current events", "/events/", "Check active status, UTC+8 windows, requirements and official event details."],

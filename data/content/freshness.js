@@ -8,10 +8,11 @@ export const freshnessPages = [
     description: "Track official Aniimo news, launch announcements, platform posts, reward updates and source-aware page refreshes.",
     intro: "This tracker turns official Aniimo updates into a repeatable publishing workflow. Each item records the source, the site pages affected and the next action before claims are expanded.",
     sourceType: "Official news",
-    source: officialLinks.versionOneOne,
+    source: officialLinks.octoberPartTwoPreview,
     points: [
-      ["Version 1.1", "The September 23 Steam update added mobile availability, Irisalis event progression, Holo-Battle Interlink and Egg Heist Chaos Mode alongside the current event schedule."],
-      ["September 30 resource update", "The latest patch did not announce server downtime. Restart the client to download current resources; its notes include controller reward-claiming, performance and Irisalis fixes."],
+      ["October 15 resource update", "The official weekly notice says the resource update did not require server downtime. Restart the client to download current resources; it adds Home Season timing and controller, console and Egg Heist fixes."],
+      ["October 16 known issues", "The official issue notice lists Irisalis, mobile display, avatar reward, Alpha capture, Android quest and cross-device reward problems, plus dated fixes. Check the issue page before treating a report as a new outage."],
+      ["Season 1 Part 2 preview", "The preview is a planning source, not a dated release notice. Keep announced plans separate from features confirmed as live in a patch or client."],
       ["Current event boundary", "Event rewards, pre-registration campaigns and redeem codes remain separate support paths. An active-looking code string is not official until an official notice or direct in-game verification confirms it."],
       ["Official feature claims", "Feature pages should only expand when the official site, storefronts or official Wiki provide stronger wording."],
       ["Source archive", "Meaningful source changes should be logged in the source archive and update log before dependent pages are refreshed."],
@@ -58,11 +59,11 @@ export const freshnessPages = [
 ];
 
 export const liveUpdate = {
-  title: "Setting Out in Pursuit of the Wind: Part I",
-  date: "2026-09-23",
-  source: officialLinks.septemberUpdate,
-  summary: "Version 1.1 launched mobile availability and current seasonal activities. Event schedules are displayed in UTC+8 and should be rechecked when maintenance or platform notices change.",
-  maintenance: "The update notice lists maintenance on September 23 from 00:00 to 10:00 UTC+8 and Glimmer x500 compensation for eligible accounts. Check the official notice for any changed completion time or eligibility wording.",
+  title: "Season 1 Part 1: October 15 resource update",
+  date: "2026-10-15",
+  source: officialLinks.octoberWeeklyUpdate,
+  summary: "The October 15 resource update added a Home Season boost period and Harvest Gathering timing, with controller, console, Home and Egg Heist fixes. Restart the client to download current resources.",
+  maintenance: "The official notice says the October 15 resource update did not require server downtime and lists Glimmer ×100 for eligible Pathfinders registered before Version 1.1.",
   events: [
     { name: "Prismana Inferlupa: Nimbus Fields", startDate: "2026-10-12", endDate: "2026-10-19", checked: octoberReviewDate, requirements: "Confirm entry requirements in your server's client; the post does not list a level.", detail: "Nurture the bloom in Nimbus Fields and trigger a Prismana Flow to attract special Prismana Inferlupa. Limited-time availability, not a permanent spawn. Exact closing hour and time zone are unspecified.", source: inferlupaEventSource },
     { name: "Legendary Journey: Windchaser's Departure", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-12-10T03:59:00+08:00", requirements: "Follow the current Legendary Journey progression in the client.", detail: "The Version 1.1 update introduces Irisalis and related Aniipod progression through this journey. Exact progression steps and weekly limits should be confirmed in the current client.", source: officialLinks.versionOneOne },
@@ -73,20 +74,21 @@ export const liveUpdate = {
     { name: "Vein Abundance: Rosetower Woods", startsAt: "2026-09-28T04:00:00+08:00", endsAt: "2026-10-05T03:59:00+08:00", requirements: "Reach Student II.", detail: "Prismana Form Melloblum is listed for Rosetower Woods. This is event availability, not a permanent spawn route.", source: officialLinks.versionOneOne },
     { name: "Vein Abundance: Berylline Vale", startsAt: "2026-10-05T04:00:00+08:00", endsAt: "2026-10-12T03:59:00+08:00", requirements: "Reach Student II.", detail: "Prismana Form Waleetle is listed for Berylline Vale. This is event availability, not a permanent spawn route.", source: officialLinks.versionOneOne },
     { name: "Journey Chronicles", startsAt: "2026-10-01T04:00:00+08:00", endsAt: "2026-10-29T03:59:00+08:00", requirements: "Reach Student I.", detail: "Log in for the designated days during the event to claim travel gifts.", source: officialLinks.versionOneOne },
+    { name: "Home Season: Harvest Gathering", startsAt: "2026-10-20T04:00:00+08:00", endsAt: null, requirements: "Check the Home Season stage and current client eligibility.", detail: "Stage 3 opens at 20:00 UTC on Aniimo-Europe, 16:00 UTC-4 on Aniimo-Americas and 04:00 UTC+8 on Aniimo-Apac. Host or join a Harvest Gathering to earn rewards; confirm the current client for the closing time.", source: officialLinks.octoberWeeklyUpdate, checked: "2026-10-20" },
   ],
 };
 
 export const currentPatch = {
-  title: "Patch Notes v1.0.3629693.0",
-  date: "2026-09-30",
-  source: officialLinks.septemberThirtyPatch,
-  summary: "A resource update was released without announced server downtime. Restart the client to download the latest resources.",
-  eligibility: "Glimmer x100 is listed for Pathfinders registered before Version 1.1.",
+  title: "October 15 resource update",
+  date: "2026-10-15",
+  source: officialLinks.octoberWeeklyUpdate,
+  summary: "A resource update was released without server downtime. Restart the client to download the latest resources.",
+  eligibility: "Glimmer ×100 is listed for Pathfinders registered before the Version 1.1 update.",
   highlights: [
-    ["Controller", "Improved the controller experience when claiming progress-bar rewards."],
-    ["Performance", "Improved performance when logging in and switching scenes."],
-    ["Irisalis", "Raised available Transmogrification Presets from three to five and corrected Irisalis presentation issues."],
-    ["Visual fixes", "Corrected several reported texture, effect, accessory and interaction issues."],
+    ["Home Season", "Stage 3 Harvest Gathering opens on the published regional schedule; Moondew Radish and Waxing Moon Pepper receive temporary boosts."],
+    ["Controller", "Improved Home batch acceleration controls and added Select All support."],
+    ["Console", "Fixed or optimized crashes, loading, shortcut and controller-focus issues across several modes."],
+    ["Egg Heist", "Fixed a key-door issue and adjusted selected Nightmare and Chaos spawn and reward behavior."],
   ],
 };
 
