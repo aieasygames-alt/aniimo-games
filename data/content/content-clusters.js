@@ -710,7 +710,7 @@ export const socialIntentTopics = [
     slug: "is-aniimo-on-switch",
     title: "Is Aniimo on Nintendo Switch?",
     description: "Track whether Aniimo has an official Nintendo Switch or Switch 2 listing and explain the currently confirmed platforms.",
-    intro: "Switch availability is a natural community question for creature-collecting games. The page should answer it clearly without inventing an unconfirmed platform.",
+    intro: "Switch availability is a high-impression community question for creature-collecting games. Answer Switch and Switch 2 directly, then point players to the confirmed platforms without inventing an unconfirmed release.",
     points: [
       ["Current confirmed platforms", "Confirmed tracking covers official website, Steam, Epic Games Store, Xbox, PlayStation 5, App Store and Google Play."],
       ["Switch status", "Do not list Nintendo Switch as confirmed unless Aniimo announces an official Nintendo store page or platform announcement."],
@@ -948,7 +948,7 @@ export const searchSuggestionTopics = [
     slug: "aniimo-steam-deck",
     title: "Aniimo Steam Deck Status",
     description: "Track Aniimo Steam Deck compatibility, PC launch timing, controller checks and performance verification after launch.",
-    intro: "Steam Deck searches often follow Steam wishlist searches. This page keeps compatibility claims in watchlist status until Steam or live testing confirms them.",
+    intro: "Steam Deck searches often follow Steam availability searches. This page keeps compatibility claims in watchlist status until Steam or live testing confirms them.",
     points: [
       ["Steam launch path", `Aniimo's PC launch is tracked for ${releaseInfo.pcConsole}, with Steam as an official storefront path.`],
       ["Compatibility status", "Steam Deck verification, controller layout, text readability, frame-rate behavior and battery settings need launch testing."],
@@ -1028,7 +1028,7 @@ export const searchSuggestionTopics = [
     slug: "aniimo-ps4",
     title: "Is Aniimo on PS4?",
     description: "Track Aniimo PS4 availability questions, confirmed PS5 listing status and safe PlayStation download guidance.",
-    intro: "PS4 searches are natural because Aniimo has PlayStation demand, but the site should separate confirmed PS5 tracking from unconfirmed older-console availability.",
+    intro: "PS4 searches are natural because Aniimo has PlayStation demand. Answer the PS4 status directly, separate confirmed PS5 tracking from older-console availability, and point players to current PlayStation paths.",
     points: [
       ["Confirmed PlayStation path", "Aniimo.games tracks PlayStation 5 through the official PlayStation listing."],
       ["PS4 status", "Do not list PS4 as confirmed unless an official PlayStation or Aniimo source adds a PS4 listing."],

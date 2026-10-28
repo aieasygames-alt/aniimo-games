@@ -73,8 +73,8 @@ export function HomePage(props) {
         <section className="hero">
           <div className="hero-copy">
             <p className="eyebrow">Independent Aniimo game guide</p>
-            <h1>Aniimo map, locations, downloads and live game answers.</h1>
-            <p>{gameInfo.summary} Find a creature's region, open a practical community map, use an official store path, or check current issues without sorting through rumor guides.</p>
+            <h1>Aniimo map, locations, downloads and 90-creature database answers.</h1>
+            <p>{gameInfo.summary} Search the 90-entry database, find a creature's region, open a practical community map, use an official store path, or check current issues without sorting through rumor guides.</p>
             <div className="hero-actions">
               <a className="primary-action" href="/troubleshooting/aniimo-server-status/" onClick={(event) => props.navigate(event, "/troubleshooting/aniimo-server-status/")}>
                 <CheckCircle2 size={18} />
@@ -109,7 +109,7 @@ export function HomePage(props) {
         <section className="section player-entry-grid" aria-label="Aniimo game starting points">
           <article>
             <span className="eyebrow">Find locations</span>
-            <h2>Start with a region, then open a usable map.</h2>
+            <h2>Find a creature, then open its region and map.</h2>
             <p>All six tracked regions include official-region context, a community-map entrance and route-planning checks.</p>
             <a className="primary-action" href="/map/" onClick={(event) => props.navigate(event, "/map/")}><Map size={18} /> Browse map guides</a>
           </article>

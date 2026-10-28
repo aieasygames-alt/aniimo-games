@@ -1,3 +1,3 @@
-export const siteLastUpdated = "2026-10-20";
-export const sourceLastChecked = "2026-10-20";
-export const gscObservationDate = "2026-09-26";
+export const siteLastUpdated = "2026-10-27";
+export const sourceLastChecked = "2026-10-27";
+export const gscObservationDate = "2026-10-25";

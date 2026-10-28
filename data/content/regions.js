@@ -18,7 +18,7 @@ const regionDetails = {
     mapProvider: "Aniimo Guide community map",
     mapSummary: "Use the map's region filter to show Sea of Flowers, then enable Aniimo, Eggs, Lumin Amber or travel layers based on your objective.",
     practicalNotes: ["Search the region first, then select an Aniimo in the map rail to reveal its recorded habitat zones.", "Check the weather layer before making a route for Thornblade, Flutternym, or other conditional encounters.", "Pin a transporter or Bloom before clearing nearby eggs and resource loops so return travel stays simple."],
-    searchIntent: "Search demand is concentrated around the region name rather than a single creature. Start with a concrete target, then use map layers as a route planner.",
+    searchIntent: "Search demand is concentrated around Sea of Flowers. Start with the region answer, then choose a concrete creature or resource target and use map layers as a route planner.",
     startHere: ["Choose one objective: an Aniimo, egg, Lumin Amber or travel point.", "Open the Sea of Flowers filter and show only the matching layer.", "Pin a nearby transporter or Bloom before starting a collection loop."],
   },
   "forest-of-falling-stars": {
@@ -26,7 +26,7 @@ const regionDetails = {
     mapProvider: "Aniipedia community map",
     mapSummary: "The community map groups creature zones, teleporters, a Nomad Challenge, a dungeon, eggs and Lumin Amber for this region.",
     practicalNotes: ["Start from the region teleporter and set the map to the creature or resource layer you need.", "Use the weather filter for Stellarys variants before committing to a farming loop.", "Collect route objectives in one pass: nearby eggs, Lumin Amber, challenge, then creature habitat zones."],
-    searchIntent: "Players searching this region usually need a usable route, not a general description. The map should answer their next travel or collection decision first.",
+    searchIntent: "Players searching Forest of Falling Stars usually need a usable route, not a general description. Answer the region first, then give the next travel or collection decision.",
     startHere: ["Start from the region teleporter and pick one layer: creature, egg, Lumin Amber or challenge.", "Check live weather before treating a Stellarys-related marker as available.", "Bundle nearby collection objectives into one return route before changing layers."],
   },
   "blitzwood": {
@@ -34,7 +34,7 @@ const regionDetails = {
     mapProvider: "Aniimo.cc community map",
     mapSummary: "Open the Blitzwood region filter and choose an Aniimo marker or resource layer; use the map as a route aid, then verify the encounter in your live client.",
     practicalNotes: ["Filter to an individual Aniimo before traveling so markers are not buried under the full collection layer.", "Plan separate daylight and night checks for conditional encounters; do not assume one visit covers every spawn.", "Keep a nearby travel point selected before exploring the electric-woodland routes and returning to a resource loop."],
-    searchIntent: "Blitzwood already has page-one query visibility, so the page should answer the first route decision immediately and avoid unsupported spawn coordinates.",
+    searchIntent: "Blitzwood already has strong search visibility, so the page should answer the first route decision immediately and avoid unsupported spawn coordinates.",
     startHere: ["Pick one target such as Eko, Eklue, Bolty, Blazen or Sparki.", "Use the Blitzwood filter and hide unrelated marker layers.", "Separate day and night checks, then verify the encounter in the live client."],
   },
   "nimbus-fields": {

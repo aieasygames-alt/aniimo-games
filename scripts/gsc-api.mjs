@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { ProxyAgent, setGlobalDispatcher } from "undici";
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const configDir = join(root, ".gsc");
@@ -10,6 +11,8 @@ const outputPath = join(root, "gsc-api-analysis.md");
 const property = process.env.GSC_PROPERTY || "sc-domain:aniimo.games";
 const scope = "https://www.googleapis.com/auth/webmasters.readonly";
 const command = process.argv[2] || "help";
+
+if (process.env.HTTPS_PROXY) setGlobalDispatcher(new ProxyAgent(process.env.HTTPS_PROXY));
 
 try {
   if (command === "auth") {
