@@ -1,5 +1,5 @@
 // Item-level dates do not imply that older Wiki data was rechecked.
-export const octoberReviewDate = "2026-10-20";
+export const octoberReviewDate = "2026-10-30";
 export const inferlupaEventSource = "https://x.com/Aniimo_EN/status/2109675867899035881";
 export const eggHeistFeedbackSource = "https://x.com/Aniimo_EN/status/2109841601434669066";
 const inferlupaNotes = {
@@ -38,11 +38,11 @@ const homelandNotes = {
   ],
 };
 const knownIssueNotes = {
-  title: "Official known issues and fixes: October 16–17", source: "https://www.aniimo.com/newslist/detail/100208", checked: octoberReviewDate,
+  title: "Official known issues and fixes: October 29", source: "https://www.aniimo.com/newslist/detail/100275", checked: octoberReviewDate,
   points: [
-    ["Current issue examples", "The official notice lists Irisalis Ultimate registration, mobile Sparkling Prismana colors, avatar-frame delivery, Alpha capture errors, Android quest freezes and cross-device reward claiming as known issues."],
+    ["Current issue examples", "The post-season notice lists Whisperwake Isles audio stutter, Holo-Battle quest completion, Irisalis Petal visibility, recipe recommendations, crop timers and Snap behavior as known issues."],
     ["Safe Android workaround", "For the Stars and the Knight Journey freeze, the official notice suggests Performance Mode or disabling Shadows, or using the upper-right skip button."],
-    ["Recent fixes", "The notice records fixes for Tiered Grand Gifts Stage 4 rewards, Egg Heist collectible flicker, console menu lag and several Home, Holo-Battle and controller problems."],
+    ["Recent fixes", "The notice records fixes for loading freezes, black screens, movement locks, outfit-related freezes, Elite Training input and storage-box display problems."],
     ["Version boundary", "A listed issue or fix belongs to the official notice date. Check the current client and later notices before treating it as still active."],
   ],
 };
@@ -54,10 +54,10 @@ export function fieldNotesForPath(path) {
   return [];
 }
 export const updateOutlook = {
-  title: "Next update: confirmed plans, not a dated release", source: eggHeistFeedbackSource, checked: octoberReviewDate,
+  title: "Season 1 Part 2: confirmed launch and next checks", source: "https://steamcommunity.com/app/4126040/announcements/", checked: octoberReviewDate,
   points: [
-    ["Official plans", "The October 13 feedback describes season-level updates and biweekly smaller content, with PvE focus earlier and entertainment confrontation later. Individual features still need their own release notices."],
-    ["Not verified here", "We have not verified a primary announcement confirming an October 29 new region or new marine Aniimo roster. Repeated third-party claims are not release confirmation."],
-    ["Last recorded patch", "This site's last recorded patch is v1.0.3629693.0 from September 30. It is not an October 13 patch or proof that no later patch exists."],
+    ["Confirmed launch", "The October 29 official notice confirms Whisperwake Isles, 51 new Aniimo, new PvP activities and the Season 1 Part 2 maintenance window."],
+    ["Next verification", "Check current-client unlock requirements, the four new region names, PvP opening windows, event rewards and the post-update issue list before publishing detailed routes."],
+    ["Do not overstate", "Creator videos and search snippets can suggest strategies or names, but they do not replace the official notice or reproducible in-game evidence."],
   ],
 };

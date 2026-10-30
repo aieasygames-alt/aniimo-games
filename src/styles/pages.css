@@ -190,6 +190,8 @@
 .database-answer-strip > div { display: flex; flex-direction: column; gap: 2px; }
 .database-answer-strip strong { color: #1f6d55; font-size: 20px; }
 .database-answer-strip span { color: #53635b; font-size: 13px; font-weight: 650; }
+.filter-summary-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.filter-summary-row .filter-summary { margin: 0; }
 .mobile-store-actions { margin: 18px 0 22px; }
 .topic-next-actions { margin-top: 24px; }
 .answer-status { grid-column: 1 / -1; padding: 16px; border: 1px solid rgba(31,109,85,.22); border-radius: 8px; background: #eef7ef; }

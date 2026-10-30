@@ -16,6 +16,10 @@ export function AnswerStatus({ status = "Watchlist", checked, sourceType = "Sour
   return <section className="answer-status" aria-label="Answer status"><div className="answer-status-heading"><div><span className="eyebrow">Answer status</span><h2>{status}</h2></div><StatusBadge status={status} /></div><div className="answer-status-grid"><div><strong>Source</strong><span>{sourceType}</span></div><div><strong>Last checked</strong><span>{checked || siteLastUpdated}</span></div><div><strong>Next step</strong><span>{next}</span></div></div></section>;
 }
 
+export function EvidenceCard({ conclusion, status = "Watchlist", source, checked, next }) {
+  return <section className="answer-status evidence-card" aria-label="Evidence summary"><div className="answer-status-heading"><div><span className="eyebrow">Evidence summary</span><h2>{conclusion}</h2></div><StatusBadge status={status} /></div><div className="answer-status-grid"><div><strong>Source</strong><a href={source} target="_blank" rel="noreferrer">Open source</a></div><div><strong>Last checked</strong><span>{checked || siteLastUpdated}</span></div><div><strong>Next step</strong><span>{next || "Check the linked source before acting."}</span></div></div></section>;
+}
+
 export function FreshnessNotice({ subject, checked, sourceType = "Official source review", message }) {
   return <p className="small freshness-notice"><strong>{subject}:</strong> checked {checked || siteLastUpdated} against {sourceType}. {message}</p>;
 }

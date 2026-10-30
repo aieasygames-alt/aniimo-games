@@ -8,10 +8,12 @@ export const freshnessPages = [
     description: "Track official Aniimo news, launch announcements, platform posts, reward updates and source-aware page refreshes.",
     intro: "This tracker turns official Aniimo updates into a repeatable publishing workflow. Each item records the source, the site pages affected and the next action before claims are expanded.",
     sourceType: "Official news",
-    source: officialLinks.octoberPartTwoPreview,
+    source: officialLinks.octoberPartTwoLaunch,
     points: [
-      ["October 15 resource update", "The official weekly notice says the resource update did not require server downtime. Restart the client to download current resources; it adds Home Season timing and controller, console and Egg Heist fixes."],
-      ["October 16 known issues", "The official issue notice lists Irisalis, mobile display, avatar reward, Alpha capture, Android quest and cross-device reward problems, plus dated fixes. Check the issue page before treating a report as a new outage."],
+      ["Season 1 Part 2 launch", "The October 29 update adds Whisperwake Isles, 51 new Aniimo, new Prismana forms, a level cap increase to 70, real-time 1v1 and an Egg Heist PvP test. Restart the client after maintenance."],
+      ["iOS update storage issue", "The official notice says some iOS updates require more than 40 GB of free storage during the update process; the expected installed size is approximately 20 GB. Compensation is listed separately."],
+      ["Post-launch known issues", "The October 29 issue notice lists current problems and fixes after the season update. Check it before treating a loading, quest, shop or visual report as a new outage."],
+      ["Earlier known issues", "The October 16 notice remains in the source history, while the October 29 post-season notice is the current issue reference. Check the latest issue page before treating a report as a new outage."],
       ["Season 1 Part 2 preview", "The preview is a planning source, not a dated release notice. Keep announced plans separate from features confirmed as live in a patch or client."],
       ["Current event boundary", "Event rewards, pre-registration campaigns and redeem codes remain separate support paths. An active-looking code string is not official until an official notice or direct in-game verification confirms it."],
       ["Official feature claims", "Feature pages should only expand when the official site, storefronts or official Wiki provide stronger wording."],
@@ -59,15 +61,18 @@ export const freshnessPages = [
 ];
 
 export const liveUpdate = {
-  title: "Season 1 Part 1: October 15 resource update",
-  date: "2026-10-15",
-  source: officialLinks.octoberWeeklyUpdate,
-  summary: "The October 15 resource update added a Home Season boost period and Harvest Gathering timing, with controller, console, Home and Egg Heist fixes. Restart the client to download current resources.",
-  maintenance: "The official notice says the October 15 resource update did not require server downtime and lists Glimmer ×100 for eligible Pathfinders registered before Version 1.1.",
+  title: "Season 1: Departure with the Wind Part 2",
+  date: "2026-10-29",
+  source: officialLinks.octoberPartTwoLaunch,
+  summary: "The October 29 season update adds Whisperwake Isles, 51 new Aniimo, new Prismana forms, level 70 progression, real-time 1v1 and an Egg Heist PvP test. Restart the client after maintenance.",
+  maintenance: "The APAC maintenance window was listed as 07:00–15:00 UTC+8 on October 29, with Glimmer ×500 compensation for eligible Pathfinders. Check the current client for completion status.",
   events: [
+    { name: "Season 1 Part 2: Whisperwake Isles", startsAt: "2026-10-29T15:00:00+08:00", endsAt: "2026-12-10T03:59:00+08:00", requirements: "Complete the current story and client unlock requirements; exact progression should be checked in-game.", detail: "Explore four new island regions, discover 51 new Aniimo and follow the new season story. The update window ends with the December 10 season transition listed by the official notice.", source: officialLinks.octoberPartTwoLaunch, checked: "2026-10-30" },
+    { name: "Real-time 1v1 Spar", startsAt: "2026-10-29T15:00:00+08:00", endsAt: "2026-12-10T03:59:00+08:00", requirements: "Check the current Spar mode for rank, lineup and matchmaking requirements.", detail: "Season 1 Part 2 adds real-time 1v1 competition. Detailed balance and matchmaking advice is not established here yet.", source: officialLinks.octoberPartTwoLaunch, checked: "2026-10-30" },
     { name: "Prismana Inferlupa: Nimbus Fields", startDate: "2026-10-12", endDate: "2026-10-19", checked: octoberReviewDate, requirements: "Confirm entry requirements in your server's client; the post does not list a level.", detail: "Nurture the bloom in Nimbus Fields and trigger a Prismana Flow to attract special Prismana Inferlupa. Limited-time availability, not a permanent spawn. Exact closing hour and time zone are unspecified.", source: inferlupaEventSource },
     { name: "Legendary Journey: Windchaser's Departure", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-12-10T03:59:00+08:00", requirements: "Follow the current Legendary Journey progression in the client.", detail: "The Version 1.1 update introduces Irisalis and related Aniipod progression through this journey. Exact progression steps and weekly limits should be confirmed in the current client.", source: officialLinks.versionOneOne },
     { name: "Holo-Battle Interlink", startsAt: "2026-09-24T04:00:00+08:00", endsAt: null, recurrence: { opens: 4 * 1440 + 240, closes: 1 * 1440 + 240 }, requirements: "Reach Trailblazer I.", detail: "Open Thursday 04:00 through Monday 03:59 UTC+8 for co-op or AI play, with three replayable routes. Star and Support rewards reset weekly; confirm current-client changes.", source: officialLinks.versionOneOne },
+    { name: "Egg Heist PvP Test", startsAt: "2026-10-29T00:00:00+08:00", endsAt: "2026-12-10T03:59:00+08:00", recurrence: { opens: 18 * 60, closes: 24 * 60 }, requirements: "Reach the published character and Egg Heist rank requirements; verify eligibility in the current mode screen.", detail: "Three teams compete for one Legendary Giga-Egg in a fair mode with adjusted Aniimo stats and no carried equipment or items. The official notice describes this as a test; confirm the daily opening window in the client.", source: officialLinks.octoberPartTwoLaunch, checked: "2026-10-30" },
     { name: "Egg Heist Team Mode: Chaos Mode", startsAt: "2026-09-24T04:00:00+08:00", endsAt: null, requirements: "Reach Tier IV: Elite Egg Seeker and use a Chaos Ticket.", detail: "Higher Prismana Aniimo Egg and Prismatic Collectible drop rates are listed; strict escape conditions apply and team play is recommended.", source: officialLinks.versionOneOne },
     { name: "Glamour Star", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-10-02T03:59:00+08:00", requirements: "Reach Student II.", detail: "Submit a Floral Soiree-themed Aniimo entry for score-milestone rewards.", source: officialLinks.versionOneOne },
     { name: "Aniimo Discovery", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-10-09T03:59:00+08:00", requirements: "Reach Student II.", detail: "Free Search Attempts replenish periodically and do not stack; use Search Buffs as research progresses.", source: officialLinks.versionOneOne },
@@ -79,16 +84,16 @@ export const liveUpdate = {
 };
 
 export const currentPatch = {
-  title: "October 15 resource update",
-  date: "2026-10-15",
-  source: officialLinks.octoberWeeklyUpdate,
-  summary: "A resource update was released without server downtime. Restart the client to download the latest resources.",
-  eligibility: "Glimmer ×100 is listed for Pathfinders registered before the Version 1.1 update.",
+  title: "Season 1 Part 2 update",
+  date: "2026-10-29",
+  source: officialLinks.octoberPartTwoLaunch,
+  summary: "The October 29 update adds Whisperwake Isles, 51 new Aniimo, new PvP activities and level 70 progression. Restart the client after maintenance.",
+  eligibility: "The official notice lists Glimmer ×500 maintenance compensation for eligible Pathfinders registered before the S2 season version update. Check the in-game mailbox.",
   highlights: [
-    ["Home Season", "Stage 3 Harvest Gathering opens on the published regional schedule; Moondew Radish and Waxing Moon Pepper receive temporary boosts."],
-    ["Controller", "Improved Home batch acceleration controls and added Select All support."],
-    ["Console", "Fixed or optimized crashes, loading, shortcut and controller-focus issues across several modes."],
-    ["Egg Heist", "Fixed a key-door issue and adjusted selected Nightmare and Chaos spawn and reward behavior."],
+    ["Whisperwake Isles", "Four new island regions open with new exploration, story and capture content."],
+    ["New Aniimo", "The official notice lists 51 new Aniimo, new Prismana forms, Hypnyto, Eklue and Jaguaraun."],
+    ["PvP", "Real-time 1v1 Spar and a fair Egg Heist PvP test are added; detailed strategy remains current-client work."],
+    ["Mobile update", "Some iOS players may need more than 40 GB free during the update process; the official notice lists separate compensation."],
   ],
 };
 

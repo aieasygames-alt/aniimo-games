@@ -46,12 +46,12 @@ export const launchStatusEntries = [
   },
   {
     id: "known-issues",
-    label: "Known launch issues",
-    value: "October platform, mobile, reward and gameplay issues are tracked",
+    label: "Known post-update issues",
+    value: "October 29 platform, mobile, reward and gameplay issues are tracked",
     status: "Watchlist",
-    source: officialLinks.octoberKnownIssues,
+    source: officialLinks.octoberPostLaunchIssues,
     lastChecked: sourceLastChecked,
-    note: "The October 16 notice separates known issues from dated fixes. Check the current client and later notices before treating an item as still active.",
+    note: "The October 29 notice separates post-season issues from dated fixes. Check the current client and later notices before treating an item as still active.",
   },
   {
     id: "discord",
@@ -236,6 +236,7 @@ export const spawnVerificationQueue = [
   ["Blitzwood", "Bolty, Blazen, Sparki, Eko, Eklue", "Verify electric phenomena, weather timing and charged route behavior."],
   ["Nimbus Fields", "Glacy, Fentuft, Cubbo, Grizbo", "Verify open-field traversal, cold routes and sky-adjacent travel notes."],
   ["Forest of Falling Stars", "Celestis, Stellarys, Susuta, Popota", "Verify story route timing, rare encounter cues and special discoveries."],
+  ["Whisperwake Isles", "51 new Aniimo and new Prismana forms", "Verify the four new area names, unlock path, route screenshots, encounter conditions and current-client availability before publishing individual location pages."],
 ].map(([region, aniimo, task]) => ({
   region,
   aniimo,
