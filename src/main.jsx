@@ -71,6 +71,8 @@ function App() {
   const [region, setRegion] = useState("All");
   const [role, setRole] = useState("All");
   const [stage, setStage] = useState("All");
+  const [statusFilter, setStatusFilter] = useState("All");
+  const [sortBy, setSortBy] = useState("Number");
 
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -80,6 +82,8 @@ function App() {
       setRegion(params.get("region") || "All");
       setRole(params.get("role") || "All");
       setStage(params.get("stage") || "All");
+      setStatusFilter(params.get("status") || "All");
+      setSortBy(params.get("sort") || "Number");
     }
   }, [path]);
 
@@ -118,9 +122,11 @@ function App() {
     if (region !== "All") params.set("region", region);
     if (role !== "All") params.set("role", role);
     if (stage !== "All") params.set("stage", stage);
+    if (statusFilter !== "All") params.set("status", statusFilter);
+    if (sortBy !== "Number") params.set("sort", sortBy);
     const next = params.toString() ? `/aniimo/?${params}` : "/aniimo/";
     if (window.location.pathname + window.location.search !== next) window.history.replaceState({}, "", next);
-  }, [path, query, element, region, role, stage]);
+  }, [path, query, element, region, role, stage, statusFilter, sortBy]);
 
   React.useEffect(() => {
     const onPopState = () => setPath(normalizePath(window.location.pathname));
@@ -151,6 +157,10 @@ function App() {
     setRole,
     stage,
     setStage,
+    statusFilter,
+    setStatusFilter,
+    sortBy,
+    setSortBy,
     elements,
     regionNames,
     roles,

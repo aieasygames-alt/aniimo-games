@@ -119,7 +119,7 @@ export const seoGuides = {
     {
       title: "How the Aniimo map guide works",
       body:
-        "The Aniimo map guide organizes known public regions into search-friendly route pages. Each region page connects official scenery, representative Aniimo, mechanics and verification notes. This is useful before launch because searchers often look for a creature, then need a region, route condition or related evolution line. The map page acts as the hub that connects those intents.",
+        "The Aniimo map guide organizes the currently modeled regions into search-friendly route pages. Each region page connects official scenery, representative Aniimo, mechanics and verification notes. Season 1 Part 2 also adds Whisperwake Isles and four new areas; those routes remain a separate verification queue until names, access conditions and in-game markers are confirmed locally.",
     },
     {
       title: "What can change after launch?",
@@ -129,7 +129,7 @@ export const seoGuides = {
     {
       title: "How big is the Aniimo map?",
       body:
-        "Aniimo.games does not list a final square-kilometer map size yet because official sources have not published a complete measured world scale. The map guide currently tracks six public regions, their representative Aniimo, official scenery and route-verification tasks. After launch, this page should add travel-time checks, border screenshots, route screenshots and region-to-region path notes before making exact map-size claims.",
+        "Aniimo.games does not list a final square-kilometer map size yet because official sources have not published a complete measured world scale. The map guide currently tracks six modeled region pages, while Whisperwake Isles is tracked as a new Season 1 Part 2 exploration area pending route verification. Add travel-time checks, border screenshots, route screenshots and region-to-region path notes before making exact map-size claims.",
     },
     {
       title: "Best next map upgrades",
@@ -157,7 +157,7 @@ export const editorialGuides = {
   ],
   wiki: [
     ["Aniimo index", "The database currently tracks all 90 public Aniimo entries discoverable from the official Wiki probe page. Entries with incomplete element, role or stage data remain labeled as watchlist fields."],
-    ["Map index", "Six public world regions are connected to guide pages with official artwork and representative Aniimo."],
+    ["Map index", "Six modeled world regions are connected to guide pages with official artwork and representative Aniimo. Whisperwake Isles is tracked separately until its new routes are verified."],
     ["Maintenance", "New official Wiki and site updates should flow into the changelog before pages are refreshed."],
   ],
 };
@@ -174,7 +174,7 @@ export const faqs = {
     ["Are elements and roles official?", "Confirmed entries use official Wiki element, role and stage labels. Newly synced index-only entries keep unknown fields labeled until verified."],
   ],
   map: [
-    ["How big is the Aniimo map?", "A final measured Aniimo world size is not confirmed here yet. Aniimo.games currently tracks six public regions with linked route-planning maps and will add measurements only after official or reproducible evidence is available."],
+    ["How big is the Aniimo map?", "A final measured Aniimo world size is not confirmed here yet. Aniimo.games currently tracks six modeled region pages and a separate Whisperwake Isles verification queue; measurements will be added only after official or reproducible evidence is available."],
     ["Where can I find Aniimo locations?", "Search by region or creature name, then open the linked region guide and community map for current source-labeled location notes. Exact spawn coordinates, weather and time conditions need verification in the live game."],
   ],
   codes: [
@@ -196,6 +196,7 @@ export const faqs = {
 };
 
 export const updates = [
+  { date: "2026-10-30", title: "Season 1 Part 2 and post-update support coverage refreshed", text: "Updated the current version to the October 29 Season 1 Part 2 launch, added Whisperwake Isles, 51 new Aniimo, 1v1 Spar and Egg Heist PvP coverage, and added the official iOS storage notice and post-update known-issues source." },
   { date: "2026-10-20", title: "October 15–17 update and known-issues coverage refreshed", text: "Added the October 15 Home Season and Harvest Gathering update, linked the October 16 known-issues notice, and separated recent fixes from unresolved platform and reward problems." },
   { date: "2026-10-15", title: "October activities and practical guides refreshed", text: "Added the official Inferlupa date-only activity, October 13 Egg Heist explanations and future-plan boundaries, weekly activity states, and a Homeland planning checklist. October reviews are item-dated; older Wiki fields retain their previous review date." },
   {
@@ -275,7 +276,7 @@ export const launchDayCommandCenter = {
   updated: sourceLastChecked,
   summary: "A live launch support page for players who need official download paths, account guidance, code checks, server status and platform-specific fixes.",
   statusRows: [
-    ["Current client update", "October 15 resource update: restart the client to download current resources", "Verified"],
+    ["Current client update", "October 29 Season 1 Part 2 update: restart the client after maintenance", "Verified"],
     ["PC and console availability", "Live on PC, Steam, Epic, PS5 and Xbox", "Verified"],
     ["Mobile availability", "Live on iOS and Android; check storefront by country and device", "Verified"],
     ["PC and mobile data", "Shared with the same account", "Verified"],

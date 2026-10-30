@@ -3,7 +3,7 @@ import { fieldNotesForPath, updateOutlook } from "../../data/content/october-fie
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles, Plus, X, Copy, Download as DownloadIcon } from "lucide-react";
 import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, currentPatch, downloadTopics, editorialGuides, eventSchedule, eventStatus, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, liveIssueRegistry, liveSupportStatus, liveUpdate, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, postLaunchEvidence, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, isIndexableAniimo, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
-import { AnswerStatus, CreatureImage, EditorialBlock, FaqBlock, FreshnessNotice, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
+import { AnswerStatus, CreatureImage, EditorialBlock, EvidenceCard, FaqBlock, FreshnessNotice, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
 const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup", "eklue", "skippy", "helgon"];
 const highIntentAniimoIds = new Set(["besauce", "fragrancier", "infergon", "blazen", "tubster", "fentuft", "thornblade", "pawney", "fenmane", "geodeback"]);
@@ -191,9 +191,7 @@ export function HomePage(props) {
   );
 }
 
-export function DatabasePage({ query, setQuery, element, setElement, region, setRegion, role, setRole, stage, setStage, elements, regionNames, roles, stages, filteredAniimo, navigate, compact }) {
-  const [statusFilter, setStatusFilter] = useState("All");
-  const [sortBy, setSortBy] = useState("Number");
+export function DatabasePage({ query, setQuery, element, setElement, region, setRegion, role, setRole, stage, setStage, statusFilter, setStatusFilter, sortBy, setSortBy, elements, regionNames, roles, stages, filteredAniimo, navigate, compact }) {
   const statusFilteredAniimo = (statusFilter === "All" ? filteredAniimo : filteredAniimo.filter((item) => item.status === statusFilter)).slice().sort((a, b) => sortBy === "Name" ? a.name.localeCompare(b.name) : Number(a.no) - Number(b.no));
   const [tracked, setTracked] = useState(() => { try { return JSON.parse(localStorage.getItem("aniimo-tracker") || "{}"); } catch { return {}; } });
   const setTracking = (item, value) => setTracked((current) => { const next = { ...current, [item.id]: value }; localStorage.setItem("aniimo-tracker", JSON.stringify(next)); return next; });
@@ -211,7 +209,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             <div><strong>Search</strong><span>name, element, role or region</span></div>
             <div><strong>Status</strong><span>confirmed, watchlist or verified</span></div>
           </div>
-          {!compact && <InfoPanel title="Aniimo Characters: Quick Answer" rows={[["What this list includes", `All ${aniimo.length} tracked Aniimo characters with number, element, role, region, stage and source status.`], ["Find a character", "Search a name such as Celestis, Eko or Sherro, then open the detail page for location and evolution notes."], ["Location accuracy", "Region associations are listed now; exact spawn points need verified in-game or official evidence."]]} />}
+          {!compact && <EvidenceCard conclusion={`Search ${aniimo.length} tracked Aniimo entries`} status="Verified" source={officialLinks.officialWiki} checked={sourceLastChecked} next="Use the filters or open a character guide; exact spawn points remain source-labeled." />}
           {!compact && <LinkGroup title="Location and Map Shortcuts" items={regions.filter((item) => item.map).map((item) => [item.name, regionPath(item), `Open the ${item.name} guide, community map and route-planning checklist.`])} navigate={navigate} />}
           <details className="filter-drawer" open>
             <summary>Filter the creature list</summary>
@@ -228,7 +226,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             <Select label="Sort" value={sortBy} onChange={setSortBy} options={["Number", "Name"]} />
           </div>
           </details>
-          <p className="filter-summary" aria-live="polite">Showing {statusFilteredAniimo.length} of {aniimo.length} Aniimo</p>
+          <div className="filter-summary-row"><p className="filter-summary" aria-live="polite">Showing {statusFilteredAniimo.length} of {aniimo.length} Aniimo</p><button type="button" className="mini-action" onClick={() => { setQuery(""); setElement("All"); setRegion("All"); setRole("All"); setStage("All"); setStatusFilter("All"); setSortBy("Number"); }}>Clear filters</button></div>
           {!statusFilteredAniimo.length && <InfoPanel title="No matching creatures" rows={[["Try this", "Clear a filter or search by name, region, element, role or stage."], ["Browse instead", "Open the full creature list or use the popular search shortcuts below."]]} />}
           {!compact && <div className="query-shortcuts" aria-label="Popular database searches">
             <span>Popular searches</span>
@@ -580,7 +578,7 @@ export function RewardsPage({ navigate }) {
         ["A reward is missing", "/troubleshooting/aniimo-pre-registration-not-working/", "Check account, region, store and campaign availability."],
         ["Looking for codes?", "/codes/", "Redeem codes are separate from campaign rewards."],
       ]} navigate={navigate} />
-      <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official Aniimo reward campaigns" next="Confirm your account, server, region and platform before reporting a missing campaign reward." />
+      <EvidenceCard conclusion="Official campaign rewards are tracked separately from redeem codes" status="Confirmed" source={officialLinks.website} checked={sourceLastChecked} next="Confirm your account, server, region and platform before reporting a missing campaign reward." />
       <LaunchStatusPanel title="Reward Delivery Status" entries={launchStatusEntries.filter((entry) => ["codes", "pc-console", "mobile"].includes(entry.id))} />
       <RewardGrid />
       <InfoPanel title="Reward Categories" rows={[["Pre-registration", "Rewards tied to official registration or store actions."], ["Milestones", "Campaign items unlocked by published community thresholds."], ["Launch events", "Free items associated with official global launch events."], ["Redeem codes", "Separate code strings that require an official redemption flow."]]} />
@@ -629,7 +627,7 @@ export function DownloadPage({ navigate }) {
                 {platformAnswers.map(([platform, status, detail, href]) => <a key={platform} href={href} onClick={(event) => href.startsWith("/") && navigate(event, href)}><span><strong>{platform}</strong><small>{detail}</small></span><span className={status === "Available" ? "availability confirmed" : "availability watchlist"}>{status}</span></a>)}
               </div>
             </section>
-            <AnswerStatus status={device === "iOS" || device === "Android" ? "Confirmed" : "Verified"} checked={sourceLastChecked} sourceType="Official Aniimo launch news and storefronts" next={selectedDevice.note} />
+            <EvidenceCard conclusion={selectedDevice.title} status="Verified" source={officialLinks.website} checked={sourceLastChecked} next={selectedDevice.note} />
             <InfoPanel title={selectedDevice.title} rows={[["Official path", selectedDevice.stores.join(" or ")], ["Current guidance", selectedDevice.note], ["Account rule", "Use the Aniimo account and server you intend to keep. PC and mobile share data with the same Aniimo account; different servers are independent."]]} />
             <div className="device-picker device-decision-picker" role="group" aria-label="Choose your platform">{deviceOptions.map((item) => <button key={item} type="button" className={device === item ? "active" : ""} onClick={() => setDevice(item)}>{item}</button>)}</div>
             <div className="platform-list platform-decision-list">
@@ -735,10 +733,12 @@ export function BeginnerPage({ navigate }) {
         <section id="guides" className="section guide-band">
           <SectionTitle icon={<BookOpen />} kicker="Guide" title="Beginner Guide" />
       <InfoPanel title="Your First Session" rows={[
-        ["1. Start on an official platform", "PC, consoles and mobile are live. Check the App Store or Google Play availability in your country and on your device before using any workaround."],
-        ["2. Choose account and server carefully", "PC and mobile share data with the same Aniimo account; different servers keep independent data."],
-        ["3. Keep rewards separate from codes", "Campaign rewards and redeem codes are different. Only use a code published by an official channel or shown in the current client."],
-        ["4. Learn before optimizing", "Start with catching, Twine and the database. Routes, builds and tier claims need current evidence."],
+        ["1. Update safely first", "After the October 29 Season 1 Part 2 update, restart the client after maintenance and check the official known-issues notice before troubleshooting."],
+        ["2. Start on an official platform", "PC, consoles and mobile are live. Check the App Store or Google Play availability in your country and on your device before using any workaround."],
+        ["3. Choose account and server carefully", "PC and mobile share data with the same Aniimo account; different servers keep independent data."],
+        ["4. Check the new content path", "Check Whisperwake Isles unlock requirements, then review Companion Handbook, Home Season and PvP eligibility in the current client."],
+        ["5. Keep rewards separate from codes", "Campaign rewards and redeem codes are different. Only use a code published by an official channel or shown in the current client."],
+        ["6. Learn before optimizing", "Start with catching, Twine and the database. Routes, builds and tier claims need current evidence."],
       ]} />
       <LinkGroup title="Start Playing" items={[
         ["First Hour Guide", "/aniimo-first-hour-guide/", "Follow a source-aware first-session checklist."],
@@ -839,7 +839,7 @@ export function UpdatesPage() {
   return (
     <section className="section updates-band">
       <SectionTitle icon={<CalendarDays />} kicker="Current Game" title="Aniimo Updates, Events & Player Guides" />
-      <p className="section-copy">Check the latest source-labeled update, active activities and the next useful game guide. The site changelog and source-monitoring detail remain below for readers who need them.</p>
+      <p className="section-copy">Check the Season 1 Part 2 update, current activities, mobile update help and the next useful game guide. The site changelog and source-monitoring detail remain below for readers who need them.</p>
       <section className="current-update-callout" aria-label="Current Aniimo update">
         <div>
           <span className="eyebrow">Current update</span>
@@ -850,7 +850,7 @@ export function UpdatesPage() {
         <dl>
           <div><dt>Updated</dt><dd>{currentPatch.date}</dd></div>
           <div><dt>Start here</dt><dd>Restart the client, then check events or current issues.</dd></div>
-          <div><dt>Player impact</dt><dd>Controller reward-claiming, login performance and Irisalis fixes are listed in the current notes.</dd></div>
+          <div><dt>Player impact</dt><dd>Whisperwake Isles, 51 new Aniimo, PvP activities and post-update mobile issues are covered in the current notes.</dd></div>
         </dl>
       </section>
       <div className="site-index-grid player-update-links">
@@ -953,13 +953,13 @@ export function EventsPage({ navigate }) {
   return (
     <section className="section updates-band">
       <SectionTitle icon={<CalendarDays />} kicker="Official sources" title="Aniimo events: current windows and what to check" />
-      <p className="section-copy">The October 15 resource update adds Home Season timing; older timed notices use UTC+8 and the October Inferlupa post gives dates only. A listed event is not proof that it is open on every server.</p>
+      <p className="section-copy">Season 1 Part 2 adds Whisperwake Isles, real-time 1v1 Spar and an Egg Heist PvP test. Older timed notices use UTC+8 and date-only activities still require a client check. A listed event is not proof that it is open on every server.</p>
       <FieldNotes path="/events/" />
       <FieldNotes outlook />
       <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official Aniimo October update notice" next="Recheck the official notice after maintenance or before publishing changed event times, eligibility or rewards." />
       <FreshnessNotice subject="October event schedule" checked={sourceLastChecked} sourceType="official update and known-issue notices" message="Regional Harvest Gathering times are published separately; date-only activities require a client check." />
       <div className="detail-panels">
-        <InfoPanel title="Recorded Current Update" rows={[["Update", liveUpdate.title], ["Published", liveUpdate.date], ["Time standard", "Regional Harvest Gathering times are listed by server region; date-only activities require a client check."], ["Mobile", "iOS and Android are live; check official stores by country and device"]]} />
+        <InfoPanel title="Recorded Current Update" rows={[["Update", liveUpdate.title], ["Published", liveUpdate.date], ["Time standard", "PvP and season windows use the published regional schedule where available; date-only activities require a client check."], ["Mobile", "iOS and Android are live; some iOS updates may require more than 40 GB free during installation"]]} />
         <InfoPanel title="Last Recorded Resource Update" rows={[["Patch", `${currentPatch.title} (${currentPatch.date})`], ["Player action", currentPatch.summary], ["Eligibility", currentPatch.eligibility]]} />
       </div>
       <IrisalisJourneyPanel navigate={navigate} />
@@ -985,7 +985,7 @@ export function EventsPage({ navigate }) {
       <SeoGuideBlock items={[
         { title: "Use official timing", body: "Each activity lists its own time precision. Dates without a source time zone need a client check, not an exact countdown. Recurring activities can be closed between weekly windows." },
         { title: "Keep event facts narrow", body: "This page records official dates, entry requirements and publicly stated details. Drop rates, optimal routes, team builds and economy advice need current-client evidence before publication." },
-        { title: "What to do if an event is unavailable", body: "Restart after the October 15 resource update, then check your character requirement, server, local storefront version and the official notice before relying on community screenshots or workaround guides." },
+        { title: "What to do if an event is unavailable", body: "Restart after the Season 1 Part 2 update, then check your character requirement, server, local storefront version and the official notice before relying on community screenshots or workaround guides." },
       ]} />
       <div className="hero-actions section-actions">
         <a className="primary-action" href={liveUpdate.source} target="_blank" rel="noreferrer"><Search size={18} /> Check official update</a>
@@ -998,7 +998,7 @@ export function EventsPage({ navigate }) {
 }
 
 export function WeeklyPlanPage({ navigate }) {
-  const repeatableNames = new Set(["Legendary Journey: Windchaser's Departure", "Holo-Battle Interlink", "Egg Heist Team Mode: Chaos Mode"]);
+  const repeatableNames = new Set(["Legendary Journey: Windchaser's Departure", "Holo-Battle Interlink", "Egg Heist Team Mode: Chaos Mode", "Egg Heist PvP Test", "Real-time 1v1 Spar"]);
   const activeEvents = liveUpdate.events.filter((event) => eventStatus(event) === "Active");
   const repeatableEvents = liveUpdate.events.filter((event) => repeatableNames.has(event.name));
   return (
@@ -1008,10 +1008,10 @@ export function WeeklyPlanPage({ navigate }) {
       <FieldNotes path="/weekly-plan/" />
       <AnswerStatus status="Confirmed" checked={sourceLastChecked} sourceType="Official October event notice" next="Check the current client before relying on a requirement, reset timing or availability state." />
       <FreshnessNotice subject="Weekly plan" checked={sourceLastChecked} sourceType="official event notices" message="This is a planning layer over published events, not a claim that unlisted daily caps, resets or rewards are current." />
-      <section className="event-summary-grid" aria-label="Weekly activity counts"><article><span className="eyebrow">Active windows</span><strong>{activeEvents.length}</strong><p>Current time-window activities listed by the official update.</p></article><article><span className="eyebrow">Repeatable focus</span><strong>{repeatableEvents.length}</strong><p>Legendary Journey, Holo-Battle Interlink and Egg Heist are tracked separately from one-off windows.</p></article></section>
+      <section className="event-summary-grid" aria-label="Weekly activity counts"><article><span className="eyebrow">Active windows</span><strong>{activeEvents.length}</strong><p>Current time-window activities listed by the official update.</p></article><article><span className="eyebrow">Repeatable focus</span><strong>{repeatableEvents.length}</strong><p>Season progression, Holo-Battle, Egg Heist and the new PvP activities are tracked separately from one-off windows.</p></article></section>
       <section className="section compact-section" aria-label="Repeatable activity plan"><SectionTitle icon={<Compass />} kicker="Start here" title="Choose one repeatable goal before opening a map" /><div className="detail-panels">{repeatableEvents.map((event) => <article className="info-panel" key={event.name}><div className="info-panel-heading"><h2>{event.name}</h2><StatusBadge status={eventStatus(event)} /></div><p>{event.detail}</p><dl><div><dt>Requirement</dt><dd>{event.requirements}</dd></div><div><dt>Schedule</dt><dd>{eventSchedule(event)}</dd></div></dl><a className="text-link" href={event.source} target="_blank" rel="noreferrer">Official details <ChevronRight size={16} /></a></article>)}</div></section>
       <section className="section compact-section" aria-label="Current limited time events"><SectionTitle icon={<Sparkles />} kicker="Time-limited" title="Check these windows before they end" /><div className="detail-panels">{activeEvents.filter((event) => !repeatableNames.has(event.name)).map((event) => <article className="info-panel" key={event.name}><div className="info-panel-heading"><h2>{event.name}</h2><StatusBadge status={eventStatus(event)} /></div><p>{event.detail}</p><p className="small"><strong>Requirement:</strong> {event.requirements}</p><p className="small"><strong>Window:</strong> {eventSchedule(event)}</p></article>)}</div></section>
-      <InfoPanel title="Before You Finish a Session" rows={[["Update check", "Restart the client when a current resource update is listed, then retry a repeatable issue before reporting it."], ["Progress proof", "Record platform, server, client version and a screenshot when an eligibility or reward state differs from the official notice."], ["Map objective", "For exploration, pick one creature or resource objective and use the matching region guide instead of opening every marker layer."], ["No claimed reset", "Daily and weekly reset hours, caps and reward quantities stay out of this plan unless confirmed in the live client or an official update."]]} />
+      <InfoPanel title="Before You Finish a Session" rows={[["Update check", "Restart the client after the October 29 season update, then retry a repeatable issue before reporting it."], ["New-region check", "Confirm the Whisperwake Isles story or account requirement in the current client before planning a route."], ["PvP check", "Egg Heist PvP and 1v1 Spar have separate rules; verify opening windows, lineup and eligibility in the mode screen."], ["Progress proof", "Record platform, server, client version and a screenshot when an eligibility or reward state differs from the official notice."], ["Map objective", "For exploration, pick one creature or resource objective and use the matching region guide instead of opening every marker layer."], ["No claimed reset", "Daily and weekly reset hours, caps and reward quantities stay out of this plan unless confirmed in the live client or an official update."]]} />
       <div className="hero-actions section-actions"><a className="primary-action" href="/events/" onClick={(event) => navigate(event, "/events/")}><CalendarDays size={18} /> Full event schedule</a><a className="secondary-action" href="/map/" onClick={(event) => navigate(event, "/map/")}><Map size={18} /> Pick a region route</a><a className="secondary-action" href="/troubleshooting/aniimo-known-issues/" onClick={(event) => navigate(event, "/troubleshooting/aniimo-known-issues/")}><CheckCircle2 size={18} /> Resolve an issue</a></div>
     </section>
   );
@@ -1049,7 +1049,7 @@ export function FreshnessPage({ topic }) {
       {(topic.slug === "aniimo-discord" || topic.slug === "aniimo-reddit") && <AnswerStatus status="Watchlist" checked={sourceLastChecked} sourceType="Official Aniimo channels and community research" next="Open an official channel for announcements; treat invites, screenshots and player claims as leads until verified." />}
       {(topic.slug === "aniimo-logo") && <InfoPanel title="Logo Search Answer" rows={[["Asset", "Use the Aniimo logo preview and source notes on this page."], ["Format", "The production asset is served as WebP for faster loading."], ["Source rule", "Use official or site-prepared brand assets rather than reposted files."]]}/>}
       {(topic.slug === "aniimo-discord" || topic.slug === "aniimo-reddit") && <InfoPanel title="Community Search Answer" rows={[["Official status", "Use only links verified by Aniimo or Pawprint Studio."], ["What this page provides", "A source-safe path for launch, codes, server and player-report questions."], ["What is not confirmed", "Third-party invites, screenshots and rumors are not official facts."]]}/>}
-      {topic.slug === "aniimo-controller-support" && <InfoPanel title="Controller Support Status" rows={[["Steam PC", "Disable Steam Input in Aniimo's Steam Controller properties, restart, then retest native controller input."], ["Latest update", "The October 15 update improved Home batch acceleration controls and added Select All support."], ["Console", "Xbox and PS5 controls should be treated separately from the Steam Input path."], ["Mobile and Steam Deck", "Bluetooth/mobile and handheld compatibility still need separate verification."]]}/>}
+      {topic.slug === "aniimo-controller-support" && <InfoPanel title="Controller Support Status" rows={[["Steam PC", "Disable Steam Input in Aniimo's Steam Controller properties, restart, then retest native controller input."], ["Latest update", "The October 29 Season 1 Part 2 update is now the current version; verify controller behavior and any fixes in the current client."], ["Console", "Xbox and PS5 controls should be treated separately from the Steam Input path."], ["Mobile and Steam Deck", "Bluetooth/mobile and handheld compatibility still need separate verification."]]}/>}
       {topic.slug === "aniimo-controller-support" && <ControllerTroubleshootingFlow navigate={navigate} />}
       {topic.slug === "aniimo-server-status" && <InfoPanel title="Current Server Check" rows={[["Aniimo-wide outage", "No active outage is marked confirmed here."], ["Check first", "Official Aniimo news, platform store notices and the launch-day hub."], ["If only you are affected", "Check account, platform, region and known issues before retrying."], ["Evidence standard", "Official notice or repeatable live evidence with platform and time."]]}/>}
       {topic.slug === "aniimo-ai" && <InfoPanel title="AI Search Answer" rows={[["Current answer", "No official source reviewed here confirms that Aniimo is made with generative AI."], ["Evidence rule", "Trailer style, upscaling or visual polish is not proof of AI use."], ["Next check", "Update this answer only when the developer, publisher or platform publishes a direct disclosure."]]}/>}
@@ -1134,7 +1134,7 @@ export function LaunchDayPage({ navigate }) {
       </div>
       <div className="site-index-grid">
         <LinkGroup title="Launch Day Actions" items={launchDayCommandCenter.quickActions} navigate={navigate} />
-        <LinkGroup title="Current Update" items={[["Version 1.1 Events", "/events/", "Check active and upcoming windows, eligibility, Irisalis progression and official source links."], ["Latest Client Update", "/events/", "Restart after the October 15 resource update before reporting a repeatable issue."]]} navigate={navigate} />
+        <LinkGroup title="Current Update" items={[["Season 1 Part 2 Events", "/events/", "Check Whisperwake Isles, PvP activities, eligibility and official source links."], ["Latest Client Update", "/events/", "Restart after the October 29 season update before reporting a repeatable issue."]]} navigate={navigate} />
         <LinkGroup title="Quick Help for Launch Day" items={[
           ["Active Aniimo Codes", "/codes/active/", "Check active code status and verification notes."],
           ["Server Status", "/troubleshooting/aniimo-server-status/", "Track maintenance, outage and launch availability checks."],
@@ -1814,11 +1814,7 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
       <SectionTitle icon={icon} kicker={kicker} title={topic.title} />
       {topic.image && <img className="page-banner" src={topic.image} alt={topic.title} width="1600" height="900" loading="lazy" decoding="async" />}
       <p className="section-copy">{topic.intro}</p>
-      <InfoPanel title="Page Status" rows={[
-        ["Last reviewed", sourceLastChecked],
-        ["What is confirmed", "Details remain provisional until official or live-game evidence confirms them."],
-        ["Last checked", "This page is reviewed again when official information or live-game evidence changes."],
-      ]} />
+      <EvidenceCard conclusion={topic.title} status="Watchlist" source={topic.source} checked={sourceLastChecked} next="Use the related actions below, then check the linked source before acting." />
       <div className="source-level" aria-label="Source level"><strong>Source level</strong><span>{topic.sourceType || "Editorial review"}</span><span>Facts and community leads are kept separate.</span></div>
       {statusEntry && <LaunchStatusPanel title="Answer Status" entries={[statusEntry]} />}
       {intentStatus && <InfoPanel title="What We Are Checking Next" rows={[["Next check", intentStatus.action], ["Page", topic.title]]} />}
@@ -1828,6 +1824,7 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
       <FieldNotes path={`/mechanics/${topic.slug}/`} />
       <FieldNotes path={`/guides/${topic.slug}/`} />
       {topic.slug === "aniimo-known-issues" && <LiveIssueTable />}
+      {topic.slug === "aniimo-known-issues" && <InfoPanel title="Season 1 Part 2 iOS Update Issue" rows={[["Official symptom", "Some iOS players may see insufficient-storage errors even with more than 30 GB free."], ["Temporary requirement", "The official notice says more than 40 GB free may be required during the update process; expected installed size is approximately 20 GB."], ["Compensation", "Sparkling Cube ×1, Vein Essence ×5 and Glimmer ×300 are planned for delivery through in-game mail."], ["Safe next step", "Free the required temporary space, use the official store/client, then check the in-game notice. Do not use unofficial installers."], ["Source", <a href={officialLinks.octoberIosStorageNotice} target="_blank" rel="noreferrer">Official X notice</a>]]} />}
       {topic.slug === "aniimo-discord" && <InfoPanel title="Official Community Path" rows={[
         ["Verification", "Use a Discord destination only when it is linked by Aniimo, Pawprint Studio, or another verified official Aniimo channel."],
         ["Last reviewed", sourceLastChecked],
@@ -2615,7 +2612,7 @@ export function AniimoDetail({ item, navigate, localized = false }) {
       </section>}
       {!pt && highIntentAniimoIds.has(item.id) && <InfoPanel title={`${item.name}: Search Answer`} rows={creatureSearchAnswer(item)} />}
       <div className="detail-panels">
-        {!pt && <AnswerStatus status={item.status} checked={sourceLastChecked} sourceType="Official Wiki and source review" next={`Open the ${item.region} region guide or compare ${item.name}.`} />}
+        {!pt && <EvidenceCard conclusion={`${item.name} is tracked under ${item.region}`} status={item.status} source={item.source} checked={sourceLastChecked} next={`Open the ${item.region} region guide or compare ${item.name}.`} />}
         {!pt && eventAvailability && <InfoPanel title={eventAvailability.title} rows={[["Official event detail", eventAvailability.detail], ["Event status", linkedEvent ? eventStatus(linkedEvent) : "Watchlist"], ["Schedule", linkedEvent ? eventSchedule(linkedEvent) : "Check official update"], ["Source rule", "This is event availability, not a permanent spawn route or exact coordinate."]]} />}
         <InfoPanel title="Location" rows={[["Region", item.region], ["Habitat", item.habitat], ["Spawn condition", item.condition], ["Acquisition", item.acquisition]]} />
         <InfoPanel title="Index Data" rows={[["No.", item.no], ["Element", item.element], ["Role", item.role], ["Stage", item.stage]]} />
@@ -2676,6 +2673,7 @@ export function RegionDetail({ region, navigate }) {
       <div className="detail-panels">
         <FieldNotes path={regionPath(region)} />
         <InfoPanel title="Known Aniimo" rows={region.aniimo.map((name) => ["Encounter", name])} />
+        <EvidenceCard conclusion={`${region.name} has ${region.aniimo.length} listed Aniimo associations`} status={region.status} source={region.source} checked={sourceLastChecked} next="Open an Aniimo detail page; exact coordinates and encounter conditions remain unconfirmed." />
         <InfoPanel title="Location Answer" rows={[["Current region association", `${region.aniimo.join(", ")} are currently listed for ${region.name}.`], ["What this means", "This is a source-labeled region association, not an exact coordinate or guaranteed encounter condition."], ["Next step", "Open an Aniimo detail page for its role, forms and current location notes."]]} />
         <InfoPanel title="Route Notes" rows={[["Exploration", region.theme], ["Mechanics", region.mechanics.join(", ")], ["Data status", statuses[region.status]], ["Last updated", siteLastUpdated]]} />
         <InfoPanel title="Launch Checklist" rows={region.checklist.map((item, index) => [`Check ${index + 1}`, item])} />
