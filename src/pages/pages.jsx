@@ -1690,7 +1690,9 @@ export function MediaPage({ navigate }) {
       <SectionTitle icon={<Map />} kicker="Media" title="Aniimo Images, Screenshots & Media Gallery" />
       <p className="section-copy">
         Browse the compressed visual assets used by Aniimo.games. Images are selected for
-        guide context, region discovery, social previews and source-safe SEO pages.
+        guide context, region discovery, social previews and source-safe SEO pages. Site-
+        prepared graphics are identified as such; official or storefront imagery remains
+        tied to its source context. For image rights questions, email gachiawiki@gmail.com.
       </p>
       <div className="media-grid">
         {mediaGalleryItems.map((item) => (
@@ -1731,7 +1733,7 @@ export function MediaPage({ navigate }) {
       ]} navigate={navigate} />
       <FaqBlock items={[
         ["Why does Aniimo.games compress media?", "Compressed WebP assets improve page speed while preserving useful screenshots, banners and region context."],
-        ["Can media pages include unofficial images?", "Only when rights, source and page purpose are clear. Official or site-prepared assets are preferred."],
+        ["Can media pages include unofficial images?", "Only when rights, source and page purpose are clear. Official or site-prepared assets are preferred. Third-party media is not republished as a substitute for the original source."],
       ]} />
     </section>
   );
@@ -2518,10 +2520,16 @@ export function ContactPage() {
       <SectionTitle icon={<CheckCircle2 />} kicker="Trust" title="Contact Aniimo.games" />
       <p className="section-copy">
         For corrections, missing official entries, broken links, image issues or source
-        updates, contact the site maintainer through the GitHub repository connected to
-        Aniimo.games. Include the page URL, the proposed correction and the official
-        source that supports the change.
+        updates, email <a href="mailto:gachiawiki@gmail.com">gachiawiki@gmail.com</a>.
+        Include the page URL, the proposed correction and the official source that
+        supports the change. Do not send passwords, payment details or other sensitive
+        personal information.
       </p>
+      <InfoPanel title="Contact routes" rows={[
+        ["Editorial corrections", "gachiawiki@gmail.com — include the affected URL and source."],
+        ["Privacy requests", "gachiawiki@gmail.com — include the relevant URL and request type."],
+        ["Copyright concerns", "gachiawiki@gmail.com — identify the material and your rights or source."],
+      ]} />
       <SeoGuideBlock items={[
         { title: "Correction requests", body: "Send the affected Aniimo, region or guide URL with the exact field that should change." },
         { title: "Source requests", body: "Official links are preferred. Storefront pages, official Wiki entries and official news posts are the easiest sources to verify." },
@@ -2549,20 +2557,44 @@ export function PrivacyPolicyPage() {
       <InfoPanel title="Policy Details" rows={[
         ["Site", "Aniimo.games"],
         ["Effective date", "2026-09-24"],
-        ["Contact", "Use the Contact page to report a privacy concern or request."],
+        ["Contact", "gachiawiki@gmail.com or the Contact page for a privacy concern or request."],
       ]} />
       <SeoGuideBlock items={[
         { title: "Information collected", body: "Aniimo.games does not require an account or collect names, email addresses or payment information through the site. Our hosting provider may process technical information such as IP address, browser type, device information, referring URL and request logs to deliver and secure the site." },
-        { title: "Cookies and Google advertising", body: "Aniimo.games uses Google AdSense services. Google and its advertising partners may use cookies or similar technologies to show and measure ads based on visits to this and other sites, subject to applicable law and consent requirements. Google may use advertising cookies to serve personalized ads where permitted." },
-        { title: "Your choices", body: "You can control or delete cookies in your browser settings. Where available, you can manage Google ad personalization at Google Ads Settings. Visitors in regions that require consent will be offered the applicable privacy choices before non-essential advertising technologies are used." },
+        { title: "Cookies and Google advertising", body: "Aniimo.games uses Google AdSense services. Google and its advertising partners may use cookies, web beacons, IP addresses or similar technologies to show, measure and protect advertising based on visits to this and other sites, subject to applicable law and consent requirements. Google may use advertising cookies to serve personalized ads where permitted." },
+        { title: "Your choices", body: "Use the Privacy choices link in the site footer to review or change the site's advertising consent setting. You can also control or delete cookies in your browser settings, manage Google ad personalization at Google Ads Settings (https://www.google.com/settings/ads), or review broader advertising choices at aboutads.info (https://aboutads.info/choices/). Where required, advertising technologies are held until you make a choice." },
         { title: "External links", body: "Guide pages link to official Aniimo websites, storefronts and other external services. Their privacy practices are governed by their own policies, not this policy." },
         { title: "Data retention and sharing", body: "Aniimo.games does not sell personal information. Technical data retained by hosting, security, analytics or advertising providers is subject to those providers' retention practices and legal obligations." },
-        { title: "Updates and contact", body: "This policy may change when site services or legal requirements change. The effective date above will be updated with material revisions. For privacy questions, use the site's Contact page and include the relevant page URL." },
+        { title: "Updates and contact", body: "This policy may change when site services or legal requirements change. The effective date above will be updated with material revisions. For privacy questions, email gachiawiki@gmail.com or use the site's Contact page and include the relevant page URL." },
       ]} />
       <LinkGroup title="Related Policies" items={[
         ["Contact", "/contact/", "Reach the site maintainer about privacy questions or correction requests."],
         ["Editorial Policy", "/editorial-policy/", "Review the source and correction standards used by Aniimo.games."],
         ["Google Privacy & Terms", "https://policies.google.com/technologies/ads", "Learn how Google uses information from sites and apps that use its services."],
+        ["Google Ads Settings", "https://www.google.com/settings/ads", "Manage Google ad personalization choices."],
+        ["AboutAds choices", "https://aboutads.info/choices/", "Review available third-party personalized advertising choices."],
+      ]} />
+    </section>
+  );
+}
+
+export function TermsPage() {
+  return (
+    <section className="section sources-band">
+      <SectionTitle icon={<BookOpen />} kicker="Trust" title="Terms of Use" />
+      <p className="section-copy">Aniimo.games is an independent, informational guide site. By using it, you agree to use the site lawfully and to verify time-sensitive game information before acting on it.</p>
+      <SeoGuideBlock items={[
+        { title: "Independent site", body: "Aniimo.games is not affiliated with or endorsed by Aniimo, Pawprint Studio, Google or any platform owner. Names, logos and trademarks belong to their respective owners." },
+        { title: "Content and sources", body: "Guides are editorial information based on public sources, storefront checks and clearly labeled verification notes. Information can change, and external sources have their own terms." },
+        { title: "Media and copyright", body: "Do not copy, redistribute or commercially reuse site text, edited graphics or compiled datasets without permission. For a rights concern, email gachiawiki@gmail.com with the affected URL and evidence of ownership." },
+        { title: "External services", body: "Links to official stores, community maps and other services leave Aniimo.games. Aniimo.games does not control their availability, content, privacy practices or transactions." },
+        { title: "Corrections and contact", body: "Send factual corrections, privacy requests or copyright notices to gachiawiki@gmail.com. Include the relevant page URL and enough detail for the request to be reviewed." },
+      ]} />
+      <LinkGroup title="Related policies" items={[
+        ["About", "/about/", "Learn who maintains the site and what it covers."],
+        ["Editorial Policy", "/editorial-policy/", "Review source and correction standards."],
+        ["Privacy Policy", "/privacy-policy/", "Review cookies, advertising and visitor information."],
+        ["Contact", "/contact/", "Send a correction, privacy request or rights concern."],
       ]} />
     </section>
   );

@@ -47,6 +47,7 @@ import {
   PlatformPage,
   PreRegistrationRewardsPage,
   PrivacyPolicyPage,
+  TermsPage,
   RegionDetail,
   ReleaseDatePage,
   RewardsPage,
@@ -168,6 +169,15 @@ function App() {
     filteredAniimo,
     navigate,
   };
+
+  function showPrivacyChoices(event) {
+    event.preventDefault();
+    if (typeof window.googlefc?.showRevocationMessage === "function") {
+      window.googlefc.showRevocationMessage();
+    } else {
+      window.location.href = "/privacy-policy/";
+    }
+  }
 
   return (
     <>
@@ -310,6 +320,8 @@ function App() {
           <ContactPage />
         ) : routeInfo.path === "/privacy-policy/" ? (
           <PrivacyPolicyPage />
+        ) : routeInfo.path === "/terms/" ? (
+          <TermsPage />
         ) : routeInfo.path === "/" && path === "/" ? (
           <>
             <HomePage {...sharedProps} />
@@ -331,6 +343,8 @@ function App() {
           <a href="/sources/" onClick={(event) => navigate(event, "/sources/")}>Sources</a>
           <a href="/contact/" onClick={(event) => navigate(event, "/contact/")}>Contact</a>
           <a href="/privacy-policy/" onClick={(event) => navigate(event, "/privacy-policy/")}>Privacy</a>
+          <a href="/terms/" onClick={(event) => navigate(event, "/terms/")}>Terms</a>
+          <a href="/privacy-policy/" onClick={showPrivacyChoices}>Privacy choices</a>
         </nav>
         <p className="site-footer-meta">Last updated {siteLastUpdated}</p>
       </footer>
