@@ -524,6 +524,13 @@ const featuredDetailNotes = {
     relatedRegionReason: "Related links should favor official-index and source pages until Helgon's taxonomy, route and family connections are confirmed.",
     sourceNote: "Helgon's name, number and description are tracked from public Wiki data. Treat combat role, evolution links and route placement as launch watchlist items.",
   },
+  somniwing: {
+    locationNote: "Somniwing is currently listed under Forest of Falling Stars, but that region association must not be presented as a capture route. Search demand now centers on how to unlock Somniwing and whether Elite Training is involved; the exact acquisition path remains a source-check item until confirmed against official or live-client evidence.",
+    evolutionDetail: "Somniwing is a Nova Stage entry in the current local model. Do not invent a wild spawn, egg, shop or evolution route from a search snippet; record the exact unlock quest and prerequisite only after primary or reproducible evidence is available.",
+    abilityUseCase: "Somniwing's Support profile makes it a priority page for testing recovery, team utility and Elite Training reward intent, but build and skill recommendations remain unverified.",
+    relatedRegionReason: "Keep Forest of Falling Stars as a taxonomy link only, and connect Somniwing to Elite Training and source-verification pages rather than implying a permanent wild location.",
+    sourceNote: "Official name, number, role and stage are tracked locally. Search and community guides suggest an Elite Training acquisition path, but that secondary signal is not promoted as confirmed until official or current-client evidence is checked.",
+  },
   cozite: {
     locationNote: "Cozite is an official-index entry with shell, mud and smoke behavior in its description. Do not assign cave, marsh or mineral routes until official or in-game evidence confirms them.",
     evolutionDetail: "Cozite is currently standalone in the local model. If shell-building or mineral-related forms appear later, update this page and the evolution list together.",
