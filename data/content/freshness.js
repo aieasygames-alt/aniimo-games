@@ -68,6 +68,10 @@ export const liveUpdate = {
   maintenance: "The APAC maintenance window was listed as 07:00–15:00 UTC+8 on October 29, with Glimmer ×500 compensation for eligible Pathfinders. Check the current client for completion status.",
   events: [
     { name: "Season 1 Part 2: Whisperwake Isles", startsAt: "2026-10-29T15:00:00+08:00", endsAt: "2026-12-10T03:59:00+08:00", requirements: "Complete the current story and client unlock requirements; exact progression should be checked in-game.", detail: "Explore four new island regions, discover 51 new Aniimo and follow the new season story. The update window ends with the December 10 season transition listed by the official notice.", source: officialLinks.octoberPartTwoLaunch, checked: "2026-10-30" },
+    { name: "Aniimo Go!", startsAt: "2026-11-12T10:00:00+08:00", endsAt: "2026-12-10T07:59:00+08:00", requirements: "Reach character level 40.", detail: "An open-world racing event with three tracks. A new track opens every two weeks; solo and multiplayer racing are listed in the official update notice.", source: officialLinks.octoberPartTwoLaunch, checked: "2026-11-08" },
+    { name: "Prismana Photo: Phase 1", startDate: "2026-11-12", endDate: "2026-11-16", requirements: "Reach Student II and check the current event page.", detail: "The official Season 1 Part 2 notice lists a three-phase Prismana Photo event. This record preserves the published date window without inventing an exact local closing hour.", source: officialLinks.octoberPartTwoLaunch, checked: "2026-11-08" },
+    { name: "Prismana Photo: Phase 2", startDate: "2026-11-16", endDate: "2026-11-23", requirements: "Reach Student II and check the current event page.", detail: "The official Season 1 Part 2 notice lists the second Prismana Photo phase. Confirm the target form and rewards in the current client.", source: officialLinks.octoberPartTwoLaunch, checked: "2026-11-08" },
+    { name: "Prismana Photo: Phase 3", startDate: "2026-11-23", endDate: "2026-11-30", requirements: "Reach Student II and check the current event page.", detail: "The official Season 1 Part 2 notice lists the third Prismana Photo phase. Confirm the target form and rewards in the current client.", source: officialLinks.octoberPartTwoLaunch, checked: "2026-11-08" },
     { name: "Real-time 1v1 Spar", startsAt: "2026-10-29T15:00:00+08:00", endsAt: "2026-12-10T03:59:00+08:00", requirements: "Check the current Spar mode for rank, lineup and matchmaking requirements.", detail: "Season 1 Part 2 adds real-time 1v1 competition. Detailed balance and matchmaking advice is not established here yet.", source: officialLinks.octoberPartTwoLaunch, checked: "2026-10-30" },
     { name: "Prismana Inferlupa: Nimbus Fields", startDate: "2026-10-12", endDate: "2026-10-19", checked: octoberReviewDate, requirements: "Confirm entry requirements in your server's client; the post does not list a level.", detail: "Nurture the bloom in Nimbus Fields and trigger a Prismana Flow to attract special Prismana Inferlupa. Limited-time availability, not a permanent spawn. Exact closing hour and time zone are unspecified.", source: inferlupaEventSource },
     { name: "Legendary Journey: Windchaser's Departure", startsAt: "2026-09-25T04:00:00+08:00", endsAt: "2026-12-10T03:59:00+08:00", requirements: "Follow the current Legendary Journey progression in the client.", detail: "The Version 1.1 update introduces Irisalis and related Aniipod progression through this journey. Exact progression steps and weekly limits should be confirmed in the current client.", source: officialLinks.versionOneOne },
@@ -84,16 +88,16 @@ export const liveUpdate = {
 };
 
 export const currentPatch = {
-  title: "Season 1 Part 2 update",
-  date: "2026-10-29",
-  source: officialLinks.octoberPartTwoLaunch,
-  summary: "The October 29 update adds Whisperwake Isles, 51 new Aniimo, new PvP activities and level 70 progression. Restart the client after maintenance.",
-  eligibility: "The official notice lists Glimmer ×500 maintenance compensation for eligible Pathfinders registered before the S2 season version update. Check the in-game mailbox.",
+  title: "November 4 post-update fixes",
+  date: "2026-11-04",
+  source: officialLinks.octoberPostLaunchIssues,
+  summary: "The latest directly verified official notice records November 4 fixes for Egg Heist, Elite Training, Storage Boxes, PS5 invitations, controller mail and other Season 1 Part 2 issues.",
+  eligibility: "The October 29 Season 1 Part 2 notice lists Glimmer ×500 maintenance compensation for eligible Pathfinders; check the in-game mailbox.",
   highlights: [
-    ["Whisperwake Isles", "Four new island regions open with new exploration, story and capture content."],
-    ["New Aniimo", "The official notice lists 51 new Aniimo, new Prismana forms, Hypnyto, Eklue and Jaguaraun."],
-    ["PvP", "Real-time 1v1 Spar and a fair Egg Heist PvP test are added; detailed strategy remains current-client work."],
-    ["Mobile update", "Some iOS players may need more than 40 GB free during the update process; the official notice lists separate compensation."],
+    ["Egg Heist", "The November fixes address Giga-Egg wind, disconnect protection, Egg Nests, Blink Chip and extraction-related behavior."],
+    ["Controls and PS5", "The notice fixes controller mail reading, emote selection and PS5 team invitations."],
+    ["Events and progression", "Elite Training, Stamp Rush, Night Parade and the evolution screen receive fixes."],
+    ["Pending build check", "Search data mentions a November 6 build; keep its exact primary announcement pending until the official Steam detail is directly verified."],
   ],
 };
 

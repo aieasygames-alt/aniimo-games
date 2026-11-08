@@ -196,6 +196,7 @@ export const faqs = {
 };
 
 export const updates = [
+  { date: "2026-11-08", title: "November fixes and Season 1 Part 2 event windows refreshed", text: "Updated the directly verified issue log through November 4, added Aniimo Go! and the three Prismana Photo phases from the Season 1 Part 2 notice, and kept the November 6 build signal pending primary-source verification." },
   { date: "2026-10-30", title: "Season 1 Part 2 and post-update support coverage refreshed", text: "Updated the current version to the October 29 Season 1 Part 2 launch, added Whisperwake Isles, 51 new Aniimo, 1v1 Spar and Egg Heist PvP coverage, and added the official iOS storage notice and post-update known-issues source." },
   { date: "2026-10-20", title: "October 15–17 update and known-issues coverage refreshed", text: "Added the October 15 Home Season and Harvest Gathering update, linked the October 16 known-issues notice, and separated recent fixes from unresolved platform and reward problems." },
   { date: "2026-10-15", title: "October activities and practical guides refreshed", text: "Added the official Inferlupa date-only activity, October 13 Egg Heist explanations and future-plan boundaries, weekly activity states, and a Homeland planning checklist. October reviews are item-dated; older Wiki fields retain their previous review date." },

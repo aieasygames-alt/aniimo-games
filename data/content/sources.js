@@ -13,6 +13,7 @@ export const officialLinks = {
   octoberPartTwoPreview: "https://www.aniimo.com/newslist/detail/100219",
   octoberPartTwoLaunch: "https://steamcommunity.com/app/4126040/announcements/",
   octoberPostLaunchIssues: "https://www.aniimo.com/newslist/detail/100275",
+  octoberPartTwoKnownIssues: "https://aniimo.com/newslist/detail/100263",
   octoberIosStorageNotice: "https://x.com/Aniimo_EN/status/2115796963471868283",
   steamLaunchFaq: "https://steamcommunity.com/app/4126040/discussions/0/563668168527106976/",
   officialWiki: "https://wiki.aniimo.com/",

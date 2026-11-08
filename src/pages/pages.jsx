@@ -5,7 +5,7 @@ import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificatio
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, isIndexableAniimo, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { AnswerStatus, CreatureImage, EditorialBlock, EvidenceCard, FaqBlock, FreshnessNotice, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
-const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup", "eklue", "skippy", "helgon"];
+const priorityAniimoIds = ["somniwing", "infergon", "celestis", "inferlupa", "glacy", "susuta", "eklue", "skippy"];
 const highIntentAniimoIds = new Set(["besauce", "fragrancier", "infergon", "blazen", "tubster", "fentuft", "thornblade", "pawney", "fenmane", "geodeback"]);
 
 function FieldNotes({ path, outlook = false }) {
@@ -145,7 +145,7 @@ export function HomePage(props) {
             ["Is Aniimo down?", "Start with Server Status for a dated, source-labeled outage or maintenance answer."],
             ["Cannot log in or see the game?", "Use Known Issues to separate account, platform, region, store and client-version problems from a global outage."],
             ["Where can I download Aniimo?", "PC, Steam, Epic, PS5, Xbox, iOS and Android are live; check storefront availability by country and device."],
-            ["Looking for an Aniimo?", `Browse all ${aniimo.length} public entries by name, element, role, region and stage.`],
+            ["Looking for an Aniimo?", `Browse all ${aniimo.length} public entries by name, element, role, region and stage. Start with Somniwing or Infergon search answers.`],
           ]} />
           <div className="site-index-grid">
             <LinkGroup title="Launch Answers" items={[
@@ -230,7 +230,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
           {!statusFilteredAniimo.length && <InfoPanel title="No matching creatures" rows={[["Try this", "Clear a filter or search by name, region, element, role or stage."], ["Browse instead", "Open the full creature list or use the popular search shortcuts below."]]} />}
           {!compact && <div className="query-shortcuts" aria-label="Popular database searches">
             <span>Popular searches</span>
-            {["Celestis", "Eko", "Sherro", "Geoclaw", "all Aniimo", "Aniimo locations"].map((term) => <button key={term} type="button" onClick={() => setQuery(term === "all Aniimo" ? "" : term)}>{term}</button>)}
+            {["Somniwing", "Infergon", "Celestis", "Eko", "all Aniimo", "Aniimo locations"].map((term) => <button key={term} type="button" onClick={() => setQuery(term === "all Aniimo" ? "" : term)}>{term}</button>)}
           </div>}
           <TaxonomyLinks navigate={navigate} />
           {!compact && <LinkGroup title="Popular Search Paths" items={[["Aniimo Tier List", "/aniimo-tier-list/", "Compare provisional roles and evidence."], ["Aniimo Elements", "/aniimo-elements/", "Browse element-based entries."], ["Aniimo Roles", "/aniimo-roles/", "Find DPS, support and healer roles."], ["Aniimo Discord", "/topics/aniimo-discord/", "Check official community-source guidance."], ["Aniimo AI Use", "/compare/aniimo-ai/", "Review official AI disclosure checks."]]} navigate={navigate} />}
@@ -998,7 +998,7 @@ export function EventsPage({ navigate }) {
 }
 
 export function WeeklyPlanPage({ navigate }) {
-  const repeatableNames = new Set(["Legendary Journey: Windchaser's Departure", "Holo-Battle Interlink", "Egg Heist Team Mode: Chaos Mode", "Egg Heist PvP Test", "Real-time 1v1 Spar"]);
+  const repeatableNames = new Set(["Legendary Journey: Windchaser's Departure", "Holo-Battle Interlink", "Egg Heist Team Mode: Chaos Mode", "Egg Heist PvP Test", "Real-time 1v1 Spar", "Aniimo Go!"]);
   const activeEvents = liveUpdate.events.filter((event) => eventStatus(event) === "Active");
   const repeatableEvents = liveUpdate.events.filter((event) => repeatableNames.has(event.name));
   return (
@@ -1826,6 +1826,7 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
       <FieldNotes path={`/mechanics/${topic.slug}/`} />
       <FieldNotes path={`/guides/${topic.slug}/`} />
       {topic.slug === "aniimo-known-issues" && <LiveIssueTable />}
+      {topic.slug === "aniimo-known-issues" && <FeedbackPanel topic="Aniimo Known Issues" />}
       {topic.slug === "aniimo-known-issues" && <InfoPanel title="Season 1 Part 2 iOS Update Issue" rows={[["Official symptom", "Some iOS players may see insufficient-storage errors even with more than 30 GB free."], ["Temporary requirement", "The official notice says more than 40 GB free may be required during the update process; expected installed size is approximately 20 GB."], ["Compensation", "Sparkling Cube ×1, Vein Essence ×5 and Glimmer ×300 are planned for delivery through in-game mail."], ["Safe next step", "Free the required temporary space, use the official store/client, then check the in-game notice. Do not use unofficial installers."], ["Source", <a href={officialLinks.octoberIosStorageNotice} target="_blank" rel="noreferrer">Official X notice</a>]]} />}
       {topic.slug === "aniimo-discord" && <InfoPanel title="Official Community Path" rows={[
         ["Verification", "Use a Discord destination only when it is linked by Aniimo, Pawprint Studio, or another verified official Aniimo channel."],
@@ -1901,8 +1902,8 @@ function LiveIssueTable() {
       <h2>Current Issue Index</h2>
       <div className="table-shell freshness-table">
         <table>
-          <thead><tr><th>Issue</th><th>Affected scope</th><th>Status</th><th>Safe next step</th><th>Checked</th></tr></thead>
-          <tbody>{liveIssueRegistry.map((item) => <tr key={item.issue}><td>{item.issue}</td><td>{item.platforms}</td><td><StatusBadge status={item.status} /></td><td>{item.workaround} <a className="text-link" href={item.source} target="_blank" rel="noreferrer">Source</a></td><td>{item.checked}</td></tr>)}</tbody>
+          <thead><tr><th>Category</th><th>Issue</th><th>Affected scope</th><th>Status</th><th>Safe next step</th><th>Checked</th></tr></thead>
+          <tbody>{liveIssueRegistry.map((item) => <tr key={item.issue}><td>{item.category || "General"}</td><td>{item.issue}</td><td>{item.platforms}</td><td><StatusBadge status={item.status} /></td><td>{item.workaround} <a className="text-link" href={item.source} target="_blank" rel="noreferrer">Source</a></td><td>{item.checked}</td></tr>)}</tbody>
         </table>
       </div>
     </section>

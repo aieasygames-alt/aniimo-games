@@ -38,11 +38,11 @@ const homelandNotes = {
   ],
 };
 const knownIssueNotes = {
-  title: "Official known issues and fixes: October 29", source: "https://www.aniimo.com/newslist/detail/100275", checked: octoberReviewDate,
+  title: "Official known issues and fixes: November 4", source: "https://www.aniimo.com/newslist/detail/100275", checked: octoberReviewDate,
   points: [
-    ["Current issue examples", "The post-season notice lists Whisperwake Isles audio stutter, Holo-Battle quest completion, Irisalis Petal visibility, recipe recommendations, crop timers and Snap behavior as known issues."],
+    ["Current issue examples", "The latest dated section lists Egg Heist Giga-Egg wind, Storage Box state, Holo Training Ace, PS5 invitations, controller mail, evolution buttons and Stamp Rush fixes."],
     ["Safe Android workaround", "For the Stars and the Knight Journey freeze, the official notice suggests Performance Mode or disabling Shadows, or using the upper-right skip button."],
-    ["Recent fixes", "The notice records fixes for loading freezes, black screens, movement locks, outfit-related freezes, Elite Training input and storage-box display problems."],
+    ["Recent fixes", "The notice records fixes from October 29, October 30, November 2 and November 4. Treat each item as date-scoped rather than as proof that every current client is unaffected."],
     ["Version boundary", "A listed issue or fix belongs to the official notice date. Check the current client and later notices before treating it as still active."],
   ],
 };

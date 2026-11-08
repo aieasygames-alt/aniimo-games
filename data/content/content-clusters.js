@@ -1002,8 +1002,9 @@ export const searchSuggestionTopics = [
     points: [
       ["Steam PC setup", "Open Steam Library > Aniimo > Properties > Controller, disable Steam Input, restart Aniimo and retest. This is the official Steam FAQ path for controller problems and button prompts."],
       ["Console status", "Xbox and PlayStation 5 storefront paths are tracked. Native console control schemes should be verified by the live client or official platform documentation."],
-      ["September 30 update", "Patch v1.0.3629693.0 specifically improved controller progress-bar reward claiming. Restart the client to download the current resources before reporting a repeatable issue."],
+      ["Current post-update status", "The November 4 official fix notice includes controller mail reading, conflicting button assignments and PS5 team invitations. Check the current client before treating these dated fixes as unresolved."],
       ["Mobile and Steam Deck", "Mobile touch controls are distinct from Bluetooth controller support; Steam Deck compatibility, text size and controller mapping still need separate testing."],
+      ["Device matrix", "Use the PC Steam Input path only for Steam PC. Console, mobile and Steam Deck reports need platform, controller model, connection type, client build and reproduction steps."],
       ["How to report a problem", "Record platform, controller model, connection type, input issue, game version and timestamp. Route crashes or black screens to Known Issues."],
     ],
     faq: [

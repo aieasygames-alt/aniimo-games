@@ -4,7 +4,7 @@ import { eventStatus, eventSchedule, liveUpdate } from "../data/content/freshnes
 import { fieldNotesForPath } from "../data/content/october-field-notes.js";
 
 const weekly = liveUpdate.events.find((event) => event.recurrence);
-const inferlupa = liveUpdate.events.find((event) => event.startDate);
+const inferlupa = liveUpdate.events.find((event) => event.name.includes("Inferlupa"));
 test("weekly windows respect UTC+8 opening, closing and next cycle", () => {
   for (const [date, expected] of [
     ["2026-10-15T03:59:59+08:00", "Closed this week"],

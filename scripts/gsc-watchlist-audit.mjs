@@ -47,6 +47,9 @@ function resolveWatchlistPath(query) {
   if (value.includes("junior")) return "/rewards/junior-wayfarer/";
   if (value.includes("milestone")) return "/rewards/milestones/";
   if (value.includes("server")) return "/troubleshooting/aniimo-server-status/";
+  if (value.includes("parameter error") || value.includes("network request failed") || value.includes("report bug")) return "/troubleshooting/aniimo-known-issues/";
+  if (value.includes("somniwing")) return "/aniimo/somniwing/";
+  if (value.includes("infergon")) return "/aniimo/infergon/";
   if (value.includes("logo")) return "/media/aniimo-logo/";
   if (value.includes("demo")) return "/topics/aniimo-demo/";
   if (value.includes("developer")) return "/compare/aniimo-developer/";
