@@ -52,10 +52,7 @@ if (issues.length) {
 console.log(`Live audit passed: ${requiredPages.length} required URLs, ${sitemapSample.length} sampled sitemap URLs, ${expected.length} sitemap routes expected.`);
 
 async function checkUrl(url, { sampled = false } = {}) {
-  const response = await fetch(url, { redirect: "manual" }).catch((error) => {
-    issues.push(`Failed to fetch ${url}: ${error.message}`);
-    return null;
-  });
+  const response = await fetchWithRetry(url);
   if (!response) return;
 
   if (response.status < 200 || response.status >= 400) {
@@ -95,10 +92,7 @@ function sampleUrls(urls, limit) {
 }
 
 async function checkCanonicalHostRedirect(url) {
-  const response = await fetch(url, { redirect: "manual" }).catch((error) => {
-    issues.push(`Failed to fetch ${url}: ${error.message}`);
-    return null;
-  });
+  const response = await fetchWithRetry(url);
   if (!response) return;
 
   const expected = url.replace("https://www.aniimo.games", siteUrl);
@@ -109,4 +103,21 @@ async function checkCanonicalHostRedirect(url) {
   if (response.headers.get("location") !== expected) {
     issues.push(`www redirect target mismatch for ${url}: ${response.headers.get("location") || "missing"}`);
   }
+}
+
+async function fetchWithRetry(url) {
+  const delays = [0, 500, 1500];
+  let lastError;
+
+  for (const delay of delays) {
+    if (delay) await new Promise((resolve) => setTimeout(resolve, delay));
+    try {
+      return await fetch(url, { redirect: "manual" });
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  issues.push(`Failed to fetch ${url} after ${delays.length} attempts: ${lastError?.message || "unknown error"}`);
+  return null;
 }

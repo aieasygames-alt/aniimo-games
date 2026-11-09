@@ -126,7 +126,7 @@ export function HomePage(props) {
           <div className="player-desk-grid">
             <article><span className="eyebrow">01 / This week's windows</span><h2>Check before traveling</h2><p>Source-dated activities, weekly opening times and windows that need a client check.</p><a href="/events/">Open event calendar <ChevronRight size={16} /></a></article>
             <article><span className="eyebrow">02 / Something went wrong</span><h2>Find the right fix</h2><p>Separate server maintenance from account, device and client issues.</p><a href="/troubleshooting/aniimo-known-issues/">Troubleshoot an issue <ChevronRight size={16} /></a></article>
-            <article><span className="eyebrow">03 / Go deeper</span><h2>Make your next run count</h2><p>Read the official Egg Heist explanation or plan a useful Homeland.</p><a href="/mechanics/egg-heist-rules/">Egg Heist rules <ChevronRight size={16} /></a><a href="/guides/aniimo-homeland-guide/">Homeland checklist <ChevronRight size={16} /></a></article>
+            <article><span className="eyebrow">03 / Go deeper</span><h2>Make your next run count</h2><p>Read the official Egg Heist explanation or optimize a useful Homeland.</p><a href="/mechanics/egg-heist-rules/">Egg Heist rules <ChevronRight size={16} /></a><a href="/guides/aniimo-homeland-guide/">Homeland optimizer <ChevronRight size={16} /></a></article>
           </div>
           <FieldNotes path="/" />
         </section>
