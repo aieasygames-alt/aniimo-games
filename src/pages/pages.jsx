@@ -35,6 +35,11 @@ function creatureSearchAnswer(item) {
 
 function gscWatchlistPath(query) {
   const value = query.toLowerCase();
+  if (value.includes("switch") || value.includes("nintendo")) return "/compare/is-aniimo-on-switch/";
+  if (value.includes("ps4")) return "/topics/aniimo-ps4/";
+  if (value.includes("maintenance") || value.includes("downtime") || value.includes("down") || value.includes("network") || value.includes("login") || value.includes("loading") || value.includes("bug") || value.includes("issue") || value.includes("error")) return "/troubleshooting/aniimo-server-status/";
+  if (value.includes("somniwing")) return "/aniimo/somniwing/";
+  if (value.includes("character") || value.includes("aniimo characters")) return "/aniimo/";
   if (value.includes("controller")) return "/topics/aniimo-controller-support/";
   if (value.includes("discord")) return "/topics/aniimo-discord/";
   if (value.includes("reddit")) return "/topics/aniimo-reddit/";
@@ -74,7 +79,7 @@ export function HomePage(props) {
           <div className="hero-copy">
             <p className="eyebrow">Independent Aniimo game guide</p>
             <h1>Aniimo map, locations, downloads and 90-creature database answers.</h1>
-            <p>{gameInfo.summary} Search the 90-entry database, find a creature's region, open a practical community map, use an official store path, or check current issues without sorting through rumor guides.</p>
+            <p>{gameInfo.summary} Start with server status, known issues, downloads or platform availability, then search the 90-entry database and source-labeled region guides without sorting through rumor fixes.</p>
             <div className="hero-actions">
               <a className="primary-action" href="/troubleshooting/aniimo-server-status/" onClick={(event) => props.navigate(event, "/troubleshooting/aniimo-server-status/")}>
                 <CheckCircle2 size={18} />
@@ -104,6 +109,16 @@ export function HomePage(props) {
           <div className="answer-card"><strong>Live</strong><span>PC and console platforms</span><a href="/download/" onClick={(event) => props.navigate(event, "/download/")}>Open download guide <ChevronRight size={15} /></a></div>
           <div className="answer-card"><strong>{activeEventCount}</strong><span>Version 1.1 events active now</span><a href="/events/" onClick={(event) => props.navigate(event, "/events/")}>Check events <ChevronRight size={15} /></a></div>
           <div className="answer-card"><strong>{aniimo.length}</strong><span>public Aniimo entries</span><a href="/aniimo/" onClick={(event) => props.navigate(event, "/aniimo/")}>Open database <ChevronRight size={15} /></a></div>
+        </section>
+
+        <section className="section" aria-label="Live player support shortcuts">
+          <SectionTitle icon={<CheckCircle2 />} kicker="Live player support" title="Answer the urgent question first" />
+          <div className="quick-grid">
+            <QuickCard icon={<CheckCircle2 />} title="Is Aniimo down?" text="See the dated status, maintenance history and what to check when only your account is affected." href="/troubleshooting/aniimo-server-status/" navigate={props.navigate} />
+            <QuickCard icon={<BookOpen />} title="Known issue or bug?" text="Match login, loading, update, reward and controller symptoms to a safe next step." href="/troubleshooting/aniimo-known-issues/" navigate={props.navigate} />
+            <QuickCard icon={<Download />} title="Where can I play?" text="Compare confirmed PC, console and mobile paths, including the unconfirmed Switch and PS4 questions." href="/download/" navigate={props.navigate} />
+            <QuickCard icon={<Search />} title="Find an Aniimo" text="Search the database by name, stage, element, role or region, with watchlist fields clearly marked." href="/aniimo/" navigate={props.navigate} />
+          </div>
         </section>
 
         <section className="section player-entry-grid" aria-label="Aniimo game starting points">
@@ -1096,7 +1111,7 @@ function ControllerTroubleshootingFlow({ navigate }) {
   );
 }
 
-export function LaunchTrackerPage() {
+export function LaunchTrackerPage({ navigate }) {
   return (
     <section className="section updates-band">
       <SectionTitle icon={<CalendarDays />} kicker="Launch" title="Aniimo Launch Tracker" />
@@ -1821,6 +1836,8 @@ export function TopicGuidePage({ topic, kicker, icon, children, navigate }) {
       {statusEntry && <LaunchStatusPanel title="Answer Status" entries={[statusEntry]} />}
       {intentStatus && <InfoPanel title="What We Are Checking Next" rows={[["Next check", intentStatus.action], ["Page", topic.title]]} />}
       {topic.slug === "aniimo-server-status" && <LiveSupportStatus />}
+      {topic.slug === "is-aniimo-on-switch" && <InfoPanel title="Nintendo Switch Status" rows={[["Current answer", "Aniimo.games does not treat Nintendo Switch or Switch 2 as confirmed without an official store listing or platform announcement."], ["Confirmed paths", "Current tracking covers PC, PlayStation 5, Xbox, iOS and Android storefronts."], ["Next check", `Review official Aniimo news and the source archive. Last site review: ${sourceLastChecked}.`], ["Avoid confusion", "A search result, community post or compatibility question is not evidence of a confirmed Switch release."]]}/>}
+      {topic.slug === "aniimo-ps4" && <InfoPanel title="PlayStation Availability Status" rows={[["Current answer", "Aniimo.games tracks PlayStation 5 through the official listing; PS4 is not treated as confirmed."], ["What to verify", "Check the official PlayStation listing and Aniimo news for any separate PS4 announcement."], ["Next step", "If you already have access problems, use Server Status and Known Issues instead of assuming the console is unsupported."], ["Last site review", sourceLastChecked]]}/>}
       <FieldNotes path={`/${topic.slug}/`} />
       {topic.slug === "aniimo-known-issues" && <FieldNotes path="/troubleshooting/aniimo-known-issues/" />}
       <FieldNotes path={`/mechanics/${topic.slug}/`} />
@@ -1883,6 +1900,11 @@ function LiveSupportStatus() {
         ["Platform scope", liveSupportStatus.platformScope],
         ["What this means", liveSupportStatus.summary],
       ]} />
+      <div className="hero-actions section-actions">
+        <a className="primary-action" href="/troubleshooting/aniimo-known-issues/">Open known issues <ChevronRight size={16} /></a>
+        <a className="secondary-action" href="/download/">Check official downloads <ChevronRight size={16} /></a>
+        <a className="secondary-action" href="/topics/aniimo-discord/">Open community source path <ChevronRight size={16} /></a>
+      </div>
       <section className="related-section">
         <h2>Confirmed Maintenance History</h2>
         <div className="table-shell freshness-table">
@@ -1900,6 +1922,7 @@ function LiveIssueTable() {
   return (
     <section className="related-section">
       <h2>Current Issue Index</h2>
+      <p className="section-copy">Use the table as a triage index, not proof that every player report is a confirmed defect. Check the platform, client version, region, exact error and last-checked date before changing account settings or reinstalling.</p>
       <div className="table-shell freshness-table">
         <table>
           <thead><tr><th>Category</th><th>Issue</th><th>Affected scope</th><th>Status</th><th>Safe next step</th><th>Checked</th></tr></thead>
