@@ -219,7 +219,9 @@ export function findRegionBySlug(slug) {
 
 export function resolveRoute(path) {
   const normalized = normalizePath(path);
-  if (isMaintenanceNoindexRoute(normalized)) {
+  // The launch tracker is a real player-facing status hub. Keep it noindex
+  // while preserving a 200 response so old crawled links do not become 404s.
+  if (isMaintenanceNoindexRoute(normalized) && normalized !== "/launch-tracker/") {
     return {
       type: "not-found",
       path: normalized,
@@ -509,6 +511,8 @@ export function primarySitemapRoutes() {
 export function prerenderRoutes() {
   return uniqueRoutes([
     ...fullSitemapRoutes(),
+    // Keep this noindex support hub crawlable as a real 200 page.
+    "/launch-tracker/",
     ...archivedNoindexRoutes,
     ...aniimo.flatMap((item) => (item.aliases || []).map((alias) => normalizePath(`/aniimo/${alias}`))),
   ]);

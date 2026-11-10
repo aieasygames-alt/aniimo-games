@@ -717,7 +717,7 @@ export const socialIntentTopics = [
   {
     slug: "is-aniimo-on-switch",
     title: "Is Aniimo on Nintendo Switch?",
-    description: "Track whether Aniimo has an official Nintendo Switch or Switch 2 listing and explain the currently confirmed platforms.",
+    description: "Is Aniimo on Switch or Switch 2? Check the direct availability answer, official listing status and currently confirmed platforms.",
     intro: "Switch availability is a high-impression community question for creature-collecting games. Answer Switch and Switch 2 directly, then point players to the confirmed platforms without inventing an unconfirmed release.",
     points: [
       ["Current confirmed platforms", "Confirmed tracking covers official website, Steam, Epic Games Store, Xbox, PlayStation 5, App Store and Google Play."],
@@ -1036,7 +1036,7 @@ export const searchSuggestionTopics = [
   {
     slug: "aniimo-ps4",
     title: "Is Aniimo on PS4?",
-    description: "Track Aniimo PS4 availability questions, confirmed PS5 listing status and safe PlayStation download guidance.",
+    description: "Is Aniimo on PS4? Check the direct PS4 answer, confirmed PS5 listing status and safe PlayStation download guidance.",
     intro: "PS4 searches are natural because Aniimo has PlayStation demand. Answer the PS4 status directly, separate confirmed PS5 tracking from older-console availability, and point players to current PlayStation paths.",
     points: [
       ["Confirmed PlayStation path", "Aniimo.games tracks PlayStation 5 through the official PlayStation listing."],

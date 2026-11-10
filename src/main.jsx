@@ -38,6 +38,7 @@ import {
   HomePage,
   LaunchDayPage,
   LaunchHubPage,
+  LaunchTrackerPage,
   MediaPage,
   LocationTopicPage,
   MapPage,
@@ -274,6 +275,8 @@ function App() {
           <EventsPage navigate={navigate} />
         ) : routeInfo.path === "/launch-day/" ? (
           <LaunchDayPage navigate={navigate} />
+        ) : routeInfo.path === "/launch-tracker/" ? (
+          <LaunchTrackerPage navigate={navigate} />
         ) : routeInfo.path === "/sources/" ? (
           <SourcesPage />
         ) : routeInfo.path === "/site-index/" ? (
