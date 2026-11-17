@@ -86,6 +86,15 @@ export const liveSupportStatus = {
 
 export const liveIssueRegistry = [
   {
+    issue: "November 12 update: new features and fixes",
+    category: "Version",
+    platforms: "All platforms; check the current client after maintenance",
+    status: "Verified",
+    workaround: "Restart after maintenance. Check Aniimo Affinity, Aniimo Dash, Prismana Snapshots and the in-match Egg Heist report button in the current client.",
+    source: officialLinks.novemberTwelveUpdate,
+    checked: sourceLastChecked,
+  },
+  {
     issue: "November patch and post-update fixes",
     category: "Version",
     platforms: "All platforms; exact client build should be checked in-game",

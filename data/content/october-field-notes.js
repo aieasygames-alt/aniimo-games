@@ -38,11 +38,11 @@ const homelandNotes = {
   ],
 };
 const knownIssueNotes = {
-  title: "Official known issues and fixes: November 4", source: "https://www.aniimo.com/newslist/detail/100275", checked: octoberReviewDate,
+  title: "Official known issues and fixes: November 12", source: "https://www.aniimo.com/newslist/detail/100298", checked: "2026-11-14",
   points: [
-    ["Current issue examples", "The latest dated section lists Egg Heist Giga-Egg wind, Storage Box state, Holo Training Ace, PS5 invitations, controller mail, evolution buttons and Stamp Rush fixes."],
+    ["Current issue examples", "The November 12 notice adds an in-match Egg Heist report button, mobile control-area adjustments, camera and storage improvements, and new PS5/Xbox fixes; the linked known-issues page retains older dated items."],
     ["Safe Android workaround", "For the Stars and the Knight Journey freeze, the official notice suggests Performance Mode or disabling Shadows, or using the upper-right skip button."],
-    ["Recent fixes", "The notice records fixes from October 29, October 30, November 2 and November 4. Treat each item as date-scoped rather than as proof that every current client is unaffected."],
+    ["Recent fixes", "The official notices record fixes from October 29 through November 12. Treat each item as date-scoped rather than as proof that every current client is unaffected."],
     ["Version boundary", "A listed issue or fix belongs to the official notice date. Check the current client and later notices before treating it as still active."],
   ],
 };
@@ -54,10 +54,10 @@ export function fieldNotesForPath(path) {
   return [];
 }
 export const updateOutlook = {
-  title: "Season 1 Part 2: confirmed launch and next checks", source: "https://steamcommunity.com/app/4126040/announcements/", checked: octoberReviewDate,
+  title: "November 12 update: confirmed features and next checks", source: "https://aniimo.com/newslist/detail/100298", checked: "2026-11-14",
   points: [
-    ["Confirmed launch", "The October 29 official notice confirms Whisperwake Isles, 51 new Aniimo, new PvP activities and the Season 1 Part 2 maintenance window."],
-    ["Next verification", "Check current-client unlock requirements, the four new region names, PvP opening windows, event rewards and the post-update issue list before publishing detailed routes."],
+    ["Confirmed update", "The November 12 official notice confirms Aniimo Affinity, two Crescent Bay Journey Quests, Aniimo Dash, Prismana Snapshots, Whirlbite reset support and platform/mobile fixes."],
+    ["Next verification", "Check Affinity daily and weekly gain limits, event rewards, racing track conditions, in-match report behavior and the current client before publishing detailed guides."],
     ["Do not overstate", "Creator videos and search snippets can suggest strategies or names, but they do not replace the official notice or reproducible in-game evidence."],
   ],
 };

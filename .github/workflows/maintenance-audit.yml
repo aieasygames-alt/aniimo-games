@@ -1,0 +1,39 @@
+name: Aniimo maintenance audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aniimo-maintenance-audit
+  cancel-in-progress: true
+
+jobs:
+  audit-and-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run production checks
+        run: |
+          npm run check:live
+          npm run check:assets
+          npm run check:official
+
+      - name: Submit current sitemap URLs to IndexNow
+        run: npm run submit:indexnow
