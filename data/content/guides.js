@@ -196,6 +196,7 @@ export const faqs = {
 };
 
 export const updates = [
+  { date: "2026-11-14", title: "November 12 update and current event support refreshed", text: "Updated the current patch to Aniimo Affinity, Aniimo Dash, Prismana Snapshots, Whirlbite reset support and the November 12 platform, mobile and Egg Heist fixes. Event windows now use the official November notice where available." },
   { date: "2026-11-08", title: "November fixes and Season 1 Part 2 event windows refreshed", text: "Updated the directly verified issue log through November 4, added Aniimo Go! and the three Prismana Photo phases from the Season 1 Part 2 notice, and kept the November 6 build signal pending primary-source verification." },
   { date: "2026-10-30", title: "Season 1 Part 2 and post-update support coverage refreshed", text: "Updated the current version to the October 29 Season 1 Part 2 launch, added Whisperwake Isles, 51 new Aniimo, 1v1 Spar and Egg Heist PvP coverage, and added the official iOS storage notice and post-update known-issues source." },
   { date: "2026-10-20", title: "October 15–17 update and known-issues coverage refreshed", text: "Added the October 15 Home Season and Harvest Gathering update, linked the October 16 known-issues notice, and separated recent fixes from unresolved platform and reward problems." },
