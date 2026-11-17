@@ -1,6 +1,6 @@
 # Aniimo.games Project Requirements
 
-Last updated: 2026-08-28
+Last updated: 2026-11-14
 
 ## Goal
 
@@ -13,7 +13,7 @@ Build Aniimo.games as an SEO-focused Aniimo wiki and guide site that attracts se
 - Search setup: Google Search Console and Bing Webmaster sitemap submitted
 - Framework: Vite + React static site with build-time sitemap generation and static route prerendering
 - Canonical URL policy: trailing-slash canonical URLs
-- Content coverage: 89 local Aniimo entries, 6 public regions, official platform links, release dates, rewards, mechanics, official feature guides, social-intent comparison pages, search-topic pages, glossary terms, troubleshooting pages, media gallery and source archive
+- Content coverage: 90 local Aniimo entries, 6 modeled regions, Season 1 Part 2 and November 12 update coverage, official platform links, release dates, rewards, mechanics, official feature guides, social-intent comparison pages, search-topic pages, glossary terms, troubleshooting pages, media gallery and source archive
 - Current content-development focus: official feature extraction, social discussion search intent, search-suggestion pages, support content, source freshness and post-launch verification readiness
 
 ## Completed
@@ -177,7 +177,7 @@ Completed first public monitoring layer:
 
 Remaining monitoring work:
 
-- Add scheduled execution for `check:live`, `check:official`, `check:assets` and `submit:indexnow` so new changes are checked after each deployment.
+- GitHub Actions workflow `.github/workflows/maintenance-audit.yml` now schedules `check:live`, `check:official`, `check:assets` and `submit:indexnow` daily, with manual dispatch available.
 - Record which checks are blocking, warning or informational so the release gate stays readable.
 - Alert when sitemap size, canonical consistency, missing assets or live page failures change unexpectedly.
 

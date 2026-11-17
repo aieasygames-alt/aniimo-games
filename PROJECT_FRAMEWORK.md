@@ -383,13 +383,15 @@ npm run check:live
 
 ## Current Baseline
 
-As of 2026-08-28:
+As of 2026-11-14:
 
-- 128 sitemap routes
-- 130 prerender routes, including alias redirect routes
-- 89 Aniimo detail pages
-- 6 region pages
-- 98 referenced production assets
+- 136 sitemap routes
+- 271 prerendered HTML routes, including alias redirect routes
+- 90 Aniimo detail pages
+- 6 modeled region pages plus a separate Whisperwake Isles verification queue
+- 122 referenced production assets
+- November 12 update and current event/support content are source-labeled through the latest directly verified official notice
 - `npm run build` passes
+- `npm run check:release` passes
 - `npm run check:framework` passes
 - `npm run check:seo` passes
