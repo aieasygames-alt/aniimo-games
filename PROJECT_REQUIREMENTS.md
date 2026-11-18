@@ -1,6 +1,6 @@
 # Aniimo.games Project Requirements
 
-Last updated: 2026-11-14
+Last updated: 2026-11-18
 
 ## Goal
 
@@ -177,7 +177,7 @@ Completed first public monitoring layer:
 
 Remaining monitoring work:
 
-- GitHub Actions workflow `.github/workflows/maintenance-audit.yml` now schedules `check:live`, `check:official`, `check:assets` and `submit:indexnow` daily, with manual dispatch available.
+- GitHub Actions workflow `.github/workflows/maintenance-audit.yml` schedules `check:live`, `check:official`, `check:assets` and `submit:indexnow` daily, with manual dispatch available. The monitoring report now documents that IndexNow runs in this workflow.
 - Record which checks are blocking, warning or informational so the release gate stays readable.
 - Alert when sitemap size, canonical consistency, missing assets or live page failures change unexpectedly.
 
@@ -192,6 +192,7 @@ Remaining performance work:
 - Audit hero, region and mechanic images for responsive delivery and tighter file budgets.
 - Review bundle size and route chunking for pages that still carry multiple feature groups.
 - Continue shrinking any new media before shipping it into `public`.
+- Vite already separates vendor, pages, components, routes, SEO and content chunks; validate the output after each content release and avoid adding a new large shared dependency.
 
 ### Priority 7: Core Search Page Expansion
 
@@ -238,6 +239,7 @@ Remaining after launch:
 
 - Fill the prepared templates with official or in-game verified data.
 - Update related Aniimo detail pages, region pages, codes page and launch tracker from the verified records.
+- The November 18 Webmaster snapshot now feeds the GSC observation panel and query watchlist; the daily export still ends November 15.
 
 ### Priority 9: Internal Linking Hub
 

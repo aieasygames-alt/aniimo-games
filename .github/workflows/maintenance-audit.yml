@@ -30,10 +30,15 @@ jobs:
         run: npm ci
 
       - name: Run production checks
-        run: |
-          npm run check:live
-          npm run check:assets
-          npm run check:official
+        run: npm run check:monitoring
+
+      - name: Upload monitoring report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aniimo-monitoring-report
+          path: monitoring-report.md
+          if-no-files-found: warn
 
       - name: Submit current sitemap URLs to IndexNow
         run: npm run submit:indexnow
