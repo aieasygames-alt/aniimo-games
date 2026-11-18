@@ -30,7 +30,7 @@ ${results.map((result) => `| ${result.name} | ${result.level} | ${result.passed 
 
 - Blocking failures: ${blockingFailures.length || "None"}
 - Warning failures: ${warnings.length || "None"}
-- IndexNow is intentionally not run automatically. Submit it only after a successful deployment changes indexable URLs.
+- IndexNow runs in the scheduled GitHub Actions maintenance workflow after the production checks. Re-run it manually after a deployment that changes indexable URLs if the workflow was skipped.
 `;
 
 writeFileSync("monitoring-report.md", report);

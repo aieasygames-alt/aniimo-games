@@ -647,10 +647,10 @@ export const officialPitchTopics = [
   },
   {
     slug: "aniimo-homeland-guide",
-    title: "Aniimo Homeland Optimizer & Guide",
-    description: "Optimize your Aniimo Homeland with RV planning, Home Coin priorities, production layout, crops, facilities and source-aware setup guidance.",
+    title: "Aniimo Homeland Layout Guide: RV, Production & Home Coins",
+    description: "Plan an Aniimo Homeland layout by RV level, production goal, Home Coins, crops, facilities and worker coverage without claiming one universal best build.",
     image: "/images/mechanics/mechanic-homeland.webp",
-    intro: "Use this Homeland optimizer as a repeatable planning loop rather than a promise of one universal best layout. Start with your RV level and immediate goal, list the facilities and plots you actually own, then compare production, Home Coin needs, worker coverage, travel distance and combat opportunity cost. Exact Park Buff recipes, production values and stacking rules remain client-verification fields.",
+    intro: "Looking for an Aniimo Homeland layout? Start with one goal—RV progression, production or Home Coins—then place the facilities and plots you can actually use in a short daily route. This guide gives a practical setup checklist while keeping Park Buff recipes, exact production values and stacking rules in the client-verification queue.",
     points: [
       ["Personal RV", "Official text presents the RV as part of the player's personal home base."],
       ["Optimize in the right order", "Set a goal first: reach the next RV level, produce a needed material, or improve daily Home Coins. Then check unlocked plots, facilities, recipes, storage and worker coverage before rearranging decoration."],
@@ -1098,9 +1098,9 @@ export const searchSuggestionTopics = [
   },
   {
     slug: "aniimo-reddit",
-    title: "Aniimo Reddit: Community Updates & Verified Answers",
-    description: "Looking for Aniimo Reddit discussions? Find the questions players are asking, official answer paths for launch, codes and servers, and community safety guidance.",
-    intro: "Aniimo Reddit searches usually mean players want current discussion, not an unverified rumor archive. Start with the community question below, then use the linked official answer path for downloads, codes, server status and named creatures.",
+    title: "Aniimo Reddit: Community Signals & Official Answers",
+    description: "Find Aniimo Reddit discussion topics, then follow official answer paths for servers, downloads, codes, bugs and named creatures without treating posts as proof.",
+    intro: "Looking for Aniimo Reddit discussions? Use this page to identify recurring player questions, then jump to the official or live-verified answer path for servers, downloads, codes, bugs and named creatures. Reddit is a demand signal, not an official source.",
     points: [
       ["Useful signal", "Reddit can surface repeated questions about platforms, launch timing, Discord, codes, bugs, AI concerns and multiplayer expectations."],
       ["Verification boundary", "Community posts should become research leads, not confirmed guide claims, until official or in-game evidence supports them."],

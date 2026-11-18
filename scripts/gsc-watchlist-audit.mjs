@@ -41,6 +41,8 @@ function resolveWatchlistPath(query) {
   if (value.includes("geschenkcode")) return "/codes/";
   if (value.includes("reroll")) return "/aniimo-reroll-guide/";
   if (value.includes("guide")) return "/guides/";
+  if (value.includes("homeland")) return "/guides/aniimo-homeland-guide/";
+  if (value.includes("characters")) return "/topics/aniimo-characters/";
   if (value.includes("celestis")) return "/aniimo/celestis/";
   if (value.includes("inferlupa")) return "/aniimo/inferlupa/";
   if (value.includes("glacy")) return "/aniimo/glacy/";
@@ -48,6 +50,7 @@ function resolveWatchlistPath(query) {
   if (value.includes("milestone")) return "/rewards/milestones/";
   if (value.includes("server")) return "/troubleshooting/aniimo-server-status/";
   if (value.includes("parameter error") || value.includes("network request failed") || value.includes("report bug")) return "/troubleshooting/aniimo-known-issues/";
+  if (value.includes("loading after update")) return "/troubleshooting/aniimo-known-issues/";
   if (value.includes("somniwing")) return "/aniimo/somniwing/";
   if (value.includes("infergon")) return "/aniimo/infergon/";
   if (value.includes("logo")) return "/media/aniimo-logo/";
