@@ -16,12 +16,11 @@ const candidates = uniq([
   legacyWikiUrl,
 ]);
 const probes = await Promise.all(candidates.map(fetchText));
-const sourceFetch = probes.find((result) => result.url === wikiHomeUrl && result.ok && extractWikiAniimo(result.text).length > 0)
-  || probes.find((result) => result.ok && extractWikiAniimo(result.text).length > 0)
-  || probes.find((result) => result.ok);
+const isAggregateSource = (url) => url === wikiHomeUrl || /\/item\/\d+\/basic-form\/?$/.test(url);
+const sourceFetch = probes.find((result) => isAggregateSource(result.url) && result.ok && extractWikiAniimo(result.text).length > 20);
 
 if (!sourceFetch) {
-  throw new Error("Failed to find a fetchable official Wiki source.");
+  throw new Error("Failed to find a complete aggregate official Wiki source; refusing to sync from a single variant detail route.");
 }
 
 const officialEntries = extractWikiAniimo(sourceFetch.text);
@@ -118,7 +117,7 @@ function extractWikiCandidates(html) {
     .map((match) => match[1].replaceAll("\\/", "/"))
     .map((value) => value.startsWith("/") ? `https://wiki.aniimo.com${value}` : value)
     .filter((value) => value.startsWith("https://wiki.aniimo.com/"))
-    .filter((value) => /item|wiki|aniimo/i.test(value))).slice(0, 12);
+    .filter((value) => /item\/\d+\/basic-form(?:\/\d+)?\/?$/i.test(value))).slice(0, 120);
 }
 
 function uniq(values) {
