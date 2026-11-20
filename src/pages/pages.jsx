@@ -2046,6 +2046,36 @@ function topicRelatedLinks(topic) {
 
 function topicExactRelatedLinks(slug) {
   const map = {
+    "aniimo-download": [
+      ["Aniimo Mobile", "/pt-br/aniimo-mobile/", "Verifique Android, iOS, conta e disponibilidade regional"],
+      ["Problemas conhecidos", "/troubleshooting/aniimo-known-issues/", "Confira login, atualização, armazenamento e instalação"],
+      ["Site oficial", "/pt-br/aniimo-site-oficial/", "Abra os links oficiais e evite instaladores modificados"],
+    ],
+    "aniimo-codigos": [
+      ["Recompensas", "/pt-br/aniimo-recompensas/", "Separe recompensas de campanha de códigos ativos"],
+      ["Pré-registro", "/pt-br/aniimo-pre-registro/", "Verifique conta, campanha e entrega de itens"],
+      ["Problemas conhecidos", "/troubleshooting/aniimo-known-issues/", "Confira problemas de resgate, login e correio dentro do jogo"],
+    ],
+    "aniimo-pre-registro": [
+      ["Aniimo Mobile", "/pt-br/aniimo-mobile/", "Verifique loja, país, dispositivo e conta"],
+      ["Recompensas", "/pt-br/aniimo-recompensas/", "Consulte status de campanha e entrega"],
+      ["Códigos", "/pt-br/aniimo-codigos/", "Não confunda recompensa de pré-registro com código ativo"],
+    ],
+    "aniimo-mobile": [
+      ["Download oficial", "/pt-br/aniimo-download/", "Abra as fontes oficiais para Android, iOS e PC"],
+      ["Pré-registro e recompensas", "/pt-br/aniimo-pre-registro/", "Confira campanhas antigas e entrega de itens"],
+      ["Problemas conhecidos", "/troubleshooting/aniimo-known-issues/", "Resolva login, atualização e instalação"],
+    ],
+    "aniimo-site-oficial": [
+      ["Download oficial", "/pt-br/aniimo-download/", "Escolha uma loja oficial para o seu dispositivo"],
+      ["Status do servidor", "/troubleshooting/aniimo-server-status/", "Confira manutenção e problemas de login"],
+      ["Códigos e recompensas", "/pt-br/aniimo-codigos/", "Use apenas anúncios e fontes verificadas"],
+    ],
+    "aniimo-launch-tracker": [
+      ["Status do servidor", "/troubleshooting/aniimo-server-status/", "Confira manutenção, disponibilidade e login"],
+      ["Download oficial", "/pt-br/aniimo-download/", "Abra a loja oficial adequada ao seu dispositivo"],
+      ["Códigos e recompensas", "/pt-br/aniimo-codigos/", "Verifique campanhas, códigos e status de entrega"],
+    ],
     "aniimo-cross-save": [
       ["Crossplay", "/compare/aniimo-crossplay/", "Compare platform matchmaking status"],
       ["Platform Pages", "/download/", "Check official platform availability"],
@@ -2667,6 +2697,7 @@ export function AniimoDetail({ item, navigate, localized = false }) {
         </dl>
       </section>}
       {!pt && highIntentAniimoIds.has(item.id) && <InfoPanel title={`${item.name}: Search Answer`} rows={creatureSearchAnswer(item)} />}
+      {pt && <InfoPanel title="Resumo em português" rows={[["Identidade", `${item.name} é o Aniimo nº ${item.no}.`], ["Classificação", `${item.element}, função ${item.role}, estágio ${item.stage}.`], ["Região", `${item.region}. Esta é uma associação de fonte, não uma coordenada exata.`], ["Verificação", `Localização, evolução e requisitos exatos devem ser conferidos com fonte oficial ou evidência reproduzível. Revisado em ${sourceLastChecked}.`]]} />}
       <div className="detail-panels">
         {!pt && <EvidenceCard conclusion={`${item.name} is tracked under ${item.region}`} status={item.status} source={item.source} checked={sourceLastChecked} next={`Open the ${item.region} region guide or compare ${item.name}.`} />}
         {!pt && eventAvailability && <InfoPanel title={eventAvailability.title} rows={[["Official event detail", eventAvailability.detail], ["Event status", linkedEvent ? eventStatus(linkedEvent) : "Watchlist"], ["Schedule", linkedEvent ? eventSchedule(linkedEvent) : "Check official update"], ["Source rule", "This is event availability, not a permanent spawn route or exact coordinate."]]} />}
