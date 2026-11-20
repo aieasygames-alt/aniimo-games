@@ -4,10 +4,7 @@ import { aniimo, regions, releaseInfo } from "../data/content.js";
 const officialMain = "https://www.aniimo.com/main";
 const officialWikiHome = "https://wiki.aniimo.com/";
 const legacyWikiProbe = "https://wiki.aniimo.com/item/10002877";
-const officialItemNumbers = [
-  ...Array.from({ length: 82 }, (_, index) => String(index + 1).padStart(3, "0")),
-  "10002", "10003", "11001", "99996", "99998",
-];
+
 const reportPath = "official-update-report.md";
 const snapshotPath = "official-wiki-snapshot.json";
 const newsSnapshotPath = "official-news-snapshot.json";
@@ -40,7 +37,7 @@ function extractWikiCandidates(html) {
     .map((match) => match[1].replaceAll("\\/", "/"))
     .map((value) => value.startsWith("/") ? `https://wiki.aniimo.com${value}` : value)
     .filter((value) => value.startsWith("https://wiki.aniimo.com/"));
-  return uniq(urls).filter((url) => /\/item\/\d+\/basic-form$/.test(url));
+  return uniq(urls).filter((url) => /\/item\/\d+\/basic-form(?:\/\d+)?\/?$/.test(url));
 }
 
 function extractWikiAniimo(html) {
@@ -51,6 +48,27 @@ function extractWikiAniimo(html) {
     image,
     description,
   }));
+}
+
+function extractWikiIndexEntries(html) {
+  const entries = [];
+  const anchorPattern = /<a href="([^"]+)"[\s\S]*?<\/a>/g;
+  for (const match of html.matchAll(anchorPattern)) {
+    let url;
+    try {
+      url = new URL(match[1], officialWikiHome);
+    } catch {
+      continue;
+    }
+    if (url.hostname !== "wiki.aniimo.com" || !/^\/item\/\d+\/basic-form(?:\/\d+)?\/?$/.test(url.pathname)) continue;
+    const spans = [...match[0].matchAll(/<span[^>]*>([^<]+)<\/span>/g)]
+      .map((span) => span[1].trim())
+      .filter(Boolean);
+    const name = match[0].match(/class="[^"]*text-center[^"]*"[\s\S]*?<span[^>]*>([^<]+)<\/span>/)?.[1]?.trim() || spans.at(-1);
+    const number = url.pathname.match(/^\/item\/(\d+)\//)?.[1];
+    if (number && name) entries.push({ no: number, name });
+  }
+  return [...new Map(entries.map((entry) => [`${entry.no}:${entry.name}`, entry])).values()];
 }
 
 function extractRegions(html) {
@@ -99,7 +117,6 @@ const wikiCandidates = uniq([
   ...extractWikiCandidates(mainFetch.text),
   ...extractWikiCandidates(wikiHomeFetch.text),
   legacyWikiProbe,
-  ...officialItemNumbers.map((number) => `https://wiki.aniimo.com/item/${number}/basic-form`),
 ]);
 const wikiFetches = await Promise.all(wikiCandidates.map(fetchText));
 const wikiFetch = wikiFetches.find((result) => result.ok && extractWikiAniimo(result.text).length > 0)
@@ -107,12 +124,13 @@ const wikiFetch = wikiFetches.find((result) => result.ok && extractWikiAniimo(re
   || wikiFetches[0];
 const mainHtml = mainFetch.text;
 const wikiHtml = wikiFetch.text;
+const wikiIndexEntries = extractWikiIndexEntries(wikiHomeFetch.text);
 
 const officialAniimo = [...new Map(
   wikiFetches.flatMap((result) => result.ok ? extractWikiAniimo(result.text) : [])
     .map((item) => [item.no, item]),
 )].map(([, item]) => item);
-const itemProbeResults = wikiFetches.filter((result) => /\/item\/\d+\/basic-form$/.test(result.url));
+const itemProbeResults = wikiFetches.filter((result) => /\/item\/\d+\/basic-form(?:\/\d+)?\/?$/.test(result.url));
 const unavailableItemProbes = itemProbeResults
   .filter((result) => !result.ok)
   .map((result) => ({ number: result.url.match(/\/item\/(\d+)\//)?.[1] || "unknown", status: result.status, error: result.error }));
@@ -127,6 +145,9 @@ const missingLocally = wikiFetch.ok
   ? officialAniimo.filter((item) => !localNames.includes(item.name) && !localNumbers.includes(item.no)).map((item) => `${item.no} ${item.name}`)
   : [];
 const localOnly = wikiFetch.ok ? aniimo.filter((item) => !officialNames.includes(item.name) && !officialNumbers.includes(item.no)).map((item) => `${item.no} ${item.name}`) : [];
+const indexNames = new Set(wikiIndexEntries.map((item) => item.name));
+const indexMissingLocally = wikiIndexEntries.filter((item) => !localNames.includes(item.name)).map((item) => `${item.no} ${item.name}`);
+const localNotSeenInIndex = aniimo.filter((item) => !indexNames.has(item.name)).map((item) => `${item.no} ${item.name}`);
 const missingDescriptions = aniimo.filter((item) => !item.description || item.description.length < 20).map((item) => item.name);
 const watchlistEntries = aniimo.filter((item) => item.element === "Unknown" || item.role === "Watchlist" || item.region === "Official Wiki").map((item) => `${item.no} ${item.name}`);
 const regionNames = extractKnownRegionNames(mainHtml);
@@ -163,6 +184,7 @@ Generated: ${new Date().toISOString()}
 
 - Local Aniimo entries: ${aniimo.length}
 - Official Wiki entries found across individual item probes: ${officialAniimo.length}
+- Official Wiki index names found: ${wikiIndexEntries.length}
 - Wiki comparison mode: ${wikiIsLocalized ? "Localized names with number-first matching" : "Names with number-first fallback matching"}
 - Previous Wiki snapshot: ${previousSnapshot ? previousSnapshot.checkedAt : "None (baseline created this run)"}
 - Local regions: ${regions.length}
@@ -184,6 +206,18 @@ ${officialAniimo.length ? markdownList(missingLocally, "None") : "- Skipped beca
 ## Local Aniimo Not Seen In Probe
 
 ${officialAniimo.length ? markdownList(localOnly, "None") : "- Skipped because no fetchable official Wiki entry list was found."}
+
+## Official Wiki Index Entries Not In Local Data
+
+${markdownList(indexMissingLocally, "None")}
+
+These index names are candidate records for review. Do not sync them automatically when they lack a verified detail payload, image, description or stable number mapping.
+
+## Local Entries Not Seen In Official Wiki Index
+
+${markdownList(localNotSeenInIndex, "None")}
+
+Index absence is a review signal, not deletion evidence; preserve local entries until the official data source and route mapping are confirmed.
 
 ## Individual Wiki Item Probe Gaps
 

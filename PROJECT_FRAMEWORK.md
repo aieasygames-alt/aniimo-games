@@ -383,7 +383,7 @@ npm run check:live
 
 ## Current Baseline
 
-As of 2026-11-14:
+As of 2026-11-20:
 
 - 136 sitemap routes
 - 271 prerendered HTML routes, including alias redirect routes
