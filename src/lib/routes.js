@@ -13,8 +13,8 @@ export const staticRoutes = [
   {
     path: "/",
     label: "Home",
-    title: "Aniimo Wiki: Map, Download, Locations & 90-Creature Database",
-    description: "Find Aniimo map regions, creature locations, official downloads, current issues, updates and a 90-entry Aniimo database.",
+    title: "Aniimo Wiki: Server Status, Known Issues, Download & Database",
+    description: "Check Aniimo server status, known issues, official downloads, creature locations and the 90-entry Aniimo database.",
     nav: false,
   },
   { path: "/aniimo/", label: "Database", title: "All 90 Aniimo: Names, Locations & Evolutions", description: "Search all 90 public Aniimo entries by name, element, role, region, stage and evolution, with source and location-verification status." },

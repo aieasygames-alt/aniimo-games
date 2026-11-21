@@ -1,6 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { aniimo, gameInfo, launchPriorityPages, launchRewards, releaseInfo, regions, siteLastUpdated, sourceLastChecked } from "../data/content.js";
+import { aniimo, gameInfo, launchPriorityPages, launchRewards, releaseInfo, regions, searchPriorityAniimoIds, siteLastUpdated, sourceLastChecked } from "../data/content.js";
 import { aniimoPath, canonicalUrl, isIndexableAniimo, isNoindexRoute, pageFaqsForRoute, prerenderRoutes, resolveRoute, structuredDataForRoute } from "../src/lib/routes.js";
 import { localeForPath } from "../data/locales/index.js";
 import { fieldNotesForPath, updateOutlook } from "../data/content/october-field-notes.js";
@@ -10,7 +10,7 @@ const indexHtml = "dist/index.html";
 const indexTemplate = readFileSync(indexHtml, "utf8");
 // Alias URLs are handled by host-level redirects and should not get indexable HTML.
 const routes = prerenderRoutes().filter((route) => !["/aniimo/dreaple", "/aniimo/nimbi", "/aniimo/turbo"].includes(route));
-const priorityAniimoIds = ["celestis", "inferlupa", "glacy", "susuta", "emberpup", "eklue", "skippy"];
+
 
 function injectMeta(html, route) {
   const routeInfo = resolveRoute(route);
@@ -107,7 +107,8 @@ function fallbackBody(routeInfo) {
 
   if (routeInfo.detail) {
     const item = routeInfo.detail;
-    return `<section><h2>${escapeHtml(item.name)} at a glance</h2><p>${escapeHtml(item.description)}</p><dl><dt>Official index number</dt><dd>${escapeHtml(item.no)}</dd><dt>Element</dt><dd>${escapeHtml(item.element)}</dd><dt>Role</dt><dd>${escapeHtml(item.role)}</dd><dt>Stage</dt><dd>${escapeHtml(item.stage)}</dd><dt>Region</dt><dd>${escapeHtml(item.region)}</dd></dl><section><h2>Location and acquisition</h2><p>${escapeHtml(item.locationNote)}</p><p>${escapeHtml(item.acquisition)}</p><p>Region association is a starting point, not a precise spawn coordinate. Check current in-game conditions and the official source before relying on a route.</p></section><section><h2>Forms, abilities and team use</h2><p>${escapeHtml(item.evolution)}</p><p>${escapeHtml(item.ability)}</p><p>${escapeHtml(item.abilityUseCase)}</p><p>${escapeHtml(item.use)}</p></section><section><h2>Source and verification boundary</h2><p>${escapeHtml(item.sourceNote)}</p><p>Last reviewed: ${escapeHtml(sourceLastChecked)}. This entry is maintained from the official Aniimo Wiki and linked official sources; exact route, timing and balance claims are updated only after sufficient evidence is available.</p></section>`;
+    const somniwingAnswer = item.id === "somniwing" ? `<section><h2>Somniwing Search Answer</h2><p>Somniwing is listed as a Dark Support Aniimo at Nova Stage.</p><p>The Forest of Falling Stars entry is a source-labeled region association, not an exact capture route.</p><p>Exact unlock method, spawn time, egg, shop and Elite Training requirements remain unconfirmed until an official notice or reproducible current-client test supports them.</p></section>` : "";
+    return `<section><h2>${escapeHtml(item.name)} at a glance</h2><p>${escapeHtml(item.description)}</p><dl><dt>Official index number</dt><dd>${escapeHtml(item.no)}</dd><dt>Element</dt><dd>${escapeHtml(item.element)}</dd><dt>Role</dt><dd>${escapeHtml(item.role)}</dd><dt>Stage</dt><dd>${escapeHtml(item.stage)}</dd><dt>Region</dt><dd>${escapeHtml(item.region)}</dd></dl>${somniwingAnswer}<section><h2>Location and acquisition</h2><p>${escapeHtml(item.locationNote)}</p><p>${escapeHtml(item.acquisition)}</p><p>Region association is a starting point, not a precise spawn coordinate. Check current in-game conditions and the official source before relying on a route.</p></section><section><h2>Forms, abilities and team use</h2><p>${escapeHtml(item.evolution)}</p><p>${escapeHtml(item.ability)}</p><p>${escapeHtml(item.abilityUseCase)}</p><p>${escapeHtml(item.use)}</p></section><section><h2>Source and verification boundary</h2><p>${escapeHtml(item.sourceNote)}</p><p>Last reviewed: ${escapeHtml(sourceLastChecked)}. This entry is maintained from the official Aniimo Wiki and linked official sources; exact route, timing and balance claims are updated only after sufficient evidence is available.</p></section>`;
   }
 
   if (routeInfo.path === "/map/") {
@@ -161,7 +162,7 @@ function staticFallback(routeInfo) {
 
 function priorityAniimo() {
   return [
-    ...priorityAniimoIds.map((id) => aniimo.find((item) => item.id === id)).filter(isIndexableAniimo),
+    ...searchPriorityAniimoIds.map((id) => aniimo.find((item) => item.id === id)).filter(isIndexableAniimo),
     ...aniimo.filter(isIndexableAniimo),
   ].filter((item, index, list) => list.findIndex((candidate) => candidate.id === item.id) === index).slice(0, 36);
 }
@@ -174,6 +175,8 @@ function fallbackLinks(routeInfo) {
     ["/guides/", "Aniimo Guides"],
     ["/codes/", "Aniimo Codes"],
     ["/download/", "Aniimo Download"],
+    ["/troubleshooting/aniimo-server-status/", "Aniimo Server Status"],
+    ["/troubleshooting/aniimo-known-issues/", "Aniimo Known Issues"],
     ["/release-date/", "Aniimo Release Date"],
     ["/launch/", "Aniimo Launch Hub"],
     ["/topics/aniimo-discord/", "Aniimo Discord"],

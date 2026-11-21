@@ -1,12 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { fieldNotesForPath, updateOutlook } from "../../data/content/october-field-notes.js";
 import { BookOpen, CalendarDays, CheckCircle2, ChevronRight, Compass, Download, Gift, Map, Search, Sparkles, Plus, X, Copy, Download as DownloadIcon } from "lucide-react";
-import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, currentPatch, downloadTopics, editorialGuides, eventSchedule, eventStatus, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, liveIssueRegistry, liveSupportStatus, liveUpdate, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, postLaunchEvidence, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
+import { aniimo, beginnerTopics, choiceTopics, codeRewardTopics, codeVerificationTemplate, codes, conversionTopics, currentPatch, downloadTopics, editorialGuides, eventSchedule, eventStatus, faqs, freshnessPages, freshnessWatchlist, gameInfo, glossaryTopics, gscLatestObservations, gscObservationTemplate, launchDayCommandCenter, launchEvidenceQueues, launchPriorityPages, launchRewards, launchStatusEntries, launchTracker, liveIssueRegistry, liveSupportStatus, liveUpdate, localizedTopics, mapGuide, mechanicDeepDiveTopics, mechanics, mediaDetailTopics, mediaGalleryItems, newsTopics, officialLinks, officialPitchTopics, platformStatusByName, platformUnlockQueue, platforms, postLaunchEvidence, refreshPlanningTopics, regions, releaseInfo, searchIntentStatus, searchPriorityAniimoIds, searchSuggestionTopics, seoGuides, siteLastUpdated, socialDiscussionResearch, socialIntentTopics, sourceArchiveItems, sourceLastChecked, spawnVerificationQueue, statuses, tierListSnapshots, troubleshootingTopics, updates, updateWorkflowMatrix, verificationTemplates } from "../../data/content.js";
 import { aniimoPath, beginnerTopicPath, choiceTopicPath, codeRewardTopicPath, conversionTopicPath, downloadTopicPath, elementPath, freshnessPagePath, glossaryTopicPath, isIndexableAniimo, localizedTopicPath, locationTopicPath, mechanicDeepDiveTopicPath, mediaDetailTopicPath, newsTopicPath, officialPitchTopicPath, refreshPlanningTopicPath, regionPath, rolePath, searchSuggestionTopicPath, socialIntentTopicPath, stagePath, staticRoutes, statusPath, troubleshootingTopicPath } from "../lib/routes.js";
 import { AnswerStatus, CreatureImage, EditorialBlock, EvidenceCard, FaqBlock, FreshnessNotice, GuideItem, InfoPanel, LaunchStatusPanel, QuickCard, RegionImage, RelatedAniimo, RelatedRegions, SectionTitle, Select, SeoGuideBlock, SourcePanel, StatusBadge, TaxonomyLinks } from "../components/ui.jsx";
 
-const priorityAniimoIds = ["somniwing", "infergon", "celestis", "inferlupa", "glacy", "susuta", "eklue", "skippy"];
-const highIntentAniimoIds = new Set(["besauce", "fragrancier", "infergon", "blazen", "tubster", "fentuft", "thornblade", "pawney", "fenmane", "geodeback"]);
+const highIntentAniimoIds = new Set(["coraliz", "bubbeep", "piopiota", "geoclaw", "cheekie", "besauce", "fragrancier", "infergon", "blazen", "tubster", "fentuft", "thornblade", "pawney", "fenmane", "geodeback"]);
 
 function FieldNotes({ path, outlook = false }) {
   return (outlook ? [updateOutlook] : fieldNotesForPath(path)).map((note) => <section className="field-note" key={note.title} aria-label={note.title}>
@@ -18,7 +17,7 @@ function FieldNotes({ path, outlook = false }) {
 }
 
 function priorityAniimoPages() {
-  return priorityAniimoIds
+  return searchPriorityAniimoIds
     .map((id) => aniimo.find((item) => item.id === id))
     .filter(Boolean);
 }
@@ -78,7 +77,7 @@ export function HomePage(props) {
         <section className="hero">
           <div className="hero-copy">
             <p className="eyebrow">Independent Aniimo game guide</p>
-            <h1>Aniimo map, locations, downloads and 90-creature database answers.</h1>
+            <h1>Aniimo server status, known issues, downloads and 90-creature database.</h1>
             <p>{gameInfo.summary} Start with server status, known issues, downloads or platform availability, then search the 90-entry database and source-labeled region guides without sorting through rumor fixes.</p>
             <div className="hero-actions">
               <a className="primary-action" href="/troubleshooting/aniimo-server-status/" onClick={(event) => props.navigate(event, "/troubleshooting/aniimo-server-status/")}>
@@ -160,7 +159,7 @@ export function HomePage(props) {
             ["Is Aniimo down?", "Start with Server Status for a dated, source-labeled outage or maintenance answer."],
             ["Cannot log in or see the game?", "Use Known Issues to separate account, platform, region, store and client-version problems from a global outage."],
             ["Where can I download Aniimo?", "PC, Steam, Epic, PS5, Xbox, iOS and Android are live; check storefront availability by country and device."],
-            ["Looking for an Aniimo?", `Browse all ${aniimo.length} public entries by name, element, role, region and stage. Start with Somniwing or Infergon search answers.`],
+            ["Looking for an Aniimo?", `Browse all ${aniimo.length} public entries by name, element, role, region and stage. Start with Coraliz, Bubbeep, Piopiota, Geoclaw or Somniwing.`],
           ]} />
           <div className="site-index-grid">
             <LinkGroup title="Launch Answers" items={[
@@ -219,6 +218,7 @@ export function DatabasePage({ query, setQuery, element, setElement, region, set
             creature database for users searching all {aniimo.length} Aniimo, character names, locations,
             evolutions and guide entries.
           </p>
+          {!compact && <InfoPanel title="Start with high-signal Aniimo searches" rows={priorityAniimoPages().slice(0, 5).map((item) => [item.name, `${item.region} association, ${item.role} role, ${item.stage}. Open the detail page for source-labeled location and evolution notes.`])} />}
           <div className="answer-strip database-answer-strip" aria-label="Database quick answers">
             <div><strong>{aniimo.length}</strong><span>public entries</span></div>
             <div><strong>Search</strong><span>name, element, role or region</span></div>
@@ -2697,6 +2697,7 @@ export function AniimoDetail({ item, navigate, localized = false }) {
         </dl>
       </section>}
       {!pt && highIntentAniimoIds.has(item.id) && <InfoPanel title={`${item.name}: Search Answer`} rows={creatureSearchAnswer(item)} />}
+      {item.id === "somniwing" && <InfoPanel title="Somniwing Search Answer" rows={[["Current identity", "Somniwing is listed as a Dark Support Aniimo at Nova Stage."], ["What is confirmed", "The current page tracks Somniwing under Forest of Falling Stars as a source-labeled region association."], ["What is not confirmed", "This page does not claim an exact capture route, spawn time, egg, shop or Elite Training requirement."], ["Next verification", "Confirm the unlock method against an official notice or a reproducible current-client test before adding route instructions."], ["Last reviewed", sourceLastChecked]]}/>}
       {pt && <InfoPanel title="Resumo em português" rows={[["Identidade", `${item.name} é o Aniimo nº ${item.no}.`], ["Classificação", `${item.element}, função ${item.role}, estágio ${item.stage}.`], ["Região", `${item.region}. Esta é uma associação de fonte, não uma coordenada exata.`], ["Verificação", `Localização, evolução e requisitos exatos devem ser conferidos com fonte oficial ou evidência reproduzível. Revisado em ${sourceLastChecked}.`]]} />}
       <div className="detail-panels">
         {!pt && <EvidenceCard conclusion={`${item.name} is tracked under ${item.region}`} status={item.status} source={item.source} checked={sourceLastChecked} next={`Open the ${item.region} region guide or compare ${item.name}.`} />}

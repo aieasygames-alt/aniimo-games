@@ -1,6 +1,8 @@
 import { gameInfo, officialLinks, releaseInfo } from "./sources.js";
 import { sourceLastChecked } from "./site-meta.js";
 
+export const searchPriorityAniimoIds = ["coraliz", "bubbeep", "piopiota", "geoclaw", "cheekie", "somniwing", "glameep", "glacy"];
+
 export const localizedTopics = [
   {
     locale: "pt",
@@ -1652,8 +1654,8 @@ export const troubleshootingTopics = [
   },
   {
     slug: "aniimo-known-issues",
-    title: "Aniimo Known Issues: Login, Loading, Store & Reward Help",
-    description: "Track official Aniimo support guidance and unverified issue reports for login, loading, store visibility, updates and reward claims with platform-specific next steps.",
+    title: "Aniimo Known Issues & Bugs: Login, Loading & Store",
+    description: "Track Aniimo known issues and bugs covering login, loading, store visibility, updates, rewards and platform-specific next steps.",
     intro: "This index keeps official launch guidance separate from unverified player reports. Each row records the affected scope, a safe next step, source, and last checked date.",
     points: [
       ["Official launch guidance", "Login queues and slower loading can occur at launch. Keep a stable connection, close unnecessary background programs and verify that the device meets official requirements."],
